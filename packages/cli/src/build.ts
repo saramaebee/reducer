@@ -272,25 +272,22 @@ export async function run(opts: RunOptions): Promise<RunResult> {
   }
 
   // ---- physical-absence audit: a removed implementation must not survive
-  // anywhere else in the emitted artifact. Scan the owning package's other
-  // emitted files for each removed body — raw and JSON-escaped (the escaped
-  // form catches a pre-existing map's sourcesContent). A leaking `.map` is
-  // superseded metadata and is suppressed from the artifact; a leak in ANY
-  // other file (dual CJS/ESM builds, bundled copies, src/) REVERTS the whole
+  // anywhere else in the emitted artifact. Scan EVERY other emitted file for
+  // each removed body — raw and JSON-escaped (the escaped form catches a
+  // pre-existing map's sourcesContent). A leaking `.map` is superseded
+  // metadata and is suppressed from the artifact; a leak in ANY other file
+  // (dual CJS/ESM builds, bundled/vendored copies, src/) REVERTS the whole
   // file's transformations: retention over a false physical-absence claim.
   const suppressedRels = new Set<string>();
   const revertedFiles = new Set<string>();
   const absenceWarnings: string[] = [];
   for (const [rel, ranges] of removedRanges) {
-    const pkgDir = byFile.get(rel)![0].file.pkg?.dir;
-    if (!pkgDir) continue;
-    const pkgPrefix = `${path.relative(base, pkgDir).split(path.sep).join('/')}/`;
     const input = originalInput.get(rel)!;
     const bodies = ranges
       .map((r) => input.slice(r.start, r.end).trim())
       .filter((b) => b.length > 0);
     for (const [urel, u] of emitByRel) {
-      if (urel === rel || u.isDir || u.isSymlink || !urel.startsWith(pkgPrefix)) continue;
+      if (urel === rel || u.isDir || u.isSymlink) continue;
       let content: string;
       try {
         content = transformedCode.get(urel)?.code ?? readFileSync(u.abs, 'utf8');
