@@ -1,0 +1,11 @@
+{
+  "name": "fixture-adv-alias",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "aliaslib": "1.0.0",
+    "restlib": "1.0.0",
+    "patchlib": "1.0.0",
+    "dynlib": "1.0.0"
+  }
+}

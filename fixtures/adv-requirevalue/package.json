@@ -1,0 +1,6 @@
+{
+  "name": "fixture-adv-requirevalue",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": { "loader": "1.0.0", "pkgb": "1.0.0" }
+}

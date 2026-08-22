@@ -1,0 +1,10 @@
+{
+  "name": "fixture-adv-reexport",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "restar": "1.0.0",
+    "sideify": "1.0.0",
+    "proplib": "1.0.0"
+  }
+}

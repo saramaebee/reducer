@@ -1,0 +1,6 @@
+{
+  "name": "fixture-escape",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": { "esclib": "2.0.0" }
+}

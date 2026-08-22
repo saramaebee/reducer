@@ -1,0 +1,6 @@
+{
+  "name": "fixture-dynamic-access",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": { "multilib": "1.0.0" }
+}

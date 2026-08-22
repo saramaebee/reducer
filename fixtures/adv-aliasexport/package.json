@@ -1,0 +1,6 @@
+{
+  "name": "fixture-adv-aliasexport",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": { "aliasexp": "1.0.0" }
+}

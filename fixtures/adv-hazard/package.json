@@ -1,0 +1,10 @@
+{
+  "name": "fixture-adv-hazard",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "hazardlib": "1.0.0",
+    "innocentlib": "1.0.0",
+    "workerlib": "1.0.0"
+  }
+}
