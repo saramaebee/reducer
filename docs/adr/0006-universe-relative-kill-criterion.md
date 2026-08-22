@@ -44,7 +44,7 @@ It is reported alongside, never substituted for the size metric.
 Δ vs the NFT-traced artifact, Δ vs the strongest passing bundler.
 
 **Decision statistic**: the **median over target-category apps** of the
-pre-registered 16-app corpus (`benchmarks/corpus.json`). Target apps also
+pre-registered corpus (v1: 19 apps pinned to exact SHAs) (`benchmarks/corpus.json`). Target apps also
 report P25/P75 and the fraction of apps ≥10% and ≥15%; negative controls are
 reported separately (they were selected to be hostile — including them in the
 primary statistic would make the experimental design fight itself); the full
