@@ -288,7 +288,7 @@
       "test": null,
       "category": "target",
       "calibration": false,
-      "notes": "OWASP Juice Shop: realistic Express/TS app with a large dep tree; deliberately vulnerable, so unusually valuable for the vulnerability-removal/VEX wedge. npm install triggers the server build via postinstall; entry/build metadata to confirm at clone time."
+      "notes": "OWASP Juice Shop: realistic Express/TS app with a large dep tree; deliberately vulnerable, so unusually valuable for the vulnerability-removal/VEX wedge. npm install triggers the server build via postinstall. Confirmed at clone time (2026-08-22, pinned SHA): entry build/app.js correct; npm, but NO lockfile is committed — the production closure snapshot used a lockfile generated at snapshot time (recorded in benchmarks/cve-population/corpus-packages.json)."
     },
     {
       "name": "outline",
@@ -305,7 +305,7 @@
       "test": null,
       "category": "target",
       "calibration": false,
-      "notes": "Mature ordinary production SaaS backend (Koa + Sequelize) — a \"normal SaaS\" target rather than a toy or framework sample. Entry/build metadata to confirm at clone time."
+      "notes": "Mature ordinary production SaaS backend (Koa + Sequelize) — a \"normal SaaS\" target rather than a toy or framework sample. Confirmed at clone time (2026-08-22, pinned SHA): entry build/server/index.js correct (start script: node ./build/server/index.js); package manager is Yarn berry 4.11 (yarn.lock in berry format), single-app repo."
     },
     {
       "name": "strapi",
@@ -322,7 +322,7 @@
       "test": null,
       "category": "control",
       "calibration": false,
-      "notes": "Negative control: intentionally hostile plugin/framework architecture (plugins resolved by name, ORM conventions, admin build). Framework monorepo — the measured app is examples/getstarted; entry/build metadata to confirm at clone time."
+      "notes": "Negative control: intentionally hostile plugin/framework architecture (plugins resolved by name, ORM conventions, admin build). Framework monorepo — the measured app is examples/getstarted. Confirmed at clone time (2026-08-22, pinned SHA): package manager is Yarn berry 4.12 (workspace monorepo); getstarted depends on @strapi/strapi via workspace:*; app scripts are strapi build / strapi start."
     }
   ]
 }
