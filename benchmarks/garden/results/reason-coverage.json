@@ -1,0 +1,349 @@
+{
+  "rows": [
+    {
+      "reason": "static-import",
+      "status": "ok",
+      "observedIn": [
+        "cjs-basic",
+        "cjs-closure",
+        "cjs-object-literal",
+        "cjs-overwrite",
+        "destructure-rest",
+        "dynamic-import-literal",
+        "esm-decl",
+        "esm-default-alias",
+        "esm-reexport",
+        "esm-shared-impl",
+        "esm-sideeffect",
+        "esm-specifier-alias",
+        "identity-unification",
+        "require-literal",
+        "static-basic",
+        "unrecognized-importer",
+        "vuln-localized"
+      ]
+    },
+    {
+      "reason": "not-imported-anywhere",
+      "status": "ok",
+      "observedIn": [
+        "cjs-basic",
+        "cjs-object-literal",
+        "esm-decl",
+        "esm-namespace-clean",
+        "esm-reexport",
+        "esm-sideeffect",
+        "esm-specifier-alias",
+        "identity-unification",
+        "require-literal",
+        "static-basic",
+        "vuln-localized"
+      ]
+    },
+    {
+      "reason": "internal-reference",
+      "status": "ok",
+      "observedIn": [
+        "cjs-closure",
+        "esm-sideeffect"
+      ]
+    },
+    {
+      "reason": "shared-implementation",
+      "status": "ok",
+      "observedIn": [
+        "esm-default-alias",
+        "esm-shared-impl"
+      ]
+    },
+    {
+      "reason": "dynamic-property-access",
+      "status": "NOT OBSERVED",
+      "observedIn": []
+    },
+    {
+      "reason": "value-escaped",
+      "status": "ok",
+      "observedIn": [
+        "esm-namespace-escape",
+        "identity-unification"
+      ]
+    },
+    {
+      "reason": "binding-reassigned",
+      "status": "ok",
+      "observedIn": [
+        "binding-reassigned"
+      ]
+    },
+    {
+      "reason": "destructure-rest",
+      "status": "ok",
+      "observedIn": [
+        "destructure-rest"
+      ]
+    },
+    {
+      "reason": "dynamic-require",
+      "status": "ok",
+      "observedIn": [
+        "better-sqlite3 (real)",
+        "createrequire",
+        "direct-eval-lexical",
+        "escaped-loader",
+        "express (real)",
+        "optional-require (real)",
+        "reconstructed-require-unknown-caller",
+        "reconstructed-require-wrapper",
+        "require-at (real)",
+        "require-finite",
+        "require-pkgscoped",
+        "require-unbounded-bounded-projection",
+        "require-unbounded-computed-projection",
+        "require-value-escape",
+        "vm-injected-loader"
+      ]
+    },
+    {
+      "reason": "dynamic-import",
+      "status": "ok",
+      "observedIn": [
+        "dynamic-import-literal"
+      ]
+    },
+    {
+      "reason": "dynamic-import-nonliteral",
+      "status": "ok",
+      "observedIn": [
+        "dynamic-import-nonliteral"
+      ]
+    },
+    {
+      "reason": "export-star",
+      "status": "ok",
+      "observedIn": [
+        "esm-export-star"
+      ]
+    },
+    {
+      "reason": "reexport-namespace",
+      "status": "ok",
+      "observedIn": [
+        "esm-export-star"
+      ]
+    },
+    {
+      "reason": "export-object-mutation",
+      "status": "ok",
+      "observedIn": [
+        "cjs-computed-export",
+        "cjs-deferred-write",
+        "cjs-getter",
+        "cjs-overwrite",
+        "cjs-proxy",
+        "cjs-setprototypeof",
+        "sql.js (real)",
+        "validator (real)"
+      ]
+    },
+    {
+      "reason": "unsupported-syntax",
+      "status": "ok",
+      "observedIn": [
+        "parse-failure"
+      ]
+    },
+    {
+      "reason": "unsupported-export-kind",
+      "status": "ok",
+      "observedIn": [
+        "unsupported-export-kind"
+      ]
+    },
+    {
+      "reason": "unrecognized-importer",
+      "status": "ok",
+      "observedIn": [
+        "resolver-trace-mismatch",
+        "unrecognized-importer"
+      ]
+    },
+    {
+      "reason": "native-boundary",
+      "status": "NOT OBSERVED",
+      "observedIn": []
+    },
+    {
+      "reason": "wasm-boundary",
+      "status": "NOT OBSERVED",
+      "observedIn": []
+    },
+    {
+      "reason": "runtime-code-generation",
+      "status": "ok",
+      "observedIn": [
+        "better-sqlite3 (real)",
+        "depd (real)",
+        "direct-eval-lexical",
+        "eval-constant-benign",
+        "eval-constant-capable",
+        "express (real)",
+        "lodash (real)",
+        "newfunction-runtime",
+        "optional-require (real)",
+        "require-at (real)",
+        "vm-injected-loader",
+        "vm-no-loader"
+      ]
+    },
+    {
+      "reason": "require-cache-mutation",
+      "status": "ok",
+      "observedIn": [
+        "require-cache-mutation"
+      ]
+    },
+    {
+      "reason": "resolver-trace-mismatch",
+      "status": "ok",
+      "observedIn": [
+        "resolver-trace-mismatch"
+      ]
+    },
+    {
+      "reason": "nft-warning",
+      "status": "ok",
+      "observedIn": [
+        "better-sqlite3 (real)",
+        "getbuiltinmodule-factory",
+        "parse-failure"
+      ]
+    }
+  ],
+  "observed": {
+    "dynamic-require": [
+      "better-sqlite3 (real)",
+      "createrequire",
+      "direct-eval-lexical",
+      "escaped-loader",
+      "express (real)",
+      "optional-require (real)",
+      "reconstructed-require-unknown-caller",
+      "reconstructed-require-wrapper",
+      "require-at (real)",
+      "require-finite",
+      "require-pkgscoped",
+      "require-unbounded-bounded-projection",
+      "require-unbounded-computed-projection",
+      "require-value-escape",
+      "vm-injected-loader"
+    ],
+    "nft-warning": [
+      "better-sqlite3 (real)",
+      "getbuiltinmodule-factory",
+      "parse-failure"
+    ],
+    "static-import": [
+      "cjs-basic",
+      "cjs-closure",
+      "cjs-object-literal",
+      "cjs-overwrite",
+      "destructure-rest",
+      "dynamic-import-literal",
+      "esm-decl",
+      "esm-default-alias",
+      "esm-reexport",
+      "esm-shared-impl",
+      "esm-sideeffect",
+      "esm-specifier-alias",
+      "identity-unification",
+      "require-literal",
+      "static-basic",
+      "unrecognized-importer",
+      "vuln-localized"
+    ],
+    "not-imported-anywhere": [
+      "cjs-basic",
+      "cjs-object-literal",
+      "esm-decl",
+      "esm-namespace-clean",
+      "esm-reexport",
+      "esm-sideeffect",
+      "esm-specifier-alias",
+      "identity-unification",
+      "require-literal",
+      "static-basic",
+      "vuln-localized"
+    ],
+    "shared-implementation": [
+      "esm-default-alias",
+      "esm-shared-impl"
+    ],
+    "value-escaped": [
+      "esm-namespace-escape",
+      "identity-unification"
+    ],
+    "export-star": [
+      "esm-export-star"
+    ],
+    "reexport-namespace": [
+      "esm-export-star"
+    ],
+    "internal-reference": [
+      "cjs-closure",
+      "esm-sideeffect"
+    ],
+    "dynamic-import": [
+      "dynamic-import-literal"
+    ],
+    "dynamic-import-nonliteral": [
+      "dynamic-import-nonliteral"
+    ],
+    "runtime-code-generation": [
+      "better-sqlite3 (real)",
+      "depd (real)",
+      "direct-eval-lexical",
+      "eval-constant-benign",
+      "eval-constant-capable",
+      "express (real)",
+      "lodash (real)",
+      "newfunction-runtime",
+      "optional-require (real)",
+      "require-at (real)",
+      "vm-injected-loader",
+      "vm-no-loader"
+    ],
+    "export-object-mutation": [
+      "cjs-computed-export",
+      "cjs-deferred-write",
+      "cjs-getter",
+      "cjs-overwrite",
+      "cjs-proxy",
+      "cjs-setprototypeof",
+      "sql.js (real)",
+      "validator (real)"
+    ],
+    "binding-reassigned": [
+      "binding-reassigned"
+    ],
+    "destructure-rest": [
+      "destructure-rest"
+    ],
+    "require-cache-mutation": [
+      "require-cache-mutation"
+    ],
+    "unsupported-syntax": [
+      "parse-failure"
+    ],
+    "unsupported-export-kind": [
+      "unsupported-export-kind"
+    ],
+    "unrecognized-importer": [
+      "resolver-trace-mismatch",
+      "unrecognized-importer"
+    ],
+    "resolver-trace-mismatch": [
+      "resolver-trace-mismatch"
+    ]
+  }
+}

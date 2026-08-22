@@ -1,0 +1,1754 @@
+{
+  "$schema": "reducer-garden-map/1",
+  "packages": [
+    {
+      "id": "createrequire",
+      "npmPkg": "fab-createrequire",
+      "importStmt": "import { used as createrequire_used } from 'fab-createrequire';"
+    },
+    {
+      "id": "getbuiltinmodule-factory",
+      "npmPkg": "fab-getbuiltinmodule-factory",
+      "importStmt": "import { invoke as getbuiltinmoduleFactory_invoke } from 'fab-getbuiltinmodule-factory';"
+    },
+    {
+      "id": "reconstructed-require-wrapper",
+      "npmPkg": "fab-reconstructed-require-wrapper",
+      "importStmt": "import { callBar as reconstructedRequireWrapper_callBar } from 'fab-reconstructed-require-wrapper';"
+    },
+    {
+      "id": "reconstructed-require-unknown-caller",
+      "npmPkg": "fab-reconstructed-require-unknown-caller",
+      "importStmt": "import { loadAny as reconstructedRequireUnknownCaller_loadAny } from 'fab-reconstructed-require-unknown-caller';"
+    },
+    {
+      "id": "escaped-loader",
+      "npmPkg": "fab-escaped-loader",
+      "importStmt": "import { probe as escapedLoader_probe } from 'fab-escaped-loader';"
+    },
+    {
+      "id": "static-basic",
+      "npmPkg": "fab-static-basic",
+      "importStmt": "import { used as staticBasic_used } from 'fab-static-basic';"
+    },
+    {
+      "id": "esm-decl",
+      "npmPkg": "fab-esm-decl",
+      "importStmt": "import { usedDecl as esmDecl_usedDecl } from 'fab-esm-decl';"
+    },
+    {
+      "id": "esm-specifier-alias",
+      "npmPkg": "fab-esm-specifier-alias",
+      "importStmt": "import { used as esmSpecifierAlias_used } from 'fab-esm-specifier-alias';"
+    },
+    {
+      "id": "esm-default-alias",
+      "npmPkg": "fab-esm-default-alias",
+      "importStmt": "import esmDefaultAlias_default from 'fab-esm-default-alias';"
+    },
+    {
+      "id": "esm-namespace-clean",
+      "npmPkg": "fab-esm-namespace-clean",
+      "importStmt": "import * as esmNamespaceClean from 'fab-esm-namespace-clean';"
+    },
+    {
+      "id": "esm-namespace-escape",
+      "npmPkg": "fab-esm-namespace-escape",
+      "importStmt": "import 'fab-esm-namespace-escape';"
+    },
+    {
+      "id": "esm-reexport",
+      "npmPkg": "fab-esm-reexport",
+      "importStmt": "import { alpha as esmReexport_alpha } from 'fab-esm-reexport';"
+    },
+    {
+      "id": "esm-export-star",
+      "npmPkg": "fab-esm-export-star",
+      "importStmt": "import { gamma as esmExportStar_gamma } from 'fab-esm-export-star';"
+    },
+    {
+      "id": "esm-shared-impl",
+      "npmPkg": "fab-esm-shared-impl",
+      "importStmt": "import { format as esmSharedImpl_format } from 'fab-esm-shared-impl';"
+    },
+    {
+      "id": "esm-sideeffect",
+      "npmPkg": "fab-esm-sideeffect",
+      "importStmt": "import { getValue as esmSideeffect_getValue } from 'fab-esm-sideeffect';"
+    },
+    {
+      "id": "dynamic-import-literal",
+      "npmPkg": "fab-dynamic-import-literal",
+      "importStmt": "import { callUsed as dynamicImportLiteral_callUsed } from 'fab-dynamic-import-literal';"
+    },
+    {
+      "id": "dynamic-import-nonliteral",
+      "npmPkg": "fab-dynamic-import-nonliteral",
+      "importStmt": "import { load as dynamicImportNonliteral_load } from 'fab-dynamic-import-nonliteral';"
+    },
+    {
+      "id": "eval-constant-benign",
+      "npmPkg": "fab-eval-constant-benign",
+      "importStmt": "import { usedGlobal as evalConstantBenign_usedGlobal } from 'fab-eval-constant-benign';"
+    },
+    {
+      "id": "eval-constant-capable",
+      "npmPkg": "fab-eval-constant-capable",
+      "importStmt": "import { run as evalConstantCapable_run } from 'fab-eval-constant-capable';"
+    },
+    {
+      "id": "newfunction-runtime",
+      "npmPkg": "fab-newfunction-runtime",
+      "importStmt": "import { makeAndRun as newfunctionRuntime_makeAndRun } from 'fab-newfunction-runtime';"
+    },
+    {
+      "id": "direct-eval-lexical",
+      "npmPkg": "fab-direct-eval-lexical",
+      "importStmt": "import { run as directEvalLexical_run } from 'fab-direct-eval-lexical';"
+    },
+    {
+      "id": "require-literal",
+      "npmPkg": "fab-require-literal",
+      "importStmt": "import { used as requireLiteral_used } from 'fab-require-literal';"
+    },
+    {
+      "id": "require-finite",
+      "npmPkg": "fab-require-finite",
+      "importStmt": "import { run as requireFinite_run } from 'fab-require-finite';"
+    },
+    {
+      "id": "require-pkgscoped",
+      "npmPkg": "fab-require-pkgscoped",
+      "importStmt": "import { load as requirePkgscoped_load } from 'fab-require-pkgscoped';"
+    },
+    {
+      "id": "require-unbounded-bounded-projection",
+      "npmPkg": "fab-require-unbounded-bounded-projection",
+      "importStmt": "import { callFoo as requireUnboundedBoundedProjection_callFoo } from 'fab-require-unbounded-bounded-projection';"
+    },
+    {
+      "id": "require-unbounded-computed-projection",
+      "npmPkg": "fab-require-unbounded-computed-projection",
+      "importStmt": "import { call as requireUnboundedComputedProjection_call } from 'fab-require-unbounded-computed-projection';"
+    },
+    {
+      "id": "require-value-escape",
+      "npmPkg": "fab-require-value-escape",
+      "importStmt": "import { grab as requireValueEscape_grab } from 'fab-require-value-escape';"
+    },
+    {
+      "id": "cjs-basic",
+      "npmPkg": "fab-cjs-basic",
+      "importStmt": "import { used as cjsBasic_used } from 'fab-cjs-basic';"
+    },
+    {
+      "id": "cjs-object-literal",
+      "npmPkg": "fab-cjs-object-literal",
+      "importStmt": "import { used as cjsObjectLiteral_used } from 'fab-cjs-object-literal';"
+    },
+    {
+      "id": "cjs-closure",
+      "npmPkg": "fab-cjs-closure",
+      "importStmt": "import { wrap as cjsClosure_wrap } from 'fab-cjs-closure';"
+    },
+    {
+      "id": "cjs-overwrite",
+      "npmPkg": "fab-cjs-overwrite",
+      "importStmt": "import { x as cjsOverwrite_x, observedDuringCycle as cjsOverwrite_observedDuringCycle } from 'fab-cjs-overwrite';"
+    },
+    {
+      "id": "cjs-getter",
+      "npmPkg": "fab-cjs-getter",
+      "importStmt": "import cjsGetter_default from 'fab-cjs-getter';"
+    },
+    {
+      "id": "cjs-computed-export",
+      "npmPkg": "fab-cjs-computed-export",
+      "importStmt": "import cjsComputedExport_default from 'fab-cjs-computed-export';"
+    },
+    {
+      "id": "cjs-proxy",
+      "npmPkg": "fab-cjs-proxy",
+      "importStmt": "import cjsProxy_default from 'fab-cjs-proxy';"
+    },
+    {
+      "id": "cjs-deferred-write",
+      "npmPkg": "fab-cjs-deferred-write",
+      "importStmt": "import cjsDeferredWrite_default from 'fab-cjs-deferred-write';"
+    },
+    {
+      "id": "cjs-setprototypeof",
+      "npmPkg": "fab-cjs-setprototypeof",
+      "importStmt": "import cjsSetprototypeof_default from 'fab-cjs-setprototypeof';"
+    },
+    {
+      "id": "vm-injected-loader",
+      "npmPkg": "fab-vm-injected-loader",
+      "importStmt": "import { run as vmInjectedLoader_run } from 'fab-vm-injected-loader';"
+    },
+    {
+      "id": "vm-no-loader",
+      "npmPkg": "fab-vm-no-loader",
+      "importStmt": "import { used as vmNoLoader_used } from 'fab-vm-no-loader';"
+    },
+    {
+      "id": "identity-unification",
+      "npmPkg": "fab-identity-unification",
+      "importStmt": "import { callFoo as identityUnification_callFoo } from 'fab-identity-unification';"
+    },
+    {
+      "id": "vuln-localized",
+      "npmPkg": "fab-vuln-localized",
+      "importStmt": "import { get as vulnLocalized_get } from 'fab-vuln-localized';"
+    },
+    {
+      "id": "binding-reassigned",
+      "npmPkg": "fab-binding-reassigned",
+      "importStmt": "import 'fab-binding-reassigned';"
+    },
+    {
+      "id": "destructure-rest",
+      "npmPkg": "fab-destructure-rest",
+      "importStmt": "import { pick as destructureRest_pick } from 'fab-destructure-rest';"
+    },
+    {
+      "id": "require-cache-mutation",
+      "npmPkg": "fab-require-cache-mutation",
+      "importStmt": "import { fresh as requireCacheMutation_fresh } from 'fab-require-cache-mutation';"
+    },
+    {
+      "id": "parse-failure",
+      "npmPkg": "fab-parse-failure",
+      "importStmt": "import { ok as parseFailure_ok } from 'fab-parse-failure';"
+    },
+    {
+      "id": "unsupported-export-kind",
+      "npmPkg": "fab-unsupported-export-kind",
+      "importStmt": "import 'fab-unsupported-export-kind';"
+    },
+    {
+      "id": "unrecognized-importer",
+      "npmPkg": "fab-unrecognized-importer",
+      "importStmt": "import { launch as unrecognizedImporter_launch } from 'fab-unrecognized-importer';"
+    },
+    {
+      "id": "resolver-trace-mismatch",
+      "npmPkg": "fab-resolver-trace-mismatch",
+      "importStmt": "import { probe as resolverTraceMismatch_probe } from 'fab-resolver-trace-mismatch';"
+    }
+  ],
+  "fabOwnedPackages": [
+    "fab-esm-specifier-alias",
+    "fab-resolver-trace-mismatch",
+    "fab-reconstructed-require-unknown-caller",
+    "fab-esm-sideeffect",
+    "fab-cjs-overwrite",
+    "fab-unsupported-export-kind",
+    "fab-cjs-object-literal",
+    "fab-esm-default-alias",
+    "fab-cjs-setprototypeof",
+    "fab-esm-shared-impl",
+    "fab-require-finite",
+    "fab-newfunction-runtime",
+    "fab-require-literal",
+    "fab-cjs-closure",
+    "fab-vm-no-loader",
+    "fab-cjs-computed-export",
+    "fab-eval-constant-benign",
+    "fab-dynamic-import-nonliteral",
+    "fab-createrequire",
+    "fab-escaped-loader",
+    "fab-vm-injected-loader",
+    "fab-destructure-rest",
+    "fab-cjs-getter",
+    "fab-identity-unification",
+    "fab-getbuiltinmodule-factory",
+    "fab-esm-namespace-clean",
+    "fab-require-unbounded-computed-projection",
+    "fab-esm-reexport",
+    "fab-cjs-proxy",
+    "fab-esm-namespace-escape",
+    "fab-require-unbounded-bounded-projection",
+    "fab-vuln-localized",
+    "fab-cjs-deferred-write",
+    "fab-reconstructed-require-wrapper",
+    "fab-static-basic",
+    "fab-direct-eval-lexical",
+    "fab-parse-failure",
+    "fab-binding-reassigned",
+    "fab-cjs-basic",
+    "fab-esm-decl",
+    "fab-require-cache-mutation",
+    "fab-dynamic-import-literal",
+    "fab-require-value-escape",
+    "fab-require-pkgscoped",
+    "fab-esm-export-star",
+    "fab-unrecognized-importer",
+    "fab-eval-constant-capable",
+    "rtm-dual",
+    "rruc-target",
+    "rf-a",
+    "rf-b",
+    "rl-target",
+    "din-target",
+    "cr-target",
+    "el-target",
+    "vil-target",
+    "dr-target",
+    "iu-target",
+    "gbf-target",
+    "rucp-target",
+    "rubp-target",
+    "rrw-foo",
+    "del-target",
+    "rcm-target",
+    "dil-target",
+    "rve-target",
+    "rps-scopedtarget",
+    "ecc-target"
+  ],
+  "fabOwnerById": {
+    "fab-esm-specifier-alias": "esm-specifier-alias",
+    "fab-resolver-trace-mismatch": "resolver-trace-mismatch",
+    "fab-reconstructed-require-unknown-caller": "reconstructed-require-unknown-caller",
+    "fab-esm-sideeffect": "esm-sideeffect",
+    "fab-cjs-overwrite": "cjs-overwrite",
+    "fab-unsupported-export-kind": "unsupported-export-kind",
+    "fab-cjs-object-literal": "cjs-object-literal",
+    "fab-esm-default-alias": "esm-default-alias",
+    "fab-cjs-setprototypeof": "cjs-setprototypeof",
+    "fab-esm-shared-impl": "esm-shared-impl",
+    "fab-require-finite": "require-finite",
+    "fab-newfunction-runtime": "newfunction-runtime",
+    "fab-require-literal": "require-literal",
+    "fab-cjs-closure": "cjs-closure",
+    "fab-vm-no-loader": "vm-no-loader",
+    "fab-cjs-computed-export": "cjs-computed-export",
+    "fab-eval-constant-benign": "eval-constant-benign",
+    "fab-dynamic-import-nonliteral": "dynamic-import-nonliteral",
+    "fab-createrequire": "createrequire",
+    "fab-escaped-loader": "escaped-loader",
+    "fab-vm-injected-loader": "vm-injected-loader",
+    "fab-destructure-rest": "destructure-rest",
+    "fab-cjs-getter": "cjs-getter",
+    "fab-identity-unification": "identity-unification",
+    "fab-getbuiltinmodule-factory": "getbuiltinmodule-factory",
+    "fab-esm-namespace-clean": "esm-namespace-clean",
+    "fab-require-unbounded-computed-projection": "require-unbounded-computed-projection",
+    "fab-esm-reexport": "esm-reexport",
+    "fab-cjs-proxy": "cjs-proxy",
+    "fab-esm-namespace-escape": "esm-namespace-escape",
+    "fab-require-unbounded-bounded-projection": "require-unbounded-bounded-projection",
+    "fab-vuln-localized": "vuln-localized",
+    "fab-cjs-deferred-write": "cjs-deferred-write",
+    "fab-reconstructed-require-wrapper": "reconstructed-require-wrapper",
+    "fab-static-basic": "static-basic",
+    "fab-direct-eval-lexical": "direct-eval-lexical",
+    "fab-parse-failure": "parse-failure",
+    "fab-binding-reassigned": "binding-reassigned",
+    "fab-cjs-basic": "cjs-basic",
+    "fab-esm-decl": "esm-decl",
+    "fab-require-cache-mutation": "require-cache-mutation",
+    "fab-dynamic-import-literal": "dynamic-import-literal",
+    "fab-require-value-escape": "require-value-escape",
+    "fab-require-pkgscoped": "require-pkgscoped",
+    "fab-esm-export-star": "esm-export-star",
+    "fab-unrecognized-importer": "unrecognized-importer",
+    "fab-eval-constant-capable": "eval-constant-capable",
+    "rtm-dual": "resolver-trace-mismatch",
+    "rruc-target": "reconstructed-require-unknown-caller",
+    "rf-a": "require-finite",
+    "rf-b": "require-finite",
+    "rl-target": "require-literal",
+    "din-target": "dynamic-import-nonliteral",
+    "cr-target": "createrequire",
+    "el-target": "escaped-loader",
+    "vil-target": "vm-injected-loader",
+    "dr-target": "destructure-rest",
+    "iu-target": "identity-unification",
+    "gbf-target": "getbuiltinmodule-factory",
+    "rucp-target": "require-unbounded-computed-projection",
+    "rubp-target": "require-unbounded-bounded-projection",
+    "rrw-foo": "reconstructed-require-wrapper",
+    "del-target": "direct-eval-lexical",
+    "rcm-target": "require-cache-mutation",
+    "dil-target": "dynamic-import-literal",
+    "rve-target": "require-value-escape",
+    "rps-scopedtarget": "require-pkgscoped",
+    "ecc-target": "eval-constant-capable"
+  },
+  "symbols": [
+    {
+      "key": "static-basic:used",
+      "id": "static-basic",
+      "npmPkg": "fab-static-basic",
+      "symbol": "used",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "static-basic:deadUnused",
+      "id": "static-basic",
+      "npmPkg": "fab-static-basic",
+      "symbol": "deadUnused",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_static_basic_dead"
+    },
+    {
+      "key": "esm-decl:usedDecl",
+      "id": "esm-decl",
+      "npmPkg": "fab-esm-decl",
+      "symbol": "usedDecl",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "esm-decl:deadDecl",
+      "id": "esm-decl",
+      "npmPkg": "fab-esm-decl",
+      "symbol": "deadDecl",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_esm_decl_dead"
+    },
+    {
+      "key": "esm-specifier-alias:used",
+      "id": "esm-specifier-alias",
+      "npmPkg": "fab-esm-specifier-alias",
+      "symbol": "used",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "esm-specifier-alias:deadAlias",
+      "id": "esm-specifier-alias",
+      "npmPkg": "fab-esm-specifier-alias",
+      "symbol": "deadAlias",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_esm_alias_dead"
+    },
+    {
+      "key": "esm-default-alias:default",
+      "id": "esm-default-alias",
+      "npmPkg": "fab-esm-default-alias",
+      "symbol": "default",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "esm-default-alias:helper",
+      "id": "esm-default-alias",
+      "npmPkg": "fab-esm-default-alias",
+      "symbol": "helper",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "esm-namespace-clean:used",
+      "id": "esm-namespace-clean",
+      "npmPkg": "fab-esm-namespace-clean",
+      "symbol": "used",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "esm-namespace-clean:deadNs",
+      "id": "esm-namespace-clean",
+      "npmPkg": "fab-esm-namespace-clean",
+      "symbol": "deadNs",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_esm_ns_dead"
+    },
+    {
+      "key": "esm-namespace-escape:a",
+      "id": "esm-namespace-escape",
+      "npmPkg": "fab-esm-namespace-escape",
+      "symbol": "a",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "esm-namespace-escape:b",
+      "id": "esm-namespace-escape",
+      "npmPkg": "fab-esm-namespace-escape",
+      "symbol": "b",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "esm-reexport:alpha",
+      "id": "esm-reexport",
+      "npmPkg": "fab-esm-reexport",
+      "symbol": "alpha",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "esm-reexport:beta",
+      "id": "esm-reexport",
+      "npmPkg": "fab-esm-reexport",
+      "symbol": "beta",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_esm_reexport_dead"
+    },
+    {
+      "key": "esm-export-star:gamma",
+      "id": "esm-export-star",
+      "npmPkg": "fab-esm-export-star",
+      "symbol": "gamma",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "esm-export-star:delta",
+      "id": "esm-export-star",
+      "npmPkg": "fab-esm-export-star",
+      "symbol": "delta",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "esm-shared-impl:format",
+      "id": "esm-shared-impl",
+      "npmPkg": "fab-esm-shared-impl",
+      "symbol": "format",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "esm-shared-impl:fmt",
+      "id": "esm-shared-impl",
+      "npmPkg": "fab-esm-shared-impl",
+      "symbol": "fmt",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "esm-sideeffect:getValue",
+      "id": "esm-sideeffect",
+      "npmPkg": "fab-esm-sideeffect",
+      "symbol": "getValue",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "esm-sideeffect:activate",
+      "id": "esm-sideeffect",
+      "npmPkg": "fab-esm-sideeffect",
+      "symbol": "activate",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "esm-sideeffect:unusedSide",
+      "id": "esm-sideeffect",
+      "npmPkg": "fab-esm-sideeffect",
+      "symbol": "unusedSide",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_esm_sideeffect_dead"
+    },
+    {
+      "key": "cjs-basic:used",
+      "id": "cjs-basic",
+      "npmPkg": "fab-cjs-basic",
+      "symbol": "used",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "cjs-basic:dead",
+      "id": "cjs-basic",
+      "npmPkg": "fab-cjs-basic",
+      "symbol": "dead",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_cjs_basic_dead"
+    },
+    {
+      "key": "cjs-object-literal:used",
+      "id": "cjs-object-literal",
+      "npmPkg": "fab-cjs-object-literal",
+      "symbol": "used",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "cjs-object-literal:dead",
+      "id": "cjs-object-literal",
+      "npmPkg": "fab-cjs-object-literal",
+      "symbol": "dead",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_cjs_objlit_dead"
+    },
+    {
+      "key": "cjs-closure:wrap",
+      "id": "cjs-closure",
+      "npmPkg": "fab-cjs-closure",
+      "symbol": "wrap",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "cjs-closure:impl",
+      "id": "cjs-closure",
+      "npmPkg": "fab-cjs-closure",
+      "symbol": "impl",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "cjs-overwrite:x",
+      "id": "cjs-overwrite",
+      "npmPkg": "fab-cjs-overwrite",
+      "symbol": "x",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "cjs-overwrite:legacy",
+      "id": "cjs-overwrite",
+      "npmPkg": "fab-cjs-overwrite",
+      "symbol": "legacy",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "cjs-getter:foo",
+      "id": "cjs-getter",
+      "npmPkg": "fab-cjs-getter",
+      "symbol": "foo",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "cjs-getter:bar",
+      "id": "cjs-getter",
+      "npmPkg": "fab-cjs-getter",
+      "symbol": "bar",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "cjs-deferred-write:late",
+      "id": "cjs-deferred-write",
+      "npmPkg": "fab-cjs-deferred-write",
+      "symbol": "late",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "cjs-deferred-write:eager",
+      "id": "cjs-deferred-write",
+      "npmPkg": "fab-cjs-deferred-write",
+      "symbol": "eager",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "require-literal:used",
+      "id": "require-literal",
+      "npmPkg": "rl-target",
+      "symbol": "used",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "require-literal:dead",
+      "id": "require-literal",
+      "npmPkg": "rl-target",
+      "symbol": "dead",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_require_literal_dead"
+    },
+    {
+      "key": "require-finite:run",
+      "id": "require-finite",
+      "npmPkg": "rf-b",
+      "symbol": "run",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "require-finite:deadInBoth",
+      "id": "require-finite",
+      "npmPkg": "rf-b",
+      "symbol": "deadInBoth",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_require_finite_dead"
+    },
+    {
+      "key": "require-unbounded-bounded-projection:foo",
+      "id": "require-unbounded-bounded-projection",
+      "npmPkg": "rubp-target",
+      "symbol": "foo",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "require-unbounded-bounded-projection:notFoo",
+      "id": "require-unbounded-bounded-projection",
+      "npmPkg": "rubp-target",
+      "symbol": "notFoo",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_unbounded_notfoo_dead"
+    },
+    {
+      "key": "createrequire:used",
+      "id": "createrequire",
+      "npmPkg": "cr-target",
+      "symbol": "used",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "createrequire:dead",
+      "id": "createrequire",
+      "npmPkg": "cr-target",
+      "symbol": "dead",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_createrequire_dead"
+    },
+    {
+      "key": "reconstructed-require-wrapper:bar",
+      "id": "reconstructed-require-wrapper",
+      "npmPkg": "rrw-foo",
+      "symbol": "bar",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "reconstructed-require-wrapper:otherUnused",
+      "id": "reconstructed-require-wrapper",
+      "npmPkg": "rrw-foo",
+      "symbol": "otherUnused",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_wrapper_other_dead"
+    },
+    {
+      "key": "dynamic-import-literal:used",
+      "id": "dynamic-import-literal",
+      "npmPkg": "dil-target",
+      "symbol": "used",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "dynamic-import-literal:alsoRetained",
+      "id": "dynamic-import-literal",
+      "npmPkg": "dil-target",
+      "symbol": "alsoRetained",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "eval-constant-benign:usedGlobal",
+      "id": "eval-constant-benign",
+      "npmPkg": "fab-eval-constant-benign",
+      "symbol": "usedGlobal",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "eval-constant-benign:deadDead",
+      "id": "eval-constant-benign",
+      "npmPkg": "fab-eval-constant-benign",
+      "symbol": "deadDead",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_eval_benign_dead"
+    },
+    {
+      "key": "vm-no-loader:used",
+      "id": "vm-no-loader",
+      "npmPkg": "fab-vm-no-loader",
+      "symbol": "used",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "vm-no-loader:deadNoLoader",
+      "id": "vm-no-loader",
+      "npmPkg": "fab-vm-no-loader",
+      "symbol": "deadNoLoader",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_vm_noloader_dead"
+    },
+    {
+      "key": "binding-reassigned:foo",
+      "id": "binding-reassigned",
+      "npmPkg": "fab-binding-reassigned",
+      "symbol": "foo",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "unsupported-export-kind:obj",
+      "id": "unsupported-export-kind",
+      "npmPkg": "fab-unsupported-export-kind",
+      "symbol": "obj",
+      "truth": "MUST_RETAIN_CONSERVATIVELY"
+    },
+    {
+      "key": "vuln-localized:get",
+      "id": "vuln-localized",
+      "npmPkg": "fab-vuln-localized",
+      "symbol": "get",
+      "truth": "MUST_RETAIN"
+    },
+    {
+      "key": "vuln-localized:mergeVuln",
+      "id": "vuln-localized",
+      "npmPkg": "fab-vuln-localized",
+      "symbol": "mergeVuln",
+      "truth": "MUST_REMOVE",
+      "sentinel": "SENTINEL_vuln_merge_body"
+    }
+  ],
+  "starPackages": [
+    {
+      "npmPkg": "fab-cjs-computed-export"
+    },
+    {
+      "npmPkg": "fab-cjs-proxy"
+    },
+    {
+      "npmPkg": "fab-cjs-setprototypeof"
+    },
+    {
+      "npmPkg": "fab-require-pkgscoped"
+    },
+    {
+      "npmPkg": "rps-scopedtarget"
+    },
+    {
+      "npmPkg": "fab-require-unbounded-computed-projection"
+    },
+    {
+      "npmPkg": "rucp-target"
+    },
+    {
+      "npmPkg": "fab-require-value-escape"
+    },
+    {
+      "npmPkg": "rve-target"
+    },
+    {
+      "npmPkg": "fab-getbuiltinmodule-factory"
+    },
+    {
+      "npmPkg": "gbf-target"
+    },
+    {
+      "npmPkg": "fab-reconstructed-require-unknown-caller"
+    },
+    {
+      "npmPkg": "rruc-target"
+    },
+    {
+      "npmPkg": "fab-escaped-loader"
+    },
+    {
+      "npmPkg": "el-target"
+    },
+    {
+      "npmPkg": "fab-dynamic-import-nonliteral"
+    },
+    {
+      "npmPkg": "din-target"
+    },
+    {
+      "npmPkg": "fab-eval-constant-capable"
+    },
+    {
+      "npmPkg": "ecc-target"
+    },
+    {
+      "npmPkg": "fab-newfunction-runtime"
+    },
+    {
+      "npmPkg": "fab-direct-eval-lexical"
+    },
+    {
+      "npmPkg": "del-target"
+    },
+    {
+      "npmPkg": "fab-vm-injected-loader"
+    },
+    {
+      "npmPkg": "vil-target"
+    },
+    {
+      "npmPkg": "fab-identity-unification"
+    },
+    {
+      "npmPkg": "iu-target"
+    },
+    {
+      "npmPkg": "fab-destructure-rest"
+    },
+    {
+      "npmPkg": "dr-target"
+    },
+    {
+      "npmPkg": "fab-require-cache-mutation"
+    },
+    {
+      "npmPkg": "rcm-target"
+    },
+    {
+      "npmPkg": "fab-parse-failure"
+    },
+    {
+      "npmPkg": "fab-unrecognized-importer"
+    },
+    {
+      "npmPkg": "fab-resolver-trace-mismatch"
+    },
+    {
+      "npmPkg": "rtm-dual"
+    }
+  ],
+  "mustRemove": [
+    {
+      "id": "static-basic",
+      "symbol": "deadUnused",
+      "sentinel": "SENTINEL_static_basic_dead",
+      "npmPkg": "fab-static-basic",
+      "loaders": [
+        {
+          "spec": "fab-static-basic",
+          "exportName": "deadUnused"
+        }
+      ]
+    },
+    {
+      "id": "esm-decl",
+      "symbol": "deadDecl",
+      "sentinel": "SENTINEL_esm_decl_dead",
+      "npmPkg": "fab-esm-decl",
+      "loaders": [
+        {
+          "spec": "fab-esm-decl",
+          "exportName": "deadDecl"
+        }
+      ]
+    },
+    {
+      "id": "esm-specifier-alias",
+      "symbol": "deadAlias",
+      "sentinel": "SENTINEL_esm_alias_dead",
+      "npmPkg": "fab-esm-specifier-alias",
+      "loaders": [
+        {
+          "spec": "fab-esm-specifier-alias",
+          "exportName": "deadAlias"
+        }
+      ]
+    },
+    {
+      "id": "esm-namespace-clean",
+      "symbol": "deadNs",
+      "sentinel": "SENTINEL_esm_ns_dead",
+      "npmPkg": "fab-esm-namespace-clean",
+      "loaders": [
+        {
+          "spec": "fab-esm-namespace-clean",
+          "exportName": "deadNs"
+        }
+      ]
+    },
+    {
+      "id": "esm-reexport",
+      "symbol": "beta",
+      "sentinel": "SENTINEL_esm_reexport_dead",
+      "npmPkg": "fab-esm-reexport",
+      "loaders": [
+        {
+          "spec": "fab-esm-reexport/impl.js",
+          "exportName": "beta"
+        }
+      ]
+    },
+    {
+      "id": "esm-sideeffect",
+      "symbol": "unusedSide",
+      "sentinel": "SENTINEL_esm_sideeffect_dead",
+      "npmPkg": "fab-esm-sideeffect",
+      "loaders": [
+        {
+          "spec": "fab-esm-sideeffect",
+          "exportName": "unusedSide"
+        }
+      ]
+    },
+    {
+      "id": "cjs-basic",
+      "symbol": "dead",
+      "sentinel": "SENTINEL_cjs_basic_dead",
+      "npmPkg": "fab-cjs-basic",
+      "loaders": [
+        {
+          "spec": "fab-cjs-basic",
+          "exportName": "dead"
+        }
+      ]
+    },
+    {
+      "id": "cjs-object-literal",
+      "symbol": "dead",
+      "sentinel": "SENTINEL_cjs_objlit_dead",
+      "npmPkg": "fab-cjs-object-literal",
+      "loaders": [
+        {
+          "spec": "fab-cjs-object-literal",
+          "exportName": "dead"
+        }
+      ]
+    },
+    {
+      "id": "require-literal",
+      "symbol": "dead",
+      "sentinel": "SENTINEL_require_literal_dead",
+      "npmPkg": "rl-target",
+      "loaders": [
+        {
+          "spec": "fab-require-literal/node_modules/rl-target/index.js",
+          "exportName": "dead"
+        }
+      ]
+    },
+    {
+      "id": "require-finite",
+      "symbol": "deadInBoth",
+      "sentinel": "SENTINEL_require_finite_dead",
+      "npmPkg": "rf-b",
+      "loaders": [
+        {
+          "spec": "fab-require-finite/node_modules/rf-a/index.js",
+          "exportName": "deadInBoth"
+        },
+        {
+          "spec": "fab-require-finite/node_modules/rf-b/index.js",
+          "exportName": "deadInBoth"
+        }
+      ]
+    },
+    {
+      "id": "require-unbounded-bounded-projection",
+      "symbol": "notFoo",
+      "sentinel": "SENTINEL_unbounded_notfoo_dead",
+      "npmPkg": "rubp-target",
+      "loaders": [
+        {
+          "spec": "fab-require-unbounded-bounded-projection/node_modules/rubp-target/index.js",
+          "exportName": "notFoo"
+        }
+      ]
+    },
+    {
+      "id": "createrequire",
+      "symbol": "dead",
+      "sentinel": "SENTINEL_createrequire_dead",
+      "npmPkg": "cr-target",
+      "loaders": [
+        {
+          "spec": "fab-createrequire/node_modules/cr-target/index.js",
+          "exportName": "dead"
+        }
+      ]
+    },
+    {
+      "id": "reconstructed-require-wrapper",
+      "symbol": "otherUnused",
+      "sentinel": "SENTINEL_wrapper_other_dead",
+      "npmPkg": "rrw-foo",
+      "loaders": [
+        {
+          "spec": "fab-reconstructed-require-wrapper/node_modules/rrw-foo/index.js",
+          "exportName": "otherUnused"
+        }
+      ]
+    },
+    {
+      "id": "eval-constant-benign",
+      "symbol": "deadDead",
+      "sentinel": "SENTINEL_eval_benign_dead",
+      "npmPkg": "fab-eval-constant-benign",
+      "loaders": [
+        {
+          "spec": "fab-eval-constant-benign",
+          "exportName": "deadDead"
+        }
+      ]
+    },
+    {
+      "id": "vm-no-loader",
+      "symbol": "deadNoLoader",
+      "sentinel": "SENTINEL_vm_noloader_dead",
+      "npmPkg": "fab-vm-no-loader",
+      "loaders": [
+        {
+          "spec": "fab-vm-no-loader",
+          "exportName": "deadNoLoader"
+        }
+      ]
+    },
+    {
+      "id": "vuln-localized",
+      "symbol": "mergeVuln",
+      "sentinel": "SENTINEL_vuln_merge_body",
+      "npmPkg": "fab-vuln-localized",
+      "loaders": [
+        {
+          "spec": "fab-vuln-localized",
+          "exportName": "mergeVuln"
+        }
+      ]
+    }
+  ],
+  "forceTargets": [
+    {
+      "id": "static-basic",
+      "symbol": "deadUnused",
+      "sentinel": "SENTINEL_static_basic_dead",
+      "loaders": [
+        {
+          "spec": "fab-static-basic",
+          "exportName": "deadUnused"
+        }
+      ]
+    },
+    {
+      "id": "esm-decl",
+      "symbol": "deadDecl",
+      "sentinel": "SENTINEL_esm_decl_dead",
+      "loaders": [
+        {
+          "spec": "fab-esm-decl",
+          "exportName": "deadDecl"
+        }
+      ]
+    },
+    {
+      "id": "esm-specifier-alias",
+      "symbol": "deadAlias",
+      "sentinel": "SENTINEL_esm_alias_dead",
+      "loaders": [
+        {
+          "spec": "fab-esm-specifier-alias",
+          "exportName": "deadAlias"
+        }
+      ]
+    },
+    {
+      "id": "esm-namespace-clean",
+      "symbol": "deadNs",
+      "sentinel": "SENTINEL_esm_ns_dead",
+      "loaders": [
+        {
+          "spec": "fab-esm-namespace-clean",
+          "exportName": "deadNs"
+        }
+      ]
+    },
+    {
+      "id": "esm-reexport",
+      "symbol": "beta",
+      "sentinel": "SENTINEL_esm_reexport_dead",
+      "loaders": [
+        {
+          "spec": "fab-esm-reexport/impl.js",
+          "exportName": "beta"
+        }
+      ]
+    },
+    {
+      "id": "esm-sideeffect",
+      "symbol": "unusedSide",
+      "sentinel": "SENTINEL_esm_sideeffect_dead",
+      "loaders": [
+        {
+          "spec": "fab-esm-sideeffect",
+          "exportName": "unusedSide"
+        }
+      ]
+    },
+    {
+      "id": "cjs-basic",
+      "symbol": "dead",
+      "sentinel": "SENTINEL_cjs_basic_dead",
+      "loaders": [
+        {
+          "spec": "fab-cjs-basic",
+          "exportName": "dead"
+        }
+      ]
+    },
+    {
+      "id": "cjs-object-literal",
+      "symbol": "dead",
+      "sentinel": "SENTINEL_cjs_objlit_dead",
+      "loaders": [
+        {
+          "spec": "fab-cjs-object-literal",
+          "exportName": "dead"
+        }
+      ]
+    },
+    {
+      "id": "require-literal",
+      "symbol": "dead",
+      "sentinel": "SENTINEL_require_literal_dead",
+      "loaders": [
+        {
+          "spec": "fab-require-literal/node_modules/rl-target/index.js",
+          "exportName": "dead"
+        }
+      ]
+    },
+    {
+      "id": "require-finite",
+      "symbol": "deadInBoth",
+      "sentinel": "SENTINEL_require_finite_dead",
+      "loaders": [
+        {
+          "spec": "fab-require-finite/node_modules/rf-a/index.js",
+          "exportName": "deadInBoth"
+        },
+        {
+          "spec": "fab-require-finite/node_modules/rf-b/index.js",
+          "exportName": "deadInBoth"
+        }
+      ]
+    },
+    {
+      "id": "require-unbounded-bounded-projection",
+      "symbol": "notFoo",
+      "sentinel": "SENTINEL_unbounded_notfoo_dead",
+      "loaders": [
+        {
+          "spec": "fab-require-unbounded-bounded-projection/node_modules/rubp-target/index.js",
+          "exportName": "notFoo"
+        }
+      ]
+    },
+    {
+      "id": "createrequire",
+      "symbol": "dead",
+      "sentinel": "SENTINEL_createrequire_dead",
+      "loaders": [
+        {
+          "spec": "fab-createrequire/node_modules/cr-target/index.js",
+          "exportName": "dead"
+        }
+      ]
+    },
+    {
+      "id": "reconstructed-require-wrapper",
+      "symbol": "otherUnused",
+      "sentinel": "SENTINEL_wrapper_other_dead",
+      "loaders": [
+        {
+          "spec": "fab-reconstructed-require-wrapper/node_modules/rrw-foo/index.js",
+          "exportName": "otherUnused"
+        }
+      ]
+    },
+    {
+      "id": "eval-constant-benign",
+      "symbol": "deadDead",
+      "sentinel": "SENTINEL_eval_benign_dead",
+      "loaders": [
+        {
+          "spec": "fab-eval-constant-benign",
+          "exportName": "deadDead"
+        }
+      ]
+    },
+    {
+      "id": "vm-no-loader",
+      "symbol": "deadNoLoader",
+      "sentinel": "SENTINEL_vm_noloader_dead",
+      "loaders": [
+        {
+          "spec": "fab-vm-no-loader",
+          "exportName": "deadNoLoader"
+        }
+      ]
+    },
+    {
+      "id": "vuln-localized",
+      "symbol": "mergeVuln",
+      "sentinel": "SENTINEL_vuln_merge_body",
+      "loaders": [
+        {
+          "spec": "fab-vuln-localized",
+          "exportName": "mergeVuln"
+        }
+      ]
+    }
+  ],
+  "mutationTargets": [
+    {
+      "id": "static-basic",
+      "symbol": "used",
+      "marker": "static-basic:used",
+      "endpoint": "/fab/static-basic/used",
+      "file": "node_modules/fab-static-basic/index.js"
+    },
+    {
+      "id": "esm-decl",
+      "symbol": "usedDecl",
+      "marker": "esm-decl:usedDecl",
+      "endpoint": "/fab/esm-decl/usedDecl",
+      "file": "node_modules/fab-esm-decl/index.js"
+    },
+    {
+      "id": "esm-specifier-alias",
+      "symbol": "used",
+      "marker": "esm-specifier-alias:used",
+      "endpoint": "/fab/esm-specifier-alias/used",
+      "file": "node_modules/fab-esm-specifier-alias/index.js"
+    },
+    {
+      "id": "esm-default-alias",
+      "symbol": "default",
+      "marker": "esm-default-alias:default",
+      "endpoint": "/fab/esm-default-alias/default",
+      "file": "node_modules/fab-esm-default-alias/index.js"
+    },
+    {
+      "id": "esm-namespace-clean",
+      "symbol": "used",
+      "marker": "esm-namespace-clean:used",
+      "endpoint": "/fab/esm-namespace-clean/used",
+      "file": "node_modules/fab-esm-namespace-clean/index.js"
+    },
+    {
+      "id": "esm-reexport",
+      "symbol": "alpha",
+      "marker": "esm-reexport:alpha",
+      "endpoint": "/fab/esm-reexport/alpha",
+      "file": "node_modules/fab-esm-reexport/impl.js"
+    },
+    {
+      "id": "esm-export-star",
+      "symbol": "gamma",
+      "marker": "esm-export-star:gamma",
+      "endpoint": "/fab/esm-export-star/gamma",
+      "file": "node_modules/fab-esm-export-star/impl.js"
+    },
+    {
+      "id": "esm-shared-impl",
+      "symbol": "format",
+      "marker": "esm-shared-impl:format",
+      "endpoint": "/fab/esm-shared-impl/format",
+      "file": "node_modules/fab-esm-shared-impl/index.js"
+    },
+    {
+      "id": "esm-sideeffect",
+      "symbol": "getValue",
+      "marker": "esm-sideeffect:getValue",
+      "endpoint": "/fab/esm-sideeffect/getValue",
+      "file": "node_modules/fab-esm-sideeffect/index.js"
+    },
+    {
+      "id": "cjs-basic",
+      "symbol": "used",
+      "marker": "cjs-basic:used",
+      "endpoint": "/fab/cjs-basic/used",
+      "file": "node_modules/fab-cjs-basic/index.js"
+    },
+    {
+      "id": "cjs-object-literal",
+      "symbol": "used",
+      "marker": "cjs-object-literal:used",
+      "endpoint": "/fab/cjs-object-literal/used",
+      "file": "node_modules/fab-cjs-object-literal/index.js"
+    },
+    {
+      "id": "cjs-closure",
+      "symbol": "wrap",
+      "marker": "cjs-closure:wrap",
+      "endpoint": "/fab/cjs-closure/wrap",
+      "file": "node_modules/fab-cjs-closure/index.js"
+    },
+    {
+      "id": "cjs-overwrite",
+      "symbol": "x",
+      "marker": "cjs-overwrite:x",
+      "endpoint": "/fab/cjs-overwrite/x",
+      "file": "node_modules/fab-cjs-overwrite/index.js"
+    },
+    {
+      "id": "require-literal",
+      "symbol": "used",
+      "marker": "require-literal:used",
+      "endpoint": "/fab/require-literal/used",
+      "file": "node_modules/fab-require-literal/node_modules/rl-target/index.js"
+    },
+    {
+      "id": "require-finite",
+      "symbol": "run",
+      "marker": "require-finite:run@rf-a",
+      "endpoint": "/fab/require-finite/run",
+      "file": "node_modules/fab-require-finite/node_modules/rf-a/index.js"
+    },
+    {
+      "id": "require-finite",
+      "symbol": "run",
+      "marker": "require-finite:run@rf-b",
+      "endpoint": "/fab/require-finite/run-b",
+      "file": "node_modules/fab-require-finite/node_modules/rf-b/index.js"
+    },
+    {
+      "id": "createrequire",
+      "symbol": "used",
+      "marker": "createrequire:used",
+      "endpoint": "/fab/createrequire/used",
+      "file": "node_modules/fab-createrequire/node_modules/cr-target/index.js"
+    },
+    {
+      "id": "eval-constant-benign",
+      "symbol": "usedGlobal",
+      "marker": "eval-constant-benign:usedGlobal",
+      "endpoint": "/fab/eval-constant-benign/usedGlobal",
+      "file": "node_modules/fab-eval-constant-benign/index.js"
+    },
+    {
+      "id": "vm-no-loader",
+      "symbol": "used",
+      "marker": "vm-no-loader:used",
+      "endpoint": "/fab/vm-no-loader/used",
+      "file": "node_modules/fab-vm-no-loader/index.js"
+    },
+    {
+      "id": "vuln-localized",
+      "symbol": "get",
+      "marker": "vuln-localized:get",
+      "endpoint": "/fab/vuln-localized/get",
+      "file": "node_modules/fab-vuln-localized/index.js"
+    }
+  ],
+  "realMutations": [
+    {
+      "label": "validator:isEmail",
+      "file": "node_modules/validator/lib/isEmail.js",
+      "endpoint": "/real/validator/isEmail",
+      "append": "module.exports = { default: function () { throw new Error('GARDEN_MUTATED:validator:isEmail'); } };"
+    },
+    {
+      "label": "validator:isURL",
+      "file": "node_modules/validator/lib/isURL.js",
+      "endpoint": "/real/validator/isURL",
+      "append": "module.exports = { default: function () { throw new Error('GARDEN_MUTATED:validator:isURL'); } };"
+    }
+  ],
+  "routes": [
+    {
+      "path": "/fab/createrequire/used",
+      "source": "createrequire"
+    },
+    {
+      "path": "/fab/getbuiltinmodule-factory/__exercise?m=gbf-target",
+      "source": "getbuiltinmodule-factory"
+    },
+    {
+      "path": "/fab/reconstructed-require-wrapper/__exercise",
+      "source": "reconstructed-require-wrapper"
+    },
+    {
+      "path": "/fab/reconstructed-require-unknown-caller/__exercise",
+      "source": "reconstructed-require-unknown-caller"
+    },
+    {
+      "path": "/fab/escaped-loader/__exercise",
+      "source": "escaped-loader"
+    },
+    {
+      "path": "/fab/static-basic/used",
+      "source": "static-basic"
+    },
+    {
+      "path": "/fab/esm-decl/usedDecl",
+      "source": "esm-decl"
+    },
+    {
+      "path": "/fab/esm-specifier-alias/used",
+      "source": "esm-specifier-alias"
+    },
+    {
+      "path": "/fab/esm-default-alias/default",
+      "source": "esm-default-alias"
+    },
+    {
+      "path": "/fab/esm-namespace-clean/used",
+      "source": "esm-namespace-clean"
+    },
+    {
+      "path": "/fab/esm-reexport/alpha",
+      "source": "esm-reexport"
+    },
+    {
+      "path": "/fab/esm-export-star/gamma",
+      "source": "esm-export-star"
+    },
+    {
+      "path": "/fab/esm-shared-impl/format",
+      "source": "esm-shared-impl"
+    },
+    {
+      "path": "/fab/esm-sideeffect/getValue",
+      "source": "esm-sideeffect"
+    },
+    {
+      "path": "/fab/dynamic-import-literal/__exercise",
+      "source": "dynamic-import-literal"
+    },
+    {
+      "path": "/fab/dynamic-import-nonliteral/__exercise?which=target",
+      "source": "dynamic-import-nonliteral"
+    },
+    {
+      "path": "/fab/eval-constant-benign/usedGlobal",
+      "source": "eval-constant-benign"
+    },
+    {
+      "path": "/fab/eval-constant-capable/__exercise",
+      "source": "eval-constant-capable"
+    },
+    {
+      "path": "/fab/newfunction-runtime/__exercise",
+      "source": "newfunction-runtime"
+    },
+    {
+      "path": "/fab/direct-eval-lexical/__exercise",
+      "source": "direct-eval-lexical"
+    },
+    {
+      "path": "/fab/require-literal/used",
+      "source": "require-literal"
+    },
+    {
+      "path": "/fab/require-finite/run",
+      "source": "require-finite"
+    },
+    {
+      "path": "/fab/require-finite/run-b",
+      "source": "require-finite"
+    },
+    {
+      "path": "/fab/require-pkgscoped/__exercise?name=one",
+      "source": "require-pkgscoped"
+    },
+    {
+      "path": "/fab/require-unbounded-bounded-projection/foo?m=rubp-target",
+      "source": "require-unbounded-bounded-projection"
+    },
+    {
+      "path": "/fab/require-unbounded-computed-projection/__exercise?m=rucp-target&k=alpha",
+      "source": "require-unbounded-computed-projection"
+    },
+    {
+      "path": "/fab/require-value-escape/__exercise?m=rve-target",
+      "source": "require-value-escape"
+    },
+    {
+      "path": "/fab/cjs-basic/used",
+      "source": "cjs-basic"
+    },
+    {
+      "path": "/fab/cjs-object-literal/used",
+      "source": "cjs-object-literal"
+    },
+    {
+      "path": "/fab/cjs-closure/wrap",
+      "source": "cjs-closure"
+    },
+    {
+      "path": "/fab/cjs-overwrite/x",
+      "source": "cjs-overwrite"
+    },
+    {
+      "path": "/fab/cjs-overwrite/__exercise",
+      "source": "cjs-overwrite"
+    },
+    {
+      "path": "/fab/cjs-getter/foo",
+      "source": "cjs-getter"
+    },
+    {
+      "path": "/fab/cjs-getter/bar",
+      "source": "cjs-getter"
+    },
+    {
+      "path": "/fab/cjs-computed-export/carrier",
+      "source": "cjs-computed-export"
+    },
+    {
+      "path": "/fab/cjs-proxy/alpha",
+      "source": "cjs-proxy"
+    },
+    {
+      "path": "/fab/cjs-deferred-write/eager",
+      "source": "cjs-deferred-write"
+    },
+    {
+      "path": "/fab/cjs-deferred-write/late",
+      "source": "cjs-deferred-write"
+    },
+    {
+      "path": "/fab/cjs-setprototypeof/own",
+      "source": "cjs-setprototypeof"
+    },
+    {
+      "path": "/fab/cjs-setprototypeof/inherited",
+      "source": "cjs-setprototypeof"
+    },
+    {
+      "path": "/fab/vm-injected-loader/__exercise",
+      "source": "vm-injected-loader"
+    },
+    {
+      "path": "/fab/vm-no-loader/used",
+      "source": "vm-no-loader"
+    },
+    {
+      "path": "/fab/identity-unification/__exercise",
+      "source": "identity-unification"
+    },
+    {
+      "path": "/fab/vuln-localized/get",
+      "source": "vuln-localized"
+    },
+    {
+      "path": "/fab/destructure-rest/__exercise",
+      "source": "destructure-rest"
+    },
+    {
+      "path": "/fab/require-cache-mutation/__exercise",
+      "source": "require-cache-mutation"
+    },
+    {
+      "path": "/fab/parse-failure/__exercise",
+      "source": "parse-failure"
+    },
+    {
+      "path": "/fab/unrecognized-importer/__exercise",
+      "source": "unrecognized-importer"
+    },
+    {
+      "path": "/fab/resolver-trace-mismatch/__exercise",
+      "source": "resolver-trace-mismatch"
+    },
+    {
+      "path": "/real/validator/isEmail",
+      "source": "real"
+    },
+    {
+      "path": "/real/validator/isURL",
+      "source": "real"
+    },
+    {
+      "path": "/real/lodash",
+      "source": "real"
+    },
+    {
+      "path": "/real/depd",
+      "source": "real"
+    },
+    {
+      "path": "/real/optional-require",
+      "source": "real"
+    },
+    {
+      "path": "/real/require-at",
+      "source": "real"
+    },
+    {
+      "path": "/real/better-sqlite3",
+      "source": "real"
+    },
+    {
+      "path": "/real/sqljs",
+      "source": "real"
+    },
+    {
+      "path": "/real/express-view",
+      "source": "real"
+    }
+  ],
+  "validatorUsed": [
+    "isEmail",
+    "isURL"
+  ],
+  "validatorCeiling": 102,
+  "validatorFnExports": [
+    "toDate",
+    "toFloat",
+    "toInt",
+    "toBoolean",
+    "equals",
+    "contains",
+    "matches",
+    "isEmail",
+    "isURL",
+    "isMACAddress",
+    "isIP",
+    "isIPRange",
+    "isFQDN",
+    "isBoolean",
+    "isIBAN",
+    "isBIC",
+    "isAbaRouting",
+    "isAlpha",
+    "isAlphanumeric",
+    "isNumeric",
+    "isPassportNumber",
+    "isPort",
+    "isLowercase",
+    "isUppercase",
+    "isAscii",
+    "isFullWidth",
+    "isHalfWidth",
+    "isVariableWidth",
+    "isMultibyte",
+    "isSemVer",
+    "isSurrogatePair",
+    "isInt",
+    "isIMEI",
+    "isFloat",
+    "isDecimal",
+    "isHexadecimal",
+    "isOctal",
+    "isDivisibleBy",
+    "isHexColor",
+    "isRgbColor",
+    "isHSL",
+    "isISRC",
+    "isMD5",
+    "isHash",
+    "isJWT",
+    "isJSON",
+    "isEmpty",
+    "isLength",
+    "isLocale",
+    "isByteLength",
+    "isULID",
+    "isUUID",
+    "isMongoId",
+    "isAfter",
+    "isBefore",
+    "isIn",
+    "isLuhnNumber",
+    "isCreditCard",
+    "isIdentityCard",
+    "isEAN",
+    "isISIN",
+    "isISBN",
+    "isISSN",
+    "isMobilePhone",
+    "isPostalCode",
+    "isEthereumAddress",
+    "isCurrency",
+    "isBtcAddress",
+    "isISO6346",
+    "isFreightContainerID",
+    "isISO6391",
+    "isISO8601",
+    "isISO15924",
+    "isRFC3339",
+    "isISO31661Alpha2",
+    "isISO31661Alpha3",
+    "isISO31661Numeric",
+    "isISO4217",
+    "isBase32",
+    "isBase58",
+    "isBase64",
+    "isDataURI",
+    "isMagnetURI",
+    "isMailtoURI",
+    "isMimeType",
+    "isLatLong",
+    "ltrim",
+    "rtrim",
+    "trim",
+    "escape",
+    "unescape",
+    "stripLow",
+    "whitelist",
+    "blacklist",
+    "isWhitelisted",
+    "normalizeEmail",
+    "toString",
+    "isSlug",
+    "isStrongPassword",
+    "isTaxID",
+    "isDate",
+    "isTime",
+    "isLicensePlate",
+    "isVAT"
+  ]
+}

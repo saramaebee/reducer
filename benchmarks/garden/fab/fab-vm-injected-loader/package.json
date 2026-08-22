@@ -1,0 +1,5 @@
+{
+  "name": "fab-vm-injected-loader",
+  "version": "1.0.0",
+  "main": "./index.js"
+}

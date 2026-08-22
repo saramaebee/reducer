@@ -60,8 +60,35 @@ symbol-level reduction survives even without solving dynamic module resolution
 
 ## Build status
 
-This directory currently holds the **pinned specification only**. Building the
-service (fabricated package sources, the endpoint router, the mutation-injector,
-and the red-team forced-invocation harness) is the next step; it must implement
-`MANIFEST.json` exactly, and every real package must be installed at its pinned
-version + integrity.
+The garden is **built**. Layout:
+
+- `fab/` — the 47 fabricated packages (committed sources; copied into
+  `app/node_modules/` by setup).
+- `app/` — the HTTP service: `server.mjs` (generated; 49 fab routes + 9 real
+  routes + the `__force` handler), `real.cjs` (pinned real-package wiring),
+  `__redteam.mjs` (generated; loaded ONLY via `node --import` by the harness —
+  the analyzed tree never references it, so MUST_REMOVE stays unreachable by
+  construction), `vuln-entry.mjs` (hazard-free sub-entry for the VEX check).
+- `wiring.json` / `garden-map.json` — the machine-readable join between
+  manifest truth and physical files (generated).
+- `fixtures/contracts.json` — the recorded behavioral oracle (58 endpoints).
+- `tools/` — setup, generator, verifiers, harnesses, scorer.
+- `results/` — scorer output (`garden-score.{json,md}`, `vex-check.json`,
+  `reason-coverage.json`, `FINDINGS.md`).
+
+### Running it
+
+```bash
+bun benchmarks/garden/tools/setup.ts        # npm ci + integrity vs MANIFEST (hard fail) + copy fabs
+bun benchmarks/garden/tools/verify-fabs.ts  # sentinel/marker/convention checks
+bun benchmarks/garden/tools/gen.ts          # regenerate server.mjs/__redteam.mjs/garden-map.json
+bun benchmarks/garden/tools/record-fixtures.ts  # re-record the behavioral oracle (original app)
+bun benchmarks/garden/tools/mutate.ts       # mutation-sensitivity: every MUST_RETAIN endpoint has teeth
+bun benchmarks/garden/tools/score.ts        # reducer build + three-axis score + contract replay + red team
+bun benchmarks/garden/tools/vex-check.ts    # hazard-free vuln-localized reduction + VEX evidence
+bun benchmarks/garden/tools/reason-coverage.ts  # per-entry isolation analysis of every retention Reason
+```
+
+Known spec-vs-reality discrepancies are recorded in
+[`results/FINDINGS.md`](./results/FINDINGS.md) — they are findings about the
+current pipeline (or the spec), deliberately not smoothed over in the garden.

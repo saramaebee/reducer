@@ -1,0 +1,5 @@
+{
+  "name": "fab-require-unbounded-computed-projection",
+  "version": "1.0.0",
+  "main": "./index.js"
+}

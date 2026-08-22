@@ -1,0 +1,280 @@
+{
+  "$schema": "reducer-garden-score/1",
+  "reducer": {
+    "version": "0.0.1",
+    "node": "v24.3.0"
+  },
+  "globalHazards": [
+    "dynamic-require",
+    "runtime-code-generation",
+    "require-cache-mutation",
+    "dynamic-import-nonliteral",
+    "unsupported-syntax",
+    "nft-warning"
+  ],
+  "axes": {
+    "falseRemoval": {
+      "critical": false,
+      "entries": []
+    },
+    "unsafeOptimism": {
+      "critical": false,
+      "entries": []
+    },
+    "overRetention": {
+      "count": 13,
+      "symbols": [
+        "static-basic:deadUnused",
+        "esm-decl:deadDecl",
+        "esm-specifier-alias:deadAlias",
+        "esm-namespace-clean:deadNs",
+        "esm-reexport:beta",
+        "esm-sideeffect:unusedSide",
+        "cjs-basic:dead",
+        "cjs-object-literal:dead",
+        "require-literal:dead",
+        "require-finite:deadInBoth",
+        "eval-constant-benign:deadDead",
+        "vm-no-loader:deadNoLoader",
+        "vuln-localized:mergeVuln"
+      ]
+    },
+    "fileLevelRemoved": {
+      "critical": true,
+      "symbols": [
+        "require-unbounded-bounded-projection:notFoo",
+        "createrequire:dead",
+        "reconstructed-require-wrapper:otherUnused"
+      ]
+    }
+  },
+  "achievedVsCeiling": {
+    "fabricated": {
+      "removed": 0,
+      "ceiling": 16,
+      "ratio": 0,
+      "removedSymbols": []
+    },
+    "validator": {
+      "removed": 0,
+      "ceiling": 102,
+      "ratio": 0
+    }
+  },
+  "behavioralOracle": {
+    "originalDivergences": [],
+    "reducedBootError": null,
+    "reducedReboots": 1,
+    "reducedDivergences": [
+      {
+        "path": "/fab/createrequire/used",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'cr-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-createrequire/"
+      },
+      {
+        "path": "/fab/getbuiltinmodule-factory/__exercise?m=gbf-target",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'gbf-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-getbuiltinmod"
+      },
+      {
+        "path": "/fab/reconstructed-require-wrapper/__exercise",
+        "kind": "body",
+        "expected": "{\"ok\":true,\"value\":\"reconstructed-require-wrapper:bar:12c9d-xomxomxomnylnylbis\"}",
+        "actual": "{\"ok\":true,\"value\":\"rrw:absent:garden\"}"
+      },
+      {
+        "path": "/fab/reconstructed-require-unknown-caller/__exercise",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"TypeError\",\"message\":\"Cannot read properties of null (reading 'ping')\"}"
+      },
+      {
+        "path": "/fab/escaped-loader/__exercise",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'el-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-escaped-loader"
+      },
+      {
+        "path": "/fab/dynamic-import-nonliteral/__exercise?which=target",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find package 'din-target' imported from /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-dynamic-import-no"
+      },
+      {
+        "path": "/fab/eval-constant-capable/__exercise",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'ecc-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-eval-constant"
+      },
+      {
+        "path": "/fab/direct-eval-lexical/__exercise",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'del-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-direct-eval-l"
+      },
+      {
+        "path": "/fab/require-pkgscoped/__exercise?name=one",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'rps-scopedtarget/one'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-req"
+      },
+      {
+        "path": "/fab/require-unbounded-bounded-projection/foo?m=rubp-target",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'rubp-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-require-unbo"
+      },
+      {
+        "path": "/fab/require-unbounded-computed-projection/__exercise?m=rucp-target&k=alpha",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'rucp-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-require-unbo"
+      },
+      {
+        "path": "/fab/require-value-escape/__exercise?m=rve-target",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'rve-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-require-value"
+      },
+      {
+        "path": "/fab/vm-injected-loader/__exercise",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Cannot find module 'vil-target'\\nRequire stack:\\n- /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/fab-vm-injected-l"
+      },
+      {
+        "path": "/real/sqljs",
+        "kind": "status",
+        "expected": "200",
+        "actual": "500 body={\"ok\":false,\"name\":\"Error\",\"message\":\"Error: ENOENT: no such file or directory, open '/Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/results/tmp/reduced/node_modules/sql.js/dist/sql-wasm"
+      }
+    ],
+    "verdict": "14 contract divergences — unsound removals"
+  },
+  "redTeam": {
+    "results": [
+      {
+        "path": "/fab/static-basic/__force/deadUnused",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/esm-decl/__force/deadDecl",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/esm-specifier-alias/__force/deadAlias",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/esm-namespace-clean/__force/deadNs",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/esm-reexport/__force/beta",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/esm-sideeffect/__force/unusedSide",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/cjs-basic/__force/dead",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/cjs-object-literal/__force/dead",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/require-literal/__force/dead",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/require-finite/__force/deadInBoth",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/require-unbounded-bounded-projection/__force/notFoo",
+        "removed": false,
+        "droppedAtTrace": true,
+        "status": 500,
+        "verdict": "fail-closed (module-missing) — via file absence, not a stub"
+      },
+      {
+        "path": "/fab/createrequire/__force/dead",
+        "removed": false,
+        "droppedAtTrace": true,
+        "status": 500,
+        "verdict": "fail-closed (module-missing) — via file absence, not a stub"
+      },
+      {
+        "path": "/fab/reconstructed-require-wrapper/__force/otherUnused",
+        "removed": false,
+        "droppedAtTrace": true,
+        "status": 500,
+        "verdict": "fail-closed (module-missing) — via file absence, not a stub"
+      },
+      {
+        "path": "/fab/eval-constant-benign/__force/deadDead",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/vm-no-loader/__force/deadNoLoader",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      },
+      {
+        "path": "/fab/vuln-localized/__force/mergeVuln",
+        "removed": false,
+        "droppedAtTrace": false,
+        "status": 200,
+        "verdict": "retained (real body reachable, consistent with over-retention)"
+      }
+    ],
+    "breaches": 0
+  },
+  "anomalies": [
+    "require-unbounded-bounded-projection:notFoo: sentinel absent WITHOUT a recorded transformation — its module was dropped at trace time (file-level unsound removal, not achieved reduction)",
+    "createrequire:dead: sentinel absent WITHOUT a recorded transformation — its module was dropped at trace time (file-level unsound removal, not achieved reduction)",
+    "reconstructed-require-wrapper:otherUnused: sentinel absent WITHOUT a recorded transformation — its module was dropped at trace time (file-level unsound removal, not achieved reduction)"
+  ],
+  "outOfScopeTransformations": [],
+  "criticalCount": 17
+}

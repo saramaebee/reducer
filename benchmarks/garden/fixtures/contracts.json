@@ -1,0 +1,353 @@
+{
+  "$schema": "reducer-garden-contracts/1",
+  "entries": [
+    {
+      "path": "/fab/createrequire/used",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"createrequire:used:3fa6-xuhxuhxuhxaxaleb\"}"
+    },
+    {
+      "path": "/fab/getbuiltinmodule-factory/__exercise?m=gbf-target",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"getbuiltinmodule-factory:describe:108ff-sorpdp\"}"
+    },
+    {
+      "path": "/fab/reconstructed-require-wrapper/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"reconstructed-require-wrapper:bar:12c9d-xomxomxomnylnylbis\"}"
+    },
+    {
+      "path": "/fab/reconstructed-require-unknown-caller/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"reconstructed-require-unknown-caller:ping:147aa-vihoof\"}"
+    },
+    {
+      "path": "/fab/escaped-loader/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"escaped-loader:info:119e4-prhluf\"}"
+    },
+    {
+      "path": "/fab/static-basic/used",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"static-basic:used:14450-charlie2.hotel1.echo4.bravo6\"}"
+    },
+    {
+      "path": "/fab/esm-decl/usedDecl",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"esm-decl:usedDecl:18089-berkano4~gebo10~dagaz5\"}"
+    },
+    {
+      "path": "/fab/esm-specifier-alias/used",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"esm-specifier-alias:used:22604-citrine12+fluorite19+citrine4+fluorite1\"}"
+    },
+    {
+      "path": "/fab/esm-default-alias/default",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"esm-default-alias:default:38894-ganymede59/europa61/callisto62\"}"
+    },
+    {
+      "path": "/fab/esm-namespace-clean/used",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"esm-namespace-clean:used:25659-zephyrus59|boreas29|zephyrus14|boreas7\"}"
+    },
+    {
+      "path": "/fab/esm-reexport/alpha",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"esm-reexport:alpha:23506-reef18&sheet41&figure852&clove58\"}"
+    },
+    {
+      "path": "/fab/esm-export-star/gamma",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"esm-export-star:gamma:20380-marble7#schist19#marble25#schist28\"}"
+    },
+    {
+      "path": "/fab/esm-shared-impl/format",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"esm-shared-impl:format:67374-sepia23_umber75_sepia101_umber114\"}"
+    },
+    {
+      "path": "/fab/esm-sideeffect/getValue",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"esm-sideeffect:getValue:33507-tertiary49*series56*secondary28::72004-peak4>hot2>stable17\"}"
+    },
+    {
+      "path": "/fab/dynamic-import-literal/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"dynamic-import-literal:used:6705:zyulrf:100:aaeaeg\"}"
+    },
+    {
+      "path": "/fab/dynamic-import-nonliteral/__exercise?which=target",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"dynamic-import-nonliteral:describe:9586:kvaeie:587:wblimv\"}"
+    },
+    {
+      "path": "/fab/eval-constant-benign/usedGlobal",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"eval-constant-benign:usedGlobal:object:1228:sneawm\"}"
+    },
+    {
+      "path": "/fab/eval-constant-capable/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"eval-constant-capable:go:8203:lpannmjmfjvx:4536:dqvfcmhiefvi\"}"
+    },
+    {
+      "path": "/fab/newfunction-runtime/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"newfunction-runtime:makeAndRun:nedrag:3690\"}"
+    },
+    {
+      "path": "/fab/direct-eval-lexical/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"direct-eval-lexical:tell:4543:bvsrtd:5744:qjhlbc\"}"
+    },
+    {
+      "path": "/fab/require-literal/used",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"require-literal:used:361:mxrkvp\"}"
+    },
+    {
+      "path": "/fab/require-finite/run",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"require-finite:run:rf-a:76164:ioekag\"}"
+    },
+    {
+      "path": "/fab/require-finite/run-b",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"require-finite:run:rf-b:5971:hjlnqb\"}"
+    },
+    {
+      "path": "/fab/require-pkgscoped/__exercise?name=one",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"require-pkgscoped:describe:one:48695:snteou\"}"
+    },
+    {
+      "path": "/fab/require-unbounded-bounded-projection/foo?m=rubp-target",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"require-unbounded-bounded-projection:foo:62362:xzaoqb\"}"
+    },
+    {
+      "path": "/fab/require-unbounded-computed-projection/__exercise?m=rucp-target&k=alpha",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"require-unbounded-computed-projection:alpha:86717:wqhpla\"}"
+    },
+    {
+      "path": "/fab/require-value-escape/__exercise?m=rve-target",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"require-value-escape:grab:rve-target:tag:100356:vewhta\"}"
+    },
+    {
+      "path": "/fab/cjs-basic/used",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-basic:used:51533:zumzbl\"}"
+    },
+    {
+      "path": "/fab/cjs-object-literal/used",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-object-literal:used:107086:XGGRVX\"}"
+    },
+    {
+      "path": "/fab/cjs-closure/wrap",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-closure:wrap:65758:ZIBIBE\"}"
+    },
+    {
+      "path": "/fab/cjs-overwrite/x",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-overwrite:x:40853:348195\"}"
+    },
+    {
+      "path": "/fab/cjs-overwrite/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cycle-saw:cjs-overwrite:f1:59385:vwftr\"}"
+    },
+    {
+      "path": "/fab/cjs-getter/foo",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-getter:foo:16854:zvocfq\"}"
+    },
+    {
+      "path": "/fab/cjs-getter/bar",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-getter:bar:125831:924375\"}"
+    },
+    {
+      "path": "/fab/cjs-computed-export/carrier",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-computed-export:carrier:61711:VSAJPJ\"}"
+    },
+    {
+      "path": "/fab/cjs-proxy/alpha",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-proxy:alpha:20229:zxsina\"}"
+    },
+    {
+      "path": "/fab/cjs-deferred-write/eager",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-deferred-write:eager:36143:xhiuzc\"}"
+    },
+    {
+      "path": "/fab/cjs-deferred-write/late",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-deferred-write:late:50359:948955\"}"
+    },
+    {
+      "path": "/fab/cjs-setprototypeof/own",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-setprototypeof:own:84876:ZZWOVK\"}"
+    },
+    {
+      "path": "/fab/cjs-setprototypeof/inherited",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"cjs-setprototypeof:inherited:68837:786595\"}"
+    },
+    {
+      "path": "/fab/vm-injected-loader/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"vm-injected-loader:run:20112e9e:vil-target:greet:o411gt\"}"
+    },
+    {
+      "path": "/fab/vm-no-loader/used",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"vm-no-loader:used:w3xm5:45\"}"
+    },
+    {
+      "path": "/fab/identity-unification/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"identity-unification:callFoo:4aaf85:iu-target:foo:01nu0\"}"
+    },
+    {
+      "path": "/fab/vuln-localized/get",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"vuln-localized:get:6rmwzc\"}"
+    },
+    {
+      "path": "/fab/destructure-rest/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"destructure-rest:a:awl:2659:nedrag:b,ballast,c\"}"
+    },
+    {
+      "path": "/fab/require-cache-mutation/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"require-cache-mutation:stamp:quartz:6735:nedrag\"}"
+    },
+    {
+      "path": "/fab/parse-failure/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"parse-failure:ok:sound:8725:nedrag\"}"
+    },
+    {
+      "path": "/fab/unrecognized-importer/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"unrecognized-importer:launch:1214:7427:nedrag\"}"
+    },
+    {
+      "path": "/fab/resolver-trace-mismatch/__exercise",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":\"rtm-dual:esm:entry:mirror:978:nedrag#6#nedrag\"}"
+    },
+    {
+      "path": "/real/validator/isEmail",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":{\"valid\":true,\"invalid\":false}}"
+    },
+    {
+      "path": "/real/validator/isURL",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":{\"valid\":true,\"invalid\":false}}"
+    },
+    {
+      "path": "/real/lodash",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":{\"merged\":{\"a\":{\"b\":1,\"c\":2}},\"picked\":2,\"chunked\":[[\"g\",\"a\"],[\"r\",\"d\"]]}}"
+    },
+    {
+      "path": "/real/depd",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":{\"value\":\"deprecated-greet:GARDEN\"}}"
+    },
+    {
+      "path": "/real/optional-require",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":{\"present\":true,\"absent\":true}}"
+    },
+    {
+      "path": "/real/require-at",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":{\"sameInstance\":true,\"version\":\"4.17.21\"}}"
+    },
+    {
+      "path": "/real/better-sqlite3",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":{\"rows\":[{\"id\":1,\"crop\":\"nightshade\"},{\"id\":2,\"crop\":\"mandrake\"},{\"id\":3,\"crop\":\"wolfsbane\"}]}}"
+    },
+    {
+      "path": "/real/sqljs",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"ok\":true,\"value\":{\"result\":[{\"columns\":[\"name\",\"power\"],\"values\":[[\"bloom\",6],[\"wither\",7]]}]}}"
+    },
+    {
+      "path": "/real/express-view",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "body": "torture-garden view: hello garden, rendered through express View resolution\n"
+    }
+  ]
+}

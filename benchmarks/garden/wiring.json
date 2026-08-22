@@ -1,0 +1,1071 @@
+{
+  "packages": [
+    {
+      "id": "createrequire",
+      "importStmt": "import { used as createrequire_used } from 'fab-createrequire';",
+      "routes": [
+        {
+          "path": "/fab/createrequire/used",
+          "expr": "createrequire_used('garden')",
+          "note": "Returns cr-target's marker-wrapped value verbatim; mutating cr-target used makes this throw."
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "used",
+          "file": "fab/fab-createrequire/node_modules/cr-target/index.js",
+          "marker": "createrequire:used",
+          "endpoint": "/fab/createrequire/used"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "dead",
+          "sentinel": "SENTINEL_createrequire_dead",
+          "spec": "fab-createrequire/node_modules/cr-target",
+          "exportName": "dead",
+          "note": "CJS deep import; use default/require-style access from the red-team harness if named ESM import fails (exports.dead = dead is lexer-detectable, so named should work)."
+        }
+      ],
+      "extraExports": [
+        "cr-target.used / cr-target.dead — the manifest symbols physically live in the nested CJS target per the build note; the ESM carrier 'used' projects to them"
+      ],
+      "notes": "ESM carrier does createRequire(import.meta.url) then r('cr-target').used(seed) — exact literal specifier, .used projection only. Marker + >=200B body are in cr-target.used (487B); carrier body padded to 422B with inert deterministic computation that does not alter the seed argument. dead is referenced by nothing anywhere."
+    },
+    {
+      "id": "getbuiltinmodule-factory",
+      "importStmt": "import { invoke as getbuiltinmoduleFactory_invoke } from 'fab-getbuiltinmodule-factory';",
+      "routes": [
+        {
+          "path": "/fab/getbuiltinmodule-factory/__exercise?m=gbf-target",
+          "expr": "getbuiltinmoduleFactory_invoke('garden', new URL(req.url, 'http://localhost').searchParams.get('m'))",
+          "note": "The specifier MUST stay unbounded: the module name is baked into the route's query string and read server-side from the request URL (assumes the incoming request object is in scope as `req`; adapt the accessor to the generator's request variable). Never inline 'gbf-target' as a literal argument in server.mjs — that would add static evidence the mechanism forbids."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "invoke — the ESM mechanism carrier (process.getBuiltinModule('module') -> createRequire -> r(name).describe(seed))",
+        "gbf-target.describe — the projection target reached only via the capability-factory chain",
+        "gbf-target.spareChannel — passenger (412B), referenced by nothing; retained purely by the reach-any mechanism"
+      ],
+      "notes": "'*' all-conservative. The capability-factory chain (process.getBuiltinModule -> M.createRequire -> r(name)) is at module top level in the ESM entry; the specifier is the carrier's second parameter, fully unbounded. No markers, no sentinels."
+    },
+    {
+      "id": "reconstructed-require-wrapper",
+      "importStmt": "import { callBar as reconstructedRequireWrapper_callBar } from 'fab-reconstructed-require-wrapper';",
+      "routes": [
+        {
+          "path": "/fab/reconstructed-require-wrapper/__exercise",
+          "expr": "reconstructedRequireWrapper_callBar('garden')",
+          "note": "Exercises bar through the non-escaping wrapper only; bar is conservative so no marker/mutation gate."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [
+        {
+          "symbol": "otherUnused",
+          "sentinel": "SENTINEL_wrapper_other_dead",
+          "spec": "fab-reconstructed-require-wrapper/node_modules/rrw-foo",
+          "exportName": "otherUnused"
+        }
+      ],
+      "extraExports": [
+        "callBar — the single enumerable caller of the wrapper, with exact arg 'rrw-foo' and .bar projection (m ? m.bar(seed) : 'rrw:absent:'+seed)",
+        "rrw-foo.bar — the conservative projection target (416B)"
+      ],
+      "notes": "optionalRequire is verbatim `function optionalRequire(id) { try { return require(id); } catch { return null; } }` — NOT exported, never aliased, single caller. DEVIATION: the wrapper body is 52B, under the 200B floor, because the construction note pins its exact shape and it must stay byte-identical to loadAny in reconstructed-require-unknown-caller so the only variable between the pair is the export/escape. All other bodies >=200B. otherUnused referenced by nothing."
+    },
+    {
+      "id": "reconstructed-require-unknown-caller",
+      "importStmt": "import { loadAny as reconstructedRequireUnknownCaller_loadAny } from 'fab-reconstructed-require-unknown-caller';",
+      "routes": [
+        {
+          "path": "/fab/reconstructed-require-unknown-caller/__exercise",
+          "expr": "reconstructedRequireUnknownCaller_loadAny('rruc-target').ping('garden')",
+          "note": "Per the construction note the exercise call passes the literal from the app side; the wrapper is exported (escaping), so unknown-caller/unbounded classification must hold regardless of this one visible call site."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "loadAny — the mechanism itself: the same try/catch require wrapper, but EXPORTED (escaping, unknown callers, unbounded)",
+        "rruc-target.ping — conservative target reached via the escaped wrapper (440B)",
+        "rruc-target.holdover — passenger (424B), referenced by nothing; retained purely by the mechanism"
+      ],
+      "notes": "'*' all-conservative. loadAny body is byte-identical to optionalRequire in reconstructed-require-wrapper (52B — same deliberate 200B-floor deviation, same reason: the pair must differ only in export/escape). The package has no other code — the export IS the escape."
+    },
+    {
+      "id": "escaped-loader",
+      "importStmt": "import { probe as escapedLoader_probe } from 'fab-escaped-loader';",
+      "routes": [
+        {
+          "path": "/fab/escaped-loader/__exercise",
+          "expr": "escapedLoader_probe('garden')",
+          "note": "probe retrieves the box from globalThis and calls box.loader('el-target').info(seed) — the loader is used only after crossing the unmodeled boundary."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "probe — the carrier that retrieves the escaped box from globalThis.__garden_escaped_loader_box and invokes box.loader('el-target').info(seed)",
+        "unknown (module-internal, not exported) — the boundary-crossing sink that stores the box on globalThis",
+        "el-target.info — conservative target reached via the escaped loader (423B)",
+        "el-target.reserveLane — passenger (401B), referenced by nothing; retained purely by the escaped-loader state"
+      ],
+      "notes": "'*' all-conservative. Top-level: `const r = require; const box = { loader: r }; unknown(box);` — the loader value is aliased, containerized, and stored on globalThis (unmodeled boundary) at import time; probe reads it back through globalThis, never through the lexical binding. globalThis key __garden_escaped_loader_box is garden-unique. Import-time side effect is deterministic and offline-safe."
+    },
+    {
+      "id": "static-basic",
+      "importStmt": "import { used as staticBasic_used } from 'fab-static-basic';",
+      "routes": [
+        {
+          "path": "/fab/static-basic/used",
+          "expr": "staticBasic_used('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "used",
+          "file": "fab/fab-static-basic/index.js",
+          "marker": "static-basic:used",
+          "endpoint": "/fab/static-basic/used"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "deadUnused",
+          "sentinel": "SENTINEL_static_basic_dead",
+          "spec": "fab-static-basic",
+          "exportName": "deadUnused"
+        }
+      ],
+      "extraExports": [],
+      "notes": "Canonical baseline: two exported function declarations, one imported and called, one never referenced anywhere in the tree."
+    },
+    {
+      "id": "esm-decl",
+      "importStmt": "import { usedDecl as esmDecl_usedDecl } from 'fab-esm-decl';",
+      "routes": [
+        {
+          "path": "/fab/esm-decl/usedDecl",
+          "expr": "esmDecl_usedDecl('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "usedDecl",
+          "file": "fab/fab-esm-decl/index.js",
+          "marker": "esm-decl:usedDecl",
+          "endpoint": "/fab/esm-decl/usedDecl"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "deadDecl",
+          "sentinel": "SENTINEL_esm_decl_dead",
+          "spec": "fab-esm-decl",
+          "exportName": "deadDecl"
+        }
+      ],
+      "extraExports": [],
+      "notes": "Both symbols use exactly the 'export function name() {}' declaration form (the false-conservatism regression shape)."
+    },
+    {
+      "id": "esm-specifier-alias",
+      "importStmt": "import { used as esmSpecifierAlias_used } from 'fab-esm-specifier-alias';",
+      "routes": [
+        {
+          "path": "/fab/esm-specifier-alias/used",
+          "expr": "esmSpecifierAlias_used('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "used",
+          "file": "fab/fab-esm-specifier-alias/index.js",
+          "marker": "esm-specifier-alias:used",
+          "endpoint": "/fab/esm-specifier-alias/used"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "deadAlias",
+          "sentinel": "SENTINEL_esm_alias_dead",
+          "spec": "fab-esm-specifier-alias",
+          "exportName": "deadAlias"
+        }
+      ],
+      "extraExports": [],
+      "notes": "Local declarations implA/implB exported ONLY via 'export { implA as used, implB as deadAlias }'. implB (deadAlias) has zero other references in the file."
+    },
+    {
+      "id": "esm-default-alias",
+      "importStmt": "import esmDefaultAlias_default from 'fab-esm-default-alias';",
+      "routes": [
+        {
+          "path": "/fab/esm-default-alias/default",
+          "expr": "esmDefaultAlias_default('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "default",
+          "file": "fab/fab-esm-default-alias/index.js",
+          "marker": "esm-default-alias:default",
+          "endpoint": "/fab/esm-default-alias/default"
+        }
+      ],
+      "forceTargets": [],
+      "extraExports": [],
+      "notes": "Single core() implementation: 'export default core; export { core as helper };'. App imports ONLY the default binding; helper is MUST_RETAIN_CONSERVATIVELY (shared-implementation) and is never referenced by app or routes. Mutation marker lives in core's body so mutating it fails the /default route."
+    },
+    {
+      "id": "esm-namespace-clean",
+      "importStmt": "import * as esmNamespaceClean from 'fab-esm-namespace-clean';",
+      "routes": [
+        {
+          "path": "/fab/esm-namespace-clean/used",
+          "expr": "esmNamespaceClean.used('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "used",
+          "file": "fab/fab-esm-namespace-clean/index.js",
+          "marker": "esm-namespace-clean:used",
+          "endpoint": "/fab/esm-namespace-clean/used"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "deadNs",
+          "sentinel": "SENTINEL_esm_ns_dead",
+          "spec": "fab-esm-namespace-clean",
+          "exportName": "deadNs"
+        }
+      ],
+      "extraExports": [],
+      "notes": "Package itself is plain exported declarations; the mechanism is in the APP import style — the importStmt MUST stay a namespace import ('import * as esmNamespaceClean ...') and the route MUST use static namespace property access (esmNamespaceClean.used(...)), never a named import. The namespace object must not be passed anywhere else (that would become an escape)."
+    },
+    {
+      "id": "esm-namespace-escape",
+      "importStmt": "import 'fab-esm-namespace-escape';",
+      "routes": [],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [],
+      "notes": "index.js does 'import * as ns from ./impl.js' then passes ns to a local sink() that stores it in a module-level registry array at init time — the namespace object escapes into a container. index.js has NO exports (verified at runtime: empty export surface), so the side-effect import is the only wiring. impl.js exports a and b, both MUST_RETAIN_CONSERVATIVELY (value-escaped); no routes exist and none may be added. sink() also has a >=200-byte deterministic body per conventions."
+    },
+    {
+      "id": "esm-reexport",
+      "importStmt": "import { alpha as esmReexport_alpha } from 'fab-esm-reexport';",
+      "routes": [
+        {
+          "path": "/fab/esm-reexport/alpha",
+          "expr": "esmReexport_alpha('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "alpha",
+          "file": "fab/fab-esm-reexport/impl.js",
+          "marker": "esm-reexport:alpha",
+          "endpoint": "/fab/esm-reexport/alpha"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "beta",
+          "sentinel": "SENTINEL_esm_reexport_dead",
+          "spec": "fab-esm-reexport/impl.js",
+          "exportName": "beta",
+          "note": "deep import into the package file; no exports map so it resolves from the app root"
+        }
+      ],
+      "extraExports": [],
+      "notes": "index.js is exactly 'export { alpha } from ./impl.js'. beta exists only in impl.js and is NOT re-exported by the root (verified: root export surface is ['alpha']), so it is unreachable through the chain; the red-team harness must deep-import fab-esm-reexport/impl.js."
+    },
+    {
+      "id": "esm-export-star",
+      "importStmt": "import { gamma as esmExportStar_gamma } from 'fab-esm-export-star';",
+      "routes": [
+        {
+          "path": "/fab/esm-export-star/gamma",
+          "expr": "esmExportStar_gamma('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "gamma",
+          "file": "fab/fab-esm-export-star/impl.js",
+          "marker": "esm-export-star:gamma",
+          "endpoint": "/fab/esm-export-star/gamma"
+        }
+      ],
+      "forceTargets": [],
+      "extraExports": [
+        "ns (deliberate 'export * as ns from ./deep.js' on the root — added per construction notes so the analyzer's reexport-namespace reason fires; MANIFEST reasonCoverage attributes that reason to this entry)",
+        "deepOrbit (the single export of deep.js — conservative passenger, never referenced by app, routes, or any package code; reachable only through the ns namespace re-export)"
+      ],
+      "notes": "index.js carries BOTH 'export * from ./impl.js' (export-star reason, covering gamma/delta) AND 'export * as ns from ./deep.js' (reexport-namespace reason). impl.js: gamma=MUST_RETAIN, delta=MUST_RETAIN_CONSERVATIVELY (unreferenced, no sentinel — it is not dead-labeled). App imports { gamma } from the package root so the retain path goes through the star re-export."
+    },
+    {
+      "id": "esm-shared-impl",
+      "importStmt": "import { format as esmSharedImpl_format } from 'fab-esm-shared-impl';",
+      "routes": [
+        {
+          "path": "/fab/esm-shared-impl/format",
+          "expr": "esmSharedImpl_format('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "format",
+          "file": "fab/fab-esm-shared-impl/index.js",
+          "marker": "esm-shared-impl:format",
+          "endpoint": "/fab/esm-shared-impl/format"
+        }
+      ],
+      "forceTargets": [],
+      "extraExports": [],
+      "notes": "ONE implementation function: 'export { impl as format, impl as fmt };' (verified at runtime format === fmt). App uses format only; fmt is MUST_RETAIN_CONSERVATIVELY (shared-implementation). The single mutation marker (key esm-shared-impl:format) lives in impl's body, so mutating it necessarily affects both exported names — there is no separate fmt marker by design."
+    },
+    {
+      "id": "esm-sideeffect",
+      "importStmt": "import { getValue as esmSideeffect_getValue } from 'fab-esm-sideeffect';",
+      "routes": [
+        {
+          "path": "/fab/esm-sideeffect/getValue",
+          "expr": "esmSideeffect_getValue('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "getValue",
+          "file": "fab/fab-esm-sideeffect/index.js",
+          "marker": "esm-sideeffect:getValue",
+          "endpoint": "/fab/esm-sideeffect/getValue"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "unusedSide",
+          "sentinel": "SENTINEL_esm_sideeffect_dead",
+          "spec": "fab-esm-sideeffect",
+          "exportName": "unusedSide"
+        }
+      ],
+      "extraExports": [],
+      "notes": "Module top level calls activate('garden-init') at init; activate writes module-level state that getValue's return value string-incorporates (suffix '::<state>'), so the init call is behaviorally real — stubbing activate changes the /getValue fixture. activate is exported but never imported by the app (MUST_RETAIN_CONSERVATIVELY, internal-reference). getValue is deterministic across repeated calls since activate runs once with a fixed seed at module init. unusedSide is fully unreferenced. Note: red-team forcing unusedSide imports the package and thus runs the init-time activate call — harmless and deterministic."
+    },
+    {
+      "id": "dynamic-import-literal",
+      "importStmt": "import { callUsed as dynamicImportLiteral_callUsed } from 'fab-dynamic-import-literal';",
+      "routes": [
+        {
+          "path": "/fab/dynamic-import-literal/__exercise",
+          "expr": "dynamicImportLiteral_callUsed('garden')",
+          "awaited": true,
+          "note": "Exercises used() through the literal await import('dil-target') sink. alsoRetained is never referenced anywhere."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "callUsed — mechanism carrier; the only static export of the top package, holds the await import('dil-target') literal sink"
+      ],
+      "notes": "ESM top package + nested ESM dil-target (own package.json, type module). used and alsoRetained are both MUST_RETAIN_CONSERVATIVELY per manifest (whole target retained in the slice via dynamic-import), so no markers. Deviation from the literal carrier sketch: callUsed's body carries ~250 bytes of extra deterministic seed computation appended to the return (':<acc>:<mix>' suffix) to satisfy the >=200-byte body rule; the mechanism (literal dynamic import + .used projection) is unchanged. Smoke-tested: deterministic across repeated calls."
+    },
+    {
+      "id": "dynamic-import-nonliteral",
+      "importStmt": "import { load as dynamicImportNonliteral_load } from 'fab-dynamic-import-nonliteral';",
+      "routes": [
+        {
+          "path": "/fab/dynamic-import-nonliteral/__exercise?which=target",
+          "expr": "dynamicImportNonliteral_load('garden', new URL(req.url, 'http://garden').searchParams.get('which'))",
+          "awaited": true,
+          "note": "The 'which' segment is read from the request URL query string so no string literal 'target' appears near the call site — keeps the import('din-' + which) specifier genuinely non-literal end-to-end. Assumes the request object is in scope as `req` in the route handler; if the generator names it differently, substitute that name. Verified working with this exact expr shape."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "load — mechanism carrier holding the non-literal await import('din-' + which) sink",
+        "describe (din-target) — the projection the carrier calls",
+        "passenger (din-target) — unreferenced passenger retained purely by the dynamic-import-nonliteral mechanism"
+      ],
+      "notes": "'*' conservative package. Nested ESM din-target has describe (invoked via mechanism) plus passenger (zero references, no sentinel — NOT dead-labeled). Carrier body padded past 200 bytes with deterministic seed computation (suffix on return); mechanism unchanged."
+    },
+    {
+      "id": "eval-constant-benign",
+      "importStmt": "import { usedGlobal as evalConstantBenign_usedGlobal } from 'fab-eval-constant-benign';",
+      "routes": [
+        {
+          "path": "/fab/eval-constant-benign/usedGlobal",
+          "expr": "evalConstantBenign_usedGlobal('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "usedGlobal",
+          "file": "fab/fab-eval-constant-benign/index.js",
+          "marker": "eval-constant-benign:usedGlobal",
+          "endpoint": "/fab/eval-constant-benign/usedGlobal"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "deadDead",
+          "sentinel": "SENTINEL_eval_benign_dead",
+          "spec": "fab-eval-constant-benign",
+          "exportName": "deadDead",
+          "note": "Exported from the package entry but never imported by any app code; red-team harness imports it directly."
+        }
+      ],
+      "extraExports": [],
+      "notes": "ESM. usedGlobal's marked body contains exactly Function('return this')() (constant source, capability-free) and derives its ':object:' tag from typeof the result, so the endpoint value depends on the probe. deadDead embeds the sentinel verbatim and has zero references. Mutation-stub check verified: replacing everything between+including the markers with the throw leaves a valid module and the endpoint expr throws GARDEN_MUTATED:eval-constant-benign:usedGlobal."
+    },
+    {
+      "id": "eval-constant-capable",
+      "importStmt": "import { run as evalConstantCapable_run } from 'fab-eval-constant-capable';",
+      "routes": [
+        {
+          "path": "/fab/eval-constant-capable/__exercise",
+          "expr": "evalConstantCapable_run()",
+          "note": "run() takes no seed; the fixed arg 'garden-fixed' is baked into the constant eval source per the manifest mechanism."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "run — mechanism carrier: direct eval of the constant capability-using source eval('require(\"ecc-target\").go(\"garden-fixed\")')",
+        "go (ecc-target) — the function the eval'd source requires and calls",
+        "passenger (ecc-target) — unreferenced passenger retained purely by the reach-any mechanism"
+      ],
+      "notes": "CJS (no type field); exports.run = run stubbable shape; named ESM import verified working (cjs-module-lexer detects it). The eval is lazy inside run() — a reduced tree missing ecc-target still boots and fails only this route (verified: no import-time touch of ecc-target). Carrier body padded past 200 bytes with deterministic computation over the fixed base string; the eval result remains the head of the return value."
+    },
+    {
+      "id": "newfunction-runtime",
+      "importStmt": "import { makeAndRun as newfunctionRuntime_makeAndRun } from 'fab-newfunction-runtime';",
+      "routes": [
+        {
+          "path": "/fab/newfunction-runtime/__exercise",
+          "expr": "newfunctionRuntime_makeAndRun('garden')",
+          "note": "The generated source is built at runtime from the seed argument ('return ' + JSON.stringify(seed) + ...), so it is non-constant regardless of the literal seed at the call site."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "makeAndRun — mechanism carrier: new Function(runtimeString)() with a non-constant seed-derived source",
+        "passenger — unreferenced passenger in the same module, retained purely by the reach-any mechanism"
+      ],
+      "notes": "Built as ESM ('CJS or ESM' was allowed). '*' conservative: passenger has zero references and no sentinel. Deterministic output verified: newfunction-runtime:makeAndRun:nedrag:3690 for seed 'garden'."
+    },
+    {
+      "id": "direct-eval-lexical",
+      "importStmt": "import { run as directEvalLexical_run } from 'fab-direct-eval-lexical';",
+      "routes": [
+        {
+          "path": "/fab/direct-eval-lexical/__exercise",
+          "expr": "directEvalLexical_run('garden')",
+          "note": "The specifier is assembled inside the carrier (['del','-target'].join('')) and the eval'd source 'loader(name)' contains no literal require — it inherits the loader-capable lexical binding const loader = require."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "run — mechanism carrier: direct eval whose generated source uses the inherited lexical loader alias",
+        "tell (del-target) — the projection the eval'd load feeds",
+        "passenger (del-target) — unreferenced passenger retained purely by the mechanism"
+      ],
+      "notes": "CJS top package + nested CJS del-target, both stubbable shape (function decl + exports.f = f); named ESM import of run verified working. Top-level const loader = require executes at import time but loads nothing until run() is called, so boot never touches del-target. Carrier body padded past 200 bytes with deterministic seed computation; eval result remains the head of the return."
+    },
+    {
+      "id": "require-literal",
+      "importStmt": "import { used as requireLiteral_used } from 'fab-require-literal';",
+      "routes": [
+        {
+          "path": "/fab/require-literal/used",
+          "expr": "requireLiteral_used('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "used",
+          "file": "fab/fab-require-literal/node_modules/rl-target/index.js",
+          "marker": "require-literal:used",
+          "endpoint": "/fab/require-literal/used"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "dead",
+          "sentinel": "SENTINEL_require_literal_dead",
+          "spec": "fab-require-literal/node_modules/rl-target",
+          "exportName": "dead"
+        }
+      ],
+      "extraExports": [
+        "used (index.js wiring carrier — same name as the manifest symbol; the real MUST_RETAIN body with the mutation marker lives in rl-target)"
+      ],
+      "notes": "Load sink is the exact-literal require('rl-target') with a static .used projection, inside the carrier. Carrier body is padded to >=200B with an inert deterministic checksum guard (CONVENTIONS byte rule); the padding adds no load-relevant evidence. Manifest symbols live in the nested rl-target (CJS, stubbable exports.f = f shape)."
+    },
+    {
+      "id": "require-finite",
+      "importStmt": "import { run as requireFinite_run } from 'fab-require-finite';",
+      "routes": [
+        {
+          "path": "/fab/require-finite/run",
+          "expr": "requireFinite_run('garden')",
+          "note": "seed 'garden' (length 6, even) selects the rf-a arm of the finite ternary"
+        },
+        {
+          "path": "/fab/require-finite/run-b",
+          "expr": "requireFinite_run('garden7')",
+          "note": "seed 'garden7' (length 7, odd) selects the rf-b arm"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "run",
+          "file": "fab/fab-require-finite/node_modules/rf-a/index.js",
+          "marker": "require-finite:run@rf-a",
+          "endpoint": "/fab/require-finite/run"
+        },
+        {
+          "symbol": "run",
+          "file": "fab/fab-require-finite/node_modules/rf-b/index.js",
+          "marker": "require-finite:run@rf-b",
+          "endpoint": "/fab/require-finite/run-b"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "deadInBoth",
+          "sentinel": "SENTINEL_require_finite_dead",
+          "spec": "fab-require-finite/node_modules/rf-a",
+          "exportName": "deadInBoth",
+          "note": "same symbol+sentinel exists in both finite targets"
+        },
+        {
+          "symbol": "deadInBoth",
+          "sentinel": "SENTINEL_require_finite_dead",
+          "spec": "fab-require-finite/node_modules/rf-b",
+          "exportName": "deadInBoth"
+        }
+      ],
+      "extraExports": [
+        "run (index.js wiring carrier holding the finite two-literal ternary load sink)"
+      ],
+      "notes": "Specifier domain is finite by construction: require(seed.length % 2 === 0 ? 'rf-a' : 'rf-b') — exactly two literals, bounded .run projection. Both arms export run (distinct outputs, per-arm markers) and deadInBoth (identical sentinel). Carrier padded to >=200B with an inert deterministic guard; the ternary and projection are verbatim from spec."
+    },
+    {
+      "id": "require-pkgscoped",
+      "importStmt": "import { load as requirePkgscoped_load } from 'fab-require-pkgscoped';",
+      "routes": [
+        {
+          "path": "/fab/require-pkgscoped/__exercise?name=one",
+          "expr": "requirePkgscoped_load('garden', req.query.name)",
+          "note": "server must read name from the request URL query string (fixed value 'one' baked into the path) so the specifier stays package-scoped, not narrowed to a literal by the route body; expr assumes an express-style req in scope"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "load (index.js wiring carrier: require('rps-scopedtarget/' + name).describe(seed))",
+        "describe in rps-scopedtarget/one.js and two.js (mechanism-reachable conservative surface, distinct outputs)",
+        "spareOne (one.js passenger, unreferenced — retained purely by the package-scoped domain)",
+        "spareTwo (two.js passenger, unreferenced)"
+      ],
+      "notes": "All symbols '*' MUST_RETAIN_CONSERVATIVELY: no markers, no sentinels. rps-scopedtarget has package.json main index.js (index.js is tiny valid CJS exporting {}), plus one.js and two.js at the package root reachable via the subpath require. Nothing statically references the subpath files; the only path in is the package-scoped concatenated specifier."
+    },
+    {
+      "id": "require-unbounded-bounded-projection",
+      "importStmt": "import { callFoo as requireUnboundedBoundedProjection_callFoo } from 'fab-require-unbounded-bounded-projection';",
+      "routes": [
+        {
+          "path": "/fab/require-unbounded-bounded-projection/foo?m=rubp-target",
+          "expr": "requireUnboundedBoundedProjection_callFoo('garden', req.query.m)",
+          "note": "server passes the fixed module name from the query string so the specifier stays unbounded at the load sink; expr assumes an express-style req in scope"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [
+        {
+          "symbol": "notFoo",
+          "sentinel": "SENTINEL_unbounded_notfoo_dead",
+          "spec": "fab-require-unbounded-bounded-projection/node_modules/rubp-target",
+          "exportName": "notFoo"
+        }
+      ],
+      "extraExports": [
+        "callFoo (index.js wiring carrier: return require(name).foo(seed) — unbounded specifier, bounded .foo projection)"
+      ],
+      "notes": "The Q10 rescue-lever case. rubp-target is a closed CJS surface: exactly exports.foo = foo; exports.notFoo = notFoo; both top-level FunctionDeclarations (stubbable). foo is MUST_RETAIN_CONSERVATIVELY (no marker, reachable only through the mechanism); notFoo is MUST_REMOVE with its sentinel verbatim and zero references anywhere. Carrier padded to >=200B with an inert deterministic guard."
+    },
+    {
+      "id": "require-unbounded-computed-projection",
+      "importStmt": "import { call as requireUnboundedComputedProjection_call } from 'fab-require-unbounded-computed-projection';",
+      "routes": [
+        {
+          "path": "/fab/require-unbounded-computed-projection/__exercise?m=rucp-target&k=alpha",
+          "expr": "requireUnboundedComputedProjection_call('garden', req.query.m, req.query.k)",
+          "note": "server passes both the module name and the property key from the query string so both the specifier and the projection stay dynamic; expr assumes an express-style req in scope"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "call (index.js wiring carrier: return require(name)[k](seed))",
+        "alpha, beta in rucp-target (impl exports reachable only via the computed projection)",
+        "spareComputed (rucp-target passenger, unreferenced — retained purely by the mechanism)"
+      ],
+      "notes": "All '*' conservative: unbounded specifier AND computed [k] projection — no markers, no sentinels. rucp-target exports are all top-level FunctionDeclarations in stubbable shape. Carrier padded to >=200B with an inert deterministic guard."
+    },
+    {
+      "id": "require-value-escape",
+      "importStmt": "import { grab as requireValueEscape_grab } from 'fab-require-value-escape';",
+      "routes": [
+        {
+          "path": "/fab/require-value-escape/__exercise?m=rve-target",
+          "expr": "requireValueEscape_grab('garden', req.query.m)",
+          "note": "server passes the fixed module name from the query string; expr assumes an express-style req in scope. Return value is replay-stable despite the growing registry"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "grab (index.js wiring carrier: const m = require(name); registry.push(m); the module value escapes into a module-level container)",
+        "tag in rve-target (projected export, conservative)",
+        "spareEscape (rve-target passenger, unreferenced — retained purely by the escape)"
+      ],
+      "notes": "Deviation from the construction snippet, per its own parenthetical: the returned string derives ONLY from m.tag(seed) — registry.length was dropped from the return so repeated calls are byte-identical ('require-value-escape:grab:rve-target:tag:...'). The escape itself (registry.push(m)) is preserved. All '*' conservative; no markers or sentinels. Carrier padded to >=200B with an inert deterministic guard."
+    },
+    {
+      "id": "cjs-basic",
+      "importStmt": "import { used as cjsBasic_used } from 'fab-cjs-basic';",
+      "routes": [
+        {
+          "path": "/fab/cjs-basic/used",
+          "expr": "cjsBasic_used('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "used",
+          "file": "fab/fab-cjs-basic/index.js",
+          "marker": "cjs-basic:used",
+          "endpoint": "/fab/cjs-basic/used"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "dead",
+          "sentinel": "SENTINEL_cjs_basic_dead",
+          "spec": "fab-cjs-basic",
+          "exportName": "dead",
+          "note": "exports.dead = dead is lexer-visible; force harness can use named or default import"
+        }
+      ],
+      "extraExports": [],
+      "notes": "Top-level 'function used(seed)' / 'function dead(seed)' with 'exports.used = used; exports.dead = dead;' — stubbable FunctionDeclaration shape. dead is never referenced except by its own export assignment; the app never imports it."
+    },
+    {
+      "id": "cjs-object-literal",
+      "importStmt": "import { used as cjsObjectLiteral_used } from 'fab-cjs-object-literal';",
+      "routes": [
+        {
+          "path": "/fab/cjs-object-literal/used",
+          "expr": "cjsObjectLiteral_used('garden')"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "used",
+          "file": "fab/fab-cjs-object-literal/index.js",
+          "marker": "cjs-object-literal:used",
+          "endpoint": "/fab/cjs-object-literal/used"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "dead",
+          "sentinel": "SENTINEL_cjs_objlit_dead",
+          "spec": "fab-cjs-object-literal",
+          "exportName": "dead"
+        }
+      ],
+      "extraExports": [],
+      "notes": "Single 'module.exports = { used, dead };' literal with shorthand properties referencing top-level FunctionDeclarations. cjs-module-lexer detects both names; named ESM import of used verified working."
+    },
+    {
+      "id": "cjs-closure",
+      "importStmt": "import { wrap as cjsClosure_wrap } from 'fab-cjs-closure';",
+      "routes": [
+        {
+          "path": "/fab/cjs-closure/wrap",
+          "expr": "cjsClosure_wrap('garden')",
+          "note": "wrap's return embeds impl(seed)'s full output, so the fixture is sensitive to impl's body too"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "wrap",
+          "file": "fab/fab-cjs-closure/index.js",
+          "marker": "cjs-closure:wrap",
+          "endpoint": "/fab/cjs-closure/wrap"
+        }
+      ],
+      "forceTargets": [],
+      "extraExports": [],
+      "notes": "Deliberate exception to the stubbable-shape rule per construction notes: wrap is 'exports.wrap = (seed) => {...}' with the mutation markers INSIDE the arrow body (mutated file still parses — verified). impl is a top-level FunctionDeclaration referenced only inside the closure plus its own 'exports.impl = impl;' line; the app imports only wrap, so impl is MUST_RETAIN_CONSERVATIVELY via internal-reference. No route invokes impl directly."
+    },
+    {
+      "id": "cjs-overwrite",
+      "importStmt": "import { x as cjsOverwrite_x, observedDuringCycle as cjsOverwrite_observedDuringCycle } from 'fab-cjs-overwrite';",
+      "routes": [
+        {
+          "path": "/fab/cjs-overwrite/x",
+          "expr": "cjsOverwrite_x('garden')",
+          "note": "steady-state x is f2; marker lives in f2"
+        },
+        {
+          "path": "/fab/cjs-overwrite/__exercise",
+          "expr": "cjsOverwrite_observedDuringCycle",
+          "note": "constant string captured mid-cycle: 'cycle-saw:cjs-overwrite:f1:...' — proves cycle.js read .x while it was still f1 (temporal aliasing behaviorally real)"
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "x",
+          "file": "fab/fab-cjs-overwrite/index.js",
+          "marker": "cjs-overwrite:x",
+          "endpoint": "/fab/cjs-overwrite/x"
+        }
+      ],
+      "forceTargets": [],
+      "extraExports": [
+        "observedDuringCycle — wiring export storing what cycle.js observed when it required index.js back between the two exports.x writes (idx.x was f1); makes the temporal aliasing observable, per construction note"
+      ],
+      "notes": "Sequence exactly as specified: exports.x = f1; require('./cycle.js') (which requires './index.js' back and calls the then-current .x, i.e. f1, storing the result); exports.x = f2; exports.legacy = f1. legacy is MUST_RETAIN_CONSERVATIVELY — exported, never imported by the app. Verified at runtime: x('garden') returns the f2 value, observedDuringCycle carries the f1 value. cycle.js has no function declarations, so the 200-byte body rule does not apply to it."
+    },
+    {
+      "id": "cjs-getter",
+      "importStmt": "import cjsGetter_default from 'fab-cjs-getter';",
+      "routes": [
+        {
+          "path": "/fab/cjs-getter/foo",
+          "expr": "cjsGetter_default.foo('garden')",
+          "note": "property access on the default-imported module.exports goes through the defineProperty getter — mechanism-faithful"
+        },
+        {
+          "path": "/fab/cjs-getter/bar",
+          "expr": "cjsGetter_default.bar('garden')"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [],
+      "notes": "Object.defineProperty(exports,'foo',{get}) and same for 'bar'; both getters have >=200-byte deterministic bodies and return >=200-byte-bodied top-level FunctionDeclarations (fooImpl/barImpl). Both symbols MUST_RETAIN_CONSERVATIVELY — no markers, no sentinels. Default import is REQUIRED: cjs-module-lexer does not detect defineProperty exports, so named ESM imports would fail at runtime."
+    },
+    {
+      "id": "cjs-computed-export",
+      "importStmt": "import cjsComputedExport_default from 'fab-cjs-computed-export';",
+      "routes": [
+        {
+          "path": "/fab/cjs-computed-export/carrier",
+          "expr": "cjsComputedExport_default.carrier('garden')",
+          "note": "exercises the export created only by the computed-key write exports[['car','ri','er'].join('')]"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "carrier — the mechanism-carrier export the app calls (via computed key)",
+        "passenger — >=200-byte passenger export, also written via computed key, referenced by NOTHING; retained purely by the export-object-mutation mechanism (no sentinel — not dead-labeled)"
+      ],
+      "notes": "'*' conservative package. Keys are runtime-computed via array join (non-literal), so the export surface is not statically enumerable. Default import required (lexer detects no names). Route uses a static .carrier property name app-side, as the construction note allows."
+    },
+    {
+      "id": "cjs-proxy",
+      "importStmt": "import cjsProxy_default from 'fab-cjs-proxy';",
+      "routes": [
+        {
+          "path": "/fab/cjs-proxy/alpha",
+          "expr": "cjsProxy_default.alpha('garden')",
+          "note": "the read traverses the Proxy get handler — mechanism-faithful"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "alpha — mechanism-carrier the app calls through the Proxy",
+        "passenger — >=200-byte passenger on the Proxy target, referenced by nothing (no sentinel)"
+      ],
+      "notes": "'*' conservative. module.exports = new Proxy(target, { get }) with a >=200-byte deterministic get handler that guards non-string props (symbol probes during ESM interop are safe) and returns Reflect.get. Default import required."
+    },
+    {
+      "id": "cjs-deferred-write",
+      "importStmt": "import cjsDeferredWrite_default from 'fab-cjs-deferred-write';",
+      "routes": [
+        {
+          "path": "/fab/cjs-deferred-write/eager",
+          "expr": "cjsDeferredWrite_default.eager('garden')"
+        },
+        {
+          "path": "/fab/cjs-deferred-write/late",
+          "expr": "(async () => { await new Promise((r) => setImmediate(r)); return cjsDeferredWrite_default.late('garden'); })()",
+          "awaited": true,
+          "note": "awaits a tick before reading .late; the setTimeout(...,0) write lands at boot, long before any HTTP request, so the awaited tick is belt-and-braces"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [],
+      "notes": "exports.eager = eagerImpl at top level; exports.late = lateImpl assigned inside setTimeout(fn, 0). Both symbols MUST_RETAIN_CONSERVATIVELY. Default import required — lexer would see 'eager' but never 'late', and mixing named+default would add static evidence for eager beyond the mechanism. Deviation: the setTimeout callback body is the bare 'exports.late = lateImpl;' per the construction note's exact shape, under the 200-byte rule's intent (real computation bodies); flagging for honesty."
+    },
+    {
+      "id": "cjs-setprototypeof",
+      "importStmt": "import cjsSetprototypeof_default from 'fab-cjs-setprototypeof';",
+      "routes": [
+        {
+          "path": "/fab/cjs-setprototypeof/own",
+          "expr": "cjsSetprototypeof_default.own('garden')"
+        },
+        {
+          "path": "/fab/cjs-setprototypeof/inherited",
+          "expr": "cjsSetprototypeof_default.inherited('garden')",
+          "note": "property is NOT an own property of module.exports (verified) — the read resolves through the injected prototype"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "own — the one own export (carrier)",
+        "inherited — carrier reachable only through Object.setPrototypeOf(exports, base)",
+        "passenger — >=200-byte inherited passenger on base, referenced by nothing (no sentinel)"
+      ],
+      "notes": "'*' conservative. Object.setPrototypeOf(exports, base) where base = { inherited, passenger }. Default import required; the default is module.exports itself so prototype-chain lookups work (verified at runtime)."
+    },
+    {
+      "id": "vm-injected-loader",
+      "importStmt": "import { run as vmInjectedLoader_run } from 'fab-vm-injected-loader';",
+      "routes": [
+        {
+          "path": "/fab/vm-injected-loader/__exercise",
+          "expr": "vmInjectedLoader_run('garden')",
+          "awaited": false,
+          "note": "Mechanism carrier. run() calls vm.runInNewContext('require(\"vil-target\").greet(s)', { require, s }) — the host loader is injected into the vm context, so the whole package surface (run + tally passenger) is conservative '*'. No MUST_RETAIN symbols, so this is the only route."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "run: mechanism-carrier the app calls through vm (conservative '*')",
+        "tally: passenger export, referenced by nothing, retained only by the vm-injected-loader hazard",
+        "vil-target.greet: nested target invoked via the injected host require inside the vm context",
+        "vil-target.farewell: nested passenger, unreferenced, kept by the same hazard"
+      ],
+      "notes": "CJS package + nested CJS dep vil-target at node_modules/vil-target. Faithful to construction note: vm carrier injects `require` into the context. IMPORTANT integrator caveat: `require('node:vm')` triggers a GLOBAL `runtime-code-generation` hazard in the analyzer (index.ts line 412 + global-hazard widening at lines 660-668/775). In a COMBINED trace this widens EVERY package's exports to 'unknown', so no MUST_REMOVE symbol anywhere in a shared trace can be reclaimed. Per manifest ('counted separately for the VM counterfactual ceiling, ADR-0003'), the vm packages should be traced/scored in their own build segment, not mixed with the isolated-removal cases (esp. vuln-localized). All function bodies >=200 bytes; run/tally/greet/farewell all deterministic; loads and returns identical values on repeat; no sentinel in this package."
+    },
+    {
+      "id": "vm-no-loader",
+      "importStmt": "import { used as vmNoLoader_used } from 'fab-vm-no-loader';",
+      "routes": [
+        {
+          "path": "/fab/vm-no-loader/used",
+          "expr": "vmNoLoader_used('garden')",
+          "awaited": false,
+          "note": "MUST_RETAIN. used() runs vm.runInNewContext('x * 7 + 3', { x: seed.length }) — the context object contains NO loader, only a number — then folds the result deterministically into the return."
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "used",
+          "file": "fab/fab-vm-no-loader/index.js",
+          "marker": "vm-no-loader:used",
+          "endpoint": "/fab/vm-no-loader/used"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "deadNoLoader",
+          "sentinel": "SENTINEL_vm_noloader_dead",
+          "spec": "fab-vm-no-loader",
+          "exportName": "deadNoLoader"
+        }
+      ],
+      "extraExports": [],
+      "notes": "CJS. Exactly the two manifest symbols. used = MUST_RETAIN (marker-wrapped, no-loader vm context); deadNoLoader = MUST_REMOVE, stubbable shape (top-level FunctionDeclaration, exports.deadNoLoader = deadNoLoader), zero references, embeds SENTINEL_vm_noloader_dead verbatim. Marker-replace-with-throw verified syntactically valid. Same global-hazard caveat as vm-injected-loader: the vm import makes deadNoLoader unreclaimable under the strict model (this is the VM counterfactual — precise VM modeling of a loader-free context would reclaim it). Bodies >=200 bytes; used stable across calls."
+    },
+    {
+      "id": "identity-unification",
+      "importStmt": "import { callFoo as identityUnification_callFoo } from 'fab-identity-unification';",
+      "routes": [
+        {
+          "path": "/fab/identity-unification/__exercise",
+          "expr": "identityUnification_callFoo('garden')",
+          "awaited": false,
+          "note": "Mechanism carrier (site A). callFoo does require('iu-target').foo(seed) — a narrow .foo projection. At module top level (site B) `const escapedTarget = require('iu-target/index.js'); registry.push(escapedTarget)` pulls the SAME cached file via a different specifier and lets the module object escape as a call argument, invalidating A's narrow conclusion → whole surface conservative '*'."
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "callFoo: mechanism carrier (site A, narrow projection)",
+        "ledger: passenger export, unreferenced, retained by the identity-unification hazard",
+        "iu-target.foo: narrow-projection target at site A",
+        "iu-target.baz: nested passenger, unreferenced, conservatively reachable via site B escape"
+      ],
+      "notes": "CJS package + nested CJS dep iu-target. No MUST_RETAIN symbols ('*' conservative), so no mutationTargets. HAZARD-FREE at the analyzer level (no eval/vm/dynamic-require) — retention here is driven purely by value-escape + module-identity unification (site B's `const m = require('iu-target/index.js'); registry.push(m)` = value-escaped), NOT a global hazard, so this package does not poison sibling packages. Bodies >=200 bytes; callFoo stable across calls; no sentinel."
+    },
+    {
+      "id": "vuln-localized",
+      "importStmt": "import { get as vulnLocalized_get } from 'fab-vuln-localized';",
+      "routes": [
+        {
+          "path": "/fab/vuln-localized/get",
+          "expr": "vulnLocalized_get('garden')",
+          "awaited": false,
+          "note": "MUST_RETAIN. Safe deep-property getter: builds a fixed nested object seeded by input, walks a fixed key path with ordinary property semantics."
+        }
+      ],
+      "mutationTargets": [
+        {
+          "symbol": "get",
+          "file": "fab/fab-vuln-localized/index.js",
+          "marker": "vuln-localized:get",
+          "endpoint": "/fab/vuln-localized/get"
+        }
+      ],
+      "forceTargets": [
+        {
+          "symbol": "mergeVuln",
+          "sentinel": "SENTINEL_vuln_merge_body",
+          "spec": "fab-vuln-localized",
+          "exportName": "mergeVuln"
+        }
+      ],
+      "extraExports": [],
+      "notes": "ESM (type:module). Exactly the two manifest symbols. get = MUST_RETAIN (export function decl, marker-wrapped). mergeVuln = MUST_REMOVE (export function decl, stubbable): the simulated prototype-pollution deep-merge for CVE-SIM-GARDEN-0001, embeds SENTINEL_vuln_merge_body verbatim, zero references. Written ITERATIVELY (stack, no self-recursion) precisely so it stays a zero-internal-reference top-level FunctionDeclaration and remains stubbable — a recursive version would self-reference and the analyzer (gate 7 / isExportPlumbingRef) would mark it internal-reference and refuse to stub it, defeating the MUST_REMOVE case. Contains NOTHING that trips an analyzer hazard (no eval/Function/vm/dynamic import/require/require.cache) — this is the isolated tree where removal must actually fire, so it MUST be traced/reduced WITHOUT the vm packages present (their global runtime-code-generation hazard would otherwise widen this to 'unknown' too). Marker-replace-with-throw verified valid; bodies 597/618 bytes; get stable across calls; mergeVuln never invoked on any live path."
+    },
+    {
+      "id": "binding-reassigned",
+      "importStmt": "import 'fab-binding-reassigned';",
+      "routes": [],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [],
+      "notes": "ESM. `export function foo(seed)` followed by top-level `foo = altImpl;` (altImpl is a second local function, not exported). Verified against the analyzer: foo is retained with reason 'binding-reassigned' (constantViolations path in finalize). Side-effect import only, no routes — naming foo would add static evidence. At runtime foo resolves to altImpl's implementation; deterministic (foo('garden') = 'binding-reassigned:altImpl:flint:2744:GARDEN')."
+    },
+    {
+      "id": "destructure-rest",
+      "importStmt": "import { pick as destructureRest_pick } from 'fab-destructure-rest';",
+      "routes": [
+        {
+          "path": "/fab/destructure-rest/__exercise",
+          "expr": "destructureRest_pick('garden')",
+          "awaited": false,
+          "note": "expected value: destructure-rest:a:awl:2659:nedrag:b,ballast,c"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "pick (carrier on fab-destructure-rest; the only export the app names)",
+        "dr-target: a, b, c (mechanism operands swept into { a, ...rest })",
+        "dr-target: ballast (passenger; zero references anywhere — retained purely by the rest pattern)"
+      ],
+      "notes": "CJS carrier + nested CJS target fab-destructure-rest/node_modules/dr-target. `const { a, ...rest } = require('dr-target');` — verified: the RestElement sets dep.all with reason 'destructure-rest', widening dr-target's whole surface ('*' conservative). pick returns a(seed) + ':' + Object.keys(rest).sort().join(',') per spec. cjs-module-lexer detects exports.pick, so the named ESM import is safe (verified via ESM import in smoke test)."
+    },
+    {
+      "id": "require-cache-mutation",
+      "importStmt": "import { fresh as requireCacheMutation_fresh } from 'fab-require-cache-mutation';",
+      "routes": [
+        {
+          "path": "/fab/require-cache-mutation/__exercise",
+          "expr": "requireCacheMutation_fresh('garden')",
+          "awaited": false,
+          "note": "expected value: require-cache-mutation:stamp:quartz:6735:nedrag — byte-identical on every call because stamp is pure and stateless"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "fresh (carrier)",
+        "rcm-target: stamp (mechanism operand, PURE — no counters/state, so cache-evicted re-require replays byte-identically)",
+        "rcm-target: passengerGauge (passenger; zero references — retained purely by the gate)"
+      ],
+      "notes": "CJS carrier + nested CJS target rcm-target. fresh does require.resolve('rcm-target'), delete require.cache[key], then return require('rcm-target').stamp(seed) per spec. Verified: the require.cache MemberExpression fires the 'require-cache-mutation' hazard; require.resolve does not add spurious hazards. INTEGRATOR WARNING: this is a GLOBAL hazard — every package analyzed in the same trace gets widened to unknown with prefixed reason 'global-hazard:require-cache-mutation'. Same blast radius applies to parse-failure's 'unsupported-syntax'. If the garden scores other packages' precision in the same app tree, those two must be analyzed in isolation or the scorer must account for the prefixed global-hazard reasons."
+    },
+    {
+      "id": "parse-failure",
+      "importStmt": "import { ok as parseFailure_ok } from 'fab-parse-failure';",
+      "routes": [
+        {
+          "path": "/fab/parse-failure/__exercise",
+          "expr": "parseFailure_ok('garden')",
+          "awaited": false,
+          "note": "expected value: parse-failure:ok:sound:8725:nedrag"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "ok (carrier)",
+        "ballastLexeme (passenger; zero references — retained purely by the gate)"
+      ],
+      "notes": "CJS. `if (process.env.GARDEN_ENABLE_BROKEN) { require('./broken.js'); }` — the env var must stay UNSET in the garden; the branch never executes so stock node never compiles broken.js (smoke-tested). The literal specifier is still traced by NFT and resolvable; the analyzer's babel parse of broken.js returns null => global 'unsupported-syntax' (verified: analyzeModuleSource(broken.js) === null, and new Function() on its contents throws SyntaxError, so node would also reject it). broken.js is ~370 bytes of non-JS payload plus a comment header explaining itself. The process.env read is a construction-note-mandated deviation from the no-env rule; runtime output is env-independent because the flag is never set. GLOBAL hazard blast radius: same warning as require-cache-mutation."
+    },
+    {
+      "id": "unsupported-export-kind",
+      "importStmt": "import 'fab-unsupported-export-kind';",
+      "routes": [],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [],
+      "notes": "ESM. Exactly one export: `export const obj = { m(seed){...}, helper(seed){...} };`. Verified: obj is retained per-symbol with reason 'unsupported-export-kind' (VariableDeclarator binding, not a FunctionDeclaration) while exportSurfaceUnknown stays empty — the pure per-symbol gate, not a surface-unknown. Side-effect import and NO routes by design: naming obj would make it statically reachable and mask the reason under test. Both methods have >=200-byte deterministic bodies even though nothing invokes them."
+    },
+    {
+      "id": "unrecognized-importer",
+      "importStmt": "import { launch as unrecognizedImporter_launch } from 'fab-unrecognized-importer';",
+      "routes": [
+        {
+          "path": "/fab/unrecognized-importer/__exercise",
+          "expr": "unrecognizedImporter_launch('garden')",
+          "awaited": false,
+          "note": "expected value: unrecognized-importer:launch:1214:7427:nedrag — the 1214 is extra.js's byte length; editing extra.js changes this fixture"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "launch (carrier; reads extra.js's BYTES via readFileSync(path.join(__dirname,'extra.js')) and digests length+seed — never requires it)",
+        "extra.js: hiddenCore, hiddenPassenger (the '*' conservative surface; hiddenPassenger is the passenger; neither is statically imported by anything)"
+      ],
+      "notes": "CJS. extra.js is a valid CJS module (parses, 2 exports — verified) that enters the trace only as an NFT asset-style reference; no analyzed module lists it as a dep (verified), so gate 4 finds no recognized importer => 'unrecognized-importer' for its whole surface. Deterministic: digest depends on extra.js's fixed byte length (1214) + seed. Only fs/path builtins are required; verified no incidental hazards in index.js. Caveat: extra.js's gate firing assumes the tracer classifies NFT-reported .js assets as kind 'js' — I could not run the tracer end-to-end here."
+    },
+    {
+      "id": "resolver-trace-mismatch",
+      "importStmt": "import { probe as resolverTraceMismatch_probe } from 'fab-resolver-trace-mismatch';",
+      "routes": [
+        {
+          "path": "/fab/resolver-trace-mismatch/__exercise",
+          "expr": "resolverTraceMismatch_probe('garden')",
+          "awaited": false,
+          "note": "expected value: rtm-dual:esm:entry:mirror:978:nedrag#6#nedrag — the 'esm' segment proves the import condition was taken at runtime"
+        }
+      ],
+      "mutationTargets": [],
+      "forceTargets": [],
+      "extraExports": [
+        "probe (carrier; ESM, statically imported by the app)",
+        "rtm-dual/esm.mjs: entry (mechanism operand, runtime impl), passengerFlag (passenger; zero references)",
+        "rtm-dual/cjs.cjs: entry (divergent require-condition impl; never loaded at runtime, exists so the conditions genuinely diverge)"
+      ],
+      "notes": "ESM + nested rtm-dual whose package.json has the exports map exactly as specified ({ '.': { import: './esm.mjs', require: './cjs.cjs' } }) — the mechanism-mandated exception to the no-exports-field convention. Verified both halves of the divergence: the analyzer's createRequire().resolve('rtm-dual') from index.js lands on cjs.cjs, while Node's ESM loader (and hence NFT) loads esm.mjs (smoke-tested: ESM probe returns the esm impl, a require() of rtm-dual returns the distinct cjs impl 'rtm-dual:cjs:entry:rivet:3957:garden'). cjs.cjs being absent from the NFT trace triggers the resolver/NFT disagreement path, marking rtm-dual opaque with 'resolver-trace-mismatch' plus a non-fatal analyzer warning (warnings do not feed the nft-warning global hazard)."
+    }
+  ]
+}

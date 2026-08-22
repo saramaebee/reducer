@@ -1,0 +1,51 @@
+{
+  "cve": "CVE-SIM-GARDEN-0001",
+  "passed": false,
+  "problems": [
+    "REDUCER DEFECT: the emitted source map ships the original vulnerable body (sourcesContent) — node_modules/fab-vuln-localized/index.js.map — contradicting the VEX claim \"vulnerable implementation bytes are physically absent from the deployment\""
+  ],
+  "transformation": {
+    "package": "fab-vuln-localized@1.0.0",
+    "file": "node_modules/fab-vuln-localized/index.js",
+    "symbol": "mergeVuln",
+    "sourceRange": {
+      "start": 1338,
+      "end": 1993
+    },
+    "action": "function-body-removed",
+    "reason": "provably-unreachable",
+    "proof": [
+      "not-imported-anywhere"
+    ],
+    "inputHash": "cd5edd2baa712e8c047887beec1251c9780d6ed1dbe002603e82f2b73e0ffb76",
+    "outputHash": "dd41d998b6355fb8237f1e937782f39958bd6c51fcb3b7e04794c0d8ae2c9412",
+    "bytesBefore": 1996,
+    "bytesAfter": 1731
+  },
+  "vexRecord": {
+    "vulnerability": {
+      "id": "CVE-SIM-GARDEN-0001"
+    },
+    "product": {
+      "component": "fab-vuln-localized@1.0.0",
+      "subcomponent": "mergeVuln"
+    },
+    "status": "not_affected",
+    "justification": "vulnerable_code_not_present",
+    "impact_statement": "reducer proved \"mergeVuln\" unreachable and replaced its body with a throwing stub; the vulnerable implementation bytes are physically absent from the deployment.",
+    "evidence": {
+      "file": "node_modules/fab-vuln-localized/index.js",
+      "action": "function-body-removed",
+      "proof": [
+        "not-imported-anywhere"
+      ],
+      "sourceRange": {
+        "start": 1338,
+        "end": 1993
+      },
+      "inputHash": "cd5edd2baa712e8c047887beec1251c9780d6ed1dbe002603e82f2b73e0ffb76",
+      "outputHash": "dd41d998b6355fb8237f1e937782f39958bd6c51fcb3b7e04794c0d8ae2c9412",
+      "bytesRemoved": 265
+    }
+  }
+}
