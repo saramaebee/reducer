@@ -1,0 +1,7 @@
+{
+  "name": "fixture-adv-esm-shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "sharedlib": "1.0.0" }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "fixture-adv-esm-namespace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "nslib": "1.0.0", "escns": "1.0.0" }
+}

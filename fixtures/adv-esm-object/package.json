@@ -1,0 +1,7 @@
+{
+  "name": "fixture-adv-esm-object",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "objlib": "1.0.0", "keylib": "1.0.0" }
+}

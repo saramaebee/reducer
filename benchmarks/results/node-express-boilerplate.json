@@ -1,0 +1,85 @@
+{
+  "project": "node-express-boilerplate",
+  "dir": "/private/tmp/claude-501/-Users-sara-personal-saratonin-dev-reducer/313499b0-221c-4e29-a86d-6bad0847e4ea/scratchpad/corpus/node-express-boilerplate",
+  "entry": "src/index.js",
+  "node": "24.3.0",
+  "framework": "express",
+  "moduleSystem": "cjs",
+  "formats": {
+    "esm": 0,
+    "cjs": 1187,
+    "opaque": 0
+  },
+  "productionDependencyCount": 24,
+  "tracedPackageCount": 179,
+  "A_prod": {
+    "bytes": 178829766,
+    "files": 24529,
+    "jsBytes": 93717269,
+    "prodOnlyInstall": false
+  },
+  "B_nft": {
+    "bytes": 9660953,
+    "files": 1389,
+    "jsBytes": 8474169,
+    "jsFiles": 1187
+  },
+  "C_bundle": {
+    "ok": true,
+    "format": "esm",
+    "bytes": 4814598,
+    "errors": [],
+    "semanticWorkaroundsNeeded": null,
+    "durationMs": 204
+  },
+  "D_reducer": {
+    "outputJsBytes": 8474169,
+    "bytesRemoved": 0,
+    "functionsStubbed": 0,
+    "durationMs": 4371,
+    "error": null
+  },
+  "incremental": {
+    "vsNftJs": 0,
+    "vsBundle": -0.7600989739953367,
+    "vsBundleNote": "positive = reducer output JS smaller than bundle; shapes differ (package-preserving tree vs single minified file)"
+  },
+  "analysis": {
+    "functionsDiscovered": 2602,
+    "exportsSeen": 1984,
+    "symbolsProvenReachable": 0,
+    "symbolsProvenUnreachable": 0,
+    "symbolsRetainedUncertain": 2669,
+    "parseFailures": 0,
+    "globalHazards": [
+      "dynamic-require",
+      "runtime-code-generation",
+      "nft-warning"
+    ],
+    "nftWarnings": 3,
+    "retentionByReason": {
+      "global-hazard:dynamic-require": {
+        "symbols": 2669,
+        "modules": 1151,
+        "estimatedJsBytes": 2807130
+      },
+      "global-hazard:runtime-code-generation": {
+        "symbols": 2669,
+        "modules": 1151,
+        "estimatedJsBytes": 2807130
+      },
+      "global-hazard:nft-warning": {
+        "symbols": 2669,
+        "modules": 1151,
+        "estimatedJsBytes": 2807130
+      }
+    }
+  },
+  "validation": {
+    "testsPassed": true,
+    "startupPassed": null,
+    "integrationPassed": null,
+    "probeDetail": "no start probe configured",
+    "testsOutputTail": null
+  }
+}

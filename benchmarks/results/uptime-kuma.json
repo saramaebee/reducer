@@ -1,0 +1,94 @@
+{
+  "project": "uptime-kuma",
+  "dir": "/private/tmp/claude-501/-Users-sara-personal-saratonin-dev-reducer/313499b0-221c-4e29-a86d-6bad0847e4ea/scratchpad/corpus/uptime-kuma",
+  "entry": "server/server.js",
+  "node": "24.3.0",
+  "framework": "express",
+  "moduleSystem": "mixed",
+  "formats": {
+    "esm": 20,
+    "cjs": 4461,
+    "opaque": 0
+  },
+  "productionDependencyCount": 84,
+  "tracedPackageCount": 470,
+  "A_prod": {
+    "bytes": 439711240,
+    "files": 61771,
+    "jsBytes": 221030344,
+    "prodOnlyInstall": false
+  },
+  "B_nft": {
+    "bytes": 33795597,
+    "files": 5175,
+    "jsBytes": 27231055,
+    "jsFiles": 4481
+  },
+  "C_bundle": {
+    "ok": false,
+    "format": null,
+    "bytes": null,
+    "errors": [
+      "esm: Build failed with 14 errors:\n../../../../../private/tmp/claude-501/-Users-sara-personal-saratonin-dev-reducer/313499b0-221c-4e29-a86d-6bad0847e4ea/scratchpad/corpus/uptime-kuma/node_modules/@mapbox/node-pre-gyp/lib/node-pre-gyp.js:86:21: ERROR: No loader is configured for \".html\" files: ../../../../../private/tmp/claude-501/-Users-sara-personal-saratonin-dev-reducer/313499b0-221c-4e29-a86d-6bad084",
+      "cjs: Build failed with 14 errors:\n../../../../../private/tmp/claude-501/-Users-sara-personal-saratonin-dev-reducer/313499b0-221c-4e29-a86d-6bad0847e4ea/scratchpad/corpus/uptime-kuma/node_modules/@mapbox/node-pre-gyp/lib/node-pre-gyp.js:86:21: ERROR: No loader is configured for \".html\" files: ../../../../../private/tmp/claude-501/-Users-sara-personal-saratonin-dev-reducer/313499b0-221c-4e29-a86d-6bad084"
+    ],
+    "semanticWorkaroundsNeeded": null,
+    "durationMs": 684
+  },
+  "D_reducer": {
+    "outputJsBytes": 27231055,
+    "bytesRemoved": 0,
+    "functionsStubbed": 0,
+    "durationMs": 13694,
+    "error": null
+  },
+  "incremental": {
+    "vsNftJs": 0,
+    "vsBundle": null,
+    "vsBundleNote": "positive = reducer output JS smaller than bundle; shapes differ (package-preserving tree vs single minified file)"
+  },
+  "analysis": {
+    "functionsDiscovered": 8633,
+    "exportsSeen": 12356,
+    "symbolsProvenReachable": 0,
+    "symbolsProvenUnreachable": 0,
+    "symbolsRetainedUncertain": 14378,
+    "parseFailures": 0,
+    "globalHazards": [
+      "dynamic-require",
+      "runtime-code-generation",
+      "dynamic-import-nonliteral",
+      "nft-warning"
+    ],
+    "nftWarnings": 55,
+    "retentionByReason": {
+      "global-hazard:dynamic-require": {
+        "symbols": 14378,
+        "modules": 4281,
+        "estimatedJsBytes": 6549583
+      },
+      "global-hazard:runtime-code-generation": {
+        "symbols": 14378,
+        "modules": 4281,
+        "estimatedJsBytes": 6549583
+      },
+      "global-hazard:dynamic-import-nonliteral": {
+        "symbols": 14378,
+        "modules": 4281,
+        "estimatedJsBytes": 6549583
+      },
+      "global-hazard:nft-warning": {
+        "symbols": 14378,
+        "modules": 4281,
+        "estimatedJsBytes": 6549583
+      }
+    }
+  },
+  "validation": {
+    "testsPassed": null,
+    "startupPassed": null,
+    "integrationPassed": null,
+    "probeDetail": "no start probe configured",
+    "testsOutputTail": null
+  }
+}

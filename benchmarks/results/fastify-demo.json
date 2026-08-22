@@ -1,0 +1,91 @@
+{
+  "project": "fastify-demo",
+  "dir": "/private/tmp/claude-501/-Users-sara-personal-saratonin-dev-reducer/313499b0-221c-4e29-a86d-6bad0847e4ea/scratchpad/corpus/fastify-demo",
+  "entry": "dist/server.js",
+  "node": "24.3.0",
+  "framework": "fastify",
+  "moduleSystem": "mixed",
+  "formats": {
+    "esm": 2,
+    "cjs": 303,
+    "opaque": 0
+  },
+  "productionDependencyCount": 23,
+  "tracedPackageCount": 51,
+  "A_prod": {
+    "bytes": 106268751,
+    "files": 18745,
+    "jsBytes": 54703381,
+    "prodOnlyInstall": false
+  },
+  "B_nft": {
+    "bytes": 1455815,
+    "files": 360,
+    "jsBytes": 1360636,
+    "jsFiles": 305
+  },
+  "C_bundle": {
+    "ok": true,
+    "format": "esm",
+    "bytes": 606028,
+    "errors": [],
+    "semanticWorkaroundsNeeded": null,
+    "durationMs": 51
+  },
+  "D_reducer": {
+    "outputJsBytes": 1360636,
+    "bytesRemoved": 0,
+    "functionsStubbed": 0,
+    "durationMs": 1004,
+    "error": null
+  },
+  "incremental": {
+    "vsNftJs": 0,
+    "vsBundle": -1.2451701901562304,
+    "vsBundleNote": "positive = reducer output JS smaller than bundle; shapes differ (package-preserving tree vs single minified file)"
+  },
+  "analysis": {
+    "functionsDiscovered": 885,
+    "exportsSeen": 640,
+    "symbolsProvenReachable": 0,
+    "symbolsProvenUnreachable": 0,
+    "symbolsRetainedUncertain": 742,
+    "parseFailures": 0,
+    "globalHazards": [
+      "dynamic-import-nonliteral",
+      "dynamic-require",
+      "require-cache-mutation",
+      "runtime-code-generation"
+    ],
+    "nftWarnings": 0,
+    "retentionByReason": {
+      "global-hazard:dynamic-import-nonliteral": {
+        "symbols": 742,
+        "modules": 303,
+        "estimatedJsBytes": 339415
+      },
+      "global-hazard:dynamic-require": {
+        "symbols": 742,
+        "modules": 303,
+        "estimatedJsBytes": 339415
+      },
+      "global-hazard:require-cache-mutation": {
+        "symbols": 742,
+        "modules": 303,
+        "estimatedJsBytes": 339415
+      },
+      "global-hazard:runtime-code-generation": {
+        "symbols": 742,
+        "modules": 303,
+        "estimatedJsBytes": 339415
+      }
+    }
+  },
+  "validation": {
+    "testsPassed": null,
+    "startupPassed": null,
+    "integrationPassed": null,
+    "probeDetail": "no start probe configured",
+    "testsOutputTail": null
+  }
+}

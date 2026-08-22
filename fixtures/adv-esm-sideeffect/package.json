@@ -1,0 +1,7 @@
+{
+  "name": "fixture-adv-esm-sideeffect",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "sidelib": "1.0.0" }
+}

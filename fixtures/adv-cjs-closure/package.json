@@ -1,0 +1,7 @@
+{
+  "name": "fixture-adv-cjs-closure",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "closurelib": "1.0.0" }
+}

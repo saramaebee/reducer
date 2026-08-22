@@ -1,0 +1,7 @@
+{
+  "name": "fixture-adv-esm-dynamic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "dynlib": "1.0.0" }
+}

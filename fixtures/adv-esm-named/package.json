@@ -1,0 +1,7 @@
+{
+  "name": "fixture-adv-esm-named",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "esmnamed": "1.0.0" }
+}

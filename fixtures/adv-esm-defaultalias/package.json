@@ -1,0 +1,7 @@
+{
+  "name": "fixture-adv-esm-defaultalias",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "defaultalias": "1.0.0" }
+}

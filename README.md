@@ -55,8 +55,14 @@ A third-party exported function is stubbed only when **all** gates pass
 2. The module parsed cleanly and its full export surface was statically
    recognized (ESM static exports; CJS limited to top-level
    `exports.x = ident` / `module.exports.x = ident` /
-   `module.exports = { literal keys }`).
-3. The owning package contains no `.node` / `.wasm` boundary.
+   `module.exports = { literal keys }`). An export **name written more than
+   once** (`exports.x = f1; …; exports.x = f2`) widens the surface — its
+   intermediate value is observable through a require cycle.
+3. The owning package contains no `.node` / `.wasm` boundary, and no
+   dependency the analyzer resolved lands on a file NFT did not trace — a
+   resolver/NFT disagreement (e.g. an `exports` map whose `import`/`require`
+   conditions differ) retains the whole owning package (`resolver-trace-mismatch`)
+   and emits a build warning.
 4. Every importer NFT reports for the module is a file we parsed *and*
    whose imports of the module we recognized (workers and asset-style
    references fail this gate and force retention).
@@ -68,10 +74,17 @@ A third-party exported function is stubbed only when **all** gates pass
 7. The function is a top-level `FunctionDeclaration` with no references
    inside its own module other than recognized export plumbing
    (internal calls, init-time calls ⇒ retained).
-8. **Every** export name backed by the same local function is proven
-   unreachable — one reachable alias retains the shared implementation
-   (`shared-implementation`). Chained writes (`exports.a = exports.b = fn`)
-   are refused recognition entirely (gate 2 fails).
+8. **Every** export name backed by the same local function is itself proven
+   unreachable — one reachable *or merely-retained* alias (including
+   `export default fn` / `export { fn as default }`) retains the shared
+   implementation (`shared-implementation`). Chained writes
+   (`exports.a = exports.b = fn`) are refused recognition entirely (gate 2
+   fails). "Export plumbing" is an exact shape match (the
+   `export function f() {}` declaration itself, `export { f }` specifiers,
+   `export default f`, `exports.x = f` right-hand sides, and
+   `module.exports = { x: f }` property values) — a reference *inside*
+   another export's initializer (`export const wrapped = () => impl()`)
+   counts as internal use and retains.
 
 Every one of these gates exists because an adversarial fixture or review
 demonstrated the unsound alternative; `fixtures/adv-*` are the regressions.

@@ -1,0 +1,79 @@
+{
+  "project": "json-server",
+  "dir": "/private/tmp/claude-501/-Users-sara-personal-saratonin-dev-reducer/313499b0-221c-4e29-a86d-6bad0847e4ea/scratchpad/corpus/json-server",
+  "entry": "lib/bin.js",
+  "node": "24.3.0",
+  "framework": null,
+  "moduleSystem": "mixed",
+  "formats": {
+    "esm": 81,
+    "cjs": 19,
+    "opaque": 1
+  },
+  "productionDependencyCount": 13,
+  "tracedPackageCount": 39,
+  "A_prod": {
+    "bytes": 153065810,
+    "files": 12060,
+    "jsBytes": 70160338,
+    "prodOnlyInstall": false
+  },
+  "B_nft": {
+    "bytes": 524201,
+    "files": 185,
+    "jsBytes": 466694,
+    "jsFiles": 101
+  },
+  "C_bundle": {
+    "ok": true,
+    "format": "esm",
+    "bytes": 195713,
+    "errors": [],
+    "semanticWorkaroundsNeeded": null,
+    "durationMs": 326
+  },
+  "D_reducer": {
+    "outputJsBytes": 466694,
+    "bytesRemoved": 0,
+    "functionsStubbed": 0,
+    "durationMs": 499,
+    "error": null
+  },
+  "incremental": {
+    "vsNftJs": 0,
+    "vsBundle": -1.3845835483590767,
+    "vsBundleNote": "positive = reducer output JS smaller than bundle; shapes differ (package-preserving tree vs single minified file)"
+  },
+  "analysis": {
+    "functionsDiscovered": 246,
+    "exportsSeen": 196,
+    "symbolsProvenReachable": 0,
+    "symbolsProvenUnreachable": 0,
+    "symbolsRetainedUncertain": 210,
+    "parseFailures": 1,
+    "globalHazards": [
+      "runtime-code-generation",
+      "unsupported-syntax"
+    ],
+    "nftWarnings": 45,
+    "retentionByReason": {
+      "global-hazard:runtime-code-generation": {
+        "symbols": 210,
+        "modules": 91,
+        "estimatedJsBytes": 221324
+      },
+      "global-hazard:unsupported-syntax": {
+        "symbols": 210,
+        "modules": 91,
+        "estimatedJsBytes": 221324
+      }
+    }
+  },
+  "validation": {
+    "testsPassed": null,
+    "startupPassed": null,
+    "integrationPassed": null,
+    "probeDetail": "no start probe configured",
+    "testsOutputTail": null
+  }
+}

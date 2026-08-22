@@ -39,6 +39,7 @@ export type Reason =
   | 'runtime-code-generation'
   | 'require-cache-mutation'
   | 'nft-warning'
+  | 'resolver-trace-mismatch'
   | 'user-keep'
   | (string & {});
 
@@ -74,6 +75,20 @@ export interface ModuleRecord {
   bytes: number;
 }
 
+/** Aggregated "why did code survive" accounting for one retention reason. */
+export interface RetentionBucket {
+  /** retained symbols carrying this reason */
+  symbols: number;
+  /** modules with at least one retained symbol carrying this reason */
+  modules: number;
+  /**
+   * Estimate: each retained module's post-transform JS bytes split evenly
+   * across the module's distinct retention reasons. Sums (approximately) to
+   * the retained third-party JS bytes, so buckets are comparable.
+   */
+  estimatedJsBytes: number;
+}
+
 export interface Metrics {
   original: { dependencyBytes: number; dependencyFiles: number };
   nft: { bytes: number; files: number; jsBytes: number; jsFiles: number };
@@ -94,6 +109,7 @@ export interface Metrics {
     functionsSeen: number;
     globalHazards: Reason[];
   };
+  retention: { byReason: Record<string, RetentionBucket> };
 }
 
 export interface ReducerManifest {

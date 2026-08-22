@@ -1,0 +1,10 @@
+{
+  "name": "fixture-adv-esm-reexport",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "midlib": "1.0.0",
+    "starlib": "1.0.0"
+  }
+}

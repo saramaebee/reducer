@@ -1,0 +1,1 @@
+{ "name": "fixture-adv-cjs-overwrite", "version": "1.0.0", "private": true, "type": "module", "dependencies": { "cyclib": "1.0.0" } }

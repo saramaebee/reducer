@@ -58,6 +58,15 @@ async function main() {
   console.log(`  proven unreachable        : ${m.reducer.symbolsProvenUnreachable}`);
   console.log(`  proven reachable          : ${m.reducer.symbolsProvenReachable}`);
   console.log(`  retained (uncertain)      : ${m.reducer.symbolsRetainedUncertain}`);
+  const buckets = Object.entries(m.retention.byReason).sort(
+    (a, b) => b[1].estimatedJsBytes - a[1].estimatedJsBytes,
+  );
+  if (buckets.length) {
+    console.log('  retention by reason (estimated JS bytes):');
+    for (const [reason, b] of buckets.slice(0, 12)) {
+      console.log(`    ${reason.padEnd(28)} ${b.estimatedJsBytes} bytes, ${b.symbols} symbols, ${b.modules} modules`);
+    }
+  }
   if (manifest.metrics.analyzer.globalHazards.length) {
     console.log(`  GLOBAL HAZARDS (analysis widened to keep everything): ${manifest.metrics.analyzer.globalHazards.join(', ')}`);
   }

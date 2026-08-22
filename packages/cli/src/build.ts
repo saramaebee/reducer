@@ -136,6 +136,36 @@ export async function run(opts: RunOptions): Promise<RunResult> {
   const verdictCount = (s: SymbolVerdict['state']) =>
     analysis.verdicts.filter((v) => v.state === s).length;
 
+  // Retention accounting: which reasons block how much surviving code.
+  // Bytes are an estimate — a module's post-transform JS bytes split evenly
+  // across its distinct retention reasons.
+  const retainedReasonsByModule = new Map<string, Set<string>>();
+  const symbolCountByReason = new Map<string, number>();
+  for (const v of analysis.verdicts) {
+    if (v.state !== 'possibly-reachable' && v.state !== 'unknown') continue;
+    for (const r of v.reasons) {
+      symbolCountByReason.set(r, (symbolCountByReason.get(r) ?? 0) + 1);
+      let set = retainedReasonsByModule.get(v.module);
+      if (!set) retainedReasonsByModule.set(v.module, (set = new Set()));
+      set.add(r);
+    }
+  }
+  const byReason: Record<string, { symbols: number; modules: number; estimatedJsBytes: number }> = {};
+  for (const [reason, symbols] of symbolCountByReason) {
+    byReason[reason] = { symbols, modules: 0, estimatedJsBytes: 0 };
+  }
+  for (const [rel, reasons] of retainedReasonsByModule) {
+    const f = traced.byRel.get(rel);
+    if (!f) continue;
+    const emitted = transformedCode.get(rel);
+    const moduleBytes = emitted ? Buffer.byteLength(emitted.code) : f.bytes;
+    for (const r of reasons) {
+      byReason[r].modules++;
+      byReason[r].estimatedJsBytes += moduleBytes / reasons.size;
+    }
+  }
+  for (const b of Object.values(byReason)) b.estimatedJsBytes = Math.round(b.estimatedJsBytes);
+
   const moduleRecords: ModuleRecord[] = traced.files.map((f) => {
     const m = f.kind === 'js' ? analysis.modules.get(f.abs) : undefined;
     return {
@@ -157,6 +187,7 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     verdicts: analysis.verdicts,
     warnings: [
       ...traced.warnings,
+      ...analysis.warnings,
       ...traced.files
         .filter((f) => lstatSync(f.abs).isSymbolicLink())
         .map((f) => `symlink preserved verbatim; reduced tree may be incomplete or non-portable: ${f.rel}`),
@@ -180,6 +211,7 @@ export async function run(opts: RunOptions): Promise<RunResult> {
         functionsSeen: analysis.stats.functionsSeen,
         globalHazards: analysis.globalHazards,
       },
+      retention: { byReason },
     },
   };
 
