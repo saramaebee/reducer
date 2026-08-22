@@ -1,7 +1,7 @@
 # Garden score
 
-Reducer 0.0.1 under node v24.3.0.
-Global hazards (widen ALL retention): dynamic-require, runtime-code-generation, require-cache-mutation, dynamic-import-nonliteral, unsupported-syntax, nft-warning
+Reducer 0.0.1 — contracts replayed under stock node v25.5.0 (analysis process v24.3.0).
+Global hazards (widen ALL retention): dynamic-require, runtime-code-generation, dynamic-import-nonliteral, require-cache-mutation, unsupported-syntax, nft-warning
 
 | axis | result | severity |
 |---|---|---|

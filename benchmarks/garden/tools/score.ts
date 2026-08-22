@@ -19,7 +19,10 @@
  * Exit: 0 clean, 2 critical soundness failures or contract divergences.
  */
 import { mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
+
+const runtimeNode = spawnSync('node', ['--version'], { encoding: 'utf8' }).stdout.trim();
 import { run } from '@reducer/cli';
 import { GARDEN, APP, bootServer, fetchEntry, replay, type ContractEntry, type Divergence } from './lib.ts';
 
@@ -195,7 +198,9 @@ const critical =
 
 const score = {
   $schema: 'reducer-garden-score/1',
-  reducer: { version: manifest.reducerVersion, node: manifest.input.node },
+  // input.node is the ANALYSIS process (bun's emulated process.version); the
+  // behavioral oracle runs under the stock `node` the harness spawns.
+  reducer: { version: manifest.reducerVersion, node: manifest.input.node, runtimeNode },
   globalHazards: manifest.metrics.analyzer.globalHazards,
   axes: {
     falseRemoval: { critical: falseRemovals.length > 0, entries: falseRemovals },
@@ -230,7 +235,7 @@ writeFileSync(path.join(GARDEN, 'results', 'garden-score.json'), JSON.stringify(
 const pct = (n: number, d: number) => (d ? `${((n / d) * 100).toFixed(1)}%` : 'n/a');
 const md = `# Garden score
 
-Reducer ${manifest.reducerVersion} under node ${manifest.input.node}.
+Reducer ${manifest.reducerVersion} — contracts replayed under stock node ${runtimeNode} (analysis process ${manifest.input.node}).
 Global hazards (widen ALL retention): ${score.globalHazards.length ? score.globalHazards.join(', ') : 'none'}
 
 | axis | result | severity |

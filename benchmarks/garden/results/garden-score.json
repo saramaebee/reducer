@@ -2,13 +2,14 @@
   "$schema": "reducer-garden-score/1",
   "reducer": {
     "version": "0.0.1",
-    "node": "v24.3.0"
+    "node": "v24.3.0",
+    "runtimeNode": "v25.5.0"
   },
   "globalHazards": [
     "dynamic-require",
     "runtime-code-generation",
-    "require-cache-mutation",
     "dynamic-import-nonliteral",
+    "require-cache-mutation",
     "unsupported-syntax",
     "nft-warning"
   ],
