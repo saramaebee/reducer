@@ -92,6 +92,12 @@ is relaxed while all others stay conservative. Marginal, not causal
 attribution — approximations interact, so single-relaxation numbers can each
 read zero while a pair unlocks real headroom.
 
+**Counterfactual ceiling**:
+The predicted ceiling with a specific, *soundly-definable* relaxation applied on
+top of the strict model. The kill decision weighs the strict ceiling against the
+best counterfactual ceiling: a strict 0% that a single sound approximation lifts
+to 25% means "implement that approximation," not "stop."
+
 **Blocking-set**:
 The set of approximations jointly responsible for retaining one symbol, e.g.
 `{dynamic-loader, vm, open-export-surface}`.

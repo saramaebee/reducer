@@ -1,0 +1,145 @@
+{
+  "$schema": "reducer-garden/1",
+  "note": "Pinned specification of the Reducer Oracle / Torture Garden: a real HTTP service that is an executable specification of the analyzer's semantic model. Ground truth is declared BY CONSTRUCTION here, independent of what the analyzer currently reports. Coverage is complete relative to the SUPPORTED semantic model (Q8-Q13 + every safety gate/retention Reason), not relative to all possible Node behavior. The 16-project corpus (../corpus.json) remains the locked real-APP measurement set; this garden is the controlled soundness+ceiling oracle. Real packages are version+integrity pinned so the observed semantics are reproducible permanently.",
+  "truthLabels": {
+    "MUST_RETAIN": "provably reachable; a deterministic endpoint exercises it; original vs reduced must be behaviorally identical. Transforming it = FALSE REMOVAL (critical soundness failure).",
+    "MUST_REMOVE": "provably unreachable by construction; carries a unique sentinel; must be stubbed, sentinel bytes absent from artifact, forced invocation throws ReducerReachabilityViolation. Retaining it = OVER-RETENTION (precision failure).",
+    "MUST_RETAIN_CONSERVATIVELY": "possibly reachable / unknown; static evidence is insufficient so it must be kept EVEN IF no endpoint invokes it. Transforming it = UNSAFE OPTIMISM (critical soundness failure)."
+  },
+  "rules": {
+    "mutationSensitivity": "Before an endpoint is trusted to protect a MUST_RETAIN symbol, mutate/stub that symbol in the ORIGINAL app and confirm the endpoint fails (wrong body or non-2xx). A passing reduced-app test on an endpoint that survives its own symbol's mutation proves nothing.",
+    "behavioralOracle": "The recorded request->response contract, replayed against the REDUCED service under stock node, is the primary soundness gate. Any divergence from the original = unsound removal.",
+    "sentinelIsSanityOnly": "'No endpoint emitted the sentinel' is a sanity check, never evidence of unreachability — finite execution cannot establish absence. Unreachability truth is by construction only.",
+    "endpointConvention": "Each fabricated package fab-<id> exposes GET /fab/<id>/<symbol> for every MUST_RETAIN symbol, and GET /fab/<id>/__force/<symbol> that deliberately invokes a MUST_REMOVE symbol (red-team; must fail closed)."
+  },
+  "scoring": {
+    "falseRemoval": "a MUST_RETAIN symbol was transformed -> CRITICAL soundness failure",
+    "unsafeOptimism": "a MUST_RETAIN_CONSERVATIVELY symbol was transformed -> CRITICAL soundness failure",
+    "overRetention": "a MUST_REMOVE symbol was retained -> precision failure (non-fatal, counts against reduction)",
+    "achievedVsCeiling": "removed(MUST_REMOVE) / |MUST_REMOVE| — the fraction of the by-construction provably-dead set the analyzer actually reclaims"
+  },
+
+  "realPackages": {
+    "hazardControls": {
+      "role": "reproduce the actual 0% calibration ceiling under controlled black-box verification; every symbol MUST_RETAIN_CONSERVATIVELY (reach-any or dynamic-loader hazard). Nothing here should ever be stubbed.",
+      "packages": [
+        { "name": "optional-require", "version": "1.1.8", "integrity": "sha512-jq83qaUb0wNg9Krv1c5OQ+58EK+vHde6aBPzLvPPqJm89UQWsvSuFy9X/OSNJnFeSOKo7btE0n8Nl2+nE+z5nA==", "hazard": "reconstructed require: `var xrequire = eval(\"require\")`", "expectedReason": "runtime-code-generation / reach-any", "observedIn": "node-express-boilerplate (via mongodb)" },
+        { "name": "require-at", "version": "1.0.6", "integrity": "sha512-7i1auJbMUrXEAZCOQ0VNJgmcT2VOKPRl2YGJwgpHpC9CE91Mv4/4UYIUm4chGJaI381ZDq1JUicFii64Hapd8g==", "hazard": "reconstructed require: `const xrequire = eval(\"require\")`", "expectedReason": "runtime-code-generation / reach-any", "observedIn": "node-express-boilerplate" },
+        { "name": "depd", "version": "2.0.0", "integrity": "sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==", "hazard": "direct eval with non-constant source (inherits lexical require) building a deprecation wrapper", "expectedReason": "runtime-code-generation / reach-any", "observedIn": "node-express-boilerplate (via morgan)", "alsoObserved": "1.1.2 sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==" },
+        { "name": "lodash", "version": "4.17.21", "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==", "hazard": "Function('return this') global-object probe (CONSTANT, provably-incapable — the clearable-carve-out reference case)", "expectedReason": "runtime-code-generation until the constant-source capability proof is implemented; then benign", "observedIn": "node-express-boilerplate" },
+        { "name": "express", "version": "4.17.1", "integrity": "sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==", "hazard": "express/lib/view.js `require(mod)` runtime template-engine load (dynamic-require, unbounded specifier)", "expectedReason": "dynamic-require", "observedIn": "node-express-boilerplate" }
+      ]
+    },
+    "reducibleControl": {
+      "role": "positive control — a real, hazard-free package with a broad static CJS export surface that SHOULD yield real symbol-level reduction. Verifies the real-package layer measures more than pessimism.",
+      "name": "validator",
+      "version": "13.15.35",
+      "integrity": "sha512-TQ5pAGhd5whStmqWvYF4OjQROlmv9SMFVt37qoCBdqRffuuklWYQlCNnEs2ZaIBD1kZRNnikiZOS1eqgkar0iw==",
+      "verifiedHazardFree": "lib/ scanned: no eval, new Function, dynamic require, or non-literal import (2026-08-22)",
+      "groundTruth": "endpoints exercise a small subset of validator's ~100 exports (e.g. isEmail, isURL); every other export is MUST_REMOVE by construction (not imported anywhere). Achieved/ceiling on this package is the headline positive-control number.",
+      "note": "validator is ESM+CJS dual-published; pin and load the CJS entry so the closed-export-surface path is exercised. Re-confirm hazard-free at build time on this exact version."
+    },
+    "nativeControl": {
+      "role": "opaque-boundary control — a .node native addon. Tests that the analyzer marks the owning package opaque (native-boundary) and removes NOTHING. Not a reduction case.",
+      "name": "better-sqlite3",
+      "version": "13.0.3",
+      "integrity": "sha512-RbOBxmLBG8uvFUc15X9+9SFemKcQ0WBuISBVkpuiaUB2qblC8UWlHEjdWVoZ8AdhSwmoEgsiXKfopX0CQxaACQ==",
+      "groundTruth": "every symbol MUST_RETAIN_CONSERVATIVELY (native-boundary). An endpoint opens an in-memory DB and runs a query so the boundary is genuinely exercised."
+    },
+    "wasmControl": {
+      "role": "opaque-boundary control — ships a discrete .wasm artifact. Tests wasm-boundary opacity and zero removal.",
+      "name": "sql.js",
+      "version": "1.14.2",
+      "integrity": "sha512-3ZGPovObMFrdw79zrUHbfdE/DLIsy8jdNdssmMSQuRAymedU6q84asPt0kgiqrdMYlPegDItiIMfmIXzZnYFcw==",
+      "wasmArtifact": "dist/sql-wasm.wasm (658410 bytes)",
+      "groundTruth": "every symbol MUST_RETAIN_CONSERVATIVELY (wasm-boundary).",
+      "inspectionCaveat": "the JS loader is emscripten glue (not simple to inspect). It is included because it ships a DISCRETE .wasm file NFT will classify as wasm-kind, which is what the wasm-boundary gate keys on. If loader-inspection simplicity becomes required, swap for a hand-fabricated tiny .wasm control — flagged for build-time decision."
+    }
+  },
+
+  "fabricatedPackages": [
+    { "id": "static-basic", "category": "baseline", "mechanism": "plain static import; canonical positive reduction", "symbols": [ {"name": "used", "truth": "MUST_RETAIN"}, {"name": "deadUnused", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_static_basic_dead"} ] },
+
+    { "id": "esm-decl", "category": "esm-export-forms", "mechanism": "export function foo(){} declaration form (false-conservatism regression)", "symbols": [ {"name": "usedDecl", "truth": "MUST_RETAIN"}, {"name": "deadDecl", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_esm_decl_dead"} ] },
+    { "id": "esm-specifier-alias", "category": "esm-export-forms", "mechanism": "export { impl as used }; separate unused alias", "symbols": [ {"name": "used", "truth": "MUST_RETAIN"}, {"name": "deadAlias", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_esm_alias_dead"} ] },
+    { "id": "esm-default-alias", "category": "esm-export-forms", "mechanism": "export default core; export { core as helper }; app imports only default", "symbols": [ {"name": "default", "truth": "MUST_RETAIN"}, {"name": "helper", "truth": "MUST_RETAIN_CONSERVATIVELY", "reason": "shared-implementation"} ] },
+    { "id": "esm-namespace-clean", "category": "esm-export-forms", "mechanism": "import * as ns; ns.used() static access", "symbols": [ {"name": "used", "truth": "MUST_RETAIN"}, {"name": "deadNs", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_esm_ns_dead"} ] },
+    { "id": "esm-namespace-escape", "category": "esm-export-forms", "mechanism": "namespace object passed to a local sink (escapes)", "expectedReason": "value-escaped", "symbols": [ {"name": "a", "truth": "MUST_RETAIN_CONSERVATIVELY"}, {"name": "b", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "esm-reexport", "category": "esm-export-forms", "mechanism": "export { alpha } from './impl'; beta unreachable through chain", "symbols": [ {"name": "alpha", "truth": "MUST_RETAIN"}, {"name": "beta", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_esm_reexport_dead"} ] },
+    { "id": "esm-export-star", "category": "esm-export-forms", "mechanism": "export * from './impl'", "expectedReason": "export-star", "symbols": [ {"name": "gamma", "truth": "MUST_RETAIN"}, {"name": "delta", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "esm-shared-impl", "category": "esm-export-forms", "mechanism": "one impl backing fmt+format; app uses format only", "expectedReason": "shared-implementation", "symbols": [ {"name": "format", "truth": "MUST_RETAIN"}, {"name": "fmt", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "esm-sideeffect", "category": "esm-export-forms", "mechanism": "init-time activate() call + genuinely dead export", "symbols": [ {"name": "getValue", "truth": "MUST_RETAIN"}, {"name": "activate", "truth": "MUST_RETAIN_CONSERVATIVELY", "reason": "internal-reference"}, {"name": "unusedSide", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_esm_sideeffect_dead"} ] },
+
+    { "id": "cjs-basic", "category": "cjs-export-forms", "mechanism": "exports.x = fn top-level form", "symbols": [ {"name": "used", "truth": "MUST_RETAIN"}, {"name": "dead", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_cjs_basic_dead"} ] },
+    { "id": "cjs-object-literal", "category": "cjs-export-forms", "mechanism": "module.exports = { used, dead } literal", "symbols": [ {"name": "used", "truth": "MUST_RETAIN"}, {"name": "dead", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_cjs_objlit_dead"} ] },
+    { "id": "cjs-closure", "category": "cjs-export-forms", "mechanism": "exports.wrap = () => impl(); impl only referenced inside the closure", "expectedReason": "internal-reference", "symbols": [ {"name": "wrap", "truth": "MUST_RETAIN"}, {"name": "impl", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "cjs-overwrite", "category": "cjs-export-forms", "mechanism": "exports.x=f1; require-cycle reads .x; exports.x=f2; exports.legacy=f1 (temporal aliasing)", "expectedReason": "export-object-mutation", "symbols": [ {"name": "x", "truth": "MUST_RETAIN"}, {"name": "legacy", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "cjs-getter", "category": "cjs-open-surface", "mechanism": "Object.defineProperty(exports,'foo',{get(){...}})", "expectedReason": "export-object-mutation / open-surface", "symbols": [ {"name": "foo", "truth": "MUST_RETAIN_CONSERVATIVELY"}, {"name": "bar", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "cjs-computed-export", "category": "cjs-open-surface", "mechanism": "exports[key] = impl with non-literal key", "expectedReason": "export-object-mutation", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "cjs-proxy", "category": "cjs-open-surface", "mechanism": "module.exports = new Proxy(target, handler)", "expectedReason": "open-surface", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "cjs-deferred-write", "category": "cjs-open-surface", "mechanism": "setTimeout(() => { exports.late = impl }, 0)", "expectedReason": "open-surface", "symbols": [ {"name": "late", "truth": "MUST_RETAIN_CONSERVATIVELY"}, {"name": "eager", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "cjs-setprototypeof", "category": "cjs-open-surface", "mechanism": "Object.setPrototypeOf(exports, base) — inherited exports", "expectedReason": "open-surface", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+
+    { "id": "require-literal", "category": "load-sink", "capability": "lexical-require", "specifierDomain": "exact", "mechanism": "require('target').used()", "symbols": [ {"name": "used", "truth": "MUST_RETAIN"}, {"name": "dead", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_require_literal_dead"} ] },
+    { "id": "require-finite", "category": "load-sink", "capability": "lexical-require", "specifierDomain": "finite", "mechanism": "require(cond ? 'a' : 'b').run()", "symbols": [ {"name": "run", "truth": "MUST_RETAIN"}, {"name": "deadInBoth", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_require_finite_dead"} ] },
+    { "id": "require-pkgscoped", "category": "load-sink", "capability": "lexical-require", "specifierDomain": "package-scoped", "mechanism": "require('scopedtarget/' + name)", "expectedReason": "package-scoped domain -> retain scopedtarget surface", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "require-unbounded-bounded-projection", "category": "load-sink", "capability": "lexical-require", "specifierDomain": "unbounded", "mechanism": "require(name).foo() — unbounded specifier, bounded property projection, CLOSED export surface (THE rescue-lever test)", "note": "foo across candidate modules is reachable; a co-located export NOT named foo, on a closed-surface module never accessed by that name, is removable. This is the load-bearing Q10 case.", "symbols": [ {"name": "foo", "truth": "MUST_RETAIN_CONSERVATIVELY"}, {"name": "notFoo", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_unbounded_notfoo_dead"} ] },
+    { "id": "require-unbounded-computed-projection", "category": "load-sink", "capability": "lexical-require", "specifierDomain": "unbounded", "mechanism": "require(name)[k]() — unbounded specifier AND computed projection", "expectedReason": "dynamic-property-access", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "require-value-escape", "category": "load-sink", "capability": "lexical-require", "specifierDomain": "unbounded", "mechanism": "const m = require(name); registry.push(m) — return value escapes", "expectedReason": "value-escaped", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "createrequire", "category": "capability", "capability": "createRequire", "specifierDomain": "exact", "mechanism": "const r = createRequire(import.meta.url); r('target').used()", "symbols": [ {"name": "used", "truth": "MUST_RETAIN"}, {"name": "dead", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_createrequire_dead"} ], "note": "exact specifier + bounded projection should still allow removing dead; verifies createRequire is modeled as a capability, not an automatic reach-any." },
+    { "id": "getbuiltinmodule-factory", "category": "capability", "capability": "process.getBuiltinModule -> node:module -> createRequire", "specifierDomain": "unbounded", "mechanism": "const M = process.getBuiltinModule('module'); const r = M.createRequire(...); r(name)()", "expectedReason": "capability-factory chain -> reach-any", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ], "note": "the Node-24 capability-factory case that invalidates the naive new-Function carve-out; the chain must stay visible." },
+    { "id": "reconstructed-require-wrapper", "category": "capability-flow", "capability": "lexical-require via non-escaping wrapper", "specifierDomain": "exact (propagated)", "mechanism": "function optionalRequire(id){ try { return require(id) } catch { return null } }; optionalRequire('foo').bar() — wrapper non-escaping, enumerable callers, exact arg", "note": "controlled mirror of the real optional-require. Shallow propagation should bound the target to foo and the projection to bar; foo.bar reachable, foo.other removable.", "symbols": [ {"name": "bar", "truth": "MUST_RETAIN_CONSERVATIVELY"}, {"name": "otherUnused", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_wrapper_other_dead"} ] },
+    { "id": "reconstructed-require-unknown-caller", "category": "capability-flow", "capability": "lexical-require via escaping wrapper", "specifierDomain": "unbounded", "mechanism": "same wrapper but also exported / passed to unknown code (unknown caller)", "expectedReason": "escaped-loader -> unbounded", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "escaped-loader", "category": "capability-flow", "capability": "escaped-loader flow state", "mechanism": "const r = require; const box = { loader: r }; unknown(box) — loader value stored in a container and crosses an unmodeled boundary", "expectedReason": "escaped-loader", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ], "note": "Q16b taint-lattice test: capability must not be lost when it stops being a direct binding." },
+
+    { "id": "dynamic-import-literal", "category": "load-sink", "capability": "dynamic-import", "specifierDomain": "exact", "mechanism": "await import('target')", "expectedReason": "dynamic-import (whole target retained in the slice)", "symbols": [ {"name": "used", "truth": "MUST_RETAIN_CONSERVATIVELY"}, {"name": "alsoRetained", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "dynamic-import-nonliteral", "category": "load-sink", "capability": "dynamic-import", "specifierDomain": "unbounded", "mechanism": "await import(expr)", "expectedReason": "dynamic-import-nonliteral", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+
+    { "id": "eval-constant-benign", "category": "generated-source", "capability": "none (proven)", "mechanism": "Function('return this')() — CONSTANT source, provably acquires/uses no load capability", "note": "co-located deadDead() is genuinely unreachable; tests the clearable carve-out — the benign constant code-gen must NOT globally widen, so deadDead is removable.", "symbols": [ {"name": "usedGlobal", "truth": "MUST_RETAIN"}, {"name": "deadDead", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_eval_benign_dead"} ] },
+    { "id": "eval-constant-capable", "category": "generated-source", "capability": "lexical-require via direct eval", "specifierDomain": "exact", "mechanism": "eval('require(\"target\").go()') — constant but capability-USING source", "expectedReason": "reach-any (constant source parses, proves capability use)", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "newfunction-runtime", "category": "generated-source", "capability": "global (process.getBuiltinModule route)", "specifierDomain": "unbounded", "mechanism": "new Function(runtimeString)() — NON-constant generated source", "expectedReason": "reach-any (corrected Node-24 rule: new Function is NOT capability-free)", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "direct-eval-lexical", "category": "generated-source", "capability": "inherited lexical-require", "specifierDomain": "unbounded", "mechanism": "const loader = require; eval('loader(name)') — generated source has no literal require but inherits a loader-capable lexical binding", "expectedReason": "reach-any (execution-context inheritance)", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ], "note": "Q16a: recursion into constant source must carry execution context." },
+
+    { "id": "vm-injected-loader", "category": "capability", "capability": "vm-injected-loader", "mechanism": "vm.runInNewContext(code, { require }) — loader injected into the context", "expectedReason": "vm (maximally loader-capable approximation until precise modeling)", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ], "note": "counted separately for the VM counterfactual ceiling (ADR-0003)." },
+    { "id": "vm-no-loader", "category": "capability", "capability": "vm (no loader injected)", "mechanism": "vm.runInNewContext(code, { x: 1 }) — no loader in the context object", "expectedReason": "vm; under precise modeling this context is NOT loader-capable, so a co-located dead export would be removable", "symbols": [ {"name": "used", "truth": "MUST_RETAIN"}, {"name": "deadNoLoader", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_vm_noloader_dead"} ], "note": "the precise-VM counterfactual test: strict model retains deadNoLoader; precise VM modeling reclaims it. Drives the VM counterfactual headroom number." },
+
+    { "id": "identity-unification", "category": "module-identity", "mechanism": "two specifiers resolve to the SAME cached module; site A does require('t').foo(), site B does const m=require('./t'); escape(m)", "expectedReason": "module-identity-unification: B's escape invalidates A's narrow conclusion", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+
+    { "id": "binding-reassigned", "category": "safety-gate", "mechanism": "export function foo(){}; later foo = other", "expectedReason": "binding-reassigned", "symbols": [ {"name": "foo", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "destructure-rest", "category": "safety-gate", "mechanism": "const { a, ...rest } = require('target')", "expectedReason": "destructure-rest", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "require-cache-mutation", "category": "safety-gate", "mechanism": "delete require.cache[require.resolve('target')]", "expectedReason": "require-cache-mutation", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "parse-failure", "category": "safety-gate", "mechanism": "a dependency file the analyzer cannot parse", "expectedReason": "unsupported-syntax", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "unsupported-export-kind", "category": "safety-gate", "mechanism": "export const obj = { m(){} } (non-function / non-top-level-decl export)", "expectedReason": "unsupported-export-kind", "symbols": [ {"name": "obj", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "unrecognized-importer", "category": "safety-gate", "mechanism": "target pulled in via a worker/asset-style reference NFT reports but the analyzer cannot tie to a recognized static importer", "expectedReason": "unrecognized-importer", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+    { "id": "resolver-trace-mismatch", "category": "safety-gate", "mechanism": "an exports-map whose import/require conditions resolve to different files (dual-condition divergence)", "expectedReason": "resolver-trace-mismatch", "symbols": [ {"name": "*", "truth": "MUST_RETAIN_CONSERVATIVELY"} ] },
+
+    { "id": "vuln-localized", "category": "vulnerability", "mechanism": "package must remain; safe API used, vulnerable API (prototype-pollution deep-merge) unused; external vuln->symbol mapping provided", "vexMapping": [ {"id": "CVE-SIM-GARDEN-0001", "package": "fab-vuln-localized", "symbol": "mergeVuln"} ], "symbols": [ {"name": "get", "truth": "MUST_RETAIN"}, {"name": "mergeVuln", "truth": "MUST_REMOVE", "sentinel": "SENTINEL_vuln_merge_body"} ], "note": "asserts full fail-closed chain + VEX not_affected/vulnerable_code_not_present evidence, in a HAZARD-FREE local tree so removal actually fires." }
+  ],
+
+  "reasonCoverage": {
+    "note": "every retention Reason the analyzer can emit maps to at least one entry above",
+    "static-import": ["static-basic:used"],
+    "not-imported-anywhere": ["static-basic:deadUnused", "require-literal:dead", "esm-reexport:beta"],
+    "internal-reference": ["cjs-closure:impl", "esm-sideeffect:activate"],
+    "shared-implementation": ["esm-shared-impl:fmt", "esm-default-alias:helper"],
+    "dynamic-property-access": ["require-unbounded-computed-projection", "cjs-getter"],
+    "value-escaped": ["esm-namespace-escape", "require-value-escape"],
+    "binding-reassigned": ["binding-reassigned"],
+    "destructure-rest": ["destructure-rest"],
+    "dynamic-require": ["express (real)", "getbuiltinmodule-factory", "reconstructed-require-unknown-caller"],
+    "dynamic-import": ["dynamic-import-literal"],
+    "dynamic-import-nonliteral": ["dynamic-import-nonliteral"],
+    "export-star": ["esm-export-star"],
+    "reexport-namespace": ["esm-export-star"],
+    "export-object-mutation": ["cjs-overwrite", "cjs-getter", "cjs-computed-export", "cjs-proxy", "cjs-deferred-write", "cjs-setprototypeof"],
+    "unsupported-syntax": ["parse-failure"],
+    "unsupported-export-kind": ["unsupported-export-kind"],
+    "unrecognized-importer": ["unrecognized-importer"],
+    "native-boundary": ["better-sqlite3 (real)"],
+    "wasm-boundary": ["sql.js (real)"],
+    "runtime-code-generation": ["optional-require/require-at/depd/lodash (real)", "eval-constant-capable", "newfunction-runtime", "direct-eval-lexical", "vm-injected-loader"],
+    "require-cache-mutation": ["require-cache-mutation"],
+    "resolver-trace-mismatch": ["resolver-trace-mismatch"],
+    "nft-warning": ["induced by unrecognized-importer / dynamic asset references"]
+  }
+}
