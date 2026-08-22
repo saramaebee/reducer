@@ -58,6 +58,8 @@ async function main() {
   console.log(`  proven unreachable        : ${m.reducer.symbolsProvenUnreachable}`);
   console.log(`  proven reachable          : ${m.reducer.symbolsProvenReachable}`);
   console.log(`  retained (uncertain)      : ${m.reducer.symbolsRetainedUncertain}`);
+  const a = manifest.artifact;
+  console.log(`  artifact                  : ${a.universeFiles} files (production universe; ${a.nftTracedFiles} NFT-traced), ${a.removed.length} removed by proof, ${a.devExcludedPackages.length} dev-only packages outside universe`);
   const buckets = Object.entries(m.retention.byReason).sort(
     (a, b) => b[1].estimatedJsBytes - a[1].estimatedJsBytes,
   );

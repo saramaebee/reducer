@@ -1,5 +1,11 @@
 # Garden findings — 2026-08-22 (reducer 0.0.1, node v25.5.0 runtime, bun 1.3.1 tooling)
 
+> **Remediation status (2026-08-22, artifact-soundness phase):** findings 1–3
+> and 6 are FIXED; 4, 5, and 7 are documented precision/spec limitations that
+> remain by design. See "Remediation" at the bottom for the per-finding
+> resolution and the re-run results (0 criticals, 58/58 contracts identical,
+> VEX clean). The original text below is preserved as the historical record.
+
 The garden was built exactly per `MANIFEST.json` and run end-to-end. Everything
 below is a spec-vs-reality discrepancy or a pipeline defect the garden
 surfaced. None of these were papered over; the labels and mechanisms are as
@@ -101,6 +107,68 @@ pinned.
   the hazard-free sub-tree (modulo the source-map leak, finding 3).
 - Reason coverage: 20/23 reasons exercised and attributed; the 3 exceptions
   are findings 5–7 above, with root causes, not silent gaps.
+
+## Remediation — artifact-soundness phase (2026-08-22, node v24.3.0)
+
+The build layer now follows the same proof discipline as the analyzer
+(ADR-0005): `output = production universe − proven-unreachable`, where the
+universe is the complete production filesystem (lockfile `dev: true` is the
+only exclusion, and NFT positive evidence un-excludes). NFT seeds reachable
+files and diagnostics; its omissions never authorize deletion.
+
+Per-finding resolution:
+
+1. **File-level unsound removal — FIXED.** The emit loop iterates the
+   production universe, not `traced.files`. All 13 previously-diverging
+   contracts pass; the 3 dropped MUST_REMOVE modules (and their conservative
+   siblings) are physically present again. Regression: `fixtures/nft-blind` +
+   `tests/artifact-universe.test.ts` (NFT-invisible createRequire /
+   dynamic-import / computed-fs asset targets must ship; provenance must say
+   `unknown-dynamic-reachability`; `artifact.removed` must be empty).
+   Verified stronger than required: the zero-transformation garden artifact is
+   **byte-identical** to the original app tree (plus `reducer-manifest.json`).
+2. **sql-wasm.wasm untraced — FIXED** by the same change (the wasm ships with
+   the universe; `/real/sqljs` passes, no process kill). Independently,
+   native/wasm opacity detection now scans each traced package's directory on
+   disk instead of keying on NFT-traced files, so the `wasm-boundary` gate no
+   longer depends on NFT completeness (widening-only change).
+3. **Source maps shipped the removed body — FIXED.** The transformer omits
+   `sourcesContent` from emitted maps (mappings stay valid), and the emit loop
+   refuses to copy a package's own pre-existing `<file>.map` for a transformed
+   file (it would leak the removed body). `vex-check` passes all 7 assertions;
+   regression in `tests/vuln.test.ts`.
+4. **validator 0/102 — remains, documented (precision, not soundness).** The
+   Babel interop tail is a compound blocker: `Object.defineProperty(exports,
+   "__esModule", …)` widens the surface before the tail is even reached, and
+   `module.exports = exports.default; module.exports.default = …` both
+   *replaces* the export object with a function value (the surface becomes
+   "callable + properties", which the name→binding export model cannot
+   represent) and creates observably distinct intermediate export objects
+   (a require cycle can read `exports.default` before the overwrite — exactly
+   the temporal-aliasing rule, adv regression `cjs-overwrite-cycle`). A sound
+   recognition rule would need cycle-freedom proof plus function-object
+   surface modeling — not a small rule under existing invariants, so the
+   positive control stays at 0 reduction as a failed positive control.
+5. **`dynamic-property-access` unexercisable via claimed entries — remains,
+   documented** in `tools/reason-coverage.ts` (`KNOWN_UNOBSERVABLE`): the
+   claimed entries are pre-empted by dynamic-require / export-object-mutation
+   gates until the Q10 projection lever lands. The reason IS now observed via
+   express's importer-side computed access (blocking-reason attribution), and
+   the tool reports the claim mismatch rather than smoothing it.
+6. **`native-boundary` shadowed in verdicts — FIXED** at the reporting layer:
+   verdicts now carry `blockingReasons` — every independently-established
+   applicable gate, terminal verdict unchanged (`reasons` semantics are
+   untouched; diagnostic only). Reason coverage reads it; `native-boundary`
+   and `wasm-boundary` are both observed (better-sqlite3, sql.js).
+7. **wasm-boundary / sql.js swap decision — RESOLVED WITHOUT SWAP.** With
+   opacity detection decoupled from NFT (finding 2), sql.js keys
+   `wasm-boundary` as pinned; no ground-truth change was needed.
+
+Re-run results: scorer 0 criticals — 0 false removal, 0 unsafe optimism,
+0 file-level removal, 16/16 MUST_REMOVE retained (expected: global hazards
+widen everything), 58/58 contracts byte-identical under stock node, 16/16
+`__force` fail closed, mutation-sensitivity 22/22, VEX 7/7, reason coverage
+clean with one documented limitation. `bun test`: 75/75.
 
 ### Adversarial-review round (same day)
 

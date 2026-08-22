@@ -80,6 +80,25 @@ The requirement that all load sites resolving to the same cached module
 instance be reasoned about together; a broad use at one site invalidates a
 narrow conclusion drawn at another.
 
+### Artifact model
+
+**Production universe**:
+The complete production application filesystem Reducer considers: app runtime
+files plus every installed package the lockfile does not mark dev-only. The
+set of files *eligible to exist* in the output. Within it, omission requires
+proof.
+
+**Known reachable set**:
+Positive reachability evidence — NFT-traced files plus Reducer's own
+analysis. Evidence that a file *must* ship, never evidence that another file
+may be dropped.
+
+**Proven unreachable set**:
+Files/code for which Reducer holds an explicit unreachability proof. The only
+set physical removal may draw from: `output = production universe − proven
+unreachable`. NFT omission is not a proof.
+_Avoid_: untraced, not-needed
+
 ### Measurement
 
 **Strict predicted ceiling**:
