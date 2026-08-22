@@ -101,21 +101,36 @@ _Avoid_: untraced, not-needed
 
 ### Measurement
 
+**Net size reduction**:
+The primary size metric: the net change in executable third-party JS bytes
+between the production universe and the emitted artifact, relative to the
+universe. May go negative (a fail-closed stub larger than the body it
+replaced counts against it). Distinct from *implementation bytes eliminated*,
+the security/precision quantity. NFT-relative deltas are context, never the
+metric.
+_Avoid_: bytes removed, Δ-vs-NFT (as the metric)
+
 **Strict predicted ceiling**:
-The incremental reduction the non-transforming analyzer predicts under the
-current, fully-conservative model. The go/no-go metric.
+The net universe-relative size reduction the non-transforming analyzer
+predicts under the current, fully-conservative model. The go/no-go metric,
+decided on the median over target-category corpus apps.
 
-**Counterfactual marginal headroom**:
-How much additional reduction becomes possible if one approximation (or a pair)
-is relaxed while all others stay conservative. Marginal, not causal
-attribution — approximations interact, so single-relaxation numbers can each
-read zero while a pair unlocks real headroom.
+**Gate-off counterfactual**:
+The additional reduction that becomes possible if one conservative gate (or a
+pair) is switched off while all others stay conservative. A *diagnostic upper
+bound conditional on the other gates remaining conservative* — because gates
+interact, two single-gate zeros can coexist with a large pairwise gain. Can
+disfavor or kill an investment; can never rescue the thesis.
+_Avoid_: relaxed approximation (as a rescue)
 
-**Counterfactual ceiling**:
-The predicted ceiling with a specific, *soundly-definable* relaxation applied on
-top of the strict model. The kill decision weighs the strict ceiling against the
-best counterfactual ceiling: a strict 0% that a single sound approximation lifts
-to 25% means "implement that approximation," not "stop."
+**Sound refinement counterfactual**:
+The predicted ceiling under a *named* refinement with stated proof
+obligations (e.g. VM contexts with statically known globals; closed export
+surface plus known property projection). The only counterfactual that can
+rescue the thesis, and only when the refinement is single, localized,
+soundly-definable, and plausibly implementable. Its number is an upper bound
+until the refinement is implemented: a strict 0% that a qualifying refinement
+lifts to 25% means "implement that refinement," not "stop."
 
 **Blocking-set**:
 The set of approximations jointly responsible for retaining one symbol, e.g.

@@ -1,5 +1,11 @@
 # Non-transforming hazard-domain analyzer first, gated by a kill criterion
 
+Status: **superseded by
+[ADR-0006](./0006-universe-relative-kill-criterion.md)** (2026-08-22), which
+restates the whole decision with a universe-relative metric (per ADR-0005),
+a two-role counterfactual model, and an independently-evaluated wedge. This
+document is historical.
+
 The next build is a hazard-domain analyzer that transforms *nothing*: it
 computes capabilities, resolved-target and property domains, and
 module-vs-export reachability, and reports the **strict predicted ceiling**
