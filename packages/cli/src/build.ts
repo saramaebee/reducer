@@ -1,4 +1,4 @@
-import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, readlinkSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
+import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, readlinkSync, realpathSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { trace, type TraceResult } from '@reducer/tracer';
 import { analyzeTrace, type Analysis, type StubCandidate } from '@reducer/analyzer';
@@ -30,13 +30,31 @@ export interface RunResult {
 }
 
 function findBase(entryAbs: string): string {
+  // Nearest package.json owns the entry, but a workspace/monorepo root ABOVE
+  // it owns the hoisted node_modules — the production universe must include
+  // that, or every hoisted dependency is silently absent from the artifact.
+  // The highest explicit workspace marker wins.
   let dir = path.dirname(entryAbs);
+  let nearest: string | null = null;
+  let workspaceRoot: string | null = null;
   while (true) {
-    if (existsSync(path.join(dir, 'package.json'))) return dir;
+    if (existsSync(path.join(dir, 'package.json'))) {
+      nearest ??= dir;
+      try {
+        const pj = JSON.parse(readFileSync(path.join(dir, 'package.json'), 'utf8'));
+        if (pj.workspaces) workspaceRoot = dir;
+      } catch {
+        /* unreadable manifest is not a root signal */
+      }
+    }
+    if (existsSync(path.join(dir, 'pnpm-workspace.yaml')) || existsSync(path.join(dir, 'lerna.json'))) {
+      workspaceRoot = dir;
+    }
     const parent = path.dirname(dir);
-    if (parent === dir) return path.dirname(entryAbs);
+    if (parent === dir) break;
     dir = parent;
   }
+  return workspaceRoot ?? nearest ?? path.dirname(entryAbs);
 }
 
 interface UniverseFile {
@@ -58,12 +76,40 @@ interface UniverseFile {
  * Anything physically present but undeclared is UNKNOWN, and unknown means
  * keep. Within the universe, omission requires proof.
  */
-function walkFiles(root: string, base: string, outDir: string | null, excludeRels?: Set<string>): UniverseFile[] {
+/**
+ * Excluding the output dir by exact string compare misses case variants on
+ * case-insensitive filesystems (macOS/Windows) — the stale output would enter
+ * the universe and then be rmSync'd mid-emit. Device+inode identity is exact
+ * on every platform.
+ */
+type IsOutDir = (abs: string, isDir: boolean) => boolean;
+function outDirMatcher(outDir: string | null): IsOutDir {
+  if (!outDir) return () => false;
+  let id: string | null = null;
+  try {
+    const s = statSync(outDir);
+    id = `${s.dev}:${s.ino}`;
+  } catch {
+    /* output dir not created yet — string compare suffices */
+  }
+  return (abs, isDir) => {
+    if (abs === outDir) return true;
+    if (!isDir || id === null) return false;
+    try {
+      const s = statSync(abs);
+      return `${s.dev}:${s.ino}` === id;
+    } catch {
+      return false;
+    }
+  };
+}
+
+function walkFiles(root: string, base: string, isOutDir: IsOutDir, excludeRels?: Set<string>): UniverseFile[] {
   const files: UniverseFile[] = [];
   const walk = (dir: string) => {
     for (const e of readdirSync(dir, { withFileTypes: true })) {
       const abs = path.join(dir, e.name);
-      if (outDir && abs === outDir) continue;
+      if (isOutDir(abs, e.isDirectory())) continue;
       const rel = path.relative(base, abs).split(path.sep).join('/');
       // Only the repo's own top-level .git is outside the universe; a nested
       // entry named .git is somebody's file — omission would need proof.
@@ -87,7 +133,7 @@ function walkFiles(root: string, base: string, outDir: string | null, excludeRel
 
 function collectUniverse(
   base: string,
-  outDir: string | null,
+  isOutDir: IsOutDir,
 ): { files: UniverseFile[]; devPkgRels: Set<string>; warnings: string[] } {
   const devPkgRels = new Set<string>(); // POSIX rels like "node_modules/foo"
   const warnings: string[] = [];
@@ -127,7 +173,7 @@ function collectUniverse(
   } catch {
     /* no lockfile — no production-install boundary, exclude nothing */
   }
-  return { files: walkFiles(base, base, outDir, devPkgRels), devPkgRels, warnings };
+  return { files: walkFiles(base, base, isOutDir, devPkgRels), devPkgRels, warnings };
 }
 
 function dirBytes(dir: string): { bytes: number; files: number } {
@@ -169,7 +215,8 @@ export async function run(opts: RunOptions): Promise<RunResult> {
   // NOT imply `fileState === "proven-unreachable"` — NFT omission must never
   // authorize deletion. No file-level unreachability proofs exist yet, so
   // nothing is removed at file granularity.
-  const { files: universeFiles, devPkgRels, warnings: universeWarnings } = collectUniverse(base, outDir);
+  const isOutDir = outDirMatcher(outDir);
+  const { files: universeFiles, devPkgRels, warnings: universeWarnings } = collectUniverse(base, isOutDir);
   const universeRels = new Set(universeFiles.map((u) => u.rel));
   const emitByRel = new Map<string, UniverseFile>(universeFiles.map((u) => [u.rel, u]));
   // A dev-excluded package with positive NFT evidence is actually loaded in
@@ -190,7 +237,7 @@ export async function run(opts: RunOptions): Promise<RunResult> {
       emitByRel.set(d, { abs, rel: d, isSymlink: true });
       continue;
     }
-    for (const u of walkFiles(abs, base, outDir)) {
+    for (const u of walkFiles(abs, base, isOutDir)) {
       if (!emitByRel.has(u.rel)) emitByRel.set(u.rel, u);
     }
   }
@@ -200,6 +247,57 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     if (!emitByRel.has(f.rel)) {
       emitByRel.set(f.rel, { abs: f.abs, rel: f.rel, isSymlink: lstatSync(f.abs).isSymbolicLink() });
     }
+  }
+
+  // ---- fail-stop backstop: a dependency that resolves OUTSIDE the
+  // production universe cannot be emitted, so a written artifact would be
+  // missing runtime files with no proof authorizing their absence (hoisting
+  // above a base findBase could not identify). Exception: a target reached
+  // through an in-base symlink is materialized at emit and is therefore
+  // covered. Failing loudly beats shipping a silently broken tree.
+  // require.resolve returns realpaths; compare in realpath space (macOS /var
+  // vs /private/var, symlinked checkouts).
+  const realOf = (p: string): string => {
+    try {
+      return realpathSync(p);
+    } catch {
+      return p;
+    }
+  };
+  const baseReal = realOf(base);
+  const inBase = (p: string) =>
+    p === base || p.startsWith(base + path.sep) || p === baseReal || p.startsWith(baseReal + path.sep);
+  const symlinkTargets = [...emitByRel.values()]
+    .filter((u) => u.isSymlink)
+    .map((u) => {
+      try {
+        return realOf(path.resolve(path.dirname(u.abs), readlinkSync(u.abs)));
+      } catch {
+        return null;
+      }
+    })
+    .filter((t): t is string => t !== null && !inBase(t));
+  const coveredExternally = (p: string) => symlinkTargets.some((t) => p === t || p.startsWith(t + path.sep));
+  const outOfUniverse = new Set<string>();
+  for (const m of analysis.modules.values()) {
+    if (!m) continue;
+    for (const dep of m.deps) {
+      if (!dep.resolvedAbs || !path.isAbsolute(dep.resolvedAbs)) continue;
+      if (inBase(dep.resolvedAbs) || coveredExternally(dep.resolvedAbs)) continue;
+      outOfUniverse.add(`"${dep.source}" -> ${dep.resolvedAbs}`);
+    }
+  }
+  if (outOfUniverse.size > 0) {
+    const detail = [...outOfUniverse].join('; ');
+    if (opts.write) {
+      throw new Error(
+        `refusing to emit: dependencies resolve outside the production universe (base ${base}): ${detail}. ` +
+          'The artifact would be missing runtime files. Build from the workspace root, or restructure so the base contains them.',
+      );
+    }
+    universeWarnings.push(
+      `dependencies resolve outside the production universe (a written build would refuse to emit): ${detail}`,
+    );
   }
 
   // --keep-package: forced retention, recorded as such.
@@ -478,7 +576,32 @@ export async function run(opts: RunOptions): Promise<RunResult> {
         chmodSync(dest, statSync(u.abs).mode); // exact bits — writeFileSync mode is umask-masked
         if (replaced.map) writeFileSync(`${dest}.map`, JSON.stringify(replaced.map));
       } else if (u.isSymlink) {
-        symlinkSync(readlinkSync(u.abs), dest); // verbatim target, incl. relative links
+        const rawTarget = readlinkSync(u.abs);
+        const targetAbs = path.resolve(path.dirname(u.abs), rawTarget);
+        const targetRel = ((p: string): string | null => {
+          for (const b of [base, baseReal]) {
+            if (p === b) return '';
+            if (p.startsWith(b + path.sep)) return path.relative(b, p);
+          }
+          return null;
+        })(inBase(targetAbs) ? targetAbs : realOf(targetAbs));
+        if (targetRel !== null) {
+          // Retarget into the artifact: an absolute (or escaping-and-
+          // returning) target would resolve back into the ORIGINAL tree —
+          // resurrecting implementations the transformer removed there. For
+          // ordinary relative intra-tree links this emits the same target.
+          symlinkSync(path.relative(path.dirname(dest), path.join(outDir, targetRel)), dest);
+        } else if (existsSync(u.abs)) {
+          // Target lives OUTSIDE the universe (npm link / file:../sibling):
+          // a verbatim link would ship an artifact missing the code. The
+          // content is production surface — materialize it.
+          cpSync(u.abs, dest, { dereference: true, recursive: true });
+          manifest.warnings.push(
+            `symlink ${rel} targets outside the production universe (${rawTarget}); target content materialized into the artifact`,
+          );
+        } else {
+          symlinkSync(rawTarget, dest); // dangling in the original too — verbatim
+        }
       } else {
         cpSync(u.abs, dest);
       }

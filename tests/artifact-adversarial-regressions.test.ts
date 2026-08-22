@@ -246,3 +246,103 @@ test('minor: a transformed file keeps its exact permission bits', async () => {
   expect(manifest.transformations.map((t) => t.symbol)).toEqual(['unused']);
   expect(statSync(path.join(outDir, 'node_modules/modelib/index.js')).mode & 0o777).toBe(0o775);
 });
+
+test('N1: workspace-hoisted dependencies are inside the universe and ship', async () => {
+  const root = fixture();
+  writeTree(root, {
+    'package.json': '{ "name": "t-mono", "version": "1.0.0", "workspaces": ["packages/*"] }',
+    'packages/api/package.json': '{ "name": "api", "version": "1.0.0", "type": "module" }',
+    'packages/api/app.mjs': "import { hi } from 'hoisted';\nconsole.log(hi());\n",
+    'node_modules/hoisted/package.json': '{ "name": "hoisted", "version": "1.0.0", "type": "module", "main": "index.js" }',
+    'node_modules/hoisted/index.js': "export const hi = () => 'hoisted-ok';\n",
+  });
+
+  const outDir = mkdtempSync(path.join(tmpdir(), 'reducer-adv-out-'));
+  await run({ entry: path.join(root, 'packages/api/app.mjs'), outDir, write: true });
+  expect(existsSync(path.join(outDir, 'node_modules/hoisted/index.js'))).toBe(true);
+  const r = spawnSync('node', ['packages/api/app.mjs'], { cwd: outDir, encoding: 'utf8' });
+  expect(r.stdout.trim()).toBe('hoisted-ok');
+  expect(r.status).toBe(0);
+});
+
+test('N1b: hoisting with no workspace marker refuses to emit instead of shipping a broken tree', async () => {
+  const root = fixture();
+  writeTree(root, {
+    'sub/package.json': '{ "name": "sub", "version": "1.0.0", "type": "module" }',
+    'sub/app.mjs': "import { hi } from 'hoisted';\nconsole.log(hi());\n",
+    'node_modules/hoisted/package.json': '{ "name": "hoisted", "version": "1.0.0", "type": "module", "main": "index.js" }',
+    'node_modules/hoisted/index.js': "export const hi = () => 'hoisted-ok';\n",
+  });
+
+  const outDir = mkdtempSync(path.join(tmpdir(), 'reducer-adv-out-'));
+  expect(
+    run({ entry: path.join(root, 'sub/app.mjs'), outDir, write: true }),
+  ).rejects.toThrow(/outside the production universe/);
+});
+
+test('N2: an absolute-target symlink is retargeted into the artifact, not the original tree', async () => {
+  const root = fixture();
+  writeTree(root, {
+    'package.json': '{ "name": "t-abs", "version": "1.0.0" }',
+    'app.mjs': "import { used } from 'reallib';\nconsole.log(used());\n",
+    'node_modules/reallib/package.json': '{ "name": "reallib", "version": "1.0.0", "main": "index.js" }',
+    'node_modules/reallib/index.js':
+      "function used() { return 'ok'; }\nfunction unused() { return 'ABS_LINK_MARKER'; }\n" +
+      'exports.used = used;\nexports.unused = unused;\n',
+  });
+  // npm-link-style alias with an ABSOLUTE target back into the source tree.
+  symlinkSync(
+    path.join(root, 'node_modules/reallib/index.js'),
+    path.join(root, 'node_modules/reallib-alias.cjs'),
+  );
+
+  const { manifest, outDir } = await build(root);
+  expect(manifest.transformations.map((t) => t.symbol)).toEqual(['unused']);
+  const link = path.join(outDir, 'node_modules/reallib-alias.cjs');
+  expect(lstatSync(link).isSymbolicLink()).toBe(true);
+  // Reading THROUGH the artifact's link must yield the stubbed content, never
+  // the original implementation left behind in the source tree.
+  const throughLink = readFileSync(link, 'utf8');
+  expect(throughLink).toContain('ReducerReachabilityViolation');
+  expect(throughLink).not.toContain('ABS_LINK_MARKER');
+});
+
+test('N3: a symlink dependency targeting outside the base is materialized into the artifact', async () => {
+  const parent = fixture(); // NOT the base — findBase stops at root/package.json
+  const root = path.join(parent, 'app');
+  writeTree(parent, {
+    'extlib-real/package.json': '{ "name": "extlib", "version": "1.0.0", "type": "module", "main": "index.js" }',
+    'extlib-real/index.js': "export const hello = () => 'extlib-ok';\n",
+    'app/package.json': '{ "name": "t-ext", "version": "1.0.0" }',
+    'app/app.mjs': "import { hello } from 'extlib';\nconsole.log(hello());\n",
+  });
+  mkdirSync(path.join(root, 'node_modules'), { recursive: true });
+  symlinkSync('../../extlib-real', path.join(root, 'node_modules/extlib'));
+
+  const { manifest, outDir } = await build(root);
+  // The external content is production surface — it must exist in the
+  // artifact even though its realpath was never inside the base.
+  expect(existsSync(path.join(outDir, 'node_modules/extlib/index.js'))).toBe(true);
+  expect(lstatSync(path.join(outDir, 'node_modules/extlib')).isSymbolicLink()).toBe(false);
+  expect(manifest.warnings.join('\n')).toContain('materialized');
+  const r = spawnSync('node', ['app.mjs'], { cwd: outDir, encoding: 'utf8' });
+  expect(r.stdout.trim()).toBe('extlib-ok');
+  expect(r.status).toBe(0);
+});
+
+test.if(process.platform === 'darwin')(
+  'minor: a case-variant --out inside the base neither self-copies nor bricks the build',
+  async () => {
+    const root = fixture();
+    writeTree(root, {
+      'package.json': '{ "name": "t-case", "version": "1.0.0" }',
+      'app.mjs': "console.log('hi');\n",
+    });
+    const first = await run({ entry: path.join(root, 'app.mjs'), outDir: path.join(root, 'dist-reduced'), write: true });
+    expect(first.outDir).not.toBeNull();
+    // Case-insensitive APFS: DIST-REDUCED is the same directory.
+    const second = await run({ entry: path.join(root, 'app.mjs'), outDir: path.join(root, 'DIST-REDUCED'), write: true });
+    expect(second.manifest.artifact.files.some((f) => f.file.includes('dist-reduced'))).toBe(false);
+    expect(existsSync(path.join(root, 'dist-reduced', 'reducer-manifest.json'))).toBe(true);
+  },
+);

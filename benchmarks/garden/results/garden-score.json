@@ -7,8 +7,8 @@
   "globalHazards": [
     "dynamic-require",
     "runtime-code-generation",
-    "dynamic-import-nonliteral",
     "require-cache-mutation",
+    "dynamic-import-nonliteral",
     "unsupported-syntax",
     "nft-warning"
   ],

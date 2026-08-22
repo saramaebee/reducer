@@ -137,3 +137,33 @@ tests in `tests/artifact-adversarial-regressions.test.ts`:
 Post-fix: all gates re-run green — 84/84 tests, garden 0 criticals with the
 reduced tree still byte-identical to the original (plus manifest), VEX 7/7,
 mutation 22/22, reason coverage clean.
+
+### Second adversarial round (independent re-run, 27/27 agents)
+
+Re-confirmed the first round's findings and surfaced 3 new soundness defects
+plus 2 sharp minors, all fixed with regression tests (N-prefixed in
+`tests/artifact-adversarial-regressions.test.ts`):
+
+8. **Monorepo hoisted dependencies silently absent.** `findBase` stopped at
+   the nearest package.json, so deps hoisted to a workspace root above it
+   were outside both the universe and the (base-scoped) NFT trace — the
+   artifact shipped with zero node_modules. `findBase` now prefers the
+   highest explicit workspace root (`workspaces` field, pnpm-workspace.yaml,
+   lerna.json); and a new fail-stop backstop refuses to emit whenever any
+   analyzed dependency resolves outside the production universe (covering
+   non-workspace hoisting too) rather than shipping a silently broken tree.
+9. **Absolute-target symlinks resurrected removed implementations** by
+   resolving back into the ORIGINAL source tree. In-universe symlink targets
+   are now retargeted into the artifact (identity emit for ordinary relative
+   links); reading through the artifact's link yields the stub.
+10. **Symlink deps targeting outside the base** (npm link / file:../sibling)
+    shipped only the dangling link. External targets are now materialized
+    into the artifact (dereference copy) with a warning; such deps are also
+    exempted from the fail-stop since their content ships.
+11. Minors: opacity-reason drift for packages with both `.node` and `.wasm`
+    restored to exact pre-refactor semantics; output-dir exclusion now uses
+    device+inode identity so a case-variant `--out` on macOS/Windows neither
+    self-copies stale output nor bricks the build mid-emit.
+
+Final state: 89/89 tests, garden 0 criticals, reduced tree byte-identical to
+the original (plus manifest), VEX 7/7, mutation 22/22, reason coverage clean.

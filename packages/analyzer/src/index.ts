@@ -687,7 +687,10 @@ export function analyzeTrace(traceResult: TraceResult): Analysis {
   };
   for (const f of files) {
     if ((f.kind === 'node' || f.kind === 'wasm') && f.pkg) {
-      markOpaque(f.pkg.dir, f.kind === 'wasm' ? 'wasm-boundary' : 'native-boundary');
+      // Unconditional set: exact pre-refactor reason semantics (last traced
+      // wins) for every package the old detection covered.
+      opaquePkgDirs.add(f.pkg.dir);
+      opaquePkgReason.set(f.pkg.dir, f.kind === 'wasm' ? 'wasm-boundary' : 'native-boundary');
     }
   }
   const allPkgDirs = [...new Set(files.map((f) => f.pkg?.dir).filter((d): d is string => !!d))];
