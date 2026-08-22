@@ -1,4 +1,4 @@
-import { cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, readlinkSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
+import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, readlinkSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { trace, type TraceResult } from '@reducer/tracer';
 import { analyzeTrace, type Analysis, type StubCandidate } from '@reducer/analyzer';
@@ -44,6 +44,9 @@ interface UniverseFile {
   /** POSIX-style path relative to base (same key format as the tracer). */
   rel: string;
   isSymlink: boolean;
+  /** directories are part of the universe too — an empty uploads/ dir the app
+   *  writes into must exist in the artifact */
+  isDir?: boolean;
 }
 
 /**
@@ -59,34 +62,72 @@ function walkFiles(root: string, base: string, outDir: string | null, excludeRel
   const files: UniverseFile[] = [];
   const walk = (dir: string) => {
     for (const e of readdirSync(dir, { withFileTypes: true })) {
-      if (e.name === '.git') continue;
       const abs = path.join(dir, e.name);
       if (outDir && abs === outDir) continue;
       const rel = path.relative(base, abs).split(path.sep).join('/');
+      // Only the repo's own top-level .git is outside the universe; a nested
+      // entry named .git is somebody's file — omission would need proof.
+      if (rel === '.git') continue;
       if (excludeRels?.has(rel)) continue; // excluded package root (whole subtree)
       if (e.isSymbolicLink()) {
         files.push({ abs, rel, isSymlink: true }); // preserved verbatim, never followed
         continue;
       }
-      if (e.isDirectory()) walk(abs);
-      else if (e.isFile()) files.push({ abs, rel, isSymlink: false });
+      if (e.isDirectory()) {
+        files.push({ abs, rel, isSymlink: false, isDir: true }); // dir itself (may be empty)
+        walk(abs);
+      } else if (e.isFile()) {
+        files.push({ abs, rel, isSymlink: false });
+      }
     }
   };
   walk(root);
   return files;
 }
 
-function collectUniverse(base: string, outDir: string | null): { files: UniverseFile[]; devPkgRels: Set<string> } {
+function collectUniverse(
+  base: string,
+  outDir: string | null,
+): { files: UniverseFile[]; devPkgRels: Set<string>; warnings: string[] } {
   const devPkgRels = new Set<string>(); // POSIX rels like "node_modules/foo"
+  const warnings: string[] = [];
   try {
     const lock = JSON.parse(readFileSync(path.join(base, 'package-lock.json'), 'utf8'));
     for (const [p, entry] of Object.entries<any>(lock.packages ?? {})) {
-      if (p && entry?.dev === true) devPkgRels.add(p);
+      // Only install-tree entries are excludable: `npm ci --omit=dev` prunes
+      // node_modules and nothing else. A dev-flagged key OUTSIDE node_modules
+      // (a file:/workspace SOURCE directory like "tools/gen") is a repo
+      // directory npm would never delete — excluding it deletes source.
+      if (p && entry?.dev === true && p.startsWith('node_modules/')) devPkgRels.add(p);
+    }
+    // Stale-lockfile guard: if any dev-flagged top-level package is declared
+    // as a PRODUCTION dependency in package.json, the lockfile disagrees with
+    // the manifest — its dev flags are not trustworthy proof. Exclude nothing.
+    try {
+      const pj = JSON.parse(readFileSync(path.join(base, 'package.json'), 'utf8'));
+      const prodDeps = new Set([
+        ...Object.keys(pj.dependencies ?? {}),
+        ...Object.keys(pj.optionalDependencies ?? {}),
+        ...Object.keys(pj.peerDependencies ?? {}),
+      ]);
+      const stale = [...devPkgRels].filter((p) => {
+        const name = p.slice('node_modules/'.length);
+        return !name.includes('/node_modules/') && prodDeps.has(name);
+      });
+      if (stale.length > 0) {
+        warnings.push(
+          `lockfile dev flags disagree with package.json production dependencies (${stale.join(', ')}); ` +
+            'lockfile is stale — excluding nothing from the production universe',
+        );
+        devPkgRels.clear();
+      }
+    } catch {
+      /* no readable package.json — keep the lockfile boundary as-is */
     }
   } catch {
     /* no lockfile — no production-install boundary, exclude nothing */
   }
-  return { files: walkFiles(base, base, outDir, devPkgRels), devPkgRels };
+  return { files: walkFiles(base, base, outDir, devPkgRels), devPkgRels, warnings };
 }
 
 function dirBytes(dir: string): { bytes: number; files: number } {
@@ -128,7 +169,7 @@ export async function run(opts: RunOptions): Promise<RunResult> {
   // NOT imply `fileState === "proven-unreachable"` — NFT omission must never
   // authorize deletion. No file-level unreachability proofs exist yet, so
   // nothing is removed at file granularity.
-  const { files: universeFiles, devPkgRels } = collectUniverse(base, outDir);
+  const { files: universeFiles, devPkgRels, warnings: universeWarnings } = collectUniverse(base, outDir);
   const universeRels = new Set(universeFiles.map((u) => u.rel));
   const emitByRel = new Map<string, UniverseFile>(universeFiles.map((u) => [u.rel, u]));
   // A dev-excluded package with positive NFT evidence is actually loaded in
@@ -140,7 +181,16 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     }
   }
   for (const d of tracedDevPkgs) {
-    for (const u of walkFiles(path.join(base, d), base, outDir)) {
+    const abs = path.join(base, d);
+    // A workspace/file: dev package is installed as a symlink — re-adding it
+    // as a walked directory AND a symlink would collide at emit. Preserve the
+    // link verbatim; its target directory is part of the universe already
+    // (source dirs are never dev-excludable).
+    if (lstatSync(abs).isSymbolicLink()) {
+      emitByRel.set(d, { abs, rel: d, isSymlink: true });
+      continue;
+    }
+    for (const u of walkFiles(abs, base, outDir)) {
       if (!emitByRel.has(u.rel)) emitByRel.set(u.rel, u);
     }
   }
@@ -180,11 +230,14 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     list.push(c);
   }
 
-  const transformations: Transformation[] = [];
+  let transformations: Transformation[] = [];
   const transformedCode = new Map<string, { code: string; map: object | null }>();
+  const originalInput = new Map<string, string>(); // rel -> pre-transform source
+  const removedRanges = new Map<string, { start: number; end: number }[]>();
   for (const [rel, list] of byFile) {
     const f = list[0].file;
     const input = readFileSync(f.abs, 'utf8');
+    originalInput.set(rel, input);
     // Several export names may share one implementation; stub each local
     // function once (the analyzer guarantees all its export names are
     // proven unreachable before it reaches here).
@@ -200,6 +253,7 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     const inputHash = sha256(input);
     const outputHash = sha256(emitted);
     const rangeByLocal = new Map(result.stubbed.map((s) => [s.localName, s.sourceRange]));
+    removedRanges.set(rel, result.stubbed.map((s) => s.sourceRange));
     for (const c of list) {
       transformations.push({
         package: f.pkg ? `${f.pkg.name}@${f.pkg.version}` : null,
@@ -217,11 +271,62 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     }
   }
 
+  // ---- physical-absence audit: a removed implementation must not survive
+  // anywhere else in the emitted artifact. Scan the owning package's other
+  // emitted files for each removed body — raw and JSON-escaped (the escaped
+  // form catches a pre-existing map's sourcesContent). A leaking `.map` is
+  // superseded metadata and is suppressed from the artifact; a leak in ANY
+  // other file (dual CJS/ESM builds, bundled copies, src/) REVERTS the whole
+  // file's transformations: retention over a false physical-absence claim.
+  const suppressedRels = new Set<string>();
+  const revertedFiles = new Set<string>();
+  const absenceWarnings: string[] = [];
+  for (const [rel, ranges] of removedRanges) {
+    const pkgDir = byFile.get(rel)![0].file.pkg?.dir;
+    if (!pkgDir) continue;
+    const pkgPrefix = `${path.relative(base, pkgDir).split(path.sep).join('/')}/`;
+    const input = originalInput.get(rel)!;
+    const bodies = ranges
+      .map((r) => input.slice(r.start, r.end).trim())
+      .filter((b) => b.length > 0);
+    for (const [urel, u] of emitByRel) {
+      if (urel === rel || u.isDir || u.isSymlink || !urel.startsWith(pkgPrefix)) continue;
+      let content: string;
+      try {
+        content = transformedCode.get(urel)?.code ?? readFileSync(u.abs, 'utf8');
+      } catch {
+        continue; // unreadable/binary sibling: raw-text bodies cannot match it
+      }
+      const leaked = bodies.some(
+        (b) => content.includes(b) || content.includes(JSON.stringify(b).slice(1, -1)),
+      );
+      if (!leaked) continue;
+      if (urel.endsWith('.map')) {
+        suppressedRels.add(urel);
+        absenceWarnings.push(
+          `suppressed ${urel}: pre-existing source map retains an implementation removed from ${rel}`,
+        );
+      } else {
+        revertedFiles.add(rel);
+        absenceWarnings.push(
+          `transformation of ${rel} REVERTED: the removed implementation also ships in ${urel}; ` +
+            'stubbing one copy would make the physical-absence claim false — both retained',
+        );
+        break;
+      }
+    }
+  }
+  for (const rel of revertedFiles) {
+    transformedCode.delete(rel);
+    removedRanges.delete(rel);
+  }
+  transformations = transformations.filter((t) => !revertedFiles.has(t.file));
+
   // ---- metrics
   const nftBytes = traced.files.reduce((a, f) => a + f.bytes, 0);
   const jsTraced = traced.files.filter((f) => f.kind === 'js');
   const nftJsBytes = jsTraced.reduce((a, f) => a + f.bytes, 0);
-  const bytesRemoved = [...byFile.keys()].reduce((a, rel) => {
+  const bytesRemoved = [...transformedCode.keys()].reduce((a, rel) => {
     const f = traced.byRel.get(rel)!;
     return a + (f.bytes - Buffer.byteLength(transformedCode.get(rel)!.code));
   }, 0);
@@ -273,7 +378,10 @@ export async function run(opts: RunOptions): Promise<RunResult> {
 
   // ---- artifact provenance: why does every emitted file exist?
   const tracedRels = new Set(traced.files.map((f) => f.rel));
-  const artifactFiles: ArtifactFileRecord[] = [...emitByRel.keys()].sort().map((rel) => ({
+  const emitFileRels = [...emitByRel.entries()]
+    .filter(([rel, u]) => !u.isDir && !suppressedRels.has(rel))
+    .map(([rel]) => rel);
+  const artifactFiles: ArtifactFileRecord[] = emitFileRels.sort().map((rel) => ({
     file: rel,
     state: 'retained',
     reasons: tracedRels.has(rel)
@@ -283,7 +391,7 @@ export async function run(opts: RunOptions): Promise<RunResult> {
       : ['production-universe', 'unknown-dynamic-reachability'],
   }));
   const artifact: ArtifactReport = {
-    universeFiles: emitByRel.size,
+    universeFiles: emitFileRels.length,
     nftTracedFiles: traced.files.length,
     devExcludedPackages: [...devPkgRels].filter((d) => !tracedDevPkgs.has(d)).sort(),
     files: artifactFiles,
@@ -302,6 +410,8 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     warnings: [
       ...traced.warnings,
       ...analysis.warnings,
+      ...universeWarnings,
+      ...absenceWarnings,
       ...traced.files
         .filter((f) => lstatSync(f.abs).isSymbolicLink())
         .map((f) => `symlink preserved verbatim; reduced tree may be incomplete or non-portable: ${f.rel}`),
@@ -350,16 +460,25 @@ export async function run(opts: RunOptions): Promise<RunResult> {
       rmSync(outDir, { recursive: true, force: true });
     }
     mkdirSync(outDir, { recursive: true });
+    const dirModes: [string, number][] = [];
 
     for (const [rel, u] of emitByRel) {
-      // An original .map for a transformed file would leak the removed body
-      // via sourcesContent — the transformed map written below supersedes it.
+      // An original .map describing a transformed file would leak the removed
+      // body via sourcesContent — the transformed map supersedes the
+      // conventional name, and the absence audit suppresses nonstandard ones.
       if (rel.endsWith('.map') && transformedCode.has(rel.slice(0, -'.map'.length))) continue;
+      if (suppressedRels.has(rel)) continue;
       const dest = path.join(outDir, rel);
+      if (u.isDir) {
+        mkdirSync(dest, { recursive: true });
+        dirModes.push([dest, statSync(u.abs).mode]); // chmod after children land (a read-only dir must fill first)
+        continue;
+      }
       mkdirSync(path.dirname(dest), { recursive: true });
       const replaced = transformedCode.get(rel);
       if (replaced) {
-        writeFileSync(dest, replaced.code, { mode: statSync(u.abs).mode });
+        writeFileSync(dest, replaced.code);
+        chmodSync(dest, statSync(u.abs).mode); // exact bits — writeFileSync mode is umask-masked
         if (replaced.map) writeFileSync(`${dest}.map`, JSON.stringify(replaced.map));
       } else if (u.isSymlink) {
         symlinkSync(readlinkSync(u.abs), dest); // verbatim target, incl. relative links
@@ -367,6 +486,8 @@ export async function run(opts: RunOptions): Promise<RunResult> {
         cpSync(u.abs, dest);
       }
     }
+    // Deepest-first so a parent's restrictive mode never blocks a child chmod.
+    for (const [dest, mode] of dirModes.sort((a, b) => b[0].length - a[0].length)) chmodSync(dest, mode);
     // Package-preserving: always include the app's own package.json.
     const basePkg = path.join(base, 'package.json');
     if (existsSync(basePkg) && !existsSync(path.join(outDir, 'package.json'))) {

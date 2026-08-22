@@ -101,3 +101,39 @@ pinned.
   the hazard-free sub-tree (modulo the source-map leak, finding 3).
 - Reason coverage: 20/23 reasons exercised and attributed; the 3 exceptions
   are findings 5–7 above, with root causes, not silent gaps.
+
+### Adversarial-review round (same day)
+
+A 7-lens adversarial review of the artifact builder (multi-agent, each finding
+independently re-verified by refuters with reproduction probes) confirmed 7
+further defects in the first remediation pass; all are fixed with regression
+tests in `tests/artifact-adversarial-regressions.test.ts`:
+
+1. The on-disk opacity scan had *replaced* trace-kind detection — a symlinked
+   `.node` escaped both paths and let a native package's export be removed.
+   Now UNIONED (trace kinds + disk scan), symlink dirents count by extension,
+   and an unscannable package dir is treated opaque.
+2. `dev: true` lockfile keys outside `node_modules/` (file:/workspace source
+   dirs) were excluded — deleting source directories `npm ci --omit=dev`
+   would never touch. Only `node_modules/` keys are excludable now.
+3. A removed implementation could ship verbatim in an untraced sibling copy
+   (dual CJS/ESM builds). A physical-absence audit now scans the owning
+   package's emitted files (raw + JSON-escaped forms) and REVERTS the
+   transformation when the body survives elsewhere.
+4. A pre-existing map not named exactly `<file>.map` shipped the removed body
+   in `sourcesContent` (suppressed by the same audit), and inline data-URI
+   map comments survived transformation (sourceMappingURL comments are now
+   stripped at AST level).
+5. A stale lockfile dev flag on a declared production dependency silently
+   deleted the package — dev flags are now cross-checked against
+   package.json; on disagreement nothing is excluded.
+6. Empty directories were absent from the artifact (ENOENT on first runtime
+   write). Directories are part of the universe and are emitted with modes.
+7. A traced dev-flagged workspace symlink crashed the emit with EEXIST; the
+   un-exclusion now preserves the link verbatim. Also: `.git` exclusion is
+   restricted to the base root, and transformed files keep exact permission
+   bits (chmod after write).
+
+Post-fix: all gates re-run green — 84/84 tests, garden 0 criticals with the
+reduced tree still byte-identical to the original (plus manifest), VEX 7/7,
+mutation 22/22, reason coverage clean.

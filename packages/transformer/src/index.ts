@@ -80,6 +80,20 @@ export function stubFunctions(code: string, fileName: string, specs: StubSpec[])
     );
   }
 
+  // Drop the original file's sourceMappingURL comments (AST-level, so string
+  // literals are never touched): an inline data:-URI map would ship the
+  // removed implementation base64-encoded inside the transformed file, and an
+  // external reference would point at a stale map. The build appends a fresh
+  // comment for the map generated below.
+  const isMapComment = (c: t.Comment) => /^[#@]\s?sourceMappingURL=/.test(c.value.trim());
+  if (ast.comments) ast.comments = ast.comments.filter((c) => !isMapComment(c));
+  t.traverseFast(ast, (node) => {
+    for (const key of ['leadingComments', 'trailingComments', 'innerComments'] as const) {
+      const comments = node[key];
+      if (comments) (node as any)[key] = comments.filter((c) => !isMapComment(c));
+    }
+  });
+
   const out = generate(ast, { sourceMaps: true, sourceFileName: fileName }, code);
   // Physical-absence semantics: the map's sourcesContent would ship the
   // ORIGINAL implementation (including every removed body), contradicting any

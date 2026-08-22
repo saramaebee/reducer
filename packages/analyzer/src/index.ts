@@ -667,27 +667,46 @@ export function analyzeTrace(traceResult: TraceResult): Analysis {
   if (traceResult.warnings.length > 0) globalHazards.push('nft-warning');
   const uniqueHazards = [...new Set(globalHazards)];
 
-  // ---- packages with native/wasm boundaries are opaque. Detection scans each
-  // traced package's directory ON DISK, not just the NFT trace: an emscripten
-  // loader reaching its .wasm through a computed fs path (sql.js) leaves the
-  // artifact invisible to NFT, and opacity must not depend on NFT completeness.
-  // Widening-only: a boundary NFT missed still marks the package opaque.
+  // ---- packages with native/wasm boundaries are opaque. Two detections,
+  // UNIONED (each may see what the other misses — the union is never narrower
+  // than either alone, so this only ever widens):
+  //   1. NFT-traced file kinds (the original detection — also catches a
+  //      boundary behind a symlink or an unreadable subdir, since NFT keys on
+  //      the path, not the dirent type);
+  //   2. an on-disk scan of each traced package's directory, because an
+  //      emscripten loader reaching its .wasm through a computed fs path
+  //      (sql.js) leaves the artifact invisible to NFT, and opacity must not
+  //      depend on NFT completeness. Symlink dirents count: the extension is
+  //      the boundary signal regardless of how the file is linked in.
   const opaquePkgDirs = new Set<string>();
   const opaquePkgReason = new Map<string, Reason>();
+  const analyzerWarnings: string[] = [];
+  const markOpaque = (dir: string, reason: Reason) => {
+    opaquePkgDirs.add(dir);
+    if (!opaquePkgReason.has(dir)) opaquePkgReason.set(dir, reason);
+  };
+  for (const f of files) {
+    if ((f.kind === 'node' || f.kind === 'wasm') && f.pkg) {
+      markOpaque(f.pkg.dir, f.kind === 'wasm' ? 'wasm-boundary' : 'native-boundary');
+    }
+  }
   const allPkgDirs = [...new Set(files.map((f) => f.pkg?.dir).filter((d): d is string => !!d))];
   for (const dir of allPkgDirs) {
     try {
       for (const e of readdirSync(dir, { withFileTypes: true, recursive: true })) {
-        if (!e.isFile()) continue;
+        if (e.isDirectory()) continue; // files AND symlinks count
         const ext = path.extname(e.name);
-        if (ext !== '.node' && ext !== '.wasm') continue;
-        opaquePkgDirs.add(dir);
-        if (!opaquePkgReason.has(dir)) {
-          opaquePkgReason.set(dir, ext === '.wasm' ? 'wasm-boundary' : 'native-boundary');
+        if (ext === '.node' || ext === '.wasm') {
+          markOpaque(dir, ext === '.wasm' ? 'wasm-boundary' : 'native-boundary');
         }
       }
-    } catch {
-      /* unreadable package dir: the per-file gates below still apply */
+    } catch (err) {
+      // Cannot verify the absence of a boundary — treat the package as opaque
+      // (unknown means keep) rather than silently narrowing.
+      markOpaque(dir, 'native-boundary');
+      analyzerWarnings.push(
+        `could not scan package dir for native/wasm boundaries; treating as opaque: ${path.relative(base, dir)} (${String(err).slice(0, 80)})`,
+      );
     }
   }
 
@@ -700,7 +719,6 @@ export function analyzeTrace(traceResult: TraceResult): Analysis {
   // attribution for the package involved, so we make its whole owning package
   // opaque and warn. This also surfaces NFT under-tracing (a resolvable dep
   // absent from the deploy tree) instead of shipping a silently broken tree.
-  const analyzerWarnings: string[] = [];
   const tracedAbs = new Set(files.map((f) => f.abs));
   // Realpath variants too: NFT keys and createRequire().resolve() can differ
   // purely by symlink resolution (pnpm stores, hoisted links). A path-only
