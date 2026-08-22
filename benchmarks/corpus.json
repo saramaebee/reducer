@@ -1,5 +1,5 @@
 {
-  "$comment": "Fixed public corpus for the real-world validation phase. SELECTED BEFORE COLLECTING ANY REDUCTION RESULTS (2026-08-22) to avoid cherry-picking. 'ref' is the pin at selection time; 'resolvedSha' is recorded at clone time. category: 'target' = the kind of app reducer intends to support; 'control' = deliberately difficult/negative-control (plugins, ORMs, native deps, dynamic loading) where honest low/zero reduction is the expected measurement. calibration:true marks the 5-project calibration round.",
+  "$comment": "Fixed public corpus for the real-world validation phase. SELECTED BEFORE COLLECTING ANY REDUCTION RESULTS (16 apps on 2026-08-22; expanded to 19 on 2026-08-25 — juice-shop, outline, strapi — still before CVE-set population and before any hazard-domain analyzer result existed) to avoid cherry-picking. CORPUS v1 IS FROZEN as of the 2026-08-25 SHA pin: every entry carries resolvedSha (the exact measured commit) and shaProvenance. The 5 calibration entries are pinned to the commits recovered from the actual calibration clones, so the published 0% calibration numbers are exactly reproducible. ref stays the human-readable branch; resolvedSha is the pin — any future upstream change requires an explicit, separately-reported corpus revision, never a silent SHA update. category: target = the kind of app reducer intends to support (primary decision statistic per ADR-0006 is the median over target apps); control = deliberately difficult/negative-control (plugins, ORMs, native deps, dynamic loading) where honest low/zero reduction is the expected measurement. calibration:true marks the 5-project calibration round.",
   "corpus": [
     {
       "name": "node-express-boilerplate",
@@ -14,7 +14,9 @@
       "test": "npx jest --testPathPattern unit --ci",
       "category": "target",
       "calibration": true,
-      "notes": "Express + mongoose + passport; meaningful unit tests that run without a DB."
+      "notes": "Express + mongoose + passport; meaningful unit tests that run without a DB.",
+      "resolvedSha": "179ae84efec61b14206d0305d941daed6c6d07f9",
+      "shaProvenance": "recovered from the actual calibration clone (the commit the published 0% calibration numbers refer to)"
     },
     {
       "name": "fastify-demo",
@@ -29,7 +31,9 @@
       "test": "npm run test",
       "category": "target",
       "calibration": true,
-      "notes": "Official Fastify demo; TS compiled to dist; plugin autoloading is expected to force wide retention (honest measurement)."
+      "notes": "Official Fastify demo; TS compiled to dist; plugin autoloading is expected to force wide retention (honest measurement).",
+      "resolvedSha": "1f50cc1dc6c22c27da937eb96a0ce048ebab23a9",
+      "shaProvenance": "recovered from the actual calibration clone (the commit the published 0% calibration numbers refer to)"
     },
     {
       "name": "express-realworld",
@@ -44,7 +48,9 @@
       "test": null,
       "category": "target",
       "calibration": true,
-      "notes": "RealWorld spec backend; Prisma ORM (generated client + engine binary = native/dynamic boundary case)."
+      "notes": "RealWorld spec backend; Prisma ORM (generated client + engine binary = native/dynamic boundary case).",
+      "resolvedSha": "30b68e1e881462b2f4164ea09ab4c4f5699c7b0b",
+      "shaProvenance": "recovered from the actual calibration clone (the commit the published 0% calibration numbers refer to)"
     },
     {
       "name": "json-server",
@@ -59,7 +65,9 @@
       "test": "npm test",
       "category": "target",
       "calibration": true,
-      "notes": "Small real API server (ESM, hono-based in v1); modest dep tree; tests present."
+      "notes": "Small real API server (ESM, hono-based in v1); modest dep tree; tests present.",
+      "resolvedSha": "89a34a44b7a6a5311dc84f3b8a1b8b45c0905aea",
+      "shaProvenance": "recovered from the actual calibration clone (the commit the published 0% calibration numbers refer to)"
     },
     {
       "name": "uptime-kuma",
@@ -74,7 +82,9 @@
       "test": null,
       "category": "control",
       "calibration": true,
-      "notes": "Negative control: native deps (sqlite), socket.io, dynamic monitor loading. Expected outcome: opaque/wide retention, measured honestly."
+      "notes": "Negative control: native deps (sqlite), socket.io, dynamic monitor loading. Expected outcome: opaque/wide retention, measured honestly.",
+      "resolvedSha": "6398a9581d1c3c427a7536559f47ccf45dac08b4",
+      "shaProvenance": "recovered from the actual calibration clone (the commit the published 0% calibration numbers refer to)"
     },
     {
       "name": "hackathon-starter",
@@ -89,12 +99,14 @@
       "test": "npm test",
       "category": "target",
       "calibration": false,
-      "notes": "Large Express app with many production deps and mocha tests."
+      "notes": "Large Express app with many production deps and mocha tests.",
+      "resolvedSha": "cd28225af169eb6f1c5508862af8f6d9c2c07405",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "express-rest-boilerplate",
       "repo": "https://github.com/danielfsousa/express-rest-boilerplate",
-      "ref": "master",
+      "ref": "main",
       "language": "js",
       "modules": "cjs",
       "framework": "express",
@@ -104,7 +116,9 @@
       "test": null,
       "category": "target",
       "calibration": false,
-      "notes": "Express + mongoose REST boilerplate."
+      "notes": "Express + mongoose REST boilerplate. Declared ref was originally \"master\"; upstream renamed its default branch to \"main\" — corrected at pin time (no results had been collected for this app).",
+      "resolvedSha": "b8bed6d7cfce3cf2ef89ec1b5e47b52dfc50e874",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "bulletproof-nodejs",
@@ -119,7 +133,9 @@
       "test": null,
       "category": "target",
       "calibration": false,
-      "notes": "Express + typedi dependency injection — reflection-based DI is a recognized hazard class."
+      "notes": "Express + typedi dependency injection — reflection-based DI is a recognized hazard class.",
+      "resolvedSha": "7ce1b4690c4e96659cb1ed0d367b08b3ab35a24b",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "nestjs-realworld",
@@ -134,7 +150,9 @@
       "test": null,
       "category": "target",
       "calibration": false,
-      "notes": "NestJS + TypeORM; decorator/reflection conventions; ORM dynamic loading."
+      "notes": "NestJS + TypeORM; decorator/reflection conventions; ORM dynamic loading.",
+      "resolvedSha": "c1c2cc4e448b279ff083272df1ac50d20c3304fa",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "nestjs-typescript-starter",
@@ -149,7 +167,9 @@
       "test": "npm test",
       "category": "target",
       "calibration": false,
-      "notes": "Minimal official NestJS app — isolates framework-core retention behavior from app-specific noise."
+      "notes": "Minimal official NestJS app — isolates framework-core retention behavior from app-specific noise.",
+      "resolvedSha": "c4d9330f5513eda0fb5df594f6b34a11fde1a934",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "parse-server",
@@ -164,7 +184,9 @@
       "test": null,
       "category": "control",
       "calibration": false,
-      "notes": "Negative control: dynamic adapter loading (storage/push/cache adapters resolved by name at runtime)."
+      "notes": "Negative control: dynamic adapter loading (storage/push/cache adapters resolved by name at runtime).",
+      "resolvedSha": "b5ca12fa5e2c951e0cd4ac45ec11e23430da323b",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "verdaccio",
@@ -179,7 +201,9 @@
       "test": null,
       "category": "control",
       "calibration": false,
-      "notes": "Negative control: plugin system loaded by package name at runtime."
+      "notes": "Negative control: plugin system loaded by package name at runtime.",
+      "resolvedSha": "79237e3f9f02023491159eef709cb4a8dcc54ca9",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "nodebb",
@@ -194,7 +218,9 @@
       "test": null,
       "category": "control",
       "calibration": false,
-      "notes": "Negative control: forum with pervasive plugin hooks and dynamic require."
+      "notes": "Negative control: forum with pervasive plugin hooks and dynamic require.",
+      "resolvedSha": "ab329b3b4c4d4cc9717b2938908649382cca2b39",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "ghost",
@@ -209,7 +235,9 @@
       "test": null,
       "category": "control",
       "calibration": false,
-      "notes": "Extreme negative control: monorepo CMS, dynamic theme/adapter loading throughout."
+      "notes": "Extreme negative control: monorepo CMS, dynamic theme/adapter loading throughout.",
+      "resolvedSha": "81292b004cf59591f03d7dbe01f28f31c09ee813",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "n8n",
@@ -224,7 +252,9 @@
       "test": null,
       "category": "control",
       "calibration": false,
-      "notes": "Extreme negative control: workflow engine that loads integration nodes dynamically by design."
+      "notes": "Extreme negative control: workflow engine that loads integration nodes dynamically by design.",
+      "resolvedSha": "5a0b3f02c7c4a4bbe1b14c7261fa8dca8b59962d",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
     },
     {
       "name": "excalidraw-room",
@@ -239,7 +269,60 @@
       "test": null,
       "category": "target",
       "calibration": false,
-      "notes": "Small real production websocket relay server (socket.io)."
+      "notes": "Small real production websocket relay server (socket.io).",
+      "resolvedSha": "03ff435860b508d7cd9e005cfc90f7977ae2a593",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (pinned before CVE-set population and before any hazard-domain analyzer result)"
+    },
+    {
+      "name": "juice-shop",
+      "repo": "https://github.com/juice-shop/juice-shop",
+      "ref": "master",
+      "resolvedSha": "1618a611b173b4bf114028e6e02549950606e29d",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (added in the pre-pin expansion; pinned before CVE-set population and before any hazard-domain analyzer result)",
+      "language": "ts",
+      "modules": "cjs",
+      "framework": "express",
+      "entry": "build/app.js",
+      "install": "npm install",
+      "build": null,
+      "test": null,
+      "category": "target",
+      "calibration": false,
+      "notes": "OWASP Juice Shop: realistic Express/TS app with a large dep tree; deliberately vulnerable, so unusually valuable for the vulnerability-removal/VEX wedge. npm install triggers the server build via postinstall; entry/build metadata to confirm at clone time."
+    },
+    {
+      "name": "outline",
+      "repo": "https://github.com/outline/outline",
+      "ref": "main",
+      "resolvedSha": "d77dcdf853868c5d5fe125c895c9b71f0eff5c68",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (added in the pre-pin expansion; pinned before CVE-set population and before any hazard-domain analyzer result)",
+      "language": "ts",
+      "modules": "cjs",
+      "framework": "koa",
+      "entry": "build/server/index.js",
+      "install": "yarn install",
+      "build": "yarn build",
+      "test": null,
+      "category": "target",
+      "calibration": false,
+      "notes": "Mature ordinary production SaaS backend (Koa + Sequelize) — a \"normal SaaS\" target rather than a toy or framework sample. Entry/build metadata to confirm at clone time."
+    },
+    {
+      "name": "strapi",
+      "repo": "https://github.com/strapi/strapi",
+      "ref": "develop",
+      "resolvedSha": "1fd9d80ad5f0a2c97d09ce7529f5cd9fdb91ca2d",
+      "shaProvenance": "git ls-remote of the declared ref, 2026-08-25 (added in the pre-pin expansion; pinned before CVE-set population and before any hazard-domain analyzer result)",
+      "language": "ts",
+      "modules": "cjs",
+      "framework": "koa",
+      "entry": "examples/getstarted",
+      "install": "yarn install",
+      "build": "yarn build",
+      "test": null,
+      "category": "control",
+      "calibration": false,
+      "notes": "Negative control: intentionally hostile plugin/framework architecture (plugins resolved by name, ORM conventions, admin build). Framework monorepo — the measured app is examples/getstarted; entry/build metadata to confirm at clone time."
     }
   ]
 }
