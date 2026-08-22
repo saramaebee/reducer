@@ -3,7 +3,7 @@
   "reducer": {
     "version": "0.0.1",
     "node": "v24.3.0",
-    "runtimeNode": "v25.5.0"
+    "runtimeNode": "v24.19.0"
   },
   "globalHazards": [
     "dynamic-require",

@@ -167,3 +167,14 @@ plus 2 sharp minors, all fixed with regression tests (N-prefixed in
 
 Final state: 89/89 tests, garden 0 criticals, reduced tree byte-identical to
 the original (plus manifest), VEX 7/7, mutation 22/22, reason coverage clean.
+
+### Node runtime pin (2026-08-22)
+
+Reducer's initial target is Node 24 LTS; the repo now pins `nodejs 24.19.0`
+in `.tool-versions` (asdf). The full garden was re-run under stock node
+v24.19.0 with the asdf shim first on PATH: every result — 0 criticals, 58/58
+contracts byte-identical, 16/16 `__force` fail-closed, VEX 7/7, mutation
+22/22, reason coverage, and the reduced-tree byte-identity — is identical to
+the v25.5.0 run; the only field that changed in `garden-score.json` is
+`runtimeNode` itself. No Node-24-vs-25 compatibility difference observed.
+Note: the shim wins only when `~/.asdf/shims` precedes Homebrew on PATH.
