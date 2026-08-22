@@ -1,3 +1,4 @@
 /node_modules/
 dist-reduced/
 *.tsbuildinfo
+.claude/settings.local.json
