@@ -1,9 +1,7 @@
 {
   "cve": "CVE-SIM-GARDEN-0001",
-  "passed": false,
-  "problems": [
-    "REDUCER DEFECT: the emitted source map ships the original vulnerable body (sourcesContent) — node_modules/fab-vuln-localized/index.js.map — contradicting the VEX claim \"vulnerable implementation bytes are physically absent from the deployment\""
-  ],
+  "passed": true,
+  "problems": [],
   "transformation": {
     "package": "fab-vuln-localized@1.0.0",
     "file": "node_modules/fab-vuln-localized/index.js",

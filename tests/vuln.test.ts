@@ -26,6 +26,14 @@ describe('vuln-template: localized vulnerable API removed, package preserved', a
     expect(src).toContain('ReducerReachabilityViolation');
   });
 
+  test('emitted source map does not retain the removed implementation', () => {
+    const raw = readFileSync(path.join(outDir, 'node_modules/minilodash/index.cjs.map'), 'utf8');
+    expect(raw).not.toContain('pollutable');
+    const map = JSON.parse(raw);
+    expect(map.sourcesContent).toBeUndefined();
+    expect(map.mappings.length).toBeGreaterThan(0);
+  });
+
   test('reduced tree passes fail-closed suite under stock node', () => {
     installTest('vuln-template', outDir);
     const r = runNodeTest(outDir);

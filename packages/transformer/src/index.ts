@@ -81,5 +81,10 @@ export function stubFunctions(code: string, fileName: string, specs: StubSpec[])
   }
 
   const out = generate(ast, { sourceMaps: true, sourceFileName: fileName }, code);
-  return { code: out.code, map: out.map ?? null, stubbed };
+  // Physical-absence semantics: the map's sourcesContent would ship the
+  // ORIGINAL implementation (including every removed body), contradicting any
+  // "vulnerable_code_not_present" claim about the artifact. Omit it entirely;
+  // the mappings stay valid against the on-disk original.
+  const map = out.map ? { ...out.map, sourcesContent: undefined } : null;
+  return { code: out.code, map, stubbed };
 }

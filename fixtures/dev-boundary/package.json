@@ -1,0 +1,7 @@
+{
+  "name": "fixture-dev-boundary",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": { "prodlib": "1.0.0" },
+  "devDependencies": { "devonly": "1.0.0" }
+}

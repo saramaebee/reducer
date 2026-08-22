@@ -23,7 +23,7 @@
  *      unreachable — a reachable or merely-retained alias (incl. `default`)
  *      blocks removal of the shared implementation.
  */
-import { readFileSync, realpathSync } from 'node:fs';
+import { readFileSync, readdirSync, realpathSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { parse as babelParse } from '@babel/parser';
@@ -667,13 +667,27 @@ export function analyzeTrace(traceResult: TraceResult): Analysis {
   if (traceResult.warnings.length > 0) globalHazards.push('nft-warning');
   const uniqueHazards = [...new Set(globalHazards)];
 
-  // ---- packages with native/wasm boundaries are opaque.
+  // ---- packages with native/wasm boundaries are opaque. Detection scans each
+  // traced package's directory ON DISK, not just the NFT trace: an emscripten
+  // loader reaching its .wasm through a computed fs path (sql.js) leaves the
+  // artifact invisible to NFT, and opacity must not depend on NFT completeness.
+  // Widening-only: a boundary NFT missed still marks the package opaque.
   const opaquePkgDirs = new Set<string>();
   const opaquePkgReason = new Map<string, Reason>();
-  for (const f of files) {
-    if ((f.kind === 'node' || f.kind === 'wasm') && f.pkg) {
-      opaquePkgDirs.add(f.pkg.dir);
-      opaquePkgReason.set(f.pkg.dir, f.kind === 'wasm' ? 'wasm-boundary' : 'native-boundary');
+  const allPkgDirs = [...new Set(files.map((f) => f.pkg?.dir).filter((d): d is string => !!d))];
+  for (const dir of allPkgDirs) {
+    try {
+      for (const e of readdirSync(dir, { withFileTypes: true, recursive: true })) {
+        if (!e.isFile()) continue;
+        const ext = path.extname(e.name);
+        if (ext !== '.node' && ext !== '.wasm') continue;
+        opaquePkgDirs.add(dir);
+        if (!opaquePkgReason.has(dir)) {
+          opaquePkgReason.set(dir, ext === '.wasm' ? 'wasm-boundary' : 'native-boundary');
+        }
+      }
+    } catch {
+      /* unreadable package dir: the per-file gates below still apply */
     }
   }
 
@@ -700,7 +714,7 @@ export function analyzeTrace(traceResult: TraceResult): Analysis {
     }
   };
   const tracedReal = new Set([...tracedAbs].map(realOf));
-  const pkgDirs = [...new Set(files.map((f) => f.pkg?.dir).filter((d): d is string => !!d))];
+  const pkgDirs = allPkgDirs;
   for (const [, m] of modules) {
     if (!m) continue;
     for (const dep of m.deps) {
@@ -759,10 +773,48 @@ export function analyzeTrace(traceResult: TraceResult): Analysis {
     const m = modules.get(f.abs) ?? null;
     const label = pkgLabel(f);
 
+    // Gate 4 inputs: every NFT-reported importer must be an analyzed,
+    // recognized importer. Computed up front (facts, not verdicts) so the
+    // blocker attribution below can see them even when an earlier gate fires.
+    const nftImporters = expandParents(f.rel, byRel).map((rel) => path.join(base, rel));
+    const recognized = recognizedImporters.get(f.abs) ?? new Set<string>();
+    const unrecognized = nftImporters.filter(
+      (abs) => !recognized.has(abs) || !modules.get(abs),
+    );
+    const u = usage.get(f.abs);
+
+    // Diagnostic attribution (Part of the reporting layer, never verdict-
+    // deciding): EVERY independently-established blocker applying to this
+    // module, including ones shadowed by an earlier terminal gate. Each entry
+    // is derived from facts the analyzer computed regardless of gate ordering;
+    // nothing here speculates past a gate.
+    const moduleBlockers: Reason[] = [];
+    if (uniqueHazards.length > 0) {
+      moduleBlockers.push(...uniqueHazards.map((h): Reason => `global-hazard:${h}`));
+    }
+    if (!m) moduleBlockers.push('unsupported-syntax');
+    if (opaquePkgDirs.has(f.pkg.dir)) {
+      moduleBlockers.push(opaquePkgReason.get(f.pkg.dir) ?? 'native-boundary');
+    }
+    if (m && m.exportSurfaceUnknown.length > 0) {
+      moduleBlockers.push(...new Set(m.exportSurfaceUnknown));
+    }
+    if (unrecognized.length > 0 || !u) moduleBlockers.push('unrecognized-importer');
+    if (u?.all) moduleBlockers.push(...u.reasons);
+    const blockers = [...new Set(moduleBlockers)];
+
     const allExportsAs = (state: Confidence, reasons: Reason[]) => {
       const names = m && m.exports.size > 0 ? [...m.exports.keys()] : ['*'];
+      const shadowed = blockers.filter((r) => !reasons.includes(r));
       for (const symbol of names) {
-        verdicts.push({ module: f.rel, pkg: label, symbol, state, reasons });
+        verdicts.push({
+          module: f.rel,
+          pkg: label,
+          symbol,
+          state,
+          reasons,
+          ...(shadowed.length > 0 ? { blockingReasons: blockers } : {}),
+        });
       }
     };
 
@@ -787,19 +839,7 @@ export function analyzeTrace(traceResult: TraceResult): Analysis {
       allExportsAs('unknown', [...new Set(m.exportSurfaceUnknown)]);
       continue;
     }
-
-    // Gate 4: every NFT-reported importer must be an analyzed, recognized importer.
-    const nftImporters = expandParents(f.rel, byRel).map((rel) => path.join(base, rel));
-    const recognized = recognizedImporters.get(f.abs) ?? new Set<string>();
-    const unrecognized = nftImporters.filter(
-      (abs) => !recognized.has(abs) || !modules.get(abs),
-    );
-    if (unrecognized.length > 0) {
-      allExportsAs('unknown', ['unrecognized-importer']);
-      continue;
-    }
-    const u = usage.get(f.abs);
-    if (!u) {
+    if (unrecognized.length > 0 || !u) {
       allExportsAs('unknown', ['unrecognized-importer']);
       continue;
     }

@@ -58,15 +58,25 @@
     },
     {
       "reason": "dynamic-property-access",
-      "status": "NOT OBSERVED",
-      "observedIn": []
+      "status": "observed, but not in a claimed entry",
+      "observedIn": [
+        "express (real)"
+      ]
     },
     {
       "reason": "value-escaped",
       "status": "ok",
       "observedIn": [
+        "better-sqlite3 (real)",
+        "depd (real)",
         "esm-namespace-escape",
-        "identity-unification"
+        "express (real)",
+        "identity-unification",
+        "lodash (real)",
+        "optional-require (real)",
+        "require-at (real)",
+        "sql.js (real)",
+        "validator (real)"
       ]
     },
     {
@@ -136,12 +146,18 @@
       "reason": "export-object-mutation",
       "status": "ok",
       "observedIn": [
+        "better-sqlite3 (real)",
         "cjs-computed-export",
         "cjs-deferred-write",
         "cjs-getter",
         "cjs-overwrite",
         "cjs-proxy",
         "cjs-setprototypeof",
+        "depd (real)",
+        "express (real)",
+        "lodash (real)",
+        "optional-require (real)",
+        "require-at (real)",
         "sql.js (real)",
         "validator (real)"
       ]
@@ -164,19 +180,27 @@
       "reason": "unrecognized-importer",
       "status": "ok",
       "observedIn": [
+        "createrequire",
+        "getbuiltinmodule-factory",
+        "require-finite",
         "resolver-trace-mismatch",
+        "sql.js (real)",
         "unrecognized-importer"
       ]
     },
     {
       "reason": "native-boundary",
-      "status": "NOT OBSERVED",
-      "observedIn": []
+      "status": "ok",
+      "observedIn": [
+        "better-sqlite3 (real)"
+      ]
     },
     {
       "reason": "wasm-boundary",
-      "status": "NOT OBSERVED",
-      "observedIn": []
+      "status": "ok",
+      "observedIn": [
+        "sql.js (real)"
+      ]
     },
     {
       "reason": "runtime-code-generation",
@@ -238,6 +262,14 @@
       "require-value-escape",
       "vm-injected-loader"
     ],
+    "unrecognized-importer": [
+      "createrequire",
+      "getbuiltinmodule-factory",
+      "require-finite",
+      "resolver-trace-mismatch",
+      "sql.js (real)",
+      "unrecognized-importer"
+    ],
     "nft-warning": [
       "better-sqlite3 (real)",
       "getbuiltinmodule-factory",
@@ -280,8 +312,16 @@
       "esm-shared-impl"
     ],
     "value-escaped": [
+      "better-sqlite3 (real)",
+      "depd (real)",
       "esm-namespace-escape",
-      "identity-unification"
+      "express (real)",
+      "identity-unification",
+      "lodash (real)",
+      "optional-require (real)",
+      "require-at (real)",
+      "sql.js (real)",
+      "validator (real)"
     ],
     "export-star": [
       "esm-export-star"
@@ -314,12 +354,18 @@
       "vm-no-loader"
     ],
     "export-object-mutation": [
+      "better-sqlite3 (real)",
       "cjs-computed-export",
       "cjs-deferred-write",
       "cjs-getter",
       "cjs-overwrite",
       "cjs-proxy",
       "cjs-setprototypeof",
+      "depd (real)",
+      "express (real)",
+      "lodash (real)",
+      "optional-require (real)",
+      "require-at (real)",
       "sql.js (real)",
       "validator (real)"
     ],
@@ -338,12 +384,17 @@
     "unsupported-export-kind": [
       "unsupported-export-kind"
     ],
-    "unrecognized-importer": [
-      "resolver-trace-mismatch",
-      "unrecognized-importer"
-    ],
     "resolver-trace-mismatch": [
       "resolver-trace-mismatch"
+    ],
+    "dynamic-property-access": [
+      "express (real)"
+    ],
+    "native-boundary": [
+      "better-sqlite3 (real)"
+    ],
+    "wasm-boundary": [
+      "sql.js (real)"
     ]
   }
 }

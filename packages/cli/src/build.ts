@@ -1,4 +1,4 @@
-import { cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, readlinkSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { trace, type TraceResult } from '@reducer/tracer';
 import { analyzeTrace, type Analysis, type StubCandidate } from '@reducer/analyzer';
@@ -6,6 +6,8 @@ import { stubFunctions } from '@reducer/transformer';
 import {
   REDUCER_VERSION,
   sha256,
+  type ArtifactFileRecord,
+  type ArtifactReport,
   type ModuleRecord,
   type ReducerManifest,
   type SymbolVerdict,
@@ -37,6 +39,56 @@ function findBase(entryAbs: string): string {
   }
 }
 
+interface UniverseFile {
+  abs: string;
+  /** POSIX-style path relative to base (same key format as the tracer). */
+  rel: string;
+  isSymlink: boolean;
+}
+
+/**
+ * The production universe: every file that exists in the production
+ * application filesystem. This — NOT the NFT trace — is the set of files
+ * eligible to exist in the output. The only files excluded up front are
+ * packages the lockfile explicitly marks dev-only (the standard
+ * production-install boundary: `npm ci --omit=dev` would not install them).
+ * Anything physically present but undeclared is UNKNOWN, and unknown means
+ * keep. Within the universe, omission requires proof.
+ */
+function walkFiles(root: string, base: string, outDir: string | null, excludeRels?: Set<string>): UniverseFile[] {
+  const files: UniverseFile[] = [];
+  const walk = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === '.git') continue;
+      const abs = path.join(dir, e.name);
+      if (outDir && abs === outDir) continue;
+      const rel = path.relative(base, abs).split(path.sep).join('/');
+      if (excludeRels?.has(rel)) continue; // excluded package root (whole subtree)
+      if (e.isSymbolicLink()) {
+        files.push({ abs, rel, isSymlink: true }); // preserved verbatim, never followed
+        continue;
+      }
+      if (e.isDirectory()) walk(abs);
+      else if (e.isFile()) files.push({ abs, rel, isSymlink: false });
+    }
+  };
+  walk(root);
+  return files;
+}
+
+function collectUniverse(base: string, outDir: string | null): { files: UniverseFile[]; devPkgRels: Set<string> } {
+  const devPkgRels = new Set<string>(); // POSIX rels like "node_modules/foo"
+  try {
+    const lock = JSON.parse(readFileSync(path.join(base, 'package-lock.json'), 'utf8'));
+    for (const [p, entry] of Object.entries<any>(lock.packages ?? {})) {
+      if (p && entry?.dev === true) devPkgRels.add(p);
+    }
+  } catch {
+    /* no lockfile — no production-install boundary, exclude nothing */
+  }
+  return { files: walkFiles(base, base, outDir, devPkgRels), devPkgRels };
+}
+
 function dirBytes(dir: string): { bytes: number; files: number } {
   let bytes = 0;
   let files = 0;
@@ -55,8 +107,50 @@ export async function run(opts: RunOptions): Promise<RunResult> {
   const base = findBase(entryAbs);
   const roots = [entryAbs, ...(opts.additionalRoots ?? []).map((r) => path.resolve(r))];
 
+  // Resolve the output dir up front: the universe walk must exclude it, and
+  // it must never be (or contain) the source base — the cleanup below would
+  // delete the sources being built.
+  let outDir: string | null = null;
+  if (opts.write) {
+    outDir = path.resolve(opts.outDir ?? 'dist-reduced');
+    const baseFromOut = path.relative(outDir, base);
+    if (baseFromOut === '' || (!baseFromOut.startsWith('..') && !path.isAbsolute(baseFromOut))) {
+      throw new Error(`refusing to write to ${outDir}: it is or contains the project base ${base}`);
+    }
+  }
+
   const traced = await trace(roots, base);
   const analysis = analyzeTrace(traced);
+
+  // ---- artifact model: output = production universe ∪ NFT-traced files,
+  // minus proven-unreachable files. NFT supplies POSITIVE reachability
+  // evidence only. CRITICAL INVARIANT: `nftTrace.has(file) === false` does
+  // NOT imply `fileState === "proven-unreachable"` — NFT omission must never
+  // authorize deletion. No file-level unreachability proofs exist yet, so
+  // nothing is removed at file granularity.
+  const { files: universeFiles, devPkgRels } = collectUniverse(base, outDir);
+  const universeRels = new Set(universeFiles.map((u) => u.rel));
+  const emitByRel = new Map<string, UniverseFile>(universeFiles.map((u) => [u.rel, u]));
+  // A dev-excluded package with positive NFT evidence is actually loaded in
+  // production: positive evidence widens — retain the whole package.
+  const tracedDevPkgs = new Set<string>();
+  for (const f of traced.files) {
+    for (const d of devPkgRels) {
+      if (f.rel === d || f.rel.startsWith(`${d}/`)) tracedDevPkgs.add(d);
+    }
+  }
+  for (const d of tracedDevPkgs) {
+    for (const u of walkFiles(path.join(base, d), base, outDir)) {
+      if (!emitByRel.has(u.rel)) emitByRel.set(u.rel, u);
+    }
+  }
+  // Defensive union: any traced file still missing (should not happen) is
+  // emitted rather than dropped.
+  for (const f of traced.files) {
+    if (!emitByRel.has(f.rel)) {
+      emitByRel.set(f.rel, { abs: f.abs, rel: f.rel, isSymlink: lstatSync(f.abs).isSymbolicLink() });
+    }
+  }
 
   // --keep-package: forced retention, recorded as such.
   const keep = new Set(opts.keepPackages ?? []);
@@ -177,6 +271,26 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     };
   });
 
+  // ---- artifact provenance: why does every emitted file exist?
+  const tracedRels = new Set(traced.files.map((f) => f.rel));
+  const artifactFiles: ArtifactFileRecord[] = [...emitByRel.keys()].sort().map((rel) => ({
+    file: rel,
+    state: 'retained',
+    reasons: tracedRels.has(rel)
+      ? universeRels.has(rel)
+        ? ['nft-traced', 'production-universe']
+        : ['nft-traced']
+      : ['production-universe', 'unknown-dynamic-reachability'],
+  }));
+  const artifact: ArtifactReport = {
+    universeFiles: emitByRel.size,
+    nftTracedFiles: traced.files.length,
+    devExcludedPackages: [...devPkgRels].filter((d) => !tracedDevPkgs.has(d)).sort(),
+    files: artifactFiles,
+    removed: [], // file removal requires an explicit proof; none exist yet
+  };
+  const universeSymlinks = [...emitByRel.values()].filter((u) => u.isSymlink).length;
+
   const manifest: ReducerManifest = {
     reducerVersion: REDUCER_VERSION,
     entrypoints: traced.entrypoints,
@@ -191,6 +305,12 @@ export async function run(opts: RunOptions): Promise<RunResult> {
       ...traced.files
         .filter((f) => lstatSync(f.abs).isSymbolicLink())
         .map((f) => `symlink preserved verbatim; reduced tree may be incomplete or non-portable: ${f.rel}`),
+      ...(universeSymlinks > 0
+        ? [`${universeSymlinks} symlink(s) in the production universe preserved verbatim; the tree may be non-portable if targets point outside it`]
+        : []),
+      ...[...tracedDevPkgs].map(
+        (d) => `lockfile marks ${d} dev-only but NFT traced files inside it; retained in full (positive evidence widens)`,
+      ),
     ],
     metrics: {
       original: { dependencyBytes: original.bytes, dependencyFiles: original.files },
@@ -213,18 +333,13 @@ export async function run(opts: RunOptions): Promise<RunResult> {
       },
       retention: { byReason },
     },
+    artifact,
   };
 
-  // ---- emit deployment tree
-  let outDir: string | null = null;
-  if (opts.write) {
-    outDir = path.resolve(opts.outDir ?? 'dist-reduced');
-    // Never allow the output dir to be (or contain) the source base:
-    // the cleanup below would delete the sources being built.
-    const baseFromOut = path.relative(outDir, base);
-    if (baseFromOut === '' || (!baseFromOut.startsWith('..') && !path.isAbsolute(baseFromOut))) {
-      throw new Error(`refusing to write to ${outDir}: it is or contains the project base ${base}`);
-    }
+  // ---- emit deployment tree: the full production universe, with transformed
+  // files replaced. Iterating emitByRel (never traced.files) is the invariant
+  // in action — a file NFT missed still ships.
+  if (opts.write && outDir) {
     if (existsSync(outDir)) {
       const entries = readdirSync(outDir);
       if (entries.length > 0 && !entries.includes('reducer-manifest.json')) {
@@ -236,15 +351,20 @@ export async function run(opts: RunOptions): Promise<RunResult> {
     }
     mkdirSync(outDir, { recursive: true });
 
-    for (const f of traced.files) {
-      const dest = path.join(outDir, f.rel);
+    for (const [rel, u] of emitByRel) {
+      // An original .map for a transformed file would leak the removed body
+      // via sourcesContent — the transformed map written below supersedes it.
+      if (rel.endsWith('.map') && transformedCode.has(rel.slice(0, -'.map'.length))) continue;
+      const dest = path.join(outDir, rel);
       mkdirSync(path.dirname(dest), { recursive: true });
-      const replaced = transformedCode.get(f.rel);
+      const replaced = transformedCode.get(rel);
       if (replaced) {
-        writeFileSync(dest, replaced.code, { mode: statSync(f.abs).mode });
+        writeFileSync(dest, replaced.code, { mode: statSync(u.abs).mode });
         if (replaced.map) writeFileSync(`${dest}.map`, JSON.stringify(replaced.map));
+      } else if (u.isSymlink) {
+        symlinkSync(readlinkSync(u.abs), dest); // verbatim target, incl. relative links
       } else {
-        cpSync(f.abs, dest);
+        cpSync(u.abs, dest);
       }
     }
     // Package-preserving: always include the app's own package.json.
