@@ -45,7 +45,11 @@ export type SpecifierDomain =
 
 export type ResolvedTargetDomain =
   | { tier: 'exact' | 'finite'; files: string[]; builtins: string[]; missing: string[] }
-  | { tier: 'package'; pkg: string; files: string[] } // every universe JS file of pkg
+  // every universe JS file of pkg; `gates` records WHY the package tier was
+  // reached when it was not the specifier's own tier (e.g. a dynamic-import
+  // sink widened by `import-condition-divergence`), so the blocking-set stays
+  // complete and the right gate can be suppressed in a counterfactual.
+  | { tier: 'package'; pkg: string; files: string[]; gates?: GateTag[] }
   | { tier: 'unbounded'; gates: GateTag[] };          // all universe JS
 
 // ---------------------------------------------------------------------------
@@ -77,6 +81,7 @@ export type GateTag =
   | 'vm-conservative'              // strict model: vm maximally loader-capable
   | 'require-cache-mutation'       // cache/extensions mutation (universe-wide in strict model)
   | 'result-escaped'               // loaded value escaped → full surface of domain
+  | 'dynamic-import'               // literal import() static edge: target surface use unknown
   | 'unsupported-syntax'           // parse failure → opaque module
   // surface/projection gates (module-local)
   | 'open-export-surface'          // surface not statically closed
@@ -93,6 +98,7 @@ export type GateTag =
   | 'native-boundary'
   | 'wasm-boundary'
   | 'nft-positive-evidence'        // NFT traced it: known reachable (never suppressible)
+  | 'resolve-sink-retained'        // require.resolve target: file bytes retained, module not initialized
   | 'static-import'                // statically imported name (never suppressible)
   | 'module-init-reachable'        // file retained because its module can initialize
   | 'entrypoint';
@@ -102,7 +108,32 @@ export const UNSUPPRESSIBLE_GATES: readonly GateTag[] = [
   'nft-positive-evidence',
   'static-import',
   'entrypoint',
+  'resolve-sink-retained',
 ];
+
+/**
+ * Runtime witness of the GateTag union. The per-module facts carry `Reason`
+ * (an open string type from @reducer/manifest), so the engine must filter
+ * rather than cast when it lifts a Reason into a blocking-set.
+ */
+export const KNOWN_GATES: readonly GateTag[] = [
+  'unbounded-loader-target', 'package-domain-whole', 'unresolved-specifier',
+  'import-condition-divergence', 'escaped-loader', 'wrapper-unprovable', 'wrapper-depth',
+  'generated-source-unknown', 'generated-source-depth', 'vm-conservative',
+  'require-cache-mutation', 'result-escaped', 'dynamic-import', 'unsupported-syntax',
+  'open-export-surface', 'export-object-mutation', 'dynamic-property-access',
+  'value-escaped', 'destructure-rest', 'binding-reassigned', 'reexport-namespace',
+  'export-star', 'unsupported-export-kind', 'internal-reference', 'shared-implementation',
+  'native-boundary', 'wasm-boundary', 'nft-positive-evidence', 'static-import',
+  'module-init-reachable', 'entrypoint', 'resolve-sink-retained',
+];
+
+const GATE_SET: ReadonlySet<string> = new Set<string>(KNOWN_GATES);
+
+/** Lift an open `Reason` (or any string) into a GateTag, or drop it. */
+export function asGates(reasons: readonly string[]): GateTag[] {
+  return reasons.filter((r): r is GateTag => GATE_SET.has(r));
+}
 
 export type RefinementName =
   | 'SR-vm-known-globals'            // vm sites w/ object-literal context, no loader-like key, constant code
@@ -131,9 +162,32 @@ export interface LoadSink {
   result: ResultFlow;
   /** for vm sinks: evidence for SR-vm-known-globals headroom */
   vmEvidence?: VmSiteEvidence;
+  /** for parameter-fed sinks: evidence for SR-cross-module-wrapper headroom */
+  wrapperEvidence?: WrapperEvidence;
   /** generated-source recursion depth at which this sink was found (0 = source) */
   generatedDepth: number;
   loc: { line: number; column: number };
+}
+
+/**
+ * Loader-wrapper propagation evidence (design §5 + SR-cross-module-wrapper).
+ * `resolved` sinks took the union of call-site argument domains under the full
+ * precondition set. An unresolved one widened; `crossModuleOnly` marks the sinks
+ * that failed ONLY the same-module-callers condition, which is exactly the set
+ * the SR-cross-module-wrapper counterfactual may admit.
+ */
+export interface WrapperEvidence {
+  /** wrapper nesting depth at which this was decided (0 = the sink's own function) */
+  depth: number;
+  resolved: boolean;
+  /** wrapper function name, or '<anonymous>' */
+  fn: string;
+  /** in-module call-site argument domains (union basis / SR counterfactual input) */
+  callSiteDomains: SpecifierDomain[];
+  /** failed ONLY the same-module condition (the value escapes solely by export) */
+  crossModuleOnly: boolean;
+  /** why it widened, when it did */
+  why?: string;
 }
 
 export interface VmSiteEvidence {
@@ -169,6 +223,14 @@ export interface ModuleFacts {
   sinks: LoadSink[];
   /** module records escaped-loader state (capability crossed unmodeled boundary) */
   escapedLoader: boolean;
+  /**
+   * Sink-less gates established by this module (e.g. require.cache mutation,
+   * which is universe-wide in the strict model). The engine decides their blast
+   * radius; facts only record that the module established them.
+   */
+  moduleGates: GateTag[];
+  /** every conservative widening this module took, with its reason */
+  widened: { where: string; why: string }[];
   parseFailed: boolean;
 }
 
