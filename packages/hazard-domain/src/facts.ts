@@ -14,13 +14,14 @@
  * The analyzer's per-module *hazard* flags are intentionally NOT ported: they
  * are the flat syntax model ADR-0002 replaces with capabilities.
  */
-import { createRequire } from 'node:module';
 import { parse as babelParse } from '@babel/parser';
 import _traverse from '@babel/traverse';
 import type { Binding, NodePath } from '@babel/traverse';
 import * as t from '@babel/types';
 import type { Reason } from '@reducer/manifest';
-import type { ExportFact, ModuleFacts, StaticEdge } from './types.ts';
+import type { ExportFact, ExternalNameUse, ModuleFacts, StaticEdge } from './types.ts';
+import { resolveSpecifier } from './resolve.ts';
+import { evaluateSpecifierDomain, unbounded } from './specifier.ts';
 import {
   analyzeCapabilities,
   newUsage,
@@ -35,7 +36,53 @@ const traverse: typeof _traverse = (_traverse as any).default ?? _traverse;
 interface EdgeDraft {
   source: string;
   resolvedAbs: string | null;
+  /** RES-F3: resolution failed out of ignorance, not by the missing-package proof */
+  unresolved: boolean;
+  /** RES-F2: Node resolves this edge under IMPORT conditions at runtime */
+  importCondition: boolean;
   u: UsageSink;
+  nameUses: Map<string, ExternalNameUse>;
+}
+
+/** A name imported from another module, and the local binding that holds it. */
+interface ImportedName {
+  source: string;
+  name: string;
+  local: string;
+  at: NodePath;
+}
+
+/**
+ * A universe JS file we could not turn into an AST — unreadable on disk, or a
+ * babel parse failure. Design §2: opaque, retained, and an Unbounded active
+ * sink the moment it is module-reachable. Every universe JS file MUST end up
+ * with facts: a file the fixpoint finds reachable but has no facts for would
+ * contribute no load sinks at all, which is the unsound direction.
+ */
+export function opaqueModuleFacts(
+  abs: string,
+  rel: string,
+  thirdParty: boolean,
+  pkg: { name: string; version: string; dir: string } | null,
+  why: string,
+  bytes = 0,
+): ModuleFacts {
+  return {
+    rel,
+    abs,
+    bytes,
+    format: 'cjs',
+    thirdParty,
+    pkg,
+    exports: new Map(),
+    surfaceOpen: ['unsupported-syntax'],
+    staticEdges: [],
+    sinks: [],
+    escapedLoader: false,
+    moduleGates: [],
+    widened: [{ where: rel, why }],
+    parseFailed: true,
+  };
 }
 
 export function extractModuleFacts(
@@ -83,21 +130,31 @@ export function extractModuleFacts(
   const format: 'esm' | 'cjs' = ast.program.sourceType === 'module' ? 'esm' : 'cjs';
   const surfaceOpen: Reason[] = [];
 
-  const req = createRequire(abs);
-  const resolveDep = (source: string): string | null => {
-    try {
-      return req.resolve(source);
-    } catch {
-      return null;
-    }
-  };
   const edgeMap = new Map<string, EdgeDraft>();
-  const edgeFor = (source: string): EdgeDraft => {
+  const importedNames: ImportedName[] = [];
+  /**
+   * RES-F2/RES-F3. `importCondition` marks the edges Node resolves under IMPORT
+   * conditions (every ESM `import`/`export from`, and every literal `import()`)
+   * while `createRequire().resolve` below answers the REQUIRE branch. An edge
+   * whose resolution fails out of IGNORANCE is flagged `unresolved` instead of
+   * being silently dropped — dropping it hides a module the importer really
+   * does load, which is the one direction this analyzer may never take.
+   */
+  const edgeFor = (source: string, importCondition = false): EdgeDraft => {
     let d = edgeMap.get(source);
     if (!d) {
-      d = { source, resolvedAbs: resolveDep(source), u: newUsage() };
+      const r = resolveSpecifier(abs, source);
+      d = {
+        source,
+        resolvedAbs: r.kind === 'file' ? r.abs : null,
+        unresolved: r.kind === 'unresolved',
+        importCondition,
+        u: newUsage(),
+        nameUses: new Map(),
+      };
       edgeMap.set(source, d);
     }
+    d.importCondition ||= importCondition;
     return d;
   };
 
@@ -106,12 +163,13 @@ export function extractModuleFacts(
   const rawExports = new Map<string, string | null>();
 
   let programPath: NodePath<t.Program> | null = null;
+  let hasWith = false;
   const objectBindingSeen = new Set<Binding>();
   const deferredBindings: { scopePath: NodePath; name: string; u: UsageSink }[] = [];
   const deferredImportBindings: { name: string; u: UsageSink }[] = [];
 
   /** analyzer:238 handleRequireSite. */
-  const handleRequireSite = (callPath: NodePath<t.CallExpression>, u: UsageSink) => {
+  const handleRequireSite = (callPath: NodePath<t.CallExpression>, u: UsageSink, requireSource: string) => {
     const parent = callPath.parentPath;
     if (parent.isVariableDeclarator() && parent.node.init === callPath.node) {
       const id = parent.node.id;
@@ -121,6 +179,17 @@ export function extractModuleFacts(
       }
       if (t.isObjectPattern(id)) {
         patternNames(id, u);
+        for (const prop of id.properties) {
+          if (!t.isObjectProperty(prop) || prop.computed || !t.isIdentifier(prop.value)) continue;
+          const key = t.isIdentifier(prop.key)
+            ? prop.key.name
+            : t.isStringLiteral(prop.key)
+              ? prop.key.value
+              : null;
+          if (key !== null) {
+            importedNames.push({ source: requireSource, name: key, local: prop.value.name, at: parent });
+          }
+        }
         return;
       }
       u.all = true;
@@ -146,12 +215,17 @@ export function extractModuleFacts(
     Program(p) {
       programPath = p;
     },
+    WithStatement() {
+      hasWith = true;
+    },
     ImportDeclaration(p) {
-      const edge = edgeFor(p.node.source.value);
+      const edge = edgeFor(p.node.source.value, true);
       for (const spec of p.node.specifiers) {
         if (t.isImportSpecifier(spec)) {
           const imported = spec.imported;
-          edge.u.names.add(t.isIdentifier(imported) ? imported.name : imported.value);
+          const name = t.isIdentifier(imported) ? imported.name : imported.value;
+          edge.u.names.add(name);
+          importedNames.push({ source: p.node.source.value, name, local: spec.local.name, at: p });
         } else if (t.isImportDefaultSpecifier(spec)) {
           // analyzer:283 — default of an ESM target, whole object for a CJS one.
           edge.u.names.add('default');
@@ -163,7 +237,7 @@ export function extractModuleFacts(
     },
     ExportNamedDeclaration(p) {
       if (p.node.source) {
-        const edge = edgeFor(p.node.source.value);
+        const edge = edgeFor(p.node.source.value, true);
         for (const spec of p.node.specifiers) {
           if (t.isExportSpecifier(spec)) {
             edge.u.names.add(t.isIdentifier(spec.local) ? spec.local.name : (spec.local as any).value);
@@ -210,7 +284,7 @@ export function extractModuleFacts(
     },
     ExportAllDeclaration(p) {
       recognizedExportNodes.add(p.node);
-      const edge = edgeFor(p.node.source.value);
+      const edge = edgeFor(p.node.source.value, true);
       edge.u.all = true;
       edge.u.gates.add('export-star');
       surfaceOpen.push('export-star');
@@ -224,7 +298,7 @@ export function extractModuleFacts(
           // surface use is unknown. (The capability pass ALSO records it as a
           // load sink; the two agree on the target and are not double-counted
           // by the engine, which keys edges by resolved target.)
-          const edge = edgeFor(arg.value);
+          const edge = edgeFor(arg.value, true);
           edge.u.all = true;
           edge.u.gates.add('dynamic-import');
         }
@@ -236,7 +310,8 @@ export function extractModuleFacts(
         t.isStringLiteral(p.node.arguments[0]) &&
         p.node.arguments.length === 1
       ) {
-        handleRequireSite(p, edgeFor((p.node.arguments[0] as t.StringLiteral).value).u);
+        const src = (p.node.arguments[0] as t.StringLiteral).value;
+        handleRequireSite(p, edgeFor(src).u, src);
       }
     },
   });
@@ -248,6 +323,22 @@ export function extractModuleFacts(
       parseFailed: true,
       surfaceOpen: ['unsupported-syntax'],
       widened: [{ where: rel, why: 'no Program node: module is opaque' }],
+    };
+  }
+
+  // CAP-F5. A `with` block makes scope resolution DYNAMIC: babel still reports
+  // static bindings, so specifier constant-folding (`with(o){ require(s) }`
+  // where `o.s` shadows the local `s`) and the shadowing guards that decide
+  // whether `require`/`module`/`exports` are the real ones all trust bindings
+  // that do not hold at runtime. Nothing downstream of this can be believed —
+  // the module is opaque, exactly like a parse failure.
+  if (hasWith) {
+    return {
+      ...base,
+      format,
+      parseFailed: true,
+      surfaceOpen: ['unsupported-syntax'],
+      widened: [{ where: rel, why: 'WithStatement makes scope resolution dynamic: module is opaque' }],
     };
   }
   const program: NodePath<t.Program> = programPath;
@@ -360,6 +451,22 @@ export function extractModuleFacts(
           !!p.findParent((a) => recognizedExportNodes.has(a.node));
         if (!insideRecognized) surfaceOpen.push('export-object-mutation');
       },
+      // CAP-F7 — a CJS module's top-level `this` IS `module.exports`. It is a
+      // third spelling of the export machinery the identifier scan above cannot
+      // see: `globalThis.registry = this` hands the whole surface out, and
+      // `this.y = fn` writes an export. Arrow functions do not rebind `this`,
+      // so the nearest NON-arrow function ancestor decides.
+      ThisExpression(p) {
+        for (let a: NodePath | null = p.parentPath; a; a = a.parentPath) {
+          if (a.isProgram()) break;
+          if (a.isFunction() && !a.isArrowFunctionExpression()) return; // its own `this`
+          if (a.isClass()) return;
+        }
+        const insideRecognized =
+          recognizedExportNodes.has(p.node) ||
+          !!p.findParent((a) => recognizedExportNodes.has(a.node));
+        if (!insideRecognized) surfaceOpen.push('export-object-mutation');
+      },
     });
   }
 
@@ -448,13 +555,53 @@ export function extractModuleFacts(
   };
   analyzeCapabilities(program, ctx);
 
+  // SR-F7. The per-module half of the universe-wide reference set: for each
+  // name pulled out of another module, either EVERY reference is a direct call
+  // (and we keep the argument domains) or the name is marked `nonCall` and the
+  // SR-cross-module-wrapper admission must refuse. A name with no entry here is
+  // also a refusal — absence of evidence is not evidence.
+  for (const im of importedNames) {
+    const d = edgeMap.get(im.source);
+    if (!d) continue;
+    let use = d.nameUses.get(im.name);
+    if (!use) d.nameUses.set(im.name, (use = { callArgs: [], nonCall: false }));
+    const binding = im.at.scope.getBinding(im.local);
+    if (!binding || binding.constantViolations.length > 0) {
+      use.nonCall = true;
+      continue;
+    }
+    for (const ref of binding.referencePaths) {
+      const parent = ref.parentPath;
+      if (!parent?.isCallExpression() || parent.node.callee !== ref.node) {
+        use.nonCall = true;
+        continue;
+      }
+      use.callArgs.push(
+        parent.get('arguments').map((a) =>
+          a.isSpreadElement() ? unbounded(['wrapper-unprovable']) : evaluateSpecifierDomain(a as NodePath<t.Node>),
+        ),
+      );
+    }
+  }
+
   const staticEdges: StaticEdge[] = [...edgeMap.values()].map((d) => ({
     source: d.source,
     resolvedAbs: d.resolvedAbs,
     names: d.u.names,
     all: d.u.all,
-    reasons: [...d.u.gates] as Reason[],
+    reasons: [...d.u.gates, ...(d.unresolved ? (['unresolved-specifier'] as const) : [])] as Reason[],
+    unresolved: d.unresolved,
+    importCondition: d.importCondition,
+    nameUses: d.nameUses,
   }));
+  for (const e of staticEdges) {
+    if (e.unresolved) {
+      ctx.widened.push({
+        where: rel,
+        why: `static edge ${JSON.stringify(e.source)} does not resolve: ignorance, widened (unresolved-specifier)`,
+      });
+    }
+  }
 
   return {
     rel,

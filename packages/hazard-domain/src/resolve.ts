@@ -12,10 +12,10 @@
  */
 import { createRequire } from 'node:module';
 import { isBuiltin } from 'node:module';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { GateTag, LoadSink, ResolvedTargetDomain, SpecifierDomain } from './types.ts';
-import { packageJsFiles, pullIn, type Universe, type UniverseFile } from './universe.ts';
+import { fileFor, packageJsFiles, pullIn, type Universe, type UniverseFile } from './universe.ts';
 
 const requireCache = new Map<string, NodeJS.Require>();
 function requireFrom(importerAbs: string): NodeJS.Require {
@@ -34,17 +34,61 @@ export function packageOfSpecifier(spec: string): string | null {
   return parts[0] || null;
 }
 
+// RES-F1. Node's own condition sets, in the order Node applies them. Matching
+// is by KEY INSERTION ORDER in the exports object, not by this list's order —
+// these are only membership tests.
+const REQUIRE_CONDS: ReadonlySet<string> = new Set(['node-addons', 'node', 'require', 'default']);
+const IMPORT_CONDS: ReadonlySet<string> = new Set(['node', 'import', 'default']);
+
 /**
- * A package whose `exports` field maps some subpath to DIFFERENT files under
- * the `import` and `require` conditions. `createRequire().resolve()` only ever
- * answers the require branch, so for a dynamic-import sink our resolved file is
- * not necessarily the one Node loads — the honest answer is the whole package.
+ * Evaluate one `exports` target under a condition set, exactly as Node does:
+ * a string is the target, an array is a fallback list (first match wins), an
+ * object is a conditions map walked in insertion order, and `null` is an
+ * explicit block. `undefined` means "no branch matched".
+ */
+function evalConditions(node: unknown, conds: ReadonlySet<string>): string | null | undefined {
+  if (node === null) return null;
+  if (typeof node === 'string') return node;
+  if (Array.isArray(node)) {
+    for (const v of node) {
+      const r = evalConditions(v, conds);
+      if (r !== undefined) return r;
+    }
+    return undefined;
+  }
+  if (typeof node !== 'object') return undefined;
+  for (const [k, v] of Object.entries(node as Record<string, unknown>)) {
+    if (k.startsWith('.')) return undefined; // a subpath map, not a conditions map
+    if (!conds.has(k)) continue;
+    const r = evalConditions(v, conds);
+    if (r !== undefined) return r;
+  }
+  return undefined;
+}
+
+/** The two orders disagree, INCLUDING "only one of them resolves at all". */
+function conditionDiverges(node: unknown): boolean {
+  return evalConditions(node, REQUIRE_CONDS) !== evalConditions(node, IMPORT_CONDS);
+}
+
+/**
+ * A package whose `exports` field answers DIFFERENTLY under the require and the
+ * import condition orders. `createRequire().resolve()` only ever answers the
+ * require branch, so for anything Node resolves under import conditions our
+ * resolved file is not necessarily the one Node loads — the honest answer is
+ * the whole package.
  *
- * APPROXIMATION (gate `import-condition-divergence`): the whole `exports` tree
- * is scanned rather than only the subtree the resolved subpath selects. That is
- * strictly the widening direction (a package with divergence anywhere widens
- * everywhere in it); exact per-subpath condition resolution is
- * SR-import-condition-resolution.
+ * RES-F1: the old test demanded a literal `import` AND a literal `require` key
+ * in the same object, which misses `{import,default}`, `{import,node}`,
+ * `{node,import}` and import-only maps (487 + 210 real corpus packages). The
+ * two-order evaluation above subsumes all of them. The old key-pair walk is
+ * kept as an OR-term so no previously-detected package stops being detected
+ * (a divergent branch under a condition node never selects — `browser`, say —
+ * still widens).
+ *
+ * APPROXIMATION (gate `import-condition-divergence`): every subpath is checked
+ * rather than only the one the sink selects. That is strictly the widening
+ * direction; exact per-subpath resolution is SR-import-condition-resolution.
  */
 const divergenceCache = new Map<string, boolean>();
 export function hasImportConditionDivergence(pkgDir: string): boolean {
@@ -53,28 +97,99 @@ export function hasImportConditionDivergence(pkgDir: string): boolean {
   let diverges = false;
   try {
     const pj = JSON.parse(readFileSync(path.join(pkgDir, 'package.json'), 'utf8'));
-    const walk = (node: unknown): void => {
-      if (diverges || node === null || typeof node !== 'object') return;
-      if (Array.isArray(node)) {
-        for (const v of node) walk(v);
-        return;
-      }
-      const obj = node as Record<string, unknown>;
-      const imp = obj.import;
-      const req = obj.require;
-      if (imp !== undefined && req !== undefined && JSON.stringify(imp) !== JSON.stringify(req)) {
-        diverges = true;
-        return;
-      }
-      for (const v of Object.values(obj)) walk(v);
-    };
-    walk(pj.exports);
+    const exp = pj.exports;
+    if (exp !== undefined && exp !== null) {
+      const isSubpathMap =
+        typeof exp === 'object' && !Array.isArray(exp) && Object.keys(exp).some((k) => k.startsWith('.'));
+      const branches: unknown[] = isSubpathMap ? Object.values(exp as Record<string, unknown>) : [exp];
+      diverges = branches.some(conditionDiverges);
+    }
+    if (!diverges) {
+      const walk = (node: unknown): void => {
+        if (diverges || node === null || typeof node !== 'object') return;
+        if (Array.isArray(node)) {
+          for (const v of node) walk(v);
+          return;
+        }
+        const obj = node as Record<string, unknown>;
+        const imp = obj.import;
+        const req = obj.require;
+        if (imp !== undefined && req !== undefined && JSON.stringify(imp) !== JSON.stringify(req)) {
+          diverges = true;
+          return;
+        }
+        for (const v of Object.values(obj)) walk(v);
+      };
+      walk(exp);
+    }
   } catch {
     /* unreadable manifest: no evidence of divergence, and the package-tier
        widening this function feeds is not the only conservative path here */
   }
   divergenceCache.set(pkgDir, diverges);
   return diverges;
+}
+
+/**
+ * RES-F4. Is the package on disk at all, as seen from `importerAbs`?
+ *
+ * The empty-contribution proof below is only valid when the package genuinely
+ * does not exist. `ERR_PACKAGE_PATH_NOT_EXPORTED` / `ERR_PACKAGE_IMPORT_NOT_DEFINED`
+ * mean the package IS installed and merely refuses this subpath under the
+ * REQUIRE conditions — it may well answer under import conditions, so that is
+ * ignorance, not absence.
+ *
+ * Presence is probed as a `node_modules/<pkg>` DIRECTORY up the importer's
+ * ancestor chain — not against `jsByPkgName` (the universe indexes by the
+ * manifest's `name` while a specifier names the INSTALL DIRECTORY, and an
+ * aliased install `"aliasdir": "npm:realname@1"` makes those differ), and not
+ * via `req.resolve(pkg + '/package.json')` (under bun that reaches bun's GLOBAL
+ * install cache, so the answer would depend on which runtime the analyzer runs
+ * under — exactly the runtime-dependence RES-F11 removes elsewhere). A
+ * directory probe also answers "installed but refusing this subpath" correctly,
+ * which is the case this rule exists for.
+ */
+function packagePresent(pkg: string, importerAbs: string): boolean {
+  let dir = path.dirname(importerAbs);
+  while (true) {
+    if (existsSync(path.join(dir, 'node_modules', pkg))) return true;
+    const parent = path.dirname(dir);
+    if (parent === dir) return false;
+    dir = parent;
+  }
+}
+
+export type SpecResolution =
+  | { kind: 'file'; abs: string }
+  | { kind: 'builtin'; name: string }
+  /** proven absent from disk: contributes NOTHING (the one empty answer) */
+  | { kind: 'missing' }
+  /** ignorance: the caller must widen */
+  | { kind: 'unresolved' };
+
+/**
+ * The single specifier→disk classification every caller shares (resolveDomain
+ * for sinks, facts.ts for static edges). Keeping it in one place is what makes
+ * the missing-package proof and the widening rule identical on both paths.
+ */
+export function resolveSpecifier(importerAbs: string, spec: string): SpecResolution {
+  if (isBuiltin(spec) || spec.startsWith('node:')) return { kind: 'builtin', name: spec };
+  const req = requireFrom(importerAbs);
+  try {
+    const r = req.resolve(spec);
+    return path.isAbsolute(r) ? { kind: 'file', abs: r } : { kind: 'builtin', name: r };
+  } catch (err) {
+    const code = (err as { code?: string })?.code;
+    const pkg = packageOfSpecifier(spec);
+    if (
+      pkg &&
+      (code === 'MODULE_NOT_FOUND' || code === 'ERR_MODULE_NOT_FOUND') &&
+      !packagePresent(pkg, importerAbs)
+    ) {
+      return { kind: 'missing' };
+    }
+    return { kind: 'unresolved' };
+  }
 }
 
 /**
@@ -138,7 +253,7 @@ export interface ResolveOptions {
 
 type PackageDomain = Extract<ResolvedTargetDomain, { tier: 'package' }>;
 
-function packageDomain(u: Universe, pkg: string, opts: ResolveOptions): PackageDomain {
+export function packageDomain(u: Universe, pkg: string, opts: ResolveOptions): PackageDomain {
   let files = packageJsFiles(u, pkg);
   if (opts.narrowPackageExports) {
     const dirs = new Set(files.map((f) => f.pkg?.dir).filter((d): d is string => !!d));
@@ -175,34 +290,27 @@ export function resolveDomain(
   const files = new Set<string>();
   const builtins: string[] = [];
   const missing: string[] = [];
-  const req = requireFrom(importerAbs);
   const widenTo: GateTag[] = [];
   const packageWiden = new Set<string>();
 
   for (const s of spec.specifiers) {
-    if (isBuiltin(s) || s.startsWith('node:')) {
-      builtins.push(s);
+    const r = resolveSpecifier(importerAbs, s);
+    if (r.kind === 'builtin') {
+      builtins.push(r.name);
       continue;
     }
-    let resolved: string;
-    try {
-      resolved = req.resolve(s);
-    } catch {
-      const pkg = packageOfSpecifier(s);
-      // Cannot load what does not exist: an empty contribution is a proof, and
-      // only for a BARE specifier whose package is absent from the universe.
-      if (pkg && !u.jsByPkgName.has(pkg)) {
-        missing.push(s);
-        continue;
-      }
+    // Cannot load what does not exist: an empty contribution is a proof, and
+    // only for a BARE specifier whose package is genuinely absent from disk.
+    if (r.kind === 'missing') {
+      missing.push(s);
+      continue;
+    }
+    if (r.kind === 'unresolved') {
       widenTo.push('unresolved-specifier');
       continue;
     }
-    if (!path.isAbsolute(resolved)) {
-      builtins.push(resolved); // builtin alias form
-      continue;
-    }
-    let f = u.byReal.get(resolved) ?? u.byRel.get(path.relative(u.root, resolved).split(path.sep).join('/'));
+    const resolved = r.abs;
+    let f = fileFor(u, resolved);
     if (!f) {
       // A static edge from a universe module resolving here IS positive evidence.
       f = pullIn(u, resolved, `a load sink in ${sink.file} resolves "${s}" into it`) ?? undefined;
@@ -227,7 +335,11 @@ export function resolveDomain(
     }
   }
 
-  if (widenTo.length > 0) return { tier: 'unbounded', gates: [...new Set(widenTo)] };
+  // The files that DID resolve travel with the widening: they are the demotion
+  // target a gate-off counterfactual falls back to (RES-F8), never a narrowing.
+  if (widenTo.length > 0) {
+    return { tier: 'unbounded', gates: [...new Set(widenTo)], resolved: [...files].sort() };
+  }
   if (packageWiden.size > 0) {
     // One package: the package tier carries it. Several: their union is not a
     // package tier, so the honest join is unbounded.
@@ -240,7 +352,7 @@ export function resolveDomain(
         gates: ['import-condition-divergence'],
       };
     }
-    return { tier: 'unbounded', gates: ['import-condition-divergence'] };
+    return { tier: 'unbounded', gates: ['import-condition-divergence'], resolved: [...files].sort() };
   }
   return {
     tier: spec.tier,
@@ -255,4 +367,16 @@ export function domainGates(d: ResolvedTargetDomain): GateTag[] {
   if (d.tier === 'unbounded') return d.gates;
   if (d.tier === 'package') return ['package-domain-whole', ...(d.gates ?? [])];
   return [];
+}
+
+/**
+ * RES-F3. The domain a static edge widens to when its resolution was ignorance
+ * (`unresolved`) or when Node would resolve it under import conditions into a
+ * divergent package. A bare specifier naming a package we DO have narrows the
+ * blast radius to that package; anything else is universe-wide.
+ */
+export function staticEdgeWiden(u: Universe, source: string): { files: string[]; unbounded: boolean } {
+  const pkg = packageOfSpecifier(source);
+  const files = pkg ? packageJsFiles(u, pkg).map((f) => f.rel) : [];
+  return files.length > 0 ? { files, unbounded: false } : { files: [], unbounded: true };
 }

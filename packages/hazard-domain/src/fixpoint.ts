@@ -13,7 +13,6 @@
  * UNSUPPRESSIBLE_GATES are refused so no config can ever suppress positive
  * evidence itself.
  */
-import path from 'node:path';
 import {
   UNSUPPRESSIBLE_GATES,
   asGates,
@@ -21,11 +20,20 @@ import {
   type GateTag,
   type LoadSink,
   type ModuleFacts,
+  type RefinementName,
   type ResolvedTargetDomain,
+  type SpecifierDomain,
 } from './types.ts';
-import { domainGates, resolveDomain, type ResolveOptions } from './resolve.ts';
+import {
+  domainGates,
+  hasImportConditionDivergence,
+  packageDomain,
+  resolveDomain,
+  staticEdgeWiden,
+  type ResolveOptions,
+} from './resolve.ts';
 import { unionDomains } from './specifier.ts';
-import type { Universe } from './universe.ts';
+import { fileFor, type Universe } from './universe.ts';
 
 export interface FixpointInput {
   universe: Universe;
@@ -34,6 +42,11 @@ export interface FixpointInput {
   nft: Set<string> | null;
   /** per-(sink,resolve-option) memo so rerun-per-config stays cheap */
   resolveCache: Map<string, ResolvedTargetDomain>;
+  /**
+   * RES-F9: package dir → native/wasm boundary gate. A reachable module inside
+   * an opaque package is an Unbounded sink, exactly like a `vm` site.
+   */
+  opaque?: Map<string, GateTag>;
 }
 
 export interface ActiveSink {
@@ -63,22 +76,116 @@ function suppressionSet(config: AnalysisConfig | undefined): Set<GateTag> {
 }
 
 /**
- * Apply a config to a resolved domain. Returns null when the widening the
- * config suppressed was the ONLY thing this sink contributed.
+ * RES-F8 — metric integrity. Apply a config to a resolved domain by DEMOTING
+ * it, never by deleting it. This function must never return null.
+ *
+ * A gate-off counterfactual answers "how much smaller could the artifact be if
+ * this ONE approximation were exact?". Deleting the sink answers a different
+ * and much more flattering question — "…if this sink did not exist" — and the
+ * ADR-0006 headroom numbers are read off these runs, so the difference is the
+ * difference between a measurement and a fantasy. Every suppression therefore
+ * lands on the narrowest domain the analyzer actually computed:
+ *
+ *  - unbounded, all gates off  → the files that DID resolve at this sink;
+ *  - package, all gates off    → the package's own exports-map target set,
+ *                                falling back to the whole package;
+ *  - exact/finite              → untouched.
  */
-function applyConfig(d: ResolvedTargetDomain, suppressed: Set<GateTag>): ResolvedTargetDomain | null {
+function applyConfig(u: Universe, d: ResolvedTargetDomain, suppressed: Set<GateTag>): ResolvedTargetDomain {
   if (suppressed.size === 0) return d;
   if (d.tier === 'unbounded') {
     const rest = d.gates.filter((g) => !suppressed.has(g));
-    // Every gate that justified the widening was switched off: the sink
-    // contributes nothing under this counterfactual.
-    return rest.length === 0 ? null : { tier: 'unbounded', gates: rest };
+    if (rest.length > 0) return { tier: 'unbounded', gates: rest, resolved: d.resolved };
+    return { tier: 'finite', files: d.resolved ?? [], builtins: [], missing: [] };
   }
   if (d.tier === 'package') {
     const rest = ['package-domain-whole' as GateTag, ...(d.gates ?? [])].filter((g) => !suppressed.has(g));
-    return rest.length === 0 ? null : d;
+    if (rest.length > 0) return d;
+    const narrowed = packageDomain(u, d.pkg, { narrowPackageExports: true });
+    return narrowed.files.length > 0 ? narrowed : d;
   }
   return d;
+}
+
+/**
+ * SR-F6 — SR-vm-known-globals is WITHDRAWN as not-soundly-definable.
+ *
+ * Its premise was "an object-literal context with no loader-like key and
+ * constant code cannot load a module". The standard cross-realm escape refutes
+ * it with a context of `{ safe: 1 }`:
+ *
+ *   this.constructor.constructor('return process')().getBuiltinModule('module')
+ *
+ * `this` inside `vm.runInNewContext` IS the contextified sandbox — an object
+ * created in the HOST realm — so its `.constructor` is the host `Object`, and
+ * `Object.constructor` is the host `Function`. The same reaches the host realm
+ * through any property of any context value, a thrown host error, a `Proxy`
+ * trap, a `Symbol.toPrimitive` handler, `Error.prepareStackTrace`, or
+ * `import.meta` when `importModuleDynamically` is set.
+ *
+ * Making the admission sound therefore requires a WHITELIST of the whole
+ * language inside the vm code (host-taint tracking plus a blanket ban on
+ * computed members, `constructor`/`prototype`, `Function`, `eval`), not a
+ * blacklist of a few syntactic forms — and a whitelist strict enough to be
+ * sound admits only vm code that computes over its own literals, which has no
+ * measurable headroom by construction. CONTEXT.md's bar for a sound-refinement
+ * counterfactual is "single, localized, soundly-definable, and plausibly
+ * implementable"; this clears none of the four, so it is reported as a
+ * not-soundly-definable ADR-0006 finding and admits NOTHING here.
+ */
+export const WITHDRAWN_REFINEMENTS: Partial<Record<RefinementName, string>> = {
+  'SR-vm-known-globals':
+    'WITHDRAWN as not-soundly-definable (SR-F6): a vm context object is a host-realm ' +
+    'object, so `this.constructor.constructor` reaches the host Function even with an ' +
+    'object-literal context holding no loader-like key and constant code. A sound ' +
+    'admission needs host-taint tracking over the whole language, and the residue it ' +
+    'would admit has no measurable headroom. This refinement admits nothing.',
+};
+
+/**
+ * SR-F7. SR-cross-module-wrapper may substitute call-site argument domains for
+ * an EXPORTED wrapper only against the UNIVERSE-WIDE reference set of that
+ * exported binding — the exact complement of the strict model's "all callers
+ * enumerable in this module". Every one of those references must be a direct
+ * call in a module we actually parsed; anything else (an opaque module, a
+ * whole-surface import, a name we have no use record for, a loader that could
+ * hand the module value to code we cannot see) means the set is incomplete and
+ * admission is REFUSED.
+ *
+ * ponytail: the "no unseen loader" test is `every load sink in the universe has
+ * an exact specifier`, which is coarse — a precise version would ask which
+ * sinks can reach this module, and that needs the fixpoint that is calling us.
+ * Coarse in the refusing direction, so it only costs headroom.
+ */
+function universeWideCallDomains(
+  u: Universe,
+  facts: Map<string, ModuleFacts>,
+  owner: ModuleFacts,
+  exportName: string,
+  paramIndex: number,
+): SpecifierDomain[] | null {
+  if (paramIndex < 0) return null;
+  const domains: SpecifierDomain[] = [];
+  for (const m of facts.values()) {
+    // An opaque module, an escaped loader, or a mutated require cache each mean
+    // a reference we cannot see.
+    if (m.parseFailed || m.escapedLoader) return null;
+    if (m.moduleGates.includes('require-cache-mutation')) return null;
+    for (const sk of m.sinks) {
+      if (sk.wrapperEvidence) continue; // the wrapper sinks themselves
+      if (sk.specifier.tier !== 'exact' && sk.specifier.tier !== 'finite') return null;
+    }
+    for (const e of m.staticEdges) {
+      if (!e.resolvedAbs) continue;
+      if (fileFor(u, e.resolvedAbs)?.rel !== owner.rel) continue;
+      if (e.all) return null;             // whole surface: the binding escapes
+      if (!e.names.has(exportName)) continue;
+      const use = e.nameUses?.get(exportName);
+      if (!use || use.nonCall) return null;
+      for (const args of use.callArgs) domains.push(args[paramIndex] ?? { tier: 'unbounded', gates: ['wrapper-unprovable'] });
+    }
+  }
+  return domains;
 }
 
 /**
@@ -86,25 +193,41 @@ function applyConfig(d: ResolvedTargetDomain, suppressed: Set<GateTag>): Resolve
  * its ADR-0006 proof obligation covers; every other site is untouched, which is
  * what separates a refinement from a relaxed approximation.
  */
-function refineSink(sink: LoadSink, config: AnalysisConfig | undefined): LoadSink | null {
+function refineSink(
+  sink: LoadSink,
+  config: AnalysisConfig | undefined,
+  u: Universe,
+  facts: Map<string, ModuleFacts>,
+  owner: ModuleFacts,
+): LoadSink {
   const refinements = new Set(config?.refinements ?? []);
   if (refinements.size === 0) return sink;
 
-  if (refinements.has('SR-vm-known-globals') && sink.capability === 'vm-injected') {
-    const ev = sink.vmEvidence;
-    // Admitted only with ALL three proofs: the context is a literal we can read,
-    // it injects no loader-like value, and the executed code is constant.
-    if (ev && ev.contextArg === 'object-literal' && !ev.injectsLoaderLike && ev.codeConstant) return null;
-    return sink;
-  }
-
   if (refinements.has('SR-cross-module-wrapper')) {
     const w = sink.wrapperEvidence;
-    // Only the sinks that failed the same-module-callers condition and NOTHING
-    // else: their recorded in-module call-site domains become the union.
-    if (w && !w.resolved && w.crossModuleOnly && w.callSiteDomains.length > 0) {
-      const domain = unionDomains(w.callSiteDomains);
-      if (domain.tier !== 'unbounded') return { ...sink, specifier: domain };
+    if (w && !w.resolved && w.crossModuleOnly) {
+      const names = [...owner.exports]
+        .filter(([, info]) => info.localName === w.fn)
+        .map(([name]) => name);
+      // No recognized export of the wrapper, or a surface we cannot close:
+      // the binding may be reachable under a name we never saw.
+      if (names.length > 0 && owner.surfaceOpen.length === 0) {
+        const all: SpecifierDomain[] = [...w.callSiteDomains];
+        let refused = false;
+        for (const name of names) {
+          const external = universeWideCallDomains(u, facts, owner, name, w.paramIndex);
+          if (!external) {
+            refused = true;
+            break;
+          }
+          all.push(...external);
+        }
+        // Zero callers universe-wide is not a proof of an empty domain.
+        if (!refused && all.length > 0) {
+          const domain = unionDomains(all);
+          if (domain.tier !== 'unbounded') return { ...sink, specifier: domain };
+        }
+      }
     }
   }
   return sink;
@@ -153,25 +276,67 @@ export function runFixpoint(input: FixpointInput, config?: AnalysisConfig): Fixp
     }
   }
 
+  // RES-F5: `resolveDomain` can `pullIn` a file mid-fixpoint, so this memo is
+  // keyed on the universe size. A stale memo would leave a pulled-in file out
+  // of the mass-mark — i.e. silently removable — which is the unsound direction.
   let allJsMemo: string[] | null = null;
-  const allJs = (): string[] => (allJsMemo ??= u.files.filter((f) => f.isJs).map((f) => f.rel));
+  let allJsAt = -1;
+  const allJs = (): string[] => {
+    if (allJsMemo === null || allJsAt !== u.files.length) {
+      allJsAt = u.files.length;
+      allJsMemo = u.files.filter((f) => f.isJs).map((f) => f.rel);
+    }
+    return allJsMemo;
+  };
 
   /**
    * An unbounded load sink proves every universe module MAY initialize.
-   * The mass-mark runs once (short-circuit), but the gates of EVERY later
-   * unbounded sink keep accumulating and are unioned back into the mass-marked
-   * files below — a blocking-set that named only the first sink's gates would
-   * make a gate-off counterfactual look rescuable when it is not.
+   * The mass-mark short-circuits per universe size, but the gates of EVERY
+   * later unbounded sink keep accumulating and are unioned back into the
+   * mass-marked files below — a blocking-set that named only the first sink's
+   * gates would make a gate-off counterfactual look rescuable when it is not.
    */
   const massMarked = new Set<string>();
+  let massMarkedAt = -1;
   const goUnbounded = (gates: readonly GateTag[]): void => {
     for (const g of gates) unbounded.add(g);
-    if (unboundedActive) return;
+    if (unboundedActive && massMarkedAt === u.files.length) return;
     unboundedActive = true;
+    massMarkedAt = u.files.length;
     for (const rel of allJs()) {
       if (!reachable.has(rel)) massMarked.add(rel);
       mark(rel, gates);
     }
+  };
+
+  /**
+   * CAP-F13. A module-level Unbounded sink is not merely "some module may
+   * initialize". The code behind it — an escaped loader's unmodeled holder, an
+   * unparseable/unreadable body, a cache substitution, an in-realm .node or
+   * wasm addon — is CODE THIS ANALYSIS NEVER SAW *and* it holds a loader, so it
+   * can require any module and then call any export on the value it gets back.
+   * Its RESULT escapes. `goUnbounded` alone only reaches the reachability
+   * mass-mark; the projection layer reads `activeLoadSinks` and nothing else,
+   * so without a sink recorded here every file was retained while its unnamed
+   * exports stayed predicted-stubbable. Ordinary unbounded *specifier* sinks
+   * keep their own result flow (a discarded `require(x)` invokes no export).
+   */
+  const opaqueCodeSink = (rel: string, gates: GateTag[]): void => {
+    goUnbounded(gates);
+    activeLoadSinks.push({
+      sink: {
+        id: `${rel}#module-unbounded`,
+        file: rel,
+        capability: 'lexical-require',
+        effect: 'load',
+        specifier: { tier: 'unbounded', gates },
+        result: { kind: 'escaped', gates },
+        generatedDepth: 0,
+        loc: { line: 0, column: 0 },
+      },
+      domain: { tier: 'unbounded', gates },
+      gates,
+    });
   };
 
   const applyDomain = (d: ResolvedTargetDomain, gates: GateTag[], effect: 'load' | 'resolve'): void => {
@@ -198,16 +363,61 @@ export function runFixpoint(input: FixpointInput, config?: AnalysisConfig): Fixp
   while (queue.length > 0) {
     const rel = queue.pop()!;
     const m = facts.get(rel);
-    if (!m) continue;
+    // RES-F5. A reachable module with NO facts is a module whose load sinks we
+    // never looked for — `pullIn` can add a file after prepare parsed the
+    // universe. Treating it as inert would hide its `require(x)`; it is opaque.
+    if (!m) {
+      activeSinkCount++;
+      widened.push({ where: rel, why: 'reachable module has no facts (pulled in mid-fixpoint): opaque' });
+      opaqueCodeSink(rel, ['unsupported-syntax']);
+      continue;
+    }
 
     // Static edges: an initialized module initializes what it statically imports.
     for (const e of m.staticEdges) {
-      if (!e.resolvedAbs || !path.isAbsolute(e.resolvedAbs)) continue;
-      const target =
-        u.byReal.get(e.resolvedAbs) ??
-        u.byRel.get(path.relative(u.root, e.resolvedAbs).split(path.sep).join('/'));
+      const edgeGates: GateTag[] = ['static-import', ...asGates(e.reasons)];
+
+      // RES-F3. A static edge that did not resolve is IGNORANCE, not proof:
+      // dropping it hides a module the importer really does load.
+      if (e.unresolved) {
+        if (suppressed.has('unresolved-specifier')) continue;
+        const w = staticEdgeWiden(u, e.source);
+        widened.push({
+          where: rel,
+          why: `unresolved static edge ${JSON.stringify(e.source)} widened to ${w.unbounded ? 'the whole universe' : `package ${e.source}`}`,
+        });
+        activeSinkCount++;
+        if (w.unbounded) goUnbounded(['unresolved-specifier', ...asGates(e.reasons)]);
+        else for (const f of w.files) mark(f, [...edgeGates, 'unresolved-specifier', 'package-domain-whole']);
+        continue;
+      }
+
+      if (!e.resolvedAbs) continue; // builtin, or the missing-package proof
+      const target = fileFor(u, e.resolvedAbs);
       if (!target || !target.isJs) continue;
-      mark(target.rel, ['static-import', ...asGates(e.reasons)]);
+      mark(target.rel, edgeGates);
+
+      // RES-F2. `resolvedAbs` came from createRequire().resolve (the REQUIRE
+      // branch). For an edge Node resolves under IMPORT conditions into a
+      // package whose exports map answers differently, the file we just marked
+      // is not necessarily the file Node loads — the honest target is the
+      // whole owning package.
+      if (
+        e.importCondition &&
+        !resolveOpts.skipImportCondition &&
+        target.pkg &&
+        hasImportConditionDivergence(target.pkg.dir)
+      ) {
+        activeSinkCount++;
+        widened.push({
+          where: rel,
+          why: `ESM static edge ${JSON.stringify(e.source)} resolves under import conditions into divergent package ${target.pkg.name}: widened to the whole package`,
+        });
+        const d = packageDomain(u, target.pkg.name, resolveOpts);
+        for (const f of d.files) {
+          mark(f, [...edgeGates, 'import-condition-divergence', 'package-domain-whole']);
+        }
+      }
     }
 
     // A module we cannot read, whose loader escaped, or which mutates the
@@ -216,18 +426,25 @@ export function runFixpoint(input: FixpointInput, config?: AnalysisConfig): Fixp
     if (m.parseFailed) moduleUnbounded.push('unsupported-syntax');
     if (m.escapedLoader) moduleUnbounded.push('escaped-loader');
     if (m.moduleGates.includes('require-cache-mutation')) moduleUnbounded.push('require-cache-mutation');
+    // RES-F9 (loader symmetry). A `.node` addon runs IN-REALM: it can reach
+    // `process`, rebuild `require`, and load anything. A wasm module reaches
+    // whatever host imports it was given. Both are strictly stronger boundaries
+    // than `vm`, which the strict model already treats as maximally
+    // loader-capable — so an opaque package must contribute a module-level
+    // Unbounded sink too, gated (and therefore measurable) on its own boundary.
+    const opaqueGate = m.pkg ? input.opaque?.get(m.pkg.dir) : undefined;
+    if (opaqueGate) moduleUnbounded.push(opaqueGate);
     if (moduleUnbounded.length > 0) {
       const rest = moduleUnbounded.filter((g) => !suppressed.has(g));
       if (rest.length > 0) {
         activeSinkCount++;
         widened.push({ where: rel, why: `module-level unbounded sink (${rest.join('+')})` });
-        goUnbounded(rest);
+        opaqueCodeSink(rel, rest);
       }
     }
 
     for (const raw of m.sinks) {
-      const sink = refineSink(raw, config);
-      if (!sink) continue; // refinement admitted it: contributes nothing
+      const sink = refineSink(raw, config, u, facts, m);
       const key = cacheKey(sink.id + (sink === raw ? '' : '#refined'));
       let d = input.resolveCache.get(key);
       if (!d) {
@@ -235,18 +452,25 @@ export function runFixpoint(input: FixpointInput, config?: AnalysisConfig): Fixp
         input.resolveCache.set(key, d);
       }
       const gates = domainGates(d);
-      const applied = applyConfig(d, suppressed);
-      if (!applied) continue;
-      const effectiveGates = applied.tier === 'unbounded' ? applied.gates : gates.filter((g) => !suppressed.has(g));
       activeSinkCount++;
-      if (sink.effect === 'load') activeLoadSinks.push({ sink, domain: applied, gates: effectiveGates });
-      applyDomain(
-        applied,
-        sink.effect === 'load' ? effectiveGates : ['resolve-sink-retained', ...effectiveGates],
-        sink.effect,
-      );
+      if (sink.effect === 'resolve') {
+        // RES-F8. `resolve-sink-retained` is UNSUPPRESSIBLE: a require.resolve
+        // target's bytes must ship whatever else is switched off. Running a
+        // resolve sink's domain through the suppression machinery could demote
+        // it, so the config is skipped entirely here.
+        applyDomain(d, ['resolve-sink-retained', ...gates], 'resolve');
+        continue;
+      }
+      const applied = applyConfig(u, d, suppressed);
+      const effectiveGates = applied.tier === 'unbounded' ? applied.gates : gates.filter((g) => !suppressed.has(g));
+      activeLoadSinks.push({ sink, domain: applied, gates: effectiveGates });
+      applyDomain(applied, effectiveGates, 'load');
     }
   }
+
+  // RES-F5. A `pullIn` after the last `goUnbounded` would leave the newcomer
+  // outside the mass-mark. One final sweep closes that window.
+  if (unboundedActive && massMarkedAt !== u.files.length) goUnbounded([...unbounded]);
 
   // Complete attribution: every mass-marked file carries the gates of every
   // unbounded sink that (independently) forces its retention.

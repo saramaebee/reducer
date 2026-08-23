@@ -50,7 +50,10 @@ export type ResolvedTargetDomain =
   // sink widened by `import-condition-divergence`), so the blocking-set stays
   // complete and the right gate can be suppressed in a counterfactual.
   | { tier: 'package'; pkg: string; files: string[]; gates?: GateTag[] }
-  | { tier: 'unbounded'; gates: GateTag[] };          // all universe JS
+  // `resolved` are the files that DID resolve before the widening. They are
+  // NEVER a narrowing in the strict model — they exist so a gate-off
+  // counterfactual can DEMOTE the sink to them instead of deleting it (RES-F8).
+  | { tier: 'unbounded'; gates: GateTag[]; resolved?: string[] };
 
 // ---------------------------------------------------------------------------
 // Result-value flow (what happens to the loaded module value)
@@ -71,6 +74,9 @@ export type GateTag =
   // sink/domain gates
   | 'unbounded-loader-target'      // specifier domain widened to unbounded
   | 'package-domain-whole'         // package tier retained whole (no subpath narrowing)
+  // more than one candidate module in the domain: a property projection cannot
+  // be attributed as the COMPLETE reachable surface of any one of them
+  | 'module-identity-unresolved'
   | 'unresolved-specifier'
   | 'import-condition-divergence'
   | 'escaped-loader'               // capability value crossed an unmodeled boundary
@@ -117,7 +123,7 @@ export const UNSUPPRESSIBLE_GATES: readonly GateTag[] = [
  * rather than cast when it lifts a Reason into a blocking-set.
  */
 export const KNOWN_GATES: readonly GateTag[] = [
-  'unbounded-loader-target', 'package-domain-whole', 'unresolved-specifier',
+  'unbounded-loader-target', 'package-domain-whole', 'module-identity-unresolved', 'unresolved-specifier',
   'import-condition-divergence', 'escaped-loader', 'wrapper-unprovable', 'wrapper-depth',
   'generated-source-unknown', 'generated-source-depth', 'vm-conservative',
   'require-cache-mutation', 'result-escaped', 'dynamic-import', 'unsupported-syntax',
@@ -182,6 +188,8 @@ export interface WrapperEvidence {
   resolved: boolean;
   /** wrapper function name, or '<anonymous>' */
   fn: string;
+  /** positional index of the parameter that feeds the sink (-1 when unknown) */
+  paramIndex: number;
   /** in-module call-site argument domains (union basis / SR counterfactual input) */
   callSiteDomains: SpecifierDomain[];
   /** failed ONLY the same-module condition (the value escapes solely by export) */
@@ -234,12 +242,36 @@ export interface ModuleFacts {
   parseFailed: boolean;
 }
 
+/**
+ * How ONE imported name is used in the importing module (SR-cross-module-wrapper
+ * needs the universe-wide reference set of an exported binding, and this is the
+ * per-module half of it). Absent ⇒ no evidence ⇒ refuse admission.
+ */
+export interface ExternalNameUse {
+  /** per direct call site, the specifier domain of each positional argument */
+  callArgs: SpecifierDomain[][];
+  /** the name was referenced somewhere OTHER than as a direct callee */
+  nonCall: boolean;
+}
+
 export interface StaticEdge {
   source: string;                // raw specifier
   resolvedAbs: string | null;
   names: Set<string>;            // statically used property/import names
   all: boolean;                  // whole surface used (escape/rest/…)
   reasons: Reason[];
+  /**
+   * RES-F3: resolution FAILED out of ignorance (not the missing-package proof).
+   * A null `resolvedAbs` with this flag must widen, never be dropped.
+   */
+  unresolved?: boolean;
+  /**
+   * RES-F2: at runtime Node resolves this edge under IMPORT conditions, while
+   * `resolvedAbs` was produced by `createRequire().resolve` (require conditions).
+   */
+  importCondition?: boolean;
+  /** per imported name, how it is used here (SR-cross-module-wrapper evidence) */
+  nameUses?: Map<string, ExternalNameUse>;
 }
 
 // ---------------------------------------------------------------------------
@@ -266,7 +298,14 @@ export interface StubPrediction {
   localName: string;
   proofModel: 'function-body-stub';       // ADR-0004 semantics
   bodyBytes: number;                       // implementation bytes eliminated
-  netBytes: number;                        // file-size delta incl. stub cost (may be negative)
+  /**
+   * REP-F10: this symbol's APPORTIONED share of the file's net delta, split
+   * across the file's predicted stubs by `bodyBytes`. Σ netBytes over a file's
+   * stubPredictions == the file's whole net delta (original − emitted) exactly,
+   * so the fixed per-file emit overhead is charged once, not once per symbol.
+   * It is NOT the marginal cost of stubbing this symbol alone. May be negative.
+   */
+  netBytes: number;
   blockingSet: GateTag[];                  // [] iff predicted stubbable
   predicted: boolean;
 }

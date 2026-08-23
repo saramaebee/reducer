@@ -51,9 +51,14 @@ function isExportRef(ref: NodePath): boolean {
     }
     return false;
   }
+  // SR-F7: recurse on the OBJECT EXPRESSION, not on the ObjectProperty. The
+  // old form re-tested the property against its own parent and could never
+  // return true, so `module.exports = { load }` was misread as a hard escape
+  // instead of an export — which mislabels every such wrapper as NOT
+  // cross-module-only and hides it from the refinement's evidence.
   if (parent.isObjectProperty() && parent.node.value === ref.node) {
-    const assign = parent.parentPath?.parentPath;
-    return !!assign && assign.isAssignmentExpression() && isExportRef(parent);
+    const obj = parent.parentPath;
+    return !!obj && obj.isObjectExpression() && isExportRef(obj);
   }
   return false;
 }
@@ -65,10 +70,11 @@ function fail(
   gate: 'wrapper-unprovable' | 'wrapper-depth',
   callSiteDomains: SpecifierDomain[] = [],
   crossModuleOnly = false,
+  paramIndex = -1,
 ): WrapperResult {
   return {
     domain: unbounded([gate]),
-    evidence: { depth, resolved: false, fn, callSiteDomains, crossModuleOnly, why },
+    evidence: { depth, resolved: false, fn, paramIndex, callSiteDomains, crossModuleOnly, why },
   };
 }
 
@@ -130,11 +136,41 @@ export function resolveWrapperDomain(
     return fail(depth, fnName, 'wrapper binding is reassigned', 'wrapper-unprovable');
   }
 
+  // CAP-F4. `arguments.callee` reaches the wrapper without touching ANY
+  // binding, so a body that can name `arguments` has call sites this scan
+  // cannot enumerate at all.
+  let usesArguments = false;
+  fnPath.traverse({
+    Identifier(p) {
+      if (p.node.name === 'arguments') usesArguments = true;
+    },
+  });
+  if (usesArguments) {
+    return fail(depth, fnName, 'wrapper body references `arguments` (arguments.callee is an unenumerable call channel)', 'wrapper-unprovable');
+  }
+
   // (3)+(4) every reference must be a direct callee in this module.
+  // CAP-F4: a named FunctionExpression's INNER id is a second binding for the
+  // same function value (`const load = function inner(){ … inner() … }`), and
+  // its references are call sites too. Omitting them under-approximates the
+  // union, which is the unsound direction.
+  const refs = [...fnBinding.referencePaths];
+  if (fnPath.isFunctionExpression() && fnPath.node.id) {
+    const innerName = fnPath.node.id.name;
+    const inner = fnPath.scope.getBinding(innerName);
+    if (!inner) {
+      return fail(depth, fnName, `named function expression "${innerName}" has no resolvable self-binding`, 'wrapper-unprovable');
+    }
+    if (inner.constantViolations.length > 0) {
+      return fail(depth, fnName, `named function expression "${innerName}" is reassigned`, 'wrapper-unprovable');
+    }
+    refs.push(...inner.referencePaths);
+  }
+
   const callSites: NodePath<t.CallExpression>[] = [];
   let escaped = false;
   let exportedOnly = true;
-  for (const ref of fnBinding.referencePaths) {
+  for (const ref of refs) {
     const parent = ref.parentPath;
     if (parent?.isCallExpression() && parent.node.callee === ref.node) {
       callSites.push(parent);
@@ -171,6 +207,7 @@ export function resolveWrapperDomain(
       'wrapper-unprovable',
       callSiteDomains,
       exportedOnly,
+      idx,
     );
   }
   // (5) zero enumerable callers is not a proof of an empty domain.
@@ -186,6 +223,7 @@ export function resolveWrapperDomain(
         depth,
         resolved: false,
         fn: fnName,
+        paramIndex: idx,
         callSiteDomains,
         crossModuleOnly: false,
         why: 'a call-site argument domain is unbounded',
@@ -194,6 +232,6 @@ export function resolveWrapperDomain(
   }
   return {
     domain,
-    evidence: { depth, resolved: true, fn: fnName, callSiteDomains, crossModuleOnly: false },
+    evidence: { depth, resolved: true, fn: fnName, paramIndex: idx, callSiteDomains, crossModuleOnly: false },
   };
 }

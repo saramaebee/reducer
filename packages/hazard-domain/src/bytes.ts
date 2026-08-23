@@ -76,33 +76,37 @@ export function fileBytes(
     return { emitted: f.bytes, removable: false, stubs: [], implBytes: 0 };
   }
 
-  // Per-symbol net: the delta of stubbing that ONE implementation, so a symbol
-  // whose stub costs more than its body reports a negative net of its own.
-  // ponytail: one extra in-memory transform per predicted symbol; if a corpus
-  // app ever predicts thousands, split the file net proportionally to bodyBytes.
-  const netOf = (spec: { symbol: string; localName: string }): number => {
-    if (uniqueSpecs.length === 1) return original - emitted;
-    try {
-      return original - Buffer.byteLength(emitOf(input, f.rel, [spec]));
-    } catch {
-      return 0;
-    }
-  };
+  // REP-F10. The file's net delta is APPORTIONED across its predicted stubs by
+  // bodyBytes, so Σ netBytes over a file's stubs == (original − emitted)
+  // exactly. The old per-symbol figure re-ran the transform for one symbol at a
+  // time, which recharged the whole fixed emit overhead to every symbol and
+  // made Σ netBytes ≠ the file net — the number looked per-symbol but could not
+  // be added up. It is not the marginal cost of stubbing one symbol alone.
+  const fileNet = original - emitted;
+  const bodyOf = (d: SymbolDecision): number =>
+    d.bodySpan ? Buffer.byteLength(input.slice(d.bodySpan.start, d.bodySpan.end)) : 0;
+  const totalBody = predicted.reduce((n, d) => n + bodyOf(d), 0);
 
   const stubs: StubPrediction[] = [];
   let implBytes = 0;
-  const netByLocal = new Map<string, number>();
-  for (const spec of uniqueSpecs) netByLocal.set(spec.localName, netOf(spec));
+  let apportioned = 0;
   const bodyCounted = new Set<string>();
-  for (const d of predicted) {
-    const span = d.bodySpan;
-    const bodyBytes = span ? Buffer.byteLength(input.slice(span.start, span.end)) : 0;
+  predicted.forEach((d, i) => {
+    const bodyBytes = bodyOf(d);
+    // The last stub absorbs the rounding remainder so the sum is exact.
+    const netBytes =
+      i === predicted.length - 1
+        ? fileNet - apportioned
+        : totalBody > 0
+          ? Math.round((fileNet * bodyBytes) / totalBody)
+          : Math.round(fileNet / predicted.length);
+    apportioned += netBytes;
     stubs.push({
       symbol: d.symbol,
       localName: d.localName!,
       proofModel: 'function-body-stub',
       bodyBytes,
-      netBytes: netByLocal.get(d.localName!) ?? 0,
+      netBytes,
       blockingSet: [],
       predicted: true,
     });
@@ -111,7 +115,7 @@ export function fileBytes(
       bodyCounted.add(d.localName!);
       implBytes += bodyBytes;
     }
-  }
+  });
   return { emitted, removable: false, stubs, implBytes };
 }
 

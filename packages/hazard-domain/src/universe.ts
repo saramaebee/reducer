@@ -23,6 +23,16 @@
 import { closeSync, existsSync, openSync, readFileSync, readSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import path from 'node:path';
 
+/**
+ * RES-F11. `fs.realpathSync` does NOT canonicalize case on a case-insensitive
+ * filesystem; `realpathSync.native` delegates to the OS and does. Physical
+ * identity is the dedup key for D and the key for module-identity unification,
+ * so it must be the same under node and under bun — `./foo.js` and `./Foo.js`
+ * are ONE module on macOS, and counting them twice inflates D while splitting
+ * one module's usage across two records (the unsound direction).
+ */
+export const realpath: (p: string) => string = realpathSync.native ?? realpathSync;
+
 export interface PkgId {
   name: string;
   version: string;
@@ -193,7 +203,7 @@ export function buildUniverse(opts: BuildUniverseOptions): Universe {
   const rawRoot = path.resolve(opts.root ?? findBase(entryAbs));
   let root = rawRoot;
   try {
-    root = realpathSync(rawRoot);
+    root = realpath(rawRoot);
   } catch {
     /* keep the literal root */
   }
@@ -247,7 +257,7 @@ export function buildUniverse(opts: BuildUniverseOptions): Universe {
     let real = abs;
     let bytes = 0;
     try {
-      real = realpathSync(abs);
+      real = realpath(abs);
       bytes = statSync(abs).size;
     } catch {
       return null; // dangling symlink / unreadable: nothing to count or analyze
@@ -299,7 +309,7 @@ export function buildUniverse(opts: BuildUniverseOptions): Universe {
         // target is out of tree — it is a divergence we must not silently count.
         let target: string | null = null;
         try {
-          target = realpathSync(abs);
+          target = realpath(abs);
         } catch {
           /* dangling */
         }
@@ -358,7 +368,7 @@ export function buildUniverse(opts: BuildUniverseOptions): Universe {
 export function pullIn(u: Universe, abs: string, why: string): UniverseFile | null {
   let real = abs;
   try {
-    real = realpathSync(abs);
+    real = realpath(abs);
   } catch {
     return null;
   }
@@ -413,6 +423,24 @@ export function pullIn(u: Universe, abs: string, why: string): UniverseFile | nu
   if (isJs && f.thirdParty) u.D += bytes;
   u.warnings.push(`universe divergence: ${rel} is absent from the frozen production population but ${why}; pulled in`);
   return f;
+}
+
+/**
+ * The universe record for an absolute path, however it is spelled: physical
+ * path, an alias path (a pnpm symlink farm entry), or a not-yet-canonicalized
+ * path from a resolver. One lookup so every caller agrees on module identity.
+ */
+export function fileFor(u: Universe, abs: string): UniverseFile | undefined {
+  const direct = u.byReal.get(abs);
+  if (direct) return direct;
+  const rel = path.relative(u.root, abs).split(path.sep).join('/');
+  const byRel = u.byRel.get(rel);
+  if (byRel) return byRel;
+  try {
+    return u.byReal.get(realpath(abs));
+  } catch {
+    return undefined;
+  }
 }
 
 /** Every universe JS file of every install of `name` (package-tier domain). */

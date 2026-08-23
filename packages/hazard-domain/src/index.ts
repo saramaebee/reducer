@@ -11,9 +11,9 @@
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { trace } from '@reducer/tracer';
-import { extractModuleFacts } from './facts.ts';
-import { runFixpoint, type FixpointInput } from './fixpoint.ts';
-import { decideSymbols, opaquePackages, projectUsage } from './projection.ts';
+import { extractModuleFacts, opaqueModuleFacts } from './facts.ts';
+import { WITHDRAWN_REFINEMENTS, runFixpoint, type FixpointInput } from './fixpoint.ts';
+import { decideSymbols, opaquePackages, projectUsage, type OpaqueScan } from './projection.ts';
 import { predictBytes } from './bytes.ts';
 import { assembleReport } from './report.ts';
 import { buildUniverse, findBase, pullIn, type Universe } from './universe.ts';
@@ -23,9 +23,10 @@ export * from './types.ts';
 export { buildUniverse, findBase, pullIn, packageJsFiles } from './universe.ts';
 export type { Universe, UniverseFile, PkgId } from './universe.ts';
 export { resolveDomain, domainGates } from './resolve.ts';
-export { runFixpoint } from './fixpoint.ts';
+export { runFixpoint, WITHDRAWN_REFINEMENTS } from './fixpoint.ts';
 export type { FixpointResult, ActiveSink } from './fixpoint.ts';
 export { projectUsage, decideSymbols, opaquePackages } from './projection.ts';
+export type { OpaqueScan } from './projection.ts';
 export { extractModuleFacts } from './facts.ts';
 export { analyzerSourceHash } from './report.ts';
 
@@ -56,10 +57,42 @@ export interface PreparedApp {
    * admissible at all, and every file is retained-uncertain.
    */
   fileRemovalAdmissible: boolean;
-  opaque: Map<string, GateTag>;
+  opaque: OpaqueScan;
   resolveCache: Map<string, ResolvedTargetDomain>;
   warnings: string[];
   prepareMs: number;
+}
+
+/**
+ * Give every universe JS file that does not have them yet its ModuleFacts, and
+ * return how many were added.
+ *
+ * "…that does not have them yet" is load-bearing: `resolveDomain` can `pullIn` a
+ * file DURING the fixpoint (positive evidence for a package the frozen
+ * population did not declare), i.e. after prepare has finished parsing. Such a
+ * file is reachable-by-construction — something resolved into it — so leaving it
+ * factless would hide its own load sinks from the fixpoint entirely, and hiding
+ * a `require(x)` is the one direction this analyzer may never take.
+ */
+function parseUniverseFacts(u: Universe, facts: Map<string, ModuleFacts>, warnings: string[]): number {
+  let added = 0;
+  for (const f of u.files) {
+    if (!f.isJs || facts.has(f.rel)) continue;
+    let code: string | null = null;
+    try {
+      code = readFileSync(f.abs, 'utf8');
+    } catch {
+      warnings.push(`unreadable universe JS file, treated as opaque: ${f.rel}`);
+    }
+    facts.set(
+      f.rel,
+      code === null
+        ? opaqueModuleFacts(f.abs, f.rel, f.thirdParty, f.pkg, 'unreadable on disk: module is opaque', f.bytes)
+        : extractModuleFacts(code, f.abs, f.rel, f.thirdParty, f.pkg),
+    );
+    added++;
+  }
+  return added;
 }
 
 export async function prepareHazardDomain(opts: HazardDomainOptions): Promise<PreparedApp> {
@@ -107,17 +140,7 @@ export async function prepareHazardDomain(opts: HazardDomainOptions): Promise<Pr
 
   // ---- parse every universe JS file exactly once
   const facts = new Map<string, ModuleFacts>();
-  for (const f of universe.files) {
-    if (!f.isJs) continue;
-    let code: string;
-    try {
-      code = readFileSync(f.abs, 'utf8');
-    } catch {
-      warnings.push(`unreadable universe JS file, treated as opaque: ${f.rel}`);
-      continue;
-    }
-    facts.set(f.rel, extractModuleFacts(code, f.abs, f.rel, f.thirdParty, f.pkg));
-  }
+  parseUniverseFacts(universe, facts, warnings);
 
   const opaque = opaquePackages(universe, warnings);
 
@@ -141,10 +164,30 @@ export function analyzePrepared(prep: PreparedApp, config?: AnalysisConfig): Haz
     facts: prep.facts,
     nft: prep.nft,
     resolveCache: prep.resolveCache,
+    opaque: prep.opaque.own,
   };
-  const fx = runFixpoint(input, config);
+  // SR-F6: a withdrawn refinement admits nothing, and the run must say so —
+  // silently answering a withdrawn counterfactual with the strict number would
+  // read as "the refinement buys nothing", not "the refinement is not sound".
+  const warnings = [...prep.warnings];
+  for (const r of config?.refinements ?? []) {
+    const why = WITHDRAWN_REFINEMENTS[r];
+    if (why) warnings.push(`refinement ${r}: ${why}`);
+  }
+  // Resolution can grow the universe mid-fixpoint (`pullIn`). Parse whatever it
+  // discovered and re-run until it discovers nothing new, so the report is
+  // computed over ONE universe whose every JS file has facts. `pullIn` only ever
+  // adds, and there are finitely many files, so this terminates — in the common
+  // case after a single extra pass, and with zero extra passes when nothing was
+  // pulled in. (Cross-CONFIG drift is still possible: a later, more permissive
+  // config can reach files this one did not, so its D may exceed this one's.
+  // That is monotone and recorded as a universe-divergence warning.)
+  let fx = runFixpoint(input, config);
+  while (parseUniverseFacts(prep.universe, prep.facts, prep.warnings) > 0) {
+    fx = runFixpoint(input, config);
+  }
   const usage = projectUsage(prep.universe, prep.facts, fx);
-  const decisions = decideSymbols(prep.universe, prep.facts, fx, usage, prep.opaque, config);
+  const decisions = decideSymbols(prep.universe, prep.facts, fx, usage, prep.opaque.all, config);
   const bytes = predictBytes(
     prep.universe,
     prep.facts,
@@ -163,7 +206,7 @@ export function analyzePrepared(prep: PreparedApp, config?: AnalysisConfig): Haz
     nft: prep.nft,
     fileRemovalAdmissible: prep.fileRemovalAdmissible,
     config,
-    warnings: prep.warnings,
+    warnings,
     analysisMs: Date.now() - t0,
   });
 }

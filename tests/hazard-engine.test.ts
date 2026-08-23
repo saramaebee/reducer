@@ -42,7 +42,7 @@ const removable = (r: HazardDomainReport): string[] =>
 const sizeOf = (app: string, rel: string): number => statSync(path.join(FIX, app, rel)).size;
 
 beforeAll(async () => {
-  await Promise.all(['base', 'projected', 'escaped', 'vm', 'wrapper'].map(prep));
+  await Promise.all(['base', 'projected', 'projected-exact', 'escaped', 'vm', 'wrapper'].map(prep));
 });
 
 // ---------------------------------------------------------------------------
@@ -131,17 +131,32 @@ describe('strict fixpoint', () => {
 
 // ---------------------------------------------------------------------------
 describe('property projection', () => {
-  test('a projected unbounded sink narrows co-located exports (the rescue lever)', async () => {
-    const r = await report('projected');
+  test('PROJ-EXACT: a projection narrows the surface only on an EXACT-tier domain', async () => {
+    const r = await report('projected-exact');
     const f = file(r, 'node_modules/surface/index.js');
     const byName = new Map(f.stubPredictions.map((s) => [s.symbol, s]));
-    // `require(x).foo()` projects `foo` onto EVERY module in the domain …
+    // ONE specific, known module: `.foo` IS the complete reachable surface, so
+    // the co-located sibling stays predictable.
     expect(byName.get('foo')!.predicted).toBe(false);
     expect(byName.get('foo')!.blockingSet).toEqual(['static-import']);
-    // … and says nothing about its sibling, which stays predictable.
     expect(byName.get('notFoo')!.predicted).toBe(true);
     expect(byName.get('notFoo')!.blockingSet).toEqual([]);
     expect(byName.get('notFoo')!.proofModel).toBe('function-body-stub');
+  });
+
+  test('PROJ-EXACT: an open-domain projection narrows NOTHING (the rescue lever is not sound)', async () => {
+    const r = await report('projected');
+    const f = file(r, 'node_modules/surface/index.js');
+    const byName = new Map(f.stubPredictions.map((s) => [s.symbol, s]));
+    // `require(k).foo()` with an unbounded `k`: with more than one candidate
+    // module, `.foo` cannot be attributed as the COMPLETE reachable surface of
+    // any particular physical module (module-identity unification needs the
+    // exact instance). Garden `require-pkgscoped` is the refutation.
+    for (const symbol of ['foo', 'notFoo']) {
+      expect(byName.get(symbol)!.predicted).toBe(false);
+      expect(byName.get(symbol)!.blockingSet).toContain('module-identity-unresolved');
+    }
+    expect(r.E_predicted).toBe(r.D);
   });
 
   test('an escaped result defeats the narrowing for the whole domain', async () => {
@@ -158,7 +173,7 @@ describe('property projection', () => {
   });
 
   test('a stub larger than the body it replaces counts AGAINST the metric', async () => {
-    const r = await report('projected');
+    const r = await report('projected-exact');
     const f = file(r, 'node_modules/surface/index.js');
     const notFoo = f.stubPredictions.find((s) => s.symbol === 'notFoo')!;
     // `function notFoo() {}` — the fail-closed throw is far bigger than `{}`.
@@ -182,16 +197,20 @@ describe('gate-off counterfactuals (diagnostic, unsound)', () => {
     expect(r.netReduction).toBe(1);
   });
 
-  test('switching off package-domain-whole releases the package-scoped package only', async () => {
+  test('RES-F8: switching off package-domain-whole DEMOTES the package tier, it does not delete it', async () => {
     const r = await report('base', { suppressGates: ['package-domain-whole'] });
+    // The counterfactual asks "what if the package tier were narrowed exactly?",
+    // so the sink demotes to the package's own exports-map target set. Deleting
+    // the sink outright would answer the much more flattering "what if this
+    // sink did not exist?" and inflate the ADR-0006 headroom into fantasy.
     expect(removable(r)).toEqual([
-      'node_modules/pkg-scoped/a.js',
-      'node_modules/pkg-scoped/index.js',
       'node_modules/pkg-scoped/unlisted.js',
       'node_modules/unreached/index.js',
     ]);
+    expect(file(r, 'node_modules/pkg-scoped/index.js').state).toBe('retained-reachable');
+    expect(file(r, 'node_modules/pkg-scoped/a.js').state).toBe('retained-reachable');
     // The divergence gate is independent and still retains condpkg/extra.js.
-    expect(file(r, 'node_modules/condpkg/extra.js').blockingSet).toEqual(['import-condition-divergence']);
+    expect(file(r, 'node_modules/condpkg/extra.js').blockingSet).toContain('import-condition-divergence');
   });
 
   test('positive evidence can never be suppressed', async () => {
@@ -221,16 +240,23 @@ describe('sound refinement counterfactuals', () => {
     expect(file(r, 'node_modules/pkg-scoped/unlisted.js').blockingSet).toEqual(['package-domain-whole']);
   });
 
-  test('SR-vm-known-globals reclaims only an evidenced vm site', async () => {
+  test('SR-F6: SR-vm-known-globals is WITHDRAWN and reclaims nothing', async () => {
     const strict = await report('vm');
     expect(removable(strict)).toEqual([]);
     expect(file(strict, 'node_modules/unreached/index.js').blockingSet).toEqual(['vm-conservative']);
+    // The evidence is still collected — it is what the withdrawal is ABOUT.
     expect(strict.vmEvidence).toEqual([
       { api: 'vm.runInNewContext', contextArg: 'object-literal', literalKeys: ['x'], injectsLoaderLike: false, codeConstant: true },
     ]);
 
+    // A vm context object is a HOST-realm object, so
+    // `this.constructor.constructor('return process')()` reaches the host
+    // realm even with an object-literal context, no loader-like key, and
+    // constant code — the refinement's whole premise. It admits nothing, and
+    // the run says why rather than reporting the strict number as a result.
     const r = await report('vm', { refinements: ['SR-vm-known-globals'] });
-    expect(removable(r)).toEqual(['node_modules/unreached/index.js']);
+    expect(removable(r)).toEqual([]);
+    expect(r.warnings.some((w) => w.includes('SR-vm-known-globals') && w.includes('WITHDRAWN'))).toBe(true);
     // A different refinement must not touch the vm site.
     const other = await report('vm', { refinements: ['SR-subpath-exports-narrowing'] });
     expect(removable(other)).toEqual([]);
@@ -259,5 +285,39 @@ describe('absent positive evidence widens', () => {
     expect(r.E_predicted).toBe(r.D);
     expect(file(r, 'node_modules/unreached/index.js').blockingSet).toEqual(['nft-positive-evidence']);
     expect(r.warnings.some((w) => w.includes('no positive reachability evidence'))).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+describe('a file pulled into the universe during resolution', () => {
+  // Regression: `resolveDomain` can `pullIn` a file AFTER prepare has parsed the
+  // universe (frozen mode, positive evidence for an undeclared package). Such a
+  // file used to reach the fixpoint with no ModuleFacts at all, so its own load
+  // sinks were invisible — a `require(anything)` the analyzer never saw. That is
+  // the one direction soundness forbids, and it also made D depend on how many
+  // configurations had already been run off the same prepared app.
+  test('is parsed, so its own load sinks are seen', async () => {
+    const p = await prepareHazardDomain({
+      app: 'pullin',
+      entry: path.join(FIX, 'pullin', 'app.cjs'),
+      frozenPackages: [
+        { name: 'declared', version: '1.0.0' },
+        { name: 'spare', version: '1.0.0' },
+      ],
+      nft: false, // isolate the resolve-time pull-in from the trace-time one
+    });
+    const undeclared = 'node_modules/undeclared/index.js';
+    // Not declared, so prepare left it out of the universe entirely.
+    expect(p.universe.byRel.has(undeclared)).toBe(false);
+    expect(p.facts.has(undeclared)).toBe(false);
+
+    const r = analyzePrepared(p);
+    expect(r.warnings.some((w) => w.includes('universe divergence') && w.includes(undeclared))).toBe(true);
+    expect(p.facts.has(undeclared)).toBe(true); // …and it was parsed
+
+    // The unbounded loader inside the pulled-in module is now an active sink, so
+    // an unreferenced third-party module can no longer be called unreachable.
+    expect(file(r, 'node_modules/spare/index.js').state).toBe('retained-reachable');
+    expect(file(r, 'node_modules/spare/index.js').blockingSet).toContain('unbounded-loader-target');
   });
 });

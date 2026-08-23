@@ -39,7 +39,19 @@ type CapValue =
   | { role: 'createRequire' }                     // factory: the createRequire function
   | { role: 'vm-namespace' }                      // the vm module
   | { role: 'vm-api'; api: string }               // one vm entry point
+  | { role: 'process' }                           // CAP-F3: the process object (factory host)
+  | { role: 'global-object' }                     // CAP-F2: globalThis/global/self/window
   | { role: 'resolver'; kind: CapabilityKind };   // require.resolve / import.meta.resolve
+
+/** CAP-F2: the ambient names that denote the global object itself. */
+const GLOBAL_OBJECT_NAMES = new Set(['globalThis', 'global', 'self', 'window']);
+
+/**
+ * CAP-F3: `process` members that ARE loading channels. Everything else on
+ * `process` is metadata (env, argv, platform, …) and grants nothing — the same
+ * split the member-read path has always used, now applied to destructuring too.
+ */
+const PROCESS_LOADING_CHANNELS = new Set(['mainModule', 'binding', 'dlopen']);
 
 const capKey = (c: CapValue): string =>
   c.role === 'loader' || c.role === 'resolver' ? `${c.role}:${c.kind}` : c.role === 'vm-api' ? `vm-api:${c.api}` : c.role;
@@ -476,6 +488,10 @@ export function analyzeCapabilities(program: NodePath<t.Program>, ctx: CapContex
         return vmSink(call, cap.api, cap.api.replace(/^vm\./, ''), call.node);
       case 'module-namespace':
         return escape(call.node, 'node:module namespace called directly');
+      case 'process':
+        return; // `process(...)` is a TypeError, not a load
+      case 'global-object':
+        return escape(call.node, 'the global object called directly');
     }
   }
 
@@ -495,6 +511,27 @@ export function analyzeCapabilities(program: NodePath<t.Program>, ctx: CapContex
       }
       // An escaped/aliased vm entry point: one conservative sink, evidence unknown.
       return vmSink(null, `vm.${name ?? '?'}`, null, member.node);
+    }
+    if (cap.role === 'global-object') {
+      // CAP-F2. The global object is a channel to every ambient capability, so
+      // only the reads whose target we model stay narrow. A WRITE is exempt:
+      // storing a value on the global object cannot EXTRACT a capability, and
+      // storing a capability there already escaped at the value's own site.
+      const gp = member.parentPath;
+      if (gp?.isAssignmentExpression() && gp.node.left === member.node) return;
+      if (name === null) {
+        return escape(member.node, 'computed property read on the global object');
+      }
+      if (name === 'process') return bindValue(member, { role: 'process' });
+      if (name === 'eval' || name === 'Function') {
+        // Member-rooted: INDIRECT eval / global Function — global scope, and
+        // ADR-0002 keeps import()/getBuiltinModule available there.
+        return handleGeneratedSite(member, ctx, analyzeCapabilities, name, false);
+      }
+      if (name === 'require') return bindValue(member, { role: 'loader', kind: 'lexical-require' });
+      if (GLOBAL_OBJECT_NAMES.has(name)) return bindValue(member, { role: 'global-object' });
+      if (isNonLeaking(member)) return;
+      return escape(member.node, `unmodeled property "${name}" read on the global object`);
     }
     if (name === null) {
       return escape(member.node, 'computed property read on a capability value');
@@ -517,6 +554,14 @@ export function analyzeCapabilities(program: NodePath<t.Program>, ctx: CapContex
         if (name === 'createRequire') return bindValue(member, { role: 'createRequire' });
         if (MODULE_BENIGN.has(name)) return;
         return escape(member.node, `node:module member "${name}" may reconstruct a loader`);
+      case 'process':
+        // CAP-F3. Reached here only for a NAMED read: the computed case already
+        // escaped above, which is the fail-closed behaviour `module` always had.
+        if (name === 'getBuiltinModule') return bindValue(member, { role: 'getBuiltinModule' });
+        if (PROCESS_LOADING_CHANNELS.has(name)) {
+          return escape(member.node, `process.${name} is a loading channel`);
+        }
+        return; // env, argv, platform, … — metadata, not loading power
       default:
         if (isNonLeaking(member)) return;
         return escape(member.node, `property "${name}" read on a capability factory`);
@@ -533,6 +578,11 @@ export function analyzeCapabilities(program: NodePath<t.Program>, ctx: CapContex
     if (cap.role === 'vm-namespace' || cap.role === 'vm-api') {
       return vmSink(null, cap.role === 'vm-api' ? cap.api : 'vm', null, node);
     }
+    // CAP-F3 keeps the correct rule: `process` is ambient in every execution
+    // context, so handing it to a callee grants that callee nothing it did not
+    // already have. Only reads we cannot follow (computed / unmodeled
+    // destructuring) widen.
+    if (cap.role === 'process') return;
     escape(node, why);
   }
 
@@ -568,7 +618,7 @@ export function analyzeCapabilities(program: NodePath<t.Program>, ctx: CapContex
 
   /** Destructuring is sound only from containers whose member semantics we know. */
   function destructureCap(decl: NodePath<t.VariableDeclarator>, pattern: t.ObjectPattern, cap: CapValue): void {
-    if (cap.role !== 'module-namespace' && cap.role !== 'vm-namespace') {
+    if (cap.role !== 'module-namespace' && cap.role !== 'vm-namespace' && cap.role !== 'process') {
       return escape(pattern, `destructuring a ${cap.role} value`);
     }
     for (const prop of pattern.properties) {
@@ -585,6 +635,11 @@ export function analyzeCapabilities(program: NodePath<t.Program>, ctx: CapContex
       const binding = decl.scope.getBinding(prop.value.name);
       if (cap.role === 'vm-namespace') {
         track(binding, { role: 'vm-api', api: `vm.${key}` }, prop);
+      } else if (cap.role === 'process') {
+        // CAP-F3: the same split as the member read, so `const {getBuiltinModule}
+        // = process` keeps the factory chain visible instead of losing it.
+        if (key === 'getBuiltinModule') track(binding, { role: 'getBuiltinModule' }, prop);
+        else if (PROCESS_LOADING_CHANNELS.has(key)) escape(prop, `process.${key} is a loading channel`);
       } else if (key === 'createRequire') {
         track(binding, { role: 'createRequire' }, prop);
       } else if (!MODULE_BENIGN.has(key)) {
@@ -692,27 +747,14 @@ export function analyzeCapabilities(program: NodePath<t.Program>, ctx: CapContex
     return escape(ref.node, 'the CJS module object escapes');
   }
 
-  function seedProcess(ref: NodePath): void {
-    const parent = ref.parentPath;
-    if (
-      !(parent?.isMemberExpression() || parent?.isOptionalMemberExpression()) ||
-      parent.node.object !== ref.node
-    ) {
-      // `process` is ambient in every execution context; passing it around
-      // grants nothing that was not already available globally.
-      return;
-    }
-    const name = propName(parent as NodePath<t.MemberExpression | t.OptionalMemberExpression>);
-    if (name === 'getBuiltinModule') return bindValue(parent, { role: 'getBuiltinModule' });
-    if (name === 'mainModule' || name === 'binding' || name === 'dlopen') {
-      return escape(ref.node, `process.${name} is a loading channel`);
-    }
-  }
-
   program.traverse({
     Identifier(p) {
       const name = p.node.name;
-      if (name !== 'require' && name !== 'module' && name !== 'process' && name !== 'eval' && name !== 'Function') {
+      if (
+        name !== 'require' && name !== 'module' && name !== 'process' &&
+        name !== 'eval' && name !== 'Function' && name !== 'arguments' &&
+        !GLOBAL_OBJECT_NAMES.has(name)
+      ) {
         return;
       }
       if (!p.isReferencedIdentifier()) return;
@@ -720,10 +762,29 @@ export function analyzeCapabilities(program: NodePath<t.Program>, ctx: CapContex
       const ref = p as NodePath<t.Identifier>;
       seeds.push(() => {
         if (isNonLeaking(ref)) return;
-        if (name === 'eval' || name === 'Function') {
-          return handleGeneratedSite(ref, ctx, analyzeCapabilities);
+        // CAP-F12: a CJS module body runs inside Node's wrapper function
+        // `(exports, require, module, __filename, __dirname)`, so its top-level
+        // `arguments` object HOLDS the lexical loader — `arguments[1]('victim')`
+        // loads. Arrow functions do not rebind `arguments`, so the nearest
+        // NON-arrow function ancestor decides whether this is the wrapper's.
+        // The reads are index expressions we do not model, so this escapes.
+        if (name === 'arguments') {
+          if (ctx.env !== 'lexical' || ctx.format !== 'cjs') return;
+          for (let a: NodePath | null = ref.parentPath; a; a = a.parentPath) {
+            if (a.isProgram()) break;
+            if (a.isFunction() && !a.isArrowFunctionExpression()) return; // its own `arguments`
+          }
+          return escape(ref.node, 'the CJS module wrapper `arguments` object holds require/module');
         }
-        if (name === 'process') return seedProcess(ref);
+        if (name === 'eval' || name === 'Function') {
+          return handleGeneratedSite(ref, ctx, analyzeCapabilities, name, true);
+        }
+        // CAP-F2: an unbound globalThis/global/self/window IS the global object,
+        // the root of every ambient capability chain.
+        if (GLOBAL_OBJECT_NAMES.has(name)) return handleRef(ref, { role: 'global-object' });
+        // CAP-F3: `process` flows like `module` does — through aliases and
+        // destructuring — instead of only being read one member deep.
+        if (name === 'process') return handleRef(ref, { role: 'process' });
         // SOUNDNESS: an unbound `require`/`module` is a capability ONLY in a CJS
         // execution context. In ESM, and in `Function`/indirect-eval generated
         // source, referencing them is a runtime ReferenceError — no capability.

@@ -9,7 +9,9 @@
  * anything into `benchmarks/garden/` except throwaway `.conformance-*.mjs`
  * isolation entries, cleaned up in `finally`.
  *
- * Four modes, one process:
+ * Four modes. A, C and D run in this process; B spawns one child process per
+ * package (see the note above `IsolationRecord` — the in-process sweep was not
+ * reproducible):
  *   A. COMBINED strict run  — the real-app condition; global hazards widen
  *      almost everything, so achieved/ceiling is expected to be low. This is
  *      the number ADR-0006 actually measures.
@@ -308,6 +310,98 @@ function cleanupConformanceEntries(): void {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Mode B runs ONE PACKAGE PER PROCESS.
+//
+// The in-process 47-iteration sweep was not reproducible: consecutive full runs
+// reported different spurious soundness violations, always naming a package a
+// couple of iterations earlier in the loop. Instrumenting it showed why — two
+// reads of the SAME `for (const pkg of …)` binding inside one iteration
+// disagreed:
+//
+//   iter id=escaped-loader entry=.conformance-escaped-loader.mjs
+//        scopeForFabId(pkg.id) -> [el-target, fab-escaped-loader]      (correct)
+//        (k) => fabOwnerById[k] === pkg.id -> reconstructed-require-wrapper's
+//                                             members (2 iterations stale)
+//
+// so package N's analysis got joined against package N-2's ground-truth scope.
+// Which read goes stale varies per run, which is exactly the observed
+// flip-flopping. That is below the language semantics we can repair in-source
+// (Bun 1.3.1 / JSC, hot allocation-heavy async loop), so the repair is
+// structural: nothing carries package identity across iterations any more. A
+// child process derives its universe, its analysis AND its ground-truth scope
+// from one argv string, so a mis-join is not expressible; process isolation
+// also happens to retire every cross-iteration shared-state class at once
+// (@vercel/nft's per-Job caches, the tracer's process-global pkgCache, Node's
+// module-resolution cache, leftover entry files from a crashed iteration).
+//
+// ponytail: 47 cold starts cost ~15s over a ~10min sweep. Only worth folding
+// back into one process if both the engine bug and the global state are gone.
+// ---------------------------------------------------------------------------
+interface IsolationRecord {
+  id: string;
+  npmPkg: string | null;
+  achieved: number;
+  ceiling: number;
+  mustRemoveStatus: MustRemoveStatus[];
+  violations: Violation[];
+  findings: Finding[];
+  sweptOutOfScope: number;
+}
+
+/** One package's isolation analysis + join. Runs in a CHILD process (`--iso`). */
+async function isolationRun(fabId: string, refinements?: RefinementName[]): Promise<IsolationRecord> {
+  const pkg = wiringById.get(fabId);
+  if (!pkg) throw new Error(`no wiring entry for fab package id "${fabId}"`);
+  const entryPath = path.join(APP, `.conformance-${fabId}.mjs`);
+  writeFileSync(entryPath, isolationEntrySource(pkg));
+  try {
+    const prep = await prepareHazardDomain({ app: `garden-iso-${fabId}`, entry: entryPath, nft: true });
+    const label = refinements ? `isolation:${fabId}+${refinements.join('+')}` : `isolation:${fabId}`;
+    const report = analyzePrepared(prep, refinements ? { refinements, label } : { label });
+    const scope = scopeForFabId(fabId);
+    const predictedAll = predictedRemovableSymbols(report, prep.facts);
+    const predicted = predictedAll.filter((p) => scope.has(p.pkgName));
+    const sound = evaluateSoundness(predicted, prep.facts, fabId);
+    const own = gardenMap.mustRemove.filter((m) => m.id === fabId).map((m) => mustRemoveStatus(m, report, prep.facts));
+    return {
+      id: fabId,
+      npmPkg: npmPkgById.get(fabId) ?? null,
+      achieved: own.filter((m) => m.achieved).length,
+      ceiling: own.length,
+      mustRemoveStatus: own,
+      violations: sound.violations,
+      findings: sound.findings,
+      // informational: other packages this tiny entry never reaches
+      sweptOutOfScope: predictedAll.length - predicted.length,
+    };
+  } finally {
+    rmSync(entryPath, { force: true });
+  }
+}
+
+const SELF = path.join(HERE, 'garden-conformance.ts');
+
+async function isolationInSubprocess(fabId: string, refinements?: RefinementName[]): Promise<IsolationRecord> {
+  cleanupConformanceEntries(); // no straggler may enter the child's universe walk
+  const argv = [process.execPath, SELF, '--iso', fabId, ...(refinements ? ['--sr', ...refinements] : [])];
+  const proc = Bun.spawn(argv, { cwd: ROOT, stdout: 'pipe', stderr: 'inherit' });
+  const out = await new Response(proc.stdout).text();
+  const status = await proc.exited;
+  if (status !== 0) throw new Error(`isolation subprocess for "${fabId}" exited ${status}`);
+  let rec: IsolationRecord;
+  try {
+    rec = JSON.parse(out) as IsolationRecord;
+  } catch {
+    throw new Error(`isolation subprocess for "${fabId}" produced no parseable record: ${out.slice(0, 300)}`);
+  }
+  // The identity the child answered about must be the one we asked about. This
+  // is the assertion the in-process sweep could not make: it turns any residual
+  // identity confusion into a hard failure instead of a silent mis-join.
+  if (rec.id !== fabId) throw new Error(`isolation subprocess identity mismatch: asked "${fabId}", got "${rec.id}"`);
+  return rec;
+}
+
 // ===========================================================================
 // main
 // ===========================================================================
@@ -335,35 +429,14 @@ async function main() {
   console.log(`    achieved fab ${achievedFabA}/${gardenMap.mustRemove.length}, achieved validator ${soundA.achievedValidator.size}/${VALIDATOR_CEILING}, violations ${soundA.violations.length}`);
 
   // ---- Mode B: isolation sweep (47 fab packages) --------------------------
-  console.log('[B] isolation sweep (47 packages)…');
-  const modeB: any[] = [];
+  console.log(`[B] isolation sweep (${wiring.packages.length} packages, one process each)…`);
+  const fabIds = wiring.packages.map((p) => p.id);
+  const modeB: IsolationRecord[] = [];
   try {
-    for (const pkg of wiring.packages) {
-      const entryPath = path.join(APP, `.conformance-${pkg.id}.mjs`);
-      writeFileSync(entryPath, isolationEntrySource(pkg));
-      try {
-        const prep = await prepareHazardDomain({ app: `garden-iso-${pkg.id}`, entry: entryPath, nft: true });
-        const report = analyzePrepared(prep, { label: `isolation:${pkg.id}` });
-        const scope = scopeForFabId(pkg.id);
-        const predictedAll = predictedRemovableSymbols(report, prep.facts);
-        const predicted = predictedAll.filter((p) => scope.has(p.pkgName));
-        const swept = predictedAll.length - predicted.length; // informational: other packages this tiny entry never reaches
-        const sound = evaluateSoundness(predicted, prep.facts, pkg.id);
-        const own = gardenMap.mustRemove.filter((m) => m.id === pkg.id).map((m) => mustRemoveStatus(m, report, prep.facts));
-        modeB.push({
-          id: pkg.id,
-          npmPkg: npmPkgById.get(pkg.id) ?? null,
-          achieved: own.filter((m) => m.achieved).length,
-          ceiling: own.length,
-          mustRemoveStatus: own,
-          violations: sound.violations,
-          findings: sound.findings,
-          sweptOutOfScope: swept,
-        });
-        console.log(`    ${pkg.id.padEnd(38)} ceiling=${own.length} achieved=${own.filter((m) => m.achieved).length} violations=${sound.violations.length} findings=${sound.findings.length}`);
-      } finally {
-        rmSync(entryPath, { force: true });
-      }
+    for (let i = 0; i < fabIds.length; i++) {
+      const rec = await isolationInSubprocess(fabIds[i]!);
+      modeB.push(rec);
+      console.log(`    ${rec.id.padEnd(38)} ceiling=${rec.ceiling} achieved=${rec.achieved} violations=${rec.violations.length} findings=${rec.findings.length}`);
     }
   } finally {
     cleanupConformanceEntries();
@@ -376,7 +449,11 @@ async function main() {
   // ---- Mode C: sound-refinement counterfactuals on the combined tree -----
   console.log('[C] sound-refinement counterfactuals…');
   const modeC: any[] = [];
-  for (const name of REFINEMENTS) {
+  // Indexed, not `for…of`: the same loop-head binding shape miscompiled in the
+  // Mode-B sweep (see the note above `IsolationRecord`) and here a stale read
+  // would silently label one refinement's numbers with another's name.
+  for (let i = 0; i < REFINEMENTS.length; i++) {
+    const name = REFINEMENTS[i]!;
     const report = analyzePrepared(prepMain, { refinements: [name], label: `SR:${name}` });
     const predicted = predictedRemovableSymbols(report, prepMain.facts);
     const sound = evaluateSoundness(predicted, prepMain.facts); // no isolationFabId: combined-tree gate, same as A
@@ -400,17 +477,8 @@ async function main() {
   const vmNoLoaderStatus = vmSr.mustRemoveStatus.find((m: MustRemoveStatus) => m.id === 'vm-no-loader')!;
   // ...also under SR-vm-known-globals IN ISOLATION (expected yes per garden.md §5.5/§4.5).
   console.log('[C] vm-no-loader isolation entry under SR-vm-known-globals…');
-  const vmNoLoaderPkg = wiringById.get('vm-no-loader')!;
-  const vmEntryPath = path.join(APP, `.conformance-vm-no-loader-sr.mjs`);
-  let vmNoLoaderIsolationSr: MustRemoveStatus;
-  writeFileSync(vmEntryPath, isolationEntrySource(vmNoLoaderPkg));
-  try {
-    const prep = await prepareHazardDomain({ app: 'garden-iso-vm-no-loader-sr', entry: vmEntryPath, nft: true });
-    const report = analyzePrepared(prep, { refinements: ['SR-vm-known-globals'], label: 'isolation:vm-no-loader+SR-vm-known-globals' });
-    vmNoLoaderIsolationSr = mustRemoveStatus(gardenMap.mustRemove.find((m) => m.id === 'vm-no-loader')!, report, prep.facts);
-  } finally {
-    rmSync(vmEntryPath, { force: true });
-  }
+  const vmIsoSr = await isolationInSubprocess('vm-no-loader', ['SR-vm-known-globals']);
+  const vmNoLoaderIsolationSr = vmIsoSr.mustRemoveStatus.find((m) => m.id === 'vm-no-loader')!;
   console.log(`    combined tree: reclaimed=${vmNoLoaderStatus.achieved}  isolation: reclaimed=${vmNoLoaderIsolationSr.achieved}`);
 
   // ---- Mode D: gate-off counterfactuals (diagnostic, exempt from the gate) --
@@ -423,7 +491,9 @@ async function main() {
   const baselineFab = achievedFabA;
   const baselineValidator = soundA.achievedValidator.size;
   const singleGate: { gate: GateTag; achievedFab: number; achievedFabDelta: number; achievedValidator: number; achievedValidatorDelta: number; netReduction: number }[] = [];
-  for (const gate of candidateGates) {
+  const gateList = [...candidateGates];
+  for (let i = 0; i < gateList.length; i++) {
+    const gate = gateList[i]!;
     const report = analyzePrepared(prepMain, { suppressGates: [gate], label: `gate-off:${gate}` });
     const predicted = predictedRemovableSymbols(report, prepMain.facts);
     // No soundness gate here BY DESIGN — this is the diagnostic, unsound path.
@@ -591,13 +661,34 @@ Analysis wall time: ${(machine.analysisMs / 1000).toFixed(1)}s.
   return exitCode;
 }
 
-let code = 1;
-try {
-  code = await main();
-} catch (err) {
-  console.error('garden-conformance harness failed:', err);
-  code = 1;
-} finally {
-  cleanupConformanceEntries();
+// `--iso <fabId> [--sr <RefinementName>]`: the child-process half of mode B.
+// One package, one JSON record on stdout, nothing else — progress and errors go
+// to stderr so the parent's parse can never race with a log line.
+const isoIdx = process.argv.indexOf('--iso');
+if (isoIdx >= 0) {
+  const fabId = process.argv[isoIdx + 1];
+  if (!fabId) throw new Error('--iso requires a fab package id');
+  const srIdx = process.argv.indexOf('--sr');
+  const refinements = srIdx >= 0 ? ([process.argv[srIdx + 1]] as RefinementName[]) : undefined;
+  let rec: IsolationRecord;
+  try {
+    rec = await isolationRun(fabId, refinements);
+  } catch (err) {
+    console.error(`isolation run "${fabId}" failed:`, err);
+    rmSync(path.join(APP, `.conformance-${fabId}.mjs`), { force: true });
+    process.exit(1);
+  }
+  await Bun.write(Bun.stdout, JSON.stringify(rec)); // awaited: the pipe must drain before exit
+  process.exit(0);
+} else {
+  let code = 1;
+  try {
+    code = await main();
+  } catch (err) {
+    console.error('garden-conformance harness failed:', err);
+    code = 1;
+  } finally {
+    cleanupConformanceEntries();
+  }
+  process.exit(code);
 }
-process.exit(code);

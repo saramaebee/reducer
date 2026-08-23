@@ -104,6 +104,11 @@ export function constantStrings(
     if (!binding) return null;
     if (binding.kind !== 'const' || binding.constantViolations.length > 0) return null;
     if (!binding.path.isVariableDeclarator()) return null;
+    // CAP-F6 SOUNDNESS: the initializer is the declarator's value only when the
+    // declarator binds it WHOLE. `const [c] = 'victim'` binds 'v', and
+    // `const {c} = o` binds a property — reading `init` there names the wrong
+    // module. Only a plain Identifier id may forward its initializer.
+    if (!t.isIdentifier(binding.path.node.id)) return null;
     const init = binding.path.get('init');
     if (!init.node) return null;
     return constantStrings(init as NodePath<t.Node>, depth + 1);
