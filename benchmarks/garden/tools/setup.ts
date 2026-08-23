@@ -9,7 +9,7 @@
 import { cpSync, existsSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
-import { analyzeModuleSource } from '@reducer/analyzer';
+import { analyzeModuleSource } from '@reducer/conservative-analyzer';
 
 const GARDEN = path.resolve(import.meta.dirname, '..');
 const APP = path.join(GARDEN, 'app');

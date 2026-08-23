@@ -1,4 +1,10 @@
 /**
+ * @reducer/production-universe — production-universe discovery, shared by
+ * both research branches (extracted from the hazard-domain analyzer; ADR-0007).
+ * The universe is the authoritative set of files eligible to exist in any
+ * artifact: the conservative branch subtracted proofs from it, the
+ * virtualization branch partitions it into HOT/COLD placements.
+ *
  * The production universe (ADR-0005/0006, CONTEXT.md "production universe").
  *
  * D is the denominator of the kill metric, so every decision here is made in

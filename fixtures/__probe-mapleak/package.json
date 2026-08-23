@@ -1,6 +1,0 @@
-{
-  "name": "fixture-probe-mapleak",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": { "textlib": "1.2.3" }
-}

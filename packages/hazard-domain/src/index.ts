@@ -7,6 +7,15 @@
  * the analysis, never by speculating inside one run: `prepareHazardDomain`
  * parses the universe once (the expensive half), and `analyzePrepared` runs the
  * fixpoint, projection and byte prediction per configuration (the cheap half).
+ *
+ * TWO ROLES after the ADR-0007 pivot: (a) shared analysis primitives — module
+ * facts, load-sink classification, exact/finite/unbounded target domains,
+ * capability flow, escape and export-surface analysis — which feed working-set
+ * planning signals and the dormant sound-island probe (FE-1); (b) the frozen
+ * ADR-0006 whole-app measurement policy (fixpoint widening to the universe,
+ * kill-metric byte prediction), preserved for reproducibility of the first-run
+ * evidence. Universe discovery now lives in @reducer/production-universe and
+ * is re-exported here for existing consumers.
  */
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
@@ -16,12 +25,12 @@ import { WITHDRAWN_REFINEMENTS, runFixpoint, type FixpointInput } from './fixpoi
 import { decideSymbols, opaquePackages, projectUsage, type OpaqueScan } from './projection.ts';
 import { predictBytes } from './bytes.ts';
 import { assembleReport } from './report.ts';
-import { buildUniverse, findBase, pullIn, type Universe } from './universe.ts';
+import { buildUniverse, findBase, pullIn, type Universe } from '@reducer/production-universe';
 import type { AnalysisConfig, GateTag, HazardDomainReport, ModuleFacts, ResolvedTargetDomain } from './types.ts';
 
 export * from './types.ts';
-export { buildUniverse, findBase, pullIn, packageJsFiles } from './universe.ts';
-export type { Universe, UniverseFile, PkgId } from './universe.ts';
+export { buildUniverse, findBase, pullIn, packageJsFiles } from '@reducer/production-universe';
+export type { Universe, UniverseFile, PkgId } from '@reducer/production-universe';
 export { resolveDomain, domainGates } from './resolve.ts';
 export { runFixpoint, WITHDRAWN_REFINEMENTS } from './fixpoint.ts';
 export type { FixpointResult, ActiveSink } from './fixpoint.ts';

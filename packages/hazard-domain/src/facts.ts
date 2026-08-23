@@ -2,7 +2,7 @@
  * Per-module facts: export surface, static edges, load sinks (design §2).
  *
  * The export-surface and static-edge recognition here is a deliberate PORT of
- * `packages/analyzer/src/index.ts` — not a re-derivation. Every rule carries a
+ * `packages/conservative-analyzer/src/index.ts` — not a re-derivation. Every rule carries a
  * citation to the analyzer line that established it, because several are
  * hard-won regression fixes (the CJS duplicate-write widening and the
  * `mentionsExportMachinery` temporal-aliasing rule each fix a confirmed

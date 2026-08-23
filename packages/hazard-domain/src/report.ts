@@ -25,7 +25,7 @@ import {
 import type { FixpointResult } from './fixpoint.ts';
 import type { SymbolDecision } from './projection.ts';
 import type { BytesResult } from './bytes.ts';
-import type { Universe } from './universe.ts';
+import type { Universe } from '@reducer/production-universe';
 
 let cachedHash: string | null = null;
 /** sha256 over this package's sources — reproducibility of every number. */

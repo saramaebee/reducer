@@ -1,5 +1,15 @@
 import { createHash } from 'node:crypto';
 
+/*
+ * @reducer/manifest — a small shared kernel (the open `Reason` vocabulary,
+ * `sha256`, `REDUCER_VERSION`) plus the FROZEN manifest schema of the
+ * completed conservative-linker experiment (SymbolVerdict, Transformation,
+ * Metrics, ArtifactReport — function-level reachability shapes). The
+ * dependency-virtualization experiment (ADR-0007) defines its own plan types
+ * in @reducer/working-set-planner; splitting this package is deferred until a
+ * virtualization artifact-manifest schema actually exists.
+ */
+
 /**
  * The core invariant, encoded as a type:
  *   proven-reachable   -> KEEP

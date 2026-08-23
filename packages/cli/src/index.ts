@@ -1,7 +1,7 @@
 import { parseArgs } from 'node:util';
 import { run } from './build.ts';
 
-const HELP = `reducer — conservative Node.js production linker (technical spike)
+const HELP = `reducer — conservative production-linker CLI (completed research branch; see docs/adr/0007)
 
 Usage:
   reducer analyze <entrypoint> [options]

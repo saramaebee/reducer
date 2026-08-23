@@ -1,13 +1,41 @@
 # Reducer
 
-A conservative Node.js production linker. It proves third-party code
-unreachable and physically removes it, never guessing: proven reachable,
-possibly reachable, and unknown all mean KEEP; only proven-unreachable may be
-removed. Its analysis is organized around *which module-loading capabilities
-can flow to which reachable code, with what target and property domains* —
-not around dangerous-looking syntax.
+Node.js dependency research: a completed conservative production-linker
+experiment (proving third-party code unreachable; ADR-0001–0006) and an
+active dependency-virtualization direction (predicting a recoverable local
+working set; ADR-0007). The capability vocabulary below was built for the
+conservative branch but describes shared analysis primitives — it feeds both
+future planners and the dormant sound-island probe (FE-1).
 
 ## Language
+
+### Working-set virtualization (ADR-0007)
+
+**Placement**:
+Whether a production-universe file is locally materialized (**HOT**) or
+recoverable byte-for-byte from immutable storage (**COLD**). Placement is what
+prediction decides; availability is what it must never decide.
+
+**Hydration miss**:
+A runtime request for a COLD file: the exact original bytes are materialized,
+then stock Node semantics proceed. The cost of a wrong prediction — latency,
+never semantic divergence.
+_Avoid_: cache miss (ambiguous), failure (it isn't one)
+
+**Forced-hot**:
+A file HOT for a stated reason (positive evidence, entrypoint, resolver
+metadata, an unsafe-to-virtualize boundary, a hazard signal) rather than by
+prediction confidence.
+
+**Candidate-cold**:
+A file the planner predicts is not in the initial working set. Explicitly not
+a reachability claim — the conservative branch retired those at whole-app
+scope.
+
+**Hydration curve**:
+Hot-set fraction as a workload progresses (initial → startup → common
+requests → full workload). The decision metric for building a real recovery
+runtime.
 
 ### Capability analysis
 

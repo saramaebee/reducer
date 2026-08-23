@@ -17,11 +17,11 @@
  */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { stubFunctions } from '@reducer/transformer';
+import { stubFunctions } from '@reducer/conservative-transformer';
 import type { ModuleFacts, StubPrediction } from './types.ts';
 import type { FixpointResult } from './fixpoint.ts';
 import type { SymbolDecision } from './projection.ts';
-import type { Universe, UniverseFile } from './universe.ts';
+import type { Universe, UniverseFile } from '@reducer/production-universe';
 
 export interface FileBytes {
   /** bytes predicted to be emitted for this file (0 when predicted absent) */

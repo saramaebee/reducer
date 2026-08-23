@@ -39,7 +39,7 @@ import {
 } from './types.ts';
 import type { FixpointResult } from './fixpoint.ts';
 import { hasImportConditionDivergence, packageDomain, staticEdgeWiden } from './resolve.ts';
-import { fileFor, type Universe } from './universe.ts';
+import { fileFor, type Universe } from '@reducer/production-universe';
 
 export interface ProjectedUsage {
   names: Set<string>;

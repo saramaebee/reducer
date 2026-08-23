@@ -1,1 +1,0 @@
-{ "name": "fixture-vuln-template", "version": "1.0.0", "private": true, "type": "module", "dependencies": { "minilodash": "1.0.0" } }

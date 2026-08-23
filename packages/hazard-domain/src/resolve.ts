@@ -15,7 +15,7 @@ import { isBuiltin } from 'node:module';
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { GateTag, LoadSink, ResolvedTargetDomain, SpecifierDomain } from './types.ts';
-import { fileFor, packageJsFiles, pullIn, type Universe, type UniverseFile } from './universe.ts';
+import { fileFor, packageJsFiles, pullIn, type Universe, type UniverseFile } from '@reducer/production-universe';
 
 const requireCache = new Map<string, NodeJS.Require>();
 function requireFrom(importerAbs: string): NodeJS.Require {

@@ -1,8 +1,8 @@
 import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, readlinkSync, realpathSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { trace, type TraceResult } from '@reducer/tracer';
-import { analyzeTrace, type Analysis, type StubCandidate } from '@reducer/analyzer';
-import { stubFunctions } from '@reducer/transformer';
+import { analyzeTrace, type Analysis, type StubCandidate } from '@reducer/conservative-analyzer';
+import { stubFunctions } from '@reducer/conservative-transformer';
 import {
   REDUCER_VERSION,
   sha256,
@@ -70,7 +70,12 @@ interface UniverseFile {
 /**
  * The production universe: every file that exists in the production
  * application filesystem. This — NOT the NFT trace — is the set of files
- * eligible to exist in the output. The only files excluded up front are
+ * eligible to exist in the output. This is the EMIT-grade walk (symlinks,
+ * empty dirs, modes — everything a deployable tree needs); the shared
+ * MEASUREMENT-grade universe (realpath-deduped byte accounting, frozen
+ * populations) lives in @reducer/production-universe, and the two are kept
+ * separate deliberately — unifying them would couple the frozen conservative
+ * pipeline to the active experiment. The only files excluded up front are
  * packages the lockfile explicitly marks dev-only (the standard
  * production-install boundary: `npm ci --omit=dev` would not install them).
  * Anything physically present but undeclared is UNKNOWN, and unknown means

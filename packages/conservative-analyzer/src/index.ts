@@ -1,6 +1,11 @@
 /**
  * Conservative module/export/reachability analysis over the NFT-traced file set.
  *
+ * STATUS: frozen research branch (ADR-0007). The whole-app size thesis this
+ * analyzer served was retired by the ADR-0006 first run; the code and its
+ * adversarial regressions are preserved as evidence, and its gates are no
+ * longer product correctness conditions.
+ *
  * Core invariant: a symbol is `proven-unreachable` ONLY when every gate below
  * passes. Any gate failure widens retention — it never narrows it.
  *

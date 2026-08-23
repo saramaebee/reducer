@@ -33,7 +33,7 @@ import {
   type ResolveOptions,
 } from './resolve.ts';
 import { unionDomains } from './specifier.ts';
-import { fileFor, type Universe } from './universe.ts';
+import { fileFor, type Universe } from '@reducer/production-universe';
 
 export interface FixpointInput {
   universe: Universe;
