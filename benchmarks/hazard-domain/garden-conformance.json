@@ -1,0 +1,2538 @@
+{
+  "$schema": "reducer-hazard-domain-garden-conformance/1",
+  "generatedAt": "2026-08-23T04:00:30.941Z",
+  "analyzerVersion": "0.0.1",
+  "analyzerSourceHash": "67c0575974566cab832bd1a7808c83b216a5563c5d0fcbb42c3a899246bfef84",
+  "analysisMs": 515480,
+  "modeA": {
+    "D": 19184424,
+    "E_predicted": 19184424,
+    "netReduction": 0,
+    "achievedFab": {
+      "achieved": 0,
+      "ceiling": 16
+    },
+    "achievedValidator": {
+      "achieved": 0,
+      "ceiling": 102
+    },
+    "violations": [],
+    "findings": [],
+    "mustRemoveStatus": [
+      {
+        "id": "static-basic",
+        "symbol": "deadUnused",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "esm-decl",
+        "symbol": "deadDecl",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "esm-specifier-alias",
+        "symbol": "deadAlias",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "esm-namespace-clean",
+        "symbol": "deadNs",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "esm-reexport",
+        "symbol": "beta",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "nft-positive-evidence",
+          "require-cache-mutation",
+          "static-import",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "esm-sideeffect",
+        "symbol": "unusedSide",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "cjs-basic",
+        "symbol": "dead",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "cjs-object-literal",
+        "symbol": "dead",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "require-literal",
+        "symbol": "dead",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "require-finite",
+        "symbol": "deadInBoth",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "require-unbounded-bounded-projection",
+        "symbol": "notFoo",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "createrequire",
+        "symbol": "dead",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "reconstructed-require-wrapper",
+        "symbol": "otherUnused",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "eval-constant-benign",
+        "symbol": "deadDead",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "vm-no-loader",
+        "symbol": "deadNoLoader",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      },
+      {
+        "id": "vuln-localized",
+        "symbol": "mergeVuln",
+        "achieved": false,
+        "blockingSet": [
+          "dynamic-property-access",
+          "escaped-loader",
+          "generated-source-unknown",
+          "module-identity-unresolved",
+          "native-boundary",
+          "require-cache-mutation",
+          "unbounded-loader-target",
+          "unsupported-syntax",
+          "value-escaped",
+          "vm-conservative",
+          "wasm-boundary",
+          "wrapper-unprovable"
+        ]
+      }
+    ],
+    "warnings": [
+      "NFT reported 4 warning(s): Failed to parse /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/app/node_modules/fab-getbuiltinmodule-factory/index.js as script:\nCannot use 'import.meta' outside a module (2:26); Failed to parse /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/app/node_modules/fab-parse-failure/broken.js as script:\nUnexpected token (5:0); Failed to parse /Users/sara/personal/saratonin.dev/reducer/benchmarks/garden/app/node_modules/fab-parse-failure/broken.js as module:\nUnexpected token (5:0)"
+    ],
+    "widenedCount": 272,
+    "distributions": {
+      "capabilityCounts": {
+        "dynamic-import": 18,
+        "lexical-require": 3540,
+        "createRequire-result": 2,
+        "vm-injected": 2
+      },
+      "domainTiers": {
+        "unbounded": 27,
+        "exact": 3533,
+        "finite": 1,
+        "package": 1
+      },
+      "resultFlows": {
+        "escaped": 3330,
+        "projected": 226,
+        "unused": 6
+      },
+      "exportSurface": {
+        "closed": 234,
+        "open": 1297,
+        "openReasons": {
+          "export-object-mutation": 1295,
+          "export-star": 1,
+          "unsupported-syntax": 1
+        }
+      },
+      "blockingSets": {
+        "escaped-loader+export-object-mutation+nft-positive-evidence+static-import+value-escaped": 202,
+        "escaped-loader+generated-source-unknown+native-boundary+require-cache-mutation+unbounded-loader-target+unsupported-syntax+vm-conservative+wasm-boundary+wrapper-unprovable": 24,
+        "escaped-loader+export-object-mutation+nft-positive-evidence+static-import": 22,
+        "escaped-loader+export-object-mutation+generated-source-unknown+native-boundary+require-cache-mutation+unbounded-loader-target+unsupported-syntax+vm-conservative+wasm-boundary+wrapper-unprovable": 399,
+        "escaped-loader+nft-positive-evidence+static-import": 50,
+        "destructure-rest+escaped-loader+nft-positive-evidence+static-import": 1,
+        "dynamic-import+escaped-loader+nft-positive-evidence+static-import": 1,
+        "escaped-loader+nft-positive-evidence+static-import+value-escaped": 13,
+        "escaped-loader+nft-positive-evidence+reexport-namespace+static-import": 1,
+        "escaped-loader+export-star+nft-positive-evidence+static-import": 2,
+        "escaped-loader+nft-positive-evidence+static-import+unsupported-syntax": 1,
+        "escaped-loader+nft-positive-evidence+resolve-sink-retained+static-import": 1,
+        "escaped-loader+nft-positive-evidence": 3,
+        "escaped-loader+generated-source-unknown+native-boundary+package-domain-whole+require-cache-mutation+unbounded-loader-target+unsupported-syntax+vm-conservative+wasm-boundary+wrapper-unprovable": 3,
+        "escaped-loader+generated-source-unknown+import-condition-divergence+native-boundary+package-domain-whole+require-cache-mutation+static-import+unbounded-loader-target+unsupported-syntax+vm-conservative+wasm-boundary+wrapper-unprovable": 1,
+        "escaped-loader+import-condition-divergence+nft-positive-evidence+package-domain-whole+static-import": 1,
+        "escaped-loader+export-object-mutation+generated-source-unknown+native-boundary+require-cache-mutation+static-import+unbounded-loader-target+unsupported-syntax+value-escaped+vm-conservative+wasm-boundary+wrapper-unprovable": 660,
+        "binding-reassigned+escaped-loader+export-object-mutation+generated-source-unknown+native-boundary+require-cache-mutation+static-import+unbounded-loader-target+unsupported-syntax+value-escaped+vm-conservative+wasm-boundary+wrapper-unprovable": 3,
+        "dynamic-property-access+escaped-loader+export-object-mutation+generated-source-unknown+native-boundary+require-cache-mutation+static-import+unbounded-loader-target+unsupported-syntax+value-escaped+vm-conservative+wasm-boundary+wrapper-unprovable": 3,
+        "escaped-loader+generated-source-unknown+native-boundary+require-cache-mutation+static-import+unbounded-loader-target+unsupported-syntax+value-escaped+vm-conservative+wasm-boundary+wrapper-unprovable": 123,
+        "escaped-loader+export-object-mutation+generated-source-unknown+native-boundary+require-cache-mutation+static-import+unbounded-loader-target+unsupported-syntax+vm-conservative+wasm-boundary+wrapper-unprovable": 2,
+        "dynamic-property-access+escaped-loader+export-object-mutation+nft-positive-evidence+static-import": 2,
+        "dynamic-property-access+escaped-loader+export-object-mutation+nft-positive-evidence+static-import+value-escaped": 2,
+        "escaped-loader+generated-source-unknown+native-boundary+require-cache-mutation+static-import+unbounded-loader-target+unsupported-syntax+vm-conservative+wasm-boundary+wrapper-unprovable": 7
+      }
+    },
+    "stats": {
+      "universeJsFiles": 1531,
+      "thirdPartyJsFiles": 1527,
+      "parsed": 1530,
+      "parseFailures": 1,
+      "reachableModules": 1531,
+      "activeSinks": 3624,
+      "analysisMs": 55
+    }
+  },
+  "modeB": {
+    "achievedFab": {
+      "achieved": 12,
+      "ceiling": 16
+    },
+    "globalHazardBlastRadiusDelta": {
+      "fab": 12
+    },
+    "packages": [
+      {
+        "id": "createrequire",
+        "npmPkg": "fab-createrequire",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "createrequire",
+            "symbol": "dead",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "getbuiltinmodule-factory",
+        "npmPkg": "fab-getbuiltinmodule-factory",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "reconstructed-require-wrapper",
+        "npmPkg": "fab-reconstructed-require-wrapper",
+        "achieved": 0,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "reconstructed-require-wrapper",
+            "symbol": "otherUnused",
+            "achieved": false,
+            "blockingSet": [
+              "value-escaped"
+            ]
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "reconstructed-require-unknown-caller",
+        "npmPkg": "fab-reconstructed-require-unknown-caller",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "escaped-loader",
+        "npmPkg": "fab-escaped-loader",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "static-basic",
+        "npmPkg": "fab-static-basic",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "static-basic",
+            "symbol": "deadUnused",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "esm-decl",
+        "npmPkg": "fab-esm-decl",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "esm-decl",
+            "symbol": "deadDecl",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "esm-specifier-alias",
+        "npmPkg": "fab-esm-specifier-alias",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "esm-specifier-alias",
+            "symbol": "deadAlias",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "esm-default-alias",
+        "npmPkg": "fab-esm-default-alias",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "esm-namespace-clean",
+        "npmPkg": "fab-esm-namespace-clean",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "esm-namespace-clean",
+            "symbol": "deadNs",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "esm-namespace-escape",
+        "npmPkg": "fab-esm-namespace-escape",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "esm-reexport",
+        "npmPkg": "fab-esm-reexport",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "esm-reexport",
+            "symbol": "beta",
+            "achieved": true,
+            "blockingSet": [
+              "nft-positive-evidence",
+              "static-import"
+            ]
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "esm-export-star",
+        "npmPkg": "fab-esm-export-star",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2443
+      },
+      {
+        "id": "esm-shared-impl",
+        "npmPkg": "fab-esm-shared-impl",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "esm-sideeffect",
+        "npmPkg": "fab-esm-sideeffect",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "esm-sideeffect",
+            "symbol": "unusedSide",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "dynamic-import-literal",
+        "npmPkg": "fab-dynamic-import-literal",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "dynamic-import-nonliteral",
+        "npmPkg": "fab-dynamic-import-nonliteral",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "eval-constant-benign",
+        "npmPkg": "fab-eval-constant-benign",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "eval-constant-benign",
+            "symbol": "deadDead",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "eval-constant-capable",
+        "npmPkg": "fab-eval-constant-capable",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "newfunction-runtime",
+        "npmPkg": "fab-newfunction-runtime",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "direct-eval-lexical",
+        "npmPkg": "fab-direct-eval-lexical",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "require-literal",
+        "npmPkg": "fab-require-literal",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "require-literal",
+            "symbol": "dead",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "require-finite",
+        "npmPkg": "fab-require-finite",
+        "achieved": 0,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "require-finite",
+            "symbol": "deadInBoth",
+            "achieved": false,
+            "blockingSet": [
+              "module-identity-unresolved"
+            ]
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2442
+      },
+      {
+        "id": "require-pkgscoped",
+        "npmPkg": "fab-require-pkgscoped",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2441
+      },
+      {
+        "id": "require-unbounded-bounded-projection",
+        "npmPkg": "fab-require-unbounded-bounded-projection",
+        "achieved": 0,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "require-unbounded-bounded-projection",
+            "symbol": "notFoo",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "require-unbounded-computed-projection",
+        "npmPkg": "fab-require-unbounded-computed-projection",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "require-value-escape",
+        "npmPkg": "fab-require-value-escape",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "cjs-basic",
+        "npmPkg": "fab-cjs-basic",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "cjs-basic",
+            "symbol": "dead",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "cjs-object-literal",
+        "npmPkg": "fab-cjs-object-literal",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "cjs-object-literal",
+            "symbol": "dead",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "cjs-closure",
+        "npmPkg": "fab-cjs-closure",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "cjs-overwrite",
+        "npmPkg": "fab-cjs-overwrite",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2443
+      },
+      {
+        "id": "cjs-getter",
+        "npmPkg": "fab-cjs-getter",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2446
+      },
+      {
+        "id": "cjs-computed-export",
+        "npmPkg": "fab-cjs-computed-export",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2446
+      },
+      {
+        "id": "cjs-proxy",
+        "npmPkg": "fab-cjs-proxy",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2446
+      },
+      {
+        "id": "cjs-deferred-write",
+        "npmPkg": "fab-cjs-deferred-write",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2446
+      },
+      {
+        "id": "cjs-setprototypeof",
+        "npmPkg": "fab-cjs-setprototypeof",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2446
+      },
+      {
+        "id": "vm-injected-loader",
+        "npmPkg": "fab-vm-injected-loader",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "vm-no-loader",
+        "npmPkg": "fab-vm-no-loader",
+        "achieved": 0,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "vm-no-loader",
+            "symbol": "deadNoLoader",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "identity-unification",
+        "npmPkg": "fab-identity-unification",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [
+          {
+            "pkgName": "fab-identity-unification",
+            "symbol": "ledger",
+            "file": "node_modules/fab-identity-unification/index.js",
+            "why": "fab-identity-unification is a starPackages (\"*\") member — every export is MUST_RETAIN_CONSERVATIVELY — pre-registered carrier star-overbreadth FINDING (ADR-0006 mode B predicate), not a soundness failure"
+          }
+        ],
+        "sweptOutOfScope": 2443
+      },
+      {
+        "id": "vuln-localized",
+        "npmPkg": "fab-vuln-localized",
+        "achieved": 1,
+        "ceiling": 1,
+        "mustRemoveStatus": [
+          {
+            "id": "vuln-localized",
+            "symbol": "mergeVuln",
+            "achieved": true,
+            "blockingSet": []
+          }
+        ],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2445
+      },
+      {
+        "id": "binding-reassigned",
+        "npmPkg": "fab-binding-reassigned",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2446
+      },
+      {
+        "id": "destructure-rest",
+        "npmPkg": "fab-destructure-rest",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2442
+      },
+      {
+        "id": "require-cache-mutation",
+        "npmPkg": "fab-require-cache-mutation",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "parse-failure",
+        "npmPkg": "fab-parse-failure",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 0
+      },
+      {
+        "id": "unsupported-export-kind",
+        "npmPkg": "fab-unsupported-export-kind",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2446
+      },
+      {
+        "id": "unrecognized-importer",
+        "npmPkg": "fab-unrecognized-importer",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2444
+      },
+      {
+        "id": "resolver-trace-mismatch",
+        "npmPkg": "fab-resolver-trace-mismatch",
+        "achieved": 0,
+        "ceiling": 0,
+        "mustRemoveStatus": [],
+        "violations": [],
+        "findings": [],
+        "sweptOutOfScope": 2443
+      }
+    ],
+    "violations": [],
+    "findings": [
+      {
+        "package": "identity-unification",
+        "pkgName": "fab-identity-unification",
+        "symbol": "ledger",
+        "file": "node_modules/fab-identity-unification/index.js",
+        "why": "fab-identity-unification is a starPackages (\"*\") member — every export is MUST_RETAIN_CONSERVATIVELY — pre-registered carrier star-overbreadth FINDING (ADR-0006 mode B predicate), not a soundness failure"
+      }
+    ]
+  },
+  "modeC": {
+    "refinements": [
+      {
+        "refinement": "SR-vm-known-globals",
+        "netReduction": 0,
+        "achievedFab": 0,
+        "achievedValidator": 0,
+        "violations": [],
+        "findings": [],
+        "mustRemoveStatus": [
+          {
+            "id": "static-basic",
+            "symbol": "deadUnused",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-decl",
+            "symbol": "deadDecl",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-specifier-alias",
+            "symbol": "deadAlias",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-namespace-clean",
+            "symbol": "deadNs",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-reexport",
+            "symbol": "beta",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "nft-positive-evidence",
+              "require-cache-mutation",
+              "static-import",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-sideeffect",
+            "symbol": "unusedSide",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "cjs-basic",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "cjs-object-literal",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-literal",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-finite",
+            "symbol": "deadInBoth",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-unbounded-bounded-projection",
+            "symbol": "notFoo",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "createrequire",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "reconstructed-require-wrapper",
+            "symbol": "otherUnused",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "eval-constant-benign",
+            "symbol": "deadDead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "vm-no-loader",
+            "symbol": "deadNoLoader",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "vuln-localized",
+            "symbol": "mergeVuln",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          }
+        ]
+      },
+      {
+        "refinement": "SR-subpath-exports-narrowing",
+        "netReduction": 0,
+        "achievedFab": 0,
+        "achievedValidator": 0,
+        "violations": [],
+        "findings": [],
+        "mustRemoveStatus": [
+          {
+            "id": "static-basic",
+            "symbol": "deadUnused",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-decl",
+            "symbol": "deadDecl",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-specifier-alias",
+            "symbol": "deadAlias",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-namespace-clean",
+            "symbol": "deadNs",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-reexport",
+            "symbol": "beta",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "nft-positive-evidence",
+              "require-cache-mutation",
+              "static-import",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-sideeffect",
+            "symbol": "unusedSide",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "cjs-basic",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "cjs-object-literal",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-literal",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-finite",
+            "symbol": "deadInBoth",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-unbounded-bounded-projection",
+            "symbol": "notFoo",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "createrequire",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "reconstructed-require-wrapper",
+            "symbol": "otherUnused",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "eval-constant-benign",
+            "symbol": "deadDead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "vm-no-loader",
+            "symbol": "deadNoLoader",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "vuln-localized",
+            "symbol": "mergeVuln",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          }
+        ]
+      },
+      {
+        "refinement": "SR-import-condition-resolution",
+        "netReduction": 0,
+        "achievedFab": 0,
+        "achievedValidator": 0,
+        "violations": [],
+        "findings": [],
+        "mustRemoveStatus": [
+          {
+            "id": "static-basic",
+            "symbol": "deadUnused",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-decl",
+            "symbol": "deadDecl",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-specifier-alias",
+            "symbol": "deadAlias",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-namespace-clean",
+            "symbol": "deadNs",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-reexport",
+            "symbol": "beta",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "nft-positive-evidence",
+              "require-cache-mutation",
+              "static-import",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-sideeffect",
+            "symbol": "unusedSide",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "cjs-basic",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "cjs-object-literal",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-literal",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-finite",
+            "symbol": "deadInBoth",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-unbounded-bounded-projection",
+            "symbol": "notFoo",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "createrequire",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "reconstructed-require-wrapper",
+            "symbol": "otherUnused",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "eval-constant-benign",
+            "symbol": "deadDead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "vm-no-loader",
+            "symbol": "deadNoLoader",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "vuln-localized",
+            "symbol": "mergeVuln",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          }
+        ]
+      },
+      {
+        "refinement": "SR-cross-module-wrapper",
+        "netReduction": 0,
+        "achievedFab": 0,
+        "achievedValidator": 0,
+        "violations": [],
+        "findings": [],
+        "mustRemoveStatus": [
+          {
+            "id": "static-basic",
+            "symbol": "deadUnused",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-decl",
+            "symbol": "deadDecl",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-specifier-alias",
+            "symbol": "deadAlias",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-namespace-clean",
+            "symbol": "deadNs",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-reexport",
+            "symbol": "beta",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "nft-positive-evidence",
+              "require-cache-mutation",
+              "static-import",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "esm-sideeffect",
+            "symbol": "unusedSide",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "cjs-basic",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "cjs-object-literal",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-literal",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-finite",
+            "symbol": "deadInBoth",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "require-unbounded-bounded-projection",
+            "symbol": "notFoo",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "createrequire",
+            "symbol": "dead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "reconstructed-require-wrapper",
+            "symbol": "otherUnused",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "eval-constant-benign",
+            "symbol": "deadDead",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "vm-no-loader",
+            "symbol": "deadNoLoader",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          },
+          {
+            "id": "vuln-localized",
+            "symbol": "mergeVuln",
+            "achieved": false,
+            "blockingSet": [
+              "dynamic-property-access",
+              "escaped-loader",
+              "generated-source-unknown",
+              "module-identity-unresolved",
+              "native-boundary",
+              "require-cache-mutation",
+              "unbounded-loader-target",
+              "unsupported-syntax",
+              "value-escaped",
+              "vm-conservative",
+              "wasm-boundary",
+              "wrapper-unprovable"
+            ]
+          }
+        ]
+      }
+    ],
+    "asserts": {
+      "vmInjectedLoaderStillRetained": true,
+      "vmNoLoaderReclaimedCombined": false,
+      "vmNoLoaderReclaimedIsolation": false
+    }
+  },
+  "modeD": {
+    "label": "UNSOUND-DIAGNOSTIC — exempt from the soundness gate; upper bounds only, conditional on all other gates remaining conservative",
+    "baseline": {
+      "achievedFab": 0,
+      "achievedValidator": 0
+    },
+    "singleGate": [
+      {
+        "gate": "dynamic-property-access",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "escaped-loader",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "generated-source-unknown",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "module-identity-unresolved",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "native-boundary",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "require-cache-mutation",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "unbounded-loader-target",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "unsupported-syntax",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "value-escaped",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "vm-conservative",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "wasm-boundary",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      },
+      {
+        "gate": "wrapper-unprovable",
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0,
+        "netReduction": 0
+      }
+    ],
+    "topPairwise": [
+      {
+        "gates": [
+          "dynamic-property-access",
+          "escaped-loader"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "dynamic-property-access",
+          "generated-source-unknown"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "dynamic-property-access",
+          "module-identity-unresolved"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "dynamic-property-access",
+          "native-boundary"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "escaped-loader",
+          "generated-source-unknown"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "escaped-loader",
+          "module-identity-unresolved"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "escaped-loader",
+          "native-boundary"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "generated-source-unknown",
+          "module-identity-unresolved"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "generated-source-unknown",
+          "native-boundary"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      },
+      {
+        "gates": [
+          "module-identity-unresolved",
+          "native-boundary"
+        ],
+        "achievedFab": 0,
+        "achievedFabDelta": 0,
+        "achievedValidator": 0,
+        "achievedValidatorDelta": 0
+      }
+    ]
+  },
+  "soundness": {
+    "violationCount": 0,
+    "violations": [],
+    "findingCount": 1,
+    "findings": [
+      {
+        "mode": "B",
+        "package": "identity-unification",
+        "pkgName": "fab-identity-unification",
+        "symbol": "ledger",
+        "file": "node_modules/fab-identity-unification/index.js",
+        "why": "fab-identity-unification is a starPackages (\"*\") member — every export is MUST_RETAIN_CONSERVATIVELY — pre-registered carrier star-overbreadth FINDING (ADR-0006 mode B predicate), not a soundness failure"
+      }
+    ],
+    "verdict": "SOUND — no MUST_RETAIN/MUST_RETAIN_CONSERVATIVELY symbol was predicted-removable"
+  },
+  "warnings": [],
+  "exitCode": 0
+}
