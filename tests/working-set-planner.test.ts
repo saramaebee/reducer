@@ -19,8 +19,10 @@ async function planFixture(name: string) {
   const traced = await trace([entry], universe.root);
   const nft = new Set<string>();
   for (const f of traced.files) if (universe.byRel.has(f.rel)) nft.add(f.rel);
+  // `.own`, not `.all`: ancestor propagation is conservative export-surface
+  // semantics, not a virtualization constraint (see PlanInput.opaquePkgDirs).
   const opaque = opaquePackages(universe, []);
-  return { universe, nft, plan: planWorkingSet({ universe, nft, opaquePkgDirs: new Set(opaque.all.keys()) }) };
+  return { universe, nft, plan: planWorkingSet({ universe, nft, opaquePkgDirs: new Set(opaque.own.keys()) }) };
 }
 
 describe('working-set planner (naive, ADR-0007 experiment 1)', () => {
@@ -45,13 +47,35 @@ describe('working-set planner (naive, ADR-0007 experiment 1)', () => {
     }
   });
 
-  test('a cold candidate exists in a fixture with unreferenced dependency files', async () => {
-    // fixtures/basic ships textlib with functions the app never imports; the
-    // naive planner should find at least one candidate-cold dependency file.
+  test('a cold candidate exists under a successful trace', async () => {
+    // In fixtures/basic the only untraced file is the fixture's own test.mjs
+    // (textlib/index.js is statically imported, so at whole-file granularity
+    // it is NFT-positive). Still proves cold placement under a real trace.
     const { plan } = await planFixture('basic');
     const cold = plan.placements.filter((p) => p.placement === 'cold');
     expect(cold.length).toBeGreaterThan(0);
     expect(plan.bytes.coldFraction).toBeGreaterThan(0);
+  });
+
+  test('CASE B: absence from a SUCCESSFUL trace means candidate COLD, not fail-safe hot', async () => {
+    // fixtures/nft-blind loads hidden-cjs/hidden-esm through computed
+    // specifiers that are invisible to @vercel/nft BY CONSTRUCTION. Under the
+    // old conservative model that absence forced retention; under ADR-0007 it
+    // is exactly what makes the files candidate COLD — a runtime request for
+    // them is the recoverable hydration miss the experiment measures.
+    const { nft, plan } = await planFixture('nft-blind');
+    const byFile = new Map(plan.placements.map((p) => [p.file, p]));
+    for (const rel of [
+      'node_modules/hidden-cjs/index.js',
+      'node_modules/hidden-esm/index.js',
+      'node_modules/asset-carrier/data.txt',
+    ]) {
+      expect(nft.has(rel)).toBe(false); // premise: the trace really is blind here
+      expect(byFile.get(rel)?.placement).toBe('cold');
+      expect(byFile.get(rel)?.reasons).toEqual([]);
+    }
+    // …while the statically-visible loader stays hot on positive evidence.
+    expect(byFile.get('node_modules/blind-loader/index.js')?.placement).toBe('hot');
   });
 
   test('no positive evidence ⇒ everything hot, prediction refused not files dropped', async () => {

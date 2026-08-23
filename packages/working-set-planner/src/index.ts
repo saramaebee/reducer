@@ -78,9 +78,19 @@ export interface PlanInput {
    */
   nft: ReadonlySet<string> | null;
   /**
-   * Package dirs that are unsafe to virtualize naively (native/.node/.wasm/
-   * install-script packages — e.g. the keys of hazard-domain's
-   * `opaquePackages(...).all`).
+   * Package dirs that are unsafe to virtualize naively at whole-file
+   * granularity (native/.node/.wasm/install-script packages, whose artifacts
+   * are routinely reached by fs-path probing that module-load interception
+   * cannot serve) — e.g. the keys of hazard-domain's `opaquePackages(...).own`.
+   * Use `.own`, not `.all`: the `.all` ancestor propagation exists for the
+   * conservative export-surface argument and is NOT a virtualization
+   * constraint — an ancestor's own JS files are individually recoverable
+   * regardless of a nested native dependency.
+   *
+   * Omit for the theoretical placement ceiling (plan A: evidence + bootstrap
+   * only); pass `.own` for the practical naive plan (plan B). Reporting both
+   * separates "NFT leaves little opportunity" from "our implementation
+   * constraints consume the opportunity".
    */
   opaquePkgDirs?: ReadonlySet<string>;
   app?: string;
