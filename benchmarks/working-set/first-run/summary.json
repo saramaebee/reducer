@@ -1,0 +1,3733 @@
+{
+  "experiment": "initial working-set placement measurement (ADR-0007 experiment 1)",
+  "corpus": "corpus-v1 (frozen, 19 pinned applications)",
+  "apps": {
+    "total": 19,
+    "measured": 19,
+    "targets": 12,
+    "noEvidence": 0,
+    "failed": 0,
+    "missing": 0
+  },
+  "failures": [],
+  "perAppDistribution": {
+    "planA.universe.allApps": {
+      "n": 19,
+      "min": 0.7189111669257642,
+      "p25": 0.7638996001012395,
+      "median": 0.8127063522088285,
+      "p75": 0.8558710226756396,
+      "max": 0.9755189813096802
+    },
+    "planA.universe.targets": {
+      "n": 12,
+      "min": 0.740065010699344,
+      "p25": 0.7670378892988495,
+      "median": 0.8318139190562055,
+      "p75": 0.8734971642538741,
+      "max": 0.9755189813096802
+    },
+    "planA.thirdParty.allApps": {
+      "n": 19,
+      "min": 0.6511433153447752,
+      "p25": 0.7890365835159093,
+      "median": 0.8261967672393642,
+      "p75": 0.8605641820897212,
+      "max": 0.9755531147594043
+    },
+    "planA.thirdParty.targets": {
+      "n": 12,
+      "min": 0.7303285588254057,
+      "p25": 0.8038688166006352,
+      "median": 0.8364219203296978,
+      "p75": 0.8743840786823789,
+      "max": 0.9755531147594043
+    },
+    "planA.thirdPartyJs.allApps": {
+      "n": 19,
+      "min": 0.49210606135808393,
+      "p25": 0.6588342832997811,
+      "median": 0.6960256158308713,
+      "p75": 0.7978286814749955,
+      "max": 0.9864374360113384
+    },
+    "planA.thirdPartyJs.targets": {
+      "n": 12,
+      "min": 0.49210606135808393,
+      "p25": 0.6647208579060112,
+      "median": 0.7517869390476509,
+      "p75": 0.84898482924281,
+      "max": 0.9864374360113384
+    },
+    "planB.universe.allApps": {
+      "n": 19,
+      "min": 0.10664283213447871,
+      "p25": 0.6658420230462955,
+      "median": 0.7270426192330217,
+      "p75": 0.8244963499906142,
+      "max": 0.97408462126731
+    },
+    "planB.universe.targets": {
+      "n": 12,
+      "min": 0.10664283213447871,
+      "p25": 0.6680482724423484,
+      "median": 0.736677120084356,
+      "p75": 0.8457238125104962,
+      "max": 0.97408462126731
+    },
+    "planB.thirdParty.allApps": {
+      "n": 19,
+      "min": 0.09222469031609838,
+      "p25": 0.680335998783771,
+      "median": 0.7435480964421187,
+      "p75": 0.8342877869378011,
+      "max": 0.974114968856046
+    },
+    "planB.thirdParty.targets": {
+      "n": 12,
+      "min": 0.09222469031609838,
+      "p25": 0.7040950748216066,
+      "median": 0.7722680584932946,
+      "p75": 0.8454362024527001,
+      "max": 0.974114968856046
+    },
+    "planB.thirdPartyJs.allApps": {
+      "n": 19,
+      "min": 0.10208640319454174,
+      "p25": 0.6030103448841044,
+      "median": 0.6556194296615708,
+      "p75": 0.7593435367173853,
+      "max": 0.9864081228963472
+    },
+    "planB.thirdPartyJs.targets": {
+      "n": 12,
+      "min": 0.10208640319454174,
+      "p25": 0.6100198338306138,
+      "median": 0.7045961493143897,
+      "p75": 0.7838425545977749,
+      "max": 0.9864081228963472
+    }
+  },
+  "byteWeighted": {
+    "planA.universe.allApps": 0.7759442726955165,
+    "planA.universe.targets": 0.8435808327844454,
+    "planA.thirdParty.allApps": 0.8123635589694125,
+    "planA.thirdParty.targets": 0.8515109985960452,
+    "planA.thirdPartyJs.allApps": 0.7070133348613495,
+    "planA.thirdPartyJs.targets": 0.7825917768071472,
+    "planB.universe.allApps": 0.6221304122869061,
+    "planB.universe.targets": 0.6828127181332855,
+    "planB.thirdParty.allApps": 0.6864657248135541,
+    "planB.thirdParty.targets": 0.7129716714072036,
+    "planB.thirdPartyJs.allApps": 0.6736597947102217,
+    "planB.thirdPartyJs.targets": 0.7389964766136233
+  },
+  "planAtoB": {
+    "perApp": [
+      {
+        "app": "bulletproof-nodejs",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 29416015,
+          "planBColdBytes": 28504535,
+          "lostBytes": 911480,
+          "lostFraction": 0.030985842235938484
+        },
+        "thirdParty": {
+          "planAColdBytes": 28960730,
+          "planBColdBytes": 28049250,
+          "lostBytes": 911480,
+          "lostFraction": 0.03147296356134669
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 14048436,
+          "planBColdBytes": 14023298,
+          "lostBytes": 25138,
+          "lostFraction": 0.001789380682661045
+        }
+      },
+      {
+        "app": "excalidraw-room",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 105466986,
+          "planBColdBytes": 105311912,
+          "lostBytes": 155074,
+          "lostFraction": 0.0014703558514509935
+        },
+        "thirdParty": {
+          "planAColdBytes": 105193029,
+          "planBColdBytes": 105037955,
+          "lostBytes": 155074,
+          "lostFraction": 0.0014741851382566425
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 81571827,
+          "planBColdBytes": 81569403,
+          "lostBytes": 2424,
+          "lostFraction": 0.000029716142069491714
+        }
+      },
+      {
+        "app": "express-realworld",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 79496377,
+          "planBColdBytes": 10285758,
+          "lostBytes": 69210619,
+          "lostFraction": 0.8706134997825121
+        },
+        "thirdParty": {
+          "planAColdBytes": 77957515,
+          "planBColdBytes": 8746896,
+          "lostBytes": 69210619,
+          "lostFraction": 0.8877991942149516
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 17323808,
+          "planBColdBytes": 1921481,
+          "lostBytes": 15402327,
+          "lostFraction": 0.8890843745208905
+        }
+      },
+      {
+        "app": "express-rest-boilerplate",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 44469221,
+          "planBColdBytes": 42090775,
+          "lostBytes": 2378446,
+          "lostFraction": 0.053485218461551194
+        },
+        "thirdParty": {
+          "planAColdBytes": 44204801,
+          "planBColdBytes": 41826355,
+          "lostBytes": 2378446,
+          "lostFraction": 0.05380515116446288
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 25158904,
+          "planBColdBytes": 23550478,
+          "lostBytes": 1608426,
+          "lostFraction": 0.06393068632878443
+        }
+      },
+      {
+        "app": "fastify-demo",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 34356052,
+          "planBColdBytes": 34356052,
+          "lostBytes": 0,
+          "lostFraction": 0
+        },
+        "thirdParty": {
+          "planAColdBytes": 33953741,
+          "planBColdBytes": 33953741,
+          "lostBytes": 0,
+          "lostFraction": 0
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 16272718,
+          "planBColdBytes": 16272718,
+          "lostBytes": 0,
+          "lostFraction": 0
+        }
+      },
+      {
+        "app": "ghost",
+        "category": "control",
+        "universe": {
+          "planAColdBytes": 396145820,
+          "planBColdBytes": 337657389,
+          "lostBytes": 58488431,
+          "lostFraction": 0.14764369090149682
+        },
+        "thirdParty": {
+          "planAColdBytes": 320442148,
+          "planBColdBytes": 261953717,
+          "lostBytes": 58488431,
+          "lostFraction": 0.18252415097404728
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 94294863,
+          "planBColdBytes": 90339823,
+          "lostBytes": 3955040,
+          "lostFraction": 0.04194332410239569
+        }
+      },
+      {
+        "app": "hackathon-starter",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 247864324,
+          "planBColdBytes": 185789659,
+          "lostBytes": 62074665,
+          "lostFraction": 0.2504380783738768
+        },
+        "thirdParty": {
+          "planAColdBytes": 245993536,
+          "planBColdBytes": 185789659,
+          "lostBytes": 60203877,
+          "lostFraction": 0.24473763814671942
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 75067793,
+          "planBColdBytes": 63450503,
+          "lostBytes": 11617290,
+          "lostFraction": 0.15475731383231156
+        }
+      },
+      {
+        "app": "json-server",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 2268543,
+          "planBColdBytes": 2268543,
+          "lostBytes": 0,
+          "lostFraction": 0
+        },
+        "thirdParty": {
+          "planAColdBytes": 2186121,
+          "planBColdBytes": 2186121,
+          "lostBytes": 0,
+          "lostFraction": 0
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 735852,
+          "planBColdBytes": 735852,
+          "lostBytes": 0,
+          "lostFraction": 0
+        }
+      },
+      {
+        "app": "juice-shop",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 167504974,
+          "planBColdBytes": 146237287,
+          "lostBytes": 21267687,
+          "lostFraction": 0.12696749530554238
+        },
+        "thirdParty": {
+          "planAColdBytes": 137951410,
+          "planBColdBytes": 132533035,
+          "lostBytes": 5418375,
+          "lostFraction": 0.03927741659182751
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 51974623,
+          "planBColdBytes": 51947040,
+          "lostBytes": 27583,
+          "lostFraction": 0.0005307013001325667
+        }
+      },
+      {
+        "app": "n8n",
+        "category": "control",
+        "universe": {
+          "planAColdBytes": 1492594945,
+          "planBColdBytes": 1114827831,
+          "lostBytes": 377767114,
+          "lostFraction": 0.25309419361593777
+        },
+        "thirdParty": {
+          "planAColdBytes": 1276638597,
+          "planBColdBytes": 1003263458,
+          "lostBytes": 273375139,
+          "lostFraction": 0.21413667081851515
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 341250914,
+          "planBColdBytes": 320093359,
+          "lostBytes": 21157555,
+          "lostFraction": 0.061999995112101004
+        }
+      },
+      {
+        "app": "nestjs-realworld",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 110284370,
+          "planBColdBytes": 110008607,
+          "lostBytes": 275763,
+          "lostFraction": 0.0025004721883980477
+        },
+        "thirdParty": {
+          "planAColdBytes": 109546172,
+          "planBColdBytes": 109270409,
+          "lostBytes": 275763,
+          "lostFraction": 0.002517322102318646
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 68499878,
+          "planBColdBytes": 68498748,
+          "lostBytes": 1130,
+          "lostFraction": 0.000016496379745377063
+        }
+      },
+      {
+        "app": "nestjs-typescript-starter",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 7567427,
+          "planBColdBytes": 7396555,
+          "lostBytes": 170872,
+          "lostFraction": 0.022579933707982912
+        },
+        "thirdParty": {
+          "planAColdBytes": 7040685,
+          "planBColdBytes": 6869813,
+          "lostBytes": 170872,
+          "lostFraction": 0.024269229485483303
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 1784662,
+          "planBColdBytes": 1778759,
+          "lostBytes": 5903,
+          "lostFraction": 0.0033076291196876494
+        }
+      },
+      {
+        "app": "node-express-boilerplate",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 52400881,
+          "planBColdBytes": 52245807,
+          "lostBytes": 155074,
+          "lostFraction": 0.0029593777249661128
+        },
+        "thirdParty": {
+          "planAColdBytes": 51994858,
+          "planBColdBytes": 51839784,
+          "lostBytes": 155074,
+          "lostFraction": 0.0029824872297949155
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 24797793,
+          "planBColdBytes": 24795369,
+          "lostBytes": 2424,
+          "lostFraction": 0.00009775063450203008
+        }
+      },
+      {
+        "app": "nodebb",
+        "category": "control",
+        "universe": {
+          "planAColdBytes": 411167609,
+          "planBColdBytes": 385447967,
+          "lostBytes": 25719642,
+          "lostFraction": 0.0625526949035521
+        },
+        "thirdParty": {
+          "planAColdBytes": 406764944,
+          "planBColdBytes": 381045302,
+          "lostBytes": 25719642,
+          "lostFraction": 0.06322974085987115
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 119305485,
+          "planBColdBytes": 118570874,
+          "lostBytes": 734611,
+          "lostFraction": 0.006157395026724882
+        }
+      },
+      {
+        "app": "outline",
+        "category": "target",
+        "universe": {
+          "planAColdBytes": 721756299,
+          "planBColdBytes": 572887435,
+          "lostBytes": 148868864,
+          "lostFraction": 0.2062591822284879
+        },
+        "thirdParty": {
+          "planAColdBytes": 682531722,
+          "planBColdBytes": 572887435,
+          "lostBytes": 109644287,
+          "lostFraction": 0.16064350339455724
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 186173326,
+          "planBColdBytes": 183480500,
+          "lostBytes": 2692826,
+          "lostFraction": 0.014464080638490607
+        }
+      },
+      {
+        "app": "parse-server",
+        "category": "control",
+        "universe": {
+          "planAColdBytes": 123473743,
+          "planBColdBytes": 106503591,
+          "lostBytes": 16970152,
+          "lostFraction": 0.1374393582609705
+        },
+        "thirdParty": {
+          "planAColdBytes": 115015170,
+          "planBColdBytes": 106502655,
+          "lostBytes": 8512515,
+          "lostFraction": 0.07401210640300754
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 55931494,
+          "planBColdBytes": 52289963,
+          "lostBytes": 3641531,
+          "lostFraction": 0.0651069860569074
+        }
+      },
+      {
+        "app": "strapi",
+        "category": "control",
+        "universe": {
+          "planAColdBytes": 589851864,
+          "planBColdBytes": 433323040,
+          "lostBytes": 156528824,
+          "lostFraction": 0.2653697200149901
+        },
+        "thirdParty": {
+          "planAColdBytes": 340449042,
+          "planBColdBytes": 322652856,
+          "lostBytes": 17796186,
+          "lostFraction": 0.052272686377540165
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 151422157,
+          "planBColdBytes": 148842837,
+          "lostBytes": 2579320,
+          "lostFraction": 0.017033966832212012
+        }
+      },
+      {
+        "app": "uptime-kuma",
+        "category": "control",
+        "universe": {
+          "planAColdBytes": 135918806,
+          "planBColdBytes": 126336229,
+          "lostBytes": 9582577,
+          "lostFraction": 0.07050221585966551
+        },
+        "thirdParty": {
+          "planAColdBytes": 128714650,
+          "planBColdBytes": 119132073,
+          "lostBytes": 9582577,
+          "lostFraction": 0.0744482232597455
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 39861803,
+          "planBColdBytes": 38597673,
+          "lostBytes": 1264130,
+          "lostFraction": 0.031712815398741497
+        }
+      },
+      {
+        "app": "verdaccio",
+        "category": "control",
+        "universe": {
+          "planAColdBytes": 44695817,
+          "planBColdBytes": 44380968,
+          "lostBytes": 314849,
+          "lostFraction": 0.007044260987555054
+        },
+        "thirdParty": {
+          "planAColdBytes": 29026804,
+          "planBColdBytes": 28711955,
+          "lostBytes": 314849,
+          "lostFraction": 0.010846836599716593
+        },
+        "thirdPartyJs": {
+          "planAColdBytes": 8940543,
+          "planBColdBytes": 8819723,
+          "lostBytes": 120820,
+          "lostFraction": 0.01351372058721713
+        }
+      }
+    ],
+    "aggregate": {
+      "universe": {
+        "planAColdBytes": 4796700073,
+        "planBColdBytes": 3845859940,
+        "lostBytes": 950840133,
+        "lostFraction": 0.1982279730917835
+      },
+      "thirdParty": {
+        "planAColdBytes": 4144565675,
+        "planBColdBytes": 3502252469,
+        "lostBytes": 642313206,
+        "lostFraction": 0.1549772054221339
+      },
+      "thirdPartyJs": {
+        "planAColdBytes": 1374416879,
+        "planBColdBytes": 1309578401,
+        "lostBytes": 64838478,
+        "lostFraction": 0.04717526319028857
+      }
+    },
+    "lostFractionDistribution": {
+      "n": 19,
+      "min": 0,
+      "p25": 0.005001819356260583,
+      "median": 0.0625526949035521,
+      "p75": 0.17695143656499235,
+      "max": 0.8706134997825121
+    }
+  },
+  "hotBytesByReason": {
+    "planA": {
+      "no-positive-evidence": 0,
+      "nft-positive": 1376271980,
+      "entrypoint": 0,
+      "resolver-metadata": 8786408,
+      "opaque-boundary": 0
+    },
+    "planB": {
+      "no-positive-evidence": 0,
+      "nft-positive": 1376271980,
+      "entrypoint": 0,
+      "resolver-metadata": 8786408,
+      "opaque-boundary": 950840133
+    }
+  },
+  "opaqueEvidence": {
+    "binding-gyp": {
+      "packages": 18,
+      "files": 835,
+      "forcedHotBytes": 5543118
+    },
+    "native-artifact": {
+      "packages": 52,
+      "files": 3716,
+      "forcedHotBytes": 420570694
+    },
+    "install-script": {
+      "packages": 33,
+      "files": 43859,
+      "forcedHotBytes": 317304035
+    },
+    "wasm-artifact": {
+      "packages": 26,
+      "files": 5595,
+      "forcedHotBytes": 207422286
+    }
+  },
+  "firstPartyRootOpaque": {
+    "totalLostBytes": 253253507,
+    "perApp": [
+      {
+        "app": "strapi",
+        "lostBytes": 138732638,
+        "evidence": "install-script"
+      },
+      {
+        "app": "n8n",
+        "lostBytes": 70243686,
+        "evidence": "wasm-artifact"
+      },
+      {
+        "app": "outline",
+        "lostBytes": 19576069,
+        "evidence": "install-script"
+      },
+      {
+        "app": "juice-shop",
+        "lostBytes": 14372689,
+        "evidence": "install-script"
+      },
+      {
+        "app": "parse-server",
+        "lostBytes": 8457637,
+        "evidence": "install-script"
+      },
+      {
+        "app": "hackathon-starter",
+        "lostBytes": 1870788,
+        "evidence": "install-script"
+      }
+    ]
+  },
+  "packageStructure": [
+    {
+      "app": "bulletproof-nodejs",
+      "planA": {
+        "total": 295,
+        "allHot": 3,
+        "mixed": 292,
+        "allCold": 0,
+        "allHotNonMeta": 3,
+        "mixedNonMeta": 153,
+        "allColdNonMeta": 139,
+        "hotFiles": 1326,
+        "coldFiles": 4011
+      },
+      "planB": {
+        "total": 295,
+        "allHot": 5,
+        "mixed": 290,
+        "allCold": 0,
+        "allHotNonMeta": 5,
+        "mixedNonMeta": 153,
+        "allColdNonMeta": 137,
+        "hotFiles": 1429,
+        "coldFiles": 3908
+      }
+    },
+    {
+      "app": "excalidraw-room",
+      "planA": {
+        "total": 269,
+        "allHot": 1,
+        "mixed": 268,
+        "allCold": 0,
+        "allHotNonMeta": 1,
+        "mixedNonMeta": 76,
+        "allColdNonMeta": 192,
+        "hotFiles": 467,
+        "coldFiles": 5605
+      },
+      "planB": {
+        "total": 269,
+        "allHot": 2,
+        "mixed": 267,
+        "allCold": 0,
+        "allHotNonMeta": 2,
+        "mixedNonMeta": 76,
+        "allColdNonMeta": 191,
+        "hotFiles": 472,
+        "coldFiles": 5600
+      }
+    },
+    {
+      "app": "express-realworld",
+      "planA": {
+        "total": 128,
+        "allHot": 1,
+        "mixed": 127,
+        "allCold": 0,
+        "allHotNonMeta": 1,
+        "mixedNonMeta": 97,
+        "allColdNonMeta": 30,
+        "hotFiles": 421,
+        "coldFiles": 1554
+      },
+      "planB": {
+        "total": 128,
+        "allHot": 5,
+        "mixed": 123,
+        "allCold": 0,
+        "allHotNonMeta": 5,
+        "mixedNonMeta": 96,
+        "allColdNonMeta": 27,
+        "hotFiles": 550,
+        "coldFiles": 1425
+      }
+    },
+    {
+      "app": "express-rest-boilerplate",
+      "planA": {
+        "total": 617,
+        "allHot": 1,
+        "mixed": 616,
+        "allCold": 0,
+        "allHotNonMeta": 1,
+        "mixedNonMeta": 383,
+        "allColdNonMeta": 233,
+        "hotFiles": 2703,
+        "coldFiles": 9073
+      },
+      "planB": {
+        "total": 617,
+        "allHot": 3,
+        "mixed": 614,
+        "allCold": 0,
+        "allHotNonMeta": 3,
+        "mixedNonMeta": 382,
+        "allColdNonMeta": 232,
+        "hotFiles": 4118,
+        "coldFiles": 7658
+      }
+    },
+    {
+      "app": "fastify-demo",
+      "planA": {
+        "total": 168,
+        "allHot": 0,
+        "mixed": 168,
+        "allCold": 0,
+        "allHotNonMeta": 0,
+        "mixedNonMeta": 53,
+        "allColdNonMeta": 115,
+        "hotFiles": 535,
+        "coldFiles": 7029
+      },
+      "planB": {
+        "total": 168,
+        "allHot": 0,
+        "mixed": 168,
+        "allCold": 0,
+        "allHotNonMeta": 0,
+        "mixedNonMeta": 53,
+        "allColdNonMeta": 115,
+        "hotFiles": 535,
+        "coldFiles": 7029
+      }
+    },
+    {
+      "app": "ghost",
+      "planA": {
+        "total": 1249,
+        "allHot": 94,
+        "mixed": 1155,
+        "allCold": 0,
+        "allHotNonMeta": 94,
+        "mixedNonMeta": 730,
+        "allColdNonMeta": 425,
+        "hotFiles": 9857,
+        "coldFiles": 56924
+      },
+      "planB": {
+        "total": 1249,
+        "allHot": 101,
+        "mixed": 1148,
+        "allCold": 0,
+        "allHotNonMeta": 101,
+        "mixedNonMeta": 724,
+        "allColdNonMeta": 424,
+        "hotFiles": 11981,
+        "coldFiles": 54800
+      }
+    },
+    {
+      "app": "hackathon-starter",
+      "planA": {
+        "total": 502,
+        "allHot": 0,
+        "mixed": 502,
+        "allCold": 0,
+        "allHotNonMeta": 0,
+        "mixedNonMeta": 349,
+        "allColdNonMeta": 153,
+        "hotFiles": 4899,
+        "coldFiles": 23679
+      },
+      "planB": {
+        "total": 502,
+        "allHot": 6,
+        "mixed": 496,
+        "allCold": 0,
+        "allHotNonMeta": 6,
+        "mixedNonMeta": 346,
+        "allColdNonMeta": 150,
+        "hotFiles": 5595,
+        "coldFiles": 22983
+      }
+    },
+    {
+      "app": "json-server",
+      "planA": {
+        "total": 46,
+        "allHot": 0,
+        "mixed": 46,
+        "allCold": 0,
+        "allHotNonMeta": 0,
+        "mixedNonMeta": 39,
+        "allColdNonMeta": 7,
+        "hotFiles": 147,
+        "coldFiles": 990
+      },
+      "planB": {
+        "total": 46,
+        "allHot": 0,
+        "mixed": 46,
+        "allCold": 0,
+        "allHotNonMeta": 0,
+        "mixedNonMeta": 39,
+        "allColdNonMeta": 7,
+        "hotFiles": 147,
+        "coldFiles": 990
+      }
+    },
+    {
+      "app": "juice-shop",
+      "planA": {
+        "total": 921,
+        "allHot": 1,
+        "mixed": 920,
+        "allCold": 0,
+        "allHotNonMeta": 1,
+        "mixedNonMeta": 473,
+        "allColdNonMeta": 447,
+        "hotFiles": 4679,
+        "coldFiles": 16433
+      },
+      "planB": {
+        "total": 921,
+        "allHot": 5,
+        "mixed": 916,
+        "allCold": 0,
+        "allHotNonMeta": 5,
+        "mixedNonMeta": 471,
+        "allColdNonMeta": 445,
+        "hotFiles": 5602,
+        "coldFiles": 15510
+      }
+    },
+    {
+      "app": "n8n",
+      "planA": {
+        "total": 2381,
+        "allHot": 273,
+        "mixed": 2108,
+        "allCold": 0,
+        "allHotNonMeta": 273,
+        "mixedNonMeta": 1482,
+        "allColdNonMeta": 626,
+        "hotFiles": 91257,
+        "coldFiles": 161288
+      },
+      "planB": {
+        "total": 2381,
+        "allHot": 309,
+        "mixed": 2072,
+        "allCold": 0,
+        "allHotNonMeta": 309,
+        "mixedNonMeta": 1460,
+        "allColdNonMeta": 612,
+        "hotFiles": 101286,
+        "coldFiles": 151259
+      }
+    },
+    {
+      "app": "nestjs-realworld",
+      "planA": {
+        "total": 589,
+        "allHot": 41,
+        "mixed": 548,
+        "allCold": 0,
+        "allHotNonMeta": 41,
+        "mixedNonMeta": 231,
+        "allColdNonMeta": 317,
+        "hotFiles": 2629,
+        "coldFiles": 12410
+      },
+      "planB": {
+        "total": 589,
+        "allHot": 43,
+        "mixed": 546,
+        "allCold": 0,
+        "allHotNonMeta": 43,
+        "mixedNonMeta": 229,
+        "allColdNonMeta": 317,
+        "hotFiles": 2772,
+        "coldFiles": 12267
+      }
+    },
+    {
+      "app": "nestjs-typescript-starter",
+      "planA": {
+        "total": 106,
+        "allHot": 3,
+        "mixed": 103,
+        "allCold": 0,
+        "allHotNonMeta": 3,
+        "mixedNonMeta": 95,
+        "allColdNonMeta": 8,
+        "hotFiles": 875,
+        "coldFiles": 3192
+      },
+      "planB": {
+        "total": 106,
+        "allHot": 4,
+        "mixed": 102,
+        "allCold": 0,
+        "allHotNonMeta": 4,
+        "mixedNonMeta": 94,
+        "allColdNonMeta": 8,
+        "hotFiles": 1078,
+        "coldFiles": 2989
+      }
+    },
+    {
+      "app": "node-express-boilerplate",
+      "planA": {
+        "total": 393,
+        "allHot": 1,
+        "mixed": 392,
+        "allCold": 0,
+        "allHotNonMeta": 1,
+        "mixedNonMeta": 199,
+        "allColdNonMeta": 193,
+        "hotFiles": 1639,
+        "coldFiles": 6544
+      },
+      "planB": {
+        "total": 393,
+        "allHot": 2,
+        "mixed": 391,
+        "allCold": 0,
+        "allHotNonMeta": 2,
+        "mixedNonMeta": 199,
+        "allColdNonMeta": 192,
+        "hotFiles": 1644,
+        "coldFiles": 6539
+      }
+    },
+    {
+      "app": "nodebb",
+      "planA": {
+        "total": 903,
+        "allHot": 6,
+        "mixed": 897,
+        "allCold": 0,
+        "allHotNonMeta": 6,
+        "mixedNonMeta": 485,
+        "allColdNonMeta": 412,
+        "hotFiles": 16660,
+        "coldFiles": 31136
+      },
+      "planB": {
+        "total": 903,
+        "allHot": 17,
+        "mixed": 886,
+        "allCold": 0,
+        "allHotNonMeta": 17,
+        "mixedNonMeta": 479,
+        "allColdNonMeta": 407,
+        "hotFiles": 16801,
+        "coldFiles": 30995
+      }
+    },
+    {
+      "app": "outline",
+      "planA": {
+        "total": 1709,
+        "allHot": 64,
+        "mixed": 1645,
+        "allCold": 0,
+        "allHotNonMeta": 64,
+        "mixedNonMeta": 904,
+        "allColdNonMeta": 741,
+        "hotFiles": 13035,
+        "coldFiles": 72444
+      },
+      "planB": {
+        "total": 1709,
+        "allHot": 87,
+        "mixed": 1622,
+        "allCold": 0,
+        "allHotNonMeta": 87,
+        "mixedNonMeta": 890,
+        "allColdNonMeta": 732,
+        "hotFiles": 21146,
+        "coldFiles": 64333
+      }
+    },
+    {
+      "app": "parse-server",
+      "planA": {
+        "total": 634,
+        "allHot": 3,
+        "mixed": 631,
+        "allCold": 0,
+        "allHotNonMeta": 3,
+        "mixedNonMeta": 270,
+        "allColdNonMeta": 361,
+        "hotFiles": 2984,
+        "coldFiles": 20467
+      },
+      "planB": {
+        "total": 634,
+        "allHot": 10,
+        "mixed": 624,
+        "allCold": 0,
+        "allHotNonMeta": 10,
+        "mixedNonMeta": 267,
+        "allColdNonMeta": 357,
+        "hotFiles": 7428,
+        "coldFiles": 16023
+      }
+    },
+    {
+      "app": "strapi",
+      "planA": {
+        "total": 2019,
+        "allHot": 126,
+        "mixed": 1893,
+        "allCold": 0,
+        "allHotNonMeta": 126,
+        "mixedNonMeta": 1285,
+        "allColdNonMeta": 608,
+        "hotFiles": 21136,
+        "coldFiles": 95879
+      },
+      "planB": {
+        "total": 2019,
+        "allHot": 142,
+        "mixed": 1877,
+        "allCold": 0,
+        "allHotNonMeta": 142,
+        "mixedNonMeta": 1273,
+        "allColdNonMeta": 604,
+        "hotFiles": 46554,
+        "coldFiles": 70461
+      }
+    },
+    {
+      "app": "uptime-kuma",
+      "planA": {
+        "total": 694,
+        "allHot": 6,
+        "mixed": 688,
+        "allCold": 0,
+        "allHotNonMeta": 6,
+        "mixedNonMeta": 483,
+        "allColdNonMeta": 205,
+        "hotFiles": 5485,
+        "coldFiles": 21119
+      },
+      "planB": {
+        "total": 694,
+        "allHot": 10,
+        "mixed": 684,
+        "allCold": 0,
+        "allHotNonMeta": 10,
+        "mixedNonMeta": 480,
+        "allColdNonMeta": 204,
+        "hotFiles": 5590,
+        "coldFiles": 21014
+      }
+    },
+    {
+      "app": "verdaccio",
+      "planA": {
+        "total": 310,
+        "allHot": 10,
+        "mixed": 300,
+        "allCold": 0,
+        "allHotNonMeta": 10,
+        "mixedNonMeta": 231,
+        "allColdNonMeta": 69,
+        "hotFiles": 1945,
+        "coldFiles": 6762
+      },
+      "planB": {
+        "total": 310,
+        "allHot": 12,
+        "mixed": 298,
+        "allCold": 0,
+        "allHotNonMeta": 12,
+        "mixedNonMeta": 231,
+        "allColdNonMeta": 67,
+        "hotFiles": 1956,
+        "coldFiles": 6751
+      }
+    }
+  ],
+  "granularity": {
+    "perApp": [
+      {
+        "app": "bulletproof-nodejs",
+        "wholePackageColdBytes": 14240803,
+        "fileLevelOnlyColdBytes": 14263732,
+        "fileLevelOnlyShare": 0.5004021991588355
+      },
+      {
+        "app": "excalidraw-room",
+        "wholePackageColdBytes": 103849565,
+        "fileLevelOnlyColdBytes": 1462347,
+        "fileLevelOnlyShare": 0.013885865067192018
+      },
+      {
+        "app": "express-realworld",
+        "wholePackageColdBytes": 7715706,
+        "fileLevelOnlyColdBytes": 2570052,
+        "fileLevelOnlyShare": 0.24986510473997153
+      },
+      {
+        "app": "express-rest-boilerplate",
+        "wholePackageColdBytes": 18821257,
+        "fileLevelOnlyColdBytes": 23269518,
+        "fileLevelOnlyShare": 0.5528412817297852
+      },
+      {
+        "app": "fastify-demo",
+        "wholePackageColdBytes": 27272279,
+        "fileLevelOnlyColdBytes": 7083773,
+        "fileLevelOnlyShare": 0.2061870496644958
+      },
+      {
+        "app": "ghost",
+        "wholePackageColdBytes": 187429858,
+        "fileLevelOnlyColdBytes": 150227531,
+        "fileLevelOnlyShare": 0.4449111315019971
+      },
+      {
+        "app": "hackathon-starter",
+        "wholePackageColdBytes": 78977700,
+        "fileLevelOnlyColdBytes": 106811959,
+        "fileLevelOnlyShare": 0.574907987747585
+      },
+      {
+        "app": "json-server",
+        "wholePackageColdBytes": 1237345,
+        "fileLevelOnlyColdBytes": 1031198,
+        "fileLevelOnlyShare": 0.45456400870514685
+      },
+      {
+        "app": "juice-shop",
+        "wholePackageColdBytes": 41962521,
+        "fileLevelOnlyColdBytes": 104274766,
+        "fileLevelOnlyShare": 0.7130518360888355
+      },
+      {
+        "app": "n8n",
+        "wholePackageColdBytes": 333916055,
+        "fileLevelOnlyColdBytes": 780911776,
+        "fileLevelOnlyShare": 0.7004774677176139
+      },
+      {
+        "app": "nestjs-realworld",
+        "wholePackageColdBytes": 66508269,
+        "fileLevelOnlyColdBytes": 43500338,
+        "fileLevelOnlyShare": 0.39542667784167107
+      },
+      {
+        "app": "nestjs-typescript-starter",
+        "wholePackageColdBytes": 826688,
+        "fileLevelOnlyColdBytes": 6569867,
+        "fileLevelOnlyShare": 0.8882333735096947
+      },
+      {
+        "app": "node-express-boilerplate",
+        "wholePackageColdBytes": 20972304,
+        "fileLevelOnlyColdBytes": 31273503,
+        "fileLevelOnlyShare": 0.5985839782319756
+      },
+      {
+        "app": "nodebb",
+        "wholePackageColdBytes": 238114731,
+        "fileLevelOnlyColdBytes": 147333236,
+        "fileLevelOnlyShare": 0.3822389754620239
+      },
+      {
+        "app": "outline",
+        "wholePackageColdBytes": 237537930,
+        "fileLevelOnlyColdBytes": 335349505,
+        "fileLevelOnlyShare": 0.5853671847419729
+      },
+      {
+        "app": "parse-server",
+        "wholePackageColdBytes": 63327619,
+        "fileLevelOnlyColdBytes": 43175972,
+        "fileLevelOnlyShare": 0.4053945185754347
+      },
+      {
+        "app": "strapi",
+        "wholePackageColdBytes": 114305300,
+        "fileLevelOnlyColdBytes": 319017740,
+        "fileLevelOnlyShare": 0.7362122724884419
+      },
+      {
+        "app": "uptime-kuma",
+        "wholePackageColdBytes": 41083983,
+        "fileLevelOnlyColdBytes": 85252246,
+        "fileLevelOnlyShare": 0.674804422094948
+      },
+      {
+        "app": "verdaccio",
+        "wholePackageColdBytes": 25286755,
+        "fileLevelOnlyColdBytes": 19094213,
+        "fileLevelOnlyShare": 0.4302342616772126
+      }
+    ],
+    "wholePackageColdBytes": 1623386668,
+    "fileLevelOnlyColdBytes": 2222473272,
+    "fileLevelOnlyShare": 0.5778872103179088,
+    "shareDistribution": {
+      "n": 19,
+      "min": 0.013885865067192018,
+      "p25": 0.40041059820855285,
+      "median": 0.5004021991588355,
+      "p75": 0.6366942001634618,
+      "max": 0.8882333735096947
+    }
+  },
+  "topColdPackages": [
+    {
+      "app": "excalidraw-room",
+      "dir": "node_modules/typescript",
+      "name": "typescript",
+      "version": "4.2.3",
+      "thirdParty": true,
+      "files": 170,
+      "hotFiles": 1,
+      "coldFiles": 169,
+      "bytes": 59185869,
+      "hotBytes": 4235,
+      "coldBytes": 59181634,
+      "hotByteFraction": 0.00007155424211140669,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 169,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 59181634,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "nestjs-realworld",
+      "dir": "node_modules/typescript",
+      "name": "typescript",
+      "version": "3.8.3",
+      "thirdParty": true,
+      "files": 169,
+      "hotFiles": 1,
+      "coldFiles": 168,
+      "bytes": 52193654,
+      "hotBytes": 4265,
+      "coldBytes": 52189389,
+      "hotByteFraction": 0.0000817149149971374,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 168,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 52189389,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "outline",
+      "dir": "node_modules/@linear/sdk",
+      "name": "@linear/sdk",
+      "version": "58.1.0",
+      "thirdParty": true,
+      "files": 56,
+      "hotFiles": 1,
+      "coldFiles": 55,
+      "bytes": 37684089,
+      "hotBytes": 2779,
+      "coldBytes": 37681310,
+      "hotByteFraction": 0.0000737446512240219,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 55,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 37681310,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "nodebb",
+      "dir": "node_modules/wordnet-db",
+      "name": "wordnet-db",
+      "version": "3.1.14",
+      "thirdParty": true,
+      "files": 15,
+      "hotFiles": 1,
+      "coldFiles": 14,
+      "bytes": 35407539,
+      "hotBytes": 600,
+      "coldBytes": 35406939,
+      "hotByteFraction": 0.000016945543715986586,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 14,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 35406939,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "nodebb",
+      "dir": "node_modules/bootswatch",
+      "name": "bootswatch",
+      "version": "5.3.8",
+      "thirdParty": true,
+      "files": 211,
+      "hotFiles": 1,
+      "coldFiles": 210,
+      "bytes": 32013092,
+      "hotBytes": 1332,
+      "coldBytes": 32011760,
+      "hotByteFraction": 0.00004160797713635409,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 210,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 32011760,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "strapi",
+      "dir": "node_modules/@formatjs/intl-displaynames",
+      "name": "@formatjs/intl-displaynames",
+      "version": "6.6.6",
+      "thirdParty": true,
+      "files": 1174,
+      "hotFiles": 1,
+      "coldFiles": 1173,
+      "bytes": 31684830,
+      "hotBytes": 896,
+      "coldBytes": 31683934,
+      "hotByteFraction": 0.00002827851688016,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 1173,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 31683934,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "nodebb",
+      "dir": "node_modules/emoji-datasource-google",
+      "name": "emoji-datasource-google",
+      "version": "3.0.0",
+      "thirdParty": true,
+      "files": 2410,
+      "hotFiles": 1,
+      "coldFiles": 2409,
+      "bytes": 28912971,
+      "hotBytes": 458,
+      "coldBytes": 28912513,
+      "hotByteFraction": 0.00001584064121255474,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 2409,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 28912513,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/@typescript+typescript-darwin-arm64@7.0.2/node_modules/@typescript/typescript-darwin-arm64",
+      "name": "@typescript/typescript-darwin-arm64",
+      "version": "7.0.2",
+      "thirdParty": true,
+      "files": 113,
+      "hotFiles": 1,
+      "coldFiles": 112,
+      "bytes": 27498111,
+      "hotBytes": 1048,
+      "coldBytes": 27497063,
+      "hotByteFraction": 0.00003811170883701793,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 112,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 27497063,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "ghost",
+      "dir": "node_modules/.pnpm/viem@2.55.11/node_modules/viem",
+      "name": "viem",
+      "version": "2.55.11",
+      "thirdParty": true,
+      "files": 10045,
+      "hotFiles": 31,
+      "coldFiles": 10014,
+      "bytes": 26094593,
+      "hotBytes": 11602,
+      "coldBytes": 26082991,
+      "hotByteFraction": 0.0004446131809758443,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 10014,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 26082991,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "hackathon-starter",
+      "dir": "node_modules/@fortawesome/fontawesome-free",
+      "name": "@fortawesome/fontawesome-free",
+      "version": "7.3.1",
+      "thirdParty": true,
+      "files": 5839,
+      "hotFiles": 1,
+      "coldFiles": 5838,
+      "bytes": 25338026,
+      "hotBytes": 709,
+      "coldBytes": 25337317,
+      "hotByteFraction": 0.000027981658871137003,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 5838,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 25337317,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/typescript@5.9.3/node_modules/typescript",
+      "name": "typescript",
+      "version": "5.9.3",
+      "thirdParty": true,
+      "files": 132,
+      "hotFiles": 1,
+      "coldFiles": 131,
+      "bytes": 23625066,
+      "hotBytes": 3620,
+      "coldBytes": 23621446,
+      "hotByteFraction": 0.00015322708516454515,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 131,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 23621446,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/@linear+sdk@76.0.0_graphql@16.11.0/node_modules/@linear/sdk",
+      "name": "@linear/sdk",
+      "version": "76.0.0",
+      "thirdParty": true,
+      "files": 22,
+      "hotFiles": 1,
+      "coldFiles": 21,
+      "bytes": 21943907,
+      "hotBytes": 2790,
+      "coldBytes": 21941117,
+      "hotByteFraction": 0.0001271423543674333,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 21,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 21941117,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "excalidraw-room",
+      "dir": "node_modules/prettier",
+      "name": "prettier",
+      "version": "2.2.1",
+      "thirdParty": true,
+      "files": 33,
+      "hotFiles": 1,
+      "coldFiles": 32,
+      "bytes": 19250160,
+      "hotBytes": 548,
+      "coldBytes": 19249612,
+      "hotByteFraction": 0.000028467295856242232,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 32,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 19249612,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/selenium-webdriver@4.39.0_bufferutil@4.0.9_utf-8-validate@5.0.10/node_modules/selenium-webdriver",
+      "name": "selenium-webdriver",
+      "version": "4.39.0",
+      "thirdParty": true,
+      "files": 100,
+      "hotFiles": 1,
+      "coldFiles": 99,
+      "bytes": 18387198,
+      "hotBytes": 1907,
+      "coldBytes": 18385291,
+      "hotByteFraction": 0.00010371346411780631,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 99,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 18385291,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "outline",
+      "dir": "node_modules/@mermaid-js/layout-elk",
+      "name": "@mermaid-js/layout-elk",
+      "version": "0.2.2",
+      "thirdParty": true,
+      "files": 27,
+      "hotFiles": 1,
+      "coldFiles": 26,
+      "bytes": 15330605,
+      "hotBytes": 893,
+      "coldBytes": 15329712,
+      "hotByteFraction": 0.00005824949504602069,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 26,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 15329712,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "nodebb",
+      "dir": "node_modules/natural",
+      "name": "natural",
+      "version": "5.2.4",
+      "thirdParty": true,
+      "files": 201,
+      "hotFiles": 1,
+      "coldFiles": 200,
+      "bytes": 12884127,
+      "hotBytes": 2982,
+      "coldBytes": 12881145,
+      "hotByteFraction": 0.00023144757886972087,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 200,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 12881145,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/ag-grid-community@34.1.1/node_modules/ag-grid-community",
+      "name": "ag-grid-community",
+      "version": "34.1.1",
+      "thirdParty": true,
+      "files": 42,
+      "hotFiles": 1,
+      "coldFiles": 41,
+      "bytes": 12182524,
+      "hotBytes": 5561,
+      "coldBytes": 12176963,
+      "hotByteFraction": 0.0004564735517861488,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 41,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 12176963,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/@azure+msal-browser@4.27.0/node_modules/@azure/msal-browser",
+      "name": "@azure/msal-browser",
+      "version": "4.27.0",
+      "thirdParty": true,
+      "files": 2611,
+      "hotFiles": 2,
+      "coldFiles": 2609,
+      "bytes": 12054881,
+      "hotBytes": 3520,
+      "coldBytes": 12051361,
+      "hotByteFraction": 0.00029199790524684564,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 2609,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 12051361,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "uptime-kuma",
+      "dir": "node_modules/@azure/msal-browser",
+      "name": "@azure/msal-browser",
+      "version": "5.18.0",
+      "thirdParty": true,
+      "files": 1136,
+      "hotFiles": 2,
+      "coldFiles": 1134,
+      "bytes": 12018067,
+      "hotBytes": 4480,
+      "coldBytes": 12013587,
+      "hotByteFraction": 0.0003727720938816533,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 1134,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 12013587,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/openai@6.46.0_@aws-sdk+credential-provider-node@3.972.80_@smithy+signature-v4@5.3.5_ws@_fe9d8609b329730013ae9182e62993bd/node_modules/openai",
+      "name": "openai",
+      "version": "6.46.0",
+      "thirdParty": true,
+      "files": 2647,
+      "hotFiles": 1,
+      "coldFiles": 2646,
+      "bytes": 11777214,
+      "hotBytes": 6151,
+      "coldBytes": 11771063,
+      "hotByteFraction": 0.0005222797174272286,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 2646,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 11771063,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "verdaccio",
+      "dir": "node_modules/.pnpm/@esbuild+darwin-arm64@0.28.1/node_modules/@esbuild/darwin-arm64",
+      "name": "@esbuild/darwin-arm64",
+      "version": "0.28.1",
+      "thirdParty": true,
+      "files": 3,
+      "hotFiles": 1,
+      "coldFiles": 2,
+      "bytes": 10574305,
+      "hotBytes": 382,
+      "coldBytes": 10573923,
+      "hotByteFraction": 0.00003612530563474384,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 2,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 10573923,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "nodebb",
+      "dir": "node_modules/sass-embedded-darwin-arm64",
+      "name": "sass-embedded-darwin-arm64",
+      "version": "1.100.0",
+      "thirdParty": true,
+      "files": 6,
+      "hotFiles": 1,
+      "coldFiles": 5,
+      "bytes": 10478510,
+      "hotBytes": 357,
+      "coldBytes": 10478153,
+      "hotByteFraction": 0.0000340697293794633,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 5,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 10478153,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "nodebb",
+      "dir": "node_modules/spdx-license-list",
+      "name": "spdx-license-list",
+      "version": "6.12.0",
+      "thirdParty": true,
+      "files": 740,
+      "hotFiles": 1,
+      "coldFiles": 739,
+      "bytes": 10470117,
+      "hotBytes": 1061,
+      "coldBytes": 10469056,
+      "hotByteFraction": 0.00010133602136442219,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 739,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 10469056,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "ghost",
+      "dir": ".nxcache/cloud/2608.20.0002",
+      "name": "nx-cloud-client-bundle",
+      "version": "0.0.1",
+      "thirdParty": false,
+      "files": 8,
+      "hotFiles": 1,
+      "coldFiles": 7,
+      "bytes": 10465450,
+      "hotBytes": 813,
+      "coldBytes": 10464637,
+      "hotByteFraction": 0.00007768418940418233,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 7,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 10464637,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "hackathon-starter",
+      "dir": "node_modules/bootstrap",
+      "name": "bootstrap",
+      "version": "5.3.8",
+      "thirdParty": true,
+      "files": 219,
+      "hotFiles": 1,
+      "coldFiles": 218,
+      "bytes": 9633659,
+      "hotBytes": 10476,
+      "coldBytes": 9623183,
+      "hotByteFraction": 0.0010874372862896642,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 218,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 9623183,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "nodebb",
+      "dir": "node_modules/web-streams-polyfill",
+      "name": "web-streams-polyfill",
+      "version": "3.3.3",
+      "thirdParty": true,
+      "files": 38,
+      "hotFiles": 1,
+      "coldFiles": 37,
+      "bytes": 9034723,
+      "hotBytes": 2723,
+      "coldBytes": 9032000,
+      "hotByteFraction": 0.00030139274884243824,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 37,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 9032000,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "verdaccio",
+      "dir": "packages/ui-components",
+      "name": "@verdaccio/ui-components",
+      "version": "5.0.0-next-9.18",
+      "thirdParty": false,
+      "files": 1466,
+      "hotFiles": 1,
+      "coldFiles": 1465,
+      "bytes": 8995755,
+      "hotBytes": 3147,
+      "coldBytes": 8992608,
+      "hotByteFraction": 0.0003498316706046352,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 1465,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 8992608,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/@aws-sdk+client-sagemaker@3.808.0/node_modules/@aws-sdk/client-sagemaker",
+      "name": "@aws-sdk/client-sagemaker",
+      "version": "3.808.0",
+      "thirdParty": true,
+      "files": 1446,
+      "hotFiles": 1,
+      "coldFiles": 1445,
+      "bytes": 8977853,
+      "hotBytes": 3621,
+      "coldBytes": 8974232,
+      "hotByteFraction": 0.00040332582856948094,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 1445,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 8974232,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/puppeteer-core@24.41.0_bufferutil@4.0.9_utf-8-validate@5.0.10/node_modules/puppeteer-core",
+      "name": "puppeteer-core",
+      "version": "24.41.0",
+      "thirdParty": true,
+      "files": 1618,
+      "hotFiles": 2,
+      "coldFiles": 1616,
+      "bytes": 8733058,
+      "hotBytes": 4153,
+      "coldBytes": 8728905,
+      "hotByteFraction": 0.00047554934365488013,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 1616,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 8728905,
+      "nonMetaHotBytes": 0
+    },
+    {
+      "app": "parse-server",
+      "dir": "node_modules/@firebase/database",
+      "name": "@firebase/database",
+      "version": "1.1.2",
+      "thirdParty": true,
+      "files": 201,
+      "hotFiles": 2,
+      "coldFiles": 199,
+      "bytes": 8696327,
+      "hotBytes": 3350,
+      "coldBytes": 8692977,
+      "hotByteFraction": 0.00038522010499375195,
+      "class": "mixed",
+      "classNonMeta": "all-cold",
+      "nonMetaFiles": 199,
+      "nonMetaHotFiles": 0,
+      "nonMetaBytes": 8692977,
+      "nonMetaHotBytes": 0
+    }
+  ],
+  "topMixedPackages": [
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/element-plus@2.4.3_patch_hash=fbab57fe3750e430abd5d5e7c04cbf1b6a8f9f1c9676b14c73b77d3e0_ad2671a9dc4701bd91b53b83324d31e0/node_modules/element-plus",
+      "name": "element-plus",
+      "version": "2.4.3",
+      "thirdParty": true,
+      "files": 6492,
+      "hotFiles": 1371,
+      "coldFiles": 5121,
+      "bytes": 94371114,
+      "hotBytes": 3735661,
+      "coldBytes": 90635453,
+      "hotByteFraction": 0.03958479286362986,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 6491,
+      "nonMetaHotFiles": 1370,
+      "nonMetaBytes": 94368475,
+      "nonMetaHotBytes": 3733022
+    },
+    {
+      "app": "outline",
+      "dir": "node_modules/mermaid",
+      "name": "mermaid",
+      "version": "11.16.1",
+      "thirdParty": true,
+      "files": 1171,
+      "hotFiles": 67,
+      "coldFiles": 1104,
+      "bytes": 83547314,
+      "hotBytes": 2816572,
+      "coldBytes": 80730742,
+      "hotByteFraction": 0.03371229863835,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 1170,
+      "nonMetaHotFiles": 66,
+      "nonMetaBytes": 83542601,
+      "nonMetaHotBytes": 2811859
+    },
+    {
+      "app": "nodebb",
+      "dir": "node_modules/ace-builds",
+      "name": "ace-builds",
+      "version": "1.44.0",
+      "thirdParty": true,
+      "files": 2151,
+      "hotFiles": 7,
+      "coldFiles": 2144,
+      "bytes": 55087443,
+      "hotBytes": 1130203,
+      "coldBytes": 53957240,
+      "hotByteFraction": 0.02051652678814662,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 2150,
+      "nonMetaHotFiles": 6,
+      "nonMetaBytes": 55086888,
+      "nonMetaHotBytes": 1129648
+    },
+    {
+      "app": "n8n",
+      "dir": "packages/cli",
+      "name": "n8n",
+      "version": "2.36.0",
+      "thirdParty": false,
+      "files": 8808,
+      "hotFiles": 5438,
+      "coldFiles": 3370,
+      "bytes": 61972594,
+      "hotBytes": 32918910,
+      "coldBytes": 29053684,
+      "hotByteFraction": 0.5311849621786043,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 8807,
+      "nonMetaHotFiles": 5437,
+      "nonMetaBytes": 61960535,
+      "nonMetaHotBytes": 32906851
+    },
+    {
+      "app": "outline",
+      "dir": "node_modules/@emoji-mart/data",
+      "name": "@emoji-mart/data",
+      "version": "1.2.1",
+      "thirdParty": true,
+      "files": 98,
+      "hotFiles": 2,
+      "coldFiles": 96,
+      "bytes": 27937216,
+      "hotBytes": 433431,
+      "coldBytes": 27503785,
+      "hotByteFraction": 0.01551446643788701,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 97,
+      "nonMetaHotFiles": 1,
+      "nonMetaBytes": 27936518,
+      "nonMetaHotBytes": 432733
+    },
+    {
+      "app": "ghost",
+      "dir": "ghost/core",
+      "name": "ghost",
+      "version": "6.60.0-rc.0",
+      "thirdParty": false,
+      "files": 3008,
+      "hotFiles": 1146,
+      "coldFiles": 1862,
+      "bytes": 27914977,
+      "hotBytes": 5226185,
+      "coldBytes": 22688792,
+      "hotByteFraction": 0.18721795830245536,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 3007,
+      "nonMetaHotFiles": 1145,
+      "nonMetaBytes": 27902592,
+      "nonMetaHotBytes": 5213800
+    },
+    {
+      "app": "hackathon-starter",
+      "dir": "node_modules/js-tiktoken",
+      "name": "js-tiktoken",
+      "version": "1.0.21",
+      "thirdParty": true,
+      "files": 32,
+      "hotFiles": 5,
+      "coldFiles": 27,
+      "bytes": 22432828,
+      "hotBytes": 20349,
+      "coldBytes": 22412479,
+      "hotByteFraction": 0.000907108100681733,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 31,
+      "nonMetaHotFiles": 4,
+      "nonMetaBytes": 22430421,
+      "nonMetaHotBytes": 17942
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/js-tiktoken@1.0.21/node_modules/js-tiktoken",
+      "name": "js-tiktoken",
+      "version": "1.0.21",
+      "thirdParty": true,
+      "files": 32,
+      "hotFiles": 5,
+      "coldFiles": 27,
+      "bytes": 22432828,
+      "hotBytes": 20349,
+      "coldBytes": 22412479,
+      "hotByteFraction": 0.000907108100681733,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 31,
+      "nonMetaHotFiles": 4,
+      "nonMetaBytes": 22430421,
+      "nonMetaHotBytes": 17942
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/pdf-parse@2.4.5/node_modules/pdf-parse",
+      "name": "pdf-parse",
+      "version": "2.4.5",
+      "thirdParty": true,
+      "files": 110,
+      "hotFiles": 20,
+      "coldFiles": 90,
+      "bytes": 21255998,
+      "hotBytes": 564736,
+      "coldBytes": 20691262,
+      "hotByteFraction": 0.026568312624041458,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 109,
+      "nonMetaHotFiles": 19,
+      "nonMetaBytes": 21250593,
+      "nonMetaHotBytes": 559331
+    },
+    {
+      "app": "outline",
+      "dir": "node_modules/date-fns",
+      "name": "date-fns",
+      "version": "3.6.0",
+      "thirdParty": true,
+      "files": 4782,
+      "hotFiles": 825,
+      "coldFiles": 3957,
+      "bytes": 22153202,
+      "hotBytes": 1896602,
+      "coldBytes": 20256600,
+      "hotByteFraction": 0.08561299626121768,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 4781,
+      "nonMetaHotFiles": 824,
+      "nonMetaBytes": 21995116,
+      "nonMetaHotBytes": 1738516
+    },
+    {
+      "app": "strapi",
+      "dir": "node_modules/hls.js",
+      "name": "hls.js",
+      "version": "1.5.15",
+      "thirdParty": true,
+      "files": 142,
+      "hotFiles": 2,
+      "coldFiles": 140,
+      "bytes": 20229762,
+      "hotBytes": 1137256,
+      "coldBytes": 19092506,
+      "hotByteFraction": 0.05621697378347803,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 141,
+      "nonMetaHotFiles": 1,
+      "nonMetaBytes": 20224342,
+      "nonMetaHotBytes": 1131836
+    },
+    {
+      "app": "strapi",
+      "dir": "packages/core/admin",
+      "name": "@strapi/admin",
+      "version": "5.52.1",
+      "thirdParty": false,
+      "files": 3495,
+      "hotFiles": 506,
+      "coldFiles": 2989,
+      "bytes": 22567456,
+      "hotBytes": 4504271,
+      "coldBytes": 18063185,
+      "hotByteFraction": 0.19959143821970896,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 3494,
+      "nonMetaHotFiles": 505,
+      "nonMetaBytes": 22561181,
+      "nonMetaHotBytes": 4497996
+    },
+    {
+      "app": "node-express-boilerplate",
+      "dir": "node_modules/swagger-ui-dist",
+      "name": "swagger-ui-dist",
+      "version": "3.51.1",
+      "thirdParty": true,
+      "files": 20,
+      "hotFiles": 5,
+      "coldFiles": 15,
+      "bytes": 18994016,
+      "hotBytes": 1442131,
+      "coldBytes": 17551885,
+      "hotByteFraction": 0.07592554412926682,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 19,
+      "nonMetaHotFiles": 4,
+      "nonMetaBytes": 18993489,
+      "nonMetaHotBytes": 1441604
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/typescript@6.0.2/node_modules/typescript",
+      "name": "typescript",
+      "version": "6.0.2",
+      "thirdParty": true,
+      "files": 140,
+      "hotFiles": 2,
+      "coldFiles": 138,
+      "bytes": 24345915,
+      "hotBytes": 9146950,
+      "coldBytes": 15198965,
+      "hotByteFraction": 0.3757077932786671,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 139,
+      "nonMetaHotFiles": 1,
+      "nonMetaBytes": 24342388,
+      "nonMetaHotBytes": 9143423
+    },
+    {
+      "app": "hackathon-starter",
+      "dir": "node_modules/stripe",
+      "name": "stripe",
+      "version": "22.5.0",
+      "thirdParty": true,
+      "files": 1454,
+      "hotFiles": 193,
+      "coldFiles": 1261,
+      "bytes": 16168593,
+      "hotBytes": 1040622,
+      "coldBytes": 15127971,
+      "hotByteFraction": 0.06436070225776602,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 1451,
+      "nonMetaHotFiles": 190,
+      "nonMetaBytes": 16165743,
+      "nonMetaHotBytes": 1037772
+    },
+    {
+      "app": "n8n",
+      "dir": "packages/@n8n/workflow-sdk",
+      "name": "@n8n/workflow-sdk",
+      "version": "0.29.0",
+      "thirdParty": false,
+      "files": 919,
+      "hotFiles": 642,
+      "coldFiles": 277,
+      "bytes": 17643948,
+      "hotBytes": 2662962,
+      "coldBytes": 14980986,
+      "hotByteFraction": 0.15092778555003675,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 918,
+      "nonMetaHotFiles": 641,
+      "nonMetaBytes": 17639958,
+      "nonMetaHotBytes": 2658972
+    },
+    {
+      "app": "strapi",
+      "dir": "node_modules/typescript",
+      "name": "typescript",
+      "version": "5.9.3",
+      "thirdParty": true,
+      "files": 132,
+      "hotFiles": 2,
+      "coldFiles": 130,
+      "bytes": 23644551,
+      "hotBytes": 9128239,
+      "coldBytes": 14516312,
+      "hotByteFraction": 0.3860609998472798,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 131,
+      "nonMetaHotFiles": 1,
+      "nonMetaBytes": 23640931,
+      "nonMetaHotBytes": 9124619
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob",
+      "name": "@azure/storage-blob",
+      "version": "12.32.0",
+      "thirdParty": true,
+      "files": 1080,
+      "hotFiles": 68,
+      "coldFiles": 1012,
+      "bytes": 15253537,
+      "hotBytes": 875398,
+      "coldBytes": 14378139,
+      "hotByteFraction": 0.05738983686209959,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 1075,
+      "nonMetaHotFiles": 63,
+      "nonMetaBytes": 15247904,
+      "nonMetaHotBytes": 869765
+    },
+    {
+      "app": "juice-shop",
+      "dir": "frontend",
+      "name": "frontend",
+      "version": "20.2.0",
+      "thirdParty": false,
+      "files": 1383,
+      "hotFiles": 746,
+      "coldFiles": 637,
+      "bytes": 37942054,
+      "hotBytes": 24237802,
+      "coldBytes": 13704252,
+      "hotByteFraction": 0.6388110142903702,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 1382,
+      "nonMetaHotFiles": 745,
+      "nonMetaBytes": 37938141,
+      "nonMetaHotBytes": 24233889
+    },
+    {
+      "app": "nestjs-realworld",
+      "dir": "node_modules/typeorm",
+      "name": "typeorm",
+      "version": "0.2.24",
+      "thirdParty": true,
+      "files": 2467,
+      "hotFiles": 262,
+      "coldFiles": 2205,
+      "bytes": 16369306,
+      "hotBytes": 2821716,
+      "coldBytes": 13547590,
+      "hotByteFraction": 0.172378474689153,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 2466,
+      "nonMetaHotFiles": 261,
+      "nonMetaBytes": 16364682,
+      "nonMetaHotBytes": 2817092
+    },
+    {
+      "app": "n8n",
+      "dir": "packages/testing/playwright",
+      "name": "n8n-playwright",
+      "version": "0.0.0",
+      "thirdParty": false,
+      "files": 1239,
+      "hotFiles": 32,
+      "coldFiles": 1207,
+      "bytes": 12982155,
+      "hotBytes": 161543,
+      "coldBytes": 12820612,
+      "hotByteFraction": 0.012443465664983971,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 1238,
+      "nonMetaHotFiles": 31,
+      "nonMetaBytes": 12977462,
+      "nonMetaHotBytes": 156850
+    },
+    {
+      "app": "strapi",
+      "dir": "node_modules/@reduxjs/toolkit",
+      "name": "@reduxjs/toolkit",
+      "version": "1.9.7",
+      "thirdParty": true,
+      "files": 289,
+      "hotFiles": 10,
+      "coldFiles": 279,
+      "bytes": 13022191,
+      "hotBytes": 315943,
+      "coldBytes": 12706248,
+      "hotByteFraction": 0.024261892641568535,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 288,
+      "nonMetaHotFiles": 9,
+      "nonMetaBytes": 13018321,
+      "nonMetaHotBytes": 312073
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/chromium-bidi@14.0.0_devtools-protocol@0.0.1595872/node_modules/chromium-bidi",
+      "name": "chromium-bidi",
+      "version": "14.0.0",
+      "thirdParty": true,
+      "files": 599,
+      "hotFiles": 77,
+      "coldFiles": 522,
+      "bytes": 13240203,
+      "hotBytes": 589576,
+      "coldBytes": 12650627,
+      "hotByteFraction": 0.04452922662892706,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 597,
+      "nonMetaHotFiles": 75,
+      "nonMetaBytes": 13234038,
+      "nonMetaHotBytes": 583411
+    },
+    {
+      "app": "juice-shop",
+      "dir": "node_modules/ethers",
+      "name": "ethers",
+      "version": "6.17.0",
+      "thirdParty": true,
+      "files": 1301,
+      "hotFiles": 129,
+      "coldFiles": 1172,
+      "bytes": 13035887,
+      "hotBytes": 1008455,
+      "coldBytes": 12027432,
+      "hotByteFraction": 0.07735990654107389,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 1298,
+      "nonMetaHotFiles": 126,
+      "nonMetaBytes": 13030064,
+      "nonMetaHotBytes": 1002632
+    },
+    {
+      "app": "strapi",
+      "dir": "packages/core/content-type-builder",
+      "name": "@strapi/content-type-builder",
+      "version": "5.52.1",
+      "thirdParty": false,
+      "files": 1463,
+      "hotFiles": 222,
+      "coldFiles": 1241,
+      "bytes": 13236194,
+      "hotBytes": 1383399,
+      "coldBytes": 11852795,
+      "hotByteFraction": 0.10451637381561497,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 1462,
+      "nonMetaHotFiles": 221,
+      "nonMetaBytes": 13231657,
+      "nonMetaHotBytes": 1378862
+    },
+    {
+      "app": "juice-shop",
+      "dir": "node_modules/swagger-ui-dist",
+      "name": "swagger-ui-dist",
+      "version": "5.32.14",
+      "thirdParty": true,
+      "files": 32,
+      "hotFiles": 2,
+      "coldFiles": 30,
+      "bytes": 11755365,
+      "hotBytes": 1090,
+      "coldBytes": 11754275,
+      "hotByteFraction": 0.00009272362023637718,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 31,
+      "nonMetaHotFiles": 1,
+      "nonMetaBytes": 11754805,
+      "nonMetaHotBytes": 530
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/@opentelemetry+semantic-conventions@1.43.0/node_modules/@opentelemetry/semantic-conventions",
+      "name": "@opentelemetry/semantic-conventions",
+      "version": "1.43.0",
+      "thirdParty": true,
+      "files": 129,
+      "hotFiles": 10,
+      "coldFiles": 119,
+      "bytes": 12006437,
+      "hotBytes": 327487,
+      "coldBytes": 11678950,
+      "hotByteFraction": 0.027275952058050196,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 128,
+      "nonMetaHotFiles": 9,
+      "nonMetaBytes": 12003927,
+      "nonMetaHotBytes": 324977
+    },
+    {
+      "app": "n8n",
+      "dir": "node_modules/.pnpm/@langchain+community@1.1.27_95289ade87ed3eab92070ad817ca2c0a/node_modules/@langchain/community",
+      "name": "@langchain/community",
+      "version": "1.1.27",
+      "thirdParty": true,
+      "files": 3415,
+      "hotFiles": 15,
+      "coldFiles": 3400,
+      "bytes": 11721733,
+      "hotBytes": 133529,
+      "coldBytes": 11588204,
+      "hotByteFraction": 0.011391574948857819,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 3414,
+      "nonMetaHotFiles": 14,
+      "nonMetaBytes": 11611955,
+      "nonMetaHotBytes": 23751
+    },
+    {
+      "app": "ghost",
+      "dir": "node_modules/.pnpm/@opentelemetry+semantic-conventions@1.41.1/node_modules/@opentelemetry/semantic-conventions",
+      "name": "@opentelemetry/semantic-conventions",
+      "version": "1.41.1",
+      "thirdParty": true,
+      "files": 129,
+      "hotFiles": 10,
+      "coldFiles": 119,
+      "bytes": 11840286,
+      "hotBytes": 305682,
+      "coldBytes": 11534604,
+      "hotByteFraction": 0.025817112863658866,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 128,
+      "nonMetaHotFiles": 9,
+      "nonMetaBytes": 11837776,
+      "nonMetaHotBytes": 303172
+    },
+    {
+      "app": "outline",
+      "dir": "node_modules/@opentelemetry/semantic-conventions",
+      "name": "@opentelemetry/semantic-conventions",
+      "version": "1.41.1",
+      "thirdParty": true,
+      "files": 129,
+      "hotFiles": 10,
+      "coldFiles": 119,
+      "bytes": 11840286,
+      "hotBytes": 305682,
+      "coldBytes": 11534604,
+      "hotByteFraction": 0.025817112863658866,
+      "class": "mixed",
+      "classNonMeta": "mixed",
+      "nonMetaFiles": 128,
+      "nonMetaHotFiles": 9,
+      "nonMetaBytes": 11837776,
+      "nonMetaHotBytes": 303172
+    }
+  ],
+  "perApp": [
+    {
+      "app": "bulletproof-nodejs",
+      "category": "target",
+      "sha": "7ce1b4690c4e96659cb1ed0d367b08b3ab35a24b",
+      "universeBytes": 38193878,
+      "universeFiles": 5337,
+      "packages": 295,
+      "D": 21078235,
+      "planA": {
+        "universe": {
+          "bytes": 38193878,
+          "hotBytes": 8777863,
+          "coldBytes": 29416015,
+          "coldFraction": 0.7701761784964596,
+          "files": 5337,
+          "hotFiles": 1326,
+          "coldFiles": 4011
+        },
+        "thirdParty": {
+          "bytes": 37723518,
+          "hotBytes": 8762788,
+          "coldBytes": 28960730,
+          "coldFraction": 0.7677102119690957,
+          "files": 5237,
+          "hotFiles": 1314,
+          "coldFiles": 3923
+        },
+        "thirdPartyJs": {
+          "bytes": 21078235,
+          "hotBytes": 7029799,
+          "coldBytes": 14048436,
+          "coldFraction": 0.6664901496733479,
+          "files": 3528,
+          "hotFiles": 1002,
+          "coldFiles": 2526
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 38193878,
+          "hotBytes": 9689343,
+          "coldBytes": 28504535,
+          "coldFraction": 0.7463116209356903,
+          "files": 5337,
+          "hotFiles": 1429,
+          "coldFiles": 3908
+        },
+        "thirdParty": {
+          "bytes": 37723518,
+          "hotBytes": 9674268,
+          "coldBytes": 28049250,
+          "coldFraction": 0.7435480964421187,
+          "files": 5237,
+          "hotFiles": 1417,
+          "coldFiles": 3820
+        },
+        "thirdPartyJs": {
+          "bytes": 21078235,
+          "hotBytes": 7054937,
+          "coldBytes": 14023298,
+          "coldFraction": 0.6652975450743386,
+          "files": 3528,
+          "hotFiles": 1009,
+          "coldFiles": 2519
+        }
+      }
+    },
+    {
+      "app": "excalidraw-room",
+      "category": "target",
+      "sha": "03ff435860b508d7cd9e005cfc90f7977ae2a593",
+      "universeBytes": 108113720,
+      "universeFiles": 6072,
+      "packages": 269,
+      "D": 82693361,
+      "planA": {
+        "universe": {
+          "bytes": 108113720,
+          "hotBytes": 2646734,
+          "coldBytes": 105466986,
+          "coldFraction": 0.9755189813096802,
+          "files": 6072,
+          "hotFiles": 467,
+          "coldFiles": 5605
+        },
+        "thirdParty": {
+          "bytes": 107829115,
+          "hotBytes": 2636086,
+          "coldBytes": 105193029,
+          "coldFraction": 0.9755531147594043,
+          "files": 6051,
+          "hotFiles": 465,
+          "coldFiles": 5586
+        },
+        "thirdPartyJs": {
+          "bytes": 82693361,
+          "hotBytes": 1121534,
+          "coldBytes": 81571827,
+          "coldFraction": 0.9864374360113384,
+          "files": 2972,
+          "hotFiles": 171,
+          "coldFiles": 2801
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 108113720,
+          "hotBytes": 2801808,
+          "coldBytes": 105311912,
+          "coldFraction": 0.97408462126731,
+          "files": 6072,
+          "hotFiles": 472,
+          "coldFiles": 5600
+        },
+        "thirdParty": {
+          "bytes": 107829115,
+          "hotBytes": 2791160,
+          "coldBytes": 105037955,
+          "coldFraction": 0.974114968856046,
+          "files": 6051,
+          "hotFiles": 470,
+          "coldFiles": 5581
+        },
+        "thirdPartyJs": {
+          "bytes": 82693361,
+          "hotBytes": 1123958,
+          "coldBytes": 81569403,
+          "coldFraction": 0.9864081228963472,
+          "files": 2972,
+          "hotFiles": 172,
+          "coldFiles": 2800
+        }
+      }
+    },
+    {
+      "app": "express-realworld",
+      "category": "target",
+      "sha": "30b68e1e881462b2f4164ea09ab4c4f5699c7b0b",
+      "universeBytes": 96450533,
+      "universeFiles": 1975,
+      "packages": 128,
+      "D": 18822105,
+      "planA": {
+        "universe": {
+          "bytes": 96450533,
+          "hotBytes": 16954156,
+          "coldBytes": 79496377,
+          "coldFraction": 0.8242191569848556,
+          "files": 1975,
+          "hotFiles": 421,
+          "coldFiles": 1554
+        },
+        "thirdParty": {
+          "bytes": 94843322,
+          "hotBytes": 16885807,
+          "coldBytes": 77957515,
+          "coldFraction": 0.8219610337984576,
+          "files": 1834,
+          "hotFiles": 389,
+          "coldFiles": 1445
+        },
+        "thirdPartyJs": {
+          "bytes": 18822105,
+          "hotBytes": 1498297,
+          "coldBytes": 17323808,
+          "coldFraction": 0.9203969481628118,
+          "files": 741,
+          "hotFiles": 241,
+          "coldFiles": 500
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 96450533,
+          "hotBytes": 86164775,
+          "coldBytes": 10285758,
+          "coldFraction": 0.10664283213447871,
+          "files": 1975,
+          "hotFiles": 550,
+          "coldFiles": 1425
+        },
+        "thirdParty": {
+          "bytes": 94843322,
+          "hotBytes": 86096426,
+          "coldBytes": 8746896,
+          "coldFraction": 0.09222469031609838,
+          "files": 1834,
+          "hotFiles": 518,
+          "coldFiles": 1316
+        },
+        "thirdPartyJs": {
+          "bytes": 18822105,
+          "hotBytes": 16900624,
+          "coldBytes": 1921481,
+          "coldFraction": 0.10208640319454174,
+          "files": 741,
+          "hotFiles": 287,
+          "coldFiles": 454
+        }
+      }
+    },
+    {
+      "app": "express-rest-boilerplate",
+      "category": "target",
+      "sha": "b8bed6d7cfce3cf2ef89ec1b5e47b52dfc50e874",
+      "universeBytes": 60088263,
+      "universeFiles": 11776,
+      "packages": 617,
+      "D": 38153486,
+      "planA": {
+        "universe": {
+          "bytes": 60088263,
+          "hotBytes": 15619042,
+          "coldBytes": 44469221,
+          "coldFraction": 0.740065010699344,
+          "files": 11776,
+          "hotFiles": 2703,
+          "coldFiles": 9073
+        },
+        "thirdParty": {
+          "bytes": 59777627,
+          "hotBytes": 15572826,
+          "coldBytes": 44204801,
+          "coldFraction": 0.7394873837999625,
+          "files": 11719,
+          "hotFiles": 2679,
+          "coldFiles": 9040
+        },
+        "thirdPartyJs": {
+          "bytes": 38153486,
+          "hotBytes": 12994582,
+          "coldBytes": 25158904,
+          "coldFraction": 0.6594129826040012,
+          "files": 7990,
+          "hotFiles": 1998,
+          "coldFiles": 5992
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 60088263,
+          "hotBytes": 17997488,
+          "coldBytes": 42090775,
+          "coldFraction": 0.7004824719263394,
+          "files": 11776,
+          "hotFiles": 4118,
+          "coldFiles": 7658
+        },
+        "thirdParty": {
+          "bytes": 59777627,
+          "hotBytes": 17951272,
+          "coldBytes": 41826355,
+          "coldFraction": 0.6996991533303923,
+          "files": 11719,
+          "hotFiles": 4094,
+          "coldFiles": 7625
+        },
+        "thirdPartyJs": {
+          "bytes": 38153486,
+          "hotBytes": 14603008,
+          "coldBytes": 23550478,
+          "coldFraction": 0.6172562580520166,
+          "files": 7990,
+          "hotFiles": 3400,
+          "coldFiles": 4590
+        }
+      }
+    },
+    {
+      "app": "fastify-demo",
+      "category": "target",
+      "sha": "1f50cc1dc6c22c27da937eb96a0ce048ebab23a9",
+      "universeBytes": 36007898,
+      "universeFiles": 7564,
+      "packages": 168,
+      "D": 17630377,
+      "planA": {
+        "universe": {
+          "bytes": 36007898,
+          "hotBytes": 1651846,
+          "coldBytes": 34356052,
+          "coldFraction": 0.9541254532547276,
+          "files": 7564,
+          "hotFiles": 535,
+          "coldFiles": 7029
+        },
+        "thirdParty": {
+          "bytes": 35600339,
+          "hotBytes": 1646598,
+          "coldBytes": 33953741,
+          "coldFraction": 0.9537476876273566,
+          "files": 7460,
+          "hotFiles": 532,
+          "coldFiles": 6928
+        },
+        "thirdPartyJs": {
+          "bytes": 17630377,
+          "hotBytes": 1357659,
+          "coldBytes": 16272718,
+          "coldFraction": 0.9229931952107434,
+          "files": 4284,
+          "hotFiles": 303,
+          "coldFiles": 3981
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 36007898,
+          "hotBytes": 1651846,
+          "coldBytes": 34356052,
+          "coldFraction": 0.9541254532547276,
+          "files": 7564,
+          "hotFiles": 535,
+          "coldFiles": 7029
+        },
+        "thirdParty": {
+          "bytes": 35600339,
+          "hotBytes": 1646598,
+          "coldBytes": 33953741,
+          "coldFraction": 0.9537476876273566,
+          "files": 7460,
+          "hotFiles": 532,
+          "coldFiles": 6928
+        },
+        "thirdPartyJs": {
+          "bytes": 17630377,
+          "hotBytes": 1357659,
+          "coldBytes": 16272718,
+          "coldFraction": 0.9229931952107434,
+          "files": 4284,
+          "hotFiles": 303,
+          "coldFiles": 3981
+        }
+      }
+    },
+    {
+      "app": "ghost",
+      "category": "control",
+      "sha": "81292b004cf59591f03d7dbe01f28f31c09ee813",
+      "universeBytes": 488464222,
+      "universeFiles": 66781,
+      "packages": 1249,
+      "D": 140881225,
+      "planA": {
+        "universe": {
+          "bytes": 488464222,
+          "hotBytes": 92318402,
+          "coldBytes": 396145820,
+          "coldFraction": 0.8110027350171002,
+          "files": 66781,
+          "hotFiles": 9857,
+          "coldFiles": 56924
+        },
+        "thirdParty": {
+          "bytes": 404733381,
+          "hotBytes": 84291233,
+          "coldBytes": 320442148,
+          "coldFraction": 0.7917363949775124,
+          "files": 58231,
+          "hotFiles": 8330,
+          "coldFiles": 49901
+        },
+        "thirdPartyJs": {
+          "bytes": 140881225,
+          "hotBytes": 46586362,
+          "coldBytes": 94294863,
+          "coldFraction": 0.6693217140892975,
+          "files": 23038,
+          "hotFiles": 6527,
+          "coldFiles": 16511
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 488464222,
+          "hotBytes": 150806833,
+          "coldBytes": 337657389,
+          "coldFraction": 0.6912632978879669,
+          "files": 66781,
+          "hotFiles": 11981,
+          "coldFiles": 54800
+        },
+        "thirdParty": {
+          "bytes": 404733381,
+          "hotBytes": 142779664,
+          "coldBytes": 261953717,
+          "coldFraction": 0.647225381688989,
+          "files": 58231,
+          "hotFiles": 10454,
+          "coldFiles": 47777
+        },
+        "thirdPartyJs": {
+          "bytes": 140881225,
+          "hotBytes": 50541402,
+          "coldBytes": 90339823,
+          "coldFraction": 0.6412481365064792,
+          "files": 23038,
+          "hotFiles": 6551,
+          "coldFiles": 16487
+        }
+      }
+    },
+    {
+      "app": "hackathon-starter",
+      "category": "target",
+      "sha": "cd28225af169eb6f1c5508862af8f6d9c2c07405",
+      "universeBytes": 283848684,
+      "universeFiles": 28578,
+      "packages": 502,
+      "D": 107852055,
+      "planA": {
+        "universe": {
+          "bytes": 283848684,
+          "hotBytes": 35984360,
+          "coldBytes": 247864324,
+          "coldFraction": 0.8732269620105055,
+          "files": 28578,
+          "hotFiles": 4899,
+          "coldFiles": 23679
+        },
+        "thirdParty": {
+          "bytes": 281085162,
+          "hotBytes": 35091626,
+          "coldBytes": 245993536,
+          "coldFraction": 0.8751566046734264,
+          "files": 28406,
+          "hotFiles": 4825,
+          "coldFiles": 23581
+        },
+        "thirdPartyJs": {
+          "bytes": 107852055,
+          "hotBytes": 32784262,
+          "coldBytes": 75067793,
+          "coldFraction": 0.6960256158308713,
+          "files": 8883,
+          "hotFiles": 4213,
+          "coldFiles": 4670
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 283848684,
+          "hotBytes": 98059025,
+          "coldBytes": 185789659,
+          "coldFraction": 0.6545376796603362,
+          "files": 28578,
+          "hotFiles": 5595,
+          "coldFiles": 22983
+        },
+        "thirdParty": {
+          "bytes": 281085162,
+          "hotBytes": 95295503,
+          "coldBytes": 185789659,
+          "coldFraction": 0.6609728442371497,
+          "files": 28406,
+          "hotFiles": 5423,
+          "coldFiles": 22983
+        },
+        "thirdPartyJs": {
+          "bytes": 107852055,
+          "hotBytes": 44401552,
+          "coldBytes": 63450503,
+          "coldFraction": 0.5883105611664052,
+          "files": 8883,
+          "hotFiles": 4238,
+          "coldFiles": 4645
+        }
+      }
+    },
+    {
+      "app": "json-server",
+      "category": "target",
+      "sha": "89a34a44b7a6a5311dc84f3b8a1b8b45c0905aea",
+      "universeBytes": 2791344,
+      "universeFiles": 1137,
+      "packages": 46,
+      "D": 1178276,
+      "planA": {
+        "universe": {
+          "bytes": 2791344,
+          "hotBytes": 522801,
+          "coldBytes": 2268543,
+          "coldFraction": 0.8127063522088285,
+          "files": 1137,
+          "hotFiles": 147,
+          "coldFiles": 990
+        },
+        "thirdParty": {
+          "bytes": 2679327,
+          "hotBytes": 493206,
+          "coldBytes": 2186121,
+          "coldFraction": 0.8159216848111485,
+          "files": 1094,
+          "hotFiles": 135,
+          "coldFiles": 959
+        },
+        "thirdPartyJs": {
+          "bytes": 1178276,
+          "hotBytes": 442424,
+          "coldBytes": 735852,
+          "coldFraction": 0.6245158180256578,
+          "files": 485,
+          "hotFiles": 90,
+          "coldFiles": 395
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 2791344,
+          "hotBytes": 522801,
+          "coldBytes": 2268543,
+          "coldFraction": 0.8127063522088285,
+          "files": 1137,
+          "hotFiles": 147,
+          "coldFiles": 990
+        },
+        "thirdParty": {
+          "bytes": 2679327,
+          "hotBytes": 493206,
+          "coldBytes": 2186121,
+          "coldFraction": 0.8159216848111485,
+          "files": 1094,
+          "hotFiles": 135,
+          "coldFiles": 959
+        },
+        "thirdPartyJs": {
+          "bytes": 1178276,
+          "hotBytes": 442424,
+          "coldBytes": 735852,
+          "coldFraction": 0.6245158180256578,
+          "files": 485,
+          "hotFiles": 90,
+          "coldFiles": 395
+        }
+      }
+    },
+    {
+      "app": "juice-shop",
+      "category": "target",
+      "sha": "1618a611b173b4bf114028e6e02549950606e29d",
+      "universeBytes": 221092772,
+      "universeFiles": 21112,
+      "packages": 921,
+      "D": 67457759,
+      "planA": {
+        "universe": {
+          "bytes": 221092772,
+          "hotBytes": 53587798,
+          "coldBytes": 167504974,
+          "coldFraction": 0.7576230217060194,
+          "files": 21112,
+          "hotFiles": 4679,
+          "coldFiles": 16433
+        },
+        "thirdParty": {
+          "bytes": 165461944,
+          "hotBytes": 27510534,
+          "coldBytes": 137951410,
+          "coldFraction": 0.8337349765454224,
+          "files": 18632,
+          "hotFiles": 3733,
+          "coldFiles": 14899
+        },
+        "thirdPartyJs": {
+          "bytes": 67457759,
+          "hotBytes": 15483136,
+          "coldBytes": 51974623,
+          "coldFraction": 0.7704765733471816,
+          "files": 7941,
+          "hotFiles": 2023,
+          "coldFiles": 5918
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 221092772,
+          "hotBytes": 74855485,
+          "coldBytes": 146237287,
+          "coldFraction": 0.6614295242541895,
+          "files": 21112,
+          "hotFiles": 5602,
+          "coldFiles": 15510
+        },
+        "thirdParty": {
+          "bytes": 165461944,
+          "hotBytes": 32928909,
+          "coldBytes": 132533035,
+          "coldFraction": 0.8009880205444704,
+          "files": 18632,
+          "hotFiles": 3759,
+          "coldFiles": 14873
+        },
+        "thirdPartyJs": {
+          "bytes": 67457759,
+          "hotBytes": 15510719,
+          "coldBytes": 51947040,
+          "coldFraction": 0.7700676804279846,
+          "files": 7941,
+          "hotFiles": 2028,
+          "coldFiles": 5913
+        }
+      }
+    },
+    {
+      "app": "n8n",
+      "category": "control",
+      "sha": "5a0b3f02c7c4a4bbe1b14c7261fa8dca8b59962d",
+      "universeBytes": 2074208993,
+      "universeFiles": 252545,
+      "packages": 2381,
+      "D": 543669661,
+      "planA": {
+        "universe": {
+          "bytes": 2074208993,
+          "hotBytes": 581614048,
+          "coldBytes": 1492594945,
+          "coldFraction": 0.7195971814012861,
+          "files": 252545,
+          "hotFiles": 91257,
+          "coldFiles": 161288
+        },
+        "thirdParty": {
+          "bytes": 1545199216,
+          "hotBytes": 268560619,
+          "coldBytes": 1276638597,
+          "coldFraction": 0.8261967672393642,
+          "files": 173570,
+          "hotFiles": 29371,
+          "coldFiles": 144199
+        },
+        "thirdPartyJs": {
+          "bytes": 543669661,
+          "hotBytes": 202418747,
+          "coldBytes": 341250914,
+          "coldFraction": 0.6276806275566662,
+          "files": 67506,
+          "hotFiles": 25089,
+          "coldFiles": 42417
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 2074208993,
+          "hotBytes": 959381162,
+          "coldBytes": 1114827831,
+          "coldFraction": 0.5374713130462259,
+          "files": 252545,
+          "hotFiles": 101286,
+          "coldFiles": 151259
+        },
+        "thirdParty": {
+          "bytes": 1545199216,
+          "hotBytes": 541935758,
+          "coldBytes": 1003263458,
+          "coldFraction": 0.6492777420617071,
+          "files": 173570,
+          "hotFiles": 35456,
+          "coldFiles": 138114
+        },
+        "thirdPartyJs": {
+          "bytes": 543669661,
+          "hotBytes": 223576302,
+          "coldBytes": 320093359,
+          "coldFraction": 0.5887644317161924,
+          "files": 67506,
+          "hotFiles": 29046,
+          "coldFiles": 38460
+        }
+      }
+    },
+    {
+      "app": "nestjs-realworld",
+      "category": "target",
+      "sha": "c1c2cc4e448b279ff083272df1ac50d20c3304fa",
+      "universeBytes": 126139071,
+      "universeFiles": 15039,
+      "packages": 589,
+      "D": 83011964,
+      "planA": {
+        "universe": {
+          "bytes": 126139071,
+          "hotBytes": 15854701,
+          "coldBytes": 110284370,
+          "coldFraction": 0.87430777098398,
+          "files": 15039,
+          "hotFiles": 2629,
+          "coldFiles": 12410
+        },
+        "thirdParty": {
+          "bytes": 125320721,
+          "hotBytes": 15774549,
+          "coldBytes": 109546172,
+          "coldFraction": 0.8741265700186963,
+          "files": 14920,
+          "hotFiles": 2597,
+          "coldFiles": 12323
+        },
+        "thirdPartyJs": {
+          "bytes": 83011964,
+          "hotBytes": 14512086,
+          "coldBytes": 68499878,
+          "coldFraction": 0.8251807896028095,
+          "files": 7219,
+          "hotFiles": 1974,
+          "coldFiles": 5245
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 126139071,
+          "hotBytes": 16130464,
+          "coldBytes": 110008607,
+          "coldFraction": 0.8721215887185343,
+          "files": 15039,
+          "hotFiles": 2772,
+          "coldFiles": 12267
+        },
+        "thirdParty": {
+          "bytes": 125320721,
+          "hotBytes": 16050312,
+          "coldBytes": 109270409,
+          "coldFraction": 0.8719261118837642,
+          "files": 14920,
+          "hotFiles": 2740,
+          "coldFiles": 12180
+        },
+        "thirdPartyJs": {
+          "bytes": 83011964,
+          "hotBytes": 14513216,
+          "coldBytes": 68498748,
+          "coldFraction": 0.8251671771071457,
+          "files": 7219,
+          "hotFiles": 1982,
+          "coldFiles": 5237
+        }
+      }
+    },
+    {
+      "app": "nestjs-typescript-starter",
+      "category": "target",
+      "sha": "c4d9330f5513eda0fb5df594f6b34a11fde1a934",
+      "universeBytes": 10173482,
+      "universeFiles": 4067,
+      "packages": 106,
+      "D": 3626580,
+      "planA": {
+        "universe": {
+          "bytes": 10173482,
+          "hotBytes": 2606055,
+          "coldBytes": 7567427,
+          "coldFraction": 0.7438384419415103,
+          "files": 4067,
+          "hotFiles": 875,
+          "coldFiles": 3192
+        },
+        "thirdParty": {
+          "bytes": 9640435,
+          "hotBytes": 2599750,
+          "coldBytes": 7040685,
+          "coldFraction": 0.7303285588254057,
+          "files": 4038,
+          "hotFiles": 870,
+          "coldFiles": 3168
+        },
+        "thirdPartyJs": {
+          "bytes": 3626580,
+          "hotBytes": 1841918,
+          "coldBytes": 1784662,
+          "coldFraction": 0.49210606135808393,
+          "files": 1498,
+          "hotFiles": 753,
+          "coldFiles": 745
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 10173482,
+          "hotBytes": 2776927,
+          "coldBytes": 7396555,
+          "coldFraction": 0.7270426192330217,
+          "files": 4067,
+          "hotFiles": 1078,
+          "coldFiles": 2989
+        },
+        "thirdParty": {
+          "bytes": 9640435,
+          "hotBytes": 2770622,
+          "coldBytes": 6869813,
+          "coldFraction": 0.7126040474314697,
+          "files": 4038,
+          "hotFiles": 1073,
+          "coldFiles": 2965
+        },
+        "thirdPartyJs": {
+          "bytes": 3626580,
+          "hotBytes": 1847821,
+          "coldBytes": 1778759,
+          "coldFraction": 0.4904783570195611,
+          "files": 1498,
+          "hotFiles": 776,
+          "coldFiles": 722
+        }
+      }
+    },
+    {
+      "app": "node-express-boilerplate",
+      "category": "target",
+      "sha": "179ae84efec61b14206d0305d941daed6c6d07f9",
+      "universeBytes": 62425946,
+      "universeFiles": 8183,
+      "packages": 393,
+      "D": 33331824,
+      "planA": {
+        "universe": {
+          "bytes": 62425946,
+          "hotBytes": 10025065,
+          "coldBytes": 52400881,
+          "coldFraction": 0.8394086811275555,
+          "files": 8183,
+          "hotFiles": 1639,
+          "coldFiles": 6544
+        },
+        "thirdParty": {
+          "bytes": 61964377,
+          "hotBytes": 9969519,
+          "coldBytes": 51994858,
+          "coldFraction": 0.8391088641139731,
+          "files": 8102,
+          "hotFiles": 1602,
+          "coldFiles": 6500
+        },
+        "thirdPartyJs": {
+          "bytes": 33331824,
+          "hotBytes": 8534031,
+          "coldBytes": 24797793,
+          "coldFraction": 0.7439674768473516,
+          "files": 5716,
+          "hotFiles": 1185,
+          "coldFiles": 4531
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 62425946,
+          "hotBytes": 10180139,
+          "coldBytes": 52245807,
+          "coldFraction": 0.8369245537744835,
+          "files": 8183,
+          "hotFiles": 1644,
+          "coldFiles": 6539
+        },
+        "thirdParty": {
+          "bytes": 61964377,
+          "hotBytes": 10124593,
+          "coldBytes": 51839784,
+          "coldFraction": 0.8366062326423455,
+          "files": 8102,
+          "hotFiles": 1607,
+          "coldFiles": 6495
+        },
+        "thirdPartyJs": {
+          "bytes": 33331824,
+          "hotBytes": 8536455,
+          "coldBytes": 24795369,
+          "coldFraction": 0.7438947535544409,
+          "files": 5716,
+          "hotFiles": 1186,
+          "coldFiles": 4530
+        }
+      }
+    },
+    {
+      "app": "nodebb",
+      "category": "control",
+      "sha": "ab329b3b4c4d4cc9717b2938908649382cca2b39",
+      "universeBytes": 531105434,
+      "universeFiles": 47796,
+      "packages": 903,
+      "D": 163819679,
+      "planA": {
+        "universe": {
+          "bytes": 531105434,
+          "hotBytes": 119937825,
+          "coldBytes": 411167609,
+          "coldFraction": 0.774173229415687,
+          "files": 47796,
+          "hotFiles": 16660,
+          "coldFiles": 31136
+        },
+        "thirdParty": {
+          "bytes": 509221442,
+          "hotBytes": 102456498,
+          "coldBytes": 406764944,
+          "coldFraction": 0.7987977536892487,
+          "files": 42031,
+          "hotFiles": 11065,
+          "coldFiles": 30966
+        },
+        "thirdPartyJs": {
+          "bytes": 163819679,
+          "hotBytes": 44514194,
+          "coldBytes": 119305485,
+          "coldFraction": 0.7282732192388193,
+          "files": 16061,
+          "hotFiles": 3776,
+          "coldFiles": 12285
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 531105434,
+          "hotBytes": 145657467,
+          "coldBytes": 385447967,
+          "coldFraction": 0.7257466075935499,
+          "files": 47796,
+          "hotFiles": 16801,
+          "coldFiles": 30995
+        },
+        "thirdParty": {
+          "bytes": 509221442,
+          "hotBytes": 128176140,
+          "coldBytes": 381045302,
+          "coldFraction": 0.7482899787240302,
+          "files": 42031,
+          "hotFiles": 11206,
+          "coldFiles": 30825
+        },
+        "thirdPartyJs": {
+          "bytes": 163819679,
+          "hotBytes": 45248805,
+          "coldBytes": 118570874,
+          "coldFraction": 0.7237889533405812,
+          "files": 16061,
+          "hotFiles": 3804,
+          "coldFiles": 12257
+        }
+      }
+    },
+    {
+      "app": "outline",
+      "category": "target",
+      "sha": "d77dcdf853868c5d5fe125c895c9b71f0eff5c68",
+      "universeBytes": 854731175,
+      "universeFiles": 85479,
+      "packages": 1709,
+      "D": 245091834,
+      "planA": {
+        "universe": {
+          "bytes": 854731175,
+          "hotBytes": 132974876,
+          "coldBytes": 721756299,
+          "coldFraction": 0.8444249140672797,
+          "files": 85479,
+          "hotFiles": 13035,
+          "coldFiles": 72444
+        },
+        "thirdParty": {
+          "bytes": 811960889,
+          "hotBytes": 129429167,
+          "coldBytes": 682531722,
+          "coldFraction": 0.8405967962823884,
+          "files": 81081,
+          "hotFiles": 12334,
+          "coldFiles": 68747
+        },
+        "thirdPartyJs": {
+          "bytes": 245091834,
+          "hotBytes": 58918508,
+          "coldBytes": 186173326,
+          "coldFraction": 0.7596064012479502,
+          "files": 39743,
+          "hotFiles": 10222,
+          "coldFiles": 29521
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 854731175,
+          "hotBytes": 281843740,
+          "coldBytes": 572887435,
+          "coldFraction": 0.6702545218384014,
+          "files": 85479,
+          "hotFiles": 21146,
+          "coldFiles": 64333
+        },
+        "thirdParty": {
+          "bytes": 811960889,
+          "hotBytes": 239073454,
+          "coldBytes": 572887435,
+          "coldFraction": 0.7055603819853447,
+          "files": 81081,
+          "hotFiles": 16748,
+          "coldFiles": 64333
+        },
+        "thirdPartyJs": {
+          "bytes": 245091834,
+          "hotBytes": 61611334,
+          "coldBytes": 183480500,
+          "coldFraction": 0.7486193930067861,
+          "files": 39743,
+          "hotFiles": 14065,
+          "coldFiles": 25678
+        }
+      }
+    },
+    {
+      "app": "parse-server",
+      "category": "control",
+      "sha": "b5ca12fa5e2c951e0cd4ac45ec11e23430da323b",
+      "universeBytes": 142362855,
+      "universeFiles": 23451,
+      "packages": 634,
+      "D": 66129328,
+      "planA": {
+        "universe": {
+          "bytes": 142362855,
+          "hotBytes": 18889112,
+          "coldBytes": 123473743,
+          "coldFraction": 0.8673171312839996,
+          "files": 23451,
+          "hotFiles": 2984,
+          "coldFiles": 20467
+        },
+        "thirdParty": {
+          "bytes": 128012716,
+          "hotBytes": 12997546,
+          "coldBytes": 115015170,
+          "coldFraction": 0.8984667585679535,
+          "files": 22761,
+          "hotFiles": 2763,
+          "coldFiles": 19998
+        },
+        "thirdPartyJs": {
+          "bytes": 66129328,
+          "hotBytes": 10197834,
+          "coldBytes": 55931494,
+          "coldFraction": 0.8457895413665779,
+          "files": 13371,
+          "hotFiles": 2005,
+          "coldFiles": 11366
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 142362855,
+          "hotBytes": 35859264,
+          "coldBytes": 106503591,
+          "coldFraction": 0.7481136213515808,
+          "files": 23451,
+          "hotFiles": 7428,
+          "coldFiles": 16023
+        },
+        "thirdParty": {
+          "bytes": 128012716,
+          "hotBytes": 21510061,
+          "coldBytes": 106502655,
+          "coldFraction": 0.8319693412332568,
+          "files": 22761,
+          "hotFiles": 6740,
+          "coldFiles": 16021
+        },
+        "thirdPartyJs": {
+          "bytes": 66129328,
+          "hotBytes": 13839365,
+          "coldBytes": 52289963,
+          "coldFraction": 0.790722733489746,
+          "files": 13371,
+          "hotFiles": 5807,
+          "coldFiles": 7564
+        }
+      }
+    },
+    {
+      "app": "strapi",
+      "category": "control",
+      "sha": "1fd9d80ad5f0a2c97d09ce7529f5cd9fdb91ca2d",
+      "universeBytes": 820479485,
+      "universeFiles": 117015,
+      "packages": 2019,
+      "D": 230035507,
+      "planA": {
+        "universe": {
+          "bytes": 820479485,
+          "hotBytes": 230627621,
+          "coldBytes": 589851864,
+          "coldFraction": 0.7189111669257642,
+          "files": 117015,
+          "hotFiles": 21136,
+          "coldFiles": 95879
+        },
+        "thirdParty": {
+          "bytes": 522848095,
+          "hotBytes": 182399053,
+          "coldBytes": 340449042,
+          "coldFraction": 0.6511433153447752,
+          "files": 68288,
+          "hotFiles": 12423,
+          "coldFiles": 55865
+        },
+        "thirdPartyJs": {
+          "bytes": 230035507,
+          "hotBytes": 78613350,
+          "coldBytes": 151422157,
+          "coldFraction": 0.6582555839955612,
+          "files": 32261,
+          "hotFiles": 8812,
+          "coldFiles": 23449
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 820479485,
+          "hotBytes": 387156445,
+          "coldBytes": 433323040,
+          "coldFraction": 0.5281339118430243,
+          "files": 117015,
+          "hotFiles": 46554,
+          "coldFiles": 70461
+        },
+        "thirdParty": {
+          "bytes": 522848095,
+          "hotBytes": 200195239,
+          "coldBytes": 322652856,
+          "coldFraction": 0.617106305034926,
+          "files": 68288,
+          "hotFiles": 16039,
+          "coldFiles": 52249
+        },
+        "thirdPartyJs": {
+          "bytes": 230035507,
+          "hotBytes": 81192670,
+          "coldBytes": 148842837,
+          "coldFraction": 0.6470428802106625,
+          "files": 32261,
+          "hotFiles": 12282,
+          "coldFiles": 19979
+        }
+      }
+    },
+    {
+      "app": "uptime-kuma",
+      "category": "control",
+      "sha": "6398a9581d1c3c427a7536559f47ccf45dac08b4",
+      "universeBytes": 172011601,
+      "universeFiles": 26604,
+      "packages": 694,
+      "D": 66060133,
+      "planA": {
+        "universe": {
+          "bytes": 172011601,
+          "hotBytes": 36092795,
+          "coldBytes": 135918806,
+          "coldFraction": 0.7901723209936288,
+          "files": 26604,
+          "hotFiles": 5485,
+          "coldFiles": 21119
+        },
+        "thirdParty": {
+          "bytes": 163688962,
+          "hotBytes": 34974312,
+          "coldBytes": 128714650,
+          "coldFraction": 0.7863367720543063,
+          "files": 25822,
+          "hotFiles": 5278,
+          "coldFiles": 20544
+        },
+        "thirdPartyJs": {
+          "bytes": 66060133,
+          "hotBytes": 26198330,
+          "coldBytes": 39861803,
+          "coldFraction": 0.6034169352943931,
+          "files": 11873,
+          "hotFiles": 4281,
+          "coldFiles": 7592
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 172011601,
+          "hotBytes": 45675372,
+          "coldBytes": 126336229,
+          "coldFraction": 0.7344634214526031,
+          "files": 26604,
+          "hotFiles": 5590,
+          "coldFiles": 21014
+        },
+        "thirdParty": {
+          "bytes": 163688962,
+          "hotBytes": 44556889,
+          "coldBytes": 119132073,
+          "coldFraction": 0.7277953964910596,
+          "files": 25822,
+          "hotFiles": 5383,
+          "coldFiles": 20439
+        },
+        "thirdPartyJs": {
+          "bytes": 66060133,
+          "hotBytes": 27462460,
+          "coldBytes": 38597673,
+          "coldFraction": 0.5842808854169277,
+          "files": 11873,
+          "hotFiles": 4310,
+          "coldFiles": 7563
+        }
+      }
+    },
+    {
+      "app": "verdaccio",
+      "category": "control",
+      "sha": "79237e3f9f02023491159eef709cb4a8dcc54ca9",
+      "universeBytes": 53069105,
+      "universeFiles": 8707,
+      "packages": 310,
+      "D": 13452504,
+      "planA": {
+        "universe": {
+          "bytes": 53069105,
+          "hotBytes": 8373288,
+          "coldBytes": 44695817,
+          "coldFraction": 0.8422191593395065,
+          "files": 8707,
+          "hotFiles": 1945,
+          "coldFiles": 6762
+        },
+        "thirdParty": {
+          "bytes": 34270062,
+          "hotBytes": 5243258,
+          "coldBytes": 29026804,
+          "coldFraction": 0.847001794160746,
+          "files": 4847,
+          "hotFiles": 1643,
+          "coldFiles": 3204
+        },
+        "thirdPartyJs": {
+          "bytes": 13452504,
+          "hotBytes": 4511961,
+          "coldBytes": 8940543,
+          "coldFraction": 0.6646006572456696,
+          "files": 2776,
+          "hotFiles": 1394,
+          "coldFiles": 1382
+        }
+      },
+      "planB": {
+        "universe": {
+          "bytes": 53069105,
+          "hotBytes": 8688137,
+          "coldBytes": 44380968,
+          "coldFraction": 0.8362863477723997,
+          "files": 8707,
+          "hotFiles": 1956,
+          "coldFiles": 6751
+        },
+        "thirdParty": {
+          "bytes": 34270062,
+          "hotBytes": 5558107,
+          "coldBytes": 28711955,
+          "coldFraction": 0.8378145040998175,
+          "files": 4847,
+          "hotFiles": 1654,
+          "coldFiles": 3193
+        },
+        "thirdPartyJs": {
+          "bytes": 13452504,
+          "hotBytes": 4632781,
+          "coldBytes": 8819723,
+          "coldFraction": 0.6556194296615708,
+          "files": 2776,
+          "hotFiles": 1398,
+          "coldFiles": 1378
+        }
+      }
+    }
+  ]
+}
