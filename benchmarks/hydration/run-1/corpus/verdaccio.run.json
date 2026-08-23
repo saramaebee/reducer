@@ -1,0 +1,155 @@
+{
+  "app": "verdaccio",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "Registry-protocol sweep taken from the actual route tables: ping, web UI shell and its data endpoints, user creation + login (jsonwebtoken/htpasswd), package metadata and tarball fetch through the npmjs uplink, search, and the audit proxy. The e2e-cli suite was not used: it drives a real npm client, whose file accesses are npm’s, not the registry’s.",
+  "startedAt": "2026-08-23T22:57:42.899Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/verdaccio",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/verdaccio",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/verdaccio/packages/verdaccio/bin/verdaccio",
+    "--config",
+    "/var/folders/ty/n54xqmds5tggd10mptbn2hwc0000gn/T/reducer-hydration/verdaccio/config.yaml",
+    "--listen",
+    "127.0.0.1:4873"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/verdaccio",
+  "envKeys": [
+    "NODE_ENV"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/verdaccio",
+  "t0": 1787525859082.8938,
+  "ready": {
+    "ok": true,
+    "ts": 1787525860313.75,
+    "how": "http=http://127.0.0.1:4873/-/ping",
+    "waitedMs": 1228
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525861317.9202,
+      "endTs": 1787525861353.2488,
+      "detail": "ping, web UI shell, package listing",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/-/ping",
+          "status": 200,
+          "ms": 13
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "GET",
+          "path": "/-/static/ui-options.js",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "GET",
+          "path": "/-/verdaccio/data/packages",
+          "status": 200,
+          "ms": 2
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525861353.2517,
+      "endTs": 1787525862369.5688,
+      "detail": "auth (htpasswd + jwt), uplink metadata/tarball fetch, search, audit",
+      "requests": [
+        {
+          "method": "PUT",
+          "path": "/-/user/org.couchdb.user:probe",
+          "status": 201,
+          "ms": 170
+        },
+        {
+          "method": "GET",
+          "path": "/-/whoami",
+          "status": 200,
+          "ms": 70
+        },
+        {
+          "method": "GET",
+          "path": "/-/npm/v1/user",
+          "status": 200,
+          "ms": 71
+        },
+        {
+          "method": "GET",
+          "path": "/-/npm/v1/tokens",
+          "status": 200,
+          "ms": 70
+        },
+        {
+          "method": "GET",
+          "path": "/jsonwebtoken",
+          "status": 200,
+          "ms": 131
+        },
+        {
+          "method": "GET",
+          "path": "/jsonwebtoken/9.0.2",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "GET",
+          "path": "/-/package/jsonwebtoken/dist-tags",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "GET",
+          "path": "/jsonwebtoken/-/jsonwebtoken-9.0.2.tgz",
+          "status": 200,
+          "ms": 34
+        },
+        {
+          "method": "GET",
+          "path": "/-/v1/search?text=jsonwebtoken&size=5",
+          "status": 200,
+          "ms": 280
+        },
+        {
+          "method": "GET",
+          "path": "/-/verdaccio/data/sidebar/jsonwebtoken",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/-/verdaccio/data/package/readme/jsonwebtoken",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "POST",
+          "path": "/-/npm/v1/security/audits/quick",
+          "status": 200,
+          "ms": 157
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 555
+  },
+  "stdoutTail": "…(12984 bytes elided)…\n:\"jsonwebtoken\",\"size\":\"5\"},\"params\":{},\"headers\":{\"connection\":\"keep-alive\",\"user-agent\":\"Bun/1.3.1\",\"accept\":\"*/*\",\"host\":\"127.0.0.1:4873\",\"accept-encoding\":\"gzip, deflate, br, zstd\"},\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59020},\"ip\":\"127.0.0.1\",\"msg\":\"127.0.0.1 requested 'GET /-/v1/search?text=jsonwebtoken&size=5'\"}\n{\"level\":30,\"time\":1787525861908,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"module\":\"storage\",\"t\":\"jsonwebtoken\",\"s\":5,\"msg\":\"search by text jsonwebtoken| maintenance undefined| quality undefined| popularity undefined\"}\n{\"level\":25,\"time\":1787525861913,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"module\":\"storage\",\"module\":\"proxy\",\"uri\":\"https://registry.npmjs.org/-/v1/search?text=jsonwebtoken&size=5&from=0\",\"uplink\":\"npmjs\",\"msg\":\"search request to uplink npmjs - https://registry.npmjs.org/-/v1/search?text=jsonwebtoken&size=5&from=0\"}\n{\"level\":25,\"time\":1787525862187,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"sub\":\"in\",\"request\":{\"method\":\"GET\",\"url\":\"/-/v1/search?text=jsonwebtoken&size=5\"},\"user\":null,\"remoteIP\":\"127.0.0.1\",\"status\":200,\"bytes\":{\"in\":0,\"out\":1406},\"msg\":\"200, user: null(127.0.0.1), req: 'GET /-/v1/search?text=jsonwebtoken&size=5', bytes: 0/1406\"}\n{\"level\":30,\"time\":1787525862188,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"sub\":\"in\",\"req\":{\"method\":\"GET\",\"url\":\"/-/verdaccio/data/sidebar/jsonwebtoken\",\"query\":{},\"params\":{},\"headers\":{\"connection\":\"keep-alive\",\"user-agent\":\"Bun/1.3.1\",\"accept\":\"*/*\",\"host\":\"127.0.0.1:4873\",\"accept-encoding\":\"gzip, deflate, br, zstd\"},\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59020},\"ip\":\"127.0.0.1\",\"msg\":\"127.0.0.1 requested 'GET /-/verdaccio/data/sidebar/jsonwebtoken'\"}\n{\"level\":25,\"time\":1787525862202,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"sub\":\"in\",\"request\":{\"method\":\"GET\",\"url\":\"/-/verdaccio/data/sidebar/jsonwebtoken\"},\"user\":null,\"remoteIP\":\"127.0.0.1\",\"status\":200,\"bytes\":{\"in\":0,\"out\":27990},\"msg\":\"200, user: null(127.0.0.1), req: 'GET /-/verdaccio/data/sidebar/jsonwebtoken', bytes: 0/27990\"}\n{\"level\":30,\"time\":1787525862204,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"sub\":\"in\",\"req\":{\"method\":\"GET\",\"url\":\"/-/verdaccio/data/package/readme/jsonwebtoken\",\"query\":{},\"params\":{},\"headers\":{\"connection\":\"keep-alive\",\"user-agent\":\"Bun/1.3.1\",\"accept\":\"*/*\",\"host\":\"127.0.0.1:4873\",\"accept-encoding\":\"gzip, deflate, br, zstd\"},\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59020},\"ip\":\"127.0.0.1\",\"msg\":\"127.0.0.1 requested 'GET /-/verdaccio/data/package/readme/jsonwebtoken'\"}\n{\"level\":25,\"time\":1787525862212,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"sub\":\"in\",\"request\":{\"method\":\"GET\",\"url\":\"/-/verdaccio/data/package/readme/jsonwebtoken\"},\"user\":null,\"remoteIP\":\"127.0.0.1\",\"status\":200,\"bytes\":{\"in\":0,\"out\":5579},\"msg\":\"200, user: null(127.0.0.1), req: 'GET /-/verdaccio/data/package/readme/jsonwebtoken', bytes: 0/5579\"}\n{\"level\":30,\"time\":1787525862213,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"sub\":\"in\",\"req\":{\"method\":\"POST\",\"url\":\"/-/npm/v1/security/audits/quick\",\"query\":{},\"params\":{},\"headers\":{\"content-type\":\"application/json\",\"connection\":\"keep-alive\",\"user-agent\":\"Bun/1.3.1\",\"accept\":\"*/*\",\"host\":\"127.0.0.1:4873\",\"accept-encoding\":\"gzip, deflate, br, zstd\",\"content-length\":\"2\"},\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59020},\"ip\":\"127.0.0.1\",\"msg\":\"127.0.0.1 requested 'POST /-/npm/v1/security/audits/quick'\"}\n{\"level\":25,\"time\":1787525862368,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"sub\":\"in\",\"request\":{\"method\":\"POST\",\"url\":\"/-/npm/v1/security/audits/quick\"},\"user\":null,\"remoteIP\":\"127.0.0.1\",\"status\":200,\"bytes\":{\"in\":2,\"out\":210},\"msg\":\"200, user: null(127.0.0.1), req: 'POST /-/npm/v1/security/audits/quick', bytes: 2/210\"}\n{\"level\":30,\"time\":1787525862370,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"msg\":\"received shutdown signal - closing server gracefully...\"}\n{\"level\":30,\"time\":1787525862370,\"pid\":98192,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"msg\":\"server closed.\"}\n",
+  "stderrTail": "(node:98192) [VERWAR002] VerdaccioWarning: The configuration property \"logs\" has been deprecated, please rename to \"log\" for future compatibility\n(Use `node --trace-warnings ...` to show where the warning was created)\n",
+  "failure": null,
+  "deviations": []
+}

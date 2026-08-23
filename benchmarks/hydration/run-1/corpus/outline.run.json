@@ -1,0 +1,230 @@
+{
+  "app": "outline",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "Bootstraps a workspace through the self-hosted installation.create endpoint, then sweeps the real RPC API (collections, documents incl. markdown export/import paths, search, users, teams, shares, events, views) plus the SPA shell. Runs all four services (web, websockets, worker, collaboration) in one cluster worker, so socket.io, bull queues and hocuspocus all participate.",
+  "startedAt": "2026-08-23T22:58:38.381Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/outline",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/outline",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/outline/build/server/index.js",
+    "--services=web,websockets,worker,collaboration"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/outline",
+  "envKeys": [
+    "NODE_ENV",
+    "SECRET_KEY",
+    "UTILS_SECRET",
+    "URL",
+    "PORT",
+    "FORCE_HTTPS",
+    "PGSSLMODE",
+    "DATABASE_URL",
+    "REDIS_URL",
+    "FILE_STORAGE",
+    "FILE_STORAGE_LOCAL_ROOT_DIR",
+    "TELEMETRY",
+    "LOG_LEVEL"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/outline",
+  "t0": 1787525901801.2554,
+  "ready": {
+    "ok": true,
+    "ts": 1787525912529.4778,
+    "how": "http=http://127.0.0.1:3406/_health",
+    "waitedMs": 10724
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525916529.9368,
+      "endTs": 1787525916617.501,
+      "detail": "health, SPA shell, unauthenticated config",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/_health",
+          "status": 200,
+          "ms": 18
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 29
+        },
+        {
+          "method": "GET",
+          "path": "/manifest.webmanifest",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth.config",
+          "status": 200,
+          "ms": 29
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525916617.5073,
+      "endTs": 1787525917254.9773,
+      "detail": "workspace bootstrap then the authenticated RPC surface (collections, documents, search, export)",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/installation.create",
+          "status": 302,
+          "ms": 56
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth.info",
+          "status": 200,
+          "ms": 74
+        },
+        {
+          "method": "POST",
+          "path": "/api/users.info",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "POST",
+          "path": "/api/users.list",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "POST",
+          "path": "/api/teams.list",
+          "status": 404,
+          "ms": 3
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections.create",
+          "status": 200,
+          "ms": 47
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections.list",
+          "status": 200,
+          "ms": 38
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections.info",
+          "status": 200,
+          "ms": 7
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.create",
+          "status": 200,
+          "ms": 58
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.info",
+          "status": 200,
+          "ms": 24
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.list",
+          "status": 200,
+          "ms": 84
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.search",
+          "status": 200,
+          "ms": 31
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.export",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.update",
+          "status": 200,
+          "ms": 26
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.viewed",
+          "status": 200,
+          "ms": 17
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.drafts",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "POST",
+          "path": "/api/shares.create",
+          "status": 200,
+          "ms": 33
+        },
+        {
+          "method": "POST",
+          "path": "/api/shares.list",
+          "status": 200,
+          "ms": 18
+        },
+        {
+          "method": "POST",
+          "path": "/api/events.list",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "POST",
+          "path": "/api/groups.list",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "POST",
+          "path": "/api/stars.list",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "POST",
+          "path": "/api/notifications.list",
+          "status": 200,
+          "ms": 25
+        },
+        {
+          "method": "POST",
+          "path": "/api/documents.delete",
+          "status": 200,
+          "ms": 33
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 1149
+  },
+  "stdoutTail": "…(79225 bytes elided)…\nProcessing documents.update\"}\n{\"event\":{\"actorId\":\"1b7f4890-4aae-4872-a129-7d1f48383073\",\"authType\":\"app\",\"changes\":null,\"collectionId\":\"0c1116c6-2435-40de-adb1-b783480d4853\",\"createdAt\":\"2026-08-23T22:58:37.083Z\",\"data\":null,\"documentId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"id\":\"4387ecf1-a626-4554-b68d-b6d1016927a0\",\"ip\":\"127.0.0.1\",\"modelId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"name\":\"documents.update\",\"teamId\":\"30e468aa-425d-4401-b762-46f584c1e788\",\"userId\":null},\"label\":\"worker\",\"level\":\"info\",\"message\":\"BacklinksProcessor running documents.update\"}\n{\"event\":{\"actorId\":\"1b7f4890-4aae-4872-a129-7d1f48383073\",\"authType\":\"app\",\"changes\":null,\"collectionId\":\"0c1116c6-2435-40de-adb1-b783480d4853\",\"createdAt\":\"2026-08-23T22:58:37.083Z\",\"data\":null,\"documentId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"id\":\"4387ecf1-a626-4554-b68d-b6d1016927a0\",\"ip\":\"127.0.0.1\",\"modelId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"name\":\"documents.update\",\"teamId\":\"30e468aa-425d-4401-b762-46f584c1e788\",\"userId\":null},\"label\":\"worker\",\"level\":\"info\",\"message\":\"DebounceProcessor running documents.update\"}\n{\"event\":{\"actorId\":\"1b7f4890-4aae-4872-a129-7d1f48383073\",\"authType\":\"app\",\"changes\":null,\"collectionId\":\"0c1116c6-2435-40de-adb1-b783480d4853\",\"createdAt\":\"2026-08-23T22:58:37.083Z\",\"data\":null,\"documentId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"id\":\"4387ecf1-a626-4554-b68d-b6d1016927a0\",\"ip\":\"127.0.0.1\",\"modelId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"name\":\"documents.update\",\"teamId\":\"30e468aa-425d-4401-b762-46f584c1e788\",\"userId\":null},\"label\":\"worker\",\"level\":\"info\",\"message\":\"RevisionsProcessor running documents.update\"}\n{\"attempt\":0,\"event\":{\"actorId\":\"1b7f4890-4aae-4872-a129-7d1f48383073\",\"authType\":\"app\",\"changes\":{\"attributes\":{\"collectionId\":\"[…]\",\"documentId\":\"[…]\",\"includeChildDocuments\":\"[…]\",\"published\":\"[…]\",\"revokedAt\":\"[…]\",\"teamId\":\"[…]\",\"userId\":\"[…]\"},\"previous\":{}},\"collectionId\":null,\"createdAt\":\"2026-08-23T22:58:37.152Z\",\"data\":null,\"documentId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"id\":\"40a91da6-afd7-4588-8928-51159132fb6e\",\"ip\":\"127.0.0.1\",\"modelId\":\"75606b8b-16e1-45f7-897e-ca12ef4e98d4\",\"name\":\"shares.create\",\"teamId\":\"30e468aa-425d-4401-b762-46f584c1e788\",\"userId\":\"1b7f4890-4aae-4872-a129-7d1f48383073\"},\"label\":\"worker\",\"level\":\"info\",\"message\":\"Processing shares.create\"}\n{\"attempt\":0,\"event\":{\"actorId\":\"1b7f4890-4aae-4872-a129-7d1f48383073\",\"authType\":\"app\",\"changes\":null,\"collectionId\":\"0c1116c6-2435-40de-adb1-b783480d4853\",\"createdAt\":\"2026-08-23T22:58:37.251Z\",\"data\":null,\"documentId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"id\":\"dda36d87-beea-4b11-be0c-76c2d10d93d5\",\"ip\":\"127.0.0.1\",\"modelId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"name\":\"documents.delete\",\"teamId\":\"30e468aa-425d-4401-b762-46f584c1e788\",\"userId\":null},\"label\":\"worker\",\"level\":\"info\",\"message\":\"Processing documents.delete\"}\n{\"event\":{\"actorId\":\"1b7f4890-4aae-4872-a129-7d1f48383073\",\"authType\":\"app\",\"changes\":null,\"collectionId\":\"0c1116c6-2435-40de-adb1-b783480d4853\",\"createdAt\":\"2026-08-23T22:58:37.251Z\",\"data\":null,\"documentId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"id\":\"dda36d87-beea-4b11-be0c-76c2d10d93d5\",\"ip\":\"127.0.0.1\",\"modelId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"name\":\"documents.delete\",\"teamId\":\"30e468aa-425d-4401-b762-46f584c1e788\",\"userId\":null},\"label\":\"worker\",\"level\":\"info\",\"message\":\"BacklinksProcessor running documents.delete\"}\n{\"event\":{\"actorId\":\"1b7f4890-4aae-4872-a129-7d1f48383073\",\"authType\":\"app\",\"changes\":null,\"collectionId\":\"0c1116c6-2435-40de-adb1-b783480d4853\",\"createdAt\":\"2026-08-23T22:58:37.251Z\",\"data\":null,\"documentId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"id\":\"dda36d87-beea-4b11-be0c-76c2d10d93d5\",\"ip\":\"127.0.0.1\",\"modelId\":\"d49cae59-9d68-42c6-b7cb-fbd05c6416b6\",\"name\":\"documents.delete\",\"teamId\":\"30e468aa-425d-4401-b762-46f584c1e788\",\"userId\":null},\"label\":\"worker\",\"level\":\"info\",\"message\":\"SearchIndexProcessor running documents.delete\"}\n{\"label\":\"lifecycle\",\"level\":\"info\",\"message\":\"Gracefully quitting\"}\n",
+  "stderrTail": "",
+  "failure": null,
+  "deviations": []
+}

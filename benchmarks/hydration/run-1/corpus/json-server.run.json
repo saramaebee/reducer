@@ -1,0 +1,156 @@
+{
+  "app": "json-server",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "Every route src/app.ts defines, driven against the repo's own fixtures/db.json: the eta-rendered index, collection and item reads, the query/filter/sort/paginate/embed surface, and the full write path.",
+  "startedAt": "2026-08-23T22:57:02.418Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/json-server",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/json-server",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/json-server/lib/bin.js",
+    "fixtures/db.json",
+    "--port",
+    "3401"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/json-server",
+  "envKeys": [
+    "NODE_ENV"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/json-server",
+  "t0": 1787525821110.2112,
+  "ready": {
+    "ok": true,
+    "ts": 1787525821326.6824,
+    "how": "http=http://127.0.0.1:3401/posts",
+    "waitedMs": 213
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525821827.9524,
+      "endTs": 1787525821842.5188,
+      "detail": "index page + collection/item reads",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/posts",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/posts/1",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/comments",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/profile",
+          "status": 200,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525821842.525,
+      "endTs": 1787525821859.7993,
+      "detail": "query/filter/sort/paginate/embed surface plus POST/PUT/PATCH/DELETE",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/posts?title=a%20title",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/posts?_sort=title&_order=desc",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/posts?_page=1&_per_page=1",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/posts?_embed=comments",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/comments?_expand=post",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/posts?id_ne=1",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "POST",
+          "path": "/posts",
+          "status": 201,
+          "ms": 4
+        },
+        {
+          "method": "PUT",
+          "path": "/posts/{{newId}}",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "PATCH",
+          "path": "/posts/{{newId}}",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "DELETE",
+          "path": "/posts/{{newId}}",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/does-not-exist",
+          "status": 404,
+          "ms": 0
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": null,
+    "exitSignal": "SIGTERM",
+    "ms": 584
+  },
+  "stdoutTail": "JSON Server started on PORT :3401\nPress CTRL-C to stop\nWatching fixtures/db.json...\n\n♡⸜(˶˃ ᵕ ˂˶)⸝♡\n\nIndex:\nhttp://localhost:3401/\n\nStatic files:\nServing ./public directory if it exists\n\nEndpoints:\nhttp://localhost:3401/posts\nhttp://localhost:3401/comments\nhttp://localhost:3401/profile\n",
+  "stderrTail": "",
+  "failure": null,
+  "deviations": [
+    "workload wrote 1 tracked file(s) in the frozen clone (fixtures/db.json); reverted with git checkout (status=0)"
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "app": "strapi",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "The getstarted example app started through the pinned CLI entry, then: first-admin registration, the admin API, content-manager CRUD with publish/unpublish on a real document, plugin routes (i18n, upload, content-type-builder) and the REST + GraphQL content APIs.",
+  "startedAt": "2026-08-23T22:58:21.351Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/strapi",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/strapi",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/strapi/packages/core/strapi/bin/strapi.js",
+    "start"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/strapi/examples/getstarted",
+  "envKeys": [
+    "NODE_ENV",
+    "HOST",
+    "PORT",
+    "APP_KEYS",
+    "ADMIN_JWT_SECRET",
+    "API_TOKEN_SALT",
+    "TRANSFER_TOKEN_SALT",
+    "JWT_SECRET",
+    "ENCRYPTION_KEY",
+    "STRAPI_TELEMETRY_DISABLED",
+    "NO_COLOR",
+    "FORCE_COLOR"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/strapi",
+  "t0": 1787525893262.7698,
+  "ready": {
+    "ok": true,
+    "ts": 1787525897411.324,
+    "how": "stdout=/Strapi started successfully|http://127.0.0.1:1337/",
+    "waitedMs": 4145
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525900412.183,
+      "endTs": 1787525900442.2664,
+      "detail": "health + bootstrap info + public content API",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/_health",
+          "status": 204,
+          "ms": 17
+        },
+        {
+          "method": "GET",
+          "path": "/admin/init",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/admin/project-type",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/robots.txt",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "status": 403,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 403,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525900442.2686,
+      "endTs": 1787525900818.9094,
+      "detail": "admin registration → admin API → content-manager CRUD/publish → plugin routes → GraphQL",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/admin/register-admin",
+          "status": 200,
+          "ms": 91
+        },
+        {
+          "method": "GET",
+          "path": "/admin/information",
+          "status": 200,
+          "ms": 11
+        },
+        {
+          "method": "GET",
+          "path": "/admin/users",
+          "status": 200,
+          "ms": 12
+        },
+        {
+          "method": "GET",
+          "path": "/admin/roles",
+          "status": 200,
+          "ms": 11
+        },
+        {
+          "method": "GET",
+          "path": "/admin/permissions",
+          "status": 200,
+          "ms": 18
+        },
+        {
+          "method": "GET",
+          "path": "/admin/webhooks",
+          "status": 200,
+          "ms": 12
+        },
+        {
+          "method": "GET",
+          "path": "/admin/content-api/routes",
+          "status": 200,
+          "ms": 14
+        },
+        {
+          "method": "GET",
+          "path": "/content-manager/init",
+          "status": 200,
+          "ms": 14
+        },
+        {
+          "method": "GET",
+          "path": "/content-manager/content-types",
+          "status": 200,
+          "ms": 14
+        },
+        {
+          "method": "GET",
+          "path": "/content-manager/components",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "method": "GET",
+          "path": "/content-manager/collection-types/api::article.article",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/content-manager/collection-types/api::category.category",
+          "status": 200,
+          "ms": 11
+        },
+        {
+          "method": "GET",
+          "path": "/content-manager/collection-types/api::kitchensink.kitchensink",
+          "status": 200,
+          "ms": 13
+        },
+        {
+          "method": "POST",
+          "path": "/content-manager/collection-types/api::tag.tag",
+          "status": 201,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/content-manager/collection-types/api::tag.tag/{{doc}}",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "PUT",
+          "path": "/content-manager/collection-types/api::tag.tag/{{doc}}",
+          "status": 200,
+          "ms": 17
+        },
+        {
+          "method": "POST",
+          "path": "/content-manager/collection-types/api::tag.tag/{{doc}}/actions/publish",
+          "status": 200,
+          "ms": 23
+        },
+        {
+          "method": "POST",
+          "path": "/content-manager/collection-types/api::tag.tag/{{doc}}/actions/unpublish",
+          "status": 200,
+          "ms": 14
+        },
+        {
+          "method": "DELETE",
+          "path": "/content-manager/collection-types/api::tag.tag/{{doc}}",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "GET",
+          "path": "/i18n/locales",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "GET",
+          "path": "/upload/files",
+          "status": 200,
+          "ms": 12
+        },
+        {
+          "method": "GET",
+          "path": "/content-type-builder/content-types",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "POST",
+          "path": "/graphql",
+          "status": 400,
+          "ms": 6
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 562
+  },
+  "stdoutTail": "…(21957 bytes elided)…\n                      \u001b[90m│\u001b[39m\n\u001b[90m│\u001b[39m Environment        \u001b[90m│\u001b[39m production                                       \u001b[90m│\u001b[39m\n\u001b[90m│\u001b[39m Process PID        \u001b[90m│\u001b[39m 98699                                            \u001b[90m│\u001b[39m\n\u001b[90m│\u001b[39m Version            \u001b[90m│\u001b[39m 5.52.1 (node v24.19.0)                           \u001b[90m│\u001b[39m\n\u001b[90m│\u001b[39m Plan               \u001b[90m│\u001b[39m Community                                        \u001b[90m│\u001b[39m\n\u001b[90m│\u001b[39m Database           \u001b[90m│\u001b[39m sqlite                                           \u001b[90m│\u001b[39m\n\u001b[90m│\u001b[39m Database name      \u001b[90m│\u001b[39m .tmp/data.db                                     \u001b[90m│\u001b[39m\n\u001b[90m╰────────────────────\u001b[39m\u001b[90m┴──────────────────────────────────────────────────╯\u001b[39m\n\n Actions available\n\nOne more thing...\nCreate your first administrator 💻 by going to the administration panel at:\n\n\u001b[90m┌─────────────────────────────┐\u001b[39m\n\u001b[90m│\u001b[39m http://127.0.0.1:1337/admin \u001b[90m│\u001b[39m\n\u001b[90m└─────────────────────────────┘\u001b[39m\n\n[2026-08-23 18:58:17.320] \u001b[32minfo\u001b[39m: Strapi started successfully\n[2026-08-23 18:58:20.428] \u001b[32mhttp\u001b[39m: GET /_health (8 ms) 204\n[2026-08-23 18:58:20.434] \u001b[32mhttp\u001b[39m: GET /admin/init (5 ms) 200\n[2026-08-23 18:58:20.435] \u001b[32mhttp\u001b[39m: GET /admin/project-type (1 ms) 200\n[2026-08-23 18:58:20.437] \u001b[32mhttp\u001b[39m: GET /robots.txt (2 ms) 200\n[2026-08-23 18:58:20.440] \u001b[32mhttp\u001b[39m: GET /api/articles (2 ms) 403\n[2026-08-23 18:58:20.442] \u001b[32mhttp\u001b[39m: GET /api/categories (1 ms) 403\n[2026-08-23 18:58:20.532] \u001b[32mhttp\u001b[39m: POST /admin/register-admin (90 ms) 200\n[2026-08-23 18:58:20.543] \u001b[32mhttp\u001b[39m: GET /admin/information (10 ms) 200\n[2026-08-23 18:58:20.556] \u001b[32mhttp\u001b[39m: GET /admin/users (12 ms) 200\n[2026-08-23 18:58:20.567] \u001b[32mhttp\u001b[39m: GET /admin/roles (11 ms) 200\n[2026-08-23 18:58:20.584] \u001b[32mhttp\u001b[39m: GET /admin/permissions (17 ms) 200\n[2026-08-23 18:58:20.597] \u001b[32mhttp\u001b[39m: GET /admin/webhooks (9 ms) 200\n[2026-08-23 18:58:20.610] \u001b[32mhttp\u001b[39m: GET /admin/content-api/routes (12 ms) 200\n[2026-08-23 18:58:20.624] \u001b[32mhttp\u001b[39m: GET /content-manager/init (13 ms) 200\n[2026-08-23 18:58:20.638] \u001b[32mhttp\u001b[39m: GET /content-manager/content-types (13 ms) 200\n[2026-08-23 18:58:20.653] \u001b[32mhttp\u001b[39m: GET /content-manager/components (9 ms) 200\n[2026-08-23 18:58:20.669] \u001b[32mhttp\u001b[39m: GET /content-manager/collection-types/api::article.article (15 ms) 200\n[2026-08-23 18:58:20.681] \u001b[32mhttp\u001b[39m: GET /content-manager/collection-types/api::category.category (11 ms) 200\n[2026-08-23 18:58:20.694] \u001b[32mhttp\u001b[39m: GET /content-manager/collection-types/api::kitchensink.kitchensink (13 ms) 200\n[2026-08-23 18:58:20.709] \u001b[32mhttp\u001b[39m: POST /content-manager/collection-types/api::tag.tag (14 ms) 201\n[2026-08-23 18:58:20.720] \u001b[32mhttp\u001b[39m: GET /content-manager/collection-types/api::tag.tag/p5j66krnxkyb3z7c03ns2al1 (10 ms) 200\n[2026-08-23 18:58:20.737] \u001b[32mhttp\u001b[39m: PUT /content-manager/collection-types/api::tag.tag/p5j66krnxkyb3z7c03ns2al1 (15 ms) 200\n[2026-08-23 18:58:20.760] \u001b[32mhttp\u001b[39m: POST /content-manager/collection-types/api::tag.tag/p5j66krnxkyb3z7c03ns2al1/actions/publish (23 ms) 200\n[2026-08-23 18:58:20.774] \u001b[32mhttp\u001b[39m: POST /content-manager/collection-types/api::tag.tag/p5j66krnxkyb3z7c03ns2al1/actions/unpublish (13 ms) 200\n[2026-08-23 18:58:20.784] \u001b[32mhttp\u001b[39m: DELETE /content-manager/collection-types/api::tag.tag/p5j66krnxkyb3z7c03ns2al1 (10 ms) 200\n[2026-08-23 18:58:20.792] \u001b[32mhttp\u001b[39m: GET /i18n/locales (8 ms) 200\n[2026-08-23 18:58:20.804] \u001b[32mhttp\u001b[39m: GET /upload/files (7 ms) 200\n[2026-08-23 18:58:20.813] \u001b[32mhttp\u001b[39m: GET /content-type-builder/content-types (8 ms) 200\n[2026-08-23 18:58:20.818] \u001b[32mhttp\u001b[39m: POST /graphql (5 ms) 400\n[2026-08-23 18:58:20.819] \u001b[32minfo\u001b[39m: Shutting down Strapi\n[2026-08-23 18:58:20.819] \u001b[32minfo\u001b[39m: [MCP] Stopping MCP server...\n[2026-08-23 18:58:20.820] \u001b[32minfo\u001b[39m: [MCP] Service stopped\n[2026-08-23 18:58:20.820] \u001b[32minfo\u001b[39m: Strapi has been shut down\n",
+  "stderrTail": "",
+  "failure": null,
+  "deviations": [
+    "GET /admin (the admin panel HTML) is never requested: the admin bundle was never built for this example, so it would be a request-time ENOENT rather than representative work."
+  ]
+}

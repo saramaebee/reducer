@@ -1,0 +1,190 @@
+{
+  "app": "express-realworld",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "The complete RealWorld API from src/app/routes/routes.ts driven end to end over Prisma/PostgreSQL: register two users, log in, update the profile, create/read/update an article, comment, favourite, follow, read the feed, then delete. The Prisma query engine is the native boundary this app exists to test.",
+  "startedAt": "2026-08-23T22:57:11.434Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/express-realworld",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/express-realworld",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/express-realworld/dist/api/main.js"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/express-realworld",
+  "envKeys": [
+    "NODE_ENV",
+    "PORT",
+    "DATABASE_URL",
+    "JWT_SECRET"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/express-realworld",
+  "t0": 1787525829323.7676,
+  "ready": {
+    "ok": true,
+    "ts": 1787525829630.5784,
+    "how": "stdout=/server up on port/",
+    "waitedMs": 305
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525830636.7014,
+      "endTs": 1787525830717.2542,
+      "detail": "unauthenticated reads",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 31
+        },
+        {
+          "method": "GET",
+          "path": "/api/tags",
+          "status": 200,
+          "ms": 36
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles?limit=5&offset=0",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles/no-such-article-slug",
+          "status": 404,
+          "ms": 3
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525830717.257,
+      "endTs": 1787525830899.0898,
+      "detail": "register → login → article/comment/favourite/follow/feed write path → delete",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/users",
+          "status": 422,
+          "ms": 23
+        },
+        {
+          "method": "POST",
+          "path": "/api/users",
+          "status": 422,
+          "ms": 2
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/login",
+          "status": 200,
+          "ms": 79
+        },
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "method": "PUT",
+          "path": "/api/user",
+          "status": 200,
+          "ms": 6
+        },
+        {
+          "method": "POST",
+          "path": "/api/articles",
+          "status": 201,
+          "ms": 14
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles/{{slug}}",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "PUT",
+          "path": "/api/articles/{{slug}}",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "POST",
+          "path": "/api/articles/{{slug}}/comments",
+          "status": 200,
+          "ms": 7
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles/{{slug}}/comments",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "POST",
+          "path": "/api/articles/{{slug}}/favorite",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles?favorited=wsuser1",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/api/profiles/wsuser2",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "POST",
+          "path": "/api/profiles/wsuser2/follow",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles/feed?limit=10&offset=0",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/articles/{{slug}}/comments/{{commentId}}",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/articles/{{slug}}",
+          "status": 204,
+          "ms": 4
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 143,
+    "exitSignal": null,
+    "ms": 565
+  },
+  "stdoutTail": "server up on port 3409\n",
+  "stderrTail": "",
+  "failure": null,
+  "deviations": []
+}

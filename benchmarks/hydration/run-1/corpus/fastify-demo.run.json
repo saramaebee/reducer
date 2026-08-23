@@ -1,0 +1,141 @@
+{
+  "app": "fastify-demo",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "Fastify autoloaded plugin app against the mysql schema its own migrations create. Exercises the documented auth flow (login → session cookie), the tasks CRUD routes, and the swagger/scalar docs route.",
+  "startedAt": "2026-08-23T22:57:38.860Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/fastify-demo",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/fastify-demo",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/fastify-demo/dist/server.js"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/fastify-demo",
+  "envKeys": [
+    "NODE_ENV",
+    "PORT",
+    "MYSQL_HOST",
+    "MYSQL_PORT",
+    "MYSQL_DATABASE",
+    "MYSQL_USER",
+    "MYSQL_PASSWORD",
+    "COOKIE_SECRET",
+    "COOKIE_NAME",
+    "COOKIE_SECURED",
+    "RATE_LIMIT_MAX",
+    "UPLOAD_DIRNAME",
+    "UPLOAD_TASKS_DIRNAME",
+    "LOG_LEVEL",
+    "FASTIFY_CLOSE_GRACE_DELAY"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/fastify-demo",
+  "t0": 1787525855997.5906,
+  "ready": {
+    "ok": true,
+    "ts": 1787525857010.169,
+    "how": "stdout=/Server listening at/",
+    "waitedMs": 1009
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525858012.6716,
+      "endTs": 1787525858042.9536,
+      "detail": "home route + docs + the unauthenticated surface",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 23
+        },
+        {
+          "method": "GET",
+          "path": "/documentation",
+          "status": 404,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/documentation/json",
+          "status": 404,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/api/tasks",
+          "status": 401,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/nope",
+          "status": 404,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525858042.9563,
+      "endTs": 1787525858339.3882,
+      "detail": "login then the authenticated tasks CRUD surface",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200,
+          "ms": 268
+        },
+        {
+          "method": "GET",
+          "path": "/api/tasks",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "POST",
+          "path": "/api/tasks",
+          "status": 201,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/api/tasks/{{taskId}}",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/tasks/{{taskId}}",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/api/users",
+          "status": 429,
+          "ms": 1
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/tasks/{{taskId}}",
+          "status": 403,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 550
+  },
+  "stdoutTail": "…(4372 bytes elided)…\n\"request\":{\"method\":\"GET\",\"url\":\"/nope\",\"query\":{},\"params\":{\"*\":\"nope\"}},\"msg\":\"Resource not found\"}\n{\"level\":30,\"time\":1787525858042,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-5\",\"res\":{\"statusCode\":404},\"responseTime\":0.5464580000000296,\"msg\":\"request completed\"}\n{\"level\":30,\"time\":1787525858043,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-6\",\"req\":{\"method\":\"POST\",\"url\":\"/api/auth/login\",\"host\":\"127.0.0.1:3403\",\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59012},\"msg\":\"incoming request\"}\n{\"level\":30,\"time\":1787525858310,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-6\",\"res\":{\"statusCode\":200},\"responseTime\":267.1718749999998,\"msg\":\"request completed\"}\n{\"level\":30,\"time\":1787525858311,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-7\",\"req\":{\"method\":\"GET\",\"url\":\"/api/tasks\",\"host\":\"127.0.0.1:3403\",\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59012},\"msg\":\"incoming request\"}\n{\"level\":30,\"time\":1787525858318,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-7\",\"res\":{\"statusCode\":200},\"responseTime\":7.362833000000137,\"msg\":\"request completed\"}\n{\"level\":30,\"time\":1787525858318,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-8\",\"req\":{\"method\":\"POST\",\"url\":\"/api/tasks\",\"host\":\"127.0.0.1:3403\",\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59012},\"msg\":\"incoming request\"}\n{\"level\":30,\"time\":1787525858323,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-8\",\"res\":{\"statusCode\":201},\"responseTime\":4.6351660000000265,\"msg\":\"request completed\"}\n{\"level\":30,\"time\":1787525858323,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-9\",\"req\":{\"method\":\"GET\",\"url\":\"/api/tasks/1\",\"host\":\"127.0.0.1:3403\",\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59012},\"msg\":\"incoming request\"}\n{\"level\":30,\"time\":1787525858328,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-9\",\"res\":{\"statusCode\":200},\"responseTime\":4.494333000000097,\"msg\":\"request completed\"}\n{\"level\":30,\"time\":1787525858329,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-a\",\"req\":{\"method\":\"PATCH\",\"url\":\"/api/tasks/1\",\"host\":\"127.0.0.1:3403\",\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59012},\"msg\":\"incoming request\"}\n{\"level\":30,\"time\":1787525858337,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-a\",\"res\":{\"statusCode\":200},\"responseTime\":7.773999999999887,\"msg\":\"request completed\"}\n{\"level\":30,\"time\":1787525858337,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-b\",\"req\":{\"method\":\"GET\",\"url\":\"/api/users\",\"host\":\"127.0.0.1:3403\",\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59012},\"msg\":\"incoming request\"}\n{\"level\":50,\"time\":1787525858338,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"err\":{\"type\":\"Error\",\"message\":\"Rate limit exceeded, retry in 1 second\",\"stack\":\"Error: Rate limit exceeded, retry in 1 second\\n    at Object.defaultErrorResponse [as errorResponseBuilder] (/Users/sara/.cache/reducer-corpus-v1/fastify-demo/node_modules/@fastify/rate-limit/index.js:61:15)\\n    at Object.<anonymous> (/Users/sara/.cache/reducer-corpus-v1/fastify-demo/node_modules/@fastify/rate-limit/index.js:375:18)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\",\"statusCode\":429},\"request\":{\"method\":\"GET\",\"url\":\"/api/users\",\"query\":{},\"params\":{\"*\":\"api/users\"}},\"msg\":\"Unhandled error occurred\"}\n{\"level\":30,\"time\":1787525858338,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-b\",\"res\":{\"statusCode\":429},\"responseTime\":0.5228329999999914,\"msg\":\"request completed\"}\n{\"level\":30,\"time\":1787525858338,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-c\",\"req\":{\"method\":\"DELETE\",\"url\":\"/api/tasks/1\",\"host\":\"127.0.0.1:3403\",\"remoteAddress\":\"127.0.0.1\",\"remotePort\":59012},\"msg\":\"incoming request\"}\n{\"level\":30,\"time\":1787525858339,\"pid\":98157,\"hostname\":\"Saras-MacBook-Pro-2.local\",\"reqId\":\"req-c\",\"res\":{\"statusCode\":403},\"responseTime\":0.4472089999999298,\"msg\":\"request completed\"}\n",
+  "stderrTail": "",
+  "failure": null,
+  "deviations": []
+}

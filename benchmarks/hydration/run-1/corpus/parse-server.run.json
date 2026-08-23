@@ -1,0 +1,159 @@
+{
+  "app": "parse-server",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "The Parse REST API over the postgres storage adapter: health, server info, schema creation, object CRUD, queries, user signup/login/session, cloud-function surface and the file API.",
+  "startedAt": "2026-08-23T22:58:04.498Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/parse-server",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/parse-server",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/parse-server/bin/parse-server",
+    "--appId",
+    "reducerApp",
+    "--masterKey",
+    "reducerMasterKey",
+    "--databaseURI",
+    "postgres://sara@127.0.0.1:5432/parse_reducer",
+    "--port",
+    "1338",
+    "--serverURL",
+    "http://127.0.0.1:1338/parse",
+    "--allowClientClassCreation",
+    "true",
+    "--masterKeyIps",
+    "0.0.0.0/0,::0"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/parse-server",
+  "envKeys": [
+    "NODE_ENV"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/parse-server",
+  "t0": 1787525880226.822,
+  "ready": {
+    "ok": true,
+    "ts": 1787525881747.0254,
+    "how": "stdout=/parse-server running on|running on http/",
+    "waitedMs": 1517
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525883748.5552,
+      "endTs": 1787525883777.0447,
+      "detail": "health + serverInfo + schemas",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/parse/health",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/parse/serverInfo",
+          "status": 200,
+          "ms": 6
+        },
+        {
+          "method": "GET",
+          "path": "/parse/schemas",
+          "status": 200,
+          "ms": 4
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525883777.0486,
+      "endTs": 1787525883970.4333,
+      "detail": "object CRUD + queries + user signup/login/session + file upload (postgres adapter)",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/parse/classes/Probe",
+          "status": 201,
+          "ms": 21
+        },
+        {
+          "method": "GET",
+          "path": "/parse/classes/Probe",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/parse/classes/Probe/{{objId}}",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "PUT",
+          "path": "/parse/classes/Probe/{{objId}}",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "method": "POST",
+          "path": "/parse/users",
+          "status": 400,
+          "ms": 78
+        },
+        {
+          "method": "GET",
+          "path": "/parse/login?username=probe&password=probe1234",
+          "status": 200,
+          "ms": 71
+        },
+        {
+          "method": "GET",
+          "path": "/parse/users/me",
+          "status": 400,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/parse/sessions/me",
+          "status": 400,
+          "ms": 1
+        },
+        {
+          "method": "POST",
+          "path": "/parse/files/probe.txt",
+          "status": 400,
+          "ms": 7
+        },
+        {
+          "method": "GET",
+          "path": "/parse/classes/_User",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "DELETE",
+          "path": "/parse/classes/Probe/{{objId}}",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/parse/functions/nope",
+          "status": 404,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 558
+  },
+  "stdoutTail": "…(8916 bytes elided)…\nalready exists for this username.\\n    at /Users/sara/.cache/reducer-corpus-v1/parse-server/lib/RestWrite.js:670:13\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\"}\nerror: Invalid session token {\"code\":209,\"stack\":\"Error: Invalid session token\\n    at Object.getAuthForSessionToken (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Auth.js:205:11)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async handleParseSession (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/middlewares.js:334:21)\"}\nerror: Session token not found. {\"code\":209,\"stack\":\"Error: Session token not found.\\n    at SessionsRouter.handleMe (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Routers/SessionsRouter.js:27:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\"}\nerror: Error creating a file:  Invalid scheme, expected connection string to start with \"mongodb://\" or \"mongodb+srv://\" {\"stack\":\"MongoParseError: Invalid scheme, expected connection string to start with \\\"mongodb://\\\" or \\\"mongodb+srv://\\\"\\n    at new ConnectionString (/Users/sara/.cache/reducer-corpus-v1/parse-server/node_modules/mongodb/node_modules/mongodb-connection-string-url/lib/index.js:85:19)\\n    at parseOptions (/Users/sara/.cache/reducer-corpus-v1/parse-server/node_modules/mongodb/lib/connection_string.js:198:17)\\n    at new MongoClient (/Users/sara/.cache/reducer-corpus-v1/parse-server/node_modules/mongodb/lib/mongo_client.js:67:61)\\n    at MongoClient.connect (/Users/sara/.cache/reducer-corpus-v1/parse-server/node_modules/mongodb/lib/mongo_client.js:437:24)\\n    at GridFSBucketAdapter._connect (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Adapters/Files/GridFSBucketAdapter.js:53:54)\\n    at GridFSBucketAdapter._getBucket (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Adapters/Files/GridFSBucketAdapter.js:61:17)\\n    at GridFSBucketAdapter.createFile (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Adapters/Files/GridFSBucketAdapter.js:67:31)\\n    at FilesController.createFile (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Controllers/FilesController.js:51:24)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async FilesRouter._handleBufferedUpload (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Routers/FilesRouter.js:572:34)\"}\nerror: Invalid scheme, expected connection string to start with \"mongodb://\" or \"mongodb+srv://\" {\"code\":130,\"stack\":\"MongoParseError: Invalid scheme, expected connection string to start with \\\"mongodb://\\\" or \\\"mongodb+srv://\\\"\\n    at new ConnectionString (/Users/sara/.cache/reducer-corpus-v1/parse-server/node_modules/mongodb/node_modules/mongodb-connection-string-url/lib/index.js:85:19)\\n    at parseOptions (/Users/sara/.cache/reducer-corpus-v1/parse-server/node_modules/mongodb/lib/connection_string.js:198:17)\\n    at new MongoClient (/Users/sara/.cache/reducer-corpus-v1/parse-server/node_modules/mongodb/lib/mongo_client.js:67:61)\\n    at MongoClient.connect (/Users/sara/.cache/reducer-corpus-v1/parse-server/node_modules/mongodb/lib/mongo_client.js:437:24)\\n    at GridFSBucketAdapter._connect (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Adapters/Files/GridFSBucketAdapter.js:53:54)\\n    at GridFSBucketAdapter._getBucket (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Adapters/Files/GridFSBucketAdapter.js:61:17)\\n    at GridFSBucketAdapter.createFile (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Adapters/Files/GridFSBucketAdapter.js:67:31)\\n    at FilesController.createFile (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Controllers/FilesController.js:51:24)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async FilesRouter._handleBufferedUpload (/Users/sara/.cache/reducer-corpus-v1/parse-server/lib/Routers/FilesRouter.js:572:34)\"}\nTermination signal received. Shutting down.",
+  "stderrTail": "(node:98465) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n",
+  "failure": null,
+  "deviations": []
+}

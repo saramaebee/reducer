@@ -1,0 +1,224 @@
+{
+  "app": "n8n",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "The stress case. Started through the pinned CLI entry with sqlite; owner setup, then the REST surface the editor itself calls (node types, credential types, workflows, executions, settings), then creating and MANUALLY EXECUTING a workflow — which is what forces the node/credential loading machinery behind n8n's 29,491 unresolved-specifier NFT warnings to actually resolve something.",
+  "startedAt": "2026-08-23T22:58:57.472Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/n8n",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/n8n",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/n8n/packages/cli/bin/n8n",
+    "start"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/n8n/packages/cli",
+  "envKeys": [
+    "NODE_ENV",
+    "N8N_USER_FOLDER",
+    "N8N_ENCRYPTION_KEY",
+    "DB_TYPE",
+    "DB_SQLITE_DATABASE",
+    "DB_SQLITE_POOL_SIZE",
+    "N8N_PROTOCOL",
+    "N8N_LISTEN_ADDRESS",
+    "N8N_PORT",
+    "N8N_RUNNERS_BROKER_LISTEN_ADDRESS",
+    "N8N_RUNNERS_BROKER_PORT",
+    "N8N_LOG_LEVEL",
+    "N8N_DIAGNOSTICS_ENABLED",
+    "N8N_VERSION_NOTIFICATIONS_ENABLED",
+    "N8N_TEMPLATES_ENABLED",
+    "N8N_LICENSE_AUTO_RENEW_ENABLED",
+    "N8N_PERSONALIZATION_ENABLED",
+    "N8N_HIRING_BANNER_ENABLED",
+    "N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/n8n",
+  "t0": 1787525918776.0693,
+  "ready": {
+    "ok": true,
+    "ts": 1787525925935.8323,
+    "how": "http=http://127.0.0.1:5678/healthz/readiness",
+    "waitedMs": 7156
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525930942.009,
+      "endTs": 1787525930968.688,
+      "detail": "health, settings, editor bootstrap, node/credential type catalogues",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/healthz",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/healthz/readiness",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/rest/settings",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/rest/login",
+          "status": 401,
+          "ms": 4
+        },
+        {
+          "method": "GET",
+          "path": "/types/nodes.json",
+          "status": 401,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/types/credentials.json",
+          "status": 401,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/types/node-versions.json",
+          "status": 401,
+          "ms": 0
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525930968.6917,
+      "endTs": 1787525936710.2559,
+      "detail": "owner setup → workflow create → MANUAL EXECUTION → executions/credentials/tags surface",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/rest/owner/setup",
+          "status": 200,
+          "ms": 107
+        },
+        {
+          "method": "GET",
+          "path": "/rest/login",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/rest/workflows",
+          "status": 200,
+          "ms": 18
+        },
+        {
+          "method": "GET",
+          "path": "/rest/credentials",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/rest/executions",
+          "status": 200,
+          "ms": 24
+        },
+        {
+          "method": "GET",
+          "path": "/rest/tags",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/rest/projects",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/rest/node-types",
+          "status": 404,
+          "ms": 2
+        },
+        {
+          "method": "POST",
+          "path": "/rest/node-types",
+          "status": 200,
+          "ms": 469
+        },
+        {
+          "method": "POST",
+          "path": "/rest/workflows",
+          "status": 200,
+          "ms": 17
+        },
+        {
+          "method": "GET",
+          "path": "/rest/workflows/{{wfId}}",
+          "status": 200,
+          "ms": 7
+        },
+        {
+          "method": "POST",
+          "path": "/rest/workflows/{{wfId}}/run",
+          "status": 200,
+          "ms": 17
+        },
+        {
+          "method": "GET",
+          "path": "/rest/executions",
+          "status": 200,
+          "ms": 20
+        },
+        {
+          "method": "GET",
+          "path": "/rest/credentials/schema/httpBasicAuth",
+          "status": 404,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/rest/dynamic-node-parameters/options",
+          "status": 404,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/rest/community-packages",
+          "status": 200,
+          "ms": 7
+        },
+        {
+          "method": "GET",
+          "path": "/rest/binary-data",
+          "status": 400,
+          "ms": 6
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 4
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 781
+  },
+  "stdoutTail": "…(28820 bytes elided)…\nDependencyTable1785828155092\nStarting migration AllowDiscordAgentChatSubscriptions1785840970000\nFinished migration AllowDiscordAgentChatSubscriptions1785840970000\nStarting migration CreateWorkflowReviewActivityTablesAndBaseline1785843640527\nFinished migration CreateWorkflowReviewActivityTablesAndBaseline1785843640527\nStarting migration CreatePollerStateTable1785926660580\nFinished migration CreatePollerStateTable1785926660580\nStarting migration AddReasonToWorkflowPublicationOutbox1786519946974\nFinished migration AddReasonToWorkflowPublicationOutbox1786519946974\nStarting migration AddCoalesceOwnerMisfirePolicy1786666615643\nFinished migration AddCoalesceOwnerMisfirePolicy1786666615643\nStarting migration AddAgentRevisionColumn1786666615644\nFinished migration AddAgentRevisionColumn1786666615644\nStarting migration AddAgentExecutionFailureSummary1787040021605\nFinished migration AddAgentExecutionFailureSummary1787040021605\nStarting migration CreateGitConnectionTable1787056876306\nFinished migration CreateGitConnectionTable1787056876306\nStarting migration AddTimezoneToAgentTasks1787057050000\nFinished migration AddTimezoneToAgentTasks1787057050000\nStarting migration CreateGitConnectionProjectTable1787089039726\nFinished migration CreateGitConnectionProjectTable1787089039726\nStarting migration DropWorkflowReviewActivityTypeCheckAndWorkflowIdColumn1787089039727\nFinished migration DropWorkflowReviewActivityTypeCheckAndWorkflowIdColumn1787089039727\nStarting migration AddProjectManageMembersScopeToCustomRoles1787140858009\nFinished migration AddProjectManageMembersScopeToCustomRoles1787140858009\nn8n Task Broker ready on 127.0.0.1, port 5679\nFailed to start Python task runner in internal mode. because its virtual environment is missing from this system. Launching a Python runner in internal mode is intended only for debugging and is not recommended for production. Users are encouraged to deploy in external mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode\n\nThere are deprecations related to your n8n setup. Please take the recommended actions to update your configuration:\n - N8N_UNVERIFIED_PACKAGES_ENABLED -> The default for this variable will change to `false` in a future version. Set it to `true` explicitly to keep installing unverified community packages.\n - N8N_RUNNERS_TASK_TIMEOUT -> The default for this variable will be reduced from 300 (5 minutes) to 60 (1 minute) in a future version. Set it explicitly to keep your current task timeout.\n - N8N_COMPRESSION_NODE_MAX_DECOMPRESSED_SIZE_BYTES -> The default for this variable will be reduced from 2 GiB to 256 MiB in a future version. Set it explicitly to keep your current limit.\n - N8N_COMPRESSION_NODE_MAX_ZIP_ENTRIES -> The default for this variable will be reduced from 5000 to 1000 in a future version. Set it explicitly to keep your current limit.\n - Running n8n outside a container is deprecated. Future versions will require running n8n via the official Docker image. See https://docs.n8n.io/deploy/host-n8n/install-options/install-with-docker\n\nAutomatic license renewal is disabled. The license will not renew automatically, and access to licensed features may be lost!\n[license SDK] Skipping renewal on init: renewOnInit is disabled in config\n[license SDK] Skipping renewal on init: autoRenewEnabled is disabled in config\n[license SDK] Skipping renewal on init: license cert is not initialized\nRegistered runner \"JS Task Runner\" (bafHgg6qAoTosVsfG88y7) \nInstance registered\nDiscovered 4 cluster checks\nRecorded version change: (none) -> 2.36.0\nSandbox: enabled=false provider=n8n-sandbox (from env)\nVersion: 2.36.0\nBuilding workflow dependency index...\nFinished building workflow dependency index. Processed 0 draft workflows, 0 published workflows.\n\nEditor is now accessible via:\nhttp://localhost:5678\nOwner was set up successfully\nReceived SIGTERM. Shutting down...\n[runner:js] Received SIGTERM signal, shutting down...\n[runner:js] Task runner stopped\n\nStopping n8n...\n",
+  "stderrTail": "(node:99063) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n",
+  "failure": null,
+  "deviations": []
+}

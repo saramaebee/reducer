@@ -1,0 +1,254 @@
+{
+  "app": "hackathon-starter",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "Every GET route in the app.js router table that returns non-5xx with the placeholder API keys, then the authenticated write path (signup → session → profile update → logout) which is what reaches mongoose, the bcrypt native binding, connect-mongo sessions and the pug render path.",
+  "startedAt": "2026-08-23T22:57:34.669Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/hackathon-starter",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/hackathon-starter",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/app.js"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/hackathon-starter",
+  "envKeys": [
+    "NODE_ENV",
+    "PORT",
+    "BASE_URL",
+    "MONGODB_URI",
+    "SESSION_SECRET",
+    "RATE_LIMIT_GLOBAL",
+    "RATE_LIMIT_STRICT",
+    "RATE_LIMIT_LOGIN"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/hackathon-starter",
+  "t0": 1787525847815.0427,
+  "ready": {
+    "ok": true,
+    "ts": 1787525849842.0981,
+    "how": "stdout=/App is running on/",
+    "waitedMs": 2024
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525851353.6353,
+      "endTs": 1787525851667.4998,
+      "detail": "public pages + static assets (pug rendering, sass output, express.static)",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 174
+        },
+        {
+          "method": "GET",
+          "path": "/login",
+          "status": 200,
+          "ms": 39
+        },
+        {
+          "method": "GET",
+          "path": "/signup",
+          "status": 200,
+          "ms": 28
+        },
+        {
+          "method": "GET",
+          "path": "/forgot",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/contact",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/account",
+          "status": 302,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/api",
+          "status": 200,
+          "ms": 22
+        },
+        {
+          "method": "GET",
+          "path": "/css/main.css",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "GET",
+          "path": "/js/main.js",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/this-route-does-not-exist",
+          "status": 404,
+          "ms": 7
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525851667.5022,
+      "endTs": 1787525854136.3228,
+      "detail": "the API-integration pages and the authenticated signup/profile/logout flow",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/chart",
+          "status": 200,
+          "ms": 170
+        },
+        {
+          "method": "GET",
+          "path": "/api/upload",
+          "status": 200,
+          "ms": 18
+        },
+        {
+          "method": "GET",
+          "path": "/api/here-maps",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/api/google-maps",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/api/stripe",
+          "status": 200,
+          "ms": 17
+        },
+        {
+          "method": "GET",
+          "path": "/api/twilio",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "method": "GET",
+          "path": "/api/paypal/cancel",
+          "status": 200,
+          "ms": 14
+        },
+        {
+          "method": "GET",
+          "path": "/api/scraping",
+          "status": 200,
+          "ms": 303
+        },
+        {
+          "method": "GET",
+          "path": "/api/github",
+          "status": 200,
+          "ms": 250
+        },
+        {
+          "method": "GET",
+          "path": "/api/pubchem",
+          "status": 200,
+          "ms": 737
+        },
+        {
+          "method": "GET",
+          "path": "/api/wikipedia",
+          "status": 200,
+          "ms": 395
+        },
+        {
+          "method": "GET",
+          "path": "/api/lastfm",
+          "status": 200,
+          "ms": 286
+        },
+        {
+          "method": "GET",
+          "path": "/ai",
+          "status": 200,
+          "ms": 23
+        },
+        {
+          "method": "GET",
+          "path": "/ai/llm-classifier",
+          "status": 200,
+          "ms": 21
+        },
+        {
+          "method": "GET",
+          "path": "/ai/rag",
+          "status": 200,
+          "ms": 41
+        },
+        {
+          "method": "GET",
+          "path": "/signup",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "POST",
+          "path": "/signup",
+          "status": 302,
+          "ms": 89
+        },
+        {
+          "method": "GET",
+          "path": "/account",
+          "status": 200,
+          "ms": 39
+        },
+        {
+          "method": "GET",
+          "path": "/logout",
+          "status": 302,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/js/lib/jquery.min.js",
+          "status": 500,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/js/lib/bootstrap.min.js",
+          "status": 500,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/webfonts/fa-solid-900.woff2",
+          "status": 500,
+          "ms": 2
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": null,
+    "exitSignal": "SIGTERM",
+    "ms": 565
+  },
+  "stdoutTail": "…(691 bytes elided)…\nm200\u001b[0m 19ms 2.39KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /css/main.css \u001b[32m200\u001b[0m 1ms 62.35KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /js/main.js \u001b[32m200\u001b[0m 1ms 0.06KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /this-route-does-not-exist \u001b[33m404\u001b[0m 1ms 0.01KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /api/chart \u001b[32m200\u001b[0m 167ms 2.87KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /api/upload \u001b[32m200\u001b[0m 11ms 1.83KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /api/here-maps \u001b[32m200\u001b[0m 12ms 2.85KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /api/google-maps \u001b[32m200\u001b[0m 14ms 3.52KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /api/stripe \u001b[32m200\u001b[0m 14ms 2.67KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /api/twilio \u001b[32m200\u001b[0m 12ms 2.49KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:31 GET /api/paypal/cancel \u001b[32m200\u001b[0m 11ms 1.71KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:32 GET /api/scraping \u001b[32m200\u001b[0m 299ms 3.57KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:32 GET /api/github \u001b[32m200\u001b[0m 246ms 2.00KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:33 GET /api/pubchem \u001b[32m200\u001b[0m 728ms 3.02KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:33 GET /api/wikipedia \u001b[32m200\u001b[0m 391ms 2.85KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:33 GET /api/lastfm \u001b[32m200\u001b[0m 279ms 2.52KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:33 GET /ai \u001b[32m200\u001b[0m 19ms 2.18KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:33 GET /ai/llm-classifier \u001b[32m200\u001b[0m 16ms 2.00KB COMPLETE - Unknown/Unknown v\nCollection rag_chunks created.\nMongoServerError: no such command: 'createSearchIndexes'\n    at Connection.sendCommand (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/mongodb/lib/cmap/connection.js:320:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async Connection.command (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/mongodb/lib/cmap/connection.js:347:26)\n    at async Server.command (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/mongodb/lib/sdam/server.js:208:29)\n    at async executeOperationWithRetries (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/mongodb/lib/operations/execute_operation.js:193:32)\n    at async executeOperation (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/mongodb/lib/operations/execute_operation.js:83:16)\n    at async Collection.createSearchIndexes (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/mongodb/lib/collection.js:726:16)\n    at async Collection.createSearchIndex (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/mongodb/lib/collection.js:713:25)\n    at async createCollectionForVectorSearch (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/controllers/ai.js:274:5)\n    at async setupRagCollection (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/controllers/ai.js:305:25) {\n  errorLabelSet: Set(0) {},\n  errorResponse: {\n    ok: 0,\n    errmsg: \"no such command: 'createSearchIndexes'\",\n    code: 59,\n    codeName: 'CommandNotFound'\n  },\n  ok: 0,\n  code: 59,\n  codeName: 'CommandNotFound'\n}\n2026-08-23 18:57:33 GET /ai/rag \u001b[32m200\u001b[0m 39ms 3.25KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:33 GET /signup \u001b[32m200\u001b[0m 1ms 2.04KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:34 POST /signup \u001b[36m302\u001b[0m 87ms 0.02KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:34 GET /account \u001b[32m200\u001b[0m 33ms 3.22KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:34 GET /logout \u001b[36m302\u001b[0m 8ms 0.02KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:34 GET /js/lib/jquery.min.js \u001b[31m500\u001b[0m 1ms 0.01KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:34 GET /js/lib/bootstrap.min.js \u001b[31m500\u001b[0m 1ms 0.01KB COMPLETE - Unknown/Unknown v\n2026-08-23 18:57:34 GET /webfonts/fa-solid-900.woff2 \u001b[31m500\u001b[0m 1ms 0.01KB COMPLETE - Unknown/Unknown v\n",
+  "stderrTail": "…(1 bytes elided)…\nclaude-code-hint v=\"1\" type=\"plugin\" value=\"stripe@claude-plugins-official\" />\nWARNING: The BASE_URL environment variable and the App have a port mismatch. If you plan to view the app in your browser using the localhost address, you may need to adjust one of the ports to make them match. BASE_URL: http://localhost:3410\n\n\u001b[33mWARNING: GOOGLE_RECAPTCHA_SITE_KEY is missing. Add a key to your .env, env variable, or use a WebApp Firewall with an interactive challenge before going to production.\u001b[0m\nNotFoundError: Not Found\n    at createHttpError (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:861:12)\n    at SendStream.error (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:168:31)\n    at SendStream.pipe (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:468:14)\n    at sendfile (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/express/lib/response.js:1014:8)\n    at ServerResponse.sendFile (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/express/lib/response.js:411:3)\n    at libFileHandler (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/app.js:232:44)\n    at Layer.handleRequest (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/layer.js:152:17)\n    at next (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/route.js:117:3)\n    at handle (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/index.js:435:11)\nNotFoundError: Not Found\n    at createHttpError (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:861:12)\n    at SendStream.error (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:168:31)\n    at SendStream.pipe (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:468:14)\n    at sendfile (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/express/lib/response.js:1014:8)\n    at ServerResponse.sendFile (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/express/lib/response.js:411:3)\n    at libFileHandler (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/app.js:232:44)\n    at Layer.handleRequest (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/layer.js:152:17)\n    at next (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/route.js:117:3)\n    at handle (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/index.js:435:11)\nNotFoundError: Not Found\n    at createHttpError (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:861:12)\n    at SendStream.error (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:168:31)\n    at SendStream.pipe (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/send/index.js:468:14)\n    at sendfile (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/express/lib/response.js:1014:8)\n    at ServerResponse.sendFile (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/express/lib/response.js:411:3)\n    at libFileHandler (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/app.js:232:44)\n    at Layer.handleRequest (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/layer.js:152:17)\n    at next (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/lib/route.js:117:3)\n    at handle (/Users/sara/.cache/reducer-corpus-v1/hackathon-starter/node_modules/router/index.js:435:11)\n",
+  "failure": null,
+  "deviations": []
+}

@@ -1,0 +1,177 @@
+{
+  "app": "uptime-kuma",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "Uptime Kuma is socket.io-first, so the workload is both halves: the real HTTP routes (entry-page, badges via the badge renderer, status pages, metrics, SPA catch-all) and a socket.io client driving the setup/login/monitor/tag/status-page/settings event handlers — the surface no HTTP request reaches.",
+  "startedAt": "2026-08-23T22:58:00.042Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/uptime-kuma",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/uptime-kuma",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/uptime-kuma/server/server.js",
+    "--port=3408",
+    "--host=127.0.0.1"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/uptime-kuma",
+  "envKeys": [
+    "NODE_ENV",
+    "UPTIME_KUMA_DB_TYPE",
+    "DATA_DIR",
+    "UPTIME_KUMA_WS_ORIGIN_CHECK"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/uptime-kuma",
+  "t0": 1787525868289.1455,
+  "ready": {
+    "ok": true,
+    "ts": 1787525870717.4011,
+    "how": "stdout=/Listening on/",
+    "waitedMs": 2425
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525873720.1948,
+      "endTs": 1787525873759.5852,
+      "detail": "entry page, setup info, SPA shell and the static/catch-all routes",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/entry-page",
+          "status": 200,
+          "ms": 30
+        },
+        {
+          "method": "GET",
+          "path": "/setup-database-info",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/robots.txt",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 302,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/.well-known/change-password",
+          "status": 302,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525873759.589,
+      "endTs": 1787525875538.2673,
+      "detail": "socket.io event surface (setup, login, add monitor, beats, charts, tags, status page, settings) then badge/metrics routes",
+      "command": {
+        "cmd": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node -e 'const {io}=require(\"{{clone}}/node_modules/socket.io-client\");const s=io(\"http://127.0.0.1:3408\",{transports:[\"websocket\"]});const call=(ev,...a)=>new Promise((res)=>s.emit(ev,...a,res));const log=(n,r)=>console.log(n,JSON.stringify(r).slice(0,200));const MON={type:\"http\",name:\"self\",parent:null,url:\"http://127.0.0.1:3408/api/entry-page\",method:\"GET\",interval:60,retryInterval:60,resendInterval:0,maxretries:0,notificationIDList:{},ignoreTls:false,upsideDown:false,expiryNotification:false,maxredirects:10,accepted_statuscodes:[\"200-299\"],saveResponse:false,saveErrorResponse:true,responseMaxLength:1024,dns_resolve_type:\"A\",proxyId:null,authMethod:null,httpBodyEncoding:\"json\",kafkaProducerBrokers:[],kafkaProducerSaslOptions:{mechanism:\"None\"},rabbitmqNodes:[],conditions:[],active:true};s.on(\"connect\",async()=>{try{log(\"needSetup\",await call(\"needSetup\"));log(\"setup\",await call(\"setup\",\"admin\",\"kuma-test-1234\"));log(\"login\",await call(\"login\",{username:\"admin\",password:\"kuma-test-1234\",token:\"\"}));const add=await call(\"add\",MON);log(\"add\",add);const id=add.monitorID;log(\"getMonitorList\",await call(\"getMonitorList\"));log(\"getMonitor\",await call(\"getMonitor\",id));log(\"getMonitorBeats\",await call(\"getMonitorBeats\",id,24));log(\"getMonitorChartData\",await call(\"getMonitorChartData\",id,24));log(\"getSettings\",await call(\"getSettings\"));log(\"addTag\",await call(\"addTag\",{name:\"prod\",color:\"#059669\"}));log(\"getTags\",await call(\"getTags\"));log(\"addStatusPage\",await call(\"addStatusPage\",\"Demo\",\"demo\"));log(\"getStatusPage\",await call(\"getStatusPage\",\"demo\"));log(\"getMaintenanceList\",await call(\"getMaintenanceList\"));log(\"getAPIKeyList\",await call(\"getAPIKeyList\"));}catch(e){console.log(\"ERR\",String(e).slice(0,300))}finally{setTimeout(()=>process.exit(0),1500)}});setTimeout(()=>process.exit(0),60000);'",
+        "exitCode": 0,
+        "ms": 1779,
+        "stdoutTail": "needSetup true\nsetup {\"ok\":true,\"msg\":\"successAdded\",\"msgi18n\":true}\nlogin {\"ok\":true,\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaCI6ImFjOTg2NDdjNTM0NmEzMmFkZGNiNmE1NDM3NTZlMGQ2IiwiaWF0IjoxNzg3NTI1ODc0fQ.buz31vsVEChDszVMmnlqWAA890XbnD3yczdHuXIf\nadd {\"ok\":true,\"msg\":\"successAdded\",\"msgi18n\":true,\"monitorID\":1}\ngetMonitorList {\"ok\":true}\ngetMonitor {\"ok\":true,\"monitor\":{\"id\":1,\"name\":\"self\",\"description\":null,\"path\":[null],\"pathName\":\"\",\"parent\":null,\"childrenIDs\":[],\"url\":\"http://127.0.0.1:3408/api/entry-page\",\"wsIgnoreSecWebsocketAcceptHeader\"\ngetMonitorBeats {\"ok\":true,\"data\":[{\"id\":1,\"important\":1,\"monitor_id\":1,\"status\":1,\"msg\":\"200 - OK\",\"time\":\"2026-08-23 22:57:54.017\",\"ping\":3,\"duration\":0,\"down_count\":0,\"end_time\":\"2026-08-23 22:57:54.023\",\"retries\"\ngetMonitorChartData {\"ok\":true,\"data\":[{\"up\":1,\"down\":0,\"avgPing\":3,\"minPing\":3,\"maxPing\":3,\"timestamp\":1787525820}]}\ngetSettings {\"ok\":true,\"data\":{\"serverTimezone\":\"America/New_York\"}}\naddTag {\"ok\":true,\"tag\":{\"id\":1,\"name\":\"prod\",\"color\":\"#059669\"}}\ngetTags {\"ok\":true,\"tags\":[{\"id\":1,\"name\":\"prod\",\"color\":\"#059669\"}]}\naddStatusPage {\"ok\":true,\"msg\":\"successAdded\",\"msgi18n\":true,\"slug\":\"demo\"}\ngetStatusPage {\"ok\":true,\"config\":{\"id\":1,\"slug\":\"demo\",\"title\":\"Demo\",\"description\":null,\"icon\":\"/icon.svg\",\"theme\":\"auto\",\"autoRefreshInterval\":300,\"published\":true,\"showTags\":false,\"domainNameList\":[],\"customCSS\ngetMaintenanceList {\"ok\":true}\ngetAPIKeyList {\"ok\":true}\n\n"
+      },
+      "reachedGoal": true
+    },
+    {
+      "name": "extended",
+      "startTs": 1787525875538.2695,
+      "endTs": 1787525875562.1953,
+      "detail": "badge renderer, status page render, push API and prometheus metrics",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/badge/1/status",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/api/badge/1/status?style=flat&label=Health",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/api/badge/1/uptime/24",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/api/badge/1/ping/24",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/api/badge/1/avg-response/24",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/api/badge/1/cert-exp",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+          "status": 404,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/api/status-page/demo",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/status/demo",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "GET",
+          "path": "/metrics",
+          "status": 401,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/some/unknown/spa/route",
+          "status": 200,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 4500
+  },
+  "stdoutTail": "…(18232 bytes elided)…\n6m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-notification-config.sql is not patched\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-notification-config.sql is patching\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-notification-config.sql was patched successfully\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-fix-kafka-producer-booleans.sql is not patched\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-fix-kafka-producer-booleans.sql is patching\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-fix-kafka-producer-booleans.sql was patched successfully\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-timeout.sql is not patched\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-timeout.sql is patching\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-timeout.sql was patched successfully\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-monitor-tls-info-add-fk.sql is not patched\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-monitor-tls-info-add-fk.sql is patching\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m patch-monitor-tls-info-add-fk.sql was patched successfully\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m Database Patched Successfully\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;119mMIGRATION\u001b[0m] \u001b[36mINFO:\u001b[0m Listening on:  http://127.0.0.1:3408\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m Migrating Aggregate Table\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m Getting list of unique monitors\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m Clearing non-important heartbeats\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m No data to migrate\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m JWT secret is not found, generate one.\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m Stored JWT secret into database\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m No user, need setup\n\u001b[36m2026-08-23T18:57:50-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m Listening on:  http://127.0.0.1:3408\n\u001b[36m2026-08-23T18:57:53-04:00\u001b[0m [\u001b[38;5;141mSOCKET\u001b[0m] \u001b[36mINFO:\u001b[0m New websocket connection, IP = 127.0.0.1\n\u001b[36m2026-08-23T18:57:53-04:00\u001b[0m [\u001b[38;5;208mAUTH\u001b[0m] \u001b[36mINFO:\u001b[0m WebSocket with no origin is allowed\n\u001b[36m2026-08-23T18:57:53-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m Redirect to setup page\n\u001b[36m2026-08-23T18:57:53-04:00\u001b[0m [\u001b[38;5;208mAUTH\u001b[0m] \u001b[36mINFO:\u001b[0m Login by username + password. IP=127.0.0.1\n\u001b[36m2026-08-23T18:57:54-04:00\u001b[0m [\u001b[38;5;208mAUTH\u001b[0m] \u001b[36mINFO:\u001b[0m Successfully logged in user admin. IP=127.0.0.1\n\u001b[36m2026-08-23T18:57:54-04:00\u001b[0m [\u001b[35mMANAGE\u001b[0m] \u001b[36mINFO:\u001b[0m Resume Monitor: 1 User ID: 1\n\u001b[36m2026-08-23T18:57:54-04:00\u001b[0m [\u001b[38;5;119mMONITOR\u001b[0m] \u001b[36mINFO:\u001b[0m Added Monitor: 1 User ID: 1\n\u001b[36m2026-08-23T18:57:54-04:00\u001b[0m [\u001b[38;5;119mMONITOR\u001b[0m] \u001b[36mINFO:\u001b[0m Get Monitor: 1 User ID: 1\n\u001b[36m2026-08-23T18:57:54-04:00\u001b[0m [\u001b[38;5;119mMONITOR\u001b[0m] \u001b[36mINFO:\u001b[0m Get Monitor Beats: 1 User ID: 1\n\u001b[36m2026-08-23T18:57:55-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m Shutdown requested\n\u001b[36m2026-08-23T18:57:55-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m Called signal: SIGTERM\n\u001b[36m2026-08-23T18:57:55-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m Stopping all monitors\n\u001b[36m2026-08-23T18:57:57-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m Closing the database\n\u001b[36m2026-08-23T18:57:59-04:00\u001b[0m [\u001b[38;5;117mDB\u001b[0m] \u001b[36mINFO:\u001b[0m Database closed\n\u001b[36m2026-08-23T18:57:59-04:00\u001b[0m [\u001b[35mCLOUDFLARED\u001b[0m] \u001b[36mINFO:\u001b[0m Stop cloudflared\n\u001b[36m2026-08-23T18:57:59-04:00\u001b[0m [\u001b[32mSERVER\u001b[0m] \u001b[36mINFO:\u001b[0m Graceful shutdown successful!\n",
+  "stderrTail": "",
+  "failure": null,
+  "deviations": [
+    "uptime-kuma's frontend bundle was not part of the frozen materialization (corpus.json declares build:null) and server.js exits without dist/index.html. The repo's own `npm run build` was run untraced before measurement; every file it produced is outside the frozen universe and is reported there."
+  ]
+}

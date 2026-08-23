@@ -1,0 +1,64 @@
+{
+  "app": "nestjs-typescript-starter",
+  "recipeQuality": "smoke",
+  "recipeNotes": "The complete route table of this app is one handler (GET /). Honestly labelled `smoke`: it is a floor case that measures what booting the Nest framework itself costs, not what a real workload costs.",
+  "startedAt": "2026-08-23T22:57:08.260Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/nestjs-typescript-starter",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/nestjs-typescript-starter",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/nestjs-typescript-starter/dist/main.js"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/nestjs-typescript-starter",
+  "envKeys": [
+    "NODE_ENV"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/nestjs-typescript-starter",
+  "t0": 1787525826595.3655,
+  "ready": {
+    "ok": true,
+    "ts": 1787525827206.9094,
+    "how": "tcp=3000",
+    "waitedMs": 609
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525827708.1829,
+      "endTs": 1787525827741.0908,
+      "detail": "the entire route table: GET / plus HEAD and a 404",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 28
+        },
+        {
+          "method": "HEAD",
+          "path": "/",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/does-not-exist",
+          "status": 404,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": null,
+    "exitSignal": "SIGTERM",
+    "ms": 549
+  },
+  "stdoutTail": "\u001b[32m[Nest] 97643  - \u001b[39m08/23/2026, 6:57:07 PM \u001b[32m    LOG\u001b[39m \u001b[38;5;3m[NestFactory] \u001b[39m\u001b[32mStarting Nest application...\u001b[39m\n\u001b[32m[Nest] 97643  - \u001b[39m08/23/2026, 6:57:07 PM \u001b[32m    LOG\u001b[39m \u001b[38;5;3m[InstanceLoader] \u001b[39m\u001b[32mAppModule dependencies initialized\u001b[39m\u001b[38;5;3m +4ms\u001b[39m\n\u001b[32m[Nest] 97643  - \u001b[39m08/23/2026, 6:57:07 PM \u001b[32m    LOG\u001b[39m \u001b[38;5;3m[RoutesResolver] \u001b[39m\u001b[32mAppController {/}:\u001b[39m\u001b[38;5;3m +1ms\u001b[39m\n\u001b[32m[Nest] 97643  - \u001b[39m08/23/2026, 6:57:07 PM \u001b[32m    LOG\u001b[39m \u001b[38;5;3m[RouterExplorer] \u001b[39m\u001b[32mMapped {/, GET} route\u001b[39m\u001b[38;5;3m +1ms\u001b[39m\n\u001b[32m[Nest] 97643  - \u001b[39m08/23/2026, 6:57:07 PM \u001b[32m    LOG\u001b[39m \u001b[38;5;3m[NestApplication] \u001b[39m\u001b[32mNest application successfully started\u001b[39m\u001b[38;5;3m +1ms\u001b[39m\n",
+  "stderrTail": "",
+  "failure": null,
+  "deviations": []
+}

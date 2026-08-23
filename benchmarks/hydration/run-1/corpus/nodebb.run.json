@@ -1,0 +1,273 @@
+{
+  "app": "nodebb",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "Guest reads, rendered HTML pages, feeds/sitemap, then an authenticated write path — every path taken from the route tables (src/routes/*). The mocha suite was NOT used: it boots its own server in-process, so it would be a different process tree, not this one.",
+  "startedAt": "2026-08-23T22:58:13.062Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/nodebb",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/nodebb",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/nodebb/app.js"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/nodebb",
+  "envKeys": [
+    "NODE_ENV"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/nodebb",
+  "t0": 1787525884712.6174,
+  "ready": {
+    "ok": true,
+    "ts": 1787525886636.2827,
+    "how": "stdout=/NodeBB is now listening on/",
+    "waitedMs": 1920
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525889637.8745,
+      "endTs": 1787525889932.0908,
+      "detail": "guest JSON API + the core rendered pages",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/ping",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "GET",
+          "path": "/api/config",
+          "status": 200,
+          "ms": 14
+        },
+        {
+          "method": "GET",
+          "path": "/api/",
+          "status": 200,
+          "ms": 65
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 25
+        },
+        {
+          "method": "GET",
+          "path": "/api/recent",
+          "status": 200,
+          "ms": 25
+        },
+        {
+          "method": "GET",
+          "path": "/api/popular",
+          "status": 200,
+          "ms": 13
+        },
+        {
+          "method": "GET",
+          "path": "/api/tags",
+          "status": 200,
+          "ms": 12
+        },
+        {
+          "method": "GET",
+          "path": "/api/users",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "GET",
+          "path": "/api/groups",
+          "status": 200,
+          "ms": 20
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 30
+        },
+        {
+          "method": "GET",
+          "path": "/categories",
+          "status": 200,
+          "ms": 17
+        },
+        {
+          "method": "GET",
+          "path": "/recent",
+          "status": 200,
+          "ms": 20
+        },
+        {
+          "method": "GET",
+          "path": "/users",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "GET",
+          "path": "/groups",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/login",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "GET",
+          "path": "/register",
+          "status": 200,
+          "ms": 5
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525889932.0942,
+      "endTs": 1787525890613.4329,
+      "detail": "feeds, sitemap, search, write API v3 (login → create topic → reply → tag), admin JSON",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/robots.txt",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/manifest.webmanifest",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/osd.xml",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/sitemap.xml",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "GET",
+          "path": "/sitemap/pages.xml",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/sitemap/categories.xml",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "GET",
+          "path": "/recent.rss",
+          "status": 200,
+          "ms": 20
+        },
+        {
+          "method": "GET",
+          "path": "/popular.rss",
+          "status": 200,
+          "ms": 13
+        },
+        {
+          "method": "GET",
+          "path": "/api/search?term=welcome&in=titlesposts",
+          "status": 401,
+          "ms": 18
+        },
+        {
+          "method": "GET",
+          "path": "/api/v3/ping",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/api/v3/categories",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "GET",
+          "path": "/api/v3/groups",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "POST",
+          "path": "/api/v3/utilities/login",
+          "status": 200,
+          "ms": 340
+        },
+        {
+          "method": "GET",
+          "path": "/api/self",
+          "status": 200,
+          "ms": 28
+        },
+        {
+          "method": "GET",
+          "path": "/api/unread/total",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/api/v3/notifications",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/api/v3/chats",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "status": 200,
+          "ms": 179
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/manage/categories",
+          "status": 200,
+          "ms": 13
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/settings/general",
+          "status": 200,
+          "ms": 29
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 2474
+  },
+  "stdoutTail": "2026-08-23T22:58:04.946Z [4567/98495] - \u001b[32minfo\u001b[39m: NodeBB v4.15.1 Copyright (C) 2013-2026 NodeBB Inc.\n2026-08-23T22:58:04.946Z [4567/98495] - \u001b[32minfo\u001b[39m: This program comes with ABSOLUTELY NO WARRANTY.\n2026-08-23T22:58:04.947Z [4567/98495] - \u001b[32minfo\u001b[39m: This is free software, and you are welcome to redistribute it under certain conditions.\n2026-08-23T22:58:04.947Z [4567/98495] - \u001b[32minfo\u001b[39m: \n2026-08-23T22:58:04.947Z [4567/98495] - \u001b[32minfo\u001b[39m: Initializing NodeBB v4.15.1 http://127.0.0.1:4567\n2026-08-23T22:58:06.290Z [4567/98495] - \u001b[32minfo\u001b[39m: [socket.io] Restricting access to origin: http://127.0.0.1:*\n\n2026-08-23T22:58:06.496Z [4567/98495] - \u001b[33mwarn\u001b[39m: [plugins/load] The following plugins may not be compatible with your version of NodeBB. This may cause unintended behaviour or crashing. In the event of an unresponsive NodeBB caused by this plugin, run `./nodebb reset -p PLUGINNAME` to disable it.\n  * nodebb-plugin-emoji-android\n\n2026-08-23T22:58:06.534Z [4567/98495] - \u001b[32minfo\u001b[39m: [plugins/web-push] VAPID keys OK.\n2026-08-23T22:58:06.534Z [4567/98495] - \u001b[31merror\u001b[39m: [plugins] Error executing 'static:app.load' in plugin 'nodebb-plugin-web-push'\nError: Vapid subject is not an https: or mailto: URL. http://127.0.0.1:4567\n    at Object.validateSubject (/Users/sara/.cache/reducer-corpus-v1/nodebb/node_modules/web-push/src/vapid-helper.js:85:11)\n    at WebPushLib.setVapidDetails (/Users/sara/.cache/reducer-corpus-v1/nodebb/node_modules/web-push/src/web-push-lib.js:59:17)\n    at assertVapidConfiguration (/Users/sara/.cache/reducer-corpus-v1/nodebb/node_modules/nodebb-plugin-web-push/library.js:65:10)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async plugin.init [as method] (/Users/sara/.cache/reducer-corpus-v1/nodebb/node_modules/nodebb-plugin-web-push/library.js:33:2)\n    at async Object.fireStaticHook [as static] (/Users/sara/.cache/reducer-corpus-v1/nodebb/src/plugins/hooks.js:241:4)\n    at async Hooks.fire (/Users/sara/.cache/reducer-corpus-v1/nodebb/src/plugins/hooks.js:111:17)\n    at async Plugins.reloadRoutes (/Users/sara/.cache/reducer-corpus-v1/nodebb/src/plugins/index.js:150:2)\n    at async module.exports (/Users/sara/.cache/reducer-corpus-v1/nodebb/src/routes/index.js:149:2)\n    at async initializeNodeBB (/Users/sara/.cache/reducer-corpus-v1/nodebb/src/webserver.js:132:2)\n2026-08-23T22:58:06.545Z [4567/98495] - \u001b[32minfo\u001b[39m: [api] Adding 3 route(s) to `api/v3/plugins`\n2026-08-23T22:58:06.548Z [4567/98495] - \u001b[32minfo\u001b[39m: [router] Routes added\n2026-08-23T22:58:06.566Z [4567/98495] - \u001b[32minfo\u001b[39m: 🎉 NodeBB Ready\n2026-08-23T22:58:06.567Z [4567/98495] - \u001b[32minfo\u001b[39m: ❌ Setting 'trust proxy' to false\n2026-08-23T22:58:06.569Z [4567/98495] - \u001b[32minfo\u001b[39m: 📡 NodeBB is now listening on: 0.0.0.0:4567\n2026-08-23T22:58:06.569Z [4567/98495] - \u001b[32minfo\u001b[39m: 🔗 Canonical URL: http://127.0.0.1:4567\n2026-08-23T22:58:10.613Z [4567/98495] - \u001b[32minfo\u001b[39m: [app] Shutdown (SIGTERM/SIGINT/SIGQUIT) Initialised.\n2026-08-23T22:58:10.614Z [4567/98495] - \u001b[32minfo\u001b[39m: [app] Web server closed to connections.\n2026-08-23T22:58:12.619Z [4567/98495] - \u001b[32minfo\u001b[39m: [app] Live analytics saved.\n2026-08-23T22:58:12.619Z [4567/98495] - \u001b[32minfo\u001b[39m: [app] Database connection closed.\n2026-08-23T22:58:12.619Z [4567/98495] - \u001b[32minfo\u001b[39m: [app] Shutdown complete.\n",
+  "stderrTail": "node:events:487\n      throw er; // Unhandled 'error' event\n      ^\n\nError: write EPIPE\n    at target._send (node:internal/child_process:917:20)\n    at target.send (node:internal/child_process:792:19)\n    at process.<anonymous> (/Users/sara/.cache/reducer-corpus-v1/nodebb/src/meta/minifier.js:177:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\nEmitted 'error' event on process instance at:\n    at node:internal/child_process:921:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {\n  errno: -32,\n  code: 'EPIPE',\n  syscall: 'write'\n}\n\nNode.js v24.19.0\n",
+  "failure": null,
+  "deviations": [
+    "NodeBB required a one-time `app.js --setup` (postgres schema + full asset build) before it could start. That setup ran untraced, and its generated assets (build/, config.json) are outside the frozen universe."
+  ]
+}

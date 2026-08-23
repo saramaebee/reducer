@@ -1,0 +1,106 @@
+{
+  "app": "excalidraw-room",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "A socket.io collaboration server with exactly one HTTP route, so the representative workload is the socket protocol: two concurrent clients exercising every server-side handler (join-room in both the first-in-room and new-user branches, server-broadcast, server-volatile-broadcast, user-follow/unfollow, disconnecting). Driven over the raw engine.io websocket protocol because the repo ships no socket client.",
+  "startedAt": "2026-08-23T22:57:06.420Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/excalidraw-room",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/excalidraw-room",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/excalidraw-room/dist/index.js"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/excalidraw-room",
+  "envKeys": [
+    "NODE_ENV",
+    "PORT",
+    "CORS_ORIGIN"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/excalidraw-room",
+  "t0": 1787525822597.286,
+  "ready": {
+    "ok": true,
+    "ts": 1787525822812.5427,
+    "how": "http=http://127.0.0.1:3411/",
+    "waitedMs": 212
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525823313.408,
+      "endTs": 1787525823324.903,
+      "detail": "the complete express surface: the single route, static public/, and a 404",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/test64.png",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/test128.png",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/test256.png",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/this-route-does-not-exist",
+          "status": 404,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525823324.9055,
+      "endTs": 1787525825901.8435,
+      "detail": "two concurrent socket.io clients driving every server-side event handler",
+      "command": {
+        "cmd": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node -e 'const U=\"ws://127.0.0.1:3411/socket.io/?EIO=4&transport=websocket\";const sleep=(ms)=>new Promise(r=>setTimeout(r,ms));const mk=(n)=>new Promise((res)=>{const ws=new WebSocket(U);ws.sid=null;ws.onmessage=(e)=>{const d=String(e.data);if(d[0]===\"0\"){ws.send(\"40\");}else if(d.startsWith(\"40\")){ws.sid=JSON.parse(d.slice(2)).sid;console.log(n,\"connected\");res(ws);}else if(d===\"2\"){ws.send(\"3\");}else if(d.startsWith(\"42\")){console.log(n,\"<-\",d.slice(2,120));}};});(async()=>{const a=await mk(\"A\"),b=await mk(\"B\");a.send(\"42\"+JSON.stringify([\"join-room\",\"reducer-room\"]));await sleep(300);b.send(\"42\"+JSON.stringify([\"join-room\",\"reducer-room\"]));await sleep(300);a.send(\"42\"+JSON.stringify([\"server-broadcast\",\"reducer-room\",[1,2,3,4],[9,9]]));a.send(\"42\"+JSON.stringify([\"server-volatile-broadcast\",\"reducer-room\",[5,6],[1]]));await sleep(300);b.send(\"42\"+JSON.stringify([\"user-follow\",{userToFollow:{socketId:a.sid,username:\"A\"},action:\"FOLLOW\"}]));await sleep(300);b.send(\"42\"+JSON.stringify([\"user-follow\",{userToFollow:{socketId:a.sid,username:\"A\"},action:\"UNFOLLOW\"}]));await sleep(300);b.close();await sleep(400);a.close();await sleep(600);process.exit(0);})();'",
+        "exitCode": 0,
+        "ms": 2577,
+        "stdoutTail": "A connected\nA <- [\"init-room\"]\nB connected\nB <- [\"init-room\"]\nA <- [\"first-in-room\"]\nA <- [\"room-user-change\",[\"FLCByoFMKgjogL94AAAB\"]]\nA <- [\"new-user\",\"d2Bwp7Z3deboi85YAAAD\"]\nA <- [\"room-user-change\",[\"FLCByoFMKgjogL94AAAB\",\"d2Bwp7Z3deboi85YAAAD\"]]\nB <- [\"room-user-change\",[\"FLCByoFMKgjogL94AAAB\",\"d2Bwp7Z3deboi85YAAAD\"]]\nB <- [\"client-broadcast\",[1,2,3,4],[9,9]]\nA <- [\"user-follow-room-change\",[\"d2Bwp7Z3deboi85YAAAD\"]]\nA <- [\"user-follow-room-change\",[]]\nA <- [\"room-user-change\",[\"FLCByoFMKgjogL94AAAB\"]]\n\n"
+      },
+      "reachedGoal": true
+    },
+    {
+      "name": "extended",
+      "startTs": 1787525825901.8457,
+      "endTs": 1787525825903.2043,
+      "detail": "the same protocol over the HTTP long-polling transport (engine.io polling + packet encoders)",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/socket.io/?EIO=4&transport=polling",
+          "status": 200,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": null,
+    "exitSignal": "SIGTERM",
+    "ms": 538
+  },
+  "stdoutTail": "",
+  "stderrTail": "",
+  "failure": null,
+  "deviations": []
+}

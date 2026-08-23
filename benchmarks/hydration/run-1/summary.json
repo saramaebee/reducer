@@ -1,0 +1,1324 @@
+{
+  "experiment": "ADR-0007 experiment 2 — runtime hydration of the Plan B candidate-COLD set",
+  "measuredApps": 16,
+  "rosterApps": 19,
+  "failures": [
+    {
+      "app": "bulletproof-nodejs",
+      "reason": "Two independent blockers, both materialization/upstream defects. (1) argon2's native binding is absent (MATERIALIZATION.md records this clone was installed with --ignore-scripts) and is on the startup require path; `npm rebuild argon2 --build-from-source` fails because argon2@0.27 pins node-pre-gyp v0.15.0, which does not work on Node 24, and no darwin-arm64 prebuild exists upstream. (2) Separately, tsc leaves the app's `@/…` tsconfig-path imports unrewritten and the repo ships no module-alias, so its own Procfile command cannot resolve them; that half was worked around with NODE_PATH and did resolve. The app reaches build/services/auth.js and then dies on argon2, so no startup trace is obtainable."
+    },
+    {
+      "app": "nestjs-realworld",
+      "reason": "Frozen materialization defect, not an experiment limitation: 47 top-level directories in this clone's node_modules are EMPTY (no package.json, no files) — the recorded npm \"Exit handler never called\" failure in MATERIALIZATION.md. `require(\"@nestjs/core\")` fails at the first import of the pinned entry with Cannot find module 'event-emitter', so no startup trace is obtainable. Repairing it needs a re-install, which would rewrite files INSIDE the frozen production universe and invalidate the preserved placement, so the app is reported as not-measured instead. Fixing it requires an explicit corpus revision."
+    },
+    {
+      "app": "ghost",
+      "reason": "Frozen materialization gap, surfaced by this experiment: corpus.json declares build:null for ghost, but Ghost's monorepo ships its workspace packages as TypeScript SOURCE ONLY (packages/adapters/storage-base has `main: build/index.js` and no build/), and ghost/core's own core/shared/config is index.ts. The pinned entry therefore cannot boot: first MODULE_NOT_FOUND on './shared/config', and after running the repo's own `build:tsc`, MODULE_NOT_FOUND on ghost-storage-base (an unbuilt workspace package). Making it run needs a full `pnpm nx run-many -t build` of the Ghost monorepo, which would produce a materially different tree from the one the preserved placement was computed against. The tsc output was reverted and the clone left byte-identical. NOTE: the same gap means the preserved Plan A/B numbers for ghost describe a tree that cannot execute, which is a finding about the corpus, not about virtualization."
+    }
+  ],
+  "weighted": {
+    "initialResidentFractionOfUniverse": 0.3905384334857588,
+    "residentAfterStartup": 0.3945185631784374,
+    "residentAfterStrongest": 0.39476911204780746,
+    "coldHydratedFraction": 0.0069416658809933664,
+    "coldSurvivingFraction": 0.9930583341190067,
+    "coldHydratedFractionUpperBound": 0.010349739921683091,
+    "coldSurvivingFractionUpperBound": 0.9896502600783169,
+    "thirdPartyColdSurviving": 0.9930816978276044,
+    "thirdPartyJsColdSurviving": 0.9823675714782337,
+    "hotNeverTouchedFractionOfHot": 0.8126585764583483
+  },
+  "widenedUniverseSensitivity": {
+    "coldBytes": 3376603101,
+    "hydratedBytes": 30304950,
+    "coldSurvivingFraction": 0.9910250186078947
+  },
+  "totals": {
+    "universeBytes": 5528961290,
+    "initialHotBytes": 2159271881,
+    "initialColdBytes": 3369689409,
+    "hydratedBytes": 23391258,
+    "metadataOnlyColdBytes": 11484151,
+    "hydratedAfterStartupBytes": 22005983,
+    "uniqueMissFiles": 3706,
+    "totalAccesses": 304381,
+    "appTouchedFiles": 43282,
+    "hotNeverTouchedBytes": 1754750813,
+    "thirdPartyBytes": 4534083030,
+    "D": 1699004469,
+    "coldThirdPartyBytes": 3102979093,
+    "coldThirdPartyJsBytes": 1136716532,
+    "hydratedThirdPartyBytes": 21467347,
+    "hydratedThirdPartyJsBytes": 20043073,
+    "outsideContentBytes": 6913692,
+    "outsideFiles": 403,
+    "outsideGeneratedContentBytes": 6913692,
+    "outsidePreexistingContentBytes": 0,
+    "outsidePreexistingContentFiles": 0,
+    "excludedWorkloadColdFiles": 21,
+    "excludedWorkloadColdBytes": 200043,
+    "appTouchedDirectories": 517
+  },
+  "perApp": {
+    "initialColdFraction": {
+      "n": 16,
+      "min": 0.10664283213447871,
+      "p25": 0.6614295242541895,
+      "median": 0.7270426192330217,
+      "p75": 0.8127063522088285,
+      "max": 0.97408462126731
+    },
+    "residentInitial": {
+      "n": 16,
+      "min": 0.02591537873269001,
+      "p25": 0.18729364779117152,
+      "median": 0.2742533924064501,
+      "p75": 0.33857047574581045,
+      "max": 0.8933571678655213
+    },
+    "residentAfterStartup": {
+      "n": 16,
+      "min": 0.02700597112003916,
+      "p25": 0.1874043471531993,
+      "median": 0.28029493857522836,
+      "p75": 0.3458107350519808,
+      "max": 0.8933571678655213
+    },
+    "residentAfterStrongest": {
+      "n": 16,
+      "min": 0.02873309696493655,
+      "p25": 0.1874043471531993,
+      "median": 0.28043150467935146,
+      "p75": 0.3458107350519808,
+      "max": 0.8933571678655213
+    },
+    "coldHydratedFraction": {
+      "n": 16,
+      "min": 0,
+      "p25": 0.000040979365100054825,
+      "median": 0.002892683213272208,
+      "p75": 0.010946380590334667,
+      "max": 0.0963134821195404
+    },
+    "coldSurvivingFraction": {
+      "n": 16,
+      "min": 0.9036865178804596,
+      "p25": 0.9890536194096653,
+      "median": 0.9976056246628382,
+      "p75": 0.9999590206348999,
+      "max": 1
+    },
+    "coldSurvivingUpperBound": {
+      "n": 16,
+      "min": 0.9036865178804596,
+      "p25": 0.9887034823865529,
+      "median": 0.9976056246628382,
+      "p75": 0.9999590206348999,
+      "max": 1
+    },
+    "uniqueMissFiles": {
+      "n": 16,
+      "min": 0,
+      "p25": 1,
+      "median": 128,
+      "p75": 268,
+      "max": 1333
+    },
+    "uniqueMissBytes": {
+      "n": 16,
+      "min": 0,
+      "p25": 309,
+      "median": 1227929,
+      "p75": 1864793,
+      "max": 6471633
+    },
+    "hotNeverTouchedFraction": {
+      "n": 16,
+      "min": 0.13799055199540988,
+      "p25": 0.3133973474520444,
+      "median": 0.545802585351445,
+      "p75": 0.7568786157732649,
+      "max": 0.8888074469917266
+    }
+  },
+  "perTarget": {
+    "n": 10,
+    "coldSurvivingFraction": {
+      "n": 10,
+      "min": 0.9036865178804596,
+      "p25": 0.9890536194096653,
+      "median": 0.9998637892250665,
+      "p75": 1,
+      "max": 1
+    },
+    "residentAfterStrongest": {
+      "n": 10,
+      "min": 0.02873309696493655,
+      "p25": 0.16310974286236687,
+      "median": 0.29951752807366055,
+      "p75": 0.3458107350519808,
+      "max": 0.8933571678655213
+    },
+    "weightedColdSurviving": 0.988304786095195
+  },
+  "hydrationShape": {
+    "weightedStartupShareOfHydratedBytes": 0.9407780889766596,
+    "perApp": [
+      {
+        "app": "node-express-boilerplate",
+        "startupShare": 1,
+        "total": 2141
+      },
+      {
+        "app": "fastify-demo",
+        "startupShare": 1,
+        "total": 3308951
+      },
+      {
+        "app": "express-realworld",
+        "startupShare": 0,
+        "total": 0
+      },
+      {
+        "app": "json-server",
+        "startupShare": 1,
+        "total": 309
+      },
+      {
+        "app": "uptime-kuma",
+        "startupShare": 1,
+        "total": 1508014
+      },
+      {
+        "app": "hackathon-starter",
+        "startupShare": 0.9611050663532091,
+        "total": 1864793
+      },
+      {
+        "app": "express-rest-boilerplate",
+        "startupShare": 0,
+        "total": 0
+      },
+      {
+        "app": "nestjs-typescript-starter",
+        "startupShare": 0,
+        "total": 0
+      },
+      {
+        "app": "parse-server",
+        "startupShare": 1,
+        "total": 2783318
+      },
+      {
+        "app": "verdaccio",
+        "startupShare": 0,
+        "total": 0
+      },
+      {
+        "app": "nodebb",
+        "startupShare": 0.9778951728148203,
+        "total": 3281229
+      },
+      {
+        "app": "n8n",
+        "startupShare": 1,
+        "total": 1227929
+      },
+      {
+        "app": "excalidraw-room",
+        "startupShare": 0.3870480642344584,
+        "total": 304634
+      },
+      {
+        "app": "juice-shop",
+        "startupShare": 1,
+        "total": 1600769
+      },
+      {
+        "app": "outline",
+        "startupShare": 0.8372333536218757,
+        "total": 6471633
+      },
+      {
+        "app": "strapi",
+        "startupShare": 0.9998833777654409,
+        "total": 1037538
+      }
+    ]
+  },
+  "missSizeProfile": [
+    {
+      "label": "<1 KB",
+      "files": 1461,
+      "bytes": 706846
+    },
+    {
+      "label": "1–4 KB",
+      "files": 1158,
+      "bytes": 2504173
+    },
+    {
+      "label": "4–16 KB",
+      "files": 802,
+      "bytes": 6609412
+    },
+    {
+      "label": "16–64 KB",
+      "files": 254,
+      "bytes": 6332025
+    },
+    {
+      "label": "64–256 KB",
+      "files": 27,
+      "bytes": 3117067
+    },
+    {
+      "label": "256 KB–1 MB",
+      "files": 3,
+      "bytes": 2220344
+    },
+    {
+      "label": "≥1 MB",
+      "files": 1,
+      "bytes": 1901391
+    }
+  ],
+  "clustering": {
+    "perApp": [
+      {
+        "app": "node-express-boilerplate",
+        "misses": 1,
+        "packages": 1,
+        "burstFraction": 0,
+        "samePackageAsPrev": 0
+      },
+      {
+        "app": "fastify-demo",
+        "misses": 1333,
+        "packages": 62,
+        "burstFraction": 1,
+        "samePackageAsPrev": 0.8948948948948949
+      },
+      {
+        "app": "express-realworld",
+        "misses": 0,
+        "packages": 0,
+        "burstFraction": 0,
+        "samePackageAsPrev": 0
+      },
+      {
+        "app": "json-server",
+        "misses": 1,
+        "packages": 1,
+        "burstFraction": 0,
+        "samePackageAsPrev": 0
+      },
+      {
+        "app": "uptime-kuma",
+        "misses": 268,
+        "packages": 3,
+        "burstFraction": 0.9812734082397003,
+        "samePackageAsPrev": 0.9887640449438202
+      },
+      {
+        "app": "hackathon-starter",
+        "misses": 125,
+        "packages": 9,
+        "burstFraction": 0.9758064516129032,
+        "samePackageAsPrev": 0.9274193548387096
+      },
+      {
+        "app": "express-rest-boilerplate",
+        "misses": 0,
+        "packages": 0,
+        "burstFraction": 0,
+        "samePackageAsPrev": 0
+      },
+      {
+        "app": "nestjs-typescript-starter",
+        "misses": 0,
+        "packages": 0,
+        "burstFraction": 0,
+        "samePackageAsPrev": 0
+      },
+      {
+        "app": "parse-server",
+        "misses": 374,
+        "packages": 36,
+        "burstFraction": 0.9973190348525469,
+        "samePackageAsPrev": 0.8418230563002681
+      },
+      {
+        "app": "verdaccio",
+        "misses": 0,
+        "packages": 0,
+        "burstFraction": 0,
+        "samePackageAsPrev": 0
+      },
+      {
+        "app": "nodebb",
+        "misses": 194,
+        "packages": 31,
+        "burstFraction": 0.9740932642487047,
+        "samePackageAsPrev": 0.7357512953367875
+      },
+      {
+        "app": "n8n",
+        "misses": 128,
+        "packages": 3,
+        "burstFraction": 0.984251968503937,
+        "samePackageAsPrev": 0.984251968503937
+      },
+      {
+        "app": "excalidraw-room",
+        "misses": 17,
+        "packages": 2,
+        "burstFraction": 0.9375,
+        "samePackageAsPrev": 0.9375
+      },
+      {
+        "app": "juice-shop",
+        "misses": 442,
+        "packages": 4,
+        "burstFraction": 0.9954648526077098,
+        "samePackageAsPrev": 0.9931972789115646
+      },
+      {
+        "app": "outline",
+        "misses": 598,
+        "packages": 89,
+        "burstFraction": 0.9899497487437185,
+        "samePackageAsPrev": 0.8190954773869347
+      },
+      {
+        "app": "strapi",
+        "misses": 225,
+        "packages": 8,
+        "burstFraction": 0.9642857142857143,
+        "samePackageAsPrev": 0.9508928571428571
+      }
+    ],
+    "corpusBurstFraction": 0.9910665944775311,
+    "corpusSamePackageFraction": 0.8952355170546833
+  },
+  "nftWarningPrediction": {
+    "pearsonDensityVsMissBytes": 0.03503431897901135,
+    "rows": [
+      {
+        "app": "node-express-boilerplate",
+        "warnings": 1,
+        "density": 0.0006944444444444445,
+        "missBytes": 2141
+      },
+      {
+        "app": "fastify-demo",
+        "warnings": 0,
+        "density": 0,
+        "missBytes": 3308951
+      },
+      {
+        "app": "express-realworld",
+        "warnings": 0,
+        "density": 0,
+        "missBytes": 0
+      },
+      {
+        "app": "json-server",
+        "warnings": 0,
+        "density": 0,
+        "missBytes": 309
+      },
+      {
+        "app": "uptime-kuma",
+        "warnings": 52,
+        "density": 0.010046367851622875,
+        "missBytes": 1508014
+      },
+      {
+        "app": "hackathon-starter",
+        "warnings": 98,
+        "density": 0.020967051775780916,
+        "missBytes": 1864793
+      },
+      {
+        "app": "express-rest-boilerplate",
+        "warnings": 48,
+        "density": 0.01949634443541836,
+        "missBytes": 0
+      },
+      {
+        "app": "nestjs-typescript-starter",
+        "warnings": 7,
+        "density": 0.008083140877598153,
+        "missBytes": 0
+      },
+      {
+        "app": "parse-server",
+        "warnings": 52,
+        "density": 0.020602218700475437,
+        "missBytes": 2783318
+      },
+      {
+        "app": "verdaccio",
+        "warnings": 0,
+        "density": 0,
+        "missBytes": 0
+      },
+      {
+        "app": "nodebb",
+        "warnings": 140,
+        "density": 0.008660686668728735,
+        "missBytes": 3281229
+      },
+      {
+        "app": "n8n",
+        "warnings": 29491,
+        "density": 0.31542188519417735,
+        "missBytes": 1227929
+      },
+      {
+        "app": "excalidraw-room",
+        "warnings": 0,
+        "density": 0,
+        "missBytes": 304634
+      },
+      {
+        "app": "juice-shop",
+        "warnings": 23,
+        "density": 0.005503709021296961,
+        "missBytes": 1600769
+      },
+      {
+        "app": "outline",
+        "warnings": 340,
+        "density": 0.027784587725749776,
+        "missBytes": 6471633
+      },
+      {
+        "app": "strapi",
+        "warnings": 184,
+        "density": 0.009463560150182584,
+        "missBytes": 1037538
+      }
+    ]
+  },
+  "mixedPackages": {
+    "packages": 1182,
+    "coldBytes": 1424084200,
+    "hydratedBytes": 2170824,
+    "becameResident": 37
+  },
+  "outsideFrozenUniverse": {
+    "files": 403,
+    "contentBytes": 6913692,
+    "directoriesTouched": 517
+  },
+  "packageClasses": {
+    "mixed-stays-mixed": 9770,
+    "cold-stays-cold": 1288,
+    "all-hot-initially": 614,
+    "mixed-becomes-hot": 93,
+    "cold-becomes-resident": 35
+  },
+  "apps": [
+    {
+      "app": "node-express-boilerplate",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 62425946,
+      "initialColdFraction": 0.8369245537744835,
+      "residentInitial": 0.1630754462255165,
+      "residentAfterStartup": 0.16310974286236687,
+      "residentAfterStrongest": 0.16310974286236687,
+      "coldSurviving": 0.9999590206348999,
+      "coldSurvivingUpperBound": 0.9999590206348999,
+      "uniqueMissFiles": 1,
+      "uniqueMissBytes": 2141,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 5224,
+      "hotNeverTouchedBytes": 1404763,
+      "outsideFiles": 0,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 1314,
+          "residentFraction": 0.16310974286236687,
+          "hydratedBytes": 2141
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 1339,
+          "residentFraction": 0.16310974286236687,
+          "hydratedBytes": 2141
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 1465,
+          "residentFraction": 0.16310974286236687,
+          "hydratedBytes": 2141
+        }
+      ],
+      "concentration": {
+        "p50": 1,
+        "p80": 1,
+        "p95": 1,
+        "totalPackagesHydrated": 1
+      },
+      "deviations": []
+    },
+    {
+      "app": "fastify-demo",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 36007898,
+      "initialColdFraction": 0.9541254532547276,
+      "residentInitial": 0.04587454674527236,
+      "residentAfterStartup": 0.13776969152711996,
+      "residentAfterStrongest": 0.13776969152711996,
+      "coldSurviving": 0.9036865178804596,
+      "coldSurvivingUpperBound": 0.9036865178804596,
+      "uniqueMissFiles": 1333,
+      "uniqueMissBytes": 3308951,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 8621,
+      "hotNeverTouchedBytes": 378737,
+      "outsideFiles": 1,
+      "outsideContentBytes": 4065,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 2015,
+          "residentFraction": 0.13776969152711996,
+          "hydratedBytes": 3308951
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 2045,
+          "residentFraction": 0.13776969152711996,
+          "hydratedBytes": 3308951
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 2342,
+          "residentFraction": 0.13776969152711996,
+          "hydratedBytes": 3308951
+        }
+      ],
+      "concentration": {
+        "p50": 3,
+        "p80": 9,
+        "p95": 29,
+        "totalPackagesHydrated": 64
+      },
+      "deviations": []
+    },
+    {
+      "app": "express-realworld",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 96450533,
+      "initialColdFraction": 0.10664283213447871,
+      "residentInitial": 0.8933571678655213,
+      "residentAfterStartup": 0.8933571678655213,
+      "residentAfterStrongest": 0.8933571678655213,
+      "coldSurviving": 1,
+      "coldSurvivingUpperBound": 1,
+      "uniqueMissFiles": 0,
+      "uniqueMissBytes": 0,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 1057,
+      "hotNeverTouchedBytes": 70046983,
+      "outsideFiles": 0,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 1313,
+          "residentFraction": 0.8933571678655213,
+          "hydratedBytes": 0
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 1393,
+          "residentFraction": 0.8933571678655213,
+          "hydratedBytes": 0
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 1575,
+          "residentFraction": 0.8933571678655213,
+          "hydratedBytes": 0
+        }
+      ],
+      "concentration": {
+        "p50": 0,
+        "p80": 0,
+        "p95": 0,
+        "totalPackagesHydrated": 0
+      },
+      "deviations": []
+    },
+    {
+      "app": "json-server",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 2791344,
+      "initialColdFraction": 0.8127063522088285,
+      "residentInitial": 0.18729364779117152,
+      "residentAfterStartup": 0.1874043471531993,
+      "residentAfterStrongest": 0.1874043471531993,
+      "coldSurviving": 0.9998637892250665,
+      "coldSurvivingUpperBound": 0.9998316099805029,
+      "uniqueMissFiles": 1,
+      "uniqueMissBytes": 309,
+      "metadataOnlyColdFiles": 1,
+      "totalAccesses": 426,
+      "hotNeverTouchedBytes": 93724,
+      "outsideFiles": 1,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 718,
+          "residentFraction": 0.1874043471531993,
+          "hydratedBytes": 309
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 732,
+          "residentFraction": 0.1874043471531993,
+          "hydratedBytes": 309
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 750,
+          "residentFraction": 0.1874043471531993,
+          "hydratedBytes": 309
+        }
+      ],
+      "concentration": {
+        "p50": 1,
+        "p80": 1,
+        "p95": 1,
+        "totalPackagesHydrated": 1
+      },
+      "deviations": [
+        "workload wrote 1 tracked file(s) in the frozen clone (fixtures/db.json); reverted with git checkout (status=0)"
+      ]
+    },
+    {
+      "app": "uptime-kuma",
+      "category": "control",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 172011601,
+      "initialColdFraction": 0.7344634214526031,
+      "residentInitial": 0.2655365785473969,
+      "residentAfterStartup": 0.2743035104940393,
+      "residentAfterStrongest": 0.2743035104940393,
+      "coldSurviving": 0.9880634873152657,
+      "coldSurvivingUpperBound": 0.9880634873152657,
+      "uniqueMissFiles": 268,
+      "uniqueMissBytes": 1508014,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 17451,
+      "hotNeverTouchedBytes": 20270986,
+      "outsideFiles": 252,
+      "outsideContentBytes": 1200,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 5431,
+          "residentFraction": 0.2743035104940393,
+          "hydratedBytes": 1508014
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 5470,
+          "residentFraction": 0.2743035104940393,
+          "hydratedBytes": 1508014
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 7249,
+          "residentFraction": 0.2743035104940393,
+          "hydratedBytes": 1508014
+        },
+        {
+          "phase": "extended",
+          "reachedGoal": true,
+          "offsetMs": 7273,
+          "residentFraction": 0.2743035104940393,
+          "hydratedBytes": 1508014
+        }
+      ],
+      "concentration": {
+        "p50": 1,
+        "p80": 4,
+        "p95": 6,
+        "totalPackagesHydrated": 6
+      },
+      "deviations": [
+        "uptime-kuma's frontend bundle was not part of the frozen materialization (corpus.json declares build:null) and server.js exits without dist/index.html. The repo's own `npm run build` was run untraced before measurement; every file it produced is outside the frozen universe and is reported there."
+      ]
+    },
+    {
+      "app": "hackathon-starter",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 283848684,
+      "initialColdFraction": 0.6545376796603362,
+      "residentInitial": 0.34546232033966384,
+      "residentAfterStartup": 0.3517764662245184,
+      "residentAfterStrongest": 0.3520319932150892,
+      "coldSurviving": 0.9899628805497727,
+      "coldSurvivingUpperBound": 0.9899628805497727,
+      "uniqueMissFiles": 125,
+      "uniqueMissBytes": 1864793,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 14603,
+      "hotNeverTouchedBytes": 48048376,
+      "outsideFiles": 0,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 3539,
+          "residentFraction": 0.3517764662245184,
+          "hydratedBytes": 1792262
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 3852,
+          "residentFraction": 0.3517764662245184,
+          "hydratedBytes": 1792262
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 6321,
+          "residentFraction": 0.3520319932150892,
+          "hydratedBytes": 1864793
+        }
+      ],
+      "concentration": {
+        "p50": 1,
+        "p80": 3,
+        "p95": 6,
+        "totalPackagesHydrated": 9
+      },
+      "deviations": []
+    },
+    {
+      "app": "express-rest-boilerplate",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 60088263,
+      "initialColdFraction": 0.7004824719263394,
+      "residentInitial": 0.2995175280736606,
+      "residentAfterStartup": 0.29951752807366055,
+      "residentAfterStrongest": 0.29951752807366055,
+      "coldSurviving": 1,
+      "coldSurvivingUpperBound": 1,
+      "uniqueMissFiles": 0,
+      "uniqueMissBytes": 0,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 7903,
+      "hotNeverTouchedBytes": 5640365,
+      "outsideFiles": 2,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 1924,
+          "residentFraction": 0.29951752807366055,
+          "hydratedBytes": 0
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 1941,
+          "residentFraction": 0.29951752807366055,
+          "hydratedBytes": 0
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 2166,
+          "residentFraction": 0.29951752807366055,
+          "hydratedBytes": 0
+        }
+      ],
+      "concentration": {
+        "p50": 0,
+        "p80": 0,
+        "p95": 0,
+        "totalPackagesHydrated": 0
+      },
+      "deviations": []
+    },
+    {
+      "app": "nestjs-typescript-starter",
+      "category": "target",
+      "workloadQuality": "smoke",
+      "universeBytes": 10173482,
+      "initialColdFraction": 0.7270426192330217,
+      "residentInitial": 0.2729573807669783,
+      "residentAfterStartup": 0.2729573807669783,
+      "residentAfterStrongest": 0.2729573807669783,
+      "coldSurviving": 1,
+      "coldSurvivingUpperBound": 1,
+      "uniqueMissFiles": 0,
+      "uniqueMissBytes": 0,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 3592,
+      "hotNeverTouchedBytes": 686721,
+      "outsideFiles": 0,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 1113,
+          "residentFraction": 0.2729573807669783,
+          "hydratedBytes": 0
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 1146,
+          "residentFraction": 0.2729573807669783,
+          "hydratedBytes": 0
+        }
+      ],
+      "concentration": {
+        "p50": 0,
+        "p80": 0,
+        "p95": 0,
+        "totalPackagesHydrated": 0
+      },
+      "deviations": []
+    },
+    {
+      "app": "parse-server",
+      "category": "control",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 142362855,
+      "initialColdFraction": 0.7481136213515808,
+      "residentInitial": 0.25188637864841923,
+      "residentAfterStartup": 0.27143725095987997,
+      "residentAfterStrongest": 0.27143725095987997,
+      "coldSurviving": 0.9738664398649244,
+      "coldSurvivingUpperBound": 0.9738664398649244,
+      "uniqueMissFiles": 374,
+      "uniqueMissBytes": 2783318,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 10854,
+      "hotNeverTouchedBytes": 19572079,
+      "outsideFiles": 2,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 3522,
+          "residentFraction": 0.27143725095987997,
+          "hydratedBytes": 2783318
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 3550,
+          "residentFraction": 0.27143725095987997,
+          "hydratedBytes": 2783318
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 3744,
+          "residentFraction": 0.27143725095987997,
+          "hydratedBytes": 2783318
+        }
+      ],
+      "concentration": {
+        "p50": 2,
+        "p80": 6,
+        "p95": 12,
+        "totalPackagesHydrated": 37
+      },
+      "deviations": []
+    },
+    {
+      "app": "verdaccio",
+      "category": "control",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 53069105,
+      "initialColdFraction": 0.8362863477723997,
+      "residentInitial": 0.16371365222760026,
+      "residentAfterStartup": 0.16371365222760023,
+      "residentAfterStrongest": 0.16371365222760023,
+      "coldSurviving": 1,
+      "coldSurvivingUpperBound": 1,
+      "uniqueMissFiles": 0,
+      "uniqueMissBytes": 0,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 8415,
+      "hotNeverTouchedBytes": 3612992,
+      "outsideFiles": 0,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 2235,
+          "residentFraction": 0.16371365222760023,
+          "hydratedBytes": 0
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 2270,
+          "residentFraction": 0.16371365222760023,
+          "hydratedBytes": 0
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 3287,
+          "residentFraction": 0.16371365222760023,
+          "hydratedBytes": 0
+        }
+      ],
+      "concentration": {
+        "p50": 0,
+        "p80": 0,
+        "p95": 0,
+        "totalPackagesHydrated": 0
+      },
+      "deviations": []
+    },
+    {
+      "app": "nodebb",
+      "category": "control",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 531105434,
+      "initialColdFraction": 0.7257466075935499,
+      "residentInitial": 0.2742533924064501,
+      "residentAfterStartup": 0.28029493857522836,
+      "residentAfterStrongest": 0.28043150467935146,
+      "coldSurviving": 0.9914872323091017,
+      "coldSurvivingUpperBound": 0.9616931252357598,
+      "uniqueMissFiles": 194,
+      "uniqueMissBytes": 3281229,
+      "metadataOnlyColdFiles": 113,
+      "totalAccesses": 13076,
+      "hotNeverTouchedBytes": 110245022,
+      "outsideFiles": 93,
+      "outsideContentBytes": 782732,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 4925,
+          "residentFraction": 0.28029493857522836,
+          "hydratedBytes": 3208698
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 5219,
+          "residentFraction": 0.28029493857522836,
+          "hydratedBytes": 3208698
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 5901,
+          "residentFraction": 0.28043150467935146,
+          "hydratedBytes": 3281229
+        }
+      ],
+      "concentration": {
+        "p50": 2,
+        "p80": 3,
+        "p95": 11,
+        "totalPackagesHydrated": 31
+      },
+      "deviations": [
+        "NodeBB required a one-time `app.js --setup` (postgres schema + full asset build) before it could start. That setup ran untraced, and its generated assets (build/, config.json) are outside the frozen universe."
+      ]
+    },
+    {
+      "app": "n8n",
+      "category": "control",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 2074208993,
+      "initialColdFraction": 0.5374713130462259,
+      "residentInitial": 0.46252868695377414,
+      "residentAfterStartup": 0.4631206856405718,
+      "residentAfterStrongest": 0.4631206856405718,
+      "coldSurviving": 0.9988985483086671,
+      "coldSurvivingUpperBound": 0.9988985483086671,
+      "uniqueMissFiles": 128,
+      "uniqueMissBytes": 1227929,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 48188,
+      "hotNeverTouchedBytes": 837969813,
+      "outsideFiles": 0,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 12166,
+          "residentFraction": 0.4631206856405718,
+          "hydratedBytes": 1227929
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 12193,
+          "residentFraction": 0.4631206856405718,
+          "hydratedBytes": 1227929
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 17934,
+          "residentFraction": 0.4631206856405718,
+          "hydratedBytes": 1227929
+        }
+      ],
+      "concentration": {
+        "p50": 1,
+        "p80": 1,
+        "p95": 2,
+        "totalPackagesHydrated": 3
+      },
+      "deviations": []
+    },
+    {
+      "app": "excalidraw-room",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 108113720,
+      "initialColdFraction": 0.97408462126731,
+      "residentInitial": 0.02591537873269001,
+      "residentAfterStartup": 0.02700597112003916,
+      "residentAfterStrongest": 0.02873309696493655,
+      "coldSurviving": 0.9971073167867278,
+      "coldSurvivingUpperBound": 0.9971073167867278,
+      "uniqueMissFiles": 17,
+      "uniqueMissBytes": 304634,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 722,
+      "hotNeverTouchedBytes": 1869278,
+      "outsideFiles": 0,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 716,
+          "residentFraction": 0.02700597112003916,
+          "hydratedBytes": 117908
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 728,
+          "residentFraction": 0.02873309696493655,
+          "hydratedBytes": 304634
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 3305,
+          "residentFraction": 0.02873309696493655,
+          "hydratedBytes": 304634
+        },
+        {
+          "phase": "extended",
+          "reachedGoal": true,
+          "offsetMs": 3306,
+          "residentFraction": 0.02873309696493655,
+          "hydratedBytes": 304634
+        }
+      ],
+      "concentration": {
+        "p50": 1,
+        "p80": 2,
+        "p95": 2,
+        "totalPackagesHydrated": 2
+      },
+      "deviations": []
+    },
+    {
+      "app": "juice-shop",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 221092772,
+      "initialColdFraction": 0.6614295242541895,
+      "residentInitial": 0.33857047574581045,
+      "residentAfterStartup": 0.3458107350519808,
+      "residentAfterStrongest": 0.3458107350519808,
+      "coldSurviving": 0.9890536194096653,
+      "coldSurvivingUpperBound": 0.9890536194096653,
+      "uniqueMissFiles": 442,
+      "uniqueMissBytes": 1600769,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 10690,
+      "hotNeverTouchedBytes": 45172432,
+      "outsideFiles": 50,
+      "outsideContentBytes": 6125637,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 3724,
+          "residentFraction": 0.3458107350519808,
+          "hydratedBytes": 1600769
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 3967,
+          "residentFraction": 0.3458107350519808,
+          "hydratedBytes": 1600769
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 4442,
+          "residentFraction": 0.3458107350519808,
+          "hydratedBytes": 1600769
+        }
+      ],
+      "concentration": {
+        "p50": 1,
+        "p80": 1,
+        "p95": 2,
+        "totalPackagesHydrated": 4
+      },
+      "deviations": []
+    },
+    {
+      "app": "outline",
+      "category": "target",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 854731175,
+      "initialColdFraction": 0.6702545218384014,
+      "residentInitial": 0.3297454781615986,
+      "residentAfterStartup": 0.33608462567192543,
+      "residentAfterStrongest": 0.3373170201730386,
+      "coldSurviving": 0.9887034823865529,
+      "coldSurvivingUpperBound": 0.9887034823865529,
+      "uniqueMissFiles": 598,
+      "uniqueMissBytes": 6471633,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 132198,
+      "hotNeverTouchedBytes": 250504815,
+      "outsideFiles": 0,
+      "outsideContentBytes": 0,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 14729,
+          "residentFraction": 0.33608462567192543,
+          "hydratedBytes": 5418267
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 14816,
+          "residentFraction": 0.33608462567192543,
+          "hydratedBytes": 5418267
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 15454,
+          "residentFraction": 0.3373170201730386,
+          "hydratedBytes": 6471633
+        }
+      ],
+      "concentration": {
+        "p50": 3,
+        "p80": 12,
+        "p95": 35,
+        "totalPackagesHydrated": 93
+      },
+      "deviations": []
+    },
+    {
+      "app": "strapi",
+      "category": "control",
+      "workloadQuality": "representative-endpoint-set",
+      "universeBytes": 820479485,
+      "initialColdFraction": 0.5281339118430243,
+      "residentInitial": 0.4718660881569757,
+      "residentAfterStartup": 0.4731304914954699,
+      "residentAfterStrongest": 0.4731306389702114,
+      "coldSurviving": 0.9976056246628382,
+      "coldSurvivingUpperBound": 0.9976056246628382,
+      "uniqueMissFiles": 225,
+      "uniqueMissBytes": 1037538,
+      "metadataOnlyColdFiles": 0,
+      "totalAccesses": 21361,
+      "hotNeverTouchedBytes": 339233727,
+      "outsideFiles": 2,
+      "outsideContentBytes": 58,
+      "phases": [
+        {
+          "phase": "startup",
+          "reachedGoal": true,
+          "offsetMs": 7149,
+          "residentFraction": 0.4731304914954699,
+          "hydratedBytes": 1037417
+        },
+        {
+          "phase": "common",
+          "reachedGoal": true,
+          "offsetMs": 7179,
+          "residentFraction": 0.4731306389702114,
+          "hydratedBytes": 1037538
+        },
+        {
+          "phase": "full",
+          "reachedGoal": true,
+          "offsetMs": 7556,
+          "residentFraction": 0.4731306389702114,
+          "hydratedBytes": 1037538
+        }
+      ],
+      "concentration": {
+        "p50": 1,
+        "p80": 1,
+        "p95": 3,
+        "totalPackagesHydrated": 8
+      },
+      "deviations": [
+        "GET /admin (the admin panel HTML) is never requested: the admin bundle was never built for this example, so it would be a request-time ENOENT rather than representative work."
+      ]
+    }
+  ]
+}

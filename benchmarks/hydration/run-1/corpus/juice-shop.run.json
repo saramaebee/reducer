@@ -1,0 +1,307 @@
+{
+  "app": "juice-shop",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "Unauthenticated route sweep taken from the route table in server.ts, then the authenticated write path (basket, checkout → pdfkit, b2b order → notevil/vm, file upload, data export) which is where the expensive dependency subgraphs live. sqlite3 native binding, finale-rest, i18n and swagger all participate.",
+  "startedAt": "2026-08-23T22:57:48.079Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/juice-shop",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/juice-shop",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/juice-shop/build/app.js"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/juice-shop",
+  "envKeys": [
+    "PORT"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/juice-shop",
+  "t0": 1787525863100.096,
+  "ready": {
+    "ok": true,
+    "ts": 1787525864820.2637,
+    "how": "stdout=/Server listening on port/",
+    "waitedMs": 1717
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525866823.9783,
+      "endTs": 1787525867066.799,
+      "detail": "unauthenticated REST + static + the routes any visitor hits",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200,
+          "ms": 34
+        },
+        {
+          "method": "GET",
+          "path": "/rest/admin/application-version",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "method": "GET",
+          "path": "/rest/admin/application-configuration",
+          "status": 200,
+          "ms": 17
+        },
+        {
+          "method": "GET",
+          "path": "/rest/languages",
+          "status": 200,
+          "ms": 61
+        },
+        {
+          "method": "GET",
+          "path": "/rest/country-mapping",
+          "status": 500,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/rest/captcha",
+          "status": 200,
+          "ms": 19
+        },
+        {
+          "method": "GET",
+          "path": "/rest/memories",
+          "status": 200,
+          "ms": 18
+        },
+        {
+          "method": "GET",
+          "path": "/rest/user/whoami",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/rest/products/search?q=apple",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/rest/products/1/reviews",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "GET",
+          "path": "/api/Products",
+          "status": 200,
+          "ms": 20
+        },
+        {
+          "method": "GET",
+          "path": "/api/Products/1",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "GET",
+          "path": "/api/Challenges",
+          "status": 200,
+          "ms": 16
+        },
+        {
+          "method": "GET",
+          "path": "/api/Feedbacks",
+          "status": 200,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/api/SecurityQuestions",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "GET",
+          "path": "/robots.txt",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/.well-known/security.txt",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/metrics",
+          "status": 200,
+          "ms": 2
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525867066.803,
+      "endTs": 1787525867542.1143,
+      "detail": "authenticated read+write path: login, basket, checkout (pdfkit), b2b order (vm), data export",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api-docs/",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/ftp",
+          "status": 200,
+          "ms": 13
+        },
+        {
+          "method": "GET",
+          "path": "/ftp/legal.md",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/encryptionkeys",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/support/logs",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "GET",
+          "path": "/video",
+          "status": 200,
+          "ms": 29
+        },
+        {
+          "method": "GET",
+          "path": "/promotion",
+          "status": 200,
+          "ms": 126
+        },
+        {
+          "method": "POST",
+          "path": "/rest/user/login",
+          "status": 200,
+          "ms": 24
+        },
+        {
+          "method": "GET",
+          "path": "/rest/user/whoami",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/rest/basket/1",
+          "status": 200,
+          "ms": 17
+        },
+        {
+          "method": "GET",
+          "path": "/rest/wallet/balance",
+          "status": 200,
+          "ms": 12
+        },
+        {
+          "method": "GET",
+          "path": "/rest/order-history",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "GET",
+          "path": "/rest/2fa/status",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/rest/deluxe-membership",
+          "status": 400,
+          "ms": 2
+        },
+        {
+          "method": "GET",
+          "path": "/rest/image-captcha",
+          "status": 200,
+          "ms": 32
+        },
+        {
+          "method": "GET",
+          "path": "/api/Users",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "method": "GET",
+          "path": "/api/Cards",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "method": "POST",
+          "path": "/api/BasketItems",
+          "status": 500,
+          "ms": 4
+        },
+        {
+          "method": "POST",
+          "path": "/b2b/v2/orders",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "method": "POST",
+          "path": "/rest/basket/1/checkout",
+          "status": 200,
+          "ms": 159
+        },
+        {
+          "method": "POST",
+          "path": "/rest/user/data-export",
+          "status": 401,
+          "ms": 8
+        },
+        {
+          "method": "POST",
+          "path": "/api/Users",
+          "status": 201,
+          "ms": 9
+        },
+        {
+          "method": "GET",
+          "path": "/main.js",
+          "status": 200,
+          "ms": 14
+        },
+        {
+          "method": "GET",
+          "path": "/assets/public/images/products/apple_juice.jpg",
+          "status": 200,
+          "ms": 2
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": 0,
+    "exitSignal": null,
+    "ms": 563
+  },
+  "stdoutTail": "info: Detected Node.js version \u001b[1mv24.19.0\u001b[22m (\u001b[32mSUCCESS\u001b[39m)\ninfo: Detected OS \u001b[1mdarwin\u001b[22m (\u001b[32mSUCCESS\u001b[39m)\ninfo: Detected CPU \u001b[1marm64\u001b[22m (\u001b[32mSUCCESS\u001b[39m)\ninfo: Configuration \u001b[1mdefault\u001b[22m validated (\u001b[32mSUCCESS\u001b[39m)\ninfo: Entity models \u001b[1m21\u001b[22m of \u001b[1m21\u001b[22m are initialized (\u001b[32mSUCCESS\u001b[39m)\ninfo: All dependencies in \u001b[1m./package.json\u001b[22m are satisfied (\u001b[32mSUCCESS\u001b[39m)\ninfo: Required file \u001b[1mserver.js\u001b[22m is present (\u001b[32mSUCCESS\u001b[39m)\ninfo: Required file \u001b[1mindex.html\u001b[22m is present (\u001b[32mSUCCESS\u001b[39m)\ninfo: Required file \u001b[1mstyles.css\u001b[22m is present (\u001b[32mSUCCESS\u001b[39m)\ninfo: Required file \u001b[1mmain.js\u001b[22m is present (\u001b[32mSUCCESS\u001b[39m)\ninfo: Required file \u001b[1mpolyfills.js\u001b[22m is present (\u001b[32mSUCCESS\u001b[39m)\ninfo: Required file matching \u001b[1m/^hacking-instructor-.+\\.js$/\u001b[22m is present (\u001b[32mSUCCESS\u001b[39m)\ninfo: Port \u001b[1m3402\u001b[22m is available (\u001b[32mSUCCESS\u001b[39m)\ninfo: Domain \u001b[1mhttps://www.alchemy.com/\u001b[22m is reachable (\u001b[32mSUCCESS\u001b[39m)\nwarn: Environment variable \u001b[1mALCHEMY_API_KEY\u001b[22m is not present (\u001b[33mWARNING\u001b[39m)\nwarn: \u001b[3m\"Mint the Honey Pot\" challenge\u001b[23m will not work as intended without a valid \u001b[1mALCHEMY_API_KEY\u001b[22m\nwarn: \u001b[3m\"Wallet Depletion\" challenge\u001b[23m will not work as intended without a valid \u001b[1mALCHEMY_API_KEY\u001b[22m\ninfo: Check \u001b[1mhttps://howto-web3.owasp-juice.shop\u001b[22m for instructions on how to set up and configure the Alchemy API\nwarn: Domain \u001b[1mhttp://localhost:11434/v1\u001b[22m is not reachable (\u001b[33mWARNING\u001b[39m)\nwarn: \u001b[3m\"Chatbot Prompt Injection\" challenge\u001b[23m will not work as intended without access to \u001b[1mhttp://localhost:11434/v1\u001b[22m\nwarn: \u001b[3m\"Greedy Chatbot Manipulation\" challenge\u001b[23m will not work as intended without access to \u001b[1mhttp://localhost:11434/v1\u001b[22m\nwarn: \u001b[3m\"AI Debugging\" challenge\u001b[23m will not work as intended without access to \u001b[1mhttp://localhost:11434/v1\u001b[22m\nwarn: \u001b[3m\"System Prompt Extraction\" challenge\u001b[23m will not work as intended without access to \u001b[1mhttp://localhost:11434/v1\u001b[22m\ninfo: Check \u001b[1mhttps://howto-llm.owasp-juice.shop\u001b[22m for instructions on how to set up and configure the LLM API\ninfo: \u001b[36mServer listening on port \u001b[1m3402\u001b[22m\u001b[39m\nwarn: Country mapping was requested but was not found in the selected config file. Take a look at the fbctf.yml config file to find out how to configure the country mappings required by FBCTF.\ninfo: \u001b[32mSolved\u001b[39m 2-star \u001b[36msecurityPolicyChallenge\u001b[39m (Security Policy)\ninfo: Cheat score for \u001b[36msecurityPolicyChallenge\u001b[39m solved in 0min (expected ~4min) with hints allowed: \u001b[31m0.9862958333333334\u001b[39m\ninfo: \u001b[32mSolved\u001b[39m 1-star \u001b[36mexposedMetricsChallenge\u001b[39m (Exposed Metrics)\ninfo: Cheat score for \u001b[36mexposedMetricsChallenge\u001b[39m solved in 0min (expected ~2min) with hints allowed: \u001b[31m0.9999833333333333\u001b[39m\ninfo: \u001b[32mSolved\u001b[39m 2-star \u001b[36mweakPasswordChallenge\u001b[39m (Password Strength)\ninfo: Cheat score for tutorial \u001b[36mweakPasswordChallenge\u001b[39m solved in 0min (expected ~2min) with hints allowed: \u001b[31m0.9983166666666666\u001b[39m\ninfo: \u001b[32mSolved\u001b[39m 2-star \u001b[36mloginAdminChallenge\u001b[39m (Login Admin)\ninfo: Cheat score for tightly coupled tutorial \u001b[36mloginAdminChallenge\u001b[39m solved in 0min (expected ~0min) with hints allowed: \u001b[32m0\u001b[39m\ninfo: \u001b[32mSolved\u001b[39m 1-star \u001b[36merrorHandlingChallenge\u001b[39m (Error Handling)\ninfo: Cheat score for trivial \u001b[36merrorHandlingChallenge\u001b[39m solved in 0min (expected ~0min) with hints allowed: \u001b[32m0\u001b[39m\n",
+  "stderrTail": "Error\n    at Database.<anonymous> (/Users/sara/.cache/reducer-corpus-v1/juice-shop/node_modules/sequelize/lib/dialects/sqlite/query.js:185:27)\n    at /Users/sara/.cache/reducer-corpus-v1/juice-shop/node_modules/sequelize/lib/dialects/sqlite/query.js:183:50\n    at new Promise (<anonymous>)\n    at Query.run (/Users/sara/.cache/reducer-corpus-v1/juice-shop/node_modules/sequelize/lib/dialects/sqlite/query.js:183:12)\n    at /Users/sara/.cache/reducer-corpus-v1/juice-shop/node_modules/sequelize/lib/sequelize.js:315:28\n    at async SQLiteQueryInterface.insert (/Users/sara/.cache/reducer-corpus-v1/juice-shop/node_modules/sequelize/lib/dialects/abstract/query-interface.js:308:21)\n    at async BasketItem.save (/Users/sara/.cache/reducer-corpus-v1/juice-shop/node_modules/sequelize/lib/model.js:2490:35)\n    at async /Users/sara/.cache/reducer-corpus-v1/juice-shop/build/routes/basketItems.js:79:41\n",
+  "failure": null,
+  "deviations": []
+}

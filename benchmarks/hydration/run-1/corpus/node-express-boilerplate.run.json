@@ -1,0 +1,133 @@
+{
+  "app": "node-express-boilerplate",
+  "recipeQuality": "representative-endpoint-set",
+  "recipeNotes": "The full documented v1 API: register → login → authenticated user CRUD → refresh → logout, plus the swagger docs route. Every path comes from src/routes/v1.",
+  "startedAt": "2026-08-23T22:57:27.303Z",
+  "nodeBin": "/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node",
+  "nodeVersion": "v24.19.0",
+  "cloneRoot": "/Users/sara/.cache/reducer-corpus-v1/node-express-boilerplate",
+  "universeRoot": "/Users/sara/.cache/reducer-corpus-v1/node-express-boilerplate",
+  "argv": [
+    "/Users/sara/.cache/reducer-corpus-v1/node-express-boilerplate/src/index.js"
+  ],
+  "cwd": "/Users/sara/.cache/reducer-corpus-v1/node-express-boilerplate",
+  "envKeys": [
+    "NODE_ENV",
+    "PORT",
+    "MONGODB_URL",
+    "JWT_SECRET",
+    "JWT_ACCESS_EXPIRATION_MINUTES",
+    "JWT_REFRESH_EXPIRATION_DAYS",
+    "JWT_RESET_PASSWORD_EXPIRATION_MINUTES",
+    "JWT_VERIFY_EMAIL_EXPIRATION_MINUTES",
+    "SMTP_HOST",
+    "SMTP_PORT",
+    "SMTP_USERNAME",
+    "SMTP_PASSWORD",
+    "EMAIL_FROM"
+  ],
+  "traceDir": "/Users/sara/.cache/reducer-hydration-v1/traces/node-express-boilerplate",
+  "t0": 1787525835178.0374,
+  "ready": {
+    "ok": true,
+    "ts": 1787525835990.8367,
+    "how": "stdout=/Listening to port/",
+    "waitedMs": 809
+  },
+  "phases": [
+    {
+      "name": "common",
+      "startTs": 1787525836491.9907,
+      "endTs": 1787525836517.464,
+      "detail": "docs + unauthenticated surface",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/v1/docs/",
+          "status": 404,
+          "ms": 21
+        },
+        {
+          "method": "GET",
+          "path": "/v1/users",
+          "status": 401,
+          "ms": 3
+        },
+        {
+          "method": "GET",
+          "path": "/nope",
+          "status": 404,
+          "ms": 1
+        }
+      ],
+      "reachedGoal": true
+    },
+    {
+      "name": "full",
+      "startTs": 1787525836517.4673,
+      "endTs": 1787525836642.969,
+      "detail": "register/login/refresh/logout + authenticated user CRUD (mongoose + passport + joi)",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/v1/auth/register",
+          "status": 201,
+          "ms": 58
+        },
+        {
+          "method": "POST",
+          "path": "/v1/auth/login",
+          "status": 200,
+          "ms": 26
+        },
+        {
+          "method": "GET",
+          "path": "/v1/users?limit=5",
+          "status": 403,
+          "ms": 4
+        },
+        {
+          "method": "GET",
+          "path": "/v1/users/{{uid}}",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "method": "PATCH",
+          "path": "/v1/users/{{uid}}",
+          "status": 200,
+          "ms": 7
+        },
+        {
+          "method": "POST",
+          "path": "/v1/auth/refresh-tokens",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "method": "POST",
+          "path": "/v1/auth/forgot-password",
+          "status": 500,
+          "ms": 7
+        },
+        {
+          "method": "POST",
+          "path": "/v1/auth/logout",
+          "status": 204,
+          "ms": 4
+        }
+      ],
+      "reachedGoal": true
+    }
+  ],
+  "shutdown": {
+    "signal": "SIGTERM",
+    "exitCode": null,
+    "exitSignal": "SIGKILL",
+    "ms": 10689
+  },
+  "stdoutTail": "info: Connected to MongoDB\ninfo: Listening to port 3404\nwarn: Unable to connect to email server. Make sure you have configured the SMTP options in .env\ninfo: ::ffff:127.0.0.1 - POST /v1/auth/register 201 - 57.075 ms\ninfo: ::ffff:127.0.0.1 - POST /v1/auth/login 200 - 25.401 ms\ninfo: ::ffff:127.0.0.1 - GET /v1/users/6a8b7acc07914f7e2fbb6e6f 200 - 4.839 ms\ninfo: ::ffff:127.0.0.1 - PATCH /v1/users/6a8b7acc07914f7e2fbb6e6f 200 - 6.170 ms\ninfo: ::ffff:127.0.0.1 - POST /v1/auth/refresh-tokens 200 - 14.519 ms\ninfo: ::ffff:127.0.0.1 - POST /v1/auth/logout 204 - 3.245 ms\ninfo: SIGTERM received\n",
+  "stderrTail": "error: ::ffff:127.0.0.1 - GET /v1/docs/ 404 - 3.990 ms - message: Not found\nerror: ::ffff:127.0.0.1 - GET /v1/users 401 - 1.612 ms - message: Please authenticate\nerror: ::ffff:127.0.0.1 - GET /nope 404 - 0.219 ms - message: Not found\nerror: ::ffff:127.0.0.1 - GET /v1/users?limit=5 403 - 3.343 ms - message: Forbidden\nerror: ::ffff:127.0.0.1 - POST /v1/auth/forgot-password 500 - 6.275 ms - message: connect ECONNREFUSED 127.0.0.1:1025\n",
+  "failure": null,
+  "deviations": []
+}
