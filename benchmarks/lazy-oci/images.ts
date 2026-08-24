@@ -45,8 +45,13 @@ export function buildAllImages(
   app: string,
   stage: string,
   arms: Record<string, string[] | null>,
+  /** override where bootstraps land and which registry repo receives the blob;
+   *  the long-tail experiment keeps its images separate from experiment 3's */
+  opts: { buildRoot?: string; repoPrefix?: string } = {},
 ): { images: Record<string, BuiltImage>; contentDigest: string } {
-  const outDir = path.join(BUILD_ROOT, app);
+  const buildRoot = opts.buildRoot ?? BUILD_ROOT;
+  const repoPrefix = opts.repoPrefix ?? 'lazyoci';
+  const outDir = path.join(buildRoot, app);
   for (const arm of Object.keys(arms)) mkdirSync(path.join(outDir, arm), { recursive: true });
 
   const script: string[] = [
@@ -54,7 +59,7 @@ export function buildAllImages(
     // one virtiofs pass, then every build reads from container-local storage
     'mkdir -p /local /blobs',
     'cp -a /src/. /local/',
-    `REPO=lazyoci/${app}`,
+    `REPO=${repoPrefix}/${app}`,
   ];
   for (const [arm, list] of Object.entries(arms)) {
     script.push(
@@ -115,7 +120,7 @@ EOF`,
     images[arm] = {
       app,
       arm,
-      repo: `lazyoci/${app}`,
+      repo: `${repoPrefix}/${app}`,
       blob: grab(`BLOB.${arm}`),
       blobBytes: Number(grab(`BLOBBYTES.${arm}`)),
       bootstrap: path.join(outDir, arm, 'boot.img'),

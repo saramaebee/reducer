@@ -1,0 +1,1 @@
+{ "tenant": "acme", "displayName": "Acme Corp", "currency": "USD", "renderer": "acme", "banner": "Acme storefront" }

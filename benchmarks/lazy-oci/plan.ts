@@ -160,9 +160,36 @@ function stageTree(src: string, dst: string, keep: Set<string>): { files: number
 
 export async function buildPlan(app: string): Promise<AppPlan> {
   const root = appRoot(app);
-  const entry = path.join(root, entryRel(app));
-  const frozenPackages = productionPackages(app, root);
-  const universe = buildUniverse({ entry, root, frozenPackages });
+  return buildPlanFor({
+    app,
+    root,
+    entryRel: entryRel(app),
+    frozenPackages: productionPackages(app, root),
+    sha: appSha(app),
+  });
+}
+
+/**
+ * The planner, parameterised over where the tree and its production package
+ * population come from. `buildPlan` is the corpus-app path; the long-tail
+ * experiment (benchmarks/longtail) reuses this directly so that an app authored
+ * outside corpus-v1 — which has no frozen population and therefore passes
+ * `frozenPackages: null` — is planned by exactly the same code, with no second
+ * drifting copy of universe discovery, NFT handling or Plan B.
+ */
+export async function buildPlanFor(opts: {
+  app: string;
+  root: string;
+  entryRel: string;
+  /** null = fallback mode: the installed tree defines third-party membership */
+  frozenPackages: { name: string; version: string }[] | null;
+  sha: string;
+  /** override the staging destination (defaults to WORK_ROOT/stage/<app>) */
+  stageDir?: string;
+}): Promise<AppPlan> {
+  const { app, root, frozenPackages } = opts;
+  const entry = path.join(root, opts.entryRel);
+  const universe = buildUniverse({ entry, root, frozenPackages: frozenPackages ?? undefined });
   const warnings = [...universe.warnings];
 
   // ---- NFT positive evidence (same handling as working-set/run-corpus.ts:
@@ -220,12 +247,12 @@ export async function buildPlan(app: string): Promise<AppPlan> {
   for (const r of [...nft].sort()) dfs(r);
 
   const keep = new Set(universe.files.map((f) => f.real));
-  const stage = path.join(WORK_ROOT, 'stage', app);
+  const stage = opts.stageDir ?? path.join(WORK_ROOT, 'stage', app);
   const staged = stageTree(root, stage, keep);
 
   return {
     app,
-    sha: appSha(app),
+    sha: opts.sha,
     root,
     entryRel: universe.entryRel,
     files: universe.files.map((f) => [f.rel, f.bytes] as [string, number]),

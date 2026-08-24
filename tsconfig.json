@@ -16,5 +16,10 @@
       "@reducer/*": ["packages/*/src/index.ts"]
     }
   },
-  "include": ["packages/**/*.ts", "tests/**/*.ts", "benchmarks/**/*.ts", "vitest.config.ts"]
+  "include": ["packages/**/*.ts", "tests/**/*.ts", "benchmarks/**/*.ts", "vitest.config.ts"],
+  // The long-tail fixture is a self-contained Next.js application with its own
+  // tsconfig, its own dependency tree and its own build, run inside a container.
+  // Type-checking it from here would require installing its deps at the repo
+  // root, which is exactly the coupling the fixture must not have.
+  "exclude": ["benchmarks/longtail/fixture-app"]
 }

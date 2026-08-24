@@ -1,0 +1,5 @@
+{
+  "temporal": { "enabled": true },
+  "spreadsheet-preview": { "enabled": true },
+  "disabled-example": { "enabled": false }
+}
