@@ -1,0 +1,510 @@
+{
+ "app": "nextjs-longtail",
+ "sha": "b2fa057902bc82b41f6b4c058928bb4d1180a711",
+ "criterion": "controlled interpretability fixture; self-hosted Next.js is the stated ICP shape",
+ "mechanisms": [
+  "module-shaped: per-route lazy chunk + external package subtree (exceljs, marked, papaparse, temporal, serialize-error)",
+  "data-shaped: per-locale catalogue and content directory read from disk",
+  "config-shaped: per-tenant config file + per-tenant renderer chunk"
+ ],
+ "kind": "fixture",
+ "universe": {
+  "files": 11918,
+  "bytes": 362621973
+ },
+ "staged": {
+  "files": 11918,
+  "bytes": 362621973,
+  "prunedFiles": 0
+ },
+ "nft": 1944,
+ "planBHot": 7218,
+ "packages": 310,
+ "depReachablePackages": 169,
+ "image": {
+  "repo": "longtail/nextjs-longtail",
+  "blob": "5ba56f2cd2aa44ef900fb785a404f830872f7da7530b70cf93969fffa0dd4e7a",
+  "blobBytes": 92357872,
+  "bootstrapBytes": 2576384
+ },
+ "contentDigest": "e8d775872946de88c3faf3b3826ae112965b47a04c5de4ed796c07a46f58c3cc",
+ "train": {
+  "files": 445,
+  "bytes": 7952895
+ },
+ "neededTest": {
+  "files": 1155,
+  "bytes": 12376554
+ },
+ "heldOut": {
+  "files": 710,
+  "bytes": 4423659
+ },
+ "heldOutByCategory": {
+  "locale": {
+   "files": 39,
+   "bytes": 546559
+  },
+  "tenant-config": {
+   "files": 111,
+   "bytes": 882881
+  },
+  "admin-background": {
+   "files": 542,
+   "bytes": 2653311
+  },
+  "rare-route": {
+   "files": 4,
+   "bytes": 154292
+  },
+  "error-path": {
+   "files": 7,
+   "bytes": 16952
+  },
+  "optional-feature": {
+   "files": 7,
+   "bytes": 169664
+  }
+ },
+ "heldOutByGroup": {
+  "nx.locale.de": {
+   "files": 13,
+   "bytes": 176553
+  },
+  "nx.locale.ja": {
+   "files": 13,
+   "bytes": 203084
+  },
+  "nx.locale.pt-br": {
+   "files": 13,
+   "bytes": 166922
+  },
+  "nx.tenant.globex": {
+   "files": 48,
+   "bytes": 726211
+  },
+  "nx.tenant.initech": {
+   "files": 63,
+   "bytes": 156670
+  },
+  "nx.admin": {
+   "files": 542,
+   "bytes": 2653311
+  },
+  "nx.report": {
+   "files": 4,
+   "bytes": 154292
+  },
+  "nx.error": {
+   "files": 7,
+   "bytes": 16952
+  },
+  "nx.feature": {
+   "files": 7,
+   "bytes": 169664
+  }
+ },
+ "rankingInputs": {
+  "G1": [
+   "TRAIN access log: path + first-content-read timestamp",
+   "universe path strings"
+  ],
+  "G2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1)",
+   "directory structure of the universe (filesystem only)",
+   "file size"
+  ],
+  "R1": [
+   "entrypoint identity",
+   "@vercel/nft positive trace and its module-graph order",
+   "package identity and boundaries",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "opaque-boundary (native/WASM/install-script) package classification",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "R2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1/G2)",
+   "package identity and boundaries (owning package directory per file)",
+   "@vercel/nft positive trace and its module-graph order",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "O": [
+   "THE TEST WORKLOAD ITSELF — analysis only, never deployable"
+  ]
+ },
+ "budgeted": {
+  "G1@0.05": {
+   "arm": "G1",
+   "budget": 0.05,
+   "budgetBytes": 18131098,
+   "files": 948,
+   "bytes": 18131092,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 522,
+   "coveredNeededBytes": 8703946,
+   "missNeededFiles": 633,
+   "missNeededBytes": 3672608,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G1.0.05.txt"
+  },
+  "G1@0.1": {
+   "arm": "G1",
+   "budget": 0.1,
+   "budgetBytes": 36262197,
+   "files": 716,
+   "bytes": 36262191,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 502,
+   "coveredNeededBytes": 8532199,
+   "missNeededFiles": 653,
+   "missNeededBytes": 3844355,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G1.0.1.txt"
+  },
+  "G1@0.2": {
+   "arm": "G1",
+   "budget": 0.2,
+   "budgetBytes": 72524394,
+   "files": 962,
+   "bytes": 72524394,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 522,
+   "coveredNeededBytes": 8703946,
+   "missNeededFiles": 633,
+   "missNeededBytes": 3672608,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G1.0.2.txt"
+  },
+  "G1@0.4": {
+   "arm": "G1",
+   "budget": 0.4,
+   "budgetBytes": 145048789,
+   "files": 6325,
+   "bytes": 145048782,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 972,
+   "coveredNeededBytes": 11444421,
+   "missNeededFiles": 183,
+   "missNeededBytes": 932133,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G1.0.4.txt"
+  },
+  "G2@0.05": {
+   "arm": "G2",
+   "budget": 0.05,
+   "budgetBytes": 18131098,
+   "files": 1878,
+   "bytes": 18131098,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 445,
+   "coveredNeededBytes": 7952895,
+   "missNeededFiles": 710,
+   "missNeededBytes": 4423659,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G2.0.05.txt"
+  },
+  "G2@0.1": {
+   "arm": "G2",
+   "budget": 0.1,
+   "budgetBytes": 36262197,
+   "files": 2484,
+   "bytes": 36262195,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 449,
+   "coveredNeededBytes": 7953717,
+   "missNeededFiles": 706,
+   "missNeededBytes": 4422837,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G2.0.1.txt"
+  },
+  "G2@0.2": {
+   "arm": "G2",
+   "budget": 0.2,
+   "budgetBytes": 72524394,
+   "files": 3275,
+   "bytes": 72524391,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 452,
+   "coveredNeededBytes": 8400286,
+   "missNeededFiles": 703,
+   "missNeededBytes": 3976268,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G2.0.2.txt"
+  },
+  "G2@0.4": {
+   "arm": "G2",
+   "budget": 0.4,
+   "budgetBytes": 145048789,
+   "files": 7260,
+   "bytes": 145048781,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 762,
+   "coveredNeededBytes": 10135309,
+   "missNeededFiles": 393,
+   "missNeededBytes": 2241245,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G2.0.4.txt"
+  },
+  "R1@0.05": {
+   "arm": "R1",
+   "budget": 0.05,
+   "budgetBytes": 18131098,
+   "files": 1648,
+   "bytes": 18131098,
+   "stoppedInTier": "remainder",
+   "coveredNeededFiles": 347,
+   "coveredNeededBytes": 5267832,
+   "missNeededFiles": 808,
+   "missNeededBytes": 7108722,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/R1.0.05.txt"
+  },
+  "R1@0.1": {
+   "arm": "R1",
+   "budget": 0.1,
+   "budgetBytes": 36262197,
+   "files": 1654,
+   "bytes": 36262197,
+   "stoppedInTier": "remainder",
+   "coveredNeededFiles": 348,
+   "coveredNeededBytes": 5688377,
+   "missNeededFiles": 807,
+   "missNeededBytes": 6688177,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/R1.0.1.txt"
+  },
+  "R1@0.2": {
+   "arm": "R1",
+   "budget": 0.2,
+   "budgetBytes": 72524394,
+   "files": 2228,
+   "bytes": 72524394,
+   "stoppedInTier": "remainder",
+   "coveredNeededFiles": 486,
+   "coveredNeededBytes": 7431254,
+   "missNeededFiles": 669,
+   "missNeededBytes": 4945300,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/R1.0.2.txt"
+  },
+  "R1@0.4": {
+   "arm": "R1",
+   "budget": 0.4,
+   "budgetBytes": 145048789,
+   "files": 10094,
+   "bytes": 145048781,
+   "stoppedInTier": "remainder",
+   "coveredNeededFiles": 886,
+   "coveredNeededBytes": 10192979,
+   "missNeededFiles": 269,
+   "missNeededBytes": 2183575,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/R1.0.4.txt"
+  },
+  "R2@0.05": {
+   "arm": "R2",
+   "budget": 0.05,
+   "budgetBytes": 18131098,
+   "files": 1107,
+   "bytes": 18131098,
+   "stoppedInTier": "remainder",
+   "coveredNeededFiles": 536,
+   "coveredNeededBytes": 8065669,
+   "missNeededFiles": 619,
+   "missNeededBytes": 4310885,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/R2.0.05.txt"
+  },
+  "R2@0.1": {
+   "arm": "R2",
+   "budget": 0.1,
+   "budgetBytes": 36262197,
+   "files": 1113,
+   "bytes": 36262197,
+   "stoppedInTier": "remainder",
+   "coveredNeededFiles": 536,
+   "coveredNeededBytes": 8065669,
+   "missNeededFiles": 619,
+   "missNeededBytes": 4310885,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/R2.0.1.txt"
+  },
+  "R2@0.2": {
+   "arm": "R2",
+   "budget": 0.2,
+   "budgetBytes": 72524394,
+   "files": 6241,
+   "bytes": 72524388,
+   "stoppedInTier": "remainder",
+   "coveredNeededFiles": 536,
+   "coveredNeededBytes": 8065669,
+   "missNeededFiles": 619,
+   "missNeededBytes": 4310885,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/R2.0.2.txt"
+  },
+  "R2@0.4": {
+   "arm": "R2",
+   "budget": 0.4,
+   "budgetBytes": 145048789,
+   "files": 8236,
+   "bytes": 145048786,
+   "stoppedInTier": "remainder",
+   "coveredNeededFiles": 588,
+   "coveredNeededBytes": 8634485,
+   "missNeededFiles": 567,
+   "missNeededBytes": 3742069,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/R2.0.4.txt"
+  },
+  "O@0.05": {
+   "arm": "O",
+   "budget": 0.05,
+   "budgetBytes": 18131098,
+   "files": 1363,
+   "bytes": 18131098,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1155,
+   "coveredNeededBytes": 12376554,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/O.0.05.txt"
+  },
+  "O@0.1": {
+   "arm": "O",
+   "budget": 0.1,
+   "budgetBytes": 36262197,
+   "files": 1308,
+   "bytes": 36262197,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1155,
+   "coveredNeededBytes": 12376554,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/O.0.1.txt"
+  },
+  "O@0.2": {
+   "arm": "O",
+   "budget": 0.2,
+   "budgetBytes": 72524394,
+   "files": 4121,
+   "bytes": 72524393,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1155,
+   "coveredNeededBytes": 12376554,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/O.0.2.txt"
+  },
+  "O@0.4": {
+   "arm": "O",
+   "budget": 0.4,
+   "budgetBytes": 145048789,
+   "files": 6494,
+   "bytes": 145048788,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1155,
+   "coveredNeededBytes": 12376554,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/O.0.4.txt"
+  }
+ },
+ "stream": {
+  "length": 400,
+  "families": 4,
+  "passes": 2
+ },
+ "warnings": [
+  "NFT reported 94 warning(s)"
+ ],
+ "workloadNotes": [
+  "CONTROLLED FIXTURE — interpretability, not headline evidence. Its job is to answer \"why does one strategy generalise better?\" with a tree whose long tail is known by construction and spans all six categories. Real applications answer whether the advantage exists outside a construction, and the two conclusions are reported separately.",
+  "Built with `experimental.preloadEntriesOnStart: false`. Next's production server otherwise preloads EVERY app route module at startup, pulling each route's whole external dependency subtree into memory before the first request — measured here at 968 files resident before any traffic, versus 377 with the option set. That is a real finding about self-hosted Next.js and is reported as one; the option is Next's own documented opt-out and is what a deployment that cares about cold-start residency would set.",
+  "Heavy leaf libraries are declared in `serverExternalPackages` so they remain real node_modules requires rather than being inlined into a server chunk — the ordinary configuration for large server dependencies."
+ ],
+ "longTail": [
+  {
+   "id": "nx.locale.de",
+   "category": "locale",
+   "why": "a visitor whose Accept-Language selects de is ordinary traffic for a multi-market deployment; the training run only ever saw the default market.",
+   "mechanism": "a message catalogue and a localized content directory read from disk at request time — the i18next-fs-backend / next-intl file-loader shape. Data-shaped, not module-shaped.",
+   "requests": [
+    "GET /i18n/de"
+   ]
+  },
+  {
+   "id": "nx.locale.ja",
+   "category": "locale",
+   "why": "a visitor whose Accept-Language selects ja is ordinary traffic for a multi-market deployment; the training run only ever saw the default market.",
+   "mechanism": "a message catalogue and a localized content directory read from disk at request time — the i18next-fs-backend / next-intl file-loader shape. Data-shaped, not module-shaped.",
+   "requests": [
+    "GET /i18n/ja"
+   ]
+  },
+  {
+   "id": "nx.locale.pt-br",
+   "category": "locale",
+   "why": "a visitor whose Accept-Language selects pt-br is ordinary traffic for a multi-market deployment; the training run only ever saw the default market.",
+   "mechanism": "a message catalogue and a localized content directory read from disk at request time — the i18next-fs-backend / next-intl file-loader shape. Data-shaped, not module-shaped.",
+   "requests": [
+    "GET /i18n/pt-br"
+   ]
+  },
+  {
+   "id": "nx.tenant.globex",
+   "category": "tenant-config",
+   "why": "a second tenant with its own branding is the entire premise of a multi-tenant deployment.",
+   "mechanism": "a per-tenant config file read from a configuration directory, then a dynamically imported per-tenant renderer chunk that pulls a template engine.",
+   "requests": [
+    "GET /tenant/globex"
+   ]
+  },
+  {
+   "id": "nx.tenant.initech",
+   "category": "tenant-config",
+   "why": "a third tenant whose page embeds generated artwork; different tenants legitimately need different libraries.",
+   "mechanism": "the same config read, resolving to a renderer chunk that pulls a QR-code library nothing else uses.",
+   "requests": [
+    "GET /tenant/initech"
+   ]
+  },
+  {
+   "id": "nx.admin",
+   "category": "admin-background",
+   "why": "a spreadsheet export behind an admin token: shipped, occasionally used, and by far the largest dependency in the tree.",
+   "mechanism": "a lazily loaded route chunk whose external require pulls exceljs and its ~500-file archive/zip subtree.",
+   "requests": [
+    "GET /api/admin/export",
+    "GET /api/admin/export"
+   ]
+  },
+  {
+   "id": "nx.report",
+   "category": "rare-route",
+   "why": "alternate report serialisations are documented API used by a minority of clients.",
+   "mechanism": "per-format dynamic import of a distinct external serialiser (papaparse, marked).",
+   "requests": [
+    "GET /api/report/csv",
+    "GET /api/report/markdown"
+   ]
+  },
+  {
+   "id": "nx.error",
+   "category": "error-path",
+   "why": "a downstream failure is inevitable in production, and the structured report is what the operator actually sees.",
+   "mechanism": "error-reporting libraries loaded lazily, so nothing loads them until something has already gone wrong.",
+   "requests": [
+    "GET /api/error-trigger"
+   ]
+  },
+  {
+   "id": "nx.feature",
+   "category": "optional-feature",
+   "why": "a feature flag enabled for some callers and not others is standard configuration-driven behaviour.",
+   "mechanism": "a configuration file read at request time gating a conditional dynamic import of a polyfill subtree.",
+   "requests": [
+    "GET /api/feature/temporal",
+    "GET /api/feature/disabled-example"
+   ]
+  },
+  {
+   "id": "nx.notfound",
+   "category": "error-path",
+   "why": "unknown locales, unknown tenants and unknown report kinds all arrive from crawlers and stale links.",
+   "mechanism": "the not-found branches of three different dynamic route segments.",
+   "requests": [
+    "GET /i18n/zz",
+    "GET /tenant/nope",
+    "GET /api/report/xml"
+   ]
+  }
+ ]
+}

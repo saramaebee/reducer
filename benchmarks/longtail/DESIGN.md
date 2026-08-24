@@ -686,3 +686,72 @@ reported as negative/inconclusive for product differentiation.
 Fewer misses is **not** a result on its own. It counts only if it shows up in
 post-admission latency, in time-to-steady-state, or in substantially lower
 prewarm cost.
+
+---
+
+## Amendment A1 — the shared widening rule (2026-08-24)
+
+**Recorded before any measured strategy trial ran.** Detected during pilot
+validation of the controlled fixture, from the *analytic* coverage of the ranked
+sets — no trial, no latency, no timing was involved.
+
+### What was wrong
+
+§7 as first implemented ordered each strategy's widening as a sequence of
+lexicographic tiers: distance class first, size only as a tiebreak inside it.
+One enormous distance class then starves every later one. On the Next.js
+fixture, R2's class "the rest of a package TRAIN touched" is ~200 MB — almost
+all of `next/` — so R2 spent every budget from 5 % to 40 % inside that one class
+and never reached the dependency closure where the optional features live:
+
+```text
+                covered needed files, by budget (fixture, pre-amendment)
+        5 %     10 %    20 %    40 %          of 1 155 needed
+G1      522     502     522     972
+G2      445     449     452     762
+R1      347     348     486     886
+R2      536     536     536     588      ← flat: never leaves one class
+O      1155    1155    1155    1155
+```
+
+Worse, that class was ordered **package-major** — files grouped by owning
+package, one package exhausted before the next. That is precisely the
+same-package clustering hypothesis experiment 3 **refuted**, and which §1 of
+this document says this experiment does not revive. It had been carried over
+from experiment 3's B3b without being re-justified.
+
+This is a specification defect, not an unfavourable outcome: the ranking
+contradicted the design's own stated intent (§7: "deliberately not 'prefetch the
+whole package' … whole-package widening spends exactly the file-level sparsity
+this direction exists to exploit").
+
+### The fix
+
+One widening function, used verbatim by G2, R1 and R2:
+
+```text
+key(f) = min(distance(f), 16) + log2(size(f) + 1)        ascending
+       ≡ order by  size(f) × 2^distance(f)
+```
+
+Prefer small files; charge one doubling of size per unit of distance from what
+is already known. No class can starve another, and coverage becomes monotone in
+budget.
+
+**The only difference between the strategies is now what "distance" means** —
+which is exactly the question this experiment asks:
+
+| arm | distance |
+| --- | --- |
+| G2 | edges of the DIRECTORY TREE to the nearest directory a TRAIN-touched file lives in |
+| R1 | declared-dependency hops from the entrypoint's package closure; 0 for a package the module graph proved live |
+| R2 | declared-dependency hops from the set of packages TRAIN touched, minus 0.5 when the file carries positive NFT evidence |
+
+Strict, non-widening tiers are unchanged: TRAIN order / entrypoint, resolver
+metadata, NFT-positive evidence, and (R1 only) the ADR-0007 Plan B forced-hot
+set still precede the pool in the order §7 gives.
+
+The change makes the generic arm **stronger** as well as the semantic arms —
+G2's widening now also maximises files-per-byte — so it moves in the direction
+that favours the null hypothesis. Nothing about the information boundary (§6.1)
+changed: G2 still may not see a package, a module edge or a resolver rule.

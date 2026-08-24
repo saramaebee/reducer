@@ -58,9 +58,37 @@ function tier(out: string[], seen: Set<string>, tiers: Ranking['tiers'], name: s
   tiers.push({ name, upto: out.length });
 }
 
-/** Every universe file, ascending size then path — the shared terminal order. */
-function bySizeThenPath(rels: Iterable<string>, size: Map<string, number>): string[] {
-  return [...rels].sort((a, b) => (size.get(a) ?? 0) - (size.get(b) ?? 0) || (a < b ? -1 : a > b ? 1 : 0));
+/**
+ * The shared widening rule (DESIGN.md amendment A1).
+ *
+ *     key(f) = distance(f) + log2(size(f) + 1)          ascending
+ *
+ * which orders by `size × 2^distance`: prefer small files, and charge one
+ * doubling of size for each unit of distance from what is already known. It is
+ * used verbatim by G2, R1 and R2 — the ONLY difference between them is what
+ * "distance" means, which is exactly the question this experiment asks. G2's
+ * distance is measured in edges of the directory tree; R1's and R2's in Node
+ * package-dependency hops.
+ *
+ * Why not a lexicographic (distance, size) order, which is what the first
+ * implementation did: one enormous distance class starves every later one. On
+ * the Next.js fixture the class "the rest of a package TRAIN touched" is 200 MB
+ * — almost all of `next/` — so R2 spent every budget from 5 % to 40 % inside it
+ * and never reached the dependency closure where the optional features live.
+ * Its coverage was flat at 536 needed files from 5 % to 40 %. That ordering was
+ * also package-major, i.e. the same-package clustering hypothesis experiment 3
+ * REFUTED and DESIGN.md §1 says this experiment does not revive. Removing it
+ * enforces the preregistration rather than evading it.
+ */
+const CAP = 16;
+function widen(
+  rels: string[],
+  size: Map<string, number>,
+  distance: (rel: string) => number,
+): string[] {
+  const key = new Map<string, number>();
+  for (const r of rels) key.set(r, Math.min(distance(r), CAP) + Math.log2((size.get(r) ?? 0) + 1));
+  return rels.sort((a, b) => key.get(a)! - key.get(b)! || (a < b ? -1 : a > b ? 1 : 0));
 }
 
 // ───────────────────────────────────────────────────────────── G1 — literal
@@ -94,16 +122,16 @@ export function g1(plan: LongtailPlan, train: TrainAccess[]): Ranking {
 /**
  * G2 — the strongest widening a strategy can do with no Node knowledge.
  *
- * After the trace itself, rank every remaining file by how far its directory is
- * from the nearest directory the training run touched, measured in edges of the
- * directory tree (so distance 0 is experiment 3's one-level directory
- * expansion, distance 1 adds parents and siblings, and so on). Ties break on
- * the TRAIN time of that nearest anchor, then on ascending size.
+ * After the trace itself, every remaining file is ranked by the shared widening
+ * rule with distance = edges of the DIRECTORY TREE to the nearest directory the
+ * training run touched. Distance 0 is experiment 3's one-level directory
+ * expansion; distance 1 adds parents and siblings; and so on.
  *
  * This is a genuine generalisation, not a straw man: in a `node_modules` tree
- * files of one package are near each other, so distance-based widening
+ * files of one package are near each other, so directory-distance widening
  * approximates package widening without ever knowing what a package is. It is
- * strictly stronger than experiment 3's B2d, which stopped at distance 0.
+ * strictly stronger than experiment 3's B2d, which stopped at distance 0, and
+ * it is the same function R1/R2 use — only the definition of distance differs.
  */
 export function g2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
   const size = new Map(plan.files);
@@ -165,20 +193,8 @@ export function g2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
   tier(out, seen, tiers, 'train-order', [...train].sort((a, b) => a.firstMs - b.firstMs).map((t) => t.rel));
 
   const rest = plan.files.map(([rel]) => rel).filter((rel) => !touched.has(rel));
-  const INF = Number.MAX_SAFE_INTEGER;
-  rest.sort((a, b) => {
-    const da = dist.get(dirOf(a)) ?? INF;
-    const db = dist.get(dirOf(b)) ?? INF;
-    if (da !== db) return da - db;
-    const aa = anchor.get(dirOf(a)) ?? INF;
-    const ab = anchor.get(dirOf(b)) ?? INF;
-    if (aa !== ab) return aa - ab;
-    const sa = size.get(a) ?? 0;
-    const sb = size.get(b) ?? 0;
-    if (sa !== sb) return sa - sb;
-    return a < b ? -1 : a > b ? 1 : 0;
-  });
-  tier(out, seen, tiers, 'path-distance-widening', rest);
+  void anchor;
+  tier(out, seen, tiers, 'path-distance-widening', widen(rest, size, (r) => dist.get(dirOf(r)) ?? CAP));
   return {
     arm: 'G2',
     inputs: [
@@ -230,38 +246,17 @@ export function r1(plan: LongtailPlan): Ranking {
   tier(out, seen, tiers, 'nft-positive', plan.nftOrder.filter((r) => nft.has(r)));
   tier(out, seen, tiers, 'plan-b-forced-hot', [...plan.planBHot].sort());
 
+  // The widening pool, ranked by SEMANTIC distance under the shared rule: a
+  // package the module graph proved live is at hop 0, and each declared
+  // dependency edge away from the entrypoint's own closure is one hop further.
   const remaining = plan.files.map(([rel]) => rel).filter((rel) => !seen.has(rel));
-  const inLivePkg: string[] = [];
-  const inDepPkg: string[] = [];
-  const elsewhere: string[] = [];
-  for (const rel of remaining) {
+  void nftRank;
+  const hopOf = (rel: string): number => {
     const p = pkgOf.get(rel) ?? '';
-    if (livePkgFirstRank.has(p)) inLivePkg.push(rel);
-    else if (depth.has(p)) inDepPkg.push(rel);
-    else elsewhere.push(rel);
-  }
-  inLivePkg.sort((a, b) => {
-    const pa = livePkgFirstRank.get(pkgOf.get(a) ?? '')!;
-    const pb = livePkgFirstRank.get(pkgOf.get(b) ?? '')!;
-    if (pa !== pb) return pa - pb;
-    const ra = nftRank.get(a) ?? 1e9;
-    const rb = nftRank.get(b) ?? 1e9;
-    if (ra !== rb) return ra - rb;
-    const sa = size.get(a) ?? 0;
-    const sb = size.get(b) ?? 0;
-    return sa - sb || (a < b ? -1 : 1);
-  });
-  inDepPkg.sort((a, b) => {
-    const da = depth.get(pkgOf.get(a) ?? '')!;
-    const db = depth.get(pkgOf.get(b) ?? '')!;
-    if (da !== db) return da - db;
-    const sa = size.get(a) ?? 0;
-    const sb = size.get(b) ?? 0;
-    return sa - sb || (a < b ? -1 : 1);
-  });
-  tier(out, seen, tiers, 'rest-of-graph-live-packages', inLivePkg);
-  tier(out, seen, tiers, 'declared-dependency-closure', inDepPkg);
-  tier(out, seen, tiers, 'remainder', bySizeThenPath(elsewhere, size));
+    if (livePkgFirstRank.has(p)) return 0;
+    return depth.get(p) ?? CAP;
+  };
+  tier(out, seen, tiers, 'semantic-distance-widening', widen(remaining, size, hopOf));
   return {
     arm: 'R1',
     inputs: [
@@ -333,42 +328,27 @@ export function r2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
   tier(out, seen, tiers, 'train-order', trainSorted.map((t) => t.rel));
   tier(out, seen, tiers, 'resolver-metadata', [...plan.packageJsons].sort((a, b) => (hop.get(pkgOf.get(a) ?? '') ?? 1e9) - (hop.get(pkgOf.get(b) ?? '') ?? 1e9) || (a < b ? -1 : 1)));
 
-  const rest = plan.files.map(([rel]) => rel).filter((rel) => !seen.has(rel) && !touched.has(rel));
-  const liveNft: string[] = [];
-  const liveRest: string[] = [];
-  const coldNft: string[] = [];
-  const depClosure: string[] = [];
-  const elsewhere: string[] = [];
-  for (const rel of rest) {
-    const p = pkgOf.get(rel) ?? '';
-    const live = pkgFirstTouch.has(p);
-    if (live && nft.has(rel)) liveNft.push(rel);
-    else if (live) liveRest.push(rel);
-    else if (nft.has(rel)) coldNft.push(rel);
-    else if (hop.has(p)) depClosure.push(rel);
-    else elsewhere.push(rel);
-  }
-  const byPkgThen = (rank: (p: string) => number) => (a: string, b: string) => {
-    const pa = rank(pkgOf.get(a) ?? '');
-    const pb = rank(pkgOf.get(b) ?? '');
-    if (pa !== pb) return pa - pb;
-    const ra = nftRank.get(a) ?? 1e9;
-    const rb = nftRank.get(b) ?? 1e9;
-    if (ra !== rb) return ra - rb;
-    const sa = size.get(a) ?? 0;
-    const sb = size.get(b) ?? 0;
-    return sa - sb || (a < b ? -1 : 1);
-  };
-  liveNft.sort(byPkgThen((p) => pkgFirstTouch.get(p) ?? 1e9));
-  liveRest.sort(byPkgThen((p) => pkgFirstTouch.get(p) ?? 1e9));
-  coldNft.sort((a, b) => (nftRank.get(a) ?? 1e9) - (nftRank.get(b) ?? 1e9) || (a < b ? -1 : 1));
-  depClosure.sort(byPkgThen((p) => hop.get(p) ?? 1e9));
-
+  // Strict tier: positive graph evidence inside a package the workload proved
+  // live. This is not widening — it is the module graph saying the file is
+  // reachable from the entrypoint — so it precedes the pool.
+  const liveNft = plan.files
+    .map(([rel]) => rel)
+    .filter((rel) => !seen.has(rel) && nft.has(rel) && pkgFirstTouch.has(pkgOf.get(rel) ?? ''))
+    .sort((a, b) => (nftRank.get(a) ?? 1e9) - (nftRank.get(b) ?? 1e9) || (a < b ? -1 : 1));
   tier(out, seen, tiers, 'graph-positive-in-live-packages', liveNft);
-  tier(out, seen, tiers, 'rest-of-live-packages', liveRest);
-  tier(out, seen, tiers, 'graph-positive-elsewhere', coldNft);
-  tier(out, seen, tiers, 'declared-dependency-closure', depClosure);
-  tier(out, seen, tiers, 'remainder', bySizeThenPath(elsewhere, size));
+
+  // The widening pool, under the shared rule. Semantic distance:
+  //   a file in a package the workload touched is at hop 0;
+  //   each declared dependency edge away from that touched set is one hop;
+  //   positive graph evidence is worth half a hop, because a file the module
+  //   graph reaches is stronger evidence than mere package membership.
+  const remaining = plan.files.map(([rel]) => rel).filter((rel) => !seen.has(rel));
+  const distOf = (rel: string): number => {
+    const p = pkgOf.get(rel) ?? '';
+    const h = hop.get(p) ?? CAP;
+    return Math.max(0, h - (nft.has(rel) ? 0.5 : 0));
+  };
+  tier(out, seen, tiers, 'semantic-distance-widening', widen(remaining, size, distOf));
   return {
     arm: 'R2',
     inputs: [
