@@ -889,3 +889,37 @@ both: no headline claim can turn on which was chosen. Note how tight several of
 these are — uptime-kuma's band is 7 ms — so on those apps any real prewarm
 shortfall will show up immediately, and any *absence* of a difference is a
 genuine null rather than a slack criterion hiding one.
+
+---
+
+## Amendment A4 — the analysis addition, and why it was needed (2026-08-24)
+
+**Made after the strategy trials, and therefore the one amendment that could in
+principle have been chosen to suit an outcome.** It is recorded here in full, the
+preregistered criterion is still computed and reported unchanged beside it, and
+the reasoning is stated so it can be attacked.
+
+§8.4 defines traffic-warm as every post-admission window p99 falling inside a
+band derived from the eager arm's **warm** pass. Measured, that target is
+unreachable — **by the eager arm itself**. Every cold first pass carries an
+application warm-up tail (V8 tiering, first-request initialisation, lazy
+in-process caches) that the warm pass by definition does not contain. On
+verdaccio, juice-shop, strapi and the fixture, E0 is 0/4 "traffic-warm" against
+its own band; on uptime-kuma it is 2/4. A criterion that the reference arm fails
+cannot separate the strategies.
+
+The addition asks the question the operator's own framing implies instead:
+
+```text
+EAGER-MATCHED   an arm is eager-matched at a budget iff its median worst
+                post-admission window p99 is <= the WORST such value the eager
+                arm itself produced across its four families.
+```
+
+The eager arm's own worst family, not its median: a median is a bound the
+reference fails half the time, and on strapi the arms sit within 2–5 ms of it, so
+a median threshold would decide the headline on measurement noise.
+
+Both criteria appear in `SUMMARY.md` §5 and §5b, and `FINDINGS.md` reports the
+eager-matched one because it is the answerable one. Nothing else about the
+analysis changed after the strategy trials ran.
