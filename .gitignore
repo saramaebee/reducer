@@ -2,3 +2,4 @@
 dist-reduced/
 *.tsbuildinfo
 .claude/settings.local.json
+benchmarks/lazy-oci/container/nydus-static/
