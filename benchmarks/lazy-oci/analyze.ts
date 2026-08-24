@@ -89,6 +89,10 @@ export interface TrialMetrics {
   reqLatency: { n: number; p50: number; p95: number; p99: number; first: number };
   /** cumulative fetch curve: [ms from t0, remote requests, remote bytes] */
   curve: [number, number, number][];
+  /** command-driven phases (e.g. a socket.io surface): silent output means the
+   *  phase connected but never exercised the app — a workload failure that must
+   *  never be read as a fast arm (ADVERSARIAL.md D10). */
+  commandPhases: { phase: string; code: number | null; ms: number; silent: boolean }[];
   requests: { path: string; method: string; phase: string; status: number | string; ms: number; bodyHash: string | null }[];
 }
 
@@ -189,6 +193,9 @@ function analyzeTrial(
       .filter((s) => Number.isFinite(s.at))
       .map((s) => [s.at - t0, s.rq ?? 0, s.rb ?? 0] as [number, number, number])
       .filter((_, i, arr) => arr.length <= 400 || i % Math.ceil(arr.length / 400) === 0),
+    commandPhases: events
+      .filter((e) => e.ev === 'command')
+      .map((e) => ({ phase: e.phase, code: e.code ?? null, ms: e.ms, silent: !String(e.out ?? '').trim() })),
     reqLatency: {
       n: lat.length,
       p50: median(lat),
@@ -340,6 +347,7 @@ function analyzeApp(app: string): void {
     train: prepped.train,
     byArm,
     orderDrift,
+    silentCommandTrials: trials.filter((t) => t.commandPhases.some((c) => c.silent)).map((t) => `${t.arm}.rep${t.rep}`),
     correctness,
     // one representative curve per arm (the median-ready trial); the rest are
     // dropped so the metrics file stays readable, and every raw sample stream
@@ -367,6 +375,13 @@ function analyzeApp(app: string): void {
         `${f(a.remoteRequests.median).padStart(9)}  ${mb(a.remoteBytes.median).padStart(8)}  ${mb(a.bytesAtReady.median).padStart(7)}  ` +
         `${(a.precision.median * 100).toFixed(1).padStart(5)}%  ${(a.recall.median * 100).toFixed(1).padStart(5)}%  ` +
         `${String(a.unexpectedMissFiles.median).padStart(6)}/${mb(a.unexpectedMissBytes.median).padStart(5)}  ${f(a.latencyP95.median).padStart(7)}`,
+    );
+  }
+  const silent = trials.filter((t) => t.commandPhases.some((c) => c.silent));
+  if (silent.length) {
+    console.log(
+      `  WORKLOAD DEFECT: ${silent.length}/${trials.length} trial(s) had a command phase that produced no output ` +
+        `(${silent.map((t) => `${t.arm}.rep${t.rep}`).join(' ')}) — those trials did not exercise that surface`,
     );
   }
   const bad = Object.entries(correctness).filter(([, c]) => c.statusMismatch > 0);

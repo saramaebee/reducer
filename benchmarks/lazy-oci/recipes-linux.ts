@@ -61,6 +61,20 @@ const portOf = (r: (typeof RECIPES)[string]): number => {
   return Number(m[1]);
 };
 
+/**
+ * Ready-predicate overrides, applied identically to every arm.
+ *
+ * uptime-kuma's recipe predicate is the stdout line `Listening on`, but the app
+ * registers its socket.io event handlers only after DB initialisation finishes.
+ * A socket client that connects on the stdout signal is never acked, so the
+ * entire held-out socket surface silently did not run in 14 of 15 trials
+ * (ADVERSARIAL.md D10). Its own HTTP surface answers only once initialisation
+ * is complete, so that is the honest readiness signal for this app.
+ */
+const READY_OVERRIDE: Record<string, { kind: 'http'; value: string; timeoutMs: number }> = {
+  'uptime-kuma': { kind: 'http', value: 'http://127.0.0.1:3408/api/entry-page', timeoutMs: 180_000 },
+};
+
 export function linuxRecipe(app: string): LinuxRecipe {
   const r = RECIPES[app];
   if (!r) throw new Error(`no recipe for '${app}'`);
@@ -72,7 +86,8 @@ export function linuxRecipe(app: string): LinuxRecipe {
     env[k] = val;
   }
   const ready =
-    r.ready.kind === 'tcp'
+    READY_OVERRIDE[app] ??
+    (r.ready.kind === 'tcp'
       ? { kind: 'tcp' as const, port: (r.ready as { port: number }).port, timeoutMs: r.ready.timeoutMs }
       : {
           kind: r.ready.kind,
@@ -81,7 +96,7 @@ export function linuxRecipe(app: string): LinuxRecipe {
             '127.0.0.1',
           ),
           timeoutMs: r.ready.timeoutMs,
-        };
+        });
 
   return {
     app,
