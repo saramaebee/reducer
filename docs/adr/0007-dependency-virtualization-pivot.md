@@ -146,3 +146,60 @@ representative workloads to derive hydration curves (hot-set % at startup /
 common requests / full workload). Those numbers decide whether a recovery
 runtime is worth building. Deliberately out of scope until then: cold stores,
 hydration runtimes, CAS protocols, loaders, telemetry backends.
+
+## Decision — experiment 5 closes the performance direction (2026-08-24)
+
+**Status: the traffic-warm performance wedge is CLOSED. Performance
+experimentation stops.**
+
+Five experiments have now tested it end to end, and each preserved run is
+untouched:
+
+```text
+1  static sparsity                benchmarks/working-set/first-run/
+2  runtime coldness               benchmarks/hydration/run-1/
+3  commodity lazy OCI             benchmarks/lazy-oci/run-1/
+4  generic vs semantic prefetch   benchmarks/longtail/run-1/
+   held-out long tail, equal LOGICAL-BYTE budgets
+5  semantic prediction under      benchmarks/costaware/run-1/
+   real retrieval economics
+```
+
+Experiment 4 left exactly one explanation standing: that Reducer's semantic
+planner lost time-to-steady-state only because an equal *file-byte* budget is
+not an equal *time* budget. Experiment 5 implemented the correction — a
+calibrated physical retrieval-cost model (R² 0.998; 11 % MAPE predicting real
+prewarm milliseconds on the deployed manifests), contiguous retrieval units, and
+budgets measured rather than modelled — and the correction worked: it is worth
+**5.4 s of time-to-steady-state on the 915 MB ICP-size application** and it
+removes a one-second first-hit cliff.
+
+It is worth that to the **generic** ranking and the **semantic** ranking alike.
+Under equal measured prewarm cost the two prediction sources converge on the same
+physical content (resident-set overlap 0.51–0.57 rising to 1.00 within three
+rungs, against 0.01–0.12 for the same two sources without cost-awareness), the
+generic arm is ahead on 11 of 15 cells, and the single semantic win does not
+reproduce on the second positive application and disappears under a faster
+network.
+
+The reason is physical, not incidental, and it generalises: on a request-bound,
+chunk-deduplicated, one-dimensional blob, **precision is a liability**.
+Prefetching exactly the files the workload will touch costs strapi 1 697 backend
+requests and a predicted 18.1 s; buying 21× more content chosen only for
+contiguity costs 132 requests and a measured 1.9 s. A perfect oracle loses, so no
+improvement in prediction accuracy can win — accuracy is not the binding
+constraint.
+
+**Retained as enabling technology, not as a product wedge:** cost-aware,
+unit-granularity prewarming with a minimal-descriptor manifest. It needs a chunk
+map and arithmetic — no Node analysis, no dependency graph, no training run —
+and it is portable to any lazy-OCI substrate.
+
+**Retired as a performance claim:** semantic prewarm planning, the R1/R2 arms as
+product differentiation, and the ADR-0007 hypothesis that predicting the working
+set better makes a pod traffic-warm sooner.
+
+Per experiment 5's own decision rule, a negative result is not rescued with
+another planner revision, and none is proposed. Recoverability (experiment 3) is
+unaffected and remains established; nothing here speaks to the dormant
+sound-island probe (FE-1).
