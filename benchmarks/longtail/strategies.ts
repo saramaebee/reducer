@@ -243,20 +243,25 @@ export function r1(plan: LongtailPlan): Ranking {
     'resolver-metadata',
     [...plan.packageJsons].sort((a, b) => (depth.get(pkgOf.get(a) ?? '') ?? 1e9) - (depth.get(pkgOf.get(b) ?? '') ?? 1e9) || (a < b ? -1 : 1)),
   );
-  tier(out, seen, tiers, 'nft-positive', plan.nftOrder.filter((r) => nft.has(r)));
-  tier(out, seen, tiers, 'plan-b-forced-hot', [...plan.planBHot].sort());
 
-  // The widening pool, ranked by SEMANTIC distance under the shared rule: a
-  // package the module graph proved live is at hop 0, and each declared
-  // dependency edge away from the entrypoint's own closure is one hop further.
-  const remaining = plan.files.map(([rel]) => rel).filter((rel) => !seen.has(rel));
-  void nftRank;
-  const hopOf = (rel: string): number => {
+  // Everything else is PREDICTION and goes in the size-disciplined pool, at a
+  // semantic distance that encodes ADR-0007 Plan B's own priority order:
+  //   0    positive module-graph evidence
+  //   0.5  a Plan B forced-hot file (opaque native/WASM/install-script boundary)
+  //   1    any other file of a package the graph proved live
+  //   1+h  a package h declared-dependency hops from the entrypoint's closure
+  const planB = new Set(plan.planBHot);
+  const livePkg = new Set<string>();
+  for (const rel of plan.nft) livePkg.add(pkgOf.get(rel) ?? '');
+  const pool = plan.files.map(([rel]) => rel).filter((rel) => !seen.has(rel));
+  const distOf = (rel: string): number => {
     const p = pkgOf.get(rel) ?? '';
-    if (livePkgFirstRank.has(p)) return 0;
-    return depth.get(p) ?? CAP;
+    const base = livePkg.has(p) ? 0 : (depth.get(p) ?? CAP);
+    return base + (nft.has(rel) ? 0 : planB.has(rel) ? 0.5 : 1);
   };
-  tier(out, seen, tiers, 'semantic-distance-widening', widen(remaining, size, hopOf));
+  void nftRank;
+  void livePkgFirstRank;
+  tier(out, seen, tiers, 'semantic-distance-widening', widen(pool, size, distOf));
   return {
     arm: 'R1',
     inputs: [
@@ -328,27 +333,21 @@ export function r2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
   tier(out, seen, tiers, 'train-order', trainSorted.map((t) => t.rel));
   tier(out, seen, tiers, 'resolver-metadata', [...plan.packageJsons].sort((a, b) => (hop.get(pkgOf.get(a) ?? '') ?? 1e9) - (hop.get(pkgOf.get(b) ?? '') ?? 1e9) || (a < b ? -1 : 1)));
 
-  // Strict tier: positive graph evidence inside a package the workload proved
-  // live. This is not widening — it is the module graph saying the file is
-  // reachable from the entrypoint — so it precedes the pool.
-  const liveNft = plan.files
-    .map(([rel]) => rel)
-    .filter((rel) => !seen.has(rel) && nft.has(rel) && pkgFirstTouch.has(pkgOf.get(rel) ?? ''))
-    .sort((a, b) => (nftRank.get(a) ?? 1e9) - (nftRank.get(b) ?? 1e9) || (a < b ? -1 : 1));
-  tier(out, seen, tiers, 'graph-positive-in-live-packages', liveNft);
-
-  // The widening pool, under the shared rule. Semantic distance:
-  //   a file in a package the workload touched is at hop 0;
-  //   each declared dependency edge away from that touched set is one hop;
-  //   positive graph evidence is worth half a hop, because a file the module
-  //   graph reaches is stronger evidence than mere package membership.
-  const remaining = plan.files.map(([rel]) => rel).filter((rel) => !seen.has(rel));
+  // Everything after the trace and the resolver metadata is PREDICTION, and all
+  // of it goes in the size-disciplined pool — symmetric with G2, whose
+  // speculation is likewise all inside its pool. Semantic distance:
+  //   0    positive module-graph evidence in a package the workload touched
+  //   1    any other file of a package the workload touched, or graph evidence
+  //        in a package it did not
+  //   1+h  a package h declared-dependency hops from the touched set
+  const pool = plan.files.map(([rel]) => rel).filter((rel) => !seen.has(rel));
+  void nftRank;
   const distOf = (rel: string): number => {
     const p = pkgOf.get(rel) ?? '';
-    const h = hop.get(p) ?? CAP;
-    return Math.max(0, h - (nft.has(rel) ? 0.5 : 0));
+    const base = pkgFirstTouch.has(p) ? 0 : (hop.get(p) ?? CAP);
+    return base + (nft.has(rel) ? 0 : 1);
   };
-  tier(out, seen, tiers, 'semantic-distance-widening', widen(remaining, size, distOf));
+  tier(out, seen, tiers, 'semantic-distance-widening', widen(pool, size, distOf));
   return {
     arm: 'R2',
     inputs: [

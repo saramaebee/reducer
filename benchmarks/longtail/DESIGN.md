@@ -755,3 +755,79 @@ The change makes the generic arm **stronger** as well as the semantic arms —
 G2's widening now also maximises files-per-byte — so it moves in the direction
 that favours the null hypothesis. Nothing about the information boundary (§6.1)
 changed: G2 still may not see a package, a module edge or a resolver rule.
+
+---
+
+## Amendment A2 — all prediction goes in the pool (2026-08-24)
+
+**Recorded before any measured strategy trial ran.** Same pilot as A1, same
+analytic-coverage-only evidence, same day, same commit sequence.
+
+After A1 the arms were still not structurally comparable. G2's *entire*
+speculation lives inside the size-disciplined pool, but R1 and R2 still carried
+speculative tiers ahead of theirs — R2 emitted every NFT-positive file of every
+TRAIN-touched package strictly before widening, and R1 emitted the whole
+ADR-0007 Plan B forced-hot set. On the fixture those tiers alone exceed the 10 %
+budget (`next/`'s NFT closure is bytes-heavy), so R2's coverage was still
+essentially flat at 536 files from 5 % to 10 %, and R1's at ~348. The semantic
+arms were being judged on a tier structure the generic arm did not have.
+
+**The fix.** Only what is *certain* stays strict:
+
+```text
+G1, G2   strict: the TRAIN trace
+R2       strict: the TRAIN trace, then every package.json (resolver metadata:
+                 Node must read these before anything resolves at all)
+R1       strict: the entrypoint, then every package.json
+everyone else:   the size-disciplined pool, key = distance + log2(size+1)
+```
+
+NFT positive evidence and Plan B forced-hot membership are *predictions*, not
+observations, so they now express themselves as a shorter semantic distance
+inside the pool rather than as an exemption from the budget discipline:
+
+```text
+R1 distance   0    positive module-graph evidence
+              0.5  Plan B forced-hot (opaque native/WASM/install-script boundary)
+              1    any other file of a package the graph proved live
+              1+h  a package h declared-dependency hops from the entry closure
+R2 distance   0    graph evidence in a package the workload touched
+              1    any other file of a touched package, or graph evidence
+                   in an untouched one
+              1+h  a package h declared-dependency hops from the touched set
+```
+
+The four arms are now identical in structure — `strict certainty ∥ pooled
+prediction` — and differ in exactly two things: what each is allowed to know
+(§6.1), and how each measures distance. No further knob exists to turn.
+
+### The pre-amendment numbers, so the amendments cannot hide a result
+
+Covered needed files (of 1 155) on the controlled fixture:
+
+```text
+              5 %    10 %    20 %    40 %
+pre-A1  G2    445     449     452     762
+        R1    347     348     486     886
+        R2    536     536     536     588
+post-A1 G2    767    1049    1148    1155
+        R1    347     348     486     886      (unchanged: strict tiers dominated)
+        R2    536     536     866    1155
+post-A2 G2    767    1049    1148    1155
+        R1    828    1040    1146    1155
+        R2    818    1032    1152    1155
+```
+
+Both amendments were made for structural reasons and both **strengthen the
+generic arm** as well as the semantic ones. Note what the corrected table
+already shows on the fixture that was built to favour semantics: once every arm
+is under the same size discipline, generic directory distance and Node
+package distance produce **almost the same coverage curve**. That is a
+preliminary negative signal, it is recorded here before any latency was
+measured, and it is not going to be tuned away.
+
+### Sensitivity required of the analysis
+
+Because the shared `log2(size)` term is doing real work, the analysis must also
+report coverage under a **distance-only** ranking (no size term) for every arm,
+so that the conclusion is shown not to be an artefact of the size normaliser.
