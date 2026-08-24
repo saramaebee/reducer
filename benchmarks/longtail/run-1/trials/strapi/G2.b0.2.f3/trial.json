@@ -1,0 +1,22 @@
+{
+ "app": "strapi",
+ "arm": "G2",
+ "budget": 0.2,
+ "family": 3,
+ "order": 62,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/strapi/G2.b0.2.f3",
+ "prefetchFile": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G2.0.2.txt",
+ "prefetchAll": false,
+ "milestones": {
+  "setup-done": 1787557596285,
+  "t0": 1787557596286,
+  "mount": 1787557596318,
+  "proc": 1787557596371,
+  "prefetch-last-progress": 1787557622769,
+  "prewarm": 1787557623627,
+  "workload-done": 1787557636462,
+  "collect": 1787557636479,
+  "done": 1787557636804
+ },
+ "exit": 0
+}

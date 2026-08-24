@@ -1,0 +1,8910 @@
+{
+ "app": "strapi",
+ "kind": "real",
+ "universe": {
+  "files": 123474,
+  "bytes": 915036345
+ },
+ "neededBytes": 34501249,
+ "train": {
+  "files": 4845,
+  "bytes": 32175732
+ },
+ "neededTest": {
+  "files": 5118,
+  "bytes": 34501249
+ },
+ "heldOut": {
+  "files": 273,
+  "bytes": 2325517
+ },
+ "heldOutByCategory": {
+  "optional-feature": {
+   "files": 272,
+   "bytes": 2271509
+  },
+  "rare-route": {
+   "files": 1,
+   "bytes": 54008
+  }
+ },
+ "band": {
+  "app": "strapi",
+  "n": 4,
+  "warmWindowP99s": [
+   78,
+   80,
+   80,
+   80,
+   78,
+   78,
+   78,
+   78,
+   78,
+   78,
+   78,
+   78,
+   78,
+   78,
+   78,
+   77,
+   78,
+   78,
+   78,
+   78,
+   78,
+   79,
+   79,
+   79,
+   78,
+   79,
+   78,
+   78,
+   77,
+   79,
+   77,
+   78,
+   78,
+   77,
+   77,
+   77,
+   77,
+   77,
+   78,
+   78,
+   78,
+   78,
+   79,
+   78,
+   78,
+   78,
+   78,
+   78,
+   79,
+   80,
+   80,
+   80,
+   80,
+   80,
+   78,
+   78,
+   79,
+   78,
+   79,
+   79,
+   79,
+   79,
+   80,
+   79
+  ],
+  "primary": 80,
+  "sensitivity": 78,
+  "warmMedian": 78
+ },
+ "window": {
+  "size": 100,
+  "step": 20
+ },
+ "referenceBudget": 0.1,
+ "byCell": {
+  "E0": {
+   "n": 4,
+   "arm": "E0",
+   "budget": null,
+   "prewarmFileBytes": null,
+   "prewarmFiles": null,
+   "stoppedInTier": null,
+   "timeToTrafficWarmMs": {
+    "median": 28595,
+    "min": 28489,
+    "max": 28771,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 127,
+    "min": 118,
+    "max": 130,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 49,
+    "min": 40,
+    "max": 52,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 22675,
+    "min": 22640,
+    "max": 22891,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 228270196,
+    "min": 228270196,
+    "max": 228270196,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 20093,
+    "min": 19928,
+    "max": 20325,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 26606,
+    "min": 26560,
+    "max": 26849,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 22695,
+    "min": 22653,
+    "max": 22931,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 71,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 81,
+    "min": 81,
+    "max": 82,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 78,
+    "min": 78,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": null,
+   "analyticMissNeededBytes": null,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 1989
+  },
+  "G1@0.05": {
+   "n": 4,
+   "arm": "G1",
+   "budget": 0.05,
+   "prewarmFileBytes": 45751817,
+   "prewarmFiles": 6579,
+   "stoppedInTier": "remainder-by-path",
+   "timeToTrafficWarmMs": {
+    "median": 19247,
+    "min": 19115,
+    "max": 19841,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 224,
+    "min": 223,
+    "max": 241,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 146,
+    "min": 145,
+    "max": 163,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 7,
+    "min": 7,
+    "max": 11,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 2769577,
+    "min": 2769577,
+    "max": 3363484,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 12683,
+    "min": 12587,
+    "max": 12924,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 13327613,
+    "min": 13327613,
+    "max": 13327613,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13408,
+    "min": 13335,
+    "max": 13807,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 16513,
+    "min": 16419,
+    "max": 16839,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 12701,
+    "min": 12608,
+    "max": 12939,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 73,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 81,
+    "min": 81,
+    "max": 85,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 78,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 273,
+   "analyticMissNeededBytes": 2325517,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2734
+  },
+  "G2@0.05": {
+   "n": 4,
+   "arm": "G2",
+   "budget": 0.05,
+   "prewarmFileBytes": 45751813,
+   "prewarmFiles": 35131,
+   "stoppedInTier": "path-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 27502,
+    "min": 26848,
+    "max": 28048,
+    "n": 3
+   },
+   "steadyReachedTrials": 3,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 174,
+    "min": 169,
+    "max": 213,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 96,
+    "min": 91,
+    "max": 135,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 4,
+    "min": 4,
+    "max": 4,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 1107105,
+    "min": 1107105,
+    "max": 1107105,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 20592,
+    "min": 20498,
+    "max": 21025,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 18495905,
+    "min": 18495905,
+    "max": 18495905,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13446,
+    "min": 13314,
+    "max": 13765,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 24490,
+    "min": 24384,
+    "max": 24935,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 20613,
+    "min": 20518,
+    "max": 21045,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 73,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 83,
+    "min": 81,
+    "max": 87,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 79,
+    "max": 80,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 271,
+   "analyticMissNeededBytes": 2324842,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 3012
+  },
+  "R1@0.05": {
+   "n": 4,
+   "arm": "R1",
+   "budget": 0.05,
+   "prewarmFileBytes": 45751817,
+   "prewarmFiles": 66628,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 28758,
+    "min": 28379,
+    "max": 29709,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 129,
+    "min": 129,
+    "max": 130,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 51,
+    "min": 51,
+    "max": 52,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 22553,
+    "min": 22489,
+    "max": 22826,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 24727358,
+    "min": 24727358,
+    "max": 24727358,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 16771,
+    "min": 16686,
+    "max": 16854,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 26500,
+    "min": 26429,
+    "max": 26766,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 22584,
+    "min": 22515,
+    "max": 22857,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 72,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 81,
+    "min": 81,
+    "max": 84,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 79,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 1463,
+   "analyticMissNeededBytes": 30072095,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 2258
+  },
+  "R2@0.05": {
+   "n": 4,
+   "arm": "R2",
+   "budget": 0.05,
+   "prewarmFileBytes": 45751817,
+   "prewarmFiles": 40358,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 31913,
+    "min": 31092,
+    "max": 31956,
+    "n": 3
+   },
+   "steadyReachedTrials": 3,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 132,
+    "min": 130,
+    "max": 170,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 54,
+    "min": 52,
+    "max": 92,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 1,
+    "min": 1,
+    "max": 1,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 1046614,
+    "min": 1046614,
+    "max": 1046614,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 24571,
+    "min": 24373,
+    "max": 24898,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 18724106,
+    "min": 18724106,
+    "max": 18724106,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13311,
+    "min": 13260,
+    "max": 13849,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 28510,
+    "min": 28319,
+    "max": 28846,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 24592,
+    "min": 24392,
+    "max": 24919,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 72,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 85,
+    "min": 83,
+    "max": 93,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 79,
+    "max": 80,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 235,
+   "analyticMissNeededBytes": 2254351,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 3403
+  },
+  "G1@0.1": {
+   "n": 4,
+   "arm": "G1",
+   "budget": 0.1,
+   "prewarmFileBytes": 91503634,
+   "prewarmFiles": 15383,
+   "stoppedInTier": "remainder-by-path",
+   "timeToTrafficWarmMs": {
+    "median": 19480,
+    "min": 19383,
+    "max": 19779,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 229,
+    "min": 222,
+    "max": 239,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 151,
+    "min": 144,
+    "max": 161,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 9,
+    "min": 7,
+    "max": 11,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 3363484,
+    "min": 2769577,
+    "max": 3371262,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 12808,
+    "min": 12800,
+    "max": 13206,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 27118995,
+    "min": 27118995,
+    "max": 27118995,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13226,
+    "min": 13152,
+    "max": 13574,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 16713,
+    "min": 16689,
+    "max": 17100,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 12828,
+    "min": 12823,
+    "max": 13227,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 72,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 81,
+    "min": 81,
+    "max": 82,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 78,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 273,
+   "analyticMissNeededBytes": 2325517,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2767
+  },
+  "G2@0.1": {
+   "n": 4,
+   "arm": "G2",
+   "budget": 0.1,
+   "prewarmFileBytes": 91503630,
+   "prewarmFiles": 62381,
+   "stoppedInTier": "path-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 32839,
+    "min": 31657,
+    "max": 33738,
+    "n": 3
+   },
+   "steadyReachedTrials": 3,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 130,
+    "min": 129,
+    "max": 195,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 52,
+    "min": 51,
+    "max": 117,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 1,
+    "min": 1,
+    "max": 1,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 923939,
+    "min": 923939,
+    "max": 923939,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 24623,
+    "min": 24545,
+    "max": 24967,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 36761835,
+    "min": 36761835,
+    "max": 36761835,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13435,
+    "min": 13430,
+    "max": 13490,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 28556,
+    "min": 28488,
+    "max": 28880,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 24656,
+    "min": 24576,
+    "max": 24995,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 6,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 73,
+    "max": 74,
+    "n": 4
+   },
+   "p99": {
+    "median": 81,
+    "min": 81,
+    "max": 84,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 79,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 219,
+   "analyticMissNeededBytes": 2237167,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 4283
+  },
+  "R1@0.1": {
+   "n": 4,
+   "arm": "R1",
+   "budget": 0.1,
+   "prewarmFileBytes": 91503632,
+   "prewarmFiles": 82730,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 29644,
+    "min": 29458,
+    "max": 30875,
+    "n": 3
+   },
+   "steadyReachedTrials": 3,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 132,
+    "min": 130,
+    "max": 133,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 54,
+    "min": 52,
+    "max": 55,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 23411,
+    "min": 23325,
+    "max": 23812,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 41727639,
+    "min": 41727639,
+    "max": 41727639,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 16858,
+    "min": 16705,
+    "max": 17147,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 27355,
+    "min": 27254,
+    "max": 27715,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 23451,
+    "min": 23352,
+    "max": 23848,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 72,
+    "min": 72,
+    "max": 74,
+    "n": 4
+   },
+   "p99": {
+    "median": 82,
+    "min": 81,
+    "max": 83,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 79,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 760,
+   "analyticMissNeededBytes": 26834921,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2289
+  },
+  "R2@0.1": {
+   "n": 4,
+   "arm": "R2",
+   "budget": 0.1,
+   "prewarmFileBytes": 91503625,
+   "prewarmFiles": 65696,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 32926,
+    "min": 32670,
+    "max": 33048,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 131,
+    "min": 130,
+    "max": 134,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 53,
+    "min": 52,
+    "max": 56,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 26104,
+    "min": 25656,
+    "max": 26349,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 36934398,
+    "min": 36934398,
+    "max": 36934398,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13277,
+    "min": 13257,
+    "max": 13717,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 30052,
+    "min": 29624,
+    "max": 30285,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 26134,
+    "min": 25686,
+    "max": 26381,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 6,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 72,
+    "max": 74,
+    "n": 4
+   },
+   "p99": {
+    "median": 82,
+    "min": 81,
+    "max": 83,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 79,
+    "max": 81,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 176,
+   "analyticMissNeededBytes": 2164426,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2874
+  },
+  "G1@0.2": {
+   "n": 4,
+   "arm": "G1",
+   "budget": 0.2,
+   "prewarmFileBytes": 183007269,
+   "prewarmFiles": 31878,
+   "stoppedInTier": "remainder-by-path",
+   "timeToTrafficWarmMs": {
+    "median": 20698,
+    "min": 20470,
+    "max": 21229,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 234,
+    "min": 222,
+    "max": 259,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 156,
+    "min": 144,
+    "max": 181,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 8,
+    "min": 7,
+    "max": 11,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 3354761,
+    "min": 2769577,
+    "max": 4272092,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 13931,
+    "min": 13577,
+    "max": 14400,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 54663150,
+    "min": 54663150,
+    "max": 54663150,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13303,
+    "min": 13173,
+    "max": 13813,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 17874,
+    "min": 17495,
+    "max": 18308,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 13951,
+    "min": 13597,
+    "max": 14421,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 71,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 81,
+    "min": 81,
+    "max": 84,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 78,
+    "min": 78,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 273,
+   "analyticMissNeededBytes": 2325517,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2824
+  },
+  "G2@0.2": {
+   "n": 4,
+   "arm": "G2",
+   "budget": 0.2,
+   "prewarmFileBytes": 183007268,
+   "prewarmFiles": 86311,
+   "stoppedInTier": "path-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 32622,
+    "min": 32518,
+    "max": 34872,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 131,
+    "min": 128,
+    "max": 155,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 53,
+    "min": 50,
+    "max": 77,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 26500,
+    "min": 26451,
+    "max": 26854,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 66703638,
+    "min": 66703638,
+    "max": 66703638,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13414,
+    "min": 13266,
+    "max": 13499,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 30416,
+    "min": 30385,
+    "max": 30817,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 26530,
+    "min": 26483,
+    "max": 26883,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 6,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 72,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 81,
+    "min": 80,
+    "max": 83,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 78,
+    "max": 80,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 121,
+   "analyticMissNeededBytes": 1872130,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2206
+  },
+  "R1@0.2": {
+   "n": 4,
+   "arm": "R1",
+   "budget": 0.2,
+   "prewarmFileBytes": 183007266,
+   "prewarmFiles": 96794,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 30826,
+    "min": 30128,
+    "max": 32479,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 130,
+    "min": 130,
+    "max": 133,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 52,
+    "min": 52,
+    "max": 55,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 24083,
+    "min": 23944,
+    "max": 24400,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 70088479,
+    "min": 70088479,
+    "max": 70088479,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 16672,
+    "min": 16390,
+    "max": 16833,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 28021,
+    "min": 27875,
+    "max": 28325,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 24118,
+    "min": 23976,
+    "max": 24437,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 6,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 73,
+    "max": 75,
+    "n": 4
+   },
+   "p99": {
+    "median": 82,
+    "min": 81,
+    "max": 84,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 79,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 344,
+   "analyticMissNeededBytes": 22598538,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 2805
+  },
+  "R2@0.2": {
+   "n": 4,
+   "arm": "R2",
+   "budget": 0.2,
+   "prewarmFileBytes": 183007261,
+   "prewarmFiles": 79542,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 33348,
+    "min": 32574,
+    "max": 34449,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 153,
+    "min": 131,
+    "max": 157,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 75,
+    "min": 53,
+    "max": 79,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 26735,
+    "min": 26692,
+    "max": 27306,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 64568198,
+    "min": 64568198,
+    "max": 64568198,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13345,
+    "min": 13061,
+    "max": 13894,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 30669,
+    "min": 30631,
+    "max": 31201,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 26765,
+    "min": 26719,
+    "max": 27333,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 72,
+    "max": 73,
+    "n": 4
+   },
+   "p99": {
+    "median": 81,
+    "min": 81,
+    "max": 90,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 78,
+    "max": 80,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 62,
+   "analyticMissNeededBytes": 1504672,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2679
+  },
+  "G1@0.4": {
+   "n": 4,
+   "arm": "G1",
+   "budget": 0.4,
+   "prewarmFileBytes": 366014538,
+   "prewarmFiles": 49922,
+   "stoppedInTier": "remainder-by-path",
+   "timeToTrafficWarmMs": {
+    "median": 27117,
+    "min": 26550,
+    "max": 27468,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 136,
+    "min": 130,
+    "max": 177,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 58,
+    "min": 52,
+    "max": 99,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 7,
+    "min": 6,
+    "max": 8,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 2449628,
+    "min": 2002580,
+    "max": 2604265,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 20682,
+    "min": 20164,
+    "max": 20795,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 118249758,
+    "min": 118249758,
+    "max": 118249758,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13610,
+    "min": 13076,
+    "max": 13668,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 24615,
+    "min": 24073,
+    "max": 24724,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 20713,
+    "min": 20187,
+    "max": 20822,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 73,
+    "max": 74,
+    "n": 4
+   },
+   "p99": {
+    "median": 82,
+    "min": 81,
+    "max": 85,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 78,
+    "max": 79,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 271,
+   "analyticMissNeededBytes": 2311937,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2502
+  },
+  "G2@0.4": {
+   "n": 4,
+   "arm": "G2",
+   "budget": 0.4,
+   "prewarmFileBytes": 366014535,
+   "prewarmFiles": 102039,
+   "stoppedInTier": "path-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 35261,
+    "min": 34437,
+    "max": 36439,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 156,
+    "min": 144,
+    "max": 158,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 78,
+    "min": 66,
+    "max": 80,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 28709,
+    "min": 28488,
+    "max": 28831,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 116401091,
+    "min": 116401091,
+    "max": 116401091,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13536,
+    "min": 13279,
+    "max": 13934,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 32645,
+    "min": 32440,
+    "max": 32789,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 28744,
+    "min": 28526,
+    "max": 28862,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 5,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 73,
+    "max": 74,
+    "n": 4
+   },
+   "p99": {
+    "median": 82,
+    "min": 82,
+    "max": 87,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 78,
+    "max": 80,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 27,
+   "analyticMissNeededBytes": 923988,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2616
+  },
+  "R1@0.4": {
+   "n": 4,
+   "arm": "R1",
+   "budget": 0.4,
+   "prewarmFileBytes": 366014538,
+   "prewarmFiles": 106512,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 31795,
+    "min": 31266,
+    "max": 32794,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 131,
+    "min": 130,
+    "max": 133,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 53,
+    "min": 52,
+    "max": 55,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 25236,
+    "min": 25123,
+    "max": 25353,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 121516238,
+    "min": 121516238,
+    "max": 121516238,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 16631,
+    "min": 16482,
+    "max": 16783,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 29189,
+    "min": 29048,
+    "max": 29281,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 25275,
+    "min": 25164,
+    "max": 25389,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 6,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 73,
+    "max": 74,
+    "n": 4
+   },
+   "p99": {
+    "median": 83,
+    "min": 82,
+    "max": 90,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 79,
+    "max": 80,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 144,
+   "analyticMissNeededBytes": 16898967,
+   "failedRequests": 0,
+   "eagerMatched": false,
+   "steadyAfterAdmissionMs": 2606
+  },
+  "R2@0.4": {
+   "n": 4,
+   "arm": "R2",
+   "budget": 0.4,
+   "prewarmFileBytes": 366014522,
+   "prewarmFiles": 85138,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 34687,
+    "min": 34415,
+    "max": 37143,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 128,
+    "min": 123,
+    "max": 134,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 50,
+    "min": 45,
+    "max": 56,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 28657,
+    "min": 28632,
+    "max": 28774,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 112661304,
+    "min": 112661304,
+    "max": 112661304,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 13394,
+    "min": 13380,
+    "max": 13523,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 32600,
+    "min": 32578,
+    "max": 32730,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 28687,
+    "min": 28666,
+    "max": 28805,
+    "n": 4
+   },
+   "p50": {
+    "median": 5,
+    "min": 5,
+    "max": 6,
+    "n": 4
+   },
+   "p95": {
+    "median": 73,
+    "min": 72,
+    "max": 74,
+    "n": 4
+   },
+   "p99": {
+    "median": 82,
+    "min": 81,
+    "max": 95,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 79,
+    "min": 78,
+    "max": 81,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 0,
+   "analyticMissNeededBytes": 0,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 2087
+  }
+ },
+ "firstHitByCategory": {
+  "E0": {
+   "optional-feature": {
+    "pos1": [
+     148
+    ],
+    "any": [
+     148,
+     22,
+     149,
+     14,
+     150,
+     27,
+     149,
+     43
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     22
+    ],
+    "any": [
+     17,
+     15,
+     22,
+     14,
+     23,
+     19,
+     19,
+     16
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     5
+    ],
+    "any": [
+     5,
+     5,
+     5,
+     6
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     17,
+     15,
+     23,
+     18
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     89
+    ],
+    "any": [
+     86,
+     84,
+     89,
+     89
+    ]
+   }
+  },
+  "G1@0.05": {
+   "optional-feature": {
+    "pos1": [
+     635
+    ],
+    "any": [
+     635,
+     24,
+     619,
+     20,
+     641,
+     20,
+     866,
+     24
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     22
+    ],
+    "any": [
+     20,
+     18,
+     22,
+     16,
+     20,
+     16,
+     20,
+     16
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     5
+    ],
+    "any": [
+     5,
+     6,
+     5,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     19,
+     19,
+     23,
+     19
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     88
+    ],
+    "any": [
+     86,
+     84,
+     88,
+     88
+    ]
+   }
+  },
+  "G2@0.05": {
+   "optional-feature": {
+    "pos1": [
+     422
+    ],
+    "any": [
+     422,
+     29,
+     408,
+     25,
+     402,
+     27,
+     383,
+     21
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     33
+    ],
+    "any": [
+     27,
+     22,
+     33,
+     27,
+     20,
+     18,
+     18,
+     17
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     4
+    ],
+    "any": [
+     6,
+     6,
+     4,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     23,
+     32,
+     28,
+     18
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     91
+    ],
+    "any": [
+     87,
+     87,
+     88,
+     91
+    ]
+   }
+  },
+  "R1@0.05": {
+   "optional-feature": {
+    "pos1": [
+     157
+    ],
+    "any": [
+     157,
+     28,
+     154,
+     20,
+     157,
+     26,
+     155,
+     36
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     26
+    ],
+    "any": [
+     29,
+     17,
+     26,
+     19,
+     27,
+     18,
+     20,
+     17
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     6
+    ],
+    "any": [
+     4,
+     5,
+     6,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     22,
+     20,
+     34,
+     19
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     93
+    ],
+    "any": [
+     84,
+     86,
+     88,
+     93
+    ]
+   }
+  },
+  "R2@0.05": {
+   "optional-feature": {
+    "pos1": [
+     444
+    ],
+    "any": [
+     444,
+     29,
+     423,
+     19,
+     437,
+     27,
+     414,
+     37
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     28
+    ],
+    "any": [
+     28,
+     18,
+     28,
+     20,
+     21,
+     20,
+     27,
+     22
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     6
+    ],
+    "any": [
+     2,
+     5,
+     6,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     16,
+     18,
+     32,
+     21
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     91
+    ],
+    "any": [
+     86,
+     85,
+     106,
+     91
+    ]
+   }
+  },
+  "G1@0.1": {
+   "optional-feature": {
+    "pos1": [
+     785
+    ],
+    "any": [
+     785,
+     23,
+     767,
+     21,
+     824,
+     19,
+     626,
+     30
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     24
+    ],
+    "any": [
+     21,
+     17,
+     24,
+     19,
+     17,
+     14,
+     21,
+     17
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     5
+    ],
+    "any": [
+     5,
+     6,
+     5,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     19,
+     20,
+     24,
+     20
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     88
+    ],
+    "any": [
+     86,
+     85,
+     85,
+     88
+    ]
+   }
+  },
+  "G2@0.1": {
+   "optional-feature": {
+    "pos1": [
+     417
+    ],
+    "any": [
+     417,
+     34,
+     433,
+     25,
+     429,
+     27,
+     429,
+     41
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     33
+    ],
+    "any": [
+     27,
+     22,
+     33,
+     24,
+     19,
+     15,
+     24,
+     19
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     6
+    ],
+    "any": [
+     5,
+     7,
+     6,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     22,
+     31,
+     28,
+     21
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     89
+    ],
+    "any": [
+     88,
+     85,
+     90,
+     89
+    ]
+   }
+  },
+  "R1@0.1": {
+   "optional-feature": {
+    "pos1": [
+     158
+    ],
+    "any": [
+     158,
+     31,
+     149,
+     24,
+     163,
+     26,
+     152,
+     36
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     32
+    ],
+    "any": [
+     29,
+     23,
+     32,
+     23,
+     24,
+     20,
+     22,
+     15
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     6
+    ],
+    "any": [
+     6,
+     6,
+     6,
+     3
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     25,
+     30,
+     32,
+     20
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     90
+    ],
+    "any": [
+     91,
+     87,
+     88,
+     90
+    ]
+   }
+  },
+  "R2@0.1": {
+   "optional-feature": {
+    "pos1": [
+     155
+    ],
+    "any": [
+     155,
+     32,
+     157,
+     20,
+     157,
+     27,
+     307,
+     36
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     29
+    ],
+    "any": [
+     27,
+     22,
+     29,
+     19,
+     18,
+     15,
+     26,
+     24
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     6
+    ],
+    "any": [
+     6,
+     5,
+     6,
+     6
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     19,
+     20,
+     28,
+     23
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     92
+    ],
+    "any": [
+     86,
+     85,
+     88,
+     92
+    ]
+   }
+  },
+  "G1@0.2": {
+   "optional-feature": {
+    "pos1": [
+     648
+    ],
+    "any": [
+     648,
+     25,
+     950,
+     18,
+     870,
+     19,
+     710,
+     22
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     22
+    ],
+    "any": [
+     24,
+     17,
+     22,
+     16,
+     18,
+     14,
+     17,
+     16
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     5
+    ],
+    "any": [
+     6,
+     6,
+     5,
+     6
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     21,
+     19,
+     22,
+     17
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     88
+    ],
+    "any": [
+     87,
+     86,
+     86,
+     88
+    ]
+   }
+  },
+  "G2@0.2": {
+   "optional-feature": {
+    "pos1": [
+     155
+    ],
+    "any": [
+     155,
+     25,
+     150,
+     26,
+     155,
+     27,
+     155,
+     35
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     34
+    ],
+    "any": [
+     27,
+     18,
+     34,
+     29,
+     18,
+     15,
+     26,
+     24
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     6
+    ],
+    "any": [
+     4,
+     7,
+     6,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     18,
+     33,
+     27,
+     23
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     90
+    ],
+    "any": [
+     86,
+     217,
+     88,
+     90
+    ]
+   }
+  },
+  "R1@0.2": {
+   "optional-feature": {
+    "pos1": [
+     156
+    ],
+    "any": [
+     156,
+     32,
+     152,
+     27,
+     161,
+     27,
+     158,
+     38
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     33
+    ],
+    "any": [
+     27,
+     20,
+     33,
+     27,
+     23,
+     20,
+     24,
+     24
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     4,
+     5,
+     3,
+     3
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     22,
+     33,
+     34,
+     27
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     91
+    ],
+    "any": [
+     84,
+     87,
+     89,
+     91
+    ]
+   }
+  },
+  "R2@0.2": {
+   "optional-feature": {
+    "pos1": [
+     157
+    ],
+    "any": [
+     157,
+     28,
+     157,
+     20,
+     153,
+     26,
+     152,
+     36
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     27
+    ],
+    "any": [
+     27,
+     18,
+     27,
+     21,
+     19,
+     14,
+     22,
+     16
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     5
+    ],
+    "any": [
+     4,
+     5,
+     5,
+     3
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     18,
+     20,
+     25,
+     18
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     90
+    ],
+    "any": [
+     85,
+     87,
+     88,
+     90
+    ]
+   }
+  },
+  "G1@0.4": {
+   "optional-feature": {
+    "pos1": [
+     773
+    ],
+    "any": [
+     773,
+     27,
+     737,
+     26,
+     647,
+     24,
+     771,
+     37
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     31
+    ],
+    "any": [
+     27,
+     17,
+     31,
+     25,
+     23,
+     17,
+     20,
+     15
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     5
+    ],
+    "any": [
+     2,
+     5,
+     5,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     18,
+     32,
+     28,
+     19
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     92
+    ],
+    "any": [
+     85,
+     85,
+     87,
+     92
+    ]
+   }
+  },
+  "G2@0.4": {
+   "optional-feature": {
+    "pos1": [
+     158
+    ],
+    "any": [
+     158,
+     30,
+     154,
+     21,
+     156,
+     28,
+     157,
+     37
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     27
+    ],
+    "any": [
+     27,
+     24,
+     27,
+     21,
+     19,
+     14,
+     21,
+     16
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     7
+    ],
+    "any": [
+     5,
+     5,
+     7,
+     6
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     23,
+     19,
+     28,
+     18
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     92
+    ],
+    "any": [
+     87,
+     86,
+     88,
+     92
+    ]
+   }
+  },
+  "R1@0.4": {
+   "optional-feature": {
+    "pos1": [
+     158
+    ],
+    "any": [
+     158,
+     33,
+     155,
+     21,
+     151,
+     29,
+     157,
+     36
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     28
+    ],
+    "any": [
+     28,
+     24,
+     28,
+     18,
+     21,
+     18,
+     24,
+     20
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     6
+    ],
+    "any": [
+     6,
+     6,
+     6,
+     5
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     24,
+     19,
+     28,
+     23
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     89
+    ],
+    "any": [
+     90,
+     86,
+     87,
+     89
+    ]
+   }
+  },
+  "R2@0.4": {
+   "optional-feature": {
+    "pos1": [
+     154
+    ],
+    "any": [
+     154,
+     25,
+     153,
+     24,
+     142,
+     27,
+     157,
+     38
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     30
+    ],
+    "any": [
+     28,
+     17,
+     30,
+     26,
+     20,
+     15,
+     22,
+     15
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     5
+    ],
+    "any": [
+     6,
+     8,
+     5,
+     4
+    ]
+   },
+   "error-path": {
+    "pos1": [],
+    "any": [
+     19,
+     32,
+     26,
+     19
+    ]
+   },
+   "tenant-config": {
+    "pos1": [
+     89
+    ],
+    "any": [
+     85,
+     111,
+     85,
+     89
+    ]
+   }
+  }
+ },
+ "equalOutcome": {
+  "G1": {
+   "warmAt": null,
+   "bracket": [
+    0.4,
+    null
+   ]
+  },
+  "G2": {
+   "warmAt": null,
+   "bracket": [
+    0.4,
+    null
+   ]
+  },
+  "R1": {
+   "warmAt": null,
+   "bracket": [
+    0.4,
+    null
+   ]
+  },
+  "R2": {
+   "warmAt": null,
+   "bracket": [
+    0.4,
+    null
+   ]
+  }
+ },
+ "eagerMaxWindowP99": 130,
+ "equalOutcomeEager": {
+  "G1": null,
+  "G2": 0.1,
+  "R1": 0.05,
+  "R2": 0.4
+ },
+ "coverage": {
+  "G1@0.05": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 272,
+    "missBytes": 2271509
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "G1@0.1": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 272,
+    "missBytes": 2271509
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "G1@0.2": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 272,
+    "missBytes": 2271509
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "G1@0.4": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 2,
+    "coveredBytes": 13580,
+    "missFiles": 270,
+    "missBytes": 2257929
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "G2@0.05": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 2,
+    "coveredBytes": 675,
+    "missFiles": 270,
+    "missBytes": 2270834
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "G2@0.1": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 54,
+    "coveredBytes": 88350,
+    "missFiles": 218,
+    "missBytes": 2183159
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "G2@0.2": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 151,
+    "coveredBytes": 399379,
+    "missFiles": 121,
+    "missBytes": 1872130
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "G2@0.4": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 245,
+    "coveredBytes": 1347521,
+    "missFiles": 27,
+    "missBytes": 923988
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "R1@0.05": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 88,
+    "coveredBytes": 159329,
+    "missFiles": 184,
+    "missBytes": 2112180
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "R1@0.1": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 127,
+    "coveredBytes": 345613,
+    "missFiles": 145,
+    "missBytes": 1925896
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "R1@0.2": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 147,
+    "coveredBytes": 554376,
+    "missFiles": 125,
+    "missBytes": 1717133
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "R1@0.4": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 162,
+    "coveredBytes": 1216168,
+    "missFiles": 110,
+    "missBytes": 1055341
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "R2@0.05": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 38,
+    "coveredBytes": 71166,
+    "missFiles": 234,
+    "missBytes": 2200343
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "R2@0.1": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 97,
+    "coveredBytes": 161091,
+    "missFiles": 175,
+    "missBytes": 2110418
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 54008
+   }
+  },
+  "R2@0.2": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 210,
+    "coveredBytes": 766837,
+    "missFiles": 62,
+    "missBytes": 1504672
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "R2@0.4": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 272,
+    "coveredBytes": 2271509,
+    "missFiles": 0,
+    "missBytes": 0
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "O@0.05": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 272,
+    "coveredBytes": 2271509,
+    "missFiles": 0,
+    "missBytes": 0
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "O@0.1": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 272,
+    "coveredBytes": 2271509,
+    "missFiles": 0,
+    "missBytes": 0
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "O@0.2": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 272,
+    "coveredBytes": 2271509,
+    "missFiles": 0,
+    "missBytes": 0
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "O@0.4": {
+   "optional-feature": {
+    "needFiles": 272,
+    "needBytes": 2271509,
+    "coveredFiles": 272,
+    "coveredBytes": 2271509,
+    "missFiles": 0,
+    "missBytes": 0
+   },
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 54008,
+    "coveredFiles": 1,
+    "coveredBytes": 54008,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  }
+ },
+ "sizeTermSensitivity": {
+  "G2/distance-only": {
+   "0.05": {
+    "files": 9169,
+    "bytes": 45751817,
+    "coveredNeededFiles": 4845,
+    "coveredNeededBytes": 32175732
+   },
+   "0.1": {
+    "files": 15494,
+    "bytes": 91503634,
+    "coveredNeededFiles": 4846,
+    "coveredNeededBytes": 32229740
+   },
+   "0.2": {
+    "files": 27277,
+    "bytes": 183007269,
+    "coveredNeededFiles": 4865,
+    "coveredNeededBytes": 32350484
+   },
+   "0.4": {
+    "files": 43252,
+    "bytes": 366014538,
+    "coveredNeededFiles": 4901,
+    "coveredNeededBytes": 32490342
+   }
+  },
+  "R1/distance-only": {
+   "0.05": {
+    "files": 10970,
+    "bytes": 45751817,
+    "coveredNeededFiles": 1006,
+    "coveredNeededBytes": 3992786
+   },
+   "0.1": {
+    "files": 13816,
+    "bytes": 91503634,
+    "coveredNeededFiles": 2082,
+    "coveredNeededBytes": 10673809
+   },
+   "0.2": {
+    "files": 16237,
+    "bytes": 183007269,
+    "coveredNeededFiles": 2998,
+    "coveredNeededBytes": 15472921
+   },
+   "0.4": {
+    "files": 42843,
+    "bytes": 366014538,
+    "coveredNeededFiles": 4782,
+    "coveredNeededBytes": 32408312
+   }
+  },
+  "R2/distance-only": {
+   "0.05": {
+    "files": 9961,
+    "bytes": 45751817,
+    "coveredNeededFiles": 4875,
+    "coveredNeededBytes": 32244069
+   },
+   "0.1": {
+    "files": 13142,
+    "bytes": 91503634,
+    "coveredNeededFiles": 4877,
+    "coveredNeededBytes": 32301919
+   },
+   "0.2": {
+    "files": 26875,
+    "bytes": 183007269,
+    "coveredNeededFiles": 4896,
+    "coveredNeededBytes": 32506254
+   },
+   "0.4": {
+    "files": 52687,
+    "bytes": 366014538,
+    "coveredNeededFiles": 4925,
+    "coveredNeededBytes": 32707325
+   }
+  }
+ },
+ "trainingMatrix": {
+  "G1@0.05": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 4845,
+    "coveredNeededBytes": 32175732
+   },
+   "TRAIN-2(+optional-feature)": {
+    "coveredNeededFiles": 5117,
+    "coveredNeededBytes": 34447241
+   },
+   "TRAIN-3(+optional-feature+rare-route)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   }
+  },
+  "G1@0.1": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 4845,
+    "coveredNeededBytes": 32175732
+   },
+   "TRAIN-2(+optional-feature)": {
+    "coveredNeededFiles": 5117,
+    "coveredNeededBytes": 34447241
+   },
+   "TRAIN-3(+optional-feature+rare-route)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   }
+  },
+  "G1@0.2": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 4845,
+    "coveredNeededBytes": 32175732
+   },
+   "TRAIN-2(+optional-feature)": {
+    "coveredNeededFiles": 5117,
+    "coveredNeededBytes": 34447241
+   },
+   "TRAIN-3(+optional-feature+rare-route)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   }
+  },
+  "G1@0.4": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 4847,
+    "coveredNeededBytes": 32189312
+   },
+   "TRAIN-2(+optional-feature)": {
+    "coveredNeededFiles": 5117,
+    "coveredNeededBytes": 34447241
+   },
+   "TRAIN-3(+optional-feature+rare-route)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   }
+  },
+  "G2@0.05": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 4847,
+    "coveredNeededBytes": 32176407
+   },
+   "TRAIN-2(+optional-feature)": {
+    "coveredNeededFiles": 5117,
+    "coveredNeededBytes": 34447241
+   },
+   "TRAIN-3(+optional-feature+rare-route)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   }
+  },
+  "G2@0.1": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 4899,
+    "coveredNeededBytes": 32264082
+   },
+   "TRAIN-2(+optional-feature)": {
+    "coveredNeededFiles": 5117,
+    "coveredNeededBytes": 34447241
+   },
+   "TRAIN-3(+optional-feature+rare-route)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   }
+  },
+  "G2@0.2": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 4997,
+    "coveredNeededBytes": 32629119
+   },
+   "TRAIN-2(+optional-feature)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   },
+   "TRAIN-3(+optional-feature+rare-route)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   }
+  },
+  "G2@0.4": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 5091,
+    "coveredNeededBytes": 33577261
+   },
+   "TRAIN-2(+optional-feature)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   },
+   "TRAIN-3(+optional-feature+rare-route)": {
+    "coveredNeededFiles": 5118,
+    "coveredNeededBytes": 34501249
+   }
+  }
+ },
+ "correctness": {
+  "comparedTrials": 64,
+  "statusMismatches": [],
+  "lengthMismatches": [],
+  "bodyMismatches": [],
+  "headerMismatches": [],
+  "unexpectedStatus": []
+ },
+ "trials": [
+  {
+   "name": "E0.f0",
+   "arm": "E0",
+   "budget": null,
+   "family": 0,
+   "order": 0,
+   "exit": 0,
+   "tProcMs": 99,
+   "tMountMs": 40,
+   "tReadyMs": 20291,
+   "tPrewarmMs": 23810,
+   "tPrefetchDoneMs": 22931,
+   "tTrafficMs": 26849,
+   "prewarmDurationMs": 22891,
+   "tSteadyMs": 28771,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 118,
+   "p99Regression": 40,
+   "p50": 5,
+   "p95": 71,
+   "p99": 82,
+   "warmP50": 5,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 228270196,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 148,
+     "warmMs": 3
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 17,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 15,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 17,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 86,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.05.f0",
+   "arm": "G1",
+   "budget": 0.05,
+   "family": 0,
+   "order": 1,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 20,
+   "tReadyMs": 13438,
+   "tPrewarmMs": 13511,
+   "tPrefetchDoneMs": 12737,
+   "tTrafficMs": 16555,
+   "prewarmDurationMs": 12717,
+   "tSteadyMs": 19247,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 223,
+   "p99Regression": 145,
+   "p50": 5,
+   "p95": 73,
+   "p99": 85,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 2769577,
+   "prewarmChunkBytes": 13327613,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 635,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 24,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 20,
+     "warmMs": 17
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 18,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 5,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 19,
+     "warmMs": 16
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 86,
+     "warmMs": 82
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.05.f0",
+   "arm": "G2",
+   "budget": 0.05,
+   "family": 0,
+   "order": 2,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 20,
+   "tReadyMs": 13765,
+   "tPrewarmMs": 21895,
+   "tPrefetchDoneMs": 21045,
+   "tTrafficMs": 24935,
+   "prewarmDurationMs": 21025,
+   "tSteadyMs": 27502,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 99,
+   "p50": 5,
+   "p95": 73,
+   "p99": 87,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 4,
+   "postAdmissionRemoteBytes": 1107105,
+   "prewarmChunkBytes": 18495905,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 422,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 29,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 27,
+     "warmMs": 20
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 22,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 23,
+     "warmMs": 18
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 87,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.05.f0",
+   "arm": "R1",
+   "budget": 0.05,
+   "family": 0,
+   "order": 3,
+   "exit": 0,
+   "tProcMs": 89,
+   "tMountMs": 31,
+   "tReadyMs": 16854,
+   "tPrewarmMs": 23444,
+   "tPrefetchDoneMs": 22584,
+   "tTrafficMs": 26500,
+   "prewarmDurationMs": 22553,
+   "tSteadyMs": 29414,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 129,
+   "p99Regression": 51,
+   "p50": 5,
+   "p95": 72,
+   "p99": 84,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 24727358,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 157,
+     "warmMs": 4
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 28,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 29,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 17,
+     "warmMs": 10
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 22,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 84,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.05.f0",
+   "arm": "R2",
+   "budget": 0.05,
+   "family": 0,
+   "order": 4,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 19,
+   "tReadyMs": 13260,
+   "tPrewarmMs": 25274,
+   "tPrefetchDoneMs": 24392,
+   "tTrafficMs": 28319,
+   "prewarmDurationMs": 24373,
+   "tSteadyMs": 31092,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 132,
+   "p99Regression": 54,
+   "p50": 5,
+   "p95": 72,
+   "p99": 86,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 1,
+   "postAdmissionRemoteBytes": 1046614,
+   "prewarmChunkBytes": 18724106,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 444,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 29,
+     "warmMs": 13
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 28,
+     "warmMs": 13
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 18,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 2,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 16,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 86,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.1.f0",
+   "arm": "G1",
+   "budget": 0.1,
+   "family": 0,
+   "order": 5,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 20,
+   "tReadyMs": 13152,
+   "tPrewarmMs": 13674,
+   "tPrefetchDoneMs": 12828,
+   "tTrafficMs": 16713,
+   "prewarmDurationMs": 12808,
+   "tSteadyMs": 19383,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 239,
+   "p99Regression": 161,
+   "p50": 5,
+   "p95": 72,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 9,
+   "postAdmissionRemoteBytes": 3371262,
+   "prewarmChunkBytes": 27118995,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 785,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 23,
+     "warmMs": 17
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 21,
+     "warmMs": 16
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 17,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 19,
+     "warmMs": 17
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 86,
+     "warmMs": 80
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.1.f0",
+   "arm": "G2",
+   "budget": 0.1,
+   "family": 0,
+   "order": 6,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 31,
+   "tReadyMs": 13430,
+   "tPrewarmMs": 25531,
+   "tPrefetchDoneMs": 24658,
+   "tTrafficMs": 28581,
+   "prewarmDurationMs": 24627,
+   "tSteadyMs": 32839,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 129,
+   "p99Regression": 51,
+   "p50": 6,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 1,
+   "postAdmissionRemoteBytes": 923939,
+   "prewarmChunkBytes": 36761835,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 417,
+     "warmMs": 4
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 34,
+     "warmMs": 19
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 27,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 22,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 22,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 88,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.1.f0",
+   "arm": "R1",
+   "budget": 0.1,
+   "family": 0,
+   "order": 7,
+   "exit": 0,
+   "tProcMs": 90,
+   "tMountMs": 36,
+   "tReadyMs": 16896,
+   "tPrewarmMs": 24682,
+   "tPrefetchDoneMs": 23848,
+   "tTrafficMs": 27715,
+   "prewarmDurationMs": 23812,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 132,
+   "p99Regression": 54,
+   "p50": 5,
+   "p95": 72,
+   "p99": 83,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 41727639,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 158,
+     "warmMs": 4
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 31,
+     "warmMs": 19
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 29,
+     "warmMs": 20
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 23,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 25,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 91,
+     "warmMs": 80
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.1.f0",
+   "arm": "R2",
+   "budget": 0.1,
+   "family": 0,
+   "order": 8,
+   "exit": 0,
+   "tProcMs": 88,
+   "tMountMs": 30,
+   "tReadyMs": 13257,
+   "tPrewarmMs": 26575,
+   "tPrefetchDoneMs": 25686,
+   "tTrafficMs": 29624,
+   "prewarmDurationMs": 25656,
+   "tSteadyMs": 32936,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 132,
+   "p99Regression": 54,
+   "p50": 6,
+   "p95": 72,
+   "p99": 82,
+   "warmP50": 5,
+   "warmP99": 81,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 36934398,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 155,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 32,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 27,
+     "warmMs": 20
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 22,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 6,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 19,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 86,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.2.f0",
+   "arm": "G1",
+   "budget": 0.2,
+   "family": 0,
+   "order": 9,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 20,
+   "tReadyMs": 13690,
+   "tPrewarmMs": 15088,
+   "tPrefetchDoneMs": 14216,
+   "tTrafficMs": 18120,
+   "prewarmDurationMs": 14196,
+   "tSteadyMs": 20698,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 259,
+   "p99Regression": 181,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 2769577,
+   "prewarmChunkBytes": 54663150,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 648,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 25,
+     "warmMs": 19
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 24,
+     "warmMs": 19
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 17,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 6,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 21,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 87,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.2.f0",
+   "arm": "G2",
+   "budget": 0.2,
+   "family": 0,
+   "order": 10,
+   "exit": 0,
+   "tProcMs": 85,
+   "tMountMs": 29,
+   "tReadyMs": 13266,
+   "tPrewarmMs": 27765,
+   "tPrefetchDoneMs": 26883,
+   "tTrafficMs": 30817,
+   "prewarmDurationMs": 26854,
+   "tSteadyMs": 32622,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 128,
+   "p99Regression": 50,
+   "p50": 5,
+   "p95": 72,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 66703638,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 155,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 25,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 27,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 18,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 18,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 86,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.2.f0",
+   "arm": "R1",
+   "budget": 0.2,
+   "family": 0,
+   "order": 11,
+   "exit": 0,
+   "tProcMs": 88,
+   "tMountMs": 31,
+   "tReadyMs": 16672,
+   "tPrewarmMs": 25015,
+   "tPrefetchDoneMs": 24183,
+   "tTrafficMs": 28073,
+   "prewarmDurationMs": 24152,
+   "tSteadyMs": 30128,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 70088479,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 156,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 32,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 27,
+     "warmMs": 13
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 20,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 22,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 84,
+     "warmMs": 80
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.2.f0",
+   "arm": "R2",
+   "budget": 0.2,
+   "family": 0,
+   "order": 12,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 27,
+   "tReadyMs": 13345,
+   "tPrewarmMs": 27595,
+   "tPrefetchDoneMs": 26719,
+   "tTrafficMs": 30631,
+   "prewarmDurationMs": 26692,
+   "tSteadyMs": 32574,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 157,
+   "p99Regression": 79,
+   "p50": 5,
+   "p95": 72,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 64568198,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 157,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 28,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 27,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 18,
+     "warmMs": 12
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 18,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 85,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.4.f0",
+   "arm": "G1",
+   "budget": 0.4,
+   "family": 0,
+   "order": 13,
+   "exit": 0,
+   "tProcMs": 79,
+   "tMountMs": 23,
+   "tReadyMs": 13076,
+   "tPrewarmMs": 21015,
+   "tPrefetchDoneMs": 20187,
+   "tTrafficMs": 24073,
+   "prewarmDurationMs": 20164,
+   "tSteadyMs": 26550,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 136,
+   "p99Regression": 58,
+   "p50": 5,
+   "p95": 73,
+   "p99": 84,
+   "warmP50": 4,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 8,
+   "postAdmissionRemoteBytes": 2604265,
+   "prewarmChunkBytes": 118249758,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 773,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 27,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 27,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 17,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 2,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 18,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 85,
+     "warmMs": 84
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.4.f0",
+   "arm": "G2",
+   "budget": 0.4,
+   "family": 0,
+   "order": 14,
+   "exit": 0,
+   "tProcMs": 91,
+   "tMountMs": 35,
+   "tReadyMs": 13279,
+   "tPrewarmMs": 29605,
+   "tPrefetchDoneMs": 28744,
+   "tTrafficMs": 32645,
+   "prewarmDurationMs": 28709,
+   "tSteadyMs": 36020,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 158,
+   "p99Regression": 80,
+   "p50": 5,
+   "p95": 73,
+   "p99": 87,
+   "warmP50": 5,
+   "warmP99": 80,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 116401091,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 158,
+     "warmMs": 4
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 30,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 27,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 24,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 23,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 87,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.4.f0",
+   "arm": "R1",
+   "budget": 0.4,
+   "family": 0,
+   "order": 15,
+   "exit": 0,
+   "tProcMs": 95,
+   "tMountMs": 41,
+   "tReadyMs": 16482,
+   "tPrewarmMs": 26009,
+   "tPrefetchDoneMs": 25164,
+   "tTrafficMs": 29048,
+   "prewarmDurationMs": 25123,
+   "tSteadyMs": 31795,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 6,
+   "p95": 73,
+   "p99": 90,
+   "warmP50": 5,
+   "warmP99": 80,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 121516238,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 158,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 33,
+     "warmMs": 51
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 28,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 24,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 6,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 24,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 90,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.4.f0",
+   "arm": "R2",
+   "budget": 0.4,
+   "family": 0,
+   "order": 16,
+   "exit": 0,
+   "tProcMs": 86,
+   "tMountMs": 31,
+   "tReadyMs": 13380,
+   "tPrewarmMs": 29686,
+   "tPrefetchDoneMs": 28805,
+   "tTrafficMs": 32730,
+   "prewarmDurationMs": 28774,
+   "tSteadyMs": 34687,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 123,
+   "p99Regression": 45,
+   "p50": 6,
+   "p95": 72,
+   "p99": 82,
+   "warmP50": 5,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 112661304,
+   "firstHit": [
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 154,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 25,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 28,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 17,
+     "warmMs": 12
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 6,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 6,
+     "ms": 19,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 85,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "E0.f1",
+   "arm": "E0",
+   "budget": null,
+   "family": 1,
+   "order": 17,
+   "exit": 0,
+   "tProcMs": 74,
+   "tMountMs": 20,
+   "tReadyMs": 20325,
+   "tPrewarmMs": 23563,
+   "tPrefetchDoneMs": 22695,
+   "tTrafficMs": 26606,
+   "prewarmDurationMs": 22675,
+   "tSteadyMs": 28489,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 128,
+   "p99Regression": 50,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 228270196,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 22,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 14,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 15,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 84,
+     "warmMs": 77
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 149,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 14,
+     "warmMs": 16
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.05.f1",
+   "arm": "G2",
+   "budget": 0.05,
+   "family": 1,
+   "order": 18,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 20,
+   "tReadyMs": 13314,
+   "tPrewarmMs": 21349,
+   "tPrefetchDoneMs": 20518,
+   "tTrafficMs": 24384,
+   "prewarmDurationMs": 20498,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 213,
+   "p99Regression": 135,
+   "p50": 5,
+   "p95": 73,
+   "p99": 85,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 4,
+   "postAdmissionRemoteBytes": 1107105,
+   "prewarmChunkBytes": 18495905,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 33,
+     "warmMs": 17
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 27,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 32,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 87,
+     "warmMs": 241
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 408,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 25,
+     "warmMs": 18
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.05.f1",
+   "arm": "R1",
+   "budget": 0.05,
+   "family": 1,
+   "order": 19,
+   "exit": 0,
+   "tProcMs": 85,
+   "tMountMs": 31,
+   "tReadyMs": 16798,
+   "tPrewarmMs": 23719,
+   "tPrefetchDoneMs": 22857,
+   "tTrafficMs": 26766,
+   "prewarmDurationMs": 22826,
+   "tSteadyMs": 28758,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 24727358,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 26,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 19,
+     "warmMs": 12
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 20,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 86,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 154,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 14
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.05.f1",
+   "arm": "R2",
+   "budget": 0.05,
+   "family": 1,
+   "order": 20,
+   "exit": 0,
+   "tProcMs": 78,
+   "tMountMs": 22,
+   "tReadyMs": 13557,
+   "tPrewarmMs": 25548,
+   "tPrefetchDoneMs": 24666,
+   "tTrafficMs": 28605,
+   "prewarmDurationMs": 24644,
+   "tSteadyMs": 31913,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 160,
+   "p99Regression": 82,
+   "p50": 5,
+   "p95": 73,
+   "p99": 83,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 1,
+   "postAdmissionRemoteBytes": 1046614,
+   "prewarmChunkBytes": 18724106,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 28,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 20,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 18,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 77
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 423,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 19,
+     "warmMs": 15
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.05.f1",
+   "arm": "G1",
+   "budget": 0.05,
+   "family": 1,
+   "order": 21,
+   "exit": 0,
+   "tProcMs": 74,
+   "tMountMs": 21,
+   "tReadyMs": 13335,
+   "tPrewarmMs": 13379,
+   "tPrefetchDoneMs": 12608,
+   "tTrafficMs": 16419,
+   "prewarmDurationMs": 12587,
+   "tSteadyMs": 19115,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 236,
+   "p99Regression": 158,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 2769577,
+   "prewarmChunkBytes": 13327613,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 22,
+     "warmMs": 16
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 16,
+     "warmMs": 12
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 19,
+     "warmMs": 17
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 84,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 619,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 17
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.1.f1",
+   "arm": "G2",
+   "budget": 0.1,
+   "family": 1,
+   "order": 22,
+   "exit": 0,
+   "tProcMs": 88,
+   "tMountMs": 33,
+   "tReadyMs": 13438,
+   "tPrewarmMs": 25517,
+   "tPrefetchDoneMs": 24656,
+   "tTrafficMs": 28556,
+   "prewarmDurationMs": 24623,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 132,
+   "p99Regression": 54,
+   "p50": 5,
+   "p95": 74,
+   "p99": 84,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 1,
+   "postAdmissionRemoteBytes": 923939,
+   "prewarmChunkBytes": 36761835,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 33,
+     "warmMs": 19
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 24,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 7,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 31,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 77
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 433,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 25,
+     "warmMs": 19
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.1.f1",
+   "arm": "R1",
+   "budget": 0.1,
+   "family": 1,
+   "order": 23,
+   "exit": 0,
+   "tProcMs": 85,
+   "tMountMs": 27,
+   "tReadyMs": 16705,
+   "tPrewarmMs": 24193,
+   "tPrefetchDoneMs": 23352,
+   "tTrafficMs": 27254,
+   "prewarmDurationMs": 23325,
+   "tSteadyMs": 30875,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 133,
+   "p99Regression": 55,
+   "p50": 5,
+   "p95": 74,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 41727639,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 32,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 23,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 6,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 30,
+     "warmMs": 18
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 87,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 149,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 24,
+     "warmMs": 19
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.1.f1",
+   "arm": "R2",
+   "budget": 0.1,
+   "family": 1,
+   "order": 24,
+   "exit": 0,
+   "tProcMs": 85,
+   "tMountMs": 30,
+   "tReadyMs": 13717,
+   "tPrewarmMs": 26999,
+   "tPrefetchDoneMs": 26134,
+   "tTrafficMs": 30052,
+   "prewarmDurationMs": 26104,
+   "tSteadyMs": 32926,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 131,
+   "p99Regression": 53,
+   "p50": 5,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 36934398,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 29,
+     "warmMs": 13
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 19,
+     "warmMs": 12
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 20,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 157,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 13
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.1.f1",
+   "arm": "G1",
+   "budget": 0.1,
+   "family": 1,
+   "order": 25,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 23,
+   "tReadyMs": 13226,
+   "tPrewarmMs": 13640,
+   "tPrefetchDoneMs": 12823,
+   "tTrafficMs": 16689,
+   "prewarmDurationMs": 12800,
+   "tSteadyMs": 19513,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 222,
+   "p99Regression": 144,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 9,
+   "postAdmissionRemoteBytes": 3371262,
+   "prewarmChunkBytes": 27118995,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 24,
+     "warmMs": 16
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 19,
+     "warmMs": 13
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 6,
+     "warmMs": 6
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 20,
+     "warmMs": 17
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 767,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 21,
+     "warmMs": 19
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.2.f1",
+   "arm": "G2",
+   "budget": 0.2,
+   "family": 1,
+   "order": 26,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 30,
+   "tReadyMs": 13492,
+   "tPrewarmMs": 27535,
+   "tPrefetchDoneMs": 26682,
+   "tTrafficMs": 30554,
+   "prewarmDurationMs": 26652,
+   "tSteadyMs": 34872,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 150,
+   "p99Regression": 72,
+   "p50": 6,
+   "p95": 73,
+   "p99": 83,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 66703638,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 34,
+     "warmMs": 17
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 29,
+     "warmMs": 16
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 7,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 33,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 217,
+     "warmMs": 77
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 150,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 26,
+     "warmMs": 19
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.2.f1",
+   "arm": "R1",
+   "budget": 0.2,
+   "family": 1,
+   "order": 27,
+   "exit": 0,
+   "tProcMs": 94,
+   "tMountMs": 37,
+   "tReadyMs": 16833,
+   "tPrewarmMs": 25284,
+   "tPrefetchDoneMs": 24437,
+   "tTrafficMs": 28325,
+   "prewarmDurationMs": 24400,
+   "tSteadyMs": 30826,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 73,
+   "p99": 83,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 70088479,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 33,
+     "warmMs": 17
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 27,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 33,
+     "warmMs": 18
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 87,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 152,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 27,
+     "warmMs": 20
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.2.f1",
+   "arm": "R2",
+   "budget": 0.2,
+   "family": 1,
+   "order": 28,
+   "exit": 0,
+   "tProcMs": 82,
+   "tMountMs": 27,
+   "tReadyMs": 13894,
+   "tPrewarmMs": 28170,
+   "tPrefetchDoneMs": 27333,
+   "tTrafficMs": 31201,
+   "prewarmDurationMs": 27306,
+   "tSteadyMs": 33348,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 157,
+   "p99Regression": 79,
+   "p50": 5,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 64568198,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 27,
+     "warmMs": 16
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 21,
+     "warmMs": 12
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 2
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 20,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 87,
+     "warmMs": 81
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 157,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 16
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.2.f1",
+   "arm": "G1",
+   "budget": 0.2,
+   "family": 1,
+   "order": 29,
+   "exit": 0,
+   "tProcMs": 79,
+   "tMountMs": 20,
+   "tReadyMs": 13173,
+   "tPrewarmMs": 14456,
+   "tPrefetchDoneMs": 13597,
+   "tTrafficMs": 17495,
+   "prewarmDurationMs": 13577,
+   "tSteadyMs": 20470,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 222,
+   "p99Regression": 144,
+   "p50": 5,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 11,
+   "postAdmissionRemoteBytes": 4272092,
+   "prewarmChunkBytes": 54663150,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 22,
+     "warmMs": 16
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 16,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 6,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 19,
+     "warmMs": 17
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 86,
+     "warmMs": 81
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 950,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 18,
+     "warmMs": 18
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.4.f1",
+   "arm": "G2",
+   "budget": 0.4,
+   "family": 1,
+   "order": 30,
+   "exit": 0,
+   "tProcMs": 86,
+   "tMountMs": 31,
+   "tReadyMs": 13934,
+   "tPrewarmMs": 29731,
+   "tPrefetchDoneMs": 28862,
+   "tTrafficMs": 32789,
+   "prewarmDurationMs": 28831,
+   "tSteadyMs": 35261,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 144,
+   "p99Regression": 66,
+   "p50": 5,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 116401091,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 27,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 21,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 19,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 86,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 154,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 21,
+     "warmMs": 15
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.4.f1",
+   "arm": "R1",
+   "budget": 0.4,
+   "family": 1,
+   "order": 31,
+   "exit": 0,
+   "tProcMs": 92,
+   "tMountMs": 36,
+   "tReadyMs": 16783,
+   "tPrewarmMs": 26219,
+   "tPrefetchDoneMs": 25357,
+   "tTrafficMs": 29273,
+   "prewarmDurationMs": 25321,
+   "tSteadyMs": 31266,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 133,
+   "p99Regression": 55,
+   "p50": 5,
+   "p95": 74,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 121516238,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 28,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 18,
+     "warmMs": 12
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 6,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 19,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 86,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 155,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 21,
+     "warmMs": 15
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.4.f1",
+   "arm": "R2",
+   "budget": 0.4,
+   "family": 1,
+   "order": 32,
+   "exit": 0,
+   "tProcMs": 91,
+   "tMountMs": 37,
+   "tReadyMs": 13455,
+   "tPrewarmMs": 29565,
+   "tPrefetchDoneMs": 28699,
+   "tTrafficMs": 32603,
+   "prewarmDurationMs": 28662,
+   "tSteadyMs": 35952,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 128,
+   "p99Regression": 50,
+   "p50": 5,
+   "p95": 73,
+   "p99": 95,
+   "warmP50": 5,
+   "warmP99": 81,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 112661304,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 30,
+     "warmMs": 19
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 26,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 8,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 32,
+     "warmMs": 17
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 111,
+     "warmMs": 77
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 153,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 24,
+     "warmMs": 18
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.4.f1",
+   "arm": "G1",
+   "budget": 0.4,
+   "family": 1,
+   "order": 33,
+   "exit": 0,
+   "tProcMs": 86,
+   "tMountMs": 31,
+   "tReadyMs": 13610,
+   "tPrewarmMs": 21570,
+   "tPrefetchDoneMs": 20713,
+   "tTrafficMs": 24615,
+   "prewarmDurationMs": 20682,
+   "tSteadyMs": 27468,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 73,
+   "p99": 85,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 2449628,
+   "prewarmChunkBytes": 118249758,
+   "firstHit": [
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 31,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 25,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 4,
+     "ms": 32,
+     "warmMs": 20
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 6,
+     "ms": 737,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 26,
+     "warmMs": 18
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "E0.f2",
+   "arm": "E0",
+   "budget": null,
+   "family": 2,
+   "order": 34,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 21,
+   "tReadyMs": 20093,
+   "tPrewarmMs": 23605,
+   "tPrefetchDoneMs": 22736,
+   "tTrafficMs": 26662,
+   "prewarmDurationMs": 22715,
+   "tSteadyMs": 28595,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 228270196,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 23,
+     "warmMs": 17
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 89,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 150,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 27,
+     "warmMs": 17
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 23,
+     "warmMs": 16
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 19,
+     "warmMs": 13
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.05.f2",
+   "arm": "R1",
+   "budget": 0.05,
+   "family": 2,
+   "order": 35,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 28,
+   "tReadyMs": 16771,
+   "tPrewarmMs": 23633,
+   "tPrefetchDoneMs": 22762,
+   "tTrafficMs": 26693,
+   "prewarmDurationMs": 22734,
+   "tSteadyMs": 29709,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 24727358,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 6,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 34,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 88,
+     "warmMs": 81
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 157,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 26,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 27,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 18,
+     "warmMs": 15
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.05.f2",
+   "arm": "R2",
+   "budget": 0.05,
+   "family": 2,
+   "order": 36,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 21,
+   "tReadyMs": 13311,
+   "tPrewarmMs": 25467,
+   "tPrefetchDoneMs": 24592,
+   "tTrafficMs": 28510,
+   "prewarmDurationMs": 24571,
+   "tSteadyMs": 31956,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 170,
+   "p99Regression": 92,
+   "p50": 5,
+   "p95": 73,
+   "p99": 85,
+   "warmP50": 4,
+   "warmP99": 80,
+   "postAdmissionRemoteRequests": 1,
+   "postAdmissionRemoteBytes": 1046614,
+   "prewarmChunkBytes": 18724106,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 32,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 106,
+     "warmMs": 82
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 437,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 27,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 21,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 17
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.05.f2",
+   "arm": "G1",
+   "budget": 0.05,
+   "family": 2,
+   "order": 37,
+   "exit": 0,
+   "tProcMs": 68,
+   "tMountMs": 15,
+   "tReadyMs": 13807,
+   "tPrewarmMs": 13705,
+   "tPrefetchDoneMs": 12939,
+   "tTrafficMs": 16839,
+   "prewarmDurationMs": 12924,
+   "tSteadyMs": 19841,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 224,
+   "p99Regression": 146,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 2769577,
+   "prewarmChunkBytes": 13327613,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 23,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 88,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 641,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 20,
+     "warmMs": 13
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 20,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 16,
+     "warmMs": 12
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.05.f2",
+   "arm": "G2",
+   "budget": 0.05,
+   "family": 2,
+   "order": 38,
+   "exit": 0,
+   "tProcMs": 81,
+   "tMountMs": 21,
+   "tReadyMs": 13499,
+   "tPrewarmMs": 21471,
+   "tPrefetchDoneMs": 20613,
+   "tTrafficMs": 24490,
+   "prewarmDurationMs": 20592,
+   "tSteadyMs": 28048,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 174,
+   "p99Regression": 96,
+   "p50": 5,
+   "p95": 73,
+   "p99": 83,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 4,
+   "postAdmissionRemoteBytes": 1107105,
+   "prewarmChunkBytes": 18495905,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 4,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 28,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 402,
+     "warmMs": 4
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 27,
+     "warmMs": 13
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 20,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 18,
+     "warmMs": 10
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.1.f2",
+   "arm": "R1",
+   "budget": 0.1,
+   "family": 2,
+   "order": 39,
+   "exit": 0,
+   "tProcMs": 84,
+   "tMountMs": 32,
+   "tReadyMs": 17147,
+   "tPrewarmMs": 24601,
+   "tPrefetchDoneMs": 23751,
+   "tTrafficMs": 27655,
+   "prewarmDurationMs": 23719,
+   "tSteadyMs": 29644,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 72,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 41727639,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 6,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 32,
+     "warmMs": 17
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 88,
+     "warmMs": 80
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 163,
+     "warmMs": 4
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 26,
+     "warmMs": 19
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 24,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 15
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.1.f2",
+   "arm": "R2",
+   "budget": 0.1,
+   "family": 2,
+   "order": 40,
+   "exit": 0,
+   "tProcMs": 86,
+   "tMountMs": 32,
+   "tReadyMs": 13277,
+   "tPrewarmMs": 27244,
+   "tPrefetchDoneMs": 26381,
+   "tTrafficMs": 30285,
+   "prewarmDurationMs": 26349,
+   "tSteadyMs": 33048,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 74,
+   "p99": 83,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 36934398,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 6,
+     "warmMs": 2
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 28,
+     "warmMs": 174
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 157,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 27,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 18,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 15,
+     "warmMs": 11
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.1.f2",
+   "arm": "G1",
+   "budget": 0.1,
+   "family": 2,
+   "order": 41,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 20,
+   "tReadyMs": 13362,
+   "tPrewarmMs": 13844,
+   "tPrefetchDoneMs": 13041,
+   "tTrafficMs": 16880,
+   "prewarmDurationMs": 13021,
+   "tSteadyMs": 19480,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 229,
+   "p99Regression": 151,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 11,
+   "postAdmissionRemoteBytes": 3363484,
+   "prewarmChunkBytes": 27118995,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 24,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 85,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 824,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 19,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 17,
+     "warmMs": 13
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 14,
+     "warmMs": 12
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.1.f2",
+   "arm": "G2",
+   "budget": 0.1,
+   "family": 2,
+   "order": 42,
+   "exit": 0,
+   "tProcMs": 89,
+   "tMountMs": 31,
+   "tReadyMs": 13435,
+   "tPrewarmMs": 25442,
+   "tPrefetchDoneMs": 24576,
+   "tTrafficMs": 28488,
+   "prewarmDurationMs": 24545,
+   "tSteadyMs": 31657,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 6,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 1,
+   "postAdmissionRemoteBytes": 923939,
+   "prewarmChunkBytes": 36761835,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 28,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 90,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 429,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 27,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 19,
+     "warmMs": 12
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 15,
+     "warmMs": 9
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.2.f2",
+   "arm": "R1",
+   "budget": 0.2,
+   "family": 2,
+   "order": 43,
+   "exit": 0,
+   "tProcMs": 89,
+   "tMountMs": 35,
+   "tReadyMs": 16814,
+   "tPrewarmMs": 24965,
+   "tPrefetchDoneMs": 24118,
+   "tTrafficMs": 28021,
+   "prewarmDurationMs": 24083,
+   "tSteadyMs": 32479,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 133,
+   "p99Regression": 55,
+   "p50": 6,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 70088479,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 34,
+     "warmMs": 19
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 89,
+     "warmMs": 81
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 161,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 27,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 23,
+     "warmMs": 19
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 15
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.2.f2",
+   "arm": "R2",
+   "budget": 0.2,
+   "family": 2,
+   "order": 44,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 30,
+   "tReadyMs": 13539,
+   "tPrewarmMs": 27771,
+   "tPrefetchDoneMs": 26923,
+   "tTrafficMs": 30804,
+   "prewarmDurationMs": 26893,
+   "tSteadyMs": 34120,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 153,
+   "p99Regression": 75,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 80,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 64568198,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 25,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 153,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 26,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 19,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 14,
+     "warmMs": 11
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.2.f2",
+   "arm": "G1",
+   "budget": 0.2,
+   "family": 2,
+   "order": 45,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 21,
+   "tReadyMs": 13813,
+   "tPrewarmMs": 15268,
+   "tPrefetchDoneMs": 14421,
+   "tTrafficMs": 18308,
+   "prewarmDurationMs": 14400,
+   "tSteadyMs": 21229,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 234,
+   "p99Regression": 156,
+   "p50": 5,
+   "p95": 71,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 10,
+   "postAdmissionRemoteBytes": 4117455,
+   "prewarmChunkBytes": 54663150,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 86,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 870,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 19,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 18,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 14,
+     "warmMs": 12
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.2.f2",
+   "arm": "G2",
+   "budget": 0.2,
+   "family": 2,
+   "order": 46,
+   "exit": 0,
+   "tProcMs": 85,
+   "tMountMs": 30,
+   "tReadyMs": 13414,
+   "tPrewarmMs": 27371,
+   "tPrefetchDoneMs": 26530,
+   "tTrafficMs": 30416,
+   "prewarmDurationMs": 26500,
+   "tSteadyMs": 33347,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 155,
+   "p99Regression": 77,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 66703638,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 27,
+     "warmMs": 15
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 88,
+     "warmMs": 80
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 155,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 27,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 18,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 15,
+     "warmMs": 11
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.4.f2",
+   "arm": "R1",
+   "budget": 0.4,
+   "family": 2,
+   "order": 47,
+   "exit": 0,
+   "tProcMs": 91,
+   "tMountMs": 39,
+   "tReadyMs": 16692,
+   "tPrewarmMs": 26141,
+   "tPrefetchDoneMs": 25275,
+   "tTrafficMs": 29189,
+   "prewarmDurationMs": 25236,
+   "tSteadyMs": 32794,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 131,
+   "p99Regression": 53,
+   "p50": 6,
+   "p95": 73,
+   "p99": 83,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 121516238,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 6,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 28,
+     "warmMs": 16
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 87,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 151,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 29,
+     "warmMs": 13
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 21,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 18,
+     "warmMs": 12
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.4.f2",
+   "arm": "R2",
+   "budget": 0.4,
+   "family": 2,
+   "order": 48,
+   "exit": 0,
+   "tProcMs": 84,
+   "tMountMs": 30,
+   "tReadyMs": 13523,
+   "tPrewarmMs": 29563,
+   "tPrefetchDoneMs": 28687,
+   "tTrafficMs": 32600,
+   "prewarmDurationMs": 28657,
+   "tSteadyMs": 34415,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 134,
+   "p99Regression": 56,
+   "p50": 5,
+   "p95": 74,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 112661304,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 26,
+     "warmMs": 14
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 85,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 142,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 27,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 20,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 15,
+     "warmMs": 10
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.4.f2",
+   "arm": "G1",
+   "budget": 0.4,
+   "family": 2,
+   "order": 49,
+   "exit": 0,
+   "tProcMs": 85,
+   "tMountMs": 28,
+   "tReadyMs": 13648,
+   "tPrewarmMs": 21658,
+   "tPrefetchDoneMs": 20808,
+   "tTrafficMs": 24689,
+   "prewarmDurationMs": 20780,
+   "tSteadyMs": 27117,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 99,
+   "p50": 5,
+   "p95": 74,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 6,
+   "postAdmissionRemoteBytes": 2002580,
+   "prewarmChunkBytes": 118249758,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 28,
+     "warmMs": 16
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 87,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 647,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 24,
+     "warmMs": 13
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 23,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 17,
+     "warmMs": 11
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.4.f2",
+   "arm": "G2",
+   "budget": 0.4,
+   "family": 2,
+   "order": 50,
+   "exit": 0,
+   "tProcMs": 92,
+   "tMountMs": 38,
+   "tReadyMs": 13536,
+   "tPrewarmMs": 29402,
+   "tPrefetchDoneMs": 28526,
+   "tTrafficMs": 32440,
+   "prewarmDurationMs": 28488,
+   "tSteadyMs": 34437,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 156,
+   "p99Regression": 78,
+   "p50": 5,
+   "p95": 74,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 78,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 116401091,
+   "firstHit": [
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 7,
+     "warmMs": 2
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 2,
+     "ms": 28,
+     "warmMs": 16
+    },
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 3,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 156,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 28,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 19,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 7,
+     "ms": 14,
+     "warmMs": 11
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "E0.f3",
+   "arm": "E0",
+   "budget": null,
+   "family": 3,
+   "order": 51,
+   "exit": 0,
+   "tProcMs": 74,
+   "tMountMs": 13,
+   "tReadyMs": 19928,
+   "tPrewarmMs": 23504,
+   "tPrefetchDoneMs": 22653,
+   "tTrafficMs": 26560,
+   "prewarmDurationMs": 22640,
+   "tSteadyMs": 28707,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 127,
+   "p99Regression": 49,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 228270196,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 89,
+     "warmMs": 80
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 149,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 43,
+     "warmMs": 13
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 19,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 16,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 18,
+     "warmMs": 15
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.05.f3",
+   "arm": "R2",
+   "budget": 0.05,
+   "family": 3,
+   "order": 52,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 21,
+   "tReadyMs": 13849,
+   "tPrewarmMs": 25786,
+   "tPrefetchDoneMs": 24919,
+   "tTrafficMs": 28846,
+   "prewarmDurationMs": 24898,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 73,
+   "p99": 93,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 1,
+   "postAdmissionRemoteBytes": 1046614,
+   "prewarmChunkBytes": 18724106,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 91,
+     "warmMs": 76
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 414,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 37,
+     "warmMs": 17
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 27,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 22,
+     "warmMs": 13
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 21,
+     "warmMs": 17
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.05.f3",
+   "arm": "G1",
+   "budget": 0.05,
+   "family": 3,
+   "order": 53,
+   "exit": 0,
+   "tProcMs": 74,
+   "tMountMs": 18,
+   "tReadyMs": 13408,
+   "tPrewarmMs": 13475,
+   "tPrefetchDoneMs": 12701,
+   "tTrafficMs": 16513,
+   "prewarmDurationMs": 12683,
+   "tSteadyMs": 19394,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 241,
+   "p99Regression": 163,
+   "p50": 5,
+   "p95": 73,
+   "p99": 83,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 11,
+   "postAdmissionRemoteBytes": 3363484,
+   "prewarmChunkBytes": 13327613,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 866,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 24,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 20,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 16,
+     "warmMs": 13
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 2
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 19,
+     "warmMs": 17
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.05.f3",
+   "arm": "G2",
+   "budget": 0.05,
+   "family": 3,
+   "order": 54,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 22,
+   "tReadyMs": 13446,
+   "tPrewarmMs": 21554,
+   "tPrefetchDoneMs": 20722,
+   "tTrafficMs": 24591,
+   "prewarmDurationMs": 20700,
+   "tSteadyMs": 26848,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 169,
+   "p99Regression": 91,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 80,
+   "postAdmissionRemoteRequests": 4,
+   "postAdmissionRemoteBytes": 1107105,
+   "prewarmChunkBytes": 18495905,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 91,
+     "warmMs": 80
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 383,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 21,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 18,
+     "warmMs": 13
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 17,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 2
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 18,
+     "warmMs": 14
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.05.f3",
+   "arm": "R1",
+   "budget": 0.05,
+   "family": 3,
+   "order": 55,
+   "exit": 0,
+   "tProcMs": 82,
+   "tMountMs": 26,
+   "tReadyMs": 16686,
+   "tPrewarmMs": 23384,
+   "tPrefetchDoneMs": 22515,
+   "tTrafficMs": 26429,
+   "prewarmDurationMs": 22489,
+   "tSteadyMs": 28379,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 129,
+   "p99Regression": 51,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 24727358,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 93,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 155,
+     "warmMs": 3
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 36,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 20,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 17,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 19,
+     "warmMs": 14
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.1.f3",
+   "arm": "R2",
+   "budget": 0.1,
+   "family": 3,
+   "order": 56,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 27,
+   "tReadyMs": 13472,
+   "tPrewarmMs": 27109,
+   "tPrefetchDoneMs": 26242,
+   "tTrafficMs": 30150,
+   "prewarmDurationMs": 26215,
+   "tSteadyMs": 32670,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 134,
+   "p99Regression": 56,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 80,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 36934398,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 92,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 307,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 36,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 26,
+     "warmMs": 17
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 24,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 6,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 23,
+     "warmMs": 19
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.1.f3",
+   "arm": "G1",
+   "budget": 0.1,
+   "family": 3,
+   "order": 57,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 21,
+   "tReadyMs": 13574,
+   "tPrewarmMs": 14059,
+   "tPrefetchDoneMs": 13227,
+   "tTrafficMs": 17100,
+   "prewarmDurationMs": 13206,
+   "tSteadyMs": 19779,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 236,
+   "p99Regression": 158,
+   "p50": 5,
+   "p95": 73,
+   "p99": 81,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 2769577,
+   "prewarmChunkBytes": 27118995,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 88,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 626,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 30,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 21,
+     "warmMs": 17
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 17,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 16
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.1.f3",
+   "arm": "G2",
+   "budget": 0.1,
+   "family": 3,
+   "order": 58,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 28,
+   "tReadyMs": 13490,
+   "tPrewarmMs": 25845,
+   "tPrefetchDoneMs": 24995,
+   "tTrafficMs": 28880,
+   "prewarmDurationMs": 24967,
+   "tSteadyMs": 33738,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 195,
+   "p99Regression": 117,
+   "p50": 5,
+   "p95": 73,
+   "p99": 83,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 1,
+   "postAdmissionRemoteBytes": 923939,
+   "prewarmChunkBytes": 36761835,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 89,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 429,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 41,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 24,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 19,
+     "warmMs": 15
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 21,
+     "warmMs": 19
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.1.f3",
+   "arm": "R1",
+   "budget": 0.1,
+   "family": 3,
+   "order": 59,
+   "exit": 0,
+   "tProcMs": 98,
+   "tMountMs": 40,
+   "tReadyMs": 16858,
+   "tPrewarmMs": 24308,
+   "tPrefetchDoneMs": 23451,
+   "tTrafficMs": 27355,
+   "prewarmDurationMs": 23411,
+   "tSteadyMs": 29458,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 132,
+   "p99Regression": 54,
+   "p50": 5,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 41727639,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 90,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 152,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 36,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 22,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 15,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 20,
+     "warmMs": 14
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.2.f3",
+   "arm": "R2",
+   "budget": 0.2,
+   "family": 3,
+   "order": 60,
+   "exit": 0,
+   "tProcMs": 89,
+   "tMountMs": 30,
+   "tReadyMs": 13061,
+   "tPrewarmMs": 27625,
+   "tPrefetchDoneMs": 26765,
+   "tTrafficMs": 30669,
+   "prewarmDurationMs": 26735,
+   "tSteadyMs": 34449,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 131,
+   "p99Regression": 53,
+   "p50": 5,
+   "p95": 73,
+   "p99": 90,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 64568198,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 90,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 152,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 36,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 22,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 16,
+     "warmMs": 12
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 18,
+     "warmMs": 13
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.2.f3",
+   "arm": "G1",
+   "budget": 0.2,
+   "family": 3,
+   "order": 61,
+   "exit": 0,
+   "tProcMs": 74,
+   "tMountMs": 20,
+   "tReadyMs": 13303,
+   "tPrewarmMs": 14826,
+   "tPrefetchDoneMs": 13951,
+   "tTrafficMs": 17874,
+   "prewarmDurationMs": 13931,
+   "tSteadyMs": 20758,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 240,
+   "p99Regression": 162,
+   "p50": 5,
+   "p95": 73,
+   "p99": 84,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 8,
+   "postAdmissionRemoteBytes": 3354761,
+   "prewarmChunkBytes": 54663150,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 88,
+     "warmMs": 76
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 710,
+     "warmMs": 4
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 22,
+     "warmMs": 16
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 17,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 16,
+     "warmMs": 13
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 6,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 17,
+     "warmMs": 14
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.2.f3",
+   "arm": "G2",
+   "budget": 0.2,
+   "family": 3,
+   "order": 62,
+   "exit": 0,
+   "tProcMs": 85,
+   "tMountMs": 32,
+   "tReadyMs": 13499,
+   "tPrewarmMs": 27341,
+   "tPrefetchDoneMs": 26483,
+   "tTrafficMs": 30385,
+   "prewarmDurationMs": 26451,
+   "tSteadyMs": 32518,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 131,
+   "p99Regression": 53,
+   "p50": 5,
+   "p95": 73,
+   "p99": 80,
+   "warmP50": 5,
+   "warmP99": 80,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 66703638,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 90,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 155,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 35,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 26,
+     "warmMs": 18
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 24,
+     "warmMs": 14
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 23,
+     "warmMs": 19
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.2.f3",
+   "arm": "R1",
+   "budget": 0.2,
+   "family": 3,
+   "order": 63,
+   "exit": 0,
+   "tProcMs": 86,
+   "tMountMs": 32,
+   "tReadyMs": 16390,
+   "tPrewarmMs": 24821,
+   "tPrefetchDoneMs": 23976,
+   "tTrafficMs": 27875,
+   "prewarmDurationMs": 23944,
+   "tSteadyMs": 31929,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 130,
+   "p99Regression": 52,
+   "p50": 5,
+   "p95": 75,
+   "p99": 84,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 70088479,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 91,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 158,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 38,
+     "warmMs": 21
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 24,
+     "warmMs": 17
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 24,
+     "warmMs": 13
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 3,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 27,
+     "warmMs": 18
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.4.f3",
+   "arm": "R2",
+   "budget": 0.4,
+   "family": 3,
+   "order": 64,
+   "exit": 0,
+   "tProcMs": 88,
+   "tMountMs": 34,
+   "tReadyMs": 13394,
+   "tPrewarmMs": 29526,
+   "tPrefetchDoneMs": 28666,
+   "tTrafficMs": 32578,
+   "prewarmDurationMs": 28632,
+   "tSteadyMs": 37143,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 128,
+   "p99Regression": 50,
+   "p50": 5,
+   "p95": 73,
+   "p99": 89,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 112661304,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 89,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 157,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 38,
+     "warmMs": 15
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 22,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 15,
+     "warmMs": 10
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 19,
+     "warmMs": 15
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.4.f3",
+   "arm": "G1",
+   "budget": 0.4,
+   "family": 3,
+   "order": 65,
+   "exit": 0,
+   "tProcMs": 87,
+   "tMountMs": 27,
+   "tReadyMs": 13668,
+   "tPrewarmMs": 21678,
+   "tPrefetchDoneMs": 20822,
+   "tTrafficMs": 24724,
+   "prewarmDurationMs": 20795,
+   "tSteadyMs": 27377,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 148,
+   "p99Regression": 70,
+   "p50": 5,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 8,
+   "postAdmissionRemoteBytes": 2604265,
+   "prewarmChunkBytes": 118249758,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 92,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 771,
+     "warmMs": 6
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 37,
+     "warmMs": 16
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 20,
+     "warmMs": 14
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 15,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 19,
+     "warmMs": 14
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.4.f3",
+   "arm": "G2",
+   "budget": 0.4,
+   "family": 3,
+   "order": 66,
+   "exit": 0,
+   "tProcMs": 91,
+   "tMountMs": 35,
+   "tReadyMs": 13614,
+   "tPrewarmMs": 29645,
+   "tPrefetchDoneMs": 28761,
+   "tTrafficMs": 32697,
+   "prewarmDurationMs": 28726,
+   "tSteadyMs": 36439,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 157,
+   "p99Regression": 79,
+   "p50": 5,
+   "p95": 73,
+   "p99": 82,
+   "warmP50": 4,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 116401091,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 92,
+     "warmMs": 79
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 157,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 37,
+     "warmMs": 14
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 21,
+     "warmMs": 15
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 16,
+     "warmMs": 11
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 6,
+     "warmMs": 5
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 18,
+     "warmMs": 14
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.4.f3",
+   "arm": "R1",
+   "budget": 0.4,
+   "family": 3,
+   "order": 67,
+   "exit": 0,
+   "tProcMs": 93,
+   "tMountMs": 36,
+   "tReadyMs": 16631,
+   "tPrewarmMs": 26246,
+   "tPrefetchDoneMs": 25389,
+   "tTrafficMs": 29281,
+   "prewarmDurationMs": 25353,
+   "tSteadyMs": 32038,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 132,
+   "p99Regression": 54,
+   "p50": 5,
+   "p95": 73,
+   "p99": 83,
+   "warmP50": 5,
+   "warmP99": 79,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 121516238,
+   "firstHit": [
+    {
+     "group": "st.users",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 89,
+     "warmMs": 78
+    },
+    {
+     "group": "st.docs",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 157,
+     "warmMs": 5
+    },
+    {
+     "group": "st.upload",
+     "category": "optional-feature",
+     "position": 3,
+     "ms": 36,
+     "warmMs": 18
+    },
+    {
+     "group": "st.contentapi",
+     "category": "admin-background",
+     "position": 4,
+     "ms": 24,
+     "warmMs": 16
+    },
+    {
+     "group": "st.webhook",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 20,
+     "warmMs": 13
+    },
+    {
+     "group": "st.preview",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "st.errors",
+     "category": "error-path",
+     "position": 7,
+     "ms": 23,
+     "warmMs": 16
+    }
+   ],
+   "failedRequests": 0
+  }
+ ]
+}

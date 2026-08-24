@@ -1,0 +1,22 @@
+{
+ "app": "nextjs-longtail",
+ "arm": "G2",
+ "budget": 0.05,
+ "family": 3,
+ "order": 54,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/nextjs-longtail/G2.b0.05.f3",
+ "prefetchFile": "/Users/sara/.cache/reducer-longtail-v1/prefetch/nextjs-longtail/G2.0.05.txt",
+ "prefetchAll": false,
+ "milestones": {
+  "setup-done": 1787552564871,
+  "t0": 1787552564872,
+  "mount": 1787552564893,
+  "proc": 1787552564950,
+  "prefetch-last-progress": 1787552569794,
+  "prewarm": 1787552570637,
+  "workload-done": 1787552576311,
+  "collect": 1787552576327,
+  "done": 1787552576643
+ },
+ "exit": 0
+}

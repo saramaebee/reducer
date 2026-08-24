@@ -1,0 +1,22 @@
+{
+ "app": "uptime-kuma",
+ "arm": "G2",
+ "budget": 0.4,
+ "family": 1,
+ "order": 30,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/uptime-kuma/G2.b0.4.f1",
+ "prefetchFile": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G2.0.4.txt",
+ "prefetchAll": false,
+ "milestones": {
+  "setup-done": 1787554743619,
+  "t0": 1787554743620,
+  "mount": 1787554743639,
+  "proc": 1787554743694,
+  "prefetch-last-progress": 1787554752640,
+  "prewarm": 1787554753500,
+  "workload-done": 1787554759576,
+  "collect": 1787554759595,
+  "done": 1787554759919
+ },
+ "exit": 0
+}

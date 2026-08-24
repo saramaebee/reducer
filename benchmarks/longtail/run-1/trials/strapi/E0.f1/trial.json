@@ -3,20 +3,20 @@
  "arm": "E0",
  "budget": null,
  "family": 1,
- "order": 1,
+ "order": 17,
  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/strapi/E0.f1",
  "prefetchFile": null,
  "prefetchAll": true,
  "milestones": {
-  "setup-done": 1787548858552,
-  "t0": 1787548858552,
-  "mount": 1787548858565,
-  "proc": 1787548858619,
-  "prefetch-last-progress": 1787548881045,
-  "prewarm": 1787548881938,
-  "workload-done": 1787548893212,
-  "collect": 1787548893234,
-  "done": 1787548893574
+  "setup-done": 1787555964138,
+  "t0": 1787555964138,
+  "mount": 1787555964158,
+  "proc": 1787555964212,
+  "prefetch-last-progress": 1787555986833,
+  "prewarm": 1787555987701,
+  "workload-done": 1787555998956,
+  "collect": 1787555998972,
+  "done": 1787555999296
  },
  "exit": 0
 }

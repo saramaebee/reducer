@@ -1,0 +1,5504 @@
+{
+ "app": "uptime-kuma",
+ "family": 1,
+ "argv": [
+  "/mnt/app/server/server.js",
+  "--port=3408",
+  "--host=0.0.0.0"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production",
+  "UPTIME_KUMA_DB_TYPE": "sqlite",
+  "DATA_DIR": "/scratch/kuma-data/",
+  "UPTIME_KUMA_WS_ORIGIN_CHECK": "cors-like"
+ },
+ "setup": [
+  "rm -rf /scratch/kuma-data && mkdir -p /scratch/kuma-data",
+  "test -f /eager/dist/index.html || npm run build"
+ ],
+ "ready": {
+  "kind": "http",
+  "value": "http://127.0.0.1:3408/api/entry-page",
+  "timeoutMs": 180000
+ },
+ "settleMs": 3000,
+ "baseUrl": "http://127.0.0.1:3408",
+ "passes": 2,
+ "traffic": [
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 1
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 1
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 1
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 1
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 1,
+   "position": 2
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 1,
+   "position": 2
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 3
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 3
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 3
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 3
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.r0",
+   "method": "GET",
+   "path": "/assets/Notifications-D15RBszk.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.r1",
+   "method": "GET",
+   "path": "/assets/PingChart-DK_PbHb7.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.r2",
+   "method": "GET",
+   "path": "/assets/Security-BLw7q_H-.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.r3",
+   "method": "GET",
+   "path": "/assets/Settings-BGRuqsQg.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.routechunks",
+   "category": "rare-route",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.ae.metrics",
+   "method": "GET",
+   "path": "/metrics",
+   "expect": [
+    401
+   ],
+   "headers": {
+    "authorization": "Basic bm9wZTpub3Bl"
+   },
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.ae.badge",
+   "method": "GET",
+   "path": "/api/badge/999/status",
+   "expect": [
+    404,
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "uk.autherror",
+   "category": "error-path",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.entry",
+   "method": "GET",
+   "path": "/api/entry-page",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.nf.push",
+   "method": "GET",
+   "path": "/api/push/deadbeef?status=up&msg=OK&ping=12",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.sp",
+   "method": "GET",
+   "path": "/api/status-page/does-not-exist",
+   "expect": [
+    404,
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.spa",
+   "method": "GET",
+   "path": "/some/unknown/spa/route",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.nf.chpw",
+   "method": "GET",
+   "path": "/.well-known/change-password",
+   "expect": [
+    200,
+    302,
+    404
+   ],
+   "kind": "longtail",
+   "group": "uk.notfound",
+   "category": "rare-route",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.setupinfo",
+   "method": "GET",
+   "path": "/setup-database-info",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.shell",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200,
+    302
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.dashboard",
+   "method": "GET",
+   "path": "/dashboard",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.robots",
+   "method": "GET",
+   "path": "/robots.txt",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "uk.l0",
+   "method": "GET",
+   "path": "/assets/de-DE-DUlnPLjh.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.l1",
+   "method": "GET",
+   "path": "/assets/es-ES-BZCIn5FC.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.l2",
+   "method": "GET",
+   "path": "/assets/fr-FR-DZUCiYO0.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.l3",
+   "method": "GET",
+   "path": "/assets/it-IT-lUDcWr2s.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.l4",
+   "method": "GET",
+   "path": "/assets/ja-BEmNtB4w.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 13,
+   "position": 0
+  },
+  {
+   "id": "uk.l5",
+   "method": "GET",
+   "path": "/assets/ko-KR-DoAovcA8.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "uk.locale",
+   "category": "locale",
+   "occurrence": 13,
+   "position": 0
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "app": "json-server",
+ "arm": "R2",
+ "budget": 0.2,
+ "family": 0,
+ "order": 12,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/json-server/R2.b0.2.f0",
+ "prefetchFile": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R2.0.2.txt",
+ "prefetchAll": false,
+ "milestones": {
+  "setup-done": 1787549118791,
+  "t0": 1787549118791,
+  "mount": 1787549118811,
+  "proc": 1787549118864,
+  "prefetch-last-progress": 1787549119397,
+  "prewarm": 1787549120254,
+  "workload-done": 1787549123969,
+  "collect": 1787549123986,
+  "done": 1787549124319
+ },
+ "exit": 0
+}

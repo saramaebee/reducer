@@ -13,13 +13,14 @@
  *   bun benchmarks/longtail/analyze.ts summary
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { gunzipSync } from 'node:zlib';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { APPS, WORK_ROOT } from './apps.ts';
 import { loadPlan } from './plan.ts';
 import { g1, g2, r1, r2, truncate, type Ranking, type TrainAccess } from './strategies.ts';
 import { BUDGETS, REFERENCE_BUDGET, STRATEGIES } from './run.ts';
-import { CATEGORIES } from './workloads.ts';
+import { CATEGORIES, workloadFor } from './workloads.ts';
 
 const RUN = path.join(import.meta.dirname, 'run-1');
 
@@ -65,10 +66,14 @@ function loadTrials(app: string): Trial[] {
   const out: Trial[] = [];
   for (const name of readdirSync(dir)) {
     const tj = path.join(dir, name, 'trial.json');
+    // The preserved record stores the per-request stream gzipped (it is the
+    // bulk of the evidence); a fresh run leaves it plain. Read either.
     const ej = path.join(dir, name, 'events.jsonl');
-    if (!existsSync(tj) || !existsSync(ej)) continue;
+    const ejz = `${ej}.gz`;
+    if (!existsSync(tj) || (!existsSync(ej) && !existsSync(ejz))) continue;
     const t = JSON.parse(readFileSync(tj, 'utf8'));
-    const events = readFileSync(ej, 'utf8')
+    const raw = existsSync(ej) ? readFileSync(ej, 'utf8') : gunzipSync(readFileSync(ejz)).toString('utf8');
+    const events = raw
       .split('\n')
       .filter(Boolean)
       .map((l) => JSON.parse(l) as Ev);
@@ -258,14 +263,16 @@ export function trialMetrics(t: Trial, band: Band): TrialMetrics {
 export interface CorrectnessResult {
   comparedTrials: number;
   statusMismatches: { trial: string; index: number; id: string; expected: number | string; got: number | string }[];
+  /** byte-length differences — checked for EVERY request, stable-bodied or not */
+  lengthMismatches: { trial: string; index: number; id: string }[];
   bodyMismatches: { trial: string; index: number; id: string }[];
   headerMismatches: { trial: string; index: number; id: string }[];
   unexpectedStatus: { trial: string; id: string; status: number | string; expect: number[] }[];
 }
 
 /** Every arm must match the E0 trial of the SAME family, request for request. */
-export function correctness(trials: Trial[]): CorrectnessResult {
-  const res: CorrectnessResult = { comparedTrials: 0, statusMismatches: [], bodyMismatches: [], headerMismatches: [], unexpectedStatus: [] };
+export function correctness(trials: Trial[], decl: Map<string, { stableBody: boolean; stableLength: boolean }>): CorrectnessResult {
+  const res: CorrectnessResult = { comparedTrials: 0, statusMismatches: [], lengthMismatches: [], bodyMismatches: [], headerMismatches: [], unexpectedStatus: [] };
   const baseline = new Map<number, ReqEv[]>();
   for (const t of trials) if (t.arm === 'E0' && t.exit === 0) baseline.set(t.family, reqs(t, 1));
   for (const t of trials) {
@@ -281,7 +288,14 @@ export function correctness(trials: Trial[]): CorrectnessResult {
       const a = base[i]!;
       const b = mine[i]!;
       if (a.status !== b.status) res.statusMismatches.push({ trial: t.name, index: i, id: b.id, expected: a.status, got: b.status });
-      if (a.stableBody && b.stableBody && a.bodyHash !== b.bodyHash) res.bodyMismatches.push({ trial: t.name, index: i, id: b.id });
+      // The fingerprint is `<length>:<hash>`. Byte LENGTH is compared for every
+      // request, including ones declared body-unstable — a server-rendered page
+      // that embeds a per-render identifier still owes an identical length. The
+      // full fingerprint is compared only where the body is declared stable.
+      const len = (h: string | null) => h?.split(':')[0] ?? null;
+      const d = decl.get(b.id) ?? { stableBody: b.stableBody, stableLength: true };
+      if (d.stableLength && len(a.bodyHash) !== len(b.bodyHash)) res.lengthMismatches.push({ trial: t.name, index: i, id: b.id });
+      else if (d.stableBody && a.bodyHash !== b.bodyHash) res.bodyMismatches.push({ trial: t.name, index: i, id: b.id });
       if (a.headerValue != null && a.headerValue !== b.headerValue) res.headerMismatches.push({ trial: t.name, index: i, id: b.id });
     }
   }
@@ -293,6 +307,8 @@ export function correctness(trials: Trial[]): CorrectnessResult {
 interface Prep {
   app: string;
   universe: { files: number; bytes: number };
+  train: { files: number; bytes: number };
+  neededTest: { files: number; bytes: number };
   heldOut: { files: number; bytes: number };
   heldOutByCategory: Record<string, { files: number; bytes: number }>;
   budgeted: Record<string, { arm: string; budget: number; files: number; bytes: number; stoppedInTier: string; coveredNeededFiles: number; coveredNeededBytes: number; missNeededFiles: number; missNeededBytes: number; listPath: string }>;
@@ -415,6 +431,21 @@ export function sizeTermSensitivity(app: string): Record<string, Record<number, 
   return out;
 }
 
+/**
+ * Which responses the WORKLOAD declares deterministic. The declaration is a
+ * fact about the application (a captcha is random; a row with an `updatedAt`
+ * column is not byte-stable), not about any trial, so the analysis reads it
+ * from `workloads.ts` rather than from a flag frozen into an old trial file.
+ */
+function declarations(app: string): Map<string, { stableBody: boolean; stableLength: boolean }> {
+  const w = workloadFor(app, loadPlan(app));
+  const out = new Map<string, { stableBody: boolean; stableLength: boolean }>();
+  for (const r of [...w.prelude, ...w.common, ...w.longTail.flatMap((g) => g.requests)]) {
+    out.set(r.id, { stableBody: r.stableBody !== false, stableLength: r.stableLength !== false });
+  }
+  return out;
+}
+
 // ────────────────────────────────────────────────────────────── per app
 
 export function analyzeApp(app: string): unknown {
@@ -483,6 +514,50 @@ export function analyzeApp(app: string): unknown {
     }
   }
 
+  /**
+   * ADDED AFTER THE E0 TRIALS, and labelled as such.
+   *
+   * The preregistered traffic-warm target (every post-admission window p99
+   * inside the band derived from the eager arm's WARM pass) turns out to be
+   * unreachable — by the eager arm itself. E0's own first pass carries an
+   * application warm-up tail (V8 tiering, first-request initialisation) that no
+   * prewarming strategy can remove and that the warm pass by definition does not
+   * contain. On several apps E0 is 0/4 "traffic-warm" against its own band.
+   *
+   * The preregistered criterion is still computed and reported unchanged. This
+   * adds the comparison the data demands: is the arm as good as the EAGER arm
+   * measured in the SAME conditions — same cold start, same first pass? That is
+   * a bound the eager arm meets by construction, and it is the bound an operator
+   * actually cares about ("no worse than shipping the whole image").
+   */
+  const eagerCell = byCell.E0 as { maxWindowP99: Agg; timeToTrafficWarmMs: Agg; tTrafficMs: Agg } | undefined;
+  // The threshold is the eager arm's OWN WORST family, not its median: a median
+  // is a bound the eager arm fails half the time, and on strapi the arms sit
+  // within 2-5 ms of it, so a median threshold would decide the headline on
+  // measurement noise. The worst-family bound is one the eager arm meets by
+  // construction, and it is the honest reading of "no worse than shipping the
+  // whole image".
+  const eagerMaxP99 = eagerCell?.maxWindowP99?.max ?? NaN;
+  for (const [k, c] of Object.entries(byCell)) {
+    const cell = c as Record<string, unknown>;
+    const mp = (cell.maxWindowP99 as Agg)?.median;
+    cell.eagerMatched = mp != null && Number.isFinite(eagerMaxP99) ? mp <= eagerMaxP99 : null;
+    const ts = (cell.timeToTrafficWarmMs as Agg)?.median;
+    const tt = (cell.tTrafficMs as Agg)?.median;
+    cell.steadyAfterAdmissionMs = ts != null && tt != null ? ts - tt : null;
+    void k;
+  }
+  const equalOutcomeEager: Record<string, number | null> = {};
+  for (const arm of STRATEGIES) {
+    equalOutcomeEager[arm] = null;
+    for (const b of BUDGETS) {
+      if ((byCell[`${arm}@${b}`] as { eagerMatched?: boolean } | undefined)?.eagerMatched) {
+        equalOutcomeEager[arm] = b;
+        break;
+      }
+    }
+  }
+
   // equal-outcome: the smallest tested budget at which every family is warm on
   // arrival, reported as a bracket because the sweep is discrete
   const equalOutcome: Record<string, { warmAt: number | null; bracket: [number | null, number | null] }> = {};
@@ -505,6 +580,9 @@ export function analyzeApp(app: string): unknown {
     app,
     kind: APPS.find((a) => a.name === app)!.kind,
     universe: prep.universe,
+    neededBytes: prep.neededTest.bytes,
+    train: prep.train,
+    neededTest: prep.neededTest,
     heldOut: prep.heldOut,
     heldOutByCategory: prep.heldOutByCategory,
     band,
@@ -513,10 +591,12 @@ export function analyzeApp(app: string): unknown {
     byCell,
     firstHitByCategory: firstHit,
     equalOutcome,
+    eagerMaxWindowP99: eagerMaxP99,
+    equalOutcomeEager,
     coverage: coverage(app),
     sizeTermSensitivity: sizeTermSensitivity(app),
     trainingMatrix: trainingMatrix(app),
-    correctness: correctness(trials),
+    correctness: correctness(trials, declarations(app)),
     trials: per,
   };
 }
@@ -555,7 +635,7 @@ export function summarize(apps: string[]): string {
       .map(([c, v]) => `${c} ${v.files}f`)
       .join(', ');
     push(
-      `| ${m.app} | ${m.kind} | ${m.universe.files} f / ${fmb(m.universe.bytes)} MB | — | — | **${m.heldOut.files} f / ${fmb(m.heldOut.bytes)} MB** | ${cats || '—'} |`,
+      `| ${m.app} | ${m.kind} | ${m.universe.files} f / ${fmb(m.universe.bytes)} MB | ${m.train.files} f / ${fmb(m.train.bytes)} MB | ${m.neededTest.files} f / ${fmb(m.neededTest.bytes)} MB | **${m.heldOut.files} f / ${fmb(m.heldOut.bytes)} MB** | ${cats || '—'} |`,
     );
   }
   push('');
@@ -581,7 +661,7 @@ export function summarize(apps: string[]): string {
       const c = m.byCell[k];
       if (!c) continue;
       push(
-        `| ${k} | ${c.prewarmFiles ?? 'all'} f / ${fmb(c.prewarmFileBytes)} MB | ${f0(c.postAdmissionRemoteRequests)} | ${fmb(c.postAdmissionRemoteBytes?.median)} MB | ${f0(c.maxWindowP99)} ms | ${f0(c.p99Regression)} ms | ${c.timeToTrafficWarmMs ? `${(c.timeToTrafficWarmMs.median / 1000).toFixed(2)} s` : 'not reached'} | ${c.trafficWarmTrials}/${c.n} | ${c.analyticMissNeededFiles ?? '—'} f |`,
+        `| ${k} | ${c.prewarmFiles ? `${c.prewarmFiles} f / ${fmb(c.prewarmFileBytes)} MB` : 'the whole image'} | ${f0(c.postAdmissionRemoteRequests)} | ${fmb(c.postAdmissionRemoteBytes?.median)} MB | ${f0(c.maxWindowP99)} ms | ${f0(c.p99Regression)} ms | ${c.timeToTrafficWarmMs ? `${(c.timeToTrafficWarmMs.median / 1000).toFixed(2)} s` : 'not reached'} | ${c.trafficWarmTrials}/${c.n} | ${c.analyticMissNeededFiles ?? '—'} f |`,
       );
     }
     push('');
@@ -605,6 +685,26 @@ export function summarize(apps: string[]): string {
     push('');
   }
 
+  push('## 4b. The axis that actually costs — prewarm DURATION, not prewarm bytes', '');
+  push('An equal FILE-BYTE budget is not an equal-time budget. A strategy that picks many small');
+  push('files pays far more prefetch wall-clock than one that picks few large ones at the same byte');
+  push('count, and admission is gated by prefetch completion. Every cell is listed here sorted by what');
+  push('it actually cost in time, so matched-duration pairs can be read off directly.', '');
+  for (const m of loaded) {
+    push(`### ${m.app} (eager: ${f0((m.byCell.E0 as any)?.prewarmDurationMs)} ms prewarm, ${f0((m.byCell.E0 as any)?.maxWindowP99)} ms max window p99, 0 faults)`, '');
+    push('| cell | prewarm files | prewarm MB (file) | prewarm MB (chunk) | **prewarm duration** | post-adm faults | max window p99 | time-to-steady |');
+    push('| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
+    const rows = Object.entries(m.byCell as Record<string, any>)
+      .filter(([k]) => k !== 'E0')
+      .sort((a, b) => (a[1].prewarmDurationMs?.median ?? 0) - (b[1].prewarmDurationMs?.median ?? 0));
+    for (const [k, c] of rows) {
+      push(
+        `| ${k} | ${c.prewarmFiles ?? '—'} | ${fmb(c.prewarmFileBytes)} | ${fmb(c.prewarmChunkBytes?.median)} | **${f0(c.prewarmDurationMs)} ms** | ${f0(c.postAdmissionRemoteRequests)} | ${f0(c.maxWindowP99)} ms | ${c.timeToTrafficWarmMs ? `${(c.timeToTrafficWarmMs.median / 1000).toFixed(2)} s` : '—'} |`,
+      );
+    }
+    push('');
+  }
+
   // ---- 5. equal outcome
   push('## 5. EQUAL OUTCOME — smallest budget that is warm on arrival in every family', '');
   push('| app | G1 | G2 | R1 | R2 |');
@@ -616,6 +716,20 @@ export function summarize(apps: string[]): string {
       return e.warmAt == null ? `> ${pctS(BUDGETS.at(-1))}` : pctS(e.warmAt);
     };
     push(`| ${m.app} | ${cell('G1')} | ${cell('G2')} | ${cell('R1')} | ${cell('R2')} |`);
+  }
+  push('');
+
+  push('### 5b. EQUAL OUTCOME against the eager arm measured in the same conditions', '');
+  push('The preregistered band comes from the eager arm\u2019s WARM pass and excludes the application');
+  push('warm-up tail that every cold first pass has — including the eager arm\u2019s own, which is why');
+  push('E0 itself often fails it. This table asks the question an operator asks instead: at what budget');
+  push('is the arm no worse than shipping the whole image? Both criteria are reported; neither replaces');
+  push('the other.', '');
+  push('| app | eager max window p99 | G1 | G2 | R1 | R2 |');
+  push('| --- | ---: | --- | --- | --- | --- |');
+  for (const m of loaded) {
+    const cell = (arm: string) => (m.equalOutcomeEager?.[arm] == null ? `> ${pctS(BUDGETS.at(-1))}` : pctS(m.equalOutcomeEager[arm]));
+    push(`| ${m.app} | ${Math.round(m.eagerMaxWindowP99)} ms | ${cell('G1')} | ${cell('G2')} | ${cell('R1')} | ${cell('R2')} |`);
   }
   push('');
 
@@ -687,12 +801,31 @@ export function summarize(apps: string[]): string {
     push('');
   }
 
-  push('## 10. Correctness', '');
-  push('| app | trials compared | status mismatches | body mismatches | header mismatches | unexpected statuses |');
-  push('| --- | ---: | ---: | ---: | ---: | ---: |');
+  push('## 10. Oracle efficiency — how much more than perfect knowledge each arm needs', '');
+  push('The oracle needs exactly the bytes the post-admission traffic reads. "Full coverage" is the');
+  push('smallest swept budget at which an arm prewarms every needed file; `>40%` means it never did.', '');
+  push('| app | needed bytes (oracle floor) | G1 | G2 | R1 | R2 |');
+  push('| --- | ---: | --- | --- | --- | --- |');
+  for (const m of loaded) {
+    const cov = m.coverage as Record<string, Record<string, { missFiles: number }>>;
+    const full = (arm: string) => {
+      for (const b of BUDGETS) {
+        const c = m.byCell[`${arm}@${b}`];
+        if (c && c.analyticMissNeededFiles === 0) return `${pctS(b)} (${fmb(c.prewarmFileBytes)} MB, ${(c.prewarmFileBytes / (m.neededBytes || 1)).toFixed(1)}x)`;
+      }
+      return `> ${pctS(BUDGETS.at(-1))}`;
+    };
+    void cov;
+    push(`| ${m.app} | ${fmb(m.neededBytes)} MB | ${full('G1')} | ${full('G2')} | ${full('R1')} | ${full('R2')} |`);
+  }
+  push('');
+
+  push('## 11. Correctness', '');
+  push('| app | trials compared | status | byte-length | body fingerprint | header | unexpected statuses |');
+  push('| --- | ---: | ---: | ---: | ---: | ---: | ---: |');
   for (const m of loaded) {
     const c = m.correctness;
-    push(`| ${m.app} | ${c.comparedTrials} | ${c.statusMismatches.length} | ${c.bodyMismatches.length} | ${c.headerMismatches.length} | ${c.unexpectedStatus.length} |`);
+    push(`| ${m.app} | ${c.comparedTrials} | ${c.statusMismatches.length} | ${c.lengthMismatches.length} | ${c.bodyMismatches.length} | ${c.headerMismatches.length} | ${c.unexpectedStatus.length} |`);
   }
   push('');
   return L.join('\n');
@@ -721,7 +854,7 @@ if (import.meta.main) {
       const c = (r as { correctness: CorrectnessResult }).correctness;
       console.log(
         `[${app}] metrics written | correctness: ${c.comparedTrials} trials compared, ` +
-          `${c.statusMismatches.length} status / ${c.bodyMismatches.length} body / ${c.headerMismatches.length} header mismatches, ` +
+          `${c.statusMismatches.length} status / ${c.lengthMismatches.length} length / ${c.bodyMismatches.length} body / ${c.headerMismatches.length} header mismatches, ` +
           `${c.unexpectedStatus.length} unexpected statuses`,
       );
     }

@@ -3,3 +3,6 @@ dist-reduced/
 *.tsbuildinfo
 .claude/settings.local.json
 benchmarks/lazy-oci/container/nydus-static/
+
+# Claude Code session state (worktrees, local settings)
+.claude/

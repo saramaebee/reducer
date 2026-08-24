@@ -1,0 +1,1 @@
+[[38;5;208m2026-08-24 06:46:24.741385 +00:00[0m] [38;5;208mWARN[0m [/src/backend/mod.rs:283] [38;5;208mbackend request: GET http://reducer-registry:5000/v2/longtail/juice-shop/blobs/sha256:affd79776d2c128e01f96ecc4d4ca3e3cb5cd00a347c3e998567e9af1ebf88d1, chunk: 119639 bytes, proxy: false, proxy sdk: false, takes 268.530917ms: slow request[0m

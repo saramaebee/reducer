@@ -1,0 +1,22 @@
+{
+ "app": "juice-shop",
+ "arm": "R2",
+ "budget": 0.4,
+ "family": 3,
+ "order": 64,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/juice-shop/R2.b0.4.f3",
+ "prefetchFile": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R2.0.4.txt",
+ "prefetchAll": false,
+ "milestones": {
+  "setup-done": 1787554183880,
+  "t0": 1787554183881,
+  "mount": 1787554183900,
+  "proc": 1787554183957,
+  "prefetch-last-progress": 1787554193399,
+  "prewarm": 1787554194247,
+  "workload-done": 1787554207691,
+  "collect": 1787554207707,
+  "done": 1787554208041
+ },
+ "exit": 0
+}

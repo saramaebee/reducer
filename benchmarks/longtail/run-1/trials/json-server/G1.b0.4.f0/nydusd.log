@@ -1,0 +1,1 @@
+[[38;5;208m2026-08-24 05:25:25.020115 +00:00[0m] [38;5;208mWARN[0m [/src/backend/mod.rs:283] [38;5;208mbackend request: GET http://reducer-registry:5000/v2/longtail/json-server/blobs/sha256:1719c2918705656b8b1c430dd37ae669e15eede5859d7e0d837578abf4364b2f, chunk: 1047335 bytes, proxy: false, proxy sdk: false, takes 255.354708ms: slow request[0m

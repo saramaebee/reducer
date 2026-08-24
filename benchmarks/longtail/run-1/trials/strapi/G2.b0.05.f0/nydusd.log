@@ -1,0 +1,1 @@
+[[38;5;208m2026-08-24 07:10:05.614610 +00:00[0m] [38;5;208mWARN[0m [/src/backend/mod.rs:283] [38;5;208mbackend request: GET http://reducer-registry:5000/v2/longtail/strapi/blobs/sha256:fd4656ceb30d3c511db376138f407edd5ae3928e52d4fe0d669954aacf9e565b, chunk: 1048218 bytes, proxy: false, proxy sdk: false, takes 271.676208ms: slow request[0m

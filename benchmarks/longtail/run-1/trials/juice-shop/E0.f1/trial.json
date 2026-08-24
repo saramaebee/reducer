@@ -3,20 +3,20 @@
  "arm": "E0",
  "budget": null,
  "family": 1,
- "order": 1,
+ "order": 17,
  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/juice-shop/E0.f1",
  "prefetchFile": null,
  "prefetchAll": true,
  "milestones": {
-  "setup-done": 1787548697970,
-  "t0": 1787548697971,
-  "mount": 1787548697990,
-  "proc": 1787548698046,
-  "prefetch-last-progress": 1787548705383,
-  "prewarm": 1787548706167,
-  "workload-done": 1787548719064,
-  "collect": 1787548719079,
-  "done": 1787548719414
+  "setup-done": 1787553120532,
+  "t0": 1787553120533,
+  "mount": 1787553120546,
+  "proc": 1787553120599,
+  "prefetch-last-progress": 1787553127955,
+  "prewarm": 1787553128742,
+  "workload-done": 1787553141691,
+  "collect": 1787553141707,
+  "done": 1787553142038
  },
  "exit": 0
 }

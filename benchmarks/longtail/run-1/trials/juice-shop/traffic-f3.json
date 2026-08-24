@@ -1,0 +1,6263 @@
+{
+ "app": "juice-shop",
+ "family": 3,
+ "argv": [
+  "/mnt/app/build/app.js"
+ ],
+ "cwdRel": null,
+ "env": {
+  "PORT": "3402"
+ },
+ "setup": [],
+ "ready": {
+  "kind": "stdout",
+  "value": "Server listening on port",
+  "timeoutMs": 300000
+ },
+ "settleMs": 2000,
+ "baseUrl": "http://127.0.0.1:3402",
+ "passes": 2,
+ "traffic": [
+  {
+   "id": "js.pre.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "prelude",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pre.acct",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "prelude",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.w3.key",
+   "method": "POST",
+   "path": "/rest/web3/submitKey",
+   "body": {
+    "privateKey": "0x00"
+   },
+   "expect": [
+    401,
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.web3",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 1
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.co.add",
+   "method": "POST",
+   "path": "/api/BasketItems",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {
+    "BasketId": 1,
+    "ProductId": 3,
+    "quantity": 1
+   },
+   "expect": [
+    200,
+    400,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 2
+  },
+  {
+   "id": "js.co.checkout",
+   "method": "POST",
+   "path": "/rest/basket/1/checkout",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {},
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 2
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.xu.post",
+   "method": "POST",
+   "path": "/file-upload",
+   "multipart": {
+    "field": "file",
+    "filename": "complaint.xml",
+    "contentType": "application/xml",
+    "base64": "PD94bWwgdmVyc2lvbj0iMS4wIj8+PGNvbXBsYWludD48Ym9keT5sb25ndGFpbCBwcm9iZTwvYm9keT48L2NvbXBsYWludD4="
+   },
+   "expect": [
+    410,
+    204,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.xmlupload",
+   "category": "error-path",
+   "occurrence": 1,
+   "position": 3
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.de.form",
+   "method": "GET",
+   "path": "/dataerasure",
+   "expect": [
+    200,
+    500
+   ],
+   "headers": {
+    "cookie": "token={{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.dataerasure",
+   "category": "tenant-config",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pr.page",
+   "method": "GET",
+   "path": "/promotion",
+   "expect": [
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "js.promotion",
+   "category": "tenant-config",
+   "occurrence": 1,
+   "position": 5
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ad.index",
+   "method": "GET",
+   "path": "/api-docs/",
+   "expect": [
+    200,
+    301
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 6
+  },
+  {
+   "id": "js.ad.bundle",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui-bundle.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 6
+  },
+  {
+   "id": "js.ad.css",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui.css",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 6
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cp.image",
+   "method": "GET",
+   "path": "/rest/image-captcha",
+   "expect": [
+    200,
+    401
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.captcha",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 7
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.fs.ftp",
+   "method": "GET",
+   "path": "/ftp",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 8
+  },
+  {
+   "id": "js.fs.legal",
+   "method": "GET",
+   "path": "/ftp/legal.md",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 8
+  },
+  {
+   "id": "js.fs.keys",
+   "method": "GET",
+   "path": "/encryptionkeys",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 8
+  },
+  {
+   "id": "js.fs.logs",
+   "method": "GET",
+   "path": "/support/logs",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 8
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ac.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 1,
+   "position": 9
+  },
+  {
+   "id": "js.ac.orders",
+   "method": "GET",
+   "path": "/rest/order-history/orders",
+   "expect": [
+    200,
+    401,
+    403
+   ],
+   "headers": {
+    "authorization": "Bearer {{atoken}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 1,
+   "position": 9
+  },
+  {
+   "id": "js.ac.ipfilter",
+   "method": "PUT",
+   "path": "/api/Quantitys/1",
+   "headers": {
+    "authorization": "Bearer {{atoken}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "quantity": 1
+   },
+   "expect": [
+    401,
+    403,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 1,
+   "position": 9
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.w3.key",
+   "method": "POST",
+   "path": "/rest/web3/submitKey",
+   "body": {
+    "privateKey": "0x00"
+   },
+   "expect": [
+    401,
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.web3",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.co.add",
+   "method": "POST",
+   "path": "/api/BasketItems",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {
+    "BasketId": 1,
+    "ProductId": 3,
+    "quantity": 1
+   },
+   "expect": [
+    200,
+    400,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.co.checkout",
+   "method": "POST",
+   "path": "/rest/basket/1/checkout",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {},
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.xu.post",
+   "method": "POST",
+   "path": "/file-upload",
+   "multipart": {
+    "field": "file",
+    "filename": "complaint.xml",
+    "contentType": "application/xml",
+    "base64": "PD94bWwgdmVyc2lvbj0iMS4wIj8+PGNvbXBsYWludD48Ym9keT5sb25ndGFpbCBwcm9iZTwvYm9keT48L2NvbXBsYWludD4="
+   },
+   "expect": [
+    410,
+    204,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.xmlupload",
+   "category": "error-path",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.de.form",
+   "method": "GET",
+   "path": "/dataerasure",
+   "expect": [
+    200,
+    500
+   ],
+   "headers": {
+    "cookie": "token={{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.dataerasure",
+   "category": "tenant-config",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pr.page",
+   "method": "GET",
+   "path": "/promotion",
+   "expect": [
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "js.promotion",
+   "category": "tenant-config",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ad.index",
+   "method": "GET",
+   "path": "/api-docs/",
+   "expect": [
+    200,
+    301
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.ad.bundle",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui-bundle.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.ad.css",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui.css",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cp.image",
+   "method": "GET",
+   "path": "/rest/image-captcha",
+   "expect": [
+    200,
+    401
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.captcha",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.fs.ftp",
+   "method": "GET",
+   "path": "/ftp",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.fs.legal",
+   "method": "GET",
+   "path": "/ftp/legal.md",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.fs.keys",
+   "method": "GET",
+   "path": "/encryptionkeys",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.fs.logs",
+   "method": "GET",
+   "path": "/support/logs",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ac.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.ac.orders",
+   "method": "GET",
+   "path": "/rest/order-history/orders",
+   "expect": [
+    200,
+    401,
+    403
+   ],
+   "headers": {
+    "authorization": "Bearer {{atoken}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.ac.ipfilter",
+   "method": "PUT",
+   "path": "/api/Quantitys/1",
+   "headers": {
+    "authorization": "Bearer {{atoken}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "quantity": 1
+   },
+   "expect": [
+    401,
+    403,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.w3.key",
+   "method": "POST",
+   "path": "/rest/web3/submitKey",
+   "body": {
+    "privateKey": "0x00"
+   },
+   "expect": [
+    401,
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.web3",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.co.add",
+   "method": "POST",
+   "path": "/api/BasketItems",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {
+    "BasketId": 1,
+    "ProductId": 3,
+    "quantity": 1
+   },
+   "expect": [
+    200,
+    400,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.co.checkout",
+   "method": "POST",
+   "path": "/rest/basket/1/checkout",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {},
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.xu.post",
+   "method": "POST",
+   "path": "/file-upload",
+   "multipart": {
+    "field": "file",
+    "filename": "complaint.xml",
+    "contentType": "application/xml",
+    "base64": "PD94bWwgdmVyc2lvbj0iMS4wIj8+PGNvbXBsYWludD48Ym9keT5sb25ndGFpbCBwcm9iZTwvYm9keT48L2NvbXBsYWludD4="
+   },
+   "expect": [
+    410,
+    204,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.xmlupload",
+   "category": "error-path",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.de.form",
+   "method": "GET",
+   "path": "/dataerasure",
+   "expect": [
+    200,
+    500
+   ],
+   "headers": {
+    "cookie": "token={{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.dataerasure",
+   "category": "tenant-config",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pr.page",
+   "method": "GET",
+   "path": "/promotion",
+   "expect": [
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "js.promotion",
+   "category": "tenant-config",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ad.index",
+   "method": "GET",
+   "path": "/api-docs/",
+   "expect": [
+    200,
+    301
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.ad.bundle",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui-bundle.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.ad.css",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui.css",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cp.image",
+   "method": "GET",
+   "path": "/rest/image-captcha",
+   "expect": [
+    200,
+    401
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.captcha",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.fs.ftp",
+   "method": "GET",
+   "path": "/ftp",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.fs.legal",
+   "method": "GET",
+   "path": "/ftp/legal.md",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.fs.keys",
+   "method": "GET",
+   "path": "/encryptionkeys",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.fs.logs",
+   "method": "GET",
+   "path": "/support/logs",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ac.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.ac.orders",
+   "method": "GET",
+   "path": "/rest/order-history/orders",
+   "expect": [
+    200,
+    401,
+    403
+   ],
+   "headers": {
+    "authorization": "Bearer {{atoken}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.ac.ipfilter",
+   "method": "PUT",
+   "path": "/api/Quantitys/1",
+   "headers": {
+    "authorization": "Bearer {{atoken}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "quantity": 1
+   },
+   "expect": [
+    401,
+    403,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.w3.key",
+   "method": "POST",
+   "path": "/rest/web3/submitKey",
+   "body": {
+    "privateKey": "0x00"
+   },
+   "expect": [
+    401,
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.web3",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.co.add",
+   "method": "POST",
+   "path": "/api/BasketItems",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {
+    "BasketId": 1,
+    "ProductId": 3,
+    "quantity": 1
+   },
+   "expect": [
+    200,
+    400,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.co.checkout",
+   "method": "POST",
+   "path": "/rest/basket/1/checkout",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {},
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.xu.post",
+   "method": "POST",
+   "path": "/file-upload",
+   "multipart": {
+    "field": "file",
+    "filename": "complaint.xml",
+    "contentType": "application/xml",
+    "base64": "PD94bWwgdmVyc2lvbj0iMS4wIj8+PGNvbXBsYWludD48Ym9keT5sb25ndGFpbCBwcm9iZTwvYm9keT48L2NvbXBsYWludD4="
+   },
+   "expect": [
+    410,
+    204,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.xmlupload",
+   "category": "error-path",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.de.form",
+   "method": "GET",
+   "path": "/dataerasure",
+   "expect": [
+    200,
+    500
+   ],
+   "headers": {
+    "cookie": "token={{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.dataerasure",
+   "category": "tenant-config",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pr.page",
+   "method": "GET",
+   "path": "/promotion",
+   "expect": [
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "js.promotion",
+   "category": "tenant-config",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ad.index",
+   "method": "GET",
+   "path": "/api-docs/",
+   "expect": [
+    200,
+    301
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.ad.bundle",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui-bundle.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.ad.css",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui.css",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cp.image",
+   "method": "GET",
+   "path": "/rest/image-captcha",
+   "expect": [
+    200,
+    401
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.captcha",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.fs.ftp",
+   "method": "GET",
+   "path": "/ftp",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.fs.legal",
+   "method": "GET",
+   "path": "/ftp/legal.md",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.fs.keys",
+   "method": "GET",
+   "path": "/encryptionkeys",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.fs.logs",
+   "method": "GET",
+   "path": "/support/logs",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ac.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.ac.orders",
+   "method": "GET",
+   "path": "/rest/order-history/orders",
+   "expect": [
+    200,
+    401,
+    403
+   ],
+   "headers": {
+    "authorization": "Bearer {{atoken}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.ac.ipfilter",
+   "method": "PUT",
+   "path": "/api/Quantitys/1",
+   "headers": {
+    "authorization": "Bearer {{atoken}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "quantity": 1
+   },
+   "expect": [
+    401,
+    403,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.w3.key",
+   "method": "POST",
+   "path": "/rest/web3/submitKey",
+   "body": {
+    "privateKey": "0x00"
+   },
+   "expect": [
+    401,
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.web3",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.co.add",
+   "method": "POST",
+   "path": "/api/BasketItems",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {
+    "BasketId": 1,
+    "ProductId": 3,
+    "quantity": 1
+   },
+   "expect": [
+    200,
+    400,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.co.checkout",
+   "method": "POST",
+   "path": "/rest/basket/1/checkout",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {},
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.xu.post",
+   "method": "POST",
+   "path": "/file-upload",
+   "multipart": {
+    "field": "file",
+    "filename": "complaint.xml",
+    "contentType": "application/xml",
+    "base64": "PD94bWwgdmVyc2lvbj0iMS4wIj8+PGNvbXBsYWludD48Ym9keT5sb25ndGFpbCBwcm9iZTwvYm9keT48L2NvbXBsYWludD4="
+   },
+   "expect": [
+    410,
+    204,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.xmlupload",
+   "category": "error-path",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.de.form",
+   "method": "GET",
+   "path": "/dataerasure",
+   "expect": [
+    200,
+    500
+   ],
+   "headers": {
+    "cookie": "token={{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.dataerasure",
+   "category": "tenant-config",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pr.page",
+   "method": "GET",
+   "path": "/promotion",
+   "expect": [
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "js.promotion",
+   "category": "tenant-config",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ad.index",
+   "method": "GET",
+   "path": "/api-docs/",
+   "expect": [
+    200,
+    301
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.ad.bundle",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui-bundle.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.ad.css",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui.css",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cp.image",
+   "method": "GET",
+   "path": "/rest/image-captcha",
+   "expect": [
+    200,
+    401
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.captcha",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.fs.ftp",
+   "method": "GET",
+   "path": "/ftp",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.fs.legal",
+   "method": "GET",
+   "path": "/ftp/legal.md",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.fs.keys",
+   "method": "GET",
+   "path": "/encryptionkeys",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.fs.logs",
+   "method": "GET",
+   "path": "/support/logs",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ac.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.ac.orders",
+   "method": "GET",
+   "path": "/rest/order-history/orders",
+   "expect": [
+    200,
+    401,
+    403
+   ],
+   "headers": {
+    "authorization": "Bearer {{atoken}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.ac.ipfilter",
+   "method": "PUT",
+   "path": "/api/Quantitys/1",
+   "headers": {
+    "authorization": "Bearer {{atoken}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "quantity": 1
+   },
+   "expect": [
+    401,
+    403,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.w3.key",
+   "method": "POST",
+   "path": "/rest/web3/submitKey",
+   "body": {
+    "privateKey": "0x00"
+   },
+   "expect": [
+    401,
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.web3",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.co.add",
+   "method": "POST",
+   "path": "/api/BasketItems",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {
+    "BasketId": 1,
+    "ProductId": 3,
+    "quantity": 1
+   },
+   "expect": [
+    200,
+    400,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.co.checkout",
+   "method": "POST",
+   "path": "/rest/basket/1/checkout",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {},
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.xu.post",
+   "method": "POST",
+   "path": "/file-upload",
+   "multipart": {
+    "field": "file",
+    "filename": "complaint.xml",
+    "contentType": "application/xml",
+    "base64": "PD94bWwgdmVyc2lvbj0iMS4wIj8+PGNvbXBsYWludD48Ym9keT5sb25ndGFpbCBwcm9iZTwvYm9keT48L2NvbXBsYWludD4="
+   },
+   "expect": [
+    410,
+    204,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.xmlupload",
+   "category": "error-path",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.de.form",
+   "method": "GET",
+   "path": "/dataerasure",
+   "expect": [
+    200,
+    500
+   ],
+   "headers": {
+    "cookie": "token={{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.dataerasure",
+   "category": "tenant-config",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pr.page",
+   "method": "GET",
+   "path": "/promotion",
+   "expect": [
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "js.promotion",
+   "category": "tenant-config",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ad.index",
+   "method": "GET",
+   "path": "/api-docs/",
+   "expect": [
+    200,
+    301
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.ad.bundle",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui-bundle.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.ad.css",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui.css",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cp.image",
+   "method": "GET",
+   "path": "/rest/image-captcha",
+   "expect": [
+    200,
+    401
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.captcha",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.fs.ftp",
+   "method": "GET",
+   "path": "/ftp",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.fs.legal",
+   "method": "GET",
+   "path": "/ftp/legal.md",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.fs.keys",
+   "method": "GET",
+   "path": "/encryptionkeys",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.fs.logs",
+   "method": "GET",
+   "path": "/support/logs",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ac.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.ac.orders",
+   "method": "GET",
+   "path": "/rest/order-history/orders",
+   "expect": [
+    200,
+    401,
+    403
+   ],
+   "headers": {
+    "authorization": "Bearer {{atoken}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.ac.ipfilter",
+   "method": "PUT",
+   "path": "/api/Quantitys/1",
+   "headers": {
+    "authorization": "Bearer {{atoken}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "quantity": 1
+   },
+   "expect": [
+    401,
+    403,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.w3.key",
+   "method": "POST",
+   "path": "/rest/web3/submitKey",
+   "body": {
+    "privateKey": "0x00"
+   },
+   "expect": [
+    401,
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.web3",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.co.add",
+   "method": "POST",
+   "path": "/api/BasketItems",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {
+    "BasketId": 1,
+    "ProductId": 3,
+    "quantity": 1
+   },
+   "expect": [
+    200,
+    400,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.co.checkout",
+   "method": "POST",
+   "path": "/rest/basket/1/checkout",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {},
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.xu.post",
+   "method": "POST",
+   "path": "/file-upload",
+   "multipart": {
+    "field": "file",
+    "filename": "complaint.xml",
+    "contentType": "application/xml",
+    "base64": "PD94bWwgdmVyc2lvbj0iMS4wIj8+PGNvbXBsYWludD48Ym9keT5sb25ndGFpbCBwcm9iZTwvYm9keT48L2NvbXBsYWludD4="
+   },
+   "expect": [
+    410,
+    204,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.xmlupload",
+   "category": "error-path",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.de.form",
+   "method": "GET",
+   "path": "/dataerasure",
+   "expect": [
+    200,
+    500
+   ],
+   "headers": {
+    "cookie": "token={{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.dataerasure",
+   "category": "tenant-config",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pr.page",
+   "method": "GET",
+   "path": "/promotion",
+   "expect": [
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "js.promotion",
+   "category": "tenant-config",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ad.index",
+   "method": "GET",
+   "path": "/api-docs/",
+   "expect": [
+    200,
+    301
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.ad.bundle",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui-bundle.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.ad.css",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui.css",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cp.image",
+   "method": "GET",
+   "path": "/rest/image-captcha",
+   "expect": [
+    200,
+    401
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.captcha",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.fs.ftp",
+   "method": "GET",
+   "path": "/ftp",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.fs.legal",
+   "method": "GET",
+   "path": "/ftp/legal.md",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.fs.keys",
+   "method": "GET",
+   "path": "/encryptionkeys",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.fs.logs",
+   "method": "GET",
+   "path": "/support/logs",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ac.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.ac.orders",
+   "method": "GET",
+   "path": "/rest/order-history/orders",
+   "expect": [
+    200,
+    401,
+    403
+   ],
+   "headers": {
+    "authorization": "Bearer {{atoken}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.ac.ipfilter",
+   "method": "PUT",
+   "path": "/api/Quantitys/1",
+   "headers": {
+    "authorization": "Bearer {{atoken}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "quantity": 1
+   },
+   "expect": [
+    401,
+    403,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.w3.key",
+   "method": "POST",
+   "path": "/rest/web3/submitKey",
+   "body": {
+    "privateKey": "0x00"
+   },
+   "expect": [
+    401,
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.web3",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.co.add",
+   "method": "POST",
+   "path": "/api/BasketItems",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {
+    "BasketId": 1,
+    "ProductId": 3,
+    "quantity": 1
+   },
+   "expect": [
+    200,
+    400,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.co.checkout",
+   "method": "POST",
+   "path": "/rest/basket/1/checkout",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": {},
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.checkout",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.xu.post",
+   "method": "POST",
+   "path": "/file-upload",
+   "multipart": {
+    "field": "file",
+    "filename": "complaint.xml",
+    "contentType": "application/xml",
+    "base64": "PD94bWwgdmVyc2lvbj0iMS4wIj8+PGNvbXBsYWludD48Ym9keT5sb25ndGFpbCBwcm9iZTwvYm9keT48L2NvbXBsYWludD4="
+   },
+   "expect": [
+    410,
+    204,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.xmlupload",
+   "category": "error-path",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.de.form",
+   "method": "GET",
+   "path": "/dataerasure",
+   "expect": [
+    200,
+    500
+   ],
+   "headers": {
+    "cookie": "token={{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.dataerasure",
+   "category": "tenant-config",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.pr.page",
+   "method": "GET",
+   "path": "/promotion",
+   "expect": [
+    200,
+    500
+   ],
+   "kind": "longtail",
+   "group": "js.promotion",
+   "category": "tenant-config",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ad.index",
+   "method": "GET",
+   "path": "/api-docs/",
+   "expect": [
+    200,
+    301
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.ad.bundle",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui-bundle.js",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.ad.css",
+   "method": "GET",
+   "path": "/api-docs/swagger-ui.css",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.apidocs",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.challenges",
+   "method": "GET",
+   "path": "/api/Challenges",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.feedbacks",
+   "method": "GET",
+   "path": "/api/Feedbacks",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "admin@juice-sh.op",
+    "password": "admin123"
+   },
+   "capture": {
+    "token": "json:authentication.token"
+   },
+   "expect": [
+    200
+   ],
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.cp.image",
+   "method": "GET",
+   "path": "/rest/image-captcha",
+   "expect": [
+    200,
+    401
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.captcha",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.whoami",
+   "method": "GET",
+   "path": "/rest/user/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.basket",
+   "method": "GET",
+   "path": "/rest/basket/1",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.index",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ver",
+   "method": "GET",
+   "path": "/rest/admin/application-version",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.fs.ftp",
+   "method": "GET",
+   "path": "/ftp",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.fs.legal",
+   "method": "GET",
+   "path": "/ftp/legal.md",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.fs.keys",
+   "method": "GET",
+   "path": "/encryptionkeys",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.fs.logs",
+   "method": "GET",
+   "path": "/support/logs",
+   "expect": [
+    200
+   ],
+   "kind": "longtail",
+   "group": "js.filesurfaces",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.cfg",
+   "method": "GET",
+   "path": "/rest/admin/application-configuration",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.search",
+   "method": "GET",
+   "path": "/rest/products/search?q=apple",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.products",
+   "method": "GET",
+   "path": "/api/Products",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.product1",
+   "method": "GET",
+   "path": "/api/Products/1",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "js.ac.login",
+   "method": "POST",
+   "path": "/rest/user/login",
+   "body": {
+    "email": "accountant@juice-sh.op",
+    "password": "i am an awesome accountant"
+   },
+   "capture": {
+    "atoken": "json:authentication.token"
+   },
+   "expect": [
+    200,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.ac.orders",
+   "method": "GET",
+   "path": "/rest/order-history/orders",
+   "expect": [
+    200,
+    401,
+    403
+   ],
+   "headers": {
+    "authorization": "Bearer {{atoken}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "js.ac.ipfilter",
+   "method": "PUT",
+   "path": "/api/Quantitys/1",
+   "headers": {
+    "authorization": "Bearer {{atoken}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "quantity": 1
+   },
+   "expect": [
+    401,
+    403,
+    500
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "js.accounting",
+   "category": "admin-background",
+   "occurrence": 8,
+   "position": 0
+  }
+ ]
+}

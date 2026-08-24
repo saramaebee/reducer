@@ -74,6 +74,8 @@ packages/
   hazard-domain/              shared: capability/load-sink/target-domain analysis
                               + the ADR-0006 non-transforming measurement policy
   working-set-planner/        active: naive HOT/COLD placement planning (ADR-0007)
+                              — R1's ranking in experiment 4 is this set, re-expressed
+                              as a semantic distance rather than a hard HOT/COLD split
 
   cli/                        conservative pipeline CLI (analyze/build)
   conservative-analyzer/      frozen: eight-gate proof-of-unreachability analysis
@@ -83,7 +85,8 @@ packages/
                               conservative manifest schema
 
 fixtures/     adversarial Node-semantics regressions (both experiments)
-benchmarks/   corpus harness, Torture Garden, frozen first-run evidence
+benchmarks/   corpus harness, Torture Garden, frozen evidence for experiments 1-4
+              (working-set/, hydration/, lazy-oci/, longtail/)
 tests/        bun test suite; fixture artifacts execute under stock node
 docs/adr/     ADR-0001–0006 conservative experiment; ADR-0007 the pivot
 ```

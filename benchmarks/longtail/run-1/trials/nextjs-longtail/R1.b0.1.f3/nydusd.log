@@ -1,0 +1,1 @@
+[[38;5;208m2026-08-24 06:23:50.454260 +00:00[0m] [38;5;208mWARN[0m [/src/backend/mod.rs:283] [38;5;208mbackend request: GET http://reducer-registry:5000/v2/longtail/nextjs-longtail/blobs/sha256:5ba56f2cd2aa44ef900fb785a404f830872f7da7530b70cf93969fffa0dd4e7a, chunk: 1038708 bytes, proxy: false, proxy sdk: false, takes 258.768751ms: slow request[0m

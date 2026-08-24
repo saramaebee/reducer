@@ -47,6 +47,9 @@ export interface Req {
   /** false when the response body legitimately varies run to run (zip mtimes,
    *  generated ids); status and any declared header are still compared */
   stableBody?: boolean;
+  /** false when even the response LENGTH legitimately varies (a generated
+   *  captcha image); such a request is compared on status alone */
+  stableLength?: boolean;
   /** compare this response header across arms instead of / as well as the body */
   compareHeader?: string;
   multipart?: { field: string; filename: string; contentType: string; base64: string };
@@ -342,11 +345,11 @@ function juiceShop(): Workload {
       G('js.index', '/'),
       G('js.ver', '/rest/admin/application-version'),
       G('js.cfg', '/rest/admin/application-configuration'),
-      G('js.search', '/rest/products/search?q=apple'),
-      G('js.products', '/api/Products'),
-      G('js.product1', '/api/Products/1'),
-      G('js.challenges', '/api/Challenges'),
-      G('js.feedbacks', '/api/Feedbacks'),
+      G('js.search', '/rest/products/search?q=apple', [200], { stableBody: false }),
+      G('js.products', '/api/Products', [200], { stableBody: false }),
+      G('js.product1', '/api/Products/1', [200], { stableBody: false }),
+      G('js.challenges', '/api/Challenges', [200], { stableBody: false }),
+      G('js.feedbacks', '/api/Feedbacks', [200], { stableBody: false }),
       {
         id: 'js.login',
         method: 'POST',
@@ -426,7 +429,7 @@ function juiceShop(): Workload {
         why: 'the image captcha is served on a specific authenticated flow, not on browsing traffic.',
         mechanism: "lazy `await import('svg-captcha')` plus a read of that package's bundled TTF font.",
         repeatable: true,
-        requests: [G('js.cp.image', '/rest/image-captcha', [200, 401], { headers: bearer, stableBody: false })],
+        requests: [G('js.cp.image', '/rest/image-captcha', [200, 401], { headers: bearer, stableBody: false, stableLength: false })],
       },
       {
         id: 'js.filesurfaces',
@@ -452,6 +455,7 @@ function juiceShop(): Workload {
     notes: [
       'juice-shop runs a background loop every 5 s that recursively reads routes/, lib/, data/, models/, infrastructure/ and frontend/src/app for the code-snippet challenge index. Those trees are therefore hydrated on every arm within seconds of process start, independent of traffic; no candidate above depends on them, and the effect is identical across arms. It is recorded as a background-work confound in ADVERSARIAL.md.',
       'Locale is not a category here: all 43 backend catalogues are read at boot by i18n.configure, so no locale file is ever cold.',
+      "Five DB-backed listings are declared body-unstable: juice-shop's models carry createdAt/updatedAt timestamps, so two responses of identical length differ in content between runs. Their byte LENGTH is still compared across arms. The generated captcha image is declared length-unstable too and is compared on status alone — it is a random image by construction.",
     ],
   };
 }
@@ -697,11 +701,11 @@ function nextjsLongtail(): Workload {
     port: 3412,
     prelude: [],
     common: [
-      G('nx.home', '/'),
+      G('nx.home', '/', [200], { stableBody: false }),
       G('nx.health', '/api/health'),
       G('nx.products', '/api/products?limit=5'),
-      G('nx.locale.en', '/i18n/en'),
-      G('nx.tenant.acme', '/tenant/acme'),
+      G('nx.locale.en', '/i18n/en', [200], { stableBody: false }),
+      G('nx.tenant.acme', '/tenant/acme', [200], { stableBody: false }),
       G('nx.report.json', '/api/report/json'),
     ],
     longTail: [
@@ -712,7 +716,7 @@ function nextjsLongtail(): Workload {
           why: `a visitor whose Accept-Language selects ${l} is ordinary traffic for a multi-market deployment; the training run only ever saw the default market.`,
           mechanism: 'a message catalogue and a localized content directory read from disk at request time — the i18next-fs-backend / next-intl file-loader shape. Data-shaped, not module-shaped.',
           repeatable: true,
-          requests: [G(`nx.l.${l}`, `/i18n/${l}`, [200])],
+          requests: [G(`nx.l.${l}`, `/i18n/${l}`, [200], { stableBody: false })],
         }),
       ),
       {
@@ -721,7 +725,7 @@ function nextjsLongtail(): Workload {
         why: 'a second tenant with its own branding is the entire premise of a multi-tenant deployment.',
         mechanism: 'a per-tenant config file read from a configuration directory, then a dynamically imported per-tenant renderer chunk that pulls a template engine.',
         repeatable: true,
-        requests: [G('nx.t.globex', '/tenant/globex', [200])],
+        requests: [G('nx.t.globex', '/tenant/globex', [200], { stableBody: false })],
       },
       {
         id: 'nx.tenant.initech',
@@ -729,7 +733,7 @@ function nextjsLongtail(): Workload {
         why: 'a third tenant whose page embeds generated artwork; different tenants legitimately need different libraries.',
         mechanism: 'the same config read, resolving to a renderer chunk that pulls a QR-code library nothing else uses.',
         repeatable: true,
-        requests: [G('nx.t.initech', '/tenant/initech', [200])],
+        requests: [G('nx.t.initech', '/tenant/initech', [200], { stableBody: false })],
       },
       {
         id: 'nx.admin',
@@ -738,7 +742,7 @@ function nextjsLongtail(): Workload {
         mechanism: 'a lazily loaded route chunk whose external require pulls exceljs and its ~500-file archive/zip subtree.',
         repeatable: true,
         requests: [
-          { id: 'nx.a.export', method: 'GET', path: '/api/admin/export', headers: admin, expect: [200], stableBody: false, compareHeader: 'x-rows' },
+          { id: 'nx.a.export', method: 'GET', path: '/api/admin/export', headers: admin, expect: [200], stableBody: false, stableLength: false, compareHeader: 'x-rows' },
           G('nx.a.forbidden', '/api/admin/export', [403]),
         ],
       },
@@ -772,12 +776,14 @@ function nextjsLongtail(): Workload {
         why: 'unknown locales, unknown tenants and unknown report kinds all arrive from crawlers and stale links.',
         mechanism: 'the not-found branches of three different dynamic route segments.',
         repeatable: true,
-        requests: [G('nx.nf.locale', '/i18n/zz'), G('nx.nf.tenant', '/tenant/nope'), G('nx.nf.report', '/api/report/xml', [404])],
+        requests: [G('nx.nf.locale', '/i18n/zz', [200], { stableBody: false }), G('nx.nf.tenant', '/tenant/nope', [200], { stableBody: false }), G('nx.nf.report', '/api/report/xml', [404])],
       },
     ],
     notes: [
       'CONTROLLED FIXTURE — interpretability, not headline evidence. Its job is to answer "why does one strategy generalise better?" with a tree whose long tail is known by construction and spans all six categories. Real applications answer whether the advantage exists outside a construction, and the two conclusions are reported separately.',
       "Built with `experimental.preloadEntriesOnStart: false`. Next's production server otherwise preloads EVERY app route module at startup, pulling each route's whole external dependency subtree into memory before the first request — measured here at 968 files resident before any traffic, versus 377 with the option set. That is a real finding about self-hosted Next.js and is reported as one; the option is Next's own documented opt-out and is what a deployment that cares about cold-start residency would set.",
+      'The xlsx export is declared body- AND length-unstable: a zip embeds creation timestamps, so its byte length shifts. It is compared on status and on the x-rows header it emits for exactly this purpose — the semantic content of the export, which matched on every trial.',
+      'The server-rendered HTML pages are declared body-unstable: React embeds a per-render identifier, so two byte-identical-length responses hash differently. Correctness therefore compares their exact byte LENGTH across arms (and every JSON API response by full fingerprint), which is a real check, not a waived one.',
       'Heavy leaf libraries are declared in `serverExternalPackages` so they remain real node_modules requires rather than being inlined into a server chunk — the ordinary configuration for large server dependencies.',
     ],
   };

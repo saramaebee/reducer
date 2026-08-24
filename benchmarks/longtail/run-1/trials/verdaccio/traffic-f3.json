@@ -1,0 +1,6840 @@
+{
+ "app": "verdaccio",
+ "family": 3,
+ "argv": [
+  "/mnt/app/packages/verdaccio/bin/verdaccio",
+  "--config",
+  "/scratch/verdaccio/config.yaml",
+  "--listen",
+  "127.0.0.1:4873"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production"
+ },
+ "setup": [
+  "rm -rf /scratch/verdaccio && mkdir -p /scratch/verdaccio/storage",
+  "printf '%s\\n' 'storage: ./storage' 'auth:' '  htpasswd:' '    file: ./htpasswd' '    max_users: 1000' \\\n        'uplinks:' '  npmjs:' '    url: https://registry.npmjs.org/' \\\n        'packages:' \"  '@*/*':\" '    access: $all' '    publish: $authenticated' '    proxy: npmjs' \\\n        \"  '**':\" '    access: $all' '    publish: $authenticated' '    proxy: npmjs' \\\n        'logs: {type: stdout, format: pretty, level: http}' > /scratch/verdaccio/config.yaml",
+  "printf '%s\\n' 'storage: ./storage' 'auth:' '  htpasswd:' '    file: ./htpasswd' '    max_users: 1000' \\\n      'uplinks:' '  npmjs:' '    url: http://127.0.0.1:1/' '    timeout: 2s' '    max_fails: 1' '    fail_timeout: 5s' \\\n      'packages:' \"  '@*/*':\" '    access: $all' '    publish: $authenticated' '    unpublish: $authenticated' '    proxy: npmjs' \\\n      \"  '**':\" '    access: $all' '    publish: $authenticated' '    unpublish: $authenticated' '    proxy: npmjs' \\\n      'logs: {type: stdout, format: pretty, level: warn}' > /scratch/verdaccio/config.yaml"
+ ],
+ "ready": {
+  "kind": "http",
+  "value": "http://127.0.0.1:4873/-/ping",
+  "timeoutMs": 120000
+ },
+ "settleMs": 1000,
+ "baseUrl": "http://127.0.0.1:4873",
+ "passes": 2,
+ "traffic": [
+  {
+   "id": "vd.register",
+   "method": "PUT",
+   "path": "/-/user/org.couchdb.user:probe",
+   "body": {
+    "name": "probe",
+    "password": "probe1234",
+    "_id": "org.couchdb.user:probe",
+    "type": "user",
+    "roles": []
+   },
+   "capture": {
+    "token": "json:token"
+   },
+   "expect": [
+    201,
+    409
+   ],
+   "stableBody": false,
+   "kind": "prelude",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 1,
+   "position": 1
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 1,
+   "position": 1
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 1,
+   "position": 1
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 1,
+   "position": 2
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 1,
+   "position": 2
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 1,
+   "position": 3
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 1,
+   "position": 3
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 1,
+   "position": 3
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 1,
+   "position": 4
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 5
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 5
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 5
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 5
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 5
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 1,
+   "position": 5
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 2,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 3,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 4,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 5,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 6,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 7,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 8,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 9,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 10,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.nf.pkg",
+   "method": "GET",
+   "path": "/this-package-does-not-exist-xyz",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.nf.ver",
+   "method": "GET",
+   "path": "/jsonwebtoken/99.0.0",
+   "expect": [
+    404
+   ],
+   "timeoutMs": 15000,
+   "kind": "longtail",
+   "group": "vd.notfound",
+   "category": "error-path",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.bp.nomedia",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "body": "x",
+   "expect": [
+    400,
+    415
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.empty",
+   "method": "PUT",
+   "path": "/longtail-bad-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-bad",
+    "name": "longtail-bad",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-bad",
+      "version": "1.0.0"
+     }
+    },
+    "_attachments": {
+     "longtail-bad-1.0.0.tgz": {
+      "data": ""
+     }
+    }
+   },
+   "expect": [
+    500,
+    422,
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.bp.badname",
+   "method": "PUT",
+   "path": "/_.invalid..name",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {},
+   "expect": [
+    400
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.badpublish",
+   "category": "error-path",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.r.all",
+   "method": "GET",
+   "path": "/-/all",
+   "expect": [
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.r.web",
+   "method": "GET",
+   "path": "/-/web/longtail",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.r.favicon",
+   "method": "GET",
+   "path": "/-/static/favicon.ico",
+   "expect": [
+    200,
+    404
+   ],
+   "kind": "longtail",
+   "group": "vd.rare",
+   "category": "rare-route",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.whoami",
+   "method": "GET",
+   "path": "/-/whoami",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.l.publish",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "name": "longtail-probe-{{seq}}",
+    "description": "",
+    "dist-tags": {
+     "latest": "1.0.0"
+    },
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "description": "",
+      "dist": {
+       "tarball": "http://0.0.0.0:4873/longtail-probe-{{seq}}/-/longtail-probe-{{seq}}-1.0.0.tgz"
+      }
+     }
+    },
+    "readme": "# longtail probe",
+    "_attachments": {
+     "longtail-probe-{{seq}}-1.0.0.tgz": {
+      "content_type": "application/octet-stream",
+      "data": "H4sIAAAAAAAEE+2QvQ7CIBSFmXkKwmzxoqSDb0ORVGwLBKiL8d0NQRfD2NiFu5zknNy/z0s1yVEffVF2j86ijQsAoBcCZQWAXwUuzl+v5Jz3J4EIbHxHddwakwwI/rKresC+5hMTQq1cNL0QOjs7Jmnmzgc3aHrI2UOHaJzNMWfAoLhXHVUwPn2S3NjlTjJoq26LDBMpM/AL7/tg294INAKNQCNQJfAG/FipKAAIAAA=",
+      "length": 176
+     }
+    }
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.l.tag",
+   "method": "PUT",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": "\"1.0.0\"",
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.l.read",
+   "method": "GET",
+   "path": "/longtail-probe-{{seq}}",
+   "expect": [
+    200
+   ],
+   "capture": {
+    "rev": "json:_rev"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.l.deprecate",
+   "method": "PUT",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "_id": "longtail-probe-{{seq}}",
+    "_rev": "{{rev}}",
+    "name": "longtail-probe-{{seq}}",
+    "versions": {
+     "1.0.0": {
+      "name": "longtail-probe-{{seq}}",
+      "version": "1.0.0",
+      "deprecated": "superseded"
+     }
+    }
+   },
+   "expect": [
+    201,
+    422
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.l.untag",
+   "method": "DELETE",
+   "path": "/-/package/longtail-probe-{{seq}}/dist-tags/beta",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.l.unpublish",
+   "method": "DELETE",
+   "path": "/longtail-probe-{{seq}}/-rev/{{rev}}",
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "expect": [
+    201
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.lifecycle",
+   "category": "optional-feature",
+   "occurrence": 11,
+   "position": 0
+  },
+  {
+   "id": "vd.ping",
+   "method": "GET",
+   "path": "/-/ping",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.web",
+   "method": "GET",
+   "path": "/",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.uiopts",
+   "method": "GET",
+   "path": "/-/static/ui-options.js",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.packages",
+   "method": "GET",
+   "path": "/-/verdaccio/data/packages",
+   "expect": [
+    200
+   ],
+   "kind": "common",
+   "group": null,
+   "category": null,
+   "occurrence": null,
+   "position": null
+  },
+  {
+   "id": "vd.p.user",
+   "method": "GET",
+   "path": "/-/npm/v1/user",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "vd.p.tokens",
+   "method": "GET",
+   "path": "/-/npm/v1/tokens",
+   "expect": [
+    200
+   ],
+   "headers": {
+    "authorization": "Bearer {{token}}"
+   },
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 12,
+   "position": 0
+  },
+  {
+   "id": "vd.p.newtoken",
+   "method": "POST",
+   "path": "/-/npm/v1/tokens",
+   "headers": {
+    "authorization": "Bearer {{token}}",
+    "content-type": "application/json"
+   },
+   "body": {
+    "password": "probe1234",
+    "readonly": true,
+    "cidr_whitelist": []
+   },
+   "expect": [
+    201,
+    200,
+    400,
+    401
+   ],
+   "stableBody": false,
+   "kind": "longtail",
+   "group": "vd.profile",
+   "category": "admin-background",
+   "occurrence": 12,
+   "position": 0
+  }
+ ]
+}

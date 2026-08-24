@@ -1,0 +1,22 @@
+{
+ "app": "verdaccio",
+ "arm": "R2",
+ "budget": 0.05,
+ "family": 0,
+ "order": 4,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/verdaccio/R2.b0.05.f0",
+ "prefetchFile": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R2.0.05.txt",
+ "prefetchAll": false,
+ "milestones": {
+  "setup-done": 1787549585269,
+  "t0": 1787549585270,
+  "mount": 1787549585291,
+  "proc": 1787549585349,
+  "prefetch-last-progress": 1787549586903,
+  "prewarm": 1787549587678,
+  "workload-done": 1787549622643,
+  "collect": 1787549622659,
+  "done": 1787549622986
+ },
+ "exit": 0
+}

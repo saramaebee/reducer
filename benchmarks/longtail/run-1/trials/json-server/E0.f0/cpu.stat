@@ -1,6 +1,6 @@
-usage_usec 3120029
-user_usec 2464214
-system_usec 655815
+usage_usec 3036115
+user_usec 2428068
+system_usec 608047
 nr_periods 0
 nr_throttled 0
 throttled_usec 0

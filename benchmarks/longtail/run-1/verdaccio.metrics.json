@@ -1,0 +1,7541 @@
+{
+ "app": "verdaccio",
+ "kind": "real",
+ "universe": {
+  "files": 9530,
+  "bytes": 59870421
+ },
+ "neededBytes": 5411186,
+ "train": {
+  "files": 1800,
+  "bytes": 5396100
+ },
+ "neededTest": {
+  "files": 1801,
+  "bytes": 5411186
+ },
+ "heldOut": {
+  "files": 1,
+  "bytes": 15086
+ },
+ "heldOutByCategory": {
+  "rare-route": {
+   "files": 1,
+   "bytes": 15086
+  }
+ },
+ "band": {
+  "app": "verdaccio",
+  "n": 4,
+  "warmWindowP99s": [
+   141,
+   141,
+   141,
+   141,
+   141,
+   141,
+   140,
+   140,
+   140,
+   141,
+   141,
+   141,
+   141,
+   141,
+   140,
+   140,
+   141,
+   142,
+   154,
+   154,
+   154,
+   142,
+   143,
+   140,
+   143,
+   143,
+   143,
+   141,
+   156,
+   141,
+   141,
+   141,
+   142,
+   142,
+   142,
+   140,
+   142,
+   138,
+   138,
+   139,
+   139,
+   141,
+   141,
+   146,
+   146,
+   146,
+   145,
+   145,
+   143,
+   143,
+   140,
+   141,
+   141,
+   141,
+   143,
+   143,
+   143,
+   145,
+   145,
+   144,
+   144,
+   144,
+   141,
+   140
+  ],
+  "primary": 156,
+  "sensitivity": 144,
+  "warmMedian": 141
+ },
+ "window": {
+  "size": 100,
+  "step": 20
+ },
+ "referenceBudget": 0.1,
+ "byCell": {
+  "E0": {
+   "n": 4,
+   "arm": "E0",
+   "budget": null,
+   "prewarmFileBytes": null,
+   "prewarmFiles": null,
+   "stoppedInTier": null,
+   "timeToTrafficWarmMs": {
+    "median": 8963,
+    "min": 8935,
+    "max": 9535,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 178,
+    "min": 177,
+    "max": 201,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 37,
+    "min": 36,
+    "max": 60,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2132,
+    "min": 2003,
+    "max": 2263,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 17637931,
+    "min": 17637931,
+    "max": 17637931,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2802,
+    "min": 2619,
+    "max": 2914,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 3965,
+    "min": 3839,
+    "max": 4098,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2146,
+    "min": 2015,
+    "max": 2282,
+    "n": 4
+   },
+   "p50": {
+    "median": 4,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 81,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 142,
+    "max": 148,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 142,
+    "n": 4
+   },
+   "analyticMissNeededFiles": null,
+   "analyticMissNeededBytes": null,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 4998
+  },
+  "G1@0.05": {
+   "n": 4,
+   "arm": "G1",
+   "budget": 0.05,
+   "prewarmFileBytes": 2993521,
+   "prewarmFiles": 1246,
+   "stoppedInTier": "remainder-by-path",
+   "timeToTrafficWarmMs": {
+    "median": 9456,
+    "min": 9248,
+    "max": 10035,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 175,
+    "min": 168,
+    "max": 177,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 34,
+    "min": 27,
+    "max": 36,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 1609,
+    "min": 1607,
+    "max": 1633,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 1098279,
+    "min": 1098279,
+    "max": 1098279,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 3382,
+    "min": 3264,
+    "max": 3698,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4416,
+    "min": 4281,
+    "max": 4719,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 1623,
+    "min": 1621,
+    "max": 1647,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 80,
+    "max": 83,
+    "n": 4
+   },
+   "p99": {
+    "median": 147,
+    "min": 143,
+    "max": 148,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 143,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 574,
+   "analyticMissNeededBytes": 2417696,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5040
+  },
+  "G2@0.05": {
+   "n": 4,
+   "arm": "G2",
+   "budget": 0.05,
+   "prewarmFileBytes": 2993521,
+   "prewarmFiles": 1250,
+   "stoppedInTier": "path-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9594,
+    "min": 9462,
+    "max": 9659,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 175,
+    "min": 174,
+    "max": 179,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 34,
+    "min": 33,
+    "max": 38,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 1489,
+    "min": 1477,
+    "max": 1753,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 1099041,
+    "min": 1099041,
+    "max": 1099041,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 3331,
+    "min": 3311,
+    "max": 3637,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4342,
+    "min": 4335,
+    "max": 4665,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 1510,
+    "min": 1498,
+    "max": 1767,
+    "n": 4
+   },
+   "p50": {
+    "median": 4,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 81,
+    "min": 80,
+    "max": 96,
+    "n": 4
+   },
+   "p99": {
+    "median": 144,
+    "min": 143,
+    "max": 146,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 142,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 574,
+   "analyticMissNeededBytes": 2417696,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5252
+  },
+  "R1@0.05": {
+   "n": 4,
+   "arm": "R1",
+   "budget": 0.05,
+   "prewarmFileBytes": 2993514,
+   "prewarmFiles": 4150,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9256,
+    "min": 9104,
+    "max": 9771,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 175,
+    "min": 175,
+    "max": 177,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 34,
+    "min": 34,
+    "max": 36,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2389,
+    "min": 2246,
+    "max": 2512,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 1784306,
+    "min": 1784306,
+    "max": 1784306,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 3133,
+    "min": 3092,
+    "max": 3223,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4220,
+    "min": 4163,
+    "max": 4352,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2411,
+    "min": 2266,
+    "max": 2526,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 82,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 143,
+    "max": 147,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 140,
+    "max": 142,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 379,
+   "analyticMissNeededBytes": 4067038,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5036
+  },
+  "R2@0.05": {
+   "n": 4,
+   "arm": "R2",
+   "budget": 0.05,
+   "prewarmFileBytes": 2993520,
+   "prewarmFiles": 1247,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9412,
+    "min": 9241,
+    "max": 10012,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 175,
+    "min": 170,
+    "max": 179,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 34,
+    "min": 29,
+    "max": 38,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 1605,
+    "min": 1601,
+    "max": 1743,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 1098278,
+    "min": 1098278,
+    "max": 1098278,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 3305,
+    "min": 3302,
+    "max": 3859,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4325,
+    "min": 4322,
+    "max": 4877,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 1618,
+    "min": 1615,
+    "max": 1756,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 84,
+    "n": 4
+   },
+   "p99": {
+    "median": 144,
+    "min": 143,
+    "max": 147,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 144,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 574,
+   "analyticMissNeededBytes": 2417696,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5087
+  },
+  "G1@0.1": {
+   "n": 4,
+   "arm": "G1",
+   "budget": 0.1,
+   "prewarmFileBytes": 5987041,
+   "prewarmFiles": 2183,
+   "stoppedInTier": "remainder-by-path",
+   "timeToTrafficWarmMs": {
+    "median": 8789,
+    "min": 8775,
+    "max": 9491,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 175,
+    "min": 173,
+    "max": 201,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 34,
+    "min": 32,
+    "max": 60,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 1867,
+    "min": 1866,
+    "max": 2250,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 2140641,
+    "min": 2140641,
+    "max": 2140641,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2335,
+    "min": 2293,
+    "max": 2597,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 3738,
+    "min": 3711,
+    "max": 4123,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 1888,
+    "min": 1881,
+    "max": 2264,
+    "n": 4
+   },
+   "p50": {
+    "median": 4,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 81,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 141,
+    "max": 148,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 143,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 1,
+   "analyticMissNeededBytes": 15086,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5051
+  },
+  "G2@0.1": {
+   "n": 4,
+   "arm": "G2",
+   "budget": 0.1,
+   "prewarmFileBytes": 5987036,
+   "prewarmFiles": 3444,
+   "stoppedInTier": "path-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9226,
+    "min": 8984,
+    "max": 9645,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 176,
+    "min": 175,
+    "max": 178,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 35,
+    "min": 34,
+    "max": 37,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2237,
+    "min": 2109,
+    "max": 2642,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 2404915,
+    "min": 2404915,
+    "max": 2404915,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2350,
+    "min": 2296,
+    "max": 2657,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4134,
+    "min": 4017,
+    "max": 4526,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2252,
+    "min": 2130,
+    "max": 2656,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 80,
+    "max": 81,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 143,
+    "max": 145,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 140,
+    "max": 141,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 1,
+   "analyticMissNeededBytes": 15086,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5092
+  },
+  "R1@0.1": {
+   "n": 4,
+   "arm": "R1",
+   "budget": 0.1,
+   "prewarmFileBytes": 5987024,
+   "prewarmFiles": 5576,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9358,
+    "min": 9330,
+    "max": 9535,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 176,
+    "min": 171,
+    "max": 177,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 35,
+    "min": 30,
+    "max": 36,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2383,
+    "min": 2377,
+    "max": 2630,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 3071467,
+    "min": 3071467,
+    "max": 3071467,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2998,
+    "min": 2930,
+    "max": 3533,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4218,
+    "min": 4206,
+    "max": 4556,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2404,
+    "min": 2396,
+    "max": 2652,
+    "n": 4
+   },
+   "p50": {
+    "median": 4,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 83,
+    "n": 4
+   },
+   "p99": {
+    "median": 144,
+    "min": 142,
+    "max": 152,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 142,
+    "min": 141,
+    "max": 144,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 136,
+   "analyticMissNeededBytes": 3115784,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5140
+  },
+  "R2@0.1": {
+   "n": 4,
+   "arm": "R2",
+   "budget": 0.1,
+   "prewarmFileBytes": 5987034,
+   "prewarmFiles": 3136,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9420,
+    "min": 9402,
+    "max": 9710,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 175,
+    "min": 174,
+    "max": 176,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 34,
+    "min": 33,
+    "max": 35,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2376,
+    "min": 2373,
+    "max": 2517,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 2224296,
+    "min": 2224296,
+    "max": 2224296,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2338,
+    "min": 2337,
+    "max": 2506,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4320,
+    "min": 4304,
+    "max": 4454,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2390,
+    "min": 2388,
+    "max": 2538,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 81,
+    "min": 79,
+    "max": 82,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 142,
+    "max": 145,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 140,
+    "max": 142,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 1,
+   "analyticMissNeededBytes": 15086,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5100
+  },
+  "G1@0.2": {
+   "n": 4,
+   "arm": "G1",
+   "budget": 0.2,
+   "prewarmFileBytes": 11974084,
+   "prewarmFiles": 3798,
+   "stoppedInTier": "remainder-by-path",
+   "timeToTrafficWarmMs": {
+    "median": 8929,
+    "min": 8908,
+    "max": 9496,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 171,
+    "min": 163,
+    "max": 176,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 30,
+    "min": 22,
+    "max": 35,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 1993,
+    "min": 1989,
+    "max": 2268,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 4128174,
+    "min": 4128174,
+    "max": 4128174,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2341,
+    "min": 2317,
+    "max": 2565,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 3866,
+    "min": 3851,
+    "max": 4133,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2008,
+    "min": 2003,
+    "max": 2283,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 79,
+    "min": 79,
+    "max": 81,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 143,
+    "max": 144,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 144,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 1,
+   "analyticMissNeededBytes": 15086,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5063
+  },
+  "G2@0.2": {
+   "n": 4,
+   "arm": "G2",
+   "budget": 0.2,
+   "prewarmFileBytes": 11974082,
+   "prewarmFiles": 6760,
+   "stoppedInTier": "path-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9785,
+    "min": 9437,
+    "max": 9841,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 176,
+    "min": 175,
+    "max": 178,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 35,
+    "min": 34,
+    "max": 37,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2533,
+    "min": 2516,
+    "max": 2781,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 4974558,
+    "min": 4974558,
+    "max": 4974558,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2298,
+    "min": 2230,
+    "max": 2567,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4456,
+    "min": 4433,
+    "max": 4721,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2555,
+    "min": 2537,
+    "max": 2795,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 81,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 142,
+    "max": 145,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 147,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 0,
+   "analyticMissNeededBytes": 0,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5329
+  },
+  "R1@0.2": {
+   "n": 4,
+   "arm": "R1",
+   "budget": 0.2,
+   "prewarmFileBytes": 11974057,
+   "prewarmFiles": 6515,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9339,
+    "min": 9317,
+    "max": 9726,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 175,
+    "min": 174,
+    "max": 178,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 34,
+    "min": 33,
+    "max": 37,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2499,
+    "min": 2381,
+    "max": 2526,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 5083676,
+    "min": 5083676,
+    "max": 5083676,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2905,
+    "min": 2817,
+    "max": 3137,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4336,
+    "min": 4240,
+    "max": 4366,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2514,
+    "min": 2401,
+    "max": 2540,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 80,
+    "max": 83,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 143,
+    "max": 147,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 145,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 25,
+   "analyticMissNeededBytes": 1720050,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5003
+  },
+  "R2@0.2": {
+   "n": 4,
+   "arm": "R2",
+   "budget": 0.2,
+   "prewarmFileBytes": 11974049,
+   "prewarmFiles": 6234,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9520,
+    "min": 9500,
+    "max": 9933,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 176,
+    "min": 175,
+    "max": 180,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 35,
+    "min": 34,
+    "max": 39,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2630,
+    "min": 2505,
+    "max": 2653,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 4855338,
+    "min": 4855338,
+    "max": 4855338,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2353,
+    "min": 2288,
+    "max": 2400,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4539,
+    "min": 4422,
+    "max": 4589,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2644,
+    "min": 2527,
+    "max": 2668,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 82,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 143,
+    "max": 147,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 142,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 0,
+   "analyticMissNeededBytes": 0,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 4981
+  },
+  "G1@0.4": {
+   "n": 4,
+   "arm": "G1",
+   "budget": 0.4,
+   "prewarmFileBytes": 23948167,
+   "prewarmFiles": 3903,
+   "stoppedInTier": "remainder-by-path",
+   "timeToTrafficWarmMs": {
+    "median": 9382,
+    "min": 9371,
+    "max": 9704,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 176,
+    "min": 175,
+    "max": 178,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 35,
+    "min": 34,
+    "max": 37,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2382,
+    "min": 2368,
+    "max": 2653,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 8954108,
+    "min": 8954108,
+    "max": 8954108,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2297,
+    "min": 2284,
+    "max": 2397,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4294,
+    "min": 4291,
+    "max": 4600,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2403,
+    "min": 2388,
+    "max": 2668,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 83,
+    "n": 4
+   },
+   "p99": {
+    "median": 143,
+    "min": 142,
+    "max": 146,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 145,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 1,
+   "analyticMissNeededBytes": 15086,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5088
+  },
+  "G2@0.4": {
+   "n": 4,
+   "arm": "G2",
+   "budget": 0.4,
+   "prewarmFileBytes": 23948055,
+   "prewarmFiles": 8966,
+   "stoppedInTier": "path-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9791,
+    "min": 9767,
+    "max": 10078,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 174,
+    "min": 173,
+    "max": 179,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 33,
+    "min": 32,
+    "max": 38,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2779,
+    "min": 2763,
+    "max": 2903,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 8887856,
+    "min": 8887856,
+    "max": 8887856,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2342,
+    "min": 2254,
+    "max": 2396,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4705,
+    "min": 4704,
+    "max": 4840,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2801,
+    "min": 2785,
+    "max": 2928,
+    "n": 4
+   },
+   "p50": {
+    "median": 4,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 79,
+    "max": 81,
+    "n": 4
+   },
+   "p99": {
+    "median": 144,
+    "min": 143,
+    "max": 146,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 141,
+    "min": 141,
+    "max": 142,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 0,
+   "analyticMissNeededBytes": 0,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5086
+  },
+  "R1@0.4": {
+   "n": 4,
+   "arm": "R1",
+   "budget": 0.4,
+   "prewarmFileBytes": 23948133,
+   "prewarmFiles": 7030,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9620,
+    "min": 9390,
+    "max": 9823,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 175,
+    "min": 175,
+    "max": 190,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 34,
+    "min": 34,
+    "max": 49,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2516,
+    "min": 2500,
+    "max": 2779,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 8279188,
+    "min": 8279188,
+    "max": 8279188,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2905,
+    "min": 2865,
+    "max": 3057,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4393,
+    "min": 4387,
+    "max": 4683,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2530,
+    "min": 2521,
+    "max": 2799,
+    "n": 4
+   },
+   "p50": {
+    "median": 4,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 80,
+    "max": 83,
+    "n": 4
+   },
+   "p99": {
+    "median": 145,
+    "min": 143,
+    "max": 151,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 142,
+    "min": 141,
+    "max": 142,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 0,
+   "analyticMissNeededBytes": 0,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5227
+  },
+  "R2@0.4": {
+   "n": 4,
+   "arm": "R2",
+   "budget": 0.4,
+   "prewarmFileBytes": 23948144,
+   "prewarmFiles": 7102,
+   "stoppedInTier": "semantic-distance-widening",
+   "timeToTrafficWarmMs": {
+    "median": 9914,
+    "min": 9903,
+    "max": 10176,
+    "n": 4
+   },
+   "steadyReachedTrials": 4,
+   "trafficWarmTrials": 0,
+   "maxWindowP99": {
+    "median": 176,
+    "min": 172,
+    "max": 178,
+    "n": 4
+   },
+   "p99Regression": {
+    "median": 35,
+    "min": 31,
+    "max": 37,
+    "n": 4
+   },
+   "postAdmissionRemoteRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "postAdmissionRemoteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "n": 4
+   },
+   "prewarmDurationMs": {
+    "median": 2899,
+    "min": 2896,
+    "max": 3138,
+    "n": 4
+   },
+   "prewarmChunkBytes": {
+    "median": 8235303,
+    "min": 8235303,
+    "max": 8235303,
+    "n": 4
+   },
+   "tReadyMs": {
+    "median": 2333,
+    "min": 2291,
+    "max": 2464,
+    "n": 4
+   },
+   "tTrafficMs": {
+    "median": 4831,
+    "min": 4785,
+    "max": 5087,
+    "n": 4
+   },
+   "tPrefetchDoneMs": {
+    "median": 2913,
+    "min": 2910,
+    "max": 3161,
+    "n": 4
+   },
+   "p50": {
+    "median": 3,
+    "min": 3,
+    "max": 4,
+    "n": 4
+   },
+   "p95": {
+    "median": 80,
+    "min": 80,
+    "max": 81,
+    "n": 4
+   },
+   "p99": {
+    "median": 144,
+    "min": 142,
+    "max": 149,
+    "n": 4
+   },
+   "warmP99": {
+    "median": 142,
+    "min": 141,
+    "max": 144,
+    "n": 4
+   },
+   "analyticMissNeededFiles": 0,
+   "analyticMissNeededBytes": 0,
+   "failedRequests": 0,
+   "eagerMatched": true,
+   "steadyAfterAdmissionMs": 5083
+  }
+ },
+ "firstHitByCategory": {
+  "E0": {
+   "optional-feature": {
+    "pos1": [
+     116
+    ],
+    "any": [
+     116,
+     85,
+     89,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     73
+    ],
+    "any": [
+     72,
+     77,
+     73,
+     73
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1089
+    ],
+    "any": [
+     3,
+     4,
+     1089,
+     4,
+     5,
+     4,
+     1085,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     4
+    ],
+    "any": [
+     3,
+     3,
+     4,
+     2
+    ]
+   }
+  },
+  "G1@0.05": {
+   "optional-feature": {
+    "pos1": [
+     93
+    ],
+    "any": [
+     93,
+     85,
+     89,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     71
+    ],
+    "any": [
+     71,
+     71,
+     71,
+     71
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1086
+    ],
+    "any": [
+     4,
+     4,
+     1086,
+     5,
+     4,
+     4,
+     1115,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     4
+    ],
+    "any": [
+     2,
+     0,
+     4,
+     3
+    ]
+   }
+  },
+  "G2@0.05": {
+   "optional-feature": {
+    "pos1": [
+     87
+    ],
+    "any": [
+     87,
+     86,
+     91,
+     89
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     72
+    ],
+    "any": [
+     73,
+     70,
+     72,
+     72
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1034
+    ],
+    "any": [
+     3,
+     4,
+     1034,
+     5,
+     4,
+     3,
+     1125,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     2
+    ],
+    "any": [
+     3,
+     3,
+     2,
+     2
+    ]
+   }
+  },
+  "R1@0.05": {
+   "optional-feature": {
+    "pos1": [
+     90
+    ],
+    "any": [
+     90,
+     86,
+     91,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     72
+    ],
+    "any": [
+     72,
+     78,
+     72,
+     72
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1027
+    ],
+    "any": [
+     5,
+     4,
+     1027,
+     5,
+     4,
+     3,
+     1042,
+     5
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     4
+    ],
+    "any": [
+     3,
+     3,
+     4,
+     3
+    ]
+   }
+  },
+  "R2@0.05": {
+   "optional-feature": {
+    "pos1": [
+     92
+    ],
+    "any": [
+     92,
+     87,
+     89,
+     86
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     72
+    ],
+    "any": [
+     70,
+     72,
+     73,
+     72
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1060
+    ],
+    "any": [
+     4,
+     3,
+     1060,
+     5,
+     3,
+     3,
+     1127,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     5
+    ],
+    "any": [
+     3,
+     3,
+     5,
+     3
+    ]
+   }
+  },
+  "G1@0.1": {
+   "optional-feature": {
+    "pos1": [
+     91
+    ],
+    "any": [
+     91,
+     87,
+     89,
+     84
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     73
+    ],
+    "any": [
+     72,
+     75,
+     72,
+     73
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1125
+    ],
+    "any": [
+     2,
+     4,
+     1125,
+     4,
+     3,
+     4,
+     1051,
+     4
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     3,
+     3,
+     3,
+     3
+    ]
+   }
+  },
+  "G2@0.1": {
+   "optional-feature": {
+    "pos1": [
+     91
+    ],
+    "any": [
+     91,
+     87,
+     88,
+     86
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     72
+    ],
+    "any": [
+     73,
+     77,
+     72,
+     72
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1071
+    ],
+    "any": [
+     4,
+     2,
+     1071,
+     6,
+     2,
+     2,
+     1074,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     3,
+     3,
+     3,
+     3
+    ]
+   }
+  },
+  "R1@0.1": {
+   "optional-feature": {
+    "pos1": [
+     90
+    ],
+    "any": [
+     90,
+     84,
+     90,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     73
+    ],
+    "any": [
+     72,
+     73,
+     72,
+     73
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1078
+    ],
+    "any": [
+     4,
+     3,
+     1078,
+     5,
+     4,
+     3,
+     1113,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     4,
+     3,
+     3,
+     3
+    ]
+   }
+  },
+  "R2@0.1": {
+   "optional-feature": {
+    "pos1": [
+     90
+    ],
+    "any": [
+     90,
+     87,
+     88,
+     86
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     72
+    ],
+    "any": [
+     72,
+     72,
+     72,
+     72
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1086
+    ],
+    "any": [
+     4,
+     4,
+     1086,
+     5,
+     4,
+     3,
+     1099,
+     2
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     0,
+     3,
+     3,
+     2
+    ]
+   }
+  },
+  "G1@0.2": {
+   "optional-feature": {
+    "pos1": [
+     89
+    ],
+    "any": [
+     89,
+     85,
+     88,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     72
+    ],
+    "any": [
+     73,
+     72,
+     71,
+     72
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1088
+    ],
+    "any": [
+     1,
+     4,
+     1088,
+     6,
+     5,
+     3,
+     1107,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     3,
+     3,
+     3,
+     3
+    ]
+   }
+  },
+  "G2@0.2": {
+   "optional-feature": {
+    "pos1": [
+     89
+    ],
+    "any": [
+     89,
+     87,
+     93,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     76
+    ],
+    "any": [
+     72,
+     74,
+     71,
+     76
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1112
+    ],
+    "any": [
+     4,
+     4,
+     1112,
+     5,
+     4,
+     4,
+     1094,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     4
+    ],
+    "any": [
+     3,
+     3,
+     4,
+     4
+    ]
+   }
+  },
+  "R1@0.2": {
+   "optional-feature": {
+    "pos1": [
+     87
+    ],
+    "any": [
+     87,
+     87,
+     91,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     72
+    ],
+    "any": [
+     72,
+     73,
+     72,
+     72
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1099
+    ],
+    "any": [
+     4,
+     4,
+     1099,
+     5,
+     5,
+     4,
+     1076,
+     4
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     3,
+     3,
+     3,
+     4
+    ]
+   }
+  },
+  "R2@0.2": {
+   "optional-feature": {
+    "pos1": [
+     90
+    ],
+    "any": [
+     90,
+     86,
+     89,
+     87
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     73
+    ],
+    "any": [
+     71,
+     75,
+     72,
+     73
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1079
+    ],
+    "any": [
+     4,
+     3,
+     1079,
+     5,
+     5,
+     3,
+     1071,
+     4
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     4
+    ],
+    "any": [
+     3,
+     3,
+     4,
+     4
+    ]
+   }
+  },
+  "G1@0.4": {
+   "optional-feature": {
+    "pos1": [
+     89
+    ],
+    "any": [
+     89,
+     86,
+     89,
+     86
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     72
+    ],
+    "any": [
+     72,
+     75,
+     70,
+     72
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1068
+    ],
+    "any": [
+     3,
+     3,
+     1068,
+     6,
+     3,
+     4,
+     1077,
+     5
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     4
+    ],
+    "any": [
+     5,
+     3,
+     4,
+     4
+    ]
+   }
+  },
+  "G2@0.4": {
+   "optional-feature": {
+    "pos1": [
+     91
+    ],
+    "any": [
+     91,
+     84,
+     90,
+     88
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     75
+    ],
+    "any": [
+     73,
+     72,
+     71,
+     75
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1102
+    ],
+    "any": [
+     4,
+     3,
+     1102,
+     4,
+     5,
+     1,
+     1090,
+     4
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     4,
+     3,
+     3,
+     5
+    ]
+   }
+  },
+  "R1@0.4": {
+   "optional-feature": {
+    "pos1": [
+     90
+    ],
+    "any": [
+     90,
+     86,
+     92,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     73
+    ],
+    "any": [
+     70,
+     78,
+     71,
+     73
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1097
+    ],
+    "any": [
+     4,
+     3,
+     1097,
+     7,
+     4,
+     5,
+     1083,
+     3
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     3,
+     4,
+     3,
+     3
+    ]
+   }
+  },
+  "R2@0.4": {
+   "optional-feature": {
+    "pos1": [
+     88
+    ],
+    "any": [
+     88,
+     84,
+     88,
+     85
+    ]
+   },
+   "admin-background": {
+    "pos1": [
+     73
+    ],
+    "any": [
+     72,
+     72,
+     72,
+     73
+    ]
+   },
+   "error-path": {
+    "pos1": [
+     1069
+    ],
+    "any": [
+     1,
+     3,
+     1069,
+     4,
+     3,
+     3,
+     1081,
+     5
+    ]
+   },
+   "rare-route": {
+    "pos1": [
+     3
+    ],
+    "any": [
+     3,
+     4,
+     3,
+     3
+    ]
+   }
+  }
+ },
+ "equalOutcome": {
+  "G1": {
+   "warmAt": null,
+   "bracket": [
+    0.4,
+    null
+   ]
+  },
+  "G2": {
+   "warmAt": null,
+   "bracket": [
+    0.4,
+    null
+   ]
+  },
+  "R1": {
+   "warmAt": null,
+   "bracket": [
+    0.4,
+    null
+   ]
+  },
+  "R2": {
+   "warmAt": null,
+   "bracket": [
+    0.4,
+    null
+   ]
+  }
+ },
+ "eagerMaxWindowP99": 201,
+ "equalOutcomeEager": {
+  "G1": 0.05,
+  "G2": 0.05,
+  "R1": 0.05,
+  "R2": 0.05
+ },
+ "coverage": {
+  "G1@0.05": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "G1@0.1": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "G1@0.2": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "G1@0.4": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "G2@0.05": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "G2@0.1": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "G2@0.2": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "G2@0.4": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "R1@0.05": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "R1@0.1": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "R1@0.2": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "R1@0.4": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "R2@0.05": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "R2@0.1": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "R2@0.2": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "R2@0.4": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "O@0.05": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 0,
+    "coveredBytes": 0,
+    "missFiles": 1,
+    "missBytes": 15086
+   }
+  },
+  "O@0.1": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "O@0.2": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  },
+  "O@0.4": {
+   "rare-route": {
+    "needFiles": 1,
+    "needBytes": 15086,
+    "coveredFiles": 1,
+    "coveredBytes": 15086,
+    "missFiles": 0,
+    "missBytes": 0
+   }
+  }
+ },
+ "sizeTermSensitivity": {
+  "G2/distance-only": {
+   "0.05": {
+    "files": 1247,
+    "bytes": 2993521,
+    "coveredNeededFiles": 1227,
+    "coveredNeededBytes": 2993490
+   },
+   "0.1": {
+    "files": 2087,
+    "bytes": 5987042,
+    "coveredNeededFiles": 1800,
+    "coveredNeededBytes": 5396100
+   },
+   "0.2": {
+    "files": 3400,
+    "bytes": 11974084,
+    "coveredNeededFiles": 1800,
+    "coveredNeededBytes": 5396100
+   },
+   "0.4": {
+    "files": 5170,
+    "bytes": 23948168,
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  },
+  "R1/distance-only": {
+   "0.05": {
+    "files": 769,
+    "bytes": 2993521,
+    "coveredNeededFiles": 588,
+    "coveredNeededBytes": 2503025
+   },
+   "0.1": {
+    "files": 1962,
+    "bytes": 5987042,
+    "coveredNeededFiles": 1758,
+    "coveredNeededBytes": 5250115
+   },
+   "0.2": {
+    "files": 3641,
+    "bytes": 11974083,
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   },
+   "0.4": {
+    "files": 5201,
+    "bytes": 23948168,
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  },
+  "R2/distance-only": {
+   "0.05": {
+    "files": 1247,
+    "bytes": 2993520,
+    "coveredNeededFiles": 1227,
+    "coveredNeededBytes": 2993490
+   },
+   "0.1": {
+    "files": 1996,
+    "bytes": 5987041,
+    "coveredNeededFiles": 1800,
+    "coveredNeededBytes": 5396100
+   },
+   "0.2": {
+    "files": 3447,
+    "bytes": 11974084,
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   },
+   "0.4": {
+    "files": 5068,
+    "bytes": 23948166,
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  }
+ },
+ "trainingMatrix": {
+  "G1@0.05": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 1227,
+    "coveredNeededBytes": 2993490
+   },
+   "TRAIN-2(+rare-route)": {
+    "coveredNeededFiles": 1227,
+    "coveredNeededBytes": 2993490
+   }
+  },
+  "G1@0.1": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 1800,
+    "coveredNeededBytes": 5396100
+   },
+   "TRAIN-2(+rare-route)": {
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  },
+  "G1@0.2": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 1800,
+    "coveredNeededBytes": 5396100
+   },
+   "TRAIN-2(+rare-route)": {
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  },
+  "G1@0.4": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 1800,
+    "coveredNeededBytes": 5396100
+   },
+   "TRAIN-2(+rare-route)": {
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  },
+  "G2@0.05": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 1227,
+    "coveredNeededBytes": 2993490
+   },
+   "TRAIN-2(+rare-route)": {
+    "coveredNeededFiles": 1227,
+    "coveredNeededBytes": 2993490
+   }
+  },
+  "G2@0.1": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 1800,
+    "coveredNeededBytes": 5396100
+   },
+   "TRAIN-2(+rare-route)": {
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  },
+  "G2@0.2": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   },
+   "TRAIN-2(+rare-route)": {
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  },
+  "G2@0.4": {
+   "TRAIN-1(common only)": {
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   },
+   "TRAIN-2(+rare-route)": {
+    "coveredNeededFiles": 1801,
+    "coveredNeededBytes": 5411186
+   }
+  }
+ },
+ "correctness": {
+  "comparedTrials": 64,
+  "statusMismatches": [],
+  "lengthMismatches": [],
+  "bodyMismatches": [],
+  "headerMismatches": [],
+  "unexpectedStatus": []
+ },
+ "trials": [
+  {
+   "name": "E0.f0",
+   "arm": "E0",
+   "budget": null,
+   "family": 0,
+   "order": 0,
+   "exit": 0,
+   "tProcMs": 68,
+   "tMountMs": 13,
+   "tReadyMs": 2914,
+   "tPrewarmMs": 3050,
+   "tPrefetchDoneMs": 2276,
+   "tTrafficMs": 4086,
+   "prewarmDurationMs": 2263,
+   "tSteadyMs": 9535,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 201,
+   "p99Regression": 60,
+   "p50": 4,
+   "p95": 81,
+   "p99": 143,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 17637931,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 116,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 73
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.05.f0",
+   "arm": "G1",
+   "budget": 0.05,
+   "family": 0,
+   "order": 1,
+   "exit": 0,
+   "tProcMs": 67,
+   "tMountMs": 13,
+   "tReadyMs": 3698,
+   "tPrewarmMs": 2426,
+   "tPrefetchDoneMs": 1633,
+   "tTrafficMs": 4719,
+   "prewarmDurationMs": 1620,
+   "tSteadyMs": 10035,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 168,
+   "p99Regression": 27,
+   "p50": 4,
+   "p95": 81,
+   "p99": 148,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1098279,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 93,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 71,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 2,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.05.f0",
+   "arm": "G2",
+   "budget": 0.05,
+   "family": 0,
+   "order": 2,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 21,
+   "tReadyMs": 3311,
+   "tPrewarmMs": 2267,
+   "tPrefetchDoneMs": 1498,
+   "tTrafficMs": 4335,
+   "prewarmDurationMs": 1477,
+   "tSteadyMs": 9642,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 83,
+   "p99": 146,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1099041,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 87,
+     "warmMs": 80
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 73,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.05.f0",
+   "arm": "R1",
+   "budget": 0.05,
+   "family": 0,
+   "order": 3,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 21,
+   "tReadyMs": 3136,
+   "tPrewarmMs": 3308,
+   "tPrefetchDoneMs": 2525,
+   "tTrafficMs": 4352,
+   "prewarmDurationMs": 2504,
+   "tSteadyMs": 9771,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 81,
+   "p99": 143,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1784306,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 90,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.05.f0",
+   "arm": "R2",
+   "budget": 0.05,
+   "family": 0,
+   "order": 4,
+   "exit": 0,
+   "tProcMs": 79,
+   "tMountMs": 21,
+   "tReadyMs": 3528,
+   "tPrewarmMs": 2408,
+   "tPrefetchDoneMs": 1633,
+   "tTrafficMs": 4543,
+   "prewarmDurationMs": 1612,
+   "tSteadyMs": 9896,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 179,
+   "p99Regression": 38,
+   "p50": 4,
+   "p95": 80,
+   "p99": 144,
+   "warmP50": 3,
+   "warmP99": 144,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1098278,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 92,
+     "warmMs": 79
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 70,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.1.f0",
+   "arm": "G1",
+   "budget": 0.1,
+   "family": 0,
+   "order": 5,
+   "exit": 0,
+   "tProcMs": 65,
+   "tMountMs": 14,
+   "tReadyMs": 2597,
+   "tPrewarmMs": 3081,
+   "tPrefetchDoneMs": 2264,
+   "tTrafficMs": 4123,
+   "prewarmDurationMs": 2250,
+   "tSteadyMs": 9491,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 81,
+   "p99": 145,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2140641,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 91,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 69
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 2,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 2
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.1.f0",
+   "arm": "G2",
+   "budget": 0.1,
+   "family": 0,
+   "order": 6,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 20,
+   "tReadyMs": 2350,
+   "tPrewarmMs": 3144,
+   "tPrefetchDoneMs": 2268,
+   "tTrafficMs": 4189,
+   "prewarmDurationMs": 2248,
+   "tSteadyMs": 9494,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 81,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 140,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2404915,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 91,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 73,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 2,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.1.f0",
+   "arm": "R1",
+   "budget": 0.1,
+   "family": 0,
+   "order": 7,
+   "exit": 0,
+   "tProcMs": 71,
+   "tMountMs": 19,
+   "tReadyMs": 2998,
+   "tPrewarmMs": 3170,
+   "tPrefetchDoneMs": 2396,
+   "tTrafficMs": 4206,
+   "prewarmDurationMs": 2377,
+   "tSteadyMs": 9535,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 171,
+   "p99Regression": 30,
+   "p50": 4,
+   "p95": 80,
+   "p99": 142,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 3071467,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 90,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 70
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.1.f0",
+   "arm": "R2",
+   "budget": 0.1,
+   "family": 0,
+   "order": 8,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 21,
+   "tReadyMs": 2388,
+   "tPrewarmMs": 3267,
+   "tPrefetchDoneMs": 2399,
+   "tTrafficMs": 4323,
+   "prewarmDurationMs": 2378,
+   "tSteadyMs": 9710,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 81,
+   "p99": 142,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2224296,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 90,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 70
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 0,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.2.f0",
+   "arm": "G1",
+   "budget": 0.2,
+   "family": 0,
+   "order": 9,
+   "exit": 0,
+   "tProcMs": 68,
+   "tMountMs": 15,
+   "tReadyMs": 2565,
+   "tPrewarmMs": 3099,
+   "tPrefetchDoneMs": 2283,
+   "tTrafficMs": 4133,
+   "prewarmDurationMs": 2268,
+   "tSteadyMs": 9496,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 4,
+   "p95": 81,
+   "p99": 144,
+   "warmP50": 3,
+   "warmP99": 144,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4128174,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 89,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 73,
+     "warmMs": 70
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 1,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.2.f0",
+   "arm": "G2",
+   "budget": 0.2,
+   "family": 0,
+   "order": 10,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 22,
+   "tReadyMs": 2230,
+   "tPrewarmMs": 3419,
+   "tPrefetchDoneMs": 2555,
+   "tTrafficMs": 4456,
+   "prewarmDurationMs": 2533,
+   "tSteadyMs": 9802,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 80,
+   "p99": 145,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4974558,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 89,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 70
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.2.f0",
+   "arm": "R1",
+   "budget": 0.2,
+   "family": 0,
+   "order": 11,
+   "exit": 0,
+   "tProcMs": 69,
+   "tMountMs": 14,
+   "tReadyMs": 2905,
+   "tPrewarmMs": 3325,
+   "tPrefetchDoneMs": 2540,
+   "tTrafficMs": 4366,
+   "prewarmDurationMs": 2526,
+   "tSteadyMs": 9726,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 83,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 5083676,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 87,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.2.f0",
+   "arm": "R2",
+   "budget": 0.2,
+   "family": 0,
+   "order": 12,
+   "exit": 0,
+   "tProcMs": 69,
+   "tMountMs": 14,
+   "tReadyMs": 2400,
+   "tPrewarmMs": 3507,
+   "tPrefetchDoneMs": 2644,
+   "tTrafficMs": 4539,
+   "prewarmDurationMs": 2630,
+   "tSteadyMs": 9933,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 80,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4855338,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 90,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 71,
+     "warmMs": 70
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 1
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.4.f0",
+   "arm": "G1",
+   "budget": 0.4,
+   "family": 0,
+   "order": 13,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 21,
+   "tReadyMs": 2284,
+   "tPrewarmMs": 3266,
+   "tPrefetchDoneMs": 2403,
+   "tTrafficMs": 4291,
+   "prewarmDurationMs": 2382,
+   "tSteadyMs": 9622,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 3,
+   "p95": 81,
+   "p99": 144,
+   "warmP50": 3,
+   "warmP99": 145,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8954108,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 89,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 70
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 5,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.4.f0",
+   "arm": "G2",
+   "budget": 0.4,
+   "family": 0,
+   "order": 14,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 22,
+   "tReadyMs": 2342,
+   "tPrewarmMs": 3657,
+   "tPrefetchDoneMs": 2785,
+   "tTrafficMs": 4704,
+   "prewarmDurationMs": 2763,
+   "tSteadyMs": 10078,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 3,
+   "p95": 81,
+   "p99": 146,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8887856,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 91,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 73,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.4.f0",
+   "arm": "R1",
+   "budget": 0.4,
+   "family": 0,
+   "order": 15,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 21,
+   "tReadyMs": 2924,
+   "tPrewarmMs": 3332,
+   "tPrefetchDoneMs": 2521,
+   "tTrafficMs": 4387,
+   "prewarmDurationMs": 2500,
+   "tSteadyMs": 9787,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 80,
+   "p99": 143,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8279188,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 90,
+     "warmMs": 79
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 70,
+     "warmMs": 70
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 2
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.4.f0",
+   "arm": "R2",
+   "budget": 0.4,
+   "family": 0,
+   "order": 16,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 14,
+   "tReadyMs": 2437,
+   "tPrewarmMs": 3754,
+   "tPrefetchDoneMs": 2910,
+   "tTrafficMs": 4785,
+   "prewarmDurationMs": 2896,
+   "tSteadyMs": 10176,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 81,
+   "p99": 142,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8235303,
+   "firstHit": [
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 2,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 3,
+     "ms": 1,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "E0.f1",
+   "arm": "E0",
+   "budget": null,
+   "family": 1,
+   "order": 17,
+   "exit": 0,
+   "tProcMs": 70,
+   "tMountMs": 14,
+   "tReadyMs": 2802,
+   "tPrewarmMs": 2921,
+   "tPrefetchDoneMs": 2146,
+   "tTrafficMs": 3965,
+   "prewarmDurationMs": 2132,
+   "tSteadyMs": 8935,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 178,
+   "p99Regression": 37,
+   "p50": 3,
+   "p95": 79,
+   "p99": 142,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 17637931,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1089,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 85,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 77,
+     "warmMs": 72
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.05.f1",
+   "arm": "G2",
+   "budget": 0.05,
+   "family": 1,
+   "order": 18,
+   "exit": 0,
+   "tProcMs": 63,
+   "tMountMs": 13,
+   "tReadyMs": 3637,
+   "tPrewarmMs": 2424,
+   "tPrefetchDoneMs": 1634,
+   "tTrafficMs": 4665,
+   "prewarmDurationMs": 1621,
+   "tSteadyMs": 9659,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 36,
+   "p50": 3,
+   "p95": 96,
+   "p99": 144,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1099041,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1034,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 86,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 70,
+     "warmMs": 72
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.05.f1",
+   "arm": "R1",
+   "budget": 0.05,
+   "family": 1,
+   "order": 19,
+   "exit": 0,
+   "tProcMs": 78,
+   "tMountMs": 22,
+   "tReadyMs": 3092,
+   "tPrewarmMs": 3181,
+   "tPrefetchDoneMs": 2411,
+   "tTrafficMs": 4220,
+   "prewarmDurationMs": 2389,
+   "tSteadyMs": 9104,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 80,
+   "p99": 147,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1784306,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1027,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 86,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 78,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.05.f1",
+   "arm": "R2",
+   "budget": 0.05,
+   "family": 1,
+   "order": 20,
+   "exit": 0,
+   "tProcMs": 66,
+   "tMountMs": 13,
+   "tReadyMs": 3302,
+   "tPrewarmMs": 2385,
+   "tPrefetchDoneMs": 1618,
+   "tTrafficMs": 4325,
+   "prewarmDurationMs": 1605,
+   "tSteadyMs": 9241,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 3,
+   "p95": 80,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1098278,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1060,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 87,
+     "warmMs": 79
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 72,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.05.f1",
+   "arm": "G1",
+   "budget": 0.05,
+   "family": 1,
+   "order": 21,
+   "exit": 0,
+   "tProcMs": 71,
+   "tMountMs": 14,
+   "tReadyMs": 3264,
+   "tPrewarmMs": 2398,
+   "tPrefetchDoneMs": 1623,
+   "tTrafficMs": 4281,
+   "prewarmDurationMs": 1609,
+   "tSteadyMs": 9248,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 36,
+   "p50": 3,
+   "p95": 80,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1098279,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1086,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 0,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 85,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 71,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.1.f1",
+   "arm": "G2",
+   "budget": 0.1,
+   "family": 1,
+   "order": 22,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 21,
+   "tReadyMs": 2296,
+   "tPrewarmMs": 2978,
+   "tPrefetchDoneMs": 2130,
+   "tTrafficMs": 4017,
+   "prewarmDurationMs": 2109,
+   "tSteadyMs": 8984,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 80,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2404915,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1071,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 6,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 87,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 77,
+     "warmMs": 73
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.1.f1",
+   "arm": "R1",
+   "budget": 0.1,
+   "family": 1,
+   "order": 23,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 22,
+   "tReadyMs": 3533,
+   "tPrewarmMs": 3431,
+   "tPrefetchDoneMs": 2652,
+   "tTrafficMs": 4556,
+   "prewarmDurationMs": 2630,
+   "tSteadyMs": 9498,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 36,
+   "p50": 3,
+   "p95": 80,
+   "p99": 144,
+   "warmP50": 3,
+   "warmP99": 144,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 3071467,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1078,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 84,
+     "warmMs": 80
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 73,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.1.f1",
+   "arm": "R2",
+   "budget": 0.1,
+   "family": 1,
+   "order": 24,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 21,
+   "tReadyMs": 2506,
+   "tPrewarmMs": 3408,
+   "tPrefetchDoneMs": 2538,
+   "tTrafficMs": 4454,
+   "prewarmDurationMs": 2517,
+   "tSteadyMs": 9402,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 79,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2224296,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1086,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 87,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 72,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.1.f1",
+   "arm": "G1",
+   "budget": 0.1,
+   "family": 1,
+   "order": 25,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 19,
+   "tReadyMs": 2361,
+   "tPrewarmMs": 2707,
+   "tPrefetchDoneMs": 1904,
+   "tTrafficMs": 3746,
+   "prewarmDurationMs": 1885,
+   "tSteadyMs": 8775,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 201,
+   "p99Regression": 60,
+   "p50": 3,
+   "p95": 79,
+   "p99": 141,
+   "warmP50": 3,
+   "warmP99": 143,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2140641,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1125,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 4,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 87,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 75,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.2.f1",
+   "arm": "G2",
+   "budget": 0.2,
+   "family": 1,
+   "order": 26,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 21,
+   "tReadyMs": 2298,
+   "tPrewarmMs": 3405,
+   "tPrefetchDoneMs": 2537,
+   "tTrafficMs": 4433,
+   "prewarmDurationMs": 2516,
+   "tSteadyMs": 9437,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 80,
+   "p99": 144,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4974558,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1112,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 87,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 74,
+     "warmMs": 72
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.2.f1",
+   "arm": "R1",
+   "budget": 0.2,
+   "family": 1,
+   "order": 27,
+   "exit": 0,
+   "tProcMs": 68,
+   "tMountMs": 15,
+   "tReadyMs": 3137,
+   "tPrewarmMs": 3291,
+   "tPrefetchDoneMs": 2514,
+   "tTrafficMs": 4336,
+   "prewarmDurationMs": 2499,
+   "tSteadyMs": 9317,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 174,
+   "p99Regression": 33,
+   "p50": 3,
+   "p95": 80,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 143,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 5083676,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1099,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 87,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 73,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.2.f1",
+   "arm": "R2",
+   "budget": 0.2,
+   "family": 1,
+   "order": 28,
+   "exit": 0,
+   "tProcMs": 71,
+   "tMountMs": 15,
+   "tReadyMs": 2398,
+   "tPrewarmMs": 3549,
+   "tPrefetchDoneMs": 2668,
+   "tTrafficMs": 4589,
+   "prewarmDurationMs": 2653,
+   "tSteadyMs": 9520,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 3,
+   "p95": 79,
+   "p99": 147,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4855338,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1079,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 86,
+     "warmMs": 80
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 75,
+     "warmMs": 72
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.2.f1",
+   "arm": "G1",
+   "budget": 0.2,
+   "family": 1,
+   "order": 29,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 20,
+   "tReadyMs": 2317,
+   "tPrewarmMs": 2959,
+   "tPrefetchDoneMs": 2132,
+   "tTrafficMs": 3978,
+   "prewarmDurationMs": 2112,
+   "tSteadyMs": 8908,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 163,
+   "p99Regression": 22,
+   "p50": 3,
+   "p95": 79,
+   "p99": 143,
+   "warmP50": 4,
+   "warmP99": 144,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4128174,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1088,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 6,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 85,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 72,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.4.f1",
+   "arm": "G2",
+   "budget": 0.4,
+   "family": 1,
+   "order": 30,
+   "exit": 0,
+   "tProcMs": 79,
+   "tMountMs": 23,
+   "tReadyMs": 2396,
+   "tPrewarmMs": 3783,
+   "tPrefetchDoneMs": 2917,
+   "tTrafficMs": 4805,
+   "prewarmDurationMs": 2894,
+   "tSteadyMs": 9767,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 174,
+   "p99Regression": 33,
+   "p50": 4,
+   "p95": 79,
+   "p99": 144,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8887856,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1102,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 84,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 72,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.4.f1",
+   "arm": "R1",
+   "budget": 0.4,
+   "family": 1,
+   "order": 31,
+   "exit": 0,
+   "tProcMs": 67,
+   "tMountMs": 14,
+   "tReadyMs": 2865,
+   "tPrewarmMs": 3351,
+   "tPrefetchDoneMs": 2530,
+   "tTrafficMs": 4393,
+   "prewarmDurationMs": 2516,
+   "tSteadyMs": 9390,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 190,
+   "p99Regression": 49,
+   "p50": 4,
+   "p95": 80,
+   "p99": 149,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8279188,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1097,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 7,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 1
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 86,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 78,
+     "warmMs": 71
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.4.f1",
+   "arm": "R2",
+   "budget": 0.4,
+   "family": 1,
+   "order": 32,
+   "exit": 0,
+   "tProcMs": 84,
+   "tMountMs": 23,
+   "tReadyMs": 2464,
+   "tPrewarmMs": 4039,
+   "tPrefetchDoneMs": 3161,
+   "tTrafficMs": 5087,
+   "prewarmDurationMs": 3138,
+   "tSteadyMs": 10051,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 172,
+   "p99Regression": 31,
+   "p50": 3,
+   "p95": 81,
+   "p99": 147,
+   "warmP50": 3,
+   "warmP99": 144,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8235303,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1069,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 84,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 72,
+     "warmMs": 75
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.4.f1",
+   "arm": "G1",
+   "budget": 0.4,
+   "family": 1,
+   "order": 33,
+   "exit": 0,
+   "tProcMs": 70,
+   "tMountMs": 16,
+   "tReadyMs": 2388,
+   "tPrewarmMs": 3402,
+   "tPrefetchDoneMs": 2536,
+   "tTrafficMs": 4451,
+   "prewarmDurationMs": 2520,
+   "tSteadyMs": 9382,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 36,
+   "p50": 3,
+   "p95": 80,
+   "p99": 142,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8954108,
+   "firstHit": [
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 1,
+     "ms": 1068,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 2,
+     "ms": 6,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 86,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 5,
+     "ms": 75,
+     "warmMs": 72
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "E0.f2",
+   "arm": "E0",
+   "budget": null,
+   "family": 2,
+   "order": 34,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 19,
+   "tReadyMs": 2839,
+   "tPrewarmMs": 3067,
+   "tPrefetchDoneMs": 2282,
+   "tTrafficMs": 4098,
+   "prewarmDurationMs": 2263,
+   "tSteadyMs": 9167,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 181,
+   "p99Regression": 40,
+   "p50": 4,
+   "p95": 80,
+   "p99": 148,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 17637931,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 89,
+     "warmMs": 77
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 73,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.05.f2",
+   "arm": "R1",
+   "budget": 0.05,
+   "family": 2,
+   "order": 35,
+   "exit": 0,
+   "tProcMs": 73,
+   "tMountMs": 20,
+   "tReadyMs": 3133,
+   "tPrewarmMs": 3048,
+   "tPrefetchDoneMs": 2266,
+   "tTrafficMs": 4163,
+   "prewarmDurationMs": 2246,
+   "tSteadyMs": 9256,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 36,
+   "p50": 3,
+   "p95": 79,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1784306,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 91,
+     "warmMs": 79
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.05.f2",
+   "arm": "R2",
+   "budget": 0.05,
+   "family": 2,
+   "order": 36,
+   "exit": 0,
+   "tProcMs": 68,
+   "tMountMs": 14,
+   "tReadyMs": 3305,
+   "tPrewarmMs": 2385,
+   "tPrefetchDoneMs": 1615,
+   "tTrafficMs": 4322,
+   "prewarmDurationMs": 1601,
+   "tSteadyMs": 9412,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 178,
+   "p99Regression": 37,
+   "p50": 3,
+   "p95": 79,
+   "p99": 147,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1098278,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 89,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 73,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.05.f2",
+   "arm": "G1",
+   "budget": 0.05,
+   "family": 2,
+   "order": 37,
+   "exit": 0,
+   "tProcMs": 71,
+   "tMountMs": 14,
+   "tReadyMs": 3382,
+   "tPrewarmMs": 2434,
+   "tPrefetchDoneMs": 1647,
+   "tTrafficMs": 4416,
+   "prewarmDurationMs": 1633,
+   "tSteadyMs": 9456,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 80,
+   "p99": 147,
+   "warmP50": 3,
+   "warmP99": 143,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1098279,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 89,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 71,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.05.f2",
+   "arm": "G2",
+   "budget": 0.05,
+   "family": 2,
+   "order": 38,
+   "exit": 0,
+   "tProcMs": 69,
+   "tMountMs": 14,
+   "tReadyMs": 3499,
+   "tPrewarmMs": 2542,
+   "tPrefetchDoneMs": 1767,
+   "tTrafficMs": 4530,
+   "prewarmDurationMs": 1753,
+   "tSteadyMs": 9594,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 179,
+   "p99Regression": 38,
+   "p50": 4,
+   "p95": 80,
+   "p99": 145,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1099041,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 2,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 91,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.1.f2",
+   "arm": "R1",
+   "budget": 0.1,
+   "family": 2,
+   "order": 39,
+   "exit": 0,
+   "tProcMs": 80,
+   "tMountMs": 23,
+   "tReadyMs": 3192,
+   "tPrewarmMs": 3190,
+   "tPrefetchDoneMs": 2418,
+   "tTrafficMs": 4218,
+   "prewarmDurationMs": 2395,
+   "tSteadyMs": 9358,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 4,
+   "p95": 83,
+   "p99": 145,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 3071467,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 90,
+     "warmMs": 79
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.1.f2",
+   "arm": "R2",
+   "budget": 0.1,
+   "family": 2,
+   "order": 40,
+   "exit": 0,
+   "tProcMs": 69,
+   "tMountMs": 15,
+   "tReadyMs": 2338,
+   "tPrewarmMs": 3260,
+   "tPrefetchDoneMs": 2388,
+   "tTrafficMs": 4304,
+   "prewarmDurationMs": 2373,
+   "tSteadyMs": 9435,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 3,
+   "p95": 81,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 140,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2224296,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 73
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.1.f2",
+   "arm": "G1",
+   "budget": 0.1,
+   "family": 2,
+   "order": 41,
+   "exit": 0,
+   "tProcMs": 67,
+   "tMountMs": 14,
+   "tReadyMs": 2335,
+   "tPrewarmMs": 2680,
+   "tPrefetchDoneMs": 1881,
+   "tTrafficMs": 3711,
+   "prewarmDurationMs": 1867,
+   "tSteadyMs": 8871,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 173,
+   "p99Regression": 32,
+   "p50": 4,
+   "p95": 81,
+   "p99": 148,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2140641,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 89,
+     "warmMs": 79
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.1.f2",
+   "arm": "G2",
+   "budget": 0.1,
+   "family": 2,
+   "order": 42,
+   "exit": 0,
+   "tProcMs": 70,
+   "tMountMs": 14,
+   "tReadyMs": 2657,
+   "tPrewarmMs": 3476,
+   "tPrefetchDoneMs": 2656,
+   "tTrafficMs": 4526,
+   "prewarmDurationMs": 2642,
+   "tSteadyMs": 9645,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 178,
+   "p99Regression": 37,
+   "p50": 4,
+   "p95": 80,
+   "p99": 145,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2404915,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 2,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 2,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.2.f2",
+   "arm": "R1",
+   "budget": 0.2,
+   "family": 2,
+   "order": 43,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 20,
+   "tReadyMs": 2817,
+   "tPrewarmMs": 3204,
+   "tPrefetchDoneMs": 2401,
+   "tTrafficMs": 4240,
+   "prewarmDurationMs": 2381,
+   "tSteadyMs": 9339,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 178,
+   "p99Regression": 37,
+   "p50": 4,
+   "p95": 80,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 145,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 5083676,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 91,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.2.f2",
+   "arm": "R2",
+   "budget": 0.2,
+   "family": 2,
+   "order": 44,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 22,
+   "tReadyMs": 2288,
+   "tPrewarmMs": 3395,
+   "tPrefetchDoneMs": 2527,
+   "tTrafficMs": 4422,
+   "prewarmDurationMs": 2505,
+   "tSteadyMs": 9500,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 178,
+   "p99Regression": 37,
+   "p50": 3,
+   "p95": 82,
+   "p99": 143,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4855338,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 89,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.2.f2",
+   "arm": "G1",
+   "budget": 0.2,
+   "family": 2,
+   "order": 45,
+   "exit": 0,
+   "tProcMs": 70,
+   "tMountMs": 15,
+   "tReadyMs": 2341,
+   "tPrewarmMs": 2837,
+   "tPrefetchDoneMs": 2008,
+   "tTrafficMs": 3866,
+   "prewarmDurationMs": 1993,
+   "tSteadyMs": 8929,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 171,
+   "p99Regression": 30,
+   "p50": 4,
+   "p95": 79,
+   "p99": 143,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4128174,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 88,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 71,
+     "warmMs": 73
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.2.f2",
+   "arm": "G2",
+   "budget": 0.2,
+   "family": 2,
+   "order": 46,
+   "exit": 0,
+   "tProcMs": 70,
+   "tMountMs": 14,
+   "tReadyMs": 2501,
+   "tPrewarmMs": 3666,
+   "tPrefetchDoneMs": 2795,
+   "tTrafficMs": 4721,
+   "prewarmDurationMs": 2781,
+   "tSteadyMs": 9841,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 79,
+   "p99": 142,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4974558,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 4,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 93,
+     "warmMs": 79
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 71,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.4.f2",
+   "arm": "R1",
+   "budget": 0.4,
+   "family": 2,
+   "order": 47,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 20,
+   "tReadyMs": 3057,
+   "tPrewarmMs": 3639,
+   "tPrefetchDoneMs": 2799,
+   "tTrafficMs": 4683,
+   "prewarmDurationMs": 2779,
+   "tSteadyMs": 9823,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 83,
+   "p99": 145,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8279188,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 92,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 71,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 5,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.4.f2",
+   "arm": "R2",
+   "budget": 0.4,
+   "family": 2,
+   "order": 48,
+   "exit": 0,
+   "tProcMs": 72,
+   "tMountMs": 14,
+   "tReadyMs": 2333,
+   "tPrewarmMs": 3800,
+   "tPrefetchDoneMs": 2913,
+   "tTrafficMs": 4840,
+   "prewarmDurationMs": 2899,
+   "tSteadyMs": 9903,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 178,
+   "p99Regression": 37,
+   "p50": 4,
+   "p95": 80,
+   "p99": 144,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8235303,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 88,
+     "warmMs": 79
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 72,
+     "warmMs": 73
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.4.f2",
+   "arm": "G1",
+   "budget": 0.4,
+   "family": 2,
+   "order": 49,
+   "exit": 0,
+   "tProcMs": 72,
+   "tMountMs": 15,
+   "tReadyMs": 2397,
+   "tPrewarmMs": 3553,
+   "tPrefetchDoneMs": 2668,
+   "tTrafficMs": 4600,
+   "prewarmDurationMs": 2653,
+   "tSteadyMs": 9704,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 178,
+   "p99Regression": 37,
+   "p50": 4,
+   "p95": 79,
+   "p99": 146,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8954108,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 4,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 89,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 70,
+     "warmMs": 70
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 4,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.4.f2",
+   "arm": "G2",
+   "budget": 0.4,
+   "family": 2,
+   "order": 50,
+   "exit": 0,
+   "tProcMs": 79,
+   "tMountMs": 25,
+   "tReadyMs": 2343,
+   "tPrewarmMs": 3797,
+   "tPrefetchDoneMs": 2928,
+   "tTrafficMs": 4840,
+   "prewarmDurationMs": 2903,
+   "tSteadyMs": 9952,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 179,
+   "p99Regression": 38,
+   "p50": 4,
+   "p95": 80,
+   "p99": 145,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8887856,
+   "firstHit": [
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 1,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 90,
+     "warmMs": 78
+    },
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 71,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 4,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 5,
+     "ms": 1,
+     "warmMs": 1
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "E0.f3",
+   "arm": "E0",
+   "budget": null,
+   "family": 3,
+   "order": 51,
+   "exit": 0,
+   "tProcMs": 67,
+   "tMountMs": 12,
+   "tReadyMs": 2619,
+   "tPrewarmMs": 2795,
+   "tPrefetchDoneMs": 2015,
+   "tTrafficMs": 3839,
+   "prewarmDurationMs": 2003,
+   "tSteadyMs": 8963,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 36,
+   "p50": 4,
+   "p95": 81,
+   "p99": 145,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 17637931,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 73,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1085,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 1
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 2,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 77
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.05.f3",
+   "arm": "R2",
+   "budget": 0.05,
+   "family": 3,
+   "order": 52,
+   "exit": 0,
+   "tProcMs": 69,
+   "tMountMs": 13,
+   "tReadyMs": 3859,
+   "tPrewarmMs": 2536,
+   "tPrefetchDoneMs": 1756,
+   "tTrafficMs": 4877,
+   "prewarmDurationMs": 1743,
+   "tSteadyMs": 10012,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 170,
+   "p99Regression": 29,
+   "p50": 4,
+   "p95": 84,
+   "p99": 144,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1098278,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1127,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 86,
+     "warmMs": 77
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.05.f3",
+   "arm": "G1",
+   "budget": 0.05,
+   "family": 3,
+   "order": 53,
+   "exit": 0,
+   "tProcMs": 67,
+   "tMountMs": 14,
+   "tReadyMs": 3513,
+   "tPrewarmMs": 2410,
+   "tPrefetchDoneMs": 1621,
+   "tTrafficMs": 4537,
+   "prewarmDurationMs": 1607,
+   "tSteadyMs": 9651,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 83,
+   "p99": 147,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1098279,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 71,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1115,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.05.f3",
+   "arm": "G2",
+   "budget": 0.05,
+   "family": 3,
+   "order": 54,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 21,
+   "tReadyMs": 3331,
+   "tPrewarmMs": 2285,
+   "tPrefetchDoneMs": 1510,
+   "tTrafficMs": 4342,
+   "prewarmDurationMs": 1489,
+   "tSteadyMs": 9462,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 174,
+   "p99Regression": 33,
+   "p50": 4,
+   "p95": 81,
+   "p99": 143,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1099041,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1125,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 1
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 2,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 89,
+     "warmMs": 77
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.05.f3",
+   "arm": "R1",
+   "budget": 0.05,
+   "family": 3,
+   "order": 55,
+   "exit": 0,
+   "tProcMs": 68,
+   "tMountMs": 14,
+   "tReadyMs": 3223,
+   "tPrewarmMs": 3293,
+   "tPrefetchDoneMs": 2526,
+   "tTrafficMs": 4321,
+   "prewarmDurationMs": 2512,
+   "tSteadyMs": 9363,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 3,
+   "p95": 82,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 140,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 1784306,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1042,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.1.f3",
+   "arm": "R2",
+   "budget": 0.1,
+   "family": 3,
+   "order": 56,
+   "exit": 0,
+   "tProcMs": 68,
+   "tMountMs": 14,
+   "tReadyMs": 2337,
+   "tPrewarmMs": 3278,
+   "tPrefetchDoneMs": 2390,
+   "tTrafficMs": 4320,
+   "prewarmDurationMs": 2376,
+   "tSteadyMs": 9420,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 174,
+   "p99Regression": 33,
+   "p50": 4,
+   "p95": 82,
+   "p99": 145,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2224296,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1099,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 2,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 2,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 86,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.1.f3",
+   "arm": "G1",
+   "budget": 0.1,
+   "family": 3,
+   "order": 57,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 22,
+   "tReadyMs": 2293,
+   "tPrewarmMs": 2701,
+   "tPrefetchDoneMs": 1888,
+   "tTrafficMs": 3738,
+   "prewarmDurationMs": 1866,
+   "tSteadyMs": 8789,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 4,
+   "p95": 80,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2140641,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 73,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1051,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 84,
+     "warmMs": 77
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.1.f3",
+   "arm": "G2",
+   "budget": 0.1,
+   "family": 3,
+   "order": 58,
+   "exit": 0,
+   "tProcMs": 71,
+   "tMountMs": 15,
+   "tReadyMs": 2354,
+   "tPrewarmMs": 3089,
+   "tPrefetchDoneMs": 2252,
+   "tTrafficMs": 4134,
+   "prewarmDurationMs": 2237,
+   "tSteadyMs": 9226,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 81,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 2404915,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1074,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 86,
+     "warmMs": 77
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.1.f3",
+   "arm": "R1",
+   "budget": 0.1,
+   "family": 3,
+   "order": 59,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 21,
+   "tReadyMs": 2930,
+   "tPrewarmMs": 3190,
+   "tPrefetchDoneMs": 2404,
+   "tTrafficMs": 4224,
+   "prewarmDurationMs": 2383,
+   "tSteadyMs": 9330,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 4,
+   "p95": 79,
+   "p99": 152,
+   "warmP50": 4,
+   "warmP99": 143,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 3071467,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 73,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1113,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.2.f3",
+   "arm": "R2",
+   "budget": 0.2,
+   "family": 3,
+   "order": 60,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 20,
+   "tReadyMs": 2353,
+   "tPrewarmMs": 3520,
+   "tPrefetchDoneMs": 2654,
+   "tTrafficMs": 4566,
+   "prewarmDurationMs": 2634,
+   "tSteadyMs": 9681,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 180,
+   "p99Regression": 39,
+   "p50": 4,
+   "p95": 81,
+   "p99": 146,
+   "warmP50": 4,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4855338,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 73,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1071,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 87,
+     "warmMs": 77
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.2.f3",
+   "arm": "G1",
+   "budget": 0.2,
+   "family": 3,
+   "order": 61,
+   "exit": 0,
+   "tProcMs": 69,
+   "tMountMs": 14,
+   "tReadyMs": 2346,
+   "tPrewarmMs": 2808,
+   "tPrefetchDoneMs": 2003,
+   "tTrafficMs": 3851,
+   "prewarmDurationMs": 1989,
+   "tSteadyMs": 8936,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 174,
+   "p99Regression": 33,
+   "p50": 3,
+   "p95": 80,
+   "p99": 144,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4128174,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1107,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.2.f3",
+   "arm": "G2",
+   "budget": 0.2,
+   "family": 3,
+   "order": 62,
+   "exit": 0,
+   "tProcMs": 78,
+   "tMountMs": 22,
+   "tReadyMs": 2567,
+   "tPrewarmMs": 3664,
+   "tPrefetchDoneMs": 2795,
+   "tTrafficMs": 4698,
+   "prewarmDurationMs": 2773,
+   "tSteadyMs": 9785,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 178,
+   "p99Regression": 37,
+   "p50": 4,
+   "p95": 81,
+   "p99": 143,
+   "warmP50": 4,
+   "warmP99": 147,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 4974558,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 76,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1094,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 4
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.2.f3",
+   "arm": "R1",
+   "budget": 0.2,
+   "family": 3,
+   "order": 63,
+   "exit": 0,
+   "tProcMs": 67,
+   "tMountMs": 13,
+   "tReadyMs": 3050,
+   "tPrewarmMs": 3310,
+   "tPrefetchDoneMs": 2521,
+   "tTrafficMs": 4346,
+   "prewarmDurationMs": 2508,
+   "tSteadyMs": 9427,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 175,
+   "p99Regression": 34,
+   "p50": 4,
+   "p95": 80,
+   "p99": 147,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 5083676,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1076,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 78
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R2.b0.4.f3",
+   "arm": "R2",
+   "budget": 0.4,
+   "family": 3,
+   "order": 64,
+   "exit": 0,
+   "tProcMs": 69,
+   "tMountMs": 15,
+   "tReadyMs": 2291,
+   "tPrewarmMs": 3781,
+   "tPrefetchDoneMs": 2922,
+   "tTrafficMs": 4831,
+   "prewarmDurationMs": 2907,
+   "tSteadyMs": 9914,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 3,
+   "p95": 80,
+   "p99": 149,
+   "warmP50": 3,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8235303,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 73,
+     "warmMs": 74
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1081,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 0
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G1.b0.4.f3",
+   "arm": "G1",
+   "budget": 0.4,
+   "family": 3,
+   "order": 65,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 20,
+   "tReadyMs": 2297,
+   "tPrewarmMs": 3257,
+   "tPrefetchDoneMs": 2388,
+   "tTrafficMs": 4294,
+   "prewarmDurationMs": 2368,
+   "tSteadyMs": 9371,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 176,
+   "p99Regression": 35,
+   "p50": 4,
+   "p95": 83,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8954108,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 72
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1077,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 86,
+     "warmMs": 77
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "G2.b0.4.f3",
+   "arm": "G2",
+   "budget": 0.4,
+   "family": 3,
+   "order": 66,
+   "exit": 0,
+   "tProcMs": 79,
+   "tMountMs": 22,
+   "tReadyMs": 2254,
+   "tPrewarmMs": 3682,
+   "tPrefetchDoneMs": 2801,
+   "tTrafficMs": 4705,
+   "prewarmDurationMs": 2779,
+   "tSteadyMs": 9791,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 173,
+   "p99Regression": 32,
+   "p50": 4,
+   "p95": 81,
+   "p99": 143,
+   "warmP50": 3,
+   "warmP99": 142,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8887856,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 75,
+     "warmMs": 71
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1090,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 5,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 88,
+     "warmMs": 77
+    }
+   ],
+   "failedRequests": 0
+  },
+  {
+   "name": "R1.b0.4.f3",
+   "arm": "R1",
+   "budget": 0.4,
+   "family": 3,
+   "order": 67,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 21,
+   "tReadyMs": 2905,
+   "tPrewarmMs": 3495,
+   "tPrefetchDoneMs": 2659,
+   "tTrafficMs": 4535,
+   "prewarmDurationMs": 2638,
+   "tSteadyMs": 9620,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 177,
+   "p99Regression": 36,
+   "p50": 3,
+   "p95": 80,
+   "p99": 151,
+   "warmP50": 4,
+   "warmP99": 141,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 8279188,
+   "firstHit": [
+    {
+     "group": "vd.profile",
+     "category": "admin-background",
+     "position": 1,
+     "ms": 73,
+     "warmMs": 73
+    },
+    {
+     "group": "vd.notfound",
+     "category": "error-path",
+     "position": 2,
+     "ms": 1083,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.badpublish",
+     "category": "error-path",
+     "position": 3,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "vd.rare",
+     "category": "rare-route",
+     "position": 4,
+     "ms": 3,
+     "warmMs": 2
+    },
+    {
+     "group": "vd.lifecycle",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 85,
+     "warmMs": 79
+    }
+   ],
+   "failedRequests": 0
+  }
+ ]
+}

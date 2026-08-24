@@ -3,20 +3,20 @@
  "arm": "E0",
  "budget": null,
  "family": 3,
- "order": 3,
+ "order": 51,
  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/json-server/E0.f3",
  "prefetchFile": null,
  "prefetchAll": true,
  "milestones": {
-  "setup-done": 1787548460611,
-  "t0": 1787548460612,
-  "mount": 1787548460633,
-  "proc": 1787548460687,
-  "prefetch-last-progress": 1787548460967,
-  "prewarm": 1787548461830,
-  "workload-done": 1787548465441,
-  "collect": 1787548465470,
-  "done": 1787548465797
+  "setup-done": 1787549341282,
+  "t0": 1787549341283,
+  "mount": 1787549341304,
+  "proc": 1787549341359,
+  "prefetch-last-progress": 1787549341630,
+  "prewarm": 1787549342475,
+  "workload-done": 1787549346071,
+  "collect": 1787549346098,
+  "done": 1787549346425
  },
  "exit": 0
 }

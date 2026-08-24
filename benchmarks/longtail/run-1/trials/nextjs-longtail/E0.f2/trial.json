@@ -3,20 +3,20 @@
  "arm": "E0",
  "budget": null,
  "family": 2,
- "order": 2,
+ "order": 34,
  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/nextjs-longtail/E0.f2",
  "prefetchFile": null,
  "prefetchAll": true,
  "milestones": {
-  "setup-done": 1787548642733,
-  "t0": 1787548642733,
-  "mount": 1787548642746,
-  "proc": 1787548642801,
-  "prefetch-last-progress": 1787548652312,
-  "prewarm": 1787548653164,
-  "workload-done": 1787548658255,
-  "collect": 1787548658271,
-  "done": 1787548658598
+  "setup-done": 1787552321249,
+  "t0": 1787552321250,
+  "mount": 1787552321263,
+  "proc": 1787552321318,
+  "prefetch-last-progress": 1787552330853,
+  "prewarm": 1787552331725,
+  "workload-done": 1787552336846,
+  "collect": 1787552336862,
+  "done": 1787552337193
  },
  "exit": 0
 }

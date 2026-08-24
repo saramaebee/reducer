@@ -3,20 +3,20 @@
  "arm": "E0",
  "budget": null,
  "family": 2,
- "order": 2,
+ "order": 34,
  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/verdaccio/E0.f2",
  "prefetchFile": null,
  "prefetchAll": true,
  "milestones": {
-  "setup-done": 1787548538430,
-  "t0": 1787548538431,
-  "mount": 1787548538444,
-  "proc": 1787548538496,
-  "prefetch-last-progress": 1787548540566,
-  "prewarm": 1787548541338,
-  "workload-done": 1787548573228,
-  "collect": 1787548573244,
-  "done": 1787548573564
+  "setup-done": 1787550676549,
+  "t0": 1787550676550,
+  "mount": 1787550676569,
+  "proc": 1787550676623,
+  "prefetch-last-progress": 1787550678832,
+  "prewarm": 1787550679617,
+  "workload-done": 1787550711485,
+  "collect": 1787550711501,
+  "done": 1787550711830
  },
  "exit": 0
 }
