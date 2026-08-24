@@ -1,0 +1,60 @@
+{
+ "app": "uptime-kuma",
+ "mode": "train",
+ "argv": [
+  "/mnt/app/server/server.js",
+  "--port=3408",
+  "--host=0.0.0.0"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production",
+  "UPTIME_KUMA_DB_TYPE": "sqlite",
+  "DATA_DIR": "/scratch/kuma-data/",
+  "UPTIME_KUMA_WS_ORIGIN_CHECK": "cors-like"
+ },
+ "setup": [
+  "rm -rf /scratch/kuma-data && mkdir -p /scratch/kuma-data",
+  "test -f /eager/dist/index.html || npm run build"
+ ],
+ "ready": {
+  "kind": "http",
+  "value": "http://127.0.0.1:3408/api/entry-page",
+  "timeoutMs": 180000
+ },
+ "settleMs": 3000,
+ "baseUrl": "http://127.0.0.1:3408",
+ "port": 3408,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "common",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/entry-page"
+    },
+    {
+     "method": "GET",
+     "path": "/setup-database-info"
+    },
+    {
+     "method": "GET",
+     "path": "/robots.txt"
+    },
+    {
+     "method": "GET",
+     "path": "/"
+    },
+    {
+     "method": "GET",
+     "path": "/dashboard"
+    },
+    {
+     "method": "GET",
+     "path": "/.well-known/change-password"
+    }
+   ]
+  }
+ ]
+}

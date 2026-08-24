@@ -1,0 +1,329 @@
+[
+ {
+  "app": "juice-shop",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 1,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B0.rep1",
+  "milestones": {
+   "setup-done": 1787533998310,
+   "t0": 1787533998310,
+   "mount": 1787533998330,
+   "all-ready": 1787533998599,
+   "proc": 1787533998654,
+   "workload-done": 1787534009856,
+   "collect": 1787534009886,
+   "done": 1787534010222
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 1,
+  "order": 1,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B1.rep1",
+  "milestones": {
+   "setup-done": 1787534010717,
+   "t0": 1787534010718,
+   "mount": 1787534010737,
+   "proc": 1787534010787,
+   "workload-done": 1787534025089,
+   "collect": 1787534025124,
+   "done": 1787534025444
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 1,
+  "order": 2,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B2.rep1",
+  "milestones": {
+   "setup-done": 1787534025912,
+   "t0": 1787534025912,
+   "mount": 1787534025931,
+   "proc": 1787534025985,
+   "workload-done": 1787534036077,
+   "collect": 1787534036117,
+   "done": 1787534036434
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 1,
+  "order": 3,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B2d.rep1",
+  "milestones": {
+   "setup-done": 1787534036904,
+   "t0": 1787534036905,
+   "mount": 1787534036924,
+   "proc": 1787534036975,
+   "workload-done": 1787534047551,
+   "collect": 1787534047590,
+   "done": 1787534047906
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 1,
+  "order": 4,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B3a.rep1",
+  "milestones": {
+   "setup-done": 1787534048388,
+   "t0": 1787534048389,
+   "mount": 1787534048409,
+   "proc": 1787534048467,
+   "workload-done": 1787534056731,
+   "collect": 1787534056762,
+   "done": 1787534057078
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 1,
+  "order": 5,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B3b.rep1",
+  "milestones": {
+   "setup-done": 1787534057484,
+   "t0": 1787534057485,
+   "mount": 1787534057504,
+   "proc": 1787534057556,
+   "workload-done": 1787534067070,
+   "collect": 1787534067105,
+   "done": 1787534067430
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 2,
+  "order": 6,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B1.rep2",
+  "milestones": {
+   "setup-done": 1787534067922,
+   "t0": 1787534067923,
+   "mount": 1787534067943,
+   "proc": 1787534067999,
+   "workload-done": 1787534082338,
+   "collect": 1787534082374,
+   "done": 1787534082698
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 2,
+  "order": 7,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B2.rep2",
+  "milestones": {
+   "setup-done": 1787534083125,
+   "t0": 1787534083126,
+   "mount": 1787534083144,
+   "proc": 1787534083193,
+   "workload-done": 1787534093152,
+   "collect": 1787534093190,
+   "done": 1787534093508
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 2,
+  "order": 8,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B2d.rep2",
+  "milestones": {
+   "setup-done": 1787534093984,
+   "t0": 1787534093984,
+   "mount": 1787534094005,
+   "proc": 1787534094057,
+   "workload-done": 1787534104600,
+   "collect": 1787534104638,
+   "done": 1787534104954
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 2,
+  "order": 9,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B3a.rep2",
+  "milestones": {
+   "setup-done": 1787534105399,
+   "t0": 1787534105400,
+   "mount": 1787534105419,
+   "proc": 1787534105469,
+   "workload-done": 1787534114150,
+   "collect": 1787534114182,
+   "done": 1787534114505
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 2,
+  "order": 10,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B3b.rep2",
+  "milestones": {
+   "setup-done": 1787534114982,
+   "t0": 1787534114982,
+   "mount": 1787534114997,
+   "proc": 1787534115048,
+   "workload-done": 1787534124258,
+   "collect": 1787534124288,
+   "done": 1787534124608
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 2,
+  "order": 11,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B0.rep2",
+  "milestones": {
+   "setup-done": 1787534125072,
+   "t0": 1787534125072,
+   "mount": 1787534125091,
+   "all-ready": 1787534125358,
+   "proc": 1787534125412,
+   "workload-done": 1787534136108,
+   "collect": 1787534136144,
+   "done": 1787534136463
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 3,
+  "order": 12,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B2.rep3",
+  "milestones": {
+   "setup-done": 1787534137014,
+   "t0": 1787534137014,
+   "mount": 1787534137035,
+   "proc": 1787534137090,
+   "workload-done": 1787534147615,
+   "collect": 1787534147654,
+   "done": 1787534147969
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 3,
+  "order": 13,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B2d.rep3",
+  "milestones": {
+   "setup-done": 1787534148386,
+   "t0": 1787534148387,
+   "mount": 1787534148406,
+   "proc": 1787534148459,
+   "workload-done": 1787534158692,
+   "collect": 1787534158728,
+   "done": 1787534159046
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 3,
+  "order": 14,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B3a.rep3",
+  "milestones": {
+   "setup-done": 1787534159479,
+   "t0": 1787534159479,
+   "mount": 1787534159498,
+   "proc": 1787534159547,
+   "workload-done": 1787534167833,
+   "collect": 1787534167863,
+   "done": 1787534168208
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 3,
+  "order": 15,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B3b.rep3",
+  "milestones": {
+   "setup-done": 1787534168619,
+   "t0": 1787534168619,
+   "mount": 1787534168638,
+   "proc": 1787534168687,
+   "workload-done": 1787534178175,
+   "collect": 1787534178226,
+   "done": 1787534178539
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 3,
+  "order": 16,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B0.rep3",
+  "milestones": {
+   "setup-done": 1787534178980,
+   "t0": 1787534178981,
+   "mount": 1787534179000,
+   "all-ready": 1787534179223,
+   "proc": 1787534179276,
+   "workload-done": 1787534190435,
+   "collect": 1787534190471,
+   "done": 1787534190789
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 3,
+  "order": 17,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/juice-shop/B1.rep3",
+  "milestones": {
+   "setup-done": 1787534191289,
+   "t0": 1787534191289,
+   "mount": 1787534191307,
+   "proc": 1787534191362,
+   "workload-done": 1787534205772,
+   "collect": 1787534205808,
+   "done": 1787534206130
+  },
+  "exit": 0
+ }
+]

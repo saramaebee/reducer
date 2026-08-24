@@ -1,0 +1,110 @@
+[
+ {
+  "app": "juice-shop",
+  "arm": "A1",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/juice-shop/A1.train",
+  "milestones": {
+   "setup-done": 1787537371496,
+   "t0": 1787537371496,
+   "mount": 1787537371498,
+   "proc": 1787537371551,
+   "workload-done": 1787537377350,
+   "collect": 1787537377351,
+   "done": 1787537377670
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "A2",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/juice-shop/A2.train",
+  "milestones": {
+   "setup-done": 1787537378044,
+   "t0": 1787537378045,
+   "mount": 1787537378047,
+   "proc": 1787537378098,
+   "workload-done": 1787537678201,
+   "collect": 1787537678202,
+   "done": 1787537678522
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "A3",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/juice-shop/A3.train",
+  "milestones": {
+   "setup-done": 1787537678890,
+   "t0": 1787537678891,
+   "mount": 1787537678910,
+   "proc": 1787537678965,
+   "workload-done": 1787537687272,
+   "collect": 1787537687303,
+   "done": 1787537687620
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "A1",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/juice-shop/A1.test",
+  "milestones": {
+   "setup-done": 1787537688091,
+   "t0": 1787537688091,
+   "mount": 1787537688094,
+   "proc": 1787537688148,
+   "workload-done": 1787537694003,
+   "collect": 1787537694003,
+   "done": 1787537694321
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "A2",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/juice-shop/A2.test",
+  "milestones": {
+   "setup-done": 1787537694668,
+   "t0": 1787537694669,
+   "mount": 1787537694672,
+   "proc": 1787537694722,
+   "workload-done": 1787537994823,
+   "collect": 1787537994824,
+   "done": 1787537995138
+  },
+  "exit": 0
+ },
+ {
+  "app": "juice-shop",
+  "arm": "A3",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/juice-shop/A3.test",
+  "milestones": {
+   "setup-done": 1787537995576,
+   "t0": 1787537995577,
+   "mount": 1787537995600,
+   "proc": 1787537995664,
+   "workload-done": 1787538004608,
+   "collect": 1787538004650,
+   "done": 1787538004975
+  },
+  "exit": 0
+ }
+]

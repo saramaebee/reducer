@@ -1,0 +1,16 @@
+JSON Server started on PORT :3401
+Press CTRL-C to stop
+Watching fixtures/db.json...
+
+( ˶ˆ ᗜ ˆ˵ )
+
+Index:
+http://localhost:3401/
+
+Static files:
+Serving ./public directory if it exists
+
+Endpoints:
+http://localhost:3401/posts
+http://localhost:3401/comments
+http://localhost:3401/profile

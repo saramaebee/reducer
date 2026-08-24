@@ -1,0 +1,71 @@
+{
+ "app": "verdaccio",
+ "sha": "79237e3f9f02023491159eef709cb4a8dcc54ca9",
+ "train": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 4
+  },
+  "A2": {
+   "ready": true,
+   "done": true,
+   "requests": 4,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": [],
+   "appLogTail": "0.0.1:4873\",\"connection\":\"keep-alive\",\"accept\":\"*/*\",\"accept-language\":\"*\",\"sec-fetch-mode\":\"cors\",\"user-agent\":\"node\",\"accept-encoding\":\"gzip, deflate\"},\"remoteAddress\":\"127.0.0.1\",\"remotePort\":42512},\"ip\":\"127.0.0.1\",\"msg\":\"127.0.0.1 requested 'GET /'\"}\n{\"level\":25,\"time\":1787536821362,\"pid\":62,\"hostname\":\"e465fbabca71\",\"sub\":\"in\",\"request\":{\"method\":\"GET\",\"url\":\"/\"},\"user\":null,\"remoteIP\":\"127.0.0.1\",\"status\":200,\"bytes\":{\"in\":0,\"out\":798},\"msg\":\"200, user: null(127.0.0.1), req: 'GET /', bytes: 0/798\"}\n{\"level\":30,\"time\":1787536821375,\"pid\":62,\"hostname\":\"e465fbabca71\",\"sub\":\"in\",\"req\":{\"method\":\"GET\",\"url\":\"/-/verdaccio/data/packages\",\"query\":{},\"params\":{},\"headers\":{\"host\":\"127.0.0.1:4873\",\"connection\":\"keep-alive\",\"accept\":\"*/*\",\"accept-language\":\"*\",\"sec-fetch-mode\":\"cors\",\"user-agent\":\"node\",\"accept-encoding\":\"gzip, deflate\"},\"remoteAddress\":\"127.0.0.1\",\"remotePort\":42512},\"ip\":\"127.0.0.1\",\"msg\":\"127.0.0.1 requested 'GET /-/verdaccio/data/packages'\"}\n{\"level\":25,\"time\":1787536821376,\"pid\":62,\"hostname\":\"e465fbabca71\",\"sub\":\"in\",\"request\":{\"method\":\"GET\",\"url\":\"/-/verdaccio/data/packages\"},\"user\":null,\"remoteIP\":\"127.0.0.1\",\"status\":200,\"bytes\":{\"in\":0,\"out\":3},\"msg\":\"200, user: null(127.0.0.1), req: 'GET /-/verdaccio/data/packages', bytes: 0/3\"}\n{\"level\":30,\"time\":1787536821390,\"pid\":62,\"hostname\":\"e465fbabca71\",\"msg\":\"server closed.\"}\n{\"level\":30,\"time\":1787536821390,\"pid\":62,\"hostname\":\"e465fbabca71\",\"msg\":\"received shutdown signal - closing server gracefully...\"}\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 4,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": []
+  }
+ },
+ "test": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 12
+  },
+  "A2": {
+   "ready": true,
+   "done": true,
+   "requests": 12,
+   "statusMismatch": 0,
+   "bodyMismatch": 1,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": [],
+   "appLogTail": "\",\"msg\":\"127.0.0.1 requested 'GET /-/verdaccio/data/package/readme/jsonwebtoken'\"}\n{\"level\":25,\"time\":1787536833008,\"pid\":62,\"hostname\":\"ca59d6729786\",\"sub\":\"in\",\"request\":{\"method\":\"GET\",\"url\":\"/-/verdaccio/data/package/readme/jsonwebtoken\"},\"user\":null,\"remoteIP\":\"127.0.0.1\",\"status\":200,\"bytes\":{\"in\":0,\"out\":5546},\"msg\":\"200, user: null(127.0.0.1), req: 'GET /-/verdaccio/data/package/readme/jsonwebtoken', bytes: 0/5546\"}\n{\"level\":30,\"time\":1787536833012,\"pid\":62,\"hostname\":\"ca59d6729786\",\"sub\":\"in\",\"req\":{\"method\":\"POST\",\"url\":\"/-/npm/v1/security/audits/quick\",\"query\":{},\"params\":{},\"headers\":{\"host\":\"127.0.0.1:4873\",\"connection\":\"keep-alive\",\"content-type\":\"application/json\",\"accept\":\"*/*\",\"accept-language\":\"*\",\"sec-fetch-mode\":\"cors\",\"user-agent\":\"node\",\"accept-encoding\":\"gzip, deflate\",\"content-length\":\"2\"},\"remoteAddress\":\"127.0.0.1\",\"remotePort\":34796},\"ip\":\"127.0.0.1\",\"msg\":\"127.0.0.1 requested 'POST /-/npm/v1/security/audits/quick'\"}\n{\"level\":25,\"time\":1787536833161,\"pid\":62,\"hostname\":\"ca59d6729786\",\"sub\":\"in\",\"request\":{\"method\":\"POST\",\"url\":\"/-/npm/v1/security/audits/quick\"},\"user\":null,\"remoteIP\":\"127.0.0.1\",\"status\":200,\"bytes\":{\"in\":2,\"out\":210},\"msg\":\"200, user: null(127.0.0.1), req: 'POST /-/npm/v1/security/audits/quick', bytes: 2/210\"}\n{\"level\":30,\"time\":1787536833170,\"pid\":62,\"hostname\":\"ca59d6729786\",\"msg\":\"received shutdown signal - closing server gracefully...\"}\n{\"level\":30,\"time\":1787536833170,\"pid\":62,\"hostname\":\"ca59d6729786\",\"msg\":\"server closed.\"}\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 12,
+   "statusMismatch": 0,
+   "bodyMismatch": 1,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": []
+  }
+ },
+ "neededOutsideTrace": {
+  "files": 0,
+  "bytes": 0,
+  "sample": []
+ },
+ "artifact": {
+  "A1Files": 9530,
+  "A1Bytes": 59870421,
+  "A2Files": 1853,
+  "A2Bytes": 8027283
+ }
+}

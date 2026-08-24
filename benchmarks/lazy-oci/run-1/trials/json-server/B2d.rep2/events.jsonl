@@ -1,0 +1,17 @@
+{"ev":"driver-start","mode":"test","at":1787532490914}
+{"ev":"ready","ok":true,"at":1787532491253}
+{"ev":"settled","at":1787532491758}
+{"ev":"phase-start","phase":"full","at":1787532491758}
+{"ev":"request","phase":"full","method":"GET","path":"/posts?title=a%20title","status":200,"ms":11,"bodyHash":"49:563695456","at":1787532491770}
+{"ev":"request","phase":"full","method":"GET","path":"/posts?_sort=title&_order=desc","status":200,"ms":3,"bodyHash":"2:9641","at":1787532491774}
+{"ev":"request","phase":"full","method":"GET","path":"/posts?_page=1&_per_page=1","status":200,"ms":2,"bodyHash":"157:3160258920","at":1787532491776}
+{"ev":"request","phase":"full","method":"GET","path":"/posts?_embed=comments","status":200,"ms":5,"bodyHash":"352:3372493929","at":1787532491781}
+{"ev":"request","phase":"full","method":"GET","path":"/comments?_expand=post","status":200,"ms":4,"bodyHash":"2:9641","at":1787532491785}
+{"ev":"request","phase":"full","method":"GET","path":"/posts?id_ne=1","status":200,"ms":5,"bodyHash":"102:1776959784","at":1787532491790}
+{"ev":"request","phase":"full","method":"POST","path":"/posts","status":201,"ms":12,"bodyHash":"55:1358243320","at":1787532491802}
+{"ev":"request","phase":"full","method":"PUT","path":"/posts/{{newId}}","status":200,"ms":5,"bodyHash":"48:671412078","at":1787532491807}
+{"ev":"request","phase":"full","method":"PATCH","path":"/posts/{{newId}}","status":200,"ms":2,"bodyHash":"47:3691316121","at":1787532491809}
+{"ev":"request","phase":"full","method":"DELETE","path":"/posts/{{newId}}","status":200,"ms":5,"bodyHash":"47:3691316121","at":1787532491814}
+{"ev":"request","phase":"full","method":"GET","path":"/does-not-exist","status":404,"ms":3,"bodyHash":"26:2658836278","at":1787532491817}
+{"ev":"phase-end","phase":"full","at":1787532491817}
+{"ev":"workload-done","at":1787532491817}

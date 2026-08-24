@@ -1,0 +1,110 @@
+[
+ {
+  "app": "uptime-kuma",
+  "arm": "A1",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/uptime-kuma/A1.train",
+  "milestones": {
+   "setup-done": 1787536858517,
+   "t0": 1787536858518,
+   "mount": 1787536858520,
+   "proc": 1787536858570,
+   "workload-done": 1787536864680,
+   "collect": 1787536864680,
+   "done": 1787536865003
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "A2",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/uptime-kuma/A2.train",
+  "milestones": {
+   "setup-done": 1787536865406,
+   "t0": 1787536865406,
+   "mount": 1787536865408,
+   "proc": 1787536865462,
+   "workload-done": 1787537045503,
+   "collect": 1787537045504,
+   "done": 1787537045830
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "A3",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/uptime-kuma/A3.train",
+  "milestones": {
+   "setup-done": 1787537046175,
+   "t0": 1787537046176,
+   "mount": 1787537046196,
+   "proc": 1787537046250,
+   "workload-done": 1787537054099,
+   "collect": 1787537054135,
+   "done": 1787537054460
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "A1",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/uptime-kuma/A1.test",
+  "milestones": {
+   "setup-done": 1787537054926,
+   "t0": 1787537054926,
+   "mount": 1787537054929,
+   "proc": 1787537054982,
+   "workload-done": 1787537121067,
+   "collect": 1787537121068,
+   "done": 1787537121395
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "A2",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/uptime-kuma/A2.test",
+  "milestones": {
+   "setup-done": 1787537121774,
+   "t0": 1787537121774,
+   "mount": 1787537121778,
+   "proc": 1787537121829,
+   "workload-done": 1787537301887,
+   "collect": 1787537301888,
+   "done": 1787537302212
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "A3",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/uptime-kuma/A3.test",
+  "milestones": {
+   "setup-done": 1787537302573,
+   "t0": 1787537302573,
+   "mount": 1787537302594,
+   "proc": 1787537302647,
+   "workload-done": 1787537370160,
+   "collect": 1787537370203,
+   "done": 1787537370529
+  },
+  "exit": 0
+ }
+]

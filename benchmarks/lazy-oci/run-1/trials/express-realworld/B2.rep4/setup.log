@@ -1,0 +1,23 @@
+Prisma schema loaded from src/prisma/schema.prisma
+Datasource "db": PostgreSQL database "reducer_ws_express", schema "public" at "reducer-pg:5432"
+
+4 migrations found in prisma/migrations
+
+Applying migration `20210924225358_initial`
+Applying migration `20211001143221_implicit_tags`
+Applying migration `20211105153605_api_url`
+Applying migration `20211221184529_deprecated_preview`
+
+The following migrations have been applied:
+
+migrations/
+  └─ 20210924225358_initial/
+    └─ migration.sql
+  └─ 20211001143221_implicit_tags/
+    └─ migration.sql
+  └─ 20211105153605_api_url/
+    └─ migration.sql
+  └─ 20211221184529_deprecated_preview/
+    └─ migration.sql
+      
+All migrations have been successfully applied.

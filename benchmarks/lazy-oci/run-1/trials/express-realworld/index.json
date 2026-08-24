@@ -1,0 +1,547 @@
+[
+ {
+  "app": "express-realworld",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 1,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B0.rep1",
+  "milestones": {
+   "setup-done": 1787532679044,
+   "t0": 1787532679044,
+   "mount": 1787532679063,
+   "all-ready": 1787532679281,
+   "proc": 1787532679334,
+   "workload-done": 1787532682404,
+   "collect": 1787532682431,
+   "done": 1787532682743
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 1,
+  "order": 1,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B1.rep1",
+  "milestones": {
+   "setup-done": 1787532683822,
+   "t0": 1787532683823,
+   "mount": 1787532683842,
+   "proc": 1787532683894,
+   "workload-done": 1787532686849,
+   "collect": 1787532686874,
+   "done": 1787532687194
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 1,
+  "order": 2,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2.rep1",
+  "milestones": {
+   "setup-done": 1787532688214,
+   "t0": 1787532688215,
+   "mount": 1787532688234,
+   "proc": 1787532688289,
+   "workload-done": 1787532690469,
+   "collect": 1787532690494,
+   "done": 1787532690816
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 1,
+  "order": 3,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2d.rep1",
+  "milestones": {
+   "setup-done": 1787532691816,
+   "t0": 1787532691816,
+   "mount": 1787532691835,
+   "proc": 1787532691885,
+   "workload-done": 1787532694320,
+   "collect": 1787532694347,
+   "done": 1787532694670
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 1,
+  "order": 4,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3a.rep1",
+  "milestones": {
+   "setup-done": 1787532695774,
+   "t0": 1787532695775,
+   "mount": 1787532695793,
+   "proc": 1787532695845,
+   "workload-done": 1787532698396,
+   "collect": 1787532698422,
+   "done": 1787532698742
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 1,
+  "order": 5,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3b.rep1",
+  "milestones": {
+   "setup-done": 1787532699773,
+   "t0": 1787532699773,
+   "mount": 1787532699792,
+   "proc": 1787532699843,
+   "workload-done": 1787532702407,
+   "collect": 1787532702432,
+   "done": 1787532702757
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 2,
+  "order": 6,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B1.rep2",
+  "milestones": {
+   "setup-done": 1787532703756,
+   "t0": 1787532703756,
+   "mount": 1787532703775,
+   "proc": 1787532703825,
+   "workload-done": 1787532706767,
+   "collect": 1787532706794,
+   "done": 1787532707117
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 2,
+  "order": 7,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2.rep2",
+  "milestones": {
+   "setup-done": 1787532708103,
+   "t0": 1787532708103,
+   "mount": 1787532708123,
+   "proc": 1787532708173,
+   "workload-done": 1787532710347,
+   "collect": 1787532710373,
+   "done": 1787532710692
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 2,
+  "order": 8,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2d.rep2",
+  "milestones": {
+   "setup-done": 1787532711696,
+   "t0": 1787532711696,
+   "mount": 1787532711716,
+   "proc": 1787532711765,
+   "workload-done": 1787532714704,
+   "collect": 1787532714729,
+   "done": 1787532715049
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 2,
+  "order": 9,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3a.rep2",
+  "milestones": {
+   "setup-done": 1787532716071,
+   "t0": 1787532716071,
+   "mount": 1787532716091,
+   "proc": 1787532716138,
+   "workload-done": 1787532718791,
+   "collect": 1787532718816,
+   "done": 1787532719136
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 2,
+  "order": 10,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3b.rep2",
+  "milestones": {
+   "setup-done": 1787532720147,
+   "t0": 1787532720147,
+   "mount": 1787532720166,
+   "proc": 1787532720218,
+   "workload-done": 1787532722264,
+   "collect": 1787532722291,
+   "done": 1787532722610
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 2,
+  "order": 11,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B0.rep2",
+  "milestones": {
+   "setup-done": 1787532723592,
+   "t0": 1787532723592,
+   "mount": 1787532723610,
+   "all-ready": 1787532723827,
+   "proc": 1787532723879,
+   "workload-done": 1787532726941,
+   "collect": 1787532726968,
+   "done": 1787532727281
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 3,
+  "order": 12,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2.rep3",
+  "milestones": {
+   "setup-done": 1787532728333,
+   "t0": 1787532728334,
+   "mount": 1787532728353,
+   "proc": 1787532728402,
+   "workload-done": 1787532730512,
+   "collect": 1787532730539,
+   "done": 1787532730856
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 3,
+  "order": 13,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2d.rep3",
+  "milestones": {
+   "setup-done": 1787532731861,
+   "t0": 1787532731861,
+   "mount": 1787532731880,
+   "proc": 1787532731934,
+   "workload-done": 1787532734312,
+   "collect": 1787532734338,
+   "done": 1787532734660
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 3,
+  "order": 14,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3a.rep3",
+  "milestones": {
+   "setup-done": 1787532735666,
+   "t0": 1787532735666,
+   "mount": 1787532735685,
+   "proc": 1787532735736,
+   "workload-done": 1787532738302,
+   "collect": 1787532738327,
+   "done": 1787532738655
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 3,
+  "order": 15,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3b.rep3",
+  "milestones": {
+   "setup-done": 1787532739677,
+   "t0": 1787532739677,
+   "mount": 1787532739695,
+   "proc": 1787532739749,
+   "workload-done": 1787532742397,
+   "collect": 1787532742422,
+   "done": 1787532742747
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 3,
+  "order": 16,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B0.rep3",
+  "milestones": {
+   "setup-done": 1787532743710,
+   "t0": 1787532743710,
+   "mount": 1787532743728,
+   "all-ready": 1787532743993,
+   "proc": 1787532744047,
+   "workload-done": 1787532747217,
+   "collect": 1787532747244,
+   "done": 1787532747561
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 3,
+  "order": 17,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B1.rep3",
+  "milestones": {
+   "setup-done": 1787532748532,
+   "t0": 1787532748532,
+   "mount": 1787532748555,
+   "proc": 1787532748603,
+   "workload-done": 1787532751572,
+   "collect": 1787532751596,
+   "done": 1787532751921
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 4,
+  "order": 18,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2d.rep4",
+  "milestones": {
+   "setup-done": 1787532752926,
+   "t0": 1787532752927,
+   "mount": 1787532752945,
+   "proc": 1787532752995,
+   "workload-done": 1787532756097,
+   "collect": 1787532756124,
+   "done": 1787532756448
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 4,
+  "order": 19,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3a.rep4",
+  "milestones": {
+   "setup-done": 1787532757417,
+   "t0": 1787532757418,
+   "mount": 1787532757436,
+   "proc": 1787532757483,
+   "workload-done": 1787532760160,
+   "collect": 1787532760185,
+   "done": 1787532760503
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 4,
+  "order": 20,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3b.rep4",
+  "milestones": {
+   "setup-done": 1787532761509,
+   "t0": 1787532761510,
+   "mount": 1787532761529,
+   "proc": 1787532761581,
+   "workload-done": 1787532763722,
+   "collect": 1787532763748,
+   "done": 1787532764079
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 4,
+  "order": 21,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B0.rep4",
+  "milestones": {
+   "setup-done": 1787532765056,
+   "t0": 1787532765057,
+   "mount": 1787532765075,
+   "all-ready": 1787532765294,
+   "proc": 1787532765345,
+   "workload-done": 1787532768121,
+   "collect": 1787532768148,
+   "done": 1787532768465
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 4,
+  "order": 22,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B1.rep4",
+  "milestones": {
+   "setup-done": 1787532769525,
+   "t0": 1787532769526,
+   "mount": 1787532769545,
+   "proc": 1787532769597,
+   "workload-done": 1787532772588,
+   "collect": 1787532772613,
+   "done": 1787532772938
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 4,
+  "order": 23,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2.rep4",
+  "milestones": {
+   "setup-done": 1787532773942,
+   "t0": 1787532773942,
+   "mount": 1787532773962,
+   "proc": 1787532774014,
+   "workload-done": 1787532776137,
+   "collect": 1787532776187,
+   "done": 1787532776513
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 5,
+  "order": 24,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3a.rep5",
+  "milestones": {
+   "setup-done": 1787532777541,
+   "t0": 1787532777541,
+   "mount": 1787532777567,
+   "proc": 1787532777617,
+   "workload-done": 1787532780045,
+   "collect": 1787532780069,
+   "done": 1787532780392
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 5,
+  "order": 25,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B3b.rep5",
+  "milestones": {
+   "setup-done": 1787532781439,
+   "t0": 1787532781439,
+   "mount": 1787532781459,
+   "proc": 1787532781508,
+   "workload-done": 1787532783761,
+   "collect": 1787532783787,
+   "done": 1787532784112
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 5,
+  "order": 26,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B0.rep5",
+  "milestones": {
+   "setup-done": 1787532785110,
+   "t0": 1787532785111,
+   "mount": 1787532785129,
+   "all-ready": 1787532785390,
+   "proc": 1787532785437,
+   "workload-done": 1787532788412,
+   "collect": 1787532788438,
+   "done": 1787532788753
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 5,
+  "order": 27,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B1.rep5",
+  "milestones": {
+   "setup-done": 1787532789743,
+   "t0": 1787532789743,
+   "mount": 1787532789761,
+   "proc": 1787532789810,
+   "workload-done": 1787532792779,
+   "collect": 1787532792804,
+   "done": 1787532793122
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 5,
+  "order": 28,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2.rep5",
+  "milestones": {
+   "setup-done": 1787532794149,
+   "t0": 1787532794149,
+   "mount": 1787532794169,
+   "proc": 1787532794224,
+   "workload-done": 1787532796355,
+   "collect": 1787532796380,
+   "done": 1787532796708
+  },
+  "exit": 0
+ },
+ {
+  "app": "express-realworld",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 5,
+  "order": 29,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/express-realworld/B2d.rep5",
+  "milestones": {
+   "setup-done": 1787532797685,
+   "t0": 1787532797686,
+   "mount": 1787532797706,
+   "proc": 1787532797757,
+   "workload-done": 1787532800036,
+   "collect": 1787532800061,
+   "done": 1787532800385
+  },
+  "exit": 0
+ }
+]

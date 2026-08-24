@@ -1,0 +1,66 @@
+{
+ "app": "strapi",
+ "mode": "train",
+ "argv": [
+  "/mnt/app/packages/core/strapi/bin/strapi.js",
+  "start"
+ ],
+ "cwdRel": "examples/getstarted",
+ "env": {
+  "NODE_ENV": "production",
+  "HOST": "0.0.0.0",
+  "PORT": "1337",
+  "APP_KEYS": "toBeModified1,toBeModified2",
+  "ADMIN_JWT_SECRET": "example-token",
+  "API_TOKEN_SALT": "example-salt",
+  "TRANSFER_TOKEN_SALT": "example-salt",
+  "JWT_SECRET": "example-jwt-secret-for-users-permissions",
+  "ENCRYPTION_KEY": "example-key-example-key-example1",
+  "STRAPI_TELEMETRY_DISABLED": "true",
+  "NO_COLOR": "1",
+  "FORCE_COLOR": "0"
+ },
+ "setup": [
+  "rm -rf /eager/examples/getstarted/.tmp"
+ ],
+ "ready": {
+  "kind": "stdout",
+  "value": "Strapi started successfully|http://127.0.0.1:1337",
+  "timeoutMs": 420000
+ },
+ "settleMs": 3000,
+ "baseUrl": "http://127.0.0.1:1337",
+ "port": 1337,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "common",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/_health"
+    },
+    {
+     "method": "GET",
+     "path": "/admin/init"
+    },
+    {
+     "method": "GET",
+     "path": "/admin/project-type"
+    },
+    {
+     "method": "GET",
+     "path": "/robots.txt"
+    },
+    {
+     "method": "GET",
+     "path": "/api/articles"
+    },
+    {
+     "method": "GET",
+     "path": "/api/categories"
+    }
+   ]
+  }
+ ]
+}

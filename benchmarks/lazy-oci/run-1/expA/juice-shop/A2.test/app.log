@@ -1,0 +1,25 @@
+WARNING: No configurations found in configuration directory:/mnt/app/config
+WARNING: To disable this warning set SUPPRESS_NO_CONFIG_WARNING in the environment.
+/mnt/app/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:55
+        throw new Error(`Please install ${moduleName} package manually`);
+              ^
+
+Error: Please install sqlite3 package manually
+    at ConnectionManager._loadDialectModule (/mnt/app/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:55:15)
+    at new ConnectionManager (/mnt/app/node_modules/sequelize/lib/dialects/sqlite/connection-manager.js:18:21)
+    at new SqliteDialect (/mnt/app/node_modules/sequelize/lib/dialects/sqlite/index.js:13:30)
+    at new Sequelize (/mnt/app/node_modules/sequelize/lib/sequelize.js:194:20)
+    at createSequelize (/mnt/app/build/models/index.js:37:12)
+    at Object.<anonymous> (/mnt/app/build/models/index.js:34:17)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at Module._load (node:internal/modules/cjs/loader:1396:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1617:12)
+    at require (node:internal/modules/helpers:153:16)
+    at Object.<anonymous> (/mnt/app/build/server.js:74:18)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+
+Node.js v24.19.0

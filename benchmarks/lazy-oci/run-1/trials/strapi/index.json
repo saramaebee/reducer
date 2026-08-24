@@ -1,0 +1,329 @@
+[
+ {
+  "app": "strapi",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 1,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B0.rep1",
+  "milestones": {
+   "setup-done": 1787534207000,
+   "t0": 1787534207001,
+   "mount": 1787534207020,
+   "all-ready": 1787534207373,
+   "proc": 1787534207423,
+   "workload-done": 1787534230779,
+   "collect": 1787534230818,
+   "done": 1787534231145
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 1,
+  "order": 1,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B1.rep1",
+  "milestones": {
+   "setup-done": 1787534231902,
+   "t0": 1787534231903,
+   "mount": 1787534231924,
+   "proc": 1787534231991,
+   "workload-done": 1787534257935,
+   "collect": 1787534257967,
+   "done": 1787534258292
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 1,
+  "order": 2,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B2.rep1",
+  "milestones": {
+   "setup-done": 1787534258960,
+   "t0": 1787534258961,
+   "mount": 1787534258980,
+   "proc": 1787534259036,
+   "workload-done": 1787534270058,
+   "collect": 1787534270093,
+   "done": 1787534270410
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 1,
+  "order": 3,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B2d.rep1",
+  "milestones": {
+   "setup-done": 1787534270882,
+   "t0": 1787534270883,
+   "mount": 1787534270904,
+   "proc": 1787534270961,
+   "workload-done": 1787534282163,
+   "collect": 1787534282196,
+   "done": 1787534282513
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 1,
+  "order": 4,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B3a.rep1",
+  "milestones": {
+   "setup-done": 1787534283066,
+   "t0": 1787534283067,
+   "mount": 1787534283109,
+   "proc": 1787534283170,
+   "workload-done": 1787534297601,
+   "collect": 1787534297633,
+   "done": 1787534297961
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 1,
+  "order": 5,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B3b.rep1",
+  "milestones": {
+   "setup-done": 1787534298657,
+   "t0": 1787534298658,
+   "mount": 1787534298679,
+   "proc": 1787534298732,
+   "workload-done": 1787534307766,
+   "collect": 1787534307798,
+   "done": 1787534308116
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 2,
+  "order": 6,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B1.rep2",
+  "milestones": {
+   "setup-done": 1787534308573,
+   "t0": 1787534308574,
+   "mount": 1787534308594,
+   "proc": 1787534308643,
+   "workload-done": 1787534334466,
+   "collect": 1787534334504,
+   "done": 1787534334830
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 2,
+  "order": 7,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B2.rep2",
+  "milestones": {
+   "setup-done": 1787534335519,
+   "t0": 1787534335520,
+   "mount": 1787534335539,
+   "proc": 1787534335592,
+   "workload-done": 1787534346212,
+   "collect": 1787534346243,
+   "done": 1787534346564
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 2,
+  "order": 8,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B2d.rep2",
+  "milestones": {
+   "setup-done": 1787534346993,
+   "t0": 1787534346994,
+   "mount": 1787534347009,
+   "proc": 1787534347060,
+   "workload-done": 1787534358370,
+   "collect": 1787534358400,
+   "done": 1787534358713
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 2,
+  "order": 9,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B3a.rep2",
+  "milestones": {
+   "setup-done": 1787534359162,
+   "t0": 1787534359162,
+   "mount": 1787534359180,
+   "proc": 1787534359232,
+   "workload-done": 1787534373556,
+   "collect": 1787534373588,
+   "done": 1787534373905
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 2,
+  "order": 10,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B3b.rep2",
+  "milestones": {
+   "setup-done": 1787534374554,
+   "t0": 1787534374554,
+   "mount": 1787534374574,
+   "proc": 1787534374629,
+   "workload-done": 1787534383339,
+   "collect": 1787534383372,
+   "done": 1787534383691
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 2,
+  "order": 11,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B0.rep2",
+  "milestones": {
+   "setup-done": 1787534384112,
+   "t0": 1787534384113,
+   "mount": 1787534384132,
+   "all-ready": 1787534384446,
+   "proc": 1787534384498,
+   "workload-done": 1787534407661,
+   "collect": 1787534407692,
+   "done": 1787534408023
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 3,
+  "order": 12,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B2.rep3",
+  "milestones": {
+   "setup-done": 1787534408745,
+   "t0": 1787534408746,
+   "mount": 1787534408766,
+   "proc": 1787534408818,
+   "workload-done": 1787534419369,
+   "collect": 1787534419403,
+   "done": 1787534419718
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 3,
+  "order": 13,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B2d.rep3",
+  "milestones": {
+   "setup-done": 1787534420179,
+   "t0": 1787534420180,
+   "mount": 1787534420200,
+   "proc": 1787534420254,
+   "workload-done": 1787534431487,
+   "collect": 1787534431522,
+   "done": 1787534431842
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 3,
+  "order": 14,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B3a.rep3",
+  "milestones": {
+   "setup-done": 1787534432329,
+   "t0": 1787534432330,
+   "mount": 1787534432350,
+   "proc": 1787534432405,
+   "workload-done": 1787534446780,
+   "collect": 1787534446811,
+   "done": 1787534447132
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 3,
+  "order": 15,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B3b.rep3",
+  "milestones": {
+   "setup-done": 1787534447738,
+   "t0": 1787534447738,
+   "mount": 1787534447758,
+   "proc": 1787534447813,
+   "workload-done": 1787534456573,
+   "collect": 1787534456611,
+   "done": 1787534456932
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 3,
+  "order": 16,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B0.rep3",
+  "milestones": {
+   "setup-done": 1787534457402,
+   "t0": 1787534457403,
+   "mount": 1787534457425,
+   "all-ready": 1787534457782,
+   "proc": 1787534457834,
+   "workload-done": 1787534482051,
+   "collect": 1787534482081,
+   "done": 1787534482411
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 3,
+  "order": 17,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/strapi/B1.rep3",
+  "milestones": {
+   "setup-done": 1787534483210,
+   "t0": 1787534483210,
+   "mount": 1787534483230,
+   "proc": 1787534483291,
+   "workload-done": 1787534509500,
+   "collect": 1787534509540,
+   "done": 1787534509859
+  },
+  "exit": 0
+ }
+]

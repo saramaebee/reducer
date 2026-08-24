@@ -1,0 +1,51 @@
+{
+ "app": "verdaccio",
+ "mode": "train",
+ "argv": [
+  "/mnt/app/packages/verdaccio/bin/verdaccio",
+  "--config",
+  "/scratch/verdaccio/config.yaml",
+  "--listen",
+  "127.0.0.1:4873"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production"
+ },
+ "setup": [
+  "rm -rf /scratch/verdaccio && mkdir -p /scratch/verdaccio/storage",
+  "printf '%s\\n' 'storage: ./storage' 'auth:' '  htpasswd:' '    file: ./htpasswd' '    max_users: 1000' \\\n        'uplinks:' '  npmjs:' '    url: https://registry.npmjs.org/' \\\n        'packages:' \"  '@*/*':\" '    access: $all' '    publish: $authenticated' '    proxy: npmjs' \\\n        \"  '**':\" '    access: $all' '    publish: $authenticated' '    proxy: npmjs' \\\n        'logs: {type: stdout, format: pretty, level: http}' > /scratch/verdaccio/config.yaml"
+ ],
+ "ready": {
+  "kind": "http",
+  "value": "http://127.0.0.1:4873/-/ping",
+  "timeoutMs": 120000
+ },
+ "settleMs": 1000,
+ "baseUrl": "http://127.0.0.1:4873",
+ "port": 4873,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "common",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/-/ping"
+    },
+    {
+     "method": "GET",
+     "path": "/"
+    },
+    {
+     "method": "GET",
+     "path": "/-/static/ui-options.js"
+    },
+    {
+     "method": "GET",
+     "path": "/-/verdaccio/data/packages"
+    }
+   ]
+  }
+ ]
+}

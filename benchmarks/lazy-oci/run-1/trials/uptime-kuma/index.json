@@ -1,0 +1,329 @@
+[
+ {
+  "app": "uptime-kuma",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 1,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B0.rep1",
+  "milestones": {
+   "setup-done": 1787535428838,
+   "t0": 1787535428839,
+   "mount": 1787535428859,
+   "all-ready": 1787535429139,
+   "proc": 1787535429213,
+   "workload-done": 1787535499686,
+   "collect": 1787535499722,
+   "done": 1787535500050
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 1,
+  "order": 1,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B1.rep1",
+  "milestones": {
+   "setup-done": 1787535500476,
+   "t0": 1787535500477,
+   "mount": 1787535500490,
+   "proc": 1787535500542,
+   "workload-done": 1787535575119,
+   "collect": 1787535575151,
+   "done": 1787535575465
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 1,
+  "order": 2,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B2.rep1",
+  "milestones": {
+   "setup-done": 1787535575857,
+   "t0": 1787535575857,
+   "mount": 1787535575877,
+   "proc": 1787535575932,
+   "workload-done": 1787535643581,
+   "collect": 1787535643615,
+   "done": 1787535643945
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 1,
+  "order": 3,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B2d.rep1",
+  "milestones": {
+   "setup-done": 1787535644352,
+   "t0": 1787535644353,
+   "mount": 1787535644373,
+   "proc": 1787535644427,
+   "workload-done": 1787535711300,
+   "collect": 1787535711332,
+   "done": 1787535711648
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 1,
+  "order": 4,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B3a.rep1",
+  "milestones": {
+   "setup-done": 1787535712037,
+   "t0": 1787535712038,
+   "mount": 1787535712059,
+   "proc": 1787535712115,
+   "workload-done": 1787535780109,
+   "collect": 1787535780144,
+   "done": 1787535780472
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 1,
+  "order": 5,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B3b.rep1",
+  "milestones": {
+   "setup-done": 1787535780907,
+   "t0": 1787535780907,
+   "mount": 1787535780928,
+   "proc": 1787535780982,
+   "workload-done": 1787535847351,
+   "collect": 1787535847387,
+   "done": 1787535847699
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 2,
+  "order": 6,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B1.rep2",
+  "milestones": {
+   "setup-done": 1787535848114,
+   "t0": 1787535848114,
+   "mount": 1787535848135,
+   "proc": 1787535848188,
+   "workload-done": 1787535922754,
+   "collect": 1787535922792,
+   "done": 1787535923115
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 2,
+  "order": 7,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B2.rep2",
+  "milestones": {
+   "setup-done": 1787535923580,
+   "t0": 1787535923580,
+   "mount": 1787535923602,
+   "proc": 1787535923664,
+   "workload-done": 1787535990825,
+   "collect": 1787535990863,
+   "done": 1787535991187
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 2,
+  "order": 8,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B2d.rep2",
+  "milestones": {
+   "setup-done": 1787535991592,
+   "t0": 1787535991593,
+   "mount": 1787535991606,
+   "proc": 1787535991659,
+   "workload-done": 1787536058530,
+   "collect": 1787536058569,
+   "done": 1787536058886
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 2,
+  "order": 9,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B3a.rep2",
+  "milestones": {
+   "setup-done": 1787536059302,
+   "t0": 1787536059303,
+   "mount": 1787536059322,
+   "proc": 1787536059384,
+   "workload-done": 1787536127698,
+   "collect": 1787536127733,
+   "done": 1787536128046
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 2,
+  "order": 10,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B3b.rep2",
+  "milestones": {
+   "setup-done": 1787536128434,
+   "t0": 1787536128435,
+   "mount": 1787536128454,
+   "proc": 1787536128508,
+   "workload-done": 1787536194976,
+   "collect": 1787536195008,
+   "done": 1787536195331
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 2,
+  "order": 11,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B0.rep2",
+  "milestones": {
+   "setup-done": 1787536195753,
+   "t0": 1787536195754,
+   "mount": 1787536195773,
+   "all-ready": 1787536196040,
+   "proc": 1787536196095,
+   "workload-done": 1787536266247,
+   "collect": 1787536266282,
+   "done": 1787536266606
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 3,
+  "order": 12,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B2.rep3",
+  "milestones": {
+   "setup-done": 1787536267055,
+   "t0": 1787536267055,
+   "mount": 1787536267075,
+   "proc": 1787536267130,
+   "workload-done": 1787536334202,
+   "collect": 1787536334232,
+   "done": 1787536334548
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 3,
+  "order": 13,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B2d.rep3",
+  "milestones": {
+   "setup-done": 1787536334962,
+   "t0": 1787536334963,
+   "mount": 1787536334982,
+   "proc": 1787536335032,
+   "workload-done": 1787536401926,
+   "collect": 1787536401963,
+   "done": 1787536402281
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 3,
+  "order": 14,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B3a.rep3",
+  "milestones": {
+   "setup-done": 1787536402732,
+   "t0": 1787536402732,
+   "mount": 1787536402752,
+   "proc": 1787536402806,
+   "workload-done": 1787536471116,
+   "collect": 1787536471153,
+   "done": 1787536471472
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 3,
+  "order": 15,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B3b.rep3",
+  "milestones": {
+   "setup-done": 1787536471901,
+   "t0": 1787536471902,
+   "mount": 1787536471924,
+   "proc": 1787536471986,
+   "workload-done": 1787536538885,
+   "collect": 1787536538922,
+   "done": 1787536539234
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 3,
+  "order": 16,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B0.rep3",
+  "milestones": {
+   "setup-done": 1787536539648,
+   "t0": 1787536539649,
+   "mount": 1787536539669,
+   "all-ready": 1787536539953,
+   "proc": 1787536540013,
+   "workload-done": 1787536610279,
+   "collect": 1787536610325,
+   "done": 1787536610640
+  },
+  "exit": 0
+ },
+ {
+  "app": "uptime-kuma",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 3,
+  "order": 17,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/uptime-kuma/B1.rep3",
+  "milestones": {
+   "setup-done": 1787536611095,
+   "t0": 1787536611096,
+   "mount": 1787536611118,
+   "proc": 1787536611185,
+   "workload-done": 1787536685761,
+   "collect": 1787536685794,
+   "done": 1787536686123
+  },
+  "exit": 0
+ }
+]

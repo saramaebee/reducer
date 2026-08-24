@@ -1,0 +1,11 @@
+{"ev":"driver-start","mode":"train","at":1787536839132}
+{"ev":"ready","ok":true,"at":1787536839441}
+{"ev":"settled","at":1787536840444}
+{"ev":"phase-start","phase":"common","at":1787536840445}
+{"ev":"request","phase":"common","method":"GET","path":"/","status":200,"ms":49,"bodyHash":"35:93144224","at":1787536840494}
+{"ev":"request","phase":"common","method":"GET","path":"/api/tags","status":200,"ms":51,"bodyHash":"11:3417096188","at":1787536840545}
+{"ev":"request","phase":"common","method":"GET","path":"/api/articles","status":200,"ms":8,"bodyHash":"33:3303918556","at":1787536840553}
+{"ev":"request","phase":"common","method":"GET","path":"/api/articles?limit=5&offset=0","status":200,"ms":5,"bodyHash":"33:3303918556","at":1787536840558}
+{"ev":"request","phase":"common","method":"GET","path":"/api/articles/no-such-article-slug","status":404,"ms":6,"bodyHash":"36:1562676371","at":1787536840564}
+{"ev":"phase-end","phase":"common","at":1787536840564}
+{"ev":"workload-done","at":1787536840564}

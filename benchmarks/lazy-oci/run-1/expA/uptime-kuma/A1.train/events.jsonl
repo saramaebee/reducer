@@ -1,0 +1,12 @@
+{"ev":"driver-start","mode":"train","at":1787536858587}
+{"ev":"ready","ok":true,"at":1787536861608}
+{"ev":"settled","at":1787536864612}
+{"ev":"phase-start","phase":"common","at":1787536864612}
+{"ev":"request","phase":"common","method":"GET","path":"/api/entry-page","status":200,"ms":9,"bodyHash":"37:361739222","at":1787536864622}
+{"ev":"request","phase":"common","method":"GET","path":"/setup-database-info","status":200,"ms":4,"bodyHash":"40:3583319940","at":1787536864626}
+{"ev":"request","phase":"common","method":"GET","path":"/robots.txt","status":200,"ms":3,"bodyHash":"25:1170245278","at":1787536864630}
+{"ev":"request","phase":"common","method":"GET","path":"/","status":302,"ms":5,"bodyHash":"32:4098422723","at":1787536864635}
+{"ev":"request","phase":"common","method":"GET","path":"/dashboard","status":200,"ms":4,"bodyHash":"1200:163528357","at":1787536864639}
+{"ev":"request","phase":"common","method":"GET","path":"/.well-known/change-password","status":302,"ms":3,"bodyHash":"89:3398727961","at":1787536864642}
+{"ev":"phase-end","phase":"common","at":1787536864642}
+{"ev":"workload-done","at":1787536864642}

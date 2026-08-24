@@ -1,0 +1,195 @@
+{
+ "app": "juice-shop",
+ "mode": "test",
+ "argv": [
+  "/mnt/app/build/app.js"
+ ],
+ "cwdRel": null,
+ "env": {
+  "PORT": "3402"
+ },
+ "setup": [],
+ "ready": {
+  "kind": "stdout",
+  "value": "Server listening on port",
+  "timeoutMs": 300000
+ },
+ "settleMs": 2000,
+ "baseUrl": "http://127.0.0.1:3402",
+ "port": 3402,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "full",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api-docs/"
+    },
+    {
+     "method": "GET",
+     "path": "/ftp"
+    },
+    {
+     "method": "GET",
+     "path": "/ftp/legal.md"
+    },
+    {
+     "method": "GET",
+     "path": "/encryptionkeys"
+    },
+    {
+     "method": "GET",
+     "path": "/support/logs"
+    },
+    {
+     "method": "GET",
+     "path": "/video"
+    },
+    {
+     "method": "GET",
+     "path": "/promotion"
+    },
+    {
+     "method": "POST",
+     "path": "/rest/user/login",
+     "body": {
+      "email": "admin@juice-sh.op",
+      "password": "admin123"
+     },
+     "capture": {
+      "token": "json:authentication.token"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/rest/user/whoami",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/rest/basket/1",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/rest/wallet/balance",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/rest/order-history",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/rest/2fa/status",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/rest/deluxe-membership",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/rest/image-captcha",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/Users",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/Cards",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/api/BasketItems",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     },
+     "body": {
+      "BasketId": 1,
+      "ProductId": 3,
+      "quantity": 1
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/b2b/v2/orders",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     },
+     "body": {
+      "cid": "probe",
+      "orderLinesData": "1+1"
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/rest/basket/1/checkout",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     },
+     "body": {
+      "orderDetails": {
+       "paymentId": 1,
+       "addressId": 1,
+       "deliveryMethodId": 1
+      }
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/rest/user/data-export",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     },
+     "body": {
+      "UserId": 1,
+      "deliveryMethodId": 1
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/api/Users",
+     "body": {
+      "email": "probe@juice-sh.op",
+      "password": "probe1234",
+      "passwordRepeat": "probe1234"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/main.js"
+    },
+    {
+     "method": "GET",
+     "path": "/assets/public/images/products/apple_juice.jpg"
+    }
+   ]
+  }
+ ]
+}

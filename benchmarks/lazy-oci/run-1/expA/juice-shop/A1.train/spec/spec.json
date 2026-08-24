@@ -1,0 +1,100 @@
+{
+ "app": "juice-shop",
+ "mode": "train",
+ "argv": [
+  "/mnt/app/build/app.js"
+ ],
+ "cwdRel": null,
+ "env": {
+  "PORT": "3402"
+ },
+ "setup": [],
+ "ready": {
+  "kind": "stdout",
+  "value": "Server listening on port",
+  "timeoutMs": 300000
+ },
+ "settleMs": 2000,
+ "baseUrl": "http://127.0.0.1:3402",
+ "port": 3402,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "common",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/admin/application-version"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/admin/application-configuration"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/languages"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/country-mapping"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/captcha"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/memories"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/user/whoami"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/products/search?q=apple"
+    },
+    {
+     "method": "GET",
+     "path": "/rest/products/1/reviews"
+    },
+    {
+     "method": "GET",
+     "path": "/api/Products"
+    },
+    {
+     "method": "GET",
+     "path": "/api/Products/1"
+    },
+    {
+     "method": "GET",
+     "path": "/api/Challenges"
+    },
+    {
+     "method": "GET",
+     "path": "/api/Feedbacks"
+    },
+    {
+     "method": "GET",
+     "path": "/api/SecurityQuestions"
+    },
+    {
+     "method": "GET",
+     "path": "/robots.txt"
+    },
+    {
+     "method": "GET",
+     "path": "/.well-known/security.txt"
+    },
+    {
+     "method": "GET",
+     "path": "/metrics"
+    }
+   ]
+  }
+ ]
+}

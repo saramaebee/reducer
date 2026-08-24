@@ -1,0 +1,77 @@
+{
+ "app": "json-server",
+ "sha": "89a34a44b7a6a5311dc84f3b8a1b8b45c0905aea",
+ "train": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 5
+  },
+  "A2": {
+   "ready": false,
+   "done": false,
+   "requests": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 5,
+   "detail": [],
+   "mechanisms": [
+    "application data or config file the trace did not reach"
+   ],
+   "appLogTail": "File fixtures/db.json not found\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 5,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": []
+  }
+ },
+ "test": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 11
+  },
+  "A2": {
+   "ready": false,
+   "done": false,
+   "requests": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 11,
+   "detail": [],
+   "mechanisms": [
+    "application data or config file the trace did not reach"
+   ],
+   "appLogTail": "File fixtures/db.json not found\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 11,
+   "statusMismatch": 0,
+   "bodyMismatch": 4,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": []
+  }
+ },
+ "neededOutsideTrace": {
+  "files": 1,
+  "bytes": 309,
+  "sample": [
+   "fixtures/db.json"
+  ]
+ },
+ "artifact": {
+  "A1Files": 1288,
+  "A1Bytes": 3169270,
+  "A2Files": 140,
+  "A2Bytes": 514153
+ }
+}

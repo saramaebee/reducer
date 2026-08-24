@@ -1,0 +1,110 @@
+[
+ {
+  "app": "verdaccio",
+  "arm": "A1",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/verdaccio/A1.train",
+  "milestones": {
+   "setup-done": 1787536815625,
+   "t0": 1787536815626,
+   "mount": 1787536815629,
+   "proc": 1787536815679,
+   "workload-done": 1787536818220,
+   "collect": 1787536818221,
+   "done": 1787536818547
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "A2",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/verdaccio/A2.train",
+  "milestones": {
+   "setup-done": 1787536818896,
+   "t0": 1787536818897,
+   "mount": 1787536818901,
+   "proc": 1787536818956,
+   "workload-done": 1787536821388,
+   "collect": 1787536821389,
+   "done": 1787536821717
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "A3",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/verdaccio/A3.train",
+  "milestones": {
+   "setup-done": 1787536822060,
+   "t0": 1787536822060,
+   "mount": 1787536822080,
+   "proc": 1787536822130,
+   "workload-done": 1787536824764,
+   "collect": 1787536824807,
+   "done": 1787536825129
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "A1",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/verdaccio/A1.test",
+  "milestones": {
+   "setup-done": 1787536825489,
+   "t0": 1787536825489,
+   "mount": 1787536825492,
+   "proc": 1787536825545,
+   "workload-done": 1787536829141,
+   "collect": 1787536829141,
+   "done": 1787536829458
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "A2",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/verdaccio/A2.test",
+  "milestones": {
+   "setup-done": 1787536829791,
+   "t0": 1787536829792,
+   "mount": 1787536829794,
+   "proc": 1787536829846,
+   "workload-done": 1787536833169,
+   "collect": 1787536833170,
+   "done": 1787536833489
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "A3",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/verdaccio/A3.test",
+  "milestones": {
+   "setup-done": 1787536833825,
+   "t0": 1787536833826,
+   "mount": 1787536833845,
+   "proc": 1787536833895,
+   "workload-done": 1787536837192,
+   "collect": 1787536837232,
+   "done": 1787536837555
+  },
+  "exit": 0
+ }
+]

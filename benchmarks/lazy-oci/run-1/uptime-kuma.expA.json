@@ -1,0 +1,124 @@
+{
+ "app": "uptime-kuma",
+ "sha": "6398a9581d1c3c427a7536559f47ccf45dac08b4",
+ "train": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 6
+  },
+  "A2": {
+   "ready": false,
+   "done": false,
+   "requests": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 6,
+   "detail": [],
+   "mechanisms": [
+    "dynamic relative path / plugin resolution"
+   ],
+   "appLogTail": "Welcome to Uptime Kuma\nYour Node.js version: 24.19.0\nnode:internal/modules/cjs/loader:1520\n  throw err;\n  ^\n\nError: Cannot find module '../src/util'\nRequire stack:\n- /mnt/app/server/server.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)\n    at Module._load (node:internal/modules/cjs/loader:1294:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.require (node:internal/modules/cjs/loader:1617:12)\n    at require (node:internal/modules/helpers:153:16)\n    at Object.<anonymous> (/mnt/app/server/server.js:49:56)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14) {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: [ '/mnt/app/server/server.js' ]\n}\n\nNode.js v24.19.0\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 6,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": [
+    "filesystem lookup of a non-module asset",
+    "filesystem lookup",
+    "application data or config file the trace did not reach"
+   ]
+  }
+ },
+ "test": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 11
+  },
+  "A2": {
+   "ready": false,
+   "done": false,
+   "requests": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 11,
+   "detail": [],
+   "mechanisms": [
+    "dynamic relative path / plugin resolution"
+   ],
+   "appLogTail": "Welcome to Uptime Kuma\nYour Node.js version: 24.19.0\nnode:internal/modules/cjs/loader:1520\n  throw err;\n  ^\n\nError: Cannot find module '../src/util'\nRequire stack:\n- /mnt/app/server/server.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)\n    at Module._load (node:internal/modules/cjs/loader:1294:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.require (node:internal/modules/cjs/loader:1617:12)\n    at require (node:internal/modules/helpers:153:16)\n    at Object.<anonymous> (/mnt/app/server/server.js:49:56)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14) {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: [ '/mnt/app/server/server.js' ]\n}\n\nNode.js v24.19.0\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 11,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": [
+    "filesystem lookup of a non-module asset",
+    "filesystem lookup",
+    "application data or config file the trace did not reach"
+   ]
+  }
+ },
+ "neededOutsideTrace": {
+  "files": 275,
+  "bytes": 3458989,
+  "sample": [
+   "src/util.js",
+   "node_modules/engine.io/node_modules/ws/index.js",
+   "node_modules/engine.io/node_modules/ws/package.json",
+   "node_modules/engine.io/node_modules/ws/lib/stream.js",
+   "node_modules/engine.io/node_modules/ws/lib/websocket.js",
+   "node_modules/engine.io/node_modules/ws/lib/permessage-deflate.js",
+   "node_modules/engine.io/node_modules/ws/lib/buffer-util.js",
+   "node_modules/engine.io/node_modules/ws/lib/constants.js",
+   "node_modules/engine.io/node_modules/ws/lib/limiter.js",
+   "node_modules/engine.io/node_modules/ws/lib/receiver.js",
+   "node_modules/engine.io/node_modules/ws/lib/validation.js",
+   "node_modules/engine.io/node_modules/ws/lib/sender.js",
+   "node_modules/engine.io/node_modules/ws/lib/event-target.js",
+   "node_modules/engine.io/node_modules/ws/lib/extension.js",
+   "node_modules/engine.io/node_modules/ws/lib/subprotocol.js",
+   "node_modules/engine.io/node_modules/ws/lib/websocket-server.js",
+   "node_modules/socket.io-adapter/node_modules/ws/index.js",
+   "node_modules/socket.io-adapter/node_modules/ws/package.json",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/stream.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/websocket.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/permessage-deflate.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/buffer-util.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/constants.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/limiter.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/receiver.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/validation.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/sender.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/event-target.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/extension.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/subprotocol.js",
+   "node_modules/socket.io-adapter/node_modules/ws/lib/websocket-server.js",
+   "node_modules/ws/index.js",
+   "node_modules/ws/package.json",
+   "node_modules/ws/lib/websocket.js",
+   "node_modules/ws/lib/permessage-deflate.js",
+   "node_modules/ws/lib/buffer-util.js",
+   "node_modules/ws/lib/constants.js",
+   "node_modules/ws/lib/limiter.js",
+   "node_modules/ws/lib/receiver.js",
+   "node_modules/ws/lib/validation.js"
+  ]
+ },
+ "artifact": {
+  "A1Files": 28851,
+  "A1Bytes": 200668755,
+  "A2Files": 5175,
+  "A2Bytes": 33795597
+ }
+}

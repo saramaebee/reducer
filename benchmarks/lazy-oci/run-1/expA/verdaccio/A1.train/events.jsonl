@@ -1,0 +1,10 @@
+{"ev":"driver-start","mode":"train","at":1787536815694}
+{"ev":"ready","ok":true,"at":1787536817169}
+{"ev":"settled","at":1787536818176}
+{"ev":"phase-start","phase":"common","at":1787536818176}
+{"ev":"request","phase":"common","method":"GET","path":"/-/ping","status":200,"ms":14,"bodyHash":"3:330625","at":1787536818191}
+{"ev":"request","phase":"common","method":"GET","path":"/","status":200,"ms":8,"bodyHash":"798:990140595","at":1787536818199}
+{"ev":"request","phase":"common","method":"GET","path":"/-/static/ui-options.js","status":200,"ms":7,"bodyHash":"394:595223127","at":1787536818206}
+{"ev":"request","phase":"common","method":"GET","path":"/-/verdaccio/data/packages","status":200,"ms":6,"bodyHash":"3:298881","at":1787536818212}
+{"ev":"phase-end","phase":"common","at":1787536818212}
+{"ev":"workload-done","at":1787536818212}

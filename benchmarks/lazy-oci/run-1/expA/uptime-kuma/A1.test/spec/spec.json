@@ -1,0 +1,85 @@
+{
+ "app": "uptime-kuma",
+ "mode": "test",
+ "argv": [
+  "/mnt/app/server/server.js",
+  "--port=3408",
+  "--host=0.0.0.0"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production",
+  "UPTIME_KUMA_DB_TYPE": "sqlite",
+  "DATA_DIR": "/scratch/kuma-data/",
+  "UPTIME_KUMA_WS_ORIGIN_CHECK": "cors-like"
+ },
+ "setup": [
+  "rm -rf /scratch/kuma-data && mkdir -p /scratch/kuma-data",
+  "test -f /eager/dist/index.html || npm run build"
+ ],
+ "ready": {
+  "kind": "http",
+  "value": "http://127.0.0.1:3408/api/entry-page",
+  "timeoutMs": 180000
+ },
+ "settleMs": 3000,
+ "baseUrl": "http://127.0.0.1:3408",
+ "port": 3408,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "full",
+   "command": "node -e 'const {io}=require(\"socket.io-client\");const s=io(\"http://127.0.0.1:3408\",{transports:[\"websocket\"]});const call=(ev,...a)=>new Promise((res)=>s.emit(ev,...a,res));const log=(n,r)=>console.log(n,JSON.stringify(r).slice(0,200));const MON={type:\"http\",name:\"self\",parent:null,url:\"http://127.0.0.1:3408/api/entry-page\",method:\"GET\",interval:60,retryInterval:60,resendInterval:0,maxretries:0,notificationIDList:{},ignoreTls:false,upsideDown:false,expiryNotification:false,maxredirects:10,accepted_statuscodes:[\"200-299\"],saveResponse:false,saveErrorResponse:true,responseMaxLength:1024,dns_resolve_type:\"A\",proxyId:null,authMethod:null,httpBodyEncoding:\"json\",kafkaProducerBrokers:[],kafkaProducerSaslOptions:{mechanism:\"None\"},rabbitmqNodes:[],conditions:[],active:true};s.on(\"connect\",async()=>{try{log(\"needSetup\",await call(\"needSetup\"));log(\"setup\",await call(\"setup\",\"admin\",\"kuma-test-1234\"));log(\"login\",await call(\"login\",{username:\"admin\",password:\"kuma-test-1234\",token:\"\"}));const add=await call(\"add\",MON);log(\"add\",add);const id=add.monitorID;log(\"getMonitorList\",await call(\"getMonitorList\"));log(\"getMonitor\",await call(\"getMonitor\",id));log(\"getMonitorBeats\",await call(\"getMonitorBeats\",id,24));log(\"getMonitorChartData\",await call(\"getMonitorChartData\",id,24));log(\"getSettings\",await call(\"getSettings\"));log(\"addTag\",await call(\"addTag\",{name:\"prod\",color:\"#059669\"}));log(\"getTags\",await call(\"getTags\"));log(\"addStatusPage\",await call(\"addStatusPage\",\"Demo\",\"demo\"));log(\"getStatusPage\",await call(\"getStatusPage\",\"demo\"));log(\"getMaintenanceList\",await call(\"getMaintenanceList\"));log(\"getAPIKeyList\",await call(\"getAPIKeyList\"));}catch(e){console.log(\"ERR\",String(e).slice(0,300))}finally{setTimeout(()=>process.exit(0),1500)}});setTimeout(()=>process.exit(0),60000);'",
+   "timeoutMs": 120000
+  },
+  {
+   "name": "extended",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/badge/1/status"
+    },
+    {
+     "method": "GET",
+     "path": "/api/badge/1/status?style=flat&label=Health"
+    },
+    {
+     "method": "GET",
+     "path": "/api/badge/1/uptime/24"
+    },
+    {
+     "method": "GET",
+     "path": "/api/badge/1/ping/24"
+    },
+    {
+     "method": "GET",
+     "path": "/api/badge/1/avg-response/24"
+    },
+    {
+     "method": "GET",
+     "path": "/api/badge/1/cert-exp"
+    },
+    {
+     "method": "GET",
+     "path": "/api/push/deadbeef?status=up&msg=OK&ping=12"
+    },
+    {
+     "method": "GET",
+     "path": "/api/status-page/demo"
+    },
+    {
+     "method": "GET",
+     "path": "/status/demo"
+    },
+    {
+     "method": "GET",
+     "path": "/metrics"
+    },
+    {
+     "method": "GET",
+     "path": "/some/unknown/spa/route"
+    }
+   ]
+  }
+ ]
+}

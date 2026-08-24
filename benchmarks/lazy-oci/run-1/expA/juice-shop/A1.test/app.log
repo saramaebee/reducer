@@ -1,0 +1,40 @@
+info: Detected Node.js version v24.19.0 (SUCCESS)
+info: Detected OS linux (SUCCESS)
+info: Detected CPU arm64 (SUCCESS)
+info: Configuration default validated (SUCCESS)
+info: Entity models 21 of 21 are initialized (SUCCESS)
+info: All dependencies in ./package.json are satisfied (SUCCESS)
+info: Required file server.js is present (SUCCESS)
+info: Required file index.html is present (SUCCESS)
+info: Required file main.js is present (SUCCESS)
+info: Required file styles.css is present (SUCCESS)
+info: Required file polyfills.js is present (SUCCESS)
+info: Required file matching /^hacking-instructor-.+\.js$/ is present (SUCCESS)
+info: Port 3402 is available (SUCCESS)
+info: Domain https://www.alchemy.com/ is reachable (SUCCESS)
+warn: Environment variable ALCHEMY_API_KEY is not present (WARNING)
+warn: "Mint the Honey Pot" challenge will not work as intended without a valid ALCHEMY_API_KEY
+warn: "Wallet Depletion" challenge will not work as intended without a valid ALCHEMY_API_KEY
+info: Check https://howto-web3.owasp-juice.shop for instructions on how to set up and configure the Alchemy API
+warn: Domain http://localhost:11434/v1 is not reachable (WARNING)
+warn: "Chatbot Prompt Injection" challenge will not work as intended without access to http://localhost:11434/v1
+warn: "Greedy Chatbot Manipulation" challenge will not work as intended without access to http://localhost:11434/v1
+warn: "AI Debugging" challenge will not work as intended without access to http://localhost:11434/v1
+warn: "System Prompt Extraction" challenge will not work as intended without access to http://localhost:11434/v1
+info: Check https://howto-llm.owasp-juice.shop for instructions on how to set up and configure the LLM API
+info: Server listening on port 3402
+info: Solved 2-star weakPasswordChallenge (Password Strength)
+info: Cheat score for tutorial weakPasswordChallenge solved in 0min (expected ~2min) with hints allowed: 0.9632916666666667
+info: Solved 2-star loginAdminChallenge (Login Admin)
+info: Cheat score for tightly coupled tutorial loginAdminChallenge solved in 0min (expected ~0min) with hints allowed: 0
+Error
+    at Database.<anonymous> (/mnt/app/node_modules/sequelize/lib/dialects/sqlite/query.js:185:27)
+    at /mnt/app/node_modules/sequelize/lib/dialects/sqlite/query.js:183:50
+    at new Promise (<anonymous>)
+    at Query.run (/mnt/app/node_modules/sequelize/lib/dialects/sqlite/query.js:183:12)
+    at /mnt/app/node_modules/sequelize/lib/sequelize.js:315:28
+    at async SQLiteQueryInterface.insert (/mnt/app/node_modules/sequelize/lib/dialects/abstract/query-interface.js:308:21)
+    at async BasketItem.save (/mnt/app/node_modules/sequelize/lib/model.js:2490:35)
+    at async /mnt/app/build/routes/basketItems.js:79:41
+info: Solved 1-star errorHandlingChallenge (Error Handling)
+info: Cheat score for trivial errorHandlingChallenge solved in 0min (expected ~0min) with hints allowed: 0

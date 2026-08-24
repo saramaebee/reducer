@@ -1,0 +1,1 @@
+[[38;5;208m2026-08-24 01:45:25.095302 +00:00[0m] [38;5;208mWARN[0m [/src/backend/mod.rs:283] [38;5;208mbackend request: GET http://reducer-registry:5000/v2/lazyoci/uptime-kuma/blobs/sha256:23250e664ee66280422469a2ee04cdc2c4840917d4845fecb426ba0dfcae043e, chunk: 1048460 bytes, proxy: false, proxy sdk: false, takes 260.62625ms: slow request[0m

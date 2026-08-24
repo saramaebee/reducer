@@ -1,0 +1,118 @@
+{
+ "app": "juice-shop",
+ "sha": "1618a611b173b4bf114028e6e02549950606e29d",
+ "train": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 18
+  },
+  "A2": {
+   "ready": false,
+   "done": false,
+   "requests": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 18,
+   "detail": [],
+   "mechanisms": [
+    "computed or dynamic package require (library dialect/driver loader)",
+    "filesystem lookup of a non-module asset"
+   ],
+   "appLogTail": "tory:/mnt/app/config\nWARNING: To disable this warning set SUPPRESS_NO_CONFIG_WARNING in the environment.\n/mnt/app/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:55\n        throw new Error(`Please install ${moduleName} package manually`);\n              ^\n\nError: Please install sqlite3 package manually\n    at ConnectionManager._loadDialectModule (/mnt/app/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:55:15)\n    at new ConnectionManager (/mnt/app/node_modules/sequelize/lib/dialects/sqlite/connection-manager.js:18:21)\n    at new SqliteDialect (/mnt/app/node_modules/sequelize/lib/dialects/sqlite/index.js:13:30)\n    at new Sequelize (/mnt/app/node_modules/sequelize/lib/sequelize.js:194:20)\n    at createSequelize (/mnt/app/build/models/index.js:37:12)\n    at Object.<anonymous> (/mnt/app/build/models/index.js:34:17)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.require (node:internal/modules/cjs/loader:1617:12)\n    at require (node:internal/modules/helpers:153:16)\n    at Object.<anonymous> (/mnt/app/build/server.js:74:18)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n\nNode.js v24.19.0\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 18,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": []
+  }
+ },
+ "test": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 24
+  },
+  "A2": {
+   "ready": false,
+   "done": false,
+   "requests": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 24,
+   "detail": [],
+   "mechanisms": [
+    "computed or dynamic package require (library dialect/driver loader)",
+    "filesystem lookup of a non-module asset"
+   ],
+   "appLogTail": "tory:/mnt/app/config\nWARNING: To disable this warning set SUPPRESS_NO_CONFIG_WARNING in the environment.\n/mnt/app/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:55\n        throw new Error(`Please install ${moduleName} package manually`);\n              ^\n\nError: Please install sqlite3 package manually\n    at ConnectionManager._loadDialectModule (/mnt/app/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:55:15)\n    at new ConnectionManager (/mnt/app/node_modules/sequelize/lib/dialects/sqlite/connection-manager.js:18:21)\n    at new SqliteDialect (/mnt/app/node_modules/sequelize/lib/dialects/sqlite/index.js:13:30)\n    at new Sequelize (/mnt/app/node_modules/sequelize/lib/sequelize.js:194:20)\n    at createSequelize (/mnt/app/build/models/index.js:37:12)\n    at Object.<anonymous> (/mnt/app/build/models/index.js:34:17)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.require (node:internal/modules/cjs/loader:1617:12)\n    at require (node:internal/modules/helpers:153:16)\n    at Object.<anonymous> (/mnt/app/build/server.js:74:18)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n\nNode.js v24.19.0\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 24,
+   "statusMismatch": 0,
+   "bodyMismatch": 9,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": []
+  }
+ },
+ "neededOutsideTrace": {
+  "files": 732,
+  "bytes": 10410451,
+  "sample": [
+   "config/default.yml",
+   "package.json",
+   "node_modules/sqlite3/lib/sqlite3.js",
+   "node_modules/sqlite3/package.json",
+   "node_modules/sqlite3/lib/sqlite3-binding.js",
+   "node_modules/bindings/bindings.js",
+   "node_modules/bindings/package.json",
+   "node_modules/file-uri-to-path/index.js",
+   "node_modules/file-uri-to-path/package.json",
+   "node_modules/sqlite3/build/Release/node_sqlite3.node",
+   "swagger.yml",
+   "node_modules/cookieconsent/package.json",
+   "node_modules/libxml2-wasm/package.json",
+   "node_modules/material-icons/package.json",
+   "data/static/i18n/zh_TW.json",
+   "data/static/i18n/zh_HK.json",
+   "data/static/i18n/zh_CN.json",
+   "data/static/i18n/uk_UA.json",
+   "data/static/i18n/tr_TR.json",
+   "data/static/i18n/tlh_AA.json",
+   "data/static/i18n/th_TH.json",
+   "data/static/i18n/sv_SE.json",
+   "data/static/i18n/si_LK.json",
+   "data/static/i18n/ru_RU.json",
+   "data/static/i18n/ro_RO.json",
+   "data/static/i18n/pt_PT.json",
+   "data/static/i18n/pt_BR.json",
+   "data/static/i18n/pl_PL.json",
+   "data/static/i18n/no_NO.json",
+   "data/static/i18n/nl_NL.json",
+   "data/static/i18n/my_MM.json",
+   "data/static/i18n/lv_LV.json",
+   "data/static/i18n/ko_KR.json",
+   "data/static/i18n/ka_GE.json",
+   "data/static/i18n/ja_JP.json",
+   "data/static/i18n/it_IT.json",
+   "data/static/i18n/id_ID.json",
+   "data/static/i18n/hu_HU.json",
+   "data/static/i18n/hi_IN.json",
+   "data/static/i18n/he_IL.json"
+  ]
+ },
+ "artifact": {
+  "A1Files": 24020,
+  "A1Bytes": 270529975,
+  "A2Files": 4228,
+  "A2Bytes": 58911151
+ }
+}

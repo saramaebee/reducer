@@ -1,0 +1,223 @@
+{
+ "app": "strapi",
+ "mode": "test",
+ "argv": [
+  "/mnt/app/packages/core/strapi/bin/strapi.js",
+  "start"
+ ],
+ "cwdRel": "examples/getstarted",
+ "env": {
+  "NODE_ENV": "production",
+  "HOST": "0.0.0.0",
+  "PORT": "1337",
+  "APP_KEYS": "toBeModified1,toBeModified2",
+  "ADMIN_JWT_SECRET": "example-token",
+  "API_TOKEN_SALT": "example-salt",
+  "TRANSFER_TOKEN_SALT": "example-salt",
+  "JWT_SECRET": "example-jwt-secret-for-users-permissions",
+  "ENCRYPTION_KEY": "example-key-example-key-example1",
+  "STRAPI_TELEMETRY_DISABLED": "true",
+  "NO_COLOR": "1",
+  "FORCE_COLOR": "0"
+ },
+ "setup": [
+  "rm -rf /eager/examples/getstarted/.tmp"
+ ],
+ "ready": {
+  "kind": "stdout",
+  "value": "Strapi started successfully|http://127.0.0.1:1337",
+  "timeoutMs": 420000
+ },
+ "settleMs": 3000,
+ "baseUrl": "http://127.0.0.1:1337",
+ "port": 1337,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "full",
+   "requests": [
+    {
+     "method": "POST",
+     "path": "/admin/register-admin",
+     "body": {
+      "email": "admin@example.com",
+      "firstname": "Admin",
+      "lastname": "User",
+      "password": "Admin123456"
+     },
+     "capture": {
+      "token": "json:data.token"
+     },
+     "timeoutMs": 60000
+    },
+    {
+     "method": "GET",
+     "path": "/admin/information",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/admin/users",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/admin/roles",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/admin/permissions",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/admin/webhooks",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/admin/content-api/routes",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/content-manager/init",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/content-manager/content-types",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/content-manager/components",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/content-manager/collection-types/api::article.article",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/content-manager/collection-types/api::category.category",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/content-manager/collection-types/api::kitchensink.kitchensink",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/content-manager/collection-types/api::tag.tag",
+     "body": {
+      "name": "probe-tag"
+     },
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     },
+     "capture": {
+      "doc": "json:data.documentId"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/content-manager/collection-types/api::tag.tag/{{doc}}",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "PUT",
+     "path": "/content-manager/collection-types/api::tag.tag/{{doc}}",
+     "body": {
+      "name": "probe-tag-2"
+     },
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/content-manager/collection-types/api::tag.tag/{{doc}}/actions/publish",
+     "body": {},
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/content-manager/collection-types/api::tag.tag/{{doc}}/actions/unpublish",
+     "body": {
+      "discardDraft": false
+     },
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "DELETE",
+     "path": "/content-manager/collection-types/api::tag.tag/{{doc}}",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/i18n/locales",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/upload/files",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/content-type-builder/content-types",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/graphql",
+     "body": {
+      "query": "{ __schema { queryType { name } } }"
+     }
+    }
+   ]
+  }
+ ]
+}

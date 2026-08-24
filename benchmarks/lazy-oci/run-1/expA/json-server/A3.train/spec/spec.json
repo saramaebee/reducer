@@ -1,0 +1,51 @@
+{
+ "app": "json-server",
+ "mode": "train",
+ "argv": [
+  "/mnt/app/lib/bin.js",
+  "fixtures/db.json",
+  "--port",
+  "3401"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production"
+ },
+ "setup": [],
+ "ready": {
+  "kind": "http",
+  "value": "http://127.0.0.1:3401/posts",
+  "timeoutMs": 60000
+ },
+ "settleMs": 500,
+ "baseUrl": "http://127.0.0.1:3401",
+ "port": 3401,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "common",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/"
+    },
+    {
+     "method": "GET",
+     "path": "/posts"
+    },
+    {
+     "method": "GET",
+     "path": "/posts/1"
+    },
+    {
+     "method": "GET",
+     "path": "/comments"
+    },
+    {
+     "method": "GET",
+     "path": "/profile"
+    }
+   ]
+  }
+ ]
+}

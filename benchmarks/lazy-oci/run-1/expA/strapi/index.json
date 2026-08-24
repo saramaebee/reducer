@@ -1,0 +1,110 @@
+[
+ {
+  "app": "strapi",
+  "arm": "A1",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/strapi/A1.train",
+  "milestones": {
+   "setup-done": 1787538006068,
+   "t0": 1787538006069,
+   "mount": 1787538006072,
+   "proc": 1787538006127,
+   "workload-done": 1787538015452,
+   "collect": 1787538015453,
+   "done": 1787538015773
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "A2",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/strapi/A2.train",
+  "milestones": {
+   "setup-done": 1787538016175,
+   "t0": 1787538016175,
+   "mount": 1787538016178,
+   "proc": 1787538016235,
+   "workload-done": 1787538436293,
+   "collect": 1787538436294,
+   "done": 1787538436615
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "A3",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/strapi/A3.train",
+  "milestones": {
+   "setup-done": 1787538437124,
+   "t0": 1787538437124,
+   "mount": 1787538437147,
+   "proc": 1787538437219,
+   "workload-done": 1787538451435,
+   "collect": 1787538451471,
+   "done": 1787538451791
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "A1",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/strapi/A1.test",
+  "milestones": {
+   "setup-done": 1787538452395,
+   "t0": 1787538452396,
+   "mount": 1787538452398,
+   "proc": 1787538452460,
+   "workload-done": 1787538460315,
+   "collect": 1787538460316,
+   "done": 1787538460638
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "A2",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/strapi/A2.test",
+  "milestones": {
+   "setup-done": 1787538460998,
+   "t0": 1787538460998,
+   "mount": 1787538461001,
+   "proc": 1787538461056,
+   "workload-done": 1787538881158,
+   "collect": 1787538881159,
+   "done": 1787538881481
+  },
+  "exit": 0
+ },
+ {
+  "app": "strapi",
+  "arm": "A3",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/strapi/A3.test",
+  "milestones": {
+   "setup-done": 1787538881869,
+   "t0": 1787538881869,
+   "mount": 1787538881888,
+   "proc": 1787538881940,
+   "workload-done": 1787538896459,
+   "collect": 1787538896495,
+   "done": 1787538896818
+  },
+  "exit": 0
+ }
+]

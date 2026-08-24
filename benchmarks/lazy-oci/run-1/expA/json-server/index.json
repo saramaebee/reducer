@@ -1,0 +1,110 @@
+[
+ {
+  "app": "json-server",
+  "arm": "A1",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/json-server/A1.train",
+  "milestones": {
+   "setup-done": 1787536687009,
+   "t0": 1787536687010,
+   "mount": 1787536687013,
+   "proc": 1787536687063,
+   "workload-done": 1787536687859,
+   "collect": 1787536687860,
+   "done": 1787536688180
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "A2",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/json-server/A2.train",
+  "milestones": {
+   "setup-done": 1787536688503,
+   "t0": 1787536688503,
+   "mount": 1787536688507,
+   "proc": 1787536688558,
+   "workload-done": 1787536748594,
+   "collect": 1787536748596,
+   "done": 1787536748922
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "A3",
+  "mode": "train",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/json-server/A3.train",
+  "milestones": {
+   "setup-done": 1787536749239,
+   "t0": 1787536749240,
+   "mount": 1787536749258,
+   "proc": 1787536749308,
+   "workload-done": 1787536750315,
+   "collect": 1787536750353,
+   "done": 1787536750681
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "A1",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/json-server/A1.test",
+  "milestones": {
+   "setup-done": 1787536751022,
+   "t0": 1787536751022,
+   "mount": 1787536751025,
+   "proc": 1787536751073,
+   "workload-done": 1787536751910,
+   "collect": 1787536751911,
+   "done": 1787536752229
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "A2",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/json-server/A2.test",
+  "milestones": {
+   "setup-done": 1787536752574,
+   "t0": 1787536752575,
+   "mount": 1787536752578,
+   "proc": 1787536752627,
+   "workload-done": 1787536812749,
+   "collect": 1787536812750,
+   "done": 1787536813073
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "A3",
+  "mode": "test",
+  "rep": 0,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/expA/json-server/A3.test",
+  "milestones": {
+   "setup-done": 1787536813405,
+   "t0": 1787536813405,
+   "mount": 1787536813425,
+   "proc": 1787536813477,
+   "workload-done": 1787536814510,
+   "collect": 1787536814545,
+   "done": 1787536814869
+  },
+  "exit": 0
+ }
+]

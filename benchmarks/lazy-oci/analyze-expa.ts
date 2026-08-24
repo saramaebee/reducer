@@ -32,6 +32,10 @@ const MECHANISMS: [RegExp, string][] = [
   [/ERR_MODULE_NOT_FOUND|Cannot find package/i, 'ESM resolution'],
   [/Cannot find module '\.{1,2}\//i, 'dynamic relative path / plugin resolution'],
   [/Cannot find module '[^.']/i, 'computed or dynamic package require'],
+  // Sequelize/knex-style dialect loading: `require(dialectName)` behind a
+  // library's own try/catch, which reports its own message instead of Node's.
+  [/Please install .{1,40} (package|module)/i, 'computed or dynamic package require (library dialect/driver loader)'],
+  [/No configurations found in configuration directory/i, 'filesystem lookup of a non-module asset'],
   [/ENOENT[^\n]*\.(json|ya?ml|hbs|ejs|pug|html|css|svg|png|txt|sql|proto|wasm)/i, 'filesystem lookup of a non-module asset'],
   [/ENOENT/i, 'filesystem lookup'],
   // An application's own "file not found" wording, not Node's. json-server

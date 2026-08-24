@@ -1,0 +1,547 @@
+[
+ {
+  "app": "json-server",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 1,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B0.rep1",
+  "milestones": {
+   "setup-done": 1787532476669,
+   "t0": 1787532476670,
+   "mount": 1787532476688,
+   "all-ready": 1787532476909,
+   "proc": 1787532476969,
+   "workload-done": 1787532477687,
+   "collect": 1787532477720,
+   "done": 1787532478053
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 1,
+  "order": 1,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B1.rep1",
+  "milestones": {
+   "setup-done": 1787532478387,
+   "t0": 1787532478387,
+   "mount": 1787532478406,
+   "proc": 1787532478460,
+   "workload-done": 1787532479498,
+   "collect": 1787532479539,
+   "done": 1787532479853
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 1,
+  "order": 2,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2.rep1",
+  "milestones": {
+   "setup-done": 1787532480195,
+   "t0": 1787532480195,
+   "mount": 1787532480215,
+   "proc": 1787532480271,
+   "workload-done": 1787532481192,
+   "collect": 1787532481228,
+   "done": 1787532481552
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 1,
+  "order": 3,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2d.rep1",
+  "milestones": {
+   "setup-done": 1787532481879,
+   "t0": 1787532481880,
+   "mount": 1787532481899,
+   "proc": 1787532481954,
+   "workload-done": 1787532482883,
+   "collect": 1787532482923,
+   "done": 1787532483237
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 1,
+  "order": 4,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3a.rep1",
+  "milestones": {
+   "setup-done": 1787532483578,
+   "t0": 1787532483579,
+   "mount": 1787532483598,
+   "proc": 1787532483649,
+   "workload-done": 1787532484685,
+   "collect": 1787532484722,
+   "done": 1787532485035
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 1,
+  "order": 5,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3b.rep1",
+  "milestones": {
+   "setup-done": 1787532485427,
+   "t0": 1787532485428,
+   "mount": 1787532485446,
+   "proc": 1787532485496,
+   "workload-done": 1787532486530,
+   "collect": 1787532486565,
+   "done": 1787532486882
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 2,
+  "order": 6,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B1.rep2",
+  "milestones": {
+   "setup-done": 1787532487228,
+   "t0": 1787532487228,
+   "mount": 1787532487248,
+   "proc": 1787532487299,
+   "workload-done": 1787532488344,
+   "collect": 1787532488381,
+   "done": 1787532488698
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 2,
+  "order": 7,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2.rep2",
+  "milestones": {
+   "setup-done": 1787532489042,
+   "t0": 1787532489043,
+   "mount": 1787532489062,
+   "proc": 1787532489111,
+   "workload-done": 1787532490137,
+   "collect": 1787532490172,
+   "done": 1787532490485
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 2,
+  "order": 8,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2d.rep2",
+  "milestones": {
+   "setup-done": 1787532490827,
+   "t0": 1787532490828,
+   "mount": 1787532490847,
+   "proc": 1787532490898,
+   "workload-done": 1787532491824,
+   "collect": 1787532491858,
+   "done": 1787532492168
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 2,
+  "order": 9,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3a.rep2",
+  "milestones": {
+   "setup-done": 1787532492472,
+   "t0": 1787532492472,
+   "mount": 1787532492491,
+   "proc": 1787532492544,
+   "workload-done": 1787532493474,
+   "collect": 1787532493507,
+   "done": 1787532493829
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 2,
+  "order": 10,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3b.rep2",
+  "milestones": {
+   "setup-done": 1787532494156,
+   "t0": 1787532494156,
+   "mount": 1787532494176,
+   "proc": 1787532494230,
+   "workload-done": 1787532495271,
+   "collect": 1787532495309,
+   "done": 1787532495631
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 2,
+  "order": 11,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B0.rep2",
+  "milestones": {
+   "setup-done": 1787532495954,
+   "t0": 1787532495954,
+   "mount": 1787532495973,
+   "all-ready": 1787532496194,
+   "proc": 1787532496250,
+   "workload-done": 1787532496979,
+   "collect": 1787532497018,
+   "done": 1787532497339
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 3,
+  "order": 12,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2.rep3",
+  "milestones": {
+   "setup-done": 1787532497679,
+   "t0": 1787532497680,
+   "mount": 1787532497698,
+   "proc": 1787532497750,
+   "workload-done": 1787532498679,
+   "collect": 1787532498712,
+   "done": 1787532499027
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 3,
+  "order": 13,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2d.rep3",
+  "milestones": {
+   "setup-done": 1787532499358,
+   "t0": 1787532499358,
+   "mount": 1787532499378,
+   "proc": 1787532499427,
+   "workload-done": 1787532500436,
+   "collect": 1787532500468,
+   "done": 1787532500787
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 3,
+  "order": 14,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3a.rep3",
+  "milestones": {
+   "setup-done": 1787532501122,
+   "t0": 1787532501122,
+   "mount": 1787532501141,
+   "proc": 1787532501196,
+   "workload-done": 1787532502222,
+   "collect": 1787532502259,
+   "done": 1787532502582
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 3,
+  "order": 15,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3b.rep3",
+  "milestones": {
+   "setup-done": 1787532502923,
+   "t0": 1787532502924,
+   "mount": 1787532502943,
+   "proc": 1787532502992,
+   "workload-done": 1787532504027,
+   "collect": 1787532504064,
+   "done": 1787532504384
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 3,
+  "order": 16,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B0.rep3",
+  "milestones": {
+   "setup-done": 1787532504732,
+   "t0": 1787532504733,
+   "mount": 1787532504751,
+   "all-ready": 1787532504971,
+   "proc": 1787532505021,
+   "workload-done": 1787532505749,
+   "collect": 1787532505790,
+   "done": 1787532506110
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 3,
+  "order": 17,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B1.rep3",
+  "milestones": {
+   "setup-done": 1787532506462,
+   "t0": 1787532506463,
+   "mount": 1787532506484,
+   "proc": 1787532506536,
+   "workload-done": 1787532507553,
+   "collect": 1787532507585,
+   "done": 1787532507911
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 4,
+  "order": 18,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2d.rep4",
+  "milestones": {
+   "setup-done": 1787532508268,
+   "t0": 1787532508269,
+   "mount": 1787532508288,
+   "proc": 1787532508342,
+   "workload-done": 1787532509283,
+   "collect": 1787532509322,
+   "done": 1787532509638
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 4,
+  "order": 19,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3a.rep4",
+  "milestones": {
+   "setup-done": 1787532509942,
+   "t0": 1787532509942,
+   "mount": 1787532509961,
+   "proc": 1787532510012,
+   "workload-done": 1787532511045,
+   "collect": 1787532511100,
+   "done": 1787532511421
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 4,
+  "order": 20,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3b.rep4",
+  "milestones": {
+   "setup-done": 1787532511826,
+   "t0": 1787532511826,
+   "mount": 1787532511845,
+   "proc": 1787532511903,
+   "workload-done": 1787532512937,
+   "collect": 1787532512971,
+   "done": 1787532513290
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 4,
+  "order": 21,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B0.rep4",
+  "milestones": {
+   "setup-done": 1787532513703,
+   "t0": 1787532513704,
+   "mount": 1787532513722,
+   "all-ready": 1787532513945,
+   "proc": 1787532514001,
+   "workload-done": 1787532514729,
+   "collect": 1787532514764,
+   "done": 1787532515079
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 4,
+  "order": 22,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B1.rep4",
+  "milestones": {
+   "setup-done": 1787532515492,
+   "t0": 1787532515493,
+   "mount": 1787532515512,
+   "proc": 1787532515567,
+   "workload-done": 1787532516581,
+   "collect": 1787532516613,
+   "done": 1787532516932
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 4,
+  "order": 23,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2.rep4",
+  "milestones": {
+   "setup-done": 1787532517253,
+   "t0": 1787532517254,
+   "mount": 1787532517272,
+   "proc": 1787532517338,
+   "workload-done": 1787532518160,
+   "collect": 1787532518188,
+   "done": 1787532518503
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 5,
+  "order": 24,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3a.rep5",
+  "milestones": {
+   "setup-done": 1787532518819,
+   "t0": 1787532518820,
+   "mount": 1787532518840,
+   "proc": 1787532518890,
+   "workload-done": 1787532519923,
+   "collect": 1787532519956,
+   "done": 1787532520267
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 5,
+  "order": 25,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B3b.rep5",
+  "milestones": {
+   "setup-done": 1787532520608,
+   "t0": 1787532520609,
+   "mount": 1787532520627,
+   "proc": 1787532520682,
+   "workload-done": 1787532521716,
+   "collect": 1787532521760,
+   "done": 1787532522077
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 5,
+  "order": 26,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B0.rep5",
+  "milestones": {
+   "setup-done": 1787532522431,
+   "t0": 1787532522431,
+   "mount": 1787532522448,
+   "all-ready": 1787532522715,
+   "proc": 1787532522771,
+   "workload-done": 1787532523481,
+   "collect": 1787532523516,
+   "done": 1787532523831
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 5,
+  "order": 27,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B1.rep5",
+  "milestones": {
+   "setup-done": 1787532524188,
+   "t0": 1787532524188,
+   "mount": 1787532524207,
+   "proc": 1787532524261,
+   "workload-done": 1787532525281,
+   "collect": 1787532525309,
+   "done": 1787532525621
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 5,
+  "order": 28,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2.rep5",
+  "milestones": {
+   "setup-done": 1787532525989,
+   "t0": 1787532525990,
+   "mount": 1787532526010,
+   "proc": 1787532526068,
+   "workload-done": 1787532527078,
+   "collect": 1787532527107,
+   "done": 1787532527425
+  },
+  "exit": 0
+ },
+ {
+  "app": "json-server",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 5,
+  "order": 29,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/json-server/B2d.rep5",
+  "milestones": {
+   "setup-done": 1787532527787,
+   "t0": 1787532527788,
+   "mount": 1787532527807,
+   "proc": 1787532527859,
+   "workload-done": 1787532528777,
+   "collect": 1787532528809,
+   "done": 1787532529136
+  },
+  "exit": 0
+ }
+]

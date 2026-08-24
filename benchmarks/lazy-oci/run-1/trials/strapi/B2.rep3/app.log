@@ -1,0 +1,221 @@
+[2026-08-24 01:20:14.409] [34mdebug[39m: Schema BasicTeamMembersEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.410] [34mdebug[39m: 📝 Generating validation schema for "Basic Team Members"
+[2026-08-24 01:20:14.410] [34mdebug[39m: Registering schema BasicTeamMembersEntry in global registry
+[2026-08-24 01:20:14.410] [34mdebug[39m: Schema PluginUploadFileDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.411] [34mdebug[39m: Initializing validation schema for PluginUploadFileDocument
+[2026-08-24 01:20:14.411] [34mdebug[39m: Registering schema PluginUploadFileDocument in global registry
+[2026-08-24 01:20:14.412] [34mdebug[39m: Replacing schema PluginUploadFileDocument in global registry
+[2026-08-24 01:20:14.412] [34mdebug[39m: Replacing schema BasicTeamMembersEntry in global registry
+[2026-08-24 01:20:14.412] [34mdebug[39m: Schema DefaultOrgEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.412] [34mdebug[39m: 📝 Generating validation schema for "Default Org"
+[2026-08-24 01:20:14.413] [34mdebug[39m: Registering schema DefaultOrgEntry in global registry
+[2026-08-24 01:20:14.413] [34mdebug[39m: Replacing schema DefaultOrgEntry in global registry
+[2026-08-24 01:20:14.413] [34mdebug[39m: Schema DefaultTestComponentEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.413] [34mdebug[39m: 📝 Generating validation schema for "Default Test Component"
+[2026-08-24 01:20:14.413] [34mdebug[39m: Registering schema DefaultTestComponentEntry in global registry
+[2026-08-24 01:20:14.413] [34mdebug[39m: Replacing schema DefaultTestComponentEntry in global registry
+[2026-08-24 01:20:14.413] [34mdebug[39m:    ✅ "Default Test Component" schema created with 3 fields
+[2026-08-24 01:20:14.413] [34mdebug[39m:    ✅ "Default Org" schema created with 4 fields
+[2026-08-24 01:20:14.413] [34mdebug[39m:    ✅ "Basic Team Members" schema created with 5 fields
+[2026-08-24 01:20:14.414] [34mdebug[39m: Schema ApiAboutAboutDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.414] [34mdebug[39m: 📝 Generating validation schema for "Api About About"
+[2026-08-24 01:20:14.414] [34mdebug[39m: Registering schema ApiAboutAboutDocument in global registry
+[2026-08-24 01:20:14.414] [34mdebug[39m: Replacing schema ApiAboutAboutDocument in global registry
+[2026-08-24 01:20:14.415] [34mdebug[39m:    ✅ "Api About About" schema created with 12 fields
+[2026-08-24 01:20:14.420] [34mdebug[39m: Schema ApiCategoryCategoryDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.420] [34mdebug[39m: 📝 Generating validation schema for "Api Category Category"
+[2026-08-24 01:20:14.420] [34mdebug[39m: Registering schema ApiCategoryCategoryDocument in global registry
+[2026-08-24 01:20:14.420] [34mdebug[39m: Schema ApiAddressAddressDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.420] [34mdebug[39m: 📝 Generating validation schema for "Api Address Address"
+[2026-08-24 01:20:14.420] [34mdebug[39m: Registering schema ApiAddressAddressDocument in global registry
+[2026-08-24 01:20:14.421] [34mdebug[39m: Schema BlogTestComoEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.421] [34mdebug[39m: 📝 Generating validation schema for "Blog Test Como"
+[2026-08-24 01:20:14.421] [34mdebug[39m: Registering schema BlogTestComoEntry in global registry
+[2026-08-24 01:20:14.421] [34mdebug[39m: Replacing schema BlogTestComoEntry in global registry
+[2026-08-24 01:20:14.421] [34mdebug[39m:    ✅ "Blog Test Como" schema created with 1 fields
+[2026-08-24 01:20:14.421] [34mdebug[39m: Replacing schema ApiAddressAddressDocument in global registry
+[2026-08-24 01:20:14.422] [34mdebug[39m:    ✅ "Api Address Address" schema created with 16 fields
+[2026-08-24 01:20:14.422] [34mdebug[39m: Schema ApiTempTempDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.422] [34mdebug[39m: 📝 Generating validation schema for "Api Temp Temp"
+[2026-08-24 01:20:14.422] [34mdebug[39m: Registering schema ApiTempTempDocument in global registry
+[2026-08-24 01:20:14.422] [34mdebug[39m: Replacing schema ApiTempTempDocument in global registry
+[2026-08-24 01:20:14.423] [34mdebug[39m:    ✅ "Api Temp Temp" schema created with 8 fields
+[2026-08-24 01:20:14.423] [34mdebug[39m: Schema ApiRelationLocaleRelationLocaleDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.423] [34mdebug[39m: 📝 Generating validation schema for "Api Relation Locale Relation Locale"
+[2026-08-24 01:20:14.423] [34mdebug[39m: Registering schema ApiRelationLocaleRelationLocaleDocument in global registry
+[2026-08-24 01:20:14.423] [34mdebug[39m: Schema BasicRelationEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.423] [34mdebug[39m: 📝 Generating validation schema for "Basic Relation"
+[2026-08-24 01:20:14.423] [34mdebug[39m: Registering schema BasicRelationEntry in global registry
+[2026-08-24 01:20:14.423] [34mdebug[39m: Replacing schema BasicRelationEntry in global registry
+[2026-08-24 01:20:14.423] [34mdebug[39m:    ✅ "Basic Relation" schema created with 1 fields
+[2026-08-24 01:20:14.424] [34mdebug[39m: Replacing schema ApiRelationLocaleRelationLocaleDocument in global registry
+[2026-08-24 01:20:14.424] [34mdebug[39m:    ✅ "Api Relation Locale Relation Locale" schema created with 14 fields
+[2026-08-24 01:20:14.424] [34mdebug[39m: Schema ApiArticleArticleDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.424] [34mdebug[39m: 📝 Generating validation schema for "Api Article Article"
+[2026-08-24 01:20:14.424] [34mdebug[39m: Registering schema ApiArticleArticleDocument in global registry
+[2026-08-24 01:20:14.425] [34mdebug[39m: Replacing schema ApiArticleArticleDocument in global registry
+[2026-08-24 01:20:14.425] [34mdebug[39m:    ✅ "Api Article Article" schema created with 14 fields
+[2026-08-24 01:20:14.425] [34mdebug[39m: Replacing schema ApiCategoryCategoryDocument in global registry
+[2026-08-24 01:20:14.425] [34mdebug[39m:    ✅ "Api Category Category" schema created with 15 fields
+[2026-08-24 01:20:14.452] [34mdebug[39m: Schema ApiCountryCountryDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.452] [34mdebug[39m: 📝 Generating validation schema for "Api Country Country"
+[2026-08-24 01:20:14.452] [34mdebug[39m: Registering schema ApiCountryCountryDocument in global registry
+[2026-08-24 01:20:14.453] [34mdebug[39m: Replacing schema ApiCountryCountryDocument in global registry
+[2026-08-24 01:20:14.453] [34mdebug[39m:    ✅ "Api Country Country" schema created with 10 fields
+[2026-08-24 01:20:14.459] [34mdebug[39m: Schema DefaultSocialLinksEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.459] [34mdebug[39m: 📝 Generating validation schema for "Default Social Links"
+[2026-08-24 01:20:14.459] [34mdebug[39m: Registering schema DefaultSocialLinksEntry in global registry
+[2026-08-24 01:20:14.459] [34mdebug[39m: Replacing schema DefaultSocialLinksEntry in global registry
+[2026-08-24 01:20:14.459] [34mdebug[39m:    ✅ "Default Social Links" schema created with 0 fields
+[2026-08-24 01:20:14.459] [34mdebug[39m: Schema ApiConfigConfigDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.459] [34mdebug[39m: 📝 Generating validation schema for "Api Config Config"
+[2026-08-24 01:20:14.459] [34mdebug[39m: Registering schema ApiConfigConfigDocument in global registry
+[2026-08-24 01:20:14.460] [34mdebug[39m: Replacing schema ApiConfigConfigDocument in global registry
+[2026-08-24 01:20:14.460] [34mdebug[39m:    ✅ "Api Config Config" schema created with 14 fields
+[2026-08-24 01:20:14.470] [34mdebug[39m: Schema DefaultLinksEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.470] [34mdebug[39m: 📝 Generating validation schema for "Default Links"
+[2026-08-24 01:20:14.470] [34mdebug[39m: Registering schema DefaultLinksEntry in global registry
+[2026-08-24 01:20:14.470] [34mdebug[39m: Replacing schema DefaultLinksEntry in global registry
+[2026-08-24 01:20:14.470] [34mdebug[39m:    ✅ "Default Links" schema created with 2 fields
+[2026-08-24 01:20:14.470] [34mdebug[39m: Schema ApiFooterFooterDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.470] [34mdebug[39m: 📝 Generating validation schema for "Api Footer Footer"
+[2026-08-24 01:20:14.470] [34mdebug[39m: Registering schema ApiFooterFooterDocument in global registry
+[2026-08-24 01:20:14.471] [34mdebug[39m: Replacing schema ApiFooterFooterDocument in global registry
+[2026-08-24 01:20:14.471] [34mdebug[39m:    ✅ "Api Footer Footer" schema created with 12 fields
+[2026-08-24 01:20:14.474] [34mdebug[39m: Schema ApiHomepageHomepageDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.474] [34mdebug[39m: 📝 Generating validation schema for "Api Homepage Homepage"
+[2026-08-24 01:20:14.474] [34mdebug[39m: Registering schema ApiHomepageHomepageDocument in global registry
+[2026-08-24 01:20:14.475] [34mdebug[39m: Replacing schema ApiHomepageHomepageDocument in global registry
+[2026-08-24 01:20:14.475] [34mdebug[39m:    ✅ "Api Homepage Homepage" schema created with 12 fields
+[2026-08-24 01:20:14.480] [34mdebug[39m: Schema BasicSimpleEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.480] [34mdebug[39m: 📝 Generating validation schema for "Basic Simple"
+[2026-08-24 01:20:14.480] [34mdebug[39m: Registering schema BasicSimpleEntry in global registry
+[2026-08-24 01:20:14.480] [34mdebug[39m: Replacing schema BasicSimpleEntry in global registry
+[2026-08-24 01:20:14.480] [34mdebug[39m:    ✅ "Basic Simple" schema created with 2 fields
+[2026-08-24 01:20:14.480] [34mdebug[39m: Schema ApiTagTagDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.480] [34mdebug[39m: 📝 Generating validation schema for "Api Tag Tag"
+[2026-08-24 01:20:14.480] [34mdebug[39m: Registering schema ApiTagTagDocument in global registry
+[2026-08-24 01:20:14.489] [34mdebug[39m: Schema ApiKitchensinkKitchensinkDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.489] [34mdebug[39m: 📝 Generating validation schema for "Api Kitchensink Kitchensink"
+[2026-08-24 01:20:14.489] [34mdebug[39m: Registering schema ApiKitchensinkKitchensinkDocument in global registry
+[2026-08-24 01:20:14.491] [34mdebug[39m: Replacing schema ApiKitchensinkKitchensinkDocument in global registry
+[2026-08-24 01:20:14.491] [34mdebug[39m:    ✅ "Api Kitchensink Kitchensink" schema created with 38 fields
+[2026-08-24 01:20:14.491] [34mdebug[39m: Replacing schema ApiTagTagDocument in global registry
+[2026-08-24 01:20:14.491] [34mdebug[39m:    ✅ "Api Tag Tag" schema created with 11 fields
+[2026-08-24 01:20:14.505] [34mdebug[39m: Schema PluginUsersPermissionsUserDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.505] [34mdebug[39m: Initializing validation schema for PluginUsersPermissionsUserDocument
+[2026-08-24 01:20:14.505] [34mdebug[39m: Registering schema PluginUsersPermissionsUserDocument in global registry
+[2026-08-24 01:20:14.505] [34mdebug[39m: Schema PluginUsersPermissionsRoleDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.505] [34mdebug[39m: Initializing validation schema for PluginUsersPermissionsRoleDocument
+[2026-08-24 01:20:14.505] [34mdebug[39m: Registering schema PluginUsersPermissionsRoleDocument in global registry
+[2026-08-24 01:20:14.506] [34mdebug[39m: Schema PluginUsersPermissionsPermissionDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.506] [34mdebug[39m: Initializing validation schema for PluginUsersPermissionsPermissionDocument
+[2026-08-24 01:20:14.506] [34mdebug[39m: Registering schema PluginUsersPermissionsPermissionDocument in global registry
+[2026-08-24 01:20:14.506] [34mdebug[39m: Replacing schema PluginUsersPermissionsPermissionDocument in global registry
+[2026-08-24 01:20:14.506] [34mdebug[39m: Replacing schema PluginUsersPermissionsRoleDocument in global registry
+[2026-08-24 01:20:14.506] [34mdebug[39m: Replacing schema PluginUsersPermissionsUserDocument in global registry
+[2026-08-24 01:20:14.506] [34mdebug[39m: Schema ApiReviewReviewDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.506] [34mdebug[39m: 📝 Generating validation schema for "Api Review Review"
+[2026-08-24 01:20:14.507] [34mdebug[39m: Registering schema ApiReviewReviewDocument in global registry
+[2026-08-24 01:20:14.507] [34mdebug[39m: Schema ApiLikeLikeDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.507] [34mdebug[39m: 📝 Generating validation schema for "Api Like Like"
+[2026-08-24 01:20:14.507] [34mdebug[39m: Registering schema ApiLikeLikeDocument in global registry
+[2026-08-24 01:20:14.507] [34mdebug[39m: Replacing schema ApiLikeLikeDocument in global registry
+[2026-08-24 01:20:14.507] [34mdebug[39m:    ✅ "Api Like Like" schema created with 7 fields
+[2026-08-24 01:20:14.507] [34mdebug[39m: Schema ApiRestaurantRestaurantDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.507] [34mdebug[39m: 📝 Generating validation schema for "Api Restaurant Restaurant"
+[2026-08-24 01:20:14.507] [34mdebug[39m: Registering schema ApiRestaurantRestaurantDocument in global registry
+[2026-08-24 01:20:14.508] [34mdebug[39m: Schema DefaultClosingperiodEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.508] [34mdebug[39m: 📝 Generating validation schema for "Default Closingperiod"
+[2026-08-24 01:20:14.508] [34mdebug[39m: Registering schema DefaultClosingperiodEntry in global registry
+[2026-08-24 01:20:14.509] [34mdebug[39m: Replacing schema DefaultClosingperiodEntry in global registry
+[2026-08-24 01:20:14.509] [34mdebug[39m: Schema DefaultDishEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.509] [34mdebug[39m: 📝 Generating validation schema for "Default Dish"
+[2026-08-24 01:20:14.509] [34mdebug[39m: Registering schema DefaultDishEntry in global registry
+[2026-08-24 01:20:14.509] [34mdebug[39m: Replacing schema DefaultDishEntry in global registry
+[2026-08-24 01:20:14.509] [34mdebug[39m:    ✅ "Default Dish" schema created with 6 fields
+[2026-08-24 01:20:14.509] [34mdebug[39m:    ✅ "Default Closingperiod" schema created with 5 fields
+[2026-08-24 01:20:14.509] [34mdebug[39m: Schema DefaultRestaurantserviceEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.509] [34mdebug[39m: 📝 Generating validation schema for "Default Restaurantservice"
+[2026-08-24 01:20:14.509] [34mdebug[39m: Registering schema DefaultRestaurantserviceEntry in global registry
+[2026-08-24 01:20:14.509] [34mdebug[39m: Replacing schema DefaultRestaurantserviceEntry in global registry
+[2026-08-24 01:20:14.510] [34mdebug[39m:    ✅ "Default Restaurantservice" schema created with 3 fields
+[2026-08-24 01:20:14.510] [34mdebug[39m: Schema ApiMenuMenuDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.510] [34mdebug[39m: 📝 Generating validation schema for "Api Menu Menu"
+[2026-08-24 01:20:14.510] [34mdebug[39m: Registering schema ApiMenuMenuDocument in global registry
+[2026-08-24 01:20:14.510] [34mdebug[39m: Schema ApiMenusectionMenusectionDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.510] [34mdebug[39m: 📝 Generating validation schema for "Api Menusection Menusection"
+[2026-08-24 01:20:14.510] [34mdebug[39m: Registering schema ApiMenusectionMenusectionDocument in global registry
+[2026-08-24 01:20:14.510] [34mdebug[39m: Replacing schema ApiMenusectionMenusectionDocument in global registry
+[2026-08-24 01:20:14.510] [34mdebug[39m:    ✅ "Api Menusection Menusection" schema created with 8 fields
+[2026-08-24 01:20:14.511] [34mdebug[39m: Replacing schema ApiMenuMenuDocument in global registry
+[2026-08-24 01:20:14.511] [34mdebug[39m:    ✅ "Api Menu Menu" schema created with 8 fields
+[2026-08-24 01:20:14.511] [34mdebug[39m: Schema DefaultOpeningtimesEntry not found in registry, generating new schema
+[2026-08-24 01:20:14.511] [34mdebug[39m: 📝 Generating validation schema for "Default Openingtimes"
+[2026-08-24 01:20:14.511] [34mdebug[39m: Registering schema DefaultOpeningtimesEntry in global registry
+[2026-08-24 01:20:14.511] [34mdebug[39m: Replacing schema DefaultOpeningtimesEntry in global registry
+[2026-08-24 01:20:14.511] [34mdebug[39m:    ✅ "Default Openingtimes" schema created with 3 fields
+[2026-08-24 01:20:14.511] [34mdebug[39m: Replacing schema ApiRestaurantRestaurantDocument in global registry
+[2026-08-24 01:20:14.511] [34mdebug[39m:    ✅ "Api Restaurant Restaurant" schema created with 26 fields
+[2026-08-24 01:20:14.511] [34mdebug[39m: Replacing schema ApiReviewReviewDocument in global registry
+[2026-08-24 01:20:14.511] [34mdebug[39m:    ✅ "Api Review Review" schema created with 10 fields
+[2026-08-24 01:20:14.588] [34mdebug[39m: Schema PluginMypluginTestDocument not found in registry, generating new schema
+[2026-08-24 01:20:14.588] [34mdebug[39m: Initializing validation schema for PluginMypluginTestDocument
+[2026-08-24 01:20:14.588] [34mdebug[39m: Registering schema PluginMypluginTestDocument in global registry
+[2026-08-24 01:20:14.588] [34mdebug[39m: Replacing schema PluginMypluginTestDocument in global registry
+[2026-08-24 01:20:15.257] [33mwarn[39m: Built-in GraphQL operation limits are unbounded or invalid for: depthLimit. Configure these limits (for example: defaultLimit: 25, maxLimit: 100, depthLimit: 10). Custom Apollo validation rules may independently enforce limits. See https://docs.strapi.io/cms/configurations/plugins.
+[2026-08-24 01:20:15.258] [34mdebug[39m: Apollo landing page: production
+[2026-08-24 01:20:15.282] [32minfo[39m: @strapi/plugin-sentry is disabled because no Sentry DSN was provided
+[2026-08-24 01:20:15.427] [32minfo[39m: [MCP] Starting MCP server...
+[2026-08-24 01:20:15.428] [32minfo[39m: [MCP] Server available at /mcp
+
+ Project information
+
+[90m╭────────────────────[39m[90m┬──────────────────────────────────────────────────╮[39m
+[90m│[39m Time               [90m│[39m Mon Aug 24 2026 01:20:15 GMT+0000 (Coordinated … [90m│[39m
+[90m│[39m Launched in        [90m│[39m 3431 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m production                                       [90m│[39m
+[90m│[39m Process PID        [90m│[39m 94                                               [90m│[39m
+[90m│[39m Version            [90m│[39m 5.52.1 (node v24.19.0)                           [90m│[39m
+[90m│[39m Plan               [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m│[39m Database name      [90m│[39m .tmp/data.db                                     [90m│[39m
+[90m╰────────────────────[39m[90m┴──────────────────────────────────────────────────╯[39m
+
+ Actions available
+
+One more thing...
+Create your first administrator 💻 by going to the administration panel at:
+
+[90m┌───────────────────────────┐[39m
+[90m│[39m http://0.0.0.0:1337/admin [90m│[39m
+[90m└───────────────────────────┘[39m
+
+[2026-08-24 01:20:15.435] [32minfo[39m: Strapi started successfully
+[2026-08-24 01:20:18.944] [32mhttp[39m: POST /admin/register-admin (411 ms) 200
+[2026-08-24 01:20:18.973] [32mhttp[39m: GET /admin/information (22 ms) 200
+[2026-08-24 01:20:18.999] [32mhttp[39m: GET /admin/users (22 ms) 200
+[2026-08-24 01:20:19.023] [32mhttp[39m: GET /admin/roles (20 ms) 200
+[2026-08-24 01:20:19.065] [32mhttp[39m: GET /admin/permissions (26 ms) 200
+[2026-08-24 01:20:19.079] [32mhttp[39m: GET /admin/webhooks (10 ms) 200
+[2026-08-24 01:20:19.092] [32mhttp[39m: GET /admin/content-api/routes (10 ms) 200
+[2026-08-24 01:20:19.107] [32mhttp[39m: GET /content-manager/init (11 ms) 200
+[2026-08-24 01:20:19.122] [32mhttp[39m: GET /content-manager/content-types (10 ms) 200
+[2026-08-24 01:20:19.134] [32mhttp[39m: GET /content-manager/components (8 ms) 200
+[2026-08-24 01:20:19.155] [32mhttp[39m: GET /content-manager/collection-types/api::article.article (17 ms) 200
+[2026-08-24 01:20:19.170] [32mhttp[39m: GET /content-manager/collection-types/api::category.category (12 ms) 200
+[2026-08-24 01:20:19.187] [32mhttp[39m: GET /content-manager/collection-types/api::kitchensink.kitchensink (14 ms) 200
+[2026-08-24 01:20:19.214] [32mhttp[39m: POST /content-manager/collection-types/api::tag.tag (23 ms) 201
+[2026-08-24 01:20:19.229] [32mhttp[39m: GET /content-manager/collection-types/api::tag.tag/z4gw513crb0swepdnh5wrron (14 ms) 200
+[2026-08-24 01:20:19.251] [32mhttp[39m: PUT /content-manager/collection-types/api::tag.tag/z4gw513crb0swepdnh5wrron (19 ms) 200
+[2026-08-24 01:20:19.281] [32mhttp[39m: POST /content-manager/collection-types/api::tag.tag/z4gw513crb0swepdnh5wrron/actions/publish (27 ms) 200
+[2026-08-24 01:20:19.301] [32mhttp[39m: POST /content-manager/collection-types/api::tag.tag/z4gw513crb0swepdnh5wrron/actions/unpublish (17 ms) 200
+[2026-08-24 01:20:19.317] [32mhttp[39m: DELETE /content-manager/collection-types/api::tag.tag/z4gw513crb0swepdnh5wrron (13 ms) 200
+[2026-08-24 01:20:19.329] [32mhttp[39m: GET /i18n/locales (9 ms) 200
+[2026-08-24 01:20:19.342] [32mhttp[39m: GET /upload/files (10 ms) 200
+[2026-08-24 01:20:19.355] [32mhttp[39m: GET /content-type-builder/content-types (10 ms) 200
+[2026-08-24 01:20:19.365] [32mhttp[39m: POST /graphql (7 ms) 400
+[2026-08-24 01:20:19.403] [32minfo[39m: Shutting down Strapi
+[2026-08-24 01:20:19.405] [32minfo[39m: [MCP] Stopping MCP server...
+[2026-08-24 01:20:19.405] [32minfo[39m: [MCP] Service stopped
+[2026-08-24 01:20:19.406] [32minfo[39m: Strapi has been shut down

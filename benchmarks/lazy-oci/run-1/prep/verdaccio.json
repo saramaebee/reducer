@@ -1,0 +1,68 @@
+{
+ "app": "verdaccio",
+ "sha": "79237e3f9f02023491159eef709cb4a8dcc54ca9",
+ "tree": "frozen",
+ "criterion": "control + dynamic plugin resolution",
+ "universe": {
+  "files": 9530,
+  "bytes": 59870421
+ },
+ "staged": {
+  "files": 9530,
+  "bytes": 59870421,
+  "prunedFiles": 81583
+ },
+ "nft": 1853,
+ "planBHot": 2009,
+ "train": {
+  "files": 1790,
+  "bytes": 5298110
+ },
+ "neededTest": {
+  "files": 1800,
+  "bytes": 5396100,
+  "testOnlyFiles": 10
+ },
+ "images": {
+  "base": {
+   "blob": "75f592872af8fc107f17293307d37a10e081fb5b15b6552be5745307257d9cf9",
+   "blobBytes": 17730755,
+   "bootstrapBytes": 2285568,
+   "prefetchFiles": 0
+  },
+  "B2": {
+   "blob": "3748ea6052d816b9a009919ec236d14857fd8eeb69ba94fe89a80b5526d64e37",
+   "blobBytes": 17730313,
+   "bootstrapBytes": 2289664,
+   "prefetchFiles": 1790
+  },
+  "B2d": {
+   "blob": "215c0edd08f7133c14acdc4f6bf9827ab9868e53dd091023a2fc8923576bb892",
+   "blobBytes": 17730172,
+   "bootstrapBytes": 2297856,
+   "prefetchFiles": 3816
+  },
+  "B3a": {
+   "blob": "35bbd09a4a67447ddd08371b886a3db435110524dfc2d1755cc24e63dea00740",
+   "blobBytes": 17730404,
+   "bootstrapBytes": 2293760,
+   "prefetchFiles": 2009
+  },
+  "B3b": {
+   "blob": "18a2557f0339bd06d3fb9a2e922d3e9b4a354ffbcb2d443f7d8d33c347ed1eb4",
+   "blobBytes": 17730468,
+   "bootstrapBytes": 2293760,
+   "prefetchFiles": 1994
+  },
+  "A3": {
+   "blob": "9ab24204d2d2f67e607c16654ae503b5098dbba9465516819948511b71dc8122",
+   "blobBytes": 17730286,
+   "bootstrapBytes": 2289664,
+   "prefetchFiles": 1853
+  }
+ },
+ "contentDigest": "bace18355d34520900b2962ab3cd5235964a853929de72dd256b6ccb5566f48f",
+ "warnings": [
+  "38614 installed JS file(s) belong to packages absent from the frozen production population; treated as outside the universe unless positive evidence reaches them"
+ ]
+}

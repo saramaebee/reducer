@@ -1,0 +1,87 @@
+{
+ "app": "json-server",
+ "mode": "test",
+ "argv": [
+  "/mnt/app/lib/bin.js",
+  "fixtures/db.json",
+  "--port",
+  "3401"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production"
+ },
+ "setup": [],
+ "ready": {
+  "kind": "http",
+  "value": "http://127.0.0.1:3401/posts",
+  "timeoutMs": 60000
+ },
+ "settleMs": 500,
+ "baseUrl": "http://127.0.0.1:3401",
+ "port": 3401,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "full",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/posts?title=a%20title"
+    },
+    {
+     "method": "GET",
+     "path": "/posts?_sort=title&_order=desc"
+    },
+    {
+     "method": "GET",
+     "path": "/posts?_page=1&_per_page=1"
+    },
+    {
+     "method": "GET",
+     "path": "/posts?_embed=comments"
+    },
+    {
+     "method": "GET",
+     "path": "/comments?_expand=post"
+    },
+    {
+     "method": "GET",
+     "path": "/posts?id_ne=1"
+    },
+    {
+     "method": "POST",
+     "path": "/posts",
+     "body": {
+      "title": "hydration probe"
+     },
+     "capture": {
+      "newId": "json:id"
+     }
+    },
+    {
+     "method": "PUT",
+     "path": "/posts/{{newId}}",
+     "body": {
+      "title": "replaced"
+     }
+    },
+    {
+     "method": "PATCH",
+     "path": "/posts/{{newId}}",
+     "body": {
+      "title": "patched"
+     }
+    },
+    {
+     "method": "DELETE",
+     "path": "/posts/{{newId}}"
+    },
+    {
+     "method": "GET",
+     "path": "/does-not-exist"
+    }
+   ]
+  }
+ ]
+}

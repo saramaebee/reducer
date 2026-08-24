@@ -1,0 +1,1 @@
+[[38;5;208m2026-08-24 00:49:10.412388 +00:00[0m] [38;5;208mWARN[0m [/src/backend/mod.rs:283] [38;5;208mbackend request: GET http://reducer-registry:5000/v2/lazyoci/verdaccio/blobs/sha256:215c0edd08f7133c14acdc4f6bf9827ab9868e53dd091023a2fc8923576bb892, chunk: 1047861 bytes, proxy: false, proxy sdk: false, takes 357.528875ms: slow request[0m

@@ -1,0 +1,71 @@
+{
+ "app": "express-realworld",
+ "sha": "30b68e1e881462b2f4164ea09ab4c4f5699c7b0b",
+ "train": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 5
+  },
+  "A2": {
+   "ready": true,
+   "done": true,
+   "requests": 5,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": [],
+   "appLogTail": "server up on port 3409\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 5,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": []
+  }
+ },
+ "test": {
+  "A1": {
+   "ready": true,
+   "done": true,
+   "requests": 17
+  },
+  "A2": {
+   "ready": true,
+   "done": true,
+   "requests": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": [],
+   "appLogTail": "server up on port 3409\n"
+  },
+  "A3": {
+   "ready": true,
+   "done": true,
+   "requests": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "missingRequests": 0,
+   "detail": [],
+   "mechanisms": []
+  }
+ },
+ "neededOutsideTrace": {
+  "files": 0,
+  "bytes": 0,
+  "sample": []
+ },
+ "artifact": {
+  "A1Files": 2104,
+  "A1Bytes": 107640703,
+  "A2Files": 381,
+  "A2Bytes": 18979054
+ }
+}

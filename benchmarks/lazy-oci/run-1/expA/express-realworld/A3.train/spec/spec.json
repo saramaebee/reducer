@@ -1,0 +1,54 @@
+{
+ "app": "express-realworld",
+ "mode": "train",
+ "argv": [
+  "/mnt/app/dist/api/main.js"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production",
+  "PORT": "3409",
+  "DATABASE_URL": "postgresql://sara:reducer@reducer-pg:5432/reducer_ws_express?schema=public",
+  "JWT_SECRET": "hydration-probe-secret"
+ },
+ "setup": [
+  "createdb -h 127.0.0.1 -U sara reducer_ws_express 2>/dev/null || true",
+  "npx --no-install prisma migrate deploy || npx prisma migrate deploy || true"
+ ],
+ "ready": {
+  "kind": "stdout",
+  "value": "server up on port",
+  "timeoutMs": 180000
+ },
+ "settleMs": 1000,
+ "baseUrl": "http://127.0.0.1:3409",
+ "port": 3409,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "common",
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/"
+    },
+    {
+     "method": "GET",
+     "path": "/api/tags"
+    },
+    {
+     "method": "GET",
+     "path": "/api/articles"
+    },
+    {
+     "method": "GET",
+     "path": "/api/articles?limit=5&offset=0"
+    },
+    {
+     "method": "GET",
+     "path": "/api/articles/no-such-article-slug"
+    }
+   ]
+  }
+ ]
+}

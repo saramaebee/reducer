@@ -1,0 +1,3369 @@
+{
+ "app": "express-realworld",
+ "sha": "30b68e1e881462b2f4164ea09ab4c4f5699c7b0b",
+ "tree": "linux",
+ "criterion": "native/ORM-heavy (the Prisma case)",
+ "universe": {
+  "files": 2104,
+  "bytes": 107640703
+ },
+ "images": {
+  "base": {
+   "blob": "97b399337c0ecaa96eac2d8b061c7eaf8cfcad96480117cffe89832ce58b176e",
+   "blobBytes": 25735738,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 0
+  },
+  "B2": {
+   "blob": "aaf694e7658039705639a2682e18d228bc7dc40a0a23371e6aa03f0a78da9abf",
+   "blobBytes": 25735471,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 318
+  },
+  "B2d": {
+   "blob": "10e93a160fc364c43167f3da995984f1199175bd5b32780031674fce435f5cdc",
+   "blobBytes": 25735286,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 709
+  },
+  "B3a": {
+   "blob": "3625b93a9668a8e429a643d02ff4f99d5e7635c8886b2ca3d08cb1c16dec4c45",
+   "blobBytes": 25735747,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 565
+  },
+  "B3b": {
+   "blob": "39deb44be63faac0442a7c6139c21ec4700f429402ae0625886c59012d5f1880",
+   "blobBytes": 25735498,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 412
+  },
+  "A3": {
+   "blob": "f0d37e06a32b0e9b313b3ffc40e84fa7b87db226eae6fb15a04c3471d71e7552",
+   "blobBytes": 25735689,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 381
+  }
+ },
+ "contentDigest": "bc84a1f6316c247eb28fbf910fe7c6e36149e7c171a138ae8e0557aa7c8d582d",
+ "train": {
+  "files": 318,
+  "bytes": 18223034
+ },
+ "byArm": {
+  "B0": {
+   "n": 5,
+   "failed": 0,
+   "tProcMs": {
+    "median": 290,
+    "min": 287,
+    "max": 337
+   },
+   "tReadyMs": {
+    "median": 1928,
+    "min": 1630,
+    "max": 2081
+   },
+   "tReq1Ms": {
+    "median": 3116,
+    "min": 2818,
+    "max": 3264
+   },
+   "tEndMs": {
+    "median": 3349,
+    "min": 3064,
+    "max": 3507
+   },
+   "remoteRequests": {
+    "median": 77,
+    "min": 70,
+    "max": 86
+   },
+   "remoteBytes": {
+    "median": 22584740,
+    "min": 22119804,
+    "max": 24776381
+   },
+   "bytesAtProc": {
+    "median": 365646,
+    "min": 365646,
+    "max": 716959
+   },
+   "bytesAtReady": {
+    "median": 13093728,
+    "min": 11249762,
+    "max": 14186950
+   },
+   "bytesAtReq1": {
+    "median": 20683507,
+    "min": 19124715,
+    "max": 22414460
+   },
+   "reqAtReady": {
+    "median": 47,
+    "min": 40,
+    "max": 51
+   },
+   "prefetchBytes": {
+    "median": 22413312,
+    "min": 20447232,
+    "max": 24903680
+   },
+   "prefetchRequests": {
+    "median": 171,
+    "min": 156,
+    "max": 190
+   },
+   "neededFiles": {
+    "median": 327,
+    "min": 327,
+    "max": 327
+   },
+   "neededBytes": {
+    "median": 18312702,
+    "min": 18312702,
+    "max": 18312702
+   },
+   "prefetchedFiles": 2104,
+   "prefetchedFileBytes": 107640703,
+   "precision": {
+    "median": 0.17012804162009235,
+    "min": 0.17012804162009235,
+    "max": 0.17012804162009235
+   },
+   "recall": {
+    "median": 1,
+    "min": 1,
+    "max": 1
+   },
+   "wasteBytes": {
+    "median": 89328001,
+    "min": 89328001,
+    "max": 89328001
+   },
+   "unexpectedMissFiles": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "unexpectedMissBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "faultAmplification": {
+    "median": 0.23547400611620795,
+    "min": 0.21406727828746178,
+    "max": 0.26299694189602446
+   },
+   "remoteOpsPerMB": {
+    "median": 3.498650962642639,
+    "min": 3.318307883740742,
+    "max": 3.648407557847355
+   },
+   "latencyP50": {
+    "median": 6,
+    "min": 5,
+    "max": 6
+   },
+   "latencyP95": {
+    "median": 182,
+    "min": 180,
+    "max": 186
+   },
+   "latencyP99": {
+    "median": 182,
+    "min": 180,
+    "max": 186
+   },
+   "latencyFirst": {
+    "median": 182,
+    "min": 180,
+    "max": 186
+   }
+  },
+  "B1": {
+   "n": 5,
+   "failed": 0,
+   "tProcMs": {
+    "median": 71,
+    "min": 67,
+    "max": 71
+   },
+   "tReadyMs": {
+    "median": 1613,
+    "min": 1600,
+    "max": 1627
+   },
+   "tReq1Ms": {
+    "median": 2796,
+    "min": 2780,
+    "max": 2825
+   },
+   "tEndMs": {
+    "median": 3036,
+    "min": 3011,
+    "max": 3062
+   },
+   "remoteRequests": {
+    "median": 37,
+    "min": 37,
+    "max": 37
+   },
+   "remoteBytes": {
+    "median": 11231229,
+    "min": 11231229,
+    "max": 11231229
+   },
+   "bytesAtProc": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "bytesAtReady": {
+    "median": 4275587,
+    "min": 4264271,
+    "max": 4275587
+   },
+   "bytesAtReq1": {
+    "median": 11231229,
+    "min": 11231229,
+    "max": 11231229
+   },
+   "reqAtReady": {
+    "median": 26,
+    "min": 25,
+    "max": 26
+   },
+   "prefetchBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "prefetchRequests": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "neededFiles": {
+    "median": 327,
+    "min": 327,
+    "max": 327
+   },
+   "neededBytes": {
+    "median": 18312702,
+    "min": 18312702,
+    "max": 18312702
+   },
+   "prefetchedFiles": 0,
+   "prefetchedFileBytes": 0,
+   "precision": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "recall": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "wasteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "unexpectedMissFiles": {
+    "median": 327,
+    "min": 327,
+    "max": 327
+   },
+   "unexpectedMissBytes": {
+    "median": 18312702,
+    "min": 18312702,
+    "max": 18312702
+   },
+   "faultAmplification": {
+    "median": 0.11314984709480122,
+    "min": 0.11314984709480122,
+    "max": 0.11314984709480122
+   },
+   "remoteOpsPerMB": {
+    "median": 3.4544137600613434,
+    "min": 3.4544137600613434,
+    "max": 3.4544137600613434
+   },
+   "latencyP50": {
+    "median": 5,
+    "min": 5,
+    "max": 6
+   },
+   "latencyP95": {
+    "median": 181,
+    "min": 177,
+    "max": 189
+   },
+   "latencyP99": {
+    "median": 181,
+    "min": 177,
+    "max": 189
+   },
+   "latencyFirst": {
+    "median": 181,
+    "min": 177,
+    "max": 189
+   }
+  },
+  "B2": {
+   "n": 5,
+   "failed": 0,
+   "tProcMs": {
+    "median": 72,
+    "min": 68,
+    "max": 75
+   },
+   "tReadyMs": {
+    "median": 491,
+    "min": 487,
+    "max": 498
+   },
+   "tReq1Ms": {
+    "median": 1983,
+    "min": 1934,
+    "max": 2021
+   },
+   "tEndMs": {
+    "median": 2206,
+    "min": 2178,
+    "max": 2254
+   },
+   "remoteRequests": {
+    "median": 26,
+    "min": 26,
+    "max": 28
+   },
+   "remoteBytes": {
+    "median": 10602825,
+    "min": 10272538,
+    "max": 10715755
+   },
+   "bytesAtProc": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "bytesAtReady": {
+    "median": 1974716,
+    "min": 1587878,
+    "max": 2158191
+   },
+   "bytesAtReq1": {
+    "median": 10602825,
+    "min": 10272538,
+    "max": 10715755
+   },
+   "reqAtReady": {
+    "median": 10,
+    "min": 9,
+    "max": 11
+   },
+   "prefetchBytes": {
+    "median": 8438211,
+    "min": 8438211,
+    "max": 8438211
+   },
+   "prefetchRequests": {
+    "median": 40,
+    "min": 40,
+    "max": 40
+   },
+   "neededFiles": {
+    "median": 327,
+    "min": 327,
+    "max": 327
+   },
+   "neededBytes": {
+    "median": 18312702,
+    "min": 18312702,
+    "max": 18312702
+   },
+   "prefetchedFiles": 318,
+   "prefetchedFileBytes": 18223034,
+   "precision": {
+    "median": 1,
+    "min": 1,
+    "max": 1
+   },
+   "recall": {
+    "median": 0.9951035079367315,
+    "min": 0.9951035079367315,
+    "max": 0.9951035079367315
+   },
+   "wasteBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "unexpectedMissFiles": {
+    "median": 9,
+    "min": 9,
+    "max": 9
+   },
+   "unexpectedMissBytes": {
+    "median": 89668,
+    "min": 89668,
+    "max": 89668
+   },
+   "faultAmplification": {
+    "median": 0.07951070336391437,
+    "min": 0.07951070336391437,
+    "max": 0.0856269113149847
+   },
+   "remoteOpsPerMB": {
+    "median": 2.601589621038627,
+    "min": 2.544195532652622,
+    "max": 2.8581182177179585
+   },
+   "latencyP50": {
+    "median": 6,
+    "min": 5,
+    "max": 7
+   },
+   "latencyP95": {
+    "median": 476,
+    "min": 442,
+    "max": 524
+   },
+   "latencyP99": {
+    "median": 476,
+    "min": 442,
+    "max": 524
+   },
+   "latencyFirst": {
+    "median": 476,
+    "min": 442,
+    "max": 524
+   }
+  },
+  "B2d": {
+   "n": 5,
+   "failed": 0,
+   "tProcMs": {
+    "median": 69,
+    "min": 68,
+    "max": 73
+   },
+   "tReadyMs": {
+    "median": 795,
+    "min": 697,
+    "max": 1310
+   },
+   "tReq1Ms": {
+    "median": 2271,
+    "min": 2111,
+    "max": 2927
+   },
+   "tEndMs": {
+    "median": 2504,
+    "min": 2350,
+    "max": 3170
+   },
+   "remoteRequests": {
+    "median": 30,
+    "min": 28,
+    "max": 33
+   },
+   "remoteBytes": {
+    "median": 11980082,
+    "min": 11949902,
+    "max": 12662155
+   },
+   "bytesAtProc": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "bytesAtReady": {
+    "median": 5003113,
+    "min": 4252224,
+    "max": 10934938
+   },
+   "bytesAtReq1": {
+    "median": 11980082,
+    "min": 11949902,
+    "max": 12662155
+   },
+   "reqAtReady": {
+    "median": 17,
+    "min": 14,
+    "max": 31
+   },
+   "prefetchBytes": {
+    "median": 9648224,
+    "min": 9648224,
+    "max": 9648224
+   },
+   "prefetchRequests": {
+    "median": 104,
+    "min": 104,
+    "max": 104
+   },
+   "neededFiles": {
+    "median": 327,
+    "min": 327,
+    "max": 327
+   },
+   "neededBytes": {
+    "median": 18312702,
+    "min": 18312702,
+    "max": 18312702
+   },
+   "prefetchedFiles": 709,
+   "prefetchedFileBytes": 21760220,
+   "precision": {
+    "median": 0.8374471397807559,
+    "min": 0.8374471397807559,
+    "max": 0.8374471397807559
+   },
+   "recall": {
+    "median": 0.9951035079367315,
+    "min": 0.9951035079367315,
+    "max": 0.9951035079367315
+   },
+   "wasteBytes": {
+    "median": 3537186,
+    "min": 3537186,
+    "max": 3537186
+   },
+   "unexpectedMissFiles": {
+    "median": 9,
+    "min": 9,
+    "max": 9
+   },
+   "unexpectedMissBytes": {
+    "median": 89668,
+    "min": 89668,
+    "max": 89668
+   },
+   "faultAmplification": {
+    "median": 0.09174311926605505,
+    "min": 0.0856269113149847,
+    "max": 0.10091743119266056
+   },
+   "remoteOpsPerMB": {
+    "median": 2.632429956329349,
+    "min": 2.318730737382381,
+    "max": 2.888378226459552
+   },
+   "latencyP50": {
+    "median": 6,
+    "min": 5,
+    "max": 6
+   },
+   "latencyP95": {
+    "median": 467,
+    "min": 408,
+    "max": 609
+   },
+   "latencyP99": {
+    "median": 467,
+    "min": 408,
+    "max": 609
+   },
+   "latencyFirst": {
+    "median": 467,
+    "min": 408,
+    "max": 609
+   }
+  },
+  "B3a": {
+   "n": 5,
+   "failed": 0,
+   "tProcMs": {
+    "median": 70,
+    "min": 65,
+    "max": 76
+   },
+   "tReadyMs": {
+    "median": 1211,
+    "min": 1104,
+    "max": 1310
+   },
+   "tReq1Ms": {
+    "median": 2385,
+    "min": 2272,
+    "max": 2500
+   },
+   "tEndMs": {
+    "median": 2636,
+    "min": 2504,
+    "max": 2742
+   },
+   "remoteRequests": {
+    "median": 64,
+    "min": 63,
+    "max": 68
+   },
+   "remoteBytes": {
+    "median": 24022044,
+    "min": 23379084,
+    "max": 24099324
+   },
+   "bytesAtProc": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "bytesAtReady": {
+    "median": 10571627,
+    "min": 10183047,
+    "max": 11733884
+   },
+   "bytesAtReq1": {
+    "median": 23400084,
+    "min": 23367998,
+    "max": 24022044
+   },
+   "reqAtReady": {
+    "median": 29,
+    "min": 27,
+    "max": 30
+   },
+   "prefetchBytes": {
+    "median": 40302600,
+    "min": 40302600,
+    "max": 40302600
+   },
+   "prefetchRequests": {
+    "median": 167,
+    "min": 167,
+    "max": 167
+   },
+   "neededFiles": {
+    "median": 327,
+    "min": 327,
+    "max": 327
+   },
+   "neededBytes": {
+    "median": 18312702,
+    "min": 18312702,
+    "max": 18312702
+   },
+   "prefetchedFiles": 565,
+   "prefetchedFileBytes": 96192838,
+   "precision": {
+    "median": 0.19037490088399306,
+    "min": 0.19037490088399306,
+    "max": 0.19037490088399306
+   },
+   "recall": {
+    "median": 1,
+    "min": 1,
+    "max": 1
+   },
+   "wasteBytes": {
+    "median": 77880136,
+    "min": 77880136,
+    "max": 77880136
+   },
+   "unexpectedMissFiles": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "unexpectedMissBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "faultAmplification": {
+    "median": 0.19571865443425077,
+    "min": 0.1926605504587156,
+    "max": 0.20795107033639143
+   },
+   "remoteOpsPerMB": {
+    "median": 2.8372872849620956,
+    "min": 2.793636711347294,
+    "max": 2.9587206678494384
+   },
+   "latencyP50": {
+    "median": 6,
+    "min": 5,
+    "max": 6
+   },
+   "latencyP95": {
+    "median": 176,
+    "min": 166,
+    "max": 181
+   },
+   "latencyP99": {
+    "median": 176,
+    "min": 166,
+    "max": 181
+   },
+   "latencyFirst": {
+    "median": 176,
+    "min": 166,
+    "max": 181
+   }
+  },
+  "B3b": {
+   "n": 5,
+   "failed": 0,
+   "tProcMs": {
+    "median": 71,
+    "min": 69,
+    "max": 72
+   },
+   "tReadyMs": {
+    "median": 893,
+    "min": 695,
+    "max": 1301
+   },
+   "tReq1Ms": {
+    "median": 2087,
+    "min": 1887,
+    "max": 2488
+   },
+   "tEndMs": {
+    "median": 2322,
+    "min": 2117,
+    "max": 2720
+   },
+   "remoteRequests": {
+    "median": 27,
+    "min": 26,
+    "max": 28
+   },
+   "remoteBytes": {
+    "median": 10266665,
+    "min": 9534581,
+    "max": 10398482
+   },
+   "bytesAtProc": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "bytesAtReady": {
+    "median": 6275940,
+    "min": 3900545,
+    "max": 10398482
+   },
+   "bytesAtReq1": {
+    "median": 10266665,
+    "min": 9534581,
+    "max": 10398482
+   },
+   "reqAtReady": {
+    "median": 19,
+    "min": 13,
+    "max": 27
+   },
+   "prefetchBytes": {
+    "median": 8661748,
+    "min": 8661748,
+    "max": 8661748
+   },
+   "prefetchRequests": {
+    "median": 70,
+    "min": 70,
+    "max": 70
+   },
+   "neededFiles": {
+    "median": 327,
+    "min": 327,
+    "max": 327
+   },
+   "neededBytes": {
+    "median": 18312702,
+    "min": 18312702,
+    "max": 18312702
+   },
+   "prefetchedFiles": 412,
+   "prefetchedFileBytes": 18635965,
+   "precision": {
+    "median": 0.9826538094485582,
+    "min": 0.9826538094485582,
+    "max": 0.9826538094485582
+   },
+   "recall": {
+    "median": 1,
+    "min": 1,
+    "max": 1
+   },
+   "wasteBytes": {
+    "median": 323263,
+    "min": 323263,
+    "max": 323263
+   },
+   "unexpectedMissFiles": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "unexpectedMissBytes": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "faultAmplification": {
+    "median": 0.08256880733944955,
+    "min": 0.07951070336391437,
+    "max": 0.0856269113149847
+   },
+   "remoteOpsPerMB": {
+    "median": 2.7576191489641477,
+    "min": 2.664520427437812,
+    "max": 2.8593785086098698
+   },
+   "latencyP50": {
+    "median": 6,
+    "min": 5,
+    "max": 6
+   },
+   "latencyP95": {
+    "median": 183,
+    "min": 179,
+    "max": 192
+   },
+   "latencyP99": {
+    "median": 183,
+    "min": 179,
+    "max": 192
+   },
+   "latencyFirst": {
+    "median": 183,
+    "min": 179,
+    "max": 192
+   }
+  }
+ },
+ "orderDrift": -0.05468217631231938,
+ "silentCommandTrials": [],
+ "correctness": {
+  "B2.rep1": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3a.rep1": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B0.rep5": {
+   "compared": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "detail": []
+  },
+  "B0.rep2": {
+   "compared": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "detail": []
+  },
+  "B0.rep3": {
+   "compared": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "detail": []
+  },
+  "B0.rep4": {
+   "compared": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "detail": []
+  },
+  "B3b.rep3": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3b.rep4": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2d.rep4": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2d.rep3": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B1.rep4": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B1.rep3": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2d.rep2": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2d.rep5": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3b.rep5": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3b.rep2": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B1.rep2": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B1.rep5": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3a.rep5": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3a.rep2": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2.rep2": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2.rep5": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3a.rep3": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3a.rep4": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2.rep4": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2.rep3": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B0.rep1": {
+   "compared": 0,
+   "statusMismatch": 0,
+   "bodyMismatch": 0,
+   "detail": []
+  },
+  "B1.rep1": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B2d.rep1": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  },
+  "B3b.rep1": {
+   "compared": 17,
+   "statusMismatch": 0,
+   "bodyMismatch": 11,
+   "detail": []
+  }
+ },
+ "trials": [
+  {
+   "arm": "B2",
+   "rep": 1,
+   "order": 2,
+   "ok": true,
+   "tProc": 74,
+   "tReady": 494,
+   "tReq1": 2021,
+   "tWorkloadEnd": 2254,
+   "remoteRequests": 26,
+   "remoteBytes": 10618368,
+   "remoteLatencyMs": 4558,
+   "prefetchBytes": 8438211,
+   "prefetchRequests": 40,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 9,
+    "bytes": 1986635
+   },
+   "atReq1": {
+    "req": 26,
+    "bytes": 10618368
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 318,
+   "prefetchedFileBytes": 18223034,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 1,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.07951070336391437,
+   "remoteOpsPerMB": 2.567529774820387,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 524,
+    "p99": 524,
+    "first": 524
+   }
+  },
+  {
+   "arm": "B3a",
+   "rep": 1,
+   "order": 4,
+   "ok": true,
+   "tProc": 70,
+   "tReady": 1211,
+   "tReq1": 2385,
+   "tWorkloadEnd": 2621,
+   "remoteRequests": 63,
+   "remoteBytes": 23400084,
+   "remoteLatencyMs": 8846,
+   "prefetchBytes": 40302600,
+   "prefetchRequests": 167,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 28,
+    "bytes": 10571627
+   },
+   "atReq1": {
+    "req": 63,
+    "bytes": 23400084
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 565,
+   "prefetchedFileBytes": 96192838,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.19037490088399306,
+   "recall": 1,
+   "wasteBytes": 77880136,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.1926605504587156,
+   "remoteOpsPerMB": 2.82307909663914,
+   "curve": [
+    [
+     65,
+     0,
+     0
+    ],
+    [
+     170,
+     1,
+     20441
+    ],
+    [
+     273,
+     2,
+     189317
+    ],
+    [
+     374,
+     4,
+     1179598
+    ],
+    [
+     476,
+     5,
+     1698070
+    ],
+    [
+     581,
+     7,
+     3063114
+    ],
+    [
+     685,
+     8,
+     3634513
+    ],
+    [
+     790,
+     12,
+     5783125
+    ],
+    [
+     893,
+     15,
+     6763213
+    ],
+    [
+     997,
+     19,
+     8669217
+    ],
+    [
+     1098,
+     24,
+     9982336
+    ],
+    [
+     1200,
+     28,
+     10571627
+    ],
+    [
+     1302,
+     30,
+     11570244
+    ],
+    [
+     1405,
+     33,
+     13193010
+    ],
+    [
+     1507,
+     34,
+     13736246
+    ],
+    [
+     1609,
+     37,
+     15425074
+    ],
+    [
+     1711,
+     39,
+     16625545
+    ],
+    [
+     1813,
+     44,
+     18524584
+    ],
+    [
+     1915,
+     49,
+     19603891
+    ],
+    [
+     2018,
+     54,
+     20880654
+    ],
+    [
+     2120,
+     58,
+     22077730
+    ],
+    [
+     2221,
+     63,
+     23400084
+    ],
+    [
+     2325,
+     63,
+     23400084
+    ],
+    [
+     2427,
+     63,
+     23400084
+    ],
+    [
+     2534,
+     63,
+     23400084
+    ],
+    [
+     2636,
+     63,
+     23400084
+    ],
+    [
+     2743,
+     63,
+     23400084
+    ],
+    [
+     2850,
+     63,
+     23400084
+    ]
+   ],
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 172,
+    "p99": 172,
+    "first": 172
+   }
+  },
+  {
+   "arm": "B0",
+   "rep": 5,
+   "order": 26,
+   "ok": true,
+   "tProc": 326,
+   "tReady": 1874,
+   "tReq1": 3065,
+   "tWorkloadEnd": 3301,
+   "remoteRequests": 78,
+   "remoteBytes": 22417706,
+   "remoteLatencyMs": 5989,
+   "prefetchBytes": 22413312,
+   "prefetchRequests": 171,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 4,
+    "bytes": 523627
+   },
+   "atReady": {
+    "req": 50,
+    "bytes": 13093728
+   },
+   "atReq1": {
+    "req": 67,
+    "bytes": 20683507
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 2104,
+   "prefetchedFileBytes": 107640703,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.17012804162009235,
+   "recall": 1,
+   "wasteBytes": 89328001,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.23853211009174313,
+   "remoteOpsPerMB": 3.648407557847355,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 186,
+    "p99": 186,
+    "first": 186
+   }
+  },
+  {
+   "arm": "B0",
+   "rep": 2,
+   "order": 11,
+   "ok": true,
+   "tProc": 287,
+   "tReady": 1928,
+   "tReq1": 3116,
+   "tWorkloadEnd": 3349,
+   "remoteRequests": 86,
+   "remoteBytes": 24776381,
+   "remoteLatencyMs": 6411,
+   "prefetchBytes": 24903680,
+   "prefetchRequests": 190,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 4,
+    "bytes": 365646
+   },
+   "atReady": {
+    "req": 51,
+    "bytes": 14186950
+   },
+   "atReq1": {
+    "req": 76,
+    "bytes": 22414460
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 2104,
+   "prefetchedFileBytes": 107640703,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.17012804162009235,
+   "recall": 1,
+   "wasteBytes": 89328001,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.26299694189602446,
+   "remoteOpsPerMB": 3.639657301040051,
+   "curve": [
+    [
+     56,
+     0,
+     0
+    ],
+    [
+     159,
+     1,
+     20432
+    ],
+    [
+     262,
+     4,
+     365646
+    ],
+    [
+     365,
+     5,
+     998290
+    ],
+    [
+     472,
+     6,
+     1513908
+    ],
+    [
+     574,
+     10,
+     3563270
+    ],
+    [
+     676,
+     12,
+     4246373
+    ],
+    [
+     778,
+     15,
+     4942778
+    ],
+    [
+     882,
+     17,
+     5472622
+    ],
+    [
+     990,
+     20,
+     7267767
+    ],
+    [
+     1096,
+     21,
+     7744247
+    ],
+    [
+     1199,
+     24,
+     8872581
+    ],
+    [
+     1303,
+     27,
+     9557117
+    ],
+    [
+     1405,
+     29,
+     10054135
+    ],
+    [
+     1510,
+     36,
+     11074370
+    ],
+    [
+     1611,
+     41,
+     11804026
+    ],
+    [
+     1714,
+     44,
+     12404816
+    ],
+    [
+     1816,
+     50,
+     13646653
+    ],
+    [
+     1917,
+     51,
+     14186950
+    ],
+    [
+     2019,
+     52,
+     14716494
+    ],
+    [
+     2123,
+     54,
+     15836427
+    ],
+    [
+     2226,
+     55,
+     16468407
+    ],
+    [
+     2330,
+     56,
+     16948558
+    ],
+    [
+     2437,
+     58,
+     18149029
+    ],
+    [
+     2545,
+     59,
+     18663293
+    ],
+    [
+     2651,
+     60,
+     19124715
+    ],
+    [
+     2755,
+     64,
+     20218920
+    ],
+    [
+     2858,
+     66,
+     20892775
+    ],
+    [
+     2961,
+     70,
+     21775882
+    ],
+    [
+     3062,
+     76,
+     22414460
+    ],
+    [
+     3165,
+     80,
+     23125765
+    ],
+    [
+     3267,
+     84,
+     24174120
+    ],
+    [
+     3368,
+     86,
+     24776381
+    ],
+    [
+     3469,
+     93,
+     25735738
+    ],
+    [
+     3572,
+     93,
+     25735738
+    ],
+    [
+     3675,
+     93,
+     25735738
+    ]
+   ],
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 182,
+    "p99": 182,
+    "first": 182
+   }
+  },
+  {
+   "arm": "B0",
+   "rep": 3,
+   "order": 16,
+   "ok": true,
+   "tProc": 337,
+   "tReady": 2081,
+   "tReq1": 3264,
+   "tWorkloadEnd": 3507,
+   "remoteRequests": 77,
+   "remoteBytes": 23077567,
+   "remoteLatencyMs": 6246,
+   "prefetchBytes": 22413312,
+   "prefetchRequests": 171,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 4,
+    "bytes": 716959
+   },
+   "atReady": {
+    "req": 47,
+    "bytes": 12018543
+   },
+   "atReq1": {
+    "req": 66,
+    "bytes": 21093995
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 2104,
+   "prefetchedFileBytes": 107640703,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.17012804162009235,
+   "recall": 1,
+   "wasteBytes": 89328001,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.23547400611620795,
+   "remoteOpsPerMB": 3.498650962642639,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 180,
+    "p99": 180,
+    "first": 180
+   }
+  },
+  {
+   "arm": "B0",
+   "rep": 4,
+   "order": 21,
+   "ok": true,
+   "tProc": 288,
+   "tReady": 1630,
+   "tReq1": 2818,
+   "tWorkloadEnd": 3064,
+   "remoteRequests": 70,
+   "remoteBytes": 22119804,
+   "remoteLatencyMs": 4992,
+   "prefetchBytes": 20447232,
+   "prefetchRequests": 156,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 4,
+    "bytes": 365646
+   },
+   "atReady": {
+    "req": 40,
+    "bytes": 11249762
+   },
+   "atReq1": {
+    "req": 56,
+    "bytes": 19124715
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 2104,
+   "prefetchedFileBytes": 107640703,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.17012804162009235,
+   "recall": 1,
+   "wasteBytes": 89328001,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.21406727828746178,
+   "remoteOpsPerMB": 3.318307883740742,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 181,
+    "p99": 181,
+    "first": 181
+   }
+  },
+  {
+   "arm": "B3b",
+   "rep": 3,
+   "order": 15,
+   "ok": true,
+   "tProc": 72,
+   "tReady": 1301,
+   "tReq1": 2488,
+   "tWorkloadEnd": 2720,
+   "remoteRequests": 28,
+   "remoteBytes": 10368800,
+   "remoteLatencyMs": 4533,
+   "prefetchBytes": 8661748,
+   "prefetchRequests": 70,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 27,
+    "bytes": 9427133
+   },
+   "atReq1": {
+    "req": 28,
+    "bytes": 10368800
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 412,
+   "prefetchedFileBytes": 18635965,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.9826538094485582,
+   "recall": 1,
+   "wasteBytes": 323263,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.0856269113149847,
+   "remoteOpsPerMB": 2.8315839827173828,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 179,
+    "p99": 179,
+    "first": 179
+   }
+  },
+  {
+   "arm": "B3b",
+   "rep": 4,
+   "order": 20,
+   "ok": true,
+   "tProc": 71,
+   "tReady": 792,
+   "tReq1": 1982,
+   "tWorkloadEnd": 2212,
+   "remoteRequests": 26,
+   "remoteBytes": 9534581,
+   "remoteLatencyMs": 4164,
+   "prefetchBytes": 8661748,
+   "prefetchRequests": 70,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 15,
+    "bytes": 4393412
+   },
+   "atReq1": {
+    "req": 26,
+    "bytes": 9534581
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 412,
+   "prefetchedFileBytes": 18635965,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.9826538094485582,
+   "recall": 1,
+   "wasteBytes": 323263,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.07951070336391437,
+   "remoteOpsPerMB": 2.8593785086098698,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 182,
+    "p99": 182,
+    "first": 182
+   }
+  },
+  {
+   "arm": "B2d",
+   "rep": 4,
+   "order": 18,
+   "ok": true,
+   "tProc": 68,
+   "tReady": 1310,
+   "tReq1": 2927,
+   "tWorkloadEnd": 3170,
+   "remoteRequests": 33,
+   "remoteBytes": 11980082,
+   "remoteLatencyMs": 5114,
+   "prefetchBytes": 9648224,
+   "prefetchRequests": 104,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 31,
+    "bytes": 10934938
+   },
+   "atReq1": {
+    "req": 33,
+    "bytes": 11980082
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 709,
+   "prefetchedFileBytes": 21760220,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 0.8374471397807559,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 3537186,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.10091743119266056,
+   "remoteOpsPerMB": 2.888378226459552,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 609,
+    "p99": 609,
+    "first": 609
+   }
+  },
+  {
+   "arm": "B2d",
+   "rep": 3,
+   "order": 13,
+   "ok": true,
+   "tProc": 73,
+   "tReady": 698,
+   "tReq1": 2222,
+   "tWorkloadEnd": 2451,
+   "remoteRequests": 28,
+   "remoteBytes": 12524759,
+   "remoteLatencyMs": 5093,
+   "prefetchBytes": 9648224,
+   "prefetchRequests": 104,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 14,
+    "bytes": 4252224
+   },
+   "atReq1": {
+    "req": 28,
+    "bytes": 12524759
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 709,
+   "prefetchedFileBytes": 21760220,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 0.8374471397807559,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 3537186,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.0856269113149847,
+   "remoteOpsPerMB": 2.344167101339036,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 516,
+    "p99": 516,
+    "first": 516
+   }
+  },
+  {
+   "arm": "B1",
+   "rep": 4,
+   "order": 22,
+   "ok": true,
+   "tProc": 71,
+   "tReady": 1627,
+   "tReq1": 2825,
+   "tWorkloadEnd": 3062,
+   "remoteRequests": 37,
+   "remoteBytes": 11231229,
+   "remoteLatencyMs": 2205,
+   "prefetchBytes": 0,
+   "prefetchRequests": 0,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 25,
+    "bytes": 4264271
+   },
+   "atReq1": {
+    "req": 37,
+    "bytes": 11231229
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 0,
+   "prefetchedFileBytes": 0,
+   "hitFiles": 0,
+   "hitBytes": 0,
+   "precision": 0,
+   "recall": 0,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 327,
+   "unexpectedMissBytes": 18312702,
+   "faultAmplification": 0.11314984709480122,
+   "remoteOpsPerMB": 3.4544137600613434,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 189,
+    "p99": 189,
+    "first": 189
+   }
+  },
+  {
+   "arm": "B1",
+   "rep": 3,
+   "order": 17,
+   "ok": true,
+   "tProc": 71,
+   "tReady": 1617,
+   "tReq1": 2810,
+   "tWorkloadEnd": 3040,
+   "remoteRequests": 37,
+   "remoteBytes": 11231229,
+   "remoteLatencyMs": 2174,
+   "prefetchBytes": 0,
+   "prefetchRequests": 0,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 26,
+    "bytes": 4275587
+   },
+   "atReq1": {
+    "req": 37,
+    "bytes": 11231229
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 0,
+   "prefetchedFileBytes": 0,
+   "hitFiles": 0,
+   "hitBytes": 0,
+   "precision": 0,
+   "recall": 0,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 327,
+   "unexpectedMissBytes": 18312702,
+   "faultAmplification": 0.11314984709480122,
+   "remoteOpsPerMB": 3.4544137600613434,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 186,
+    "p99": 186,
+    "first": 186
+   }
+  },
+  {
+   "arm": "B2d",
+   "rep": 2,
+   "order": 8,
+   "ok": true,
+   "tProc": 69,
+   "tReady": 1307,
+   "tReq1": 2771,
+   "tWorkloadEnd": 3008,
+   "remoteRequests": 32,
+   "remoteBytes": 11962588,
+   "remoteLatencyMs": 4976,
+   "prefetchBytes": 9648224,
+   "prefetchRequests": 104,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 30,
+    "bytes": 10917444
+   },
+   "atReq1": {
+    "req": 32,
+    "bytes": 11962588
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 709,
+   "prefetchedFileBytes": 21760220,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 0.8374471397807559,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 3537186,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.09785932721712538,
+   "remoteOpsPerMB": 2.804947558170523,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 460,
+    "p99": 460,
+    "first": 460
+   }
+  },
+  {
+   "arm": "B2d",
+   "rep": 5,
+   "order": 29,
+   "ok": true,
+   "tProc": 71,
+   "tReady": 697,
+   "tReq1": 2111,
+   "tWorkloadEnd": 2350,
+   "remoteRequests": 28,
+   "remoteBytes": 12662155,
+   "remoteLatencyMs": 4961,
+   "prefetchBytes": 9648224,
+   "prefetchRequests": 104,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 14,
+    "bytes": 4378203
+   },
+   "atReq1": {
+    "req": 28,
+    "bytes": 12662155
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 709,
+   "prefetchedFileBytes": 21760220,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 0.8374471397807559,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 3537186,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.0856269113149847,
+   "remoteOpsPerMB": 2.318730737382381,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 408,
+    "p99": 408,
+    "first": 408
+   }
+  },
+  {
+   "arm": "B3b",
+   "rep": 5,
+   "order": 25,
+   "ok": true,
+   "tProc": 69,
+   "tReady": 893,
+   "tReq1": 2087,
+   "tWorkloadEnd": 2322,
+   "remoteRequests": 27,
+   "remoteBytes": 10266665,
+   "remoteLatencyMs": 4209,
+   "prefetchBytes": 8661748,
+   "prefetchRequests": 70,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 19,
+    "bytes": 6275940
+   },
+   "atReq1": {
+    "req": 27,
+    "bytes": 10266665
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 412,
+   "prefetchedFileBytes": 18635965,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.9826538094485582,
+   "recall": 1,
+   "wasteBytes": 323263,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.08256880733944955,
+   "remoteOpsPerMB": 2.7576191489641477,
+   "curve": [
+    [
+     58,
+     0,
+     0
+    ],
+    [
+     160,
+     2,
+     23363
+    ],
+    [
+     263,
+     4,
+     213565
+    ],
+    [
+     365,
+     8,
+     1132450
+    ],
+    [
+     467,
+     9,
+     1292122
+    ],
+    [
+     569,
+     13,
+     2993692
+    ],
+    [
+     672,
+     14,
+     3565091
+    ],
+    [
+     775,
+     17,
+     5716727
+    ],
+    [
+     877,
+     19,
+     6275940
+    ],
+    [
+     980,
+     21,
+     7281463
+    ],
+    [
+     1082,
+     25,
+     9201981
+    ],
+    [
+     1187,
+     27,
+     10266665
+    ],
+    [
+     1299,
+     27,
+     10266665
+    ],
+    [
+     1413,
+     27,
+     10266665
+    ],
+    [
+     1518,
+     27,
+     10266665
+    ],
+    [
+     1627,
+     27,
+     10266665
+    ],
+    [
+     1736,
+     27,
+     10266665
+    ],
+    [
+     1842,
+     27,
+     10266665
+    ],
+    [
+     1944,
+     27,
+     10266665
+    ],
+    [
+     2048,
+     27,
+     10266665
+    ],
+    [
+     2155,
+     27,
+     10266665
+    ],
+    [
+     2257,
+     27,
+     10266665
+    ],
+    [
+     2359,
+     27,
+     10266665
+    ],
+    [
+     2461,
+     27,
+     10266665
+    ],
+    [
+     2568,
+     27,
+     10266665
+    ]
+   ],
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 189,
+    "p99": 189,
+    "first": 189
+   }
+  },
+  {
+   "arm": "B3b",
+   "rep": 2,
+   "order": 10,
+   "ok": true,
+   "tProc": 71,
+   "tReady": 695,
+   "tReq1": 1887,
+   "tWorkloadEnd": 2117,
+   "remoteRequests": 26,
+   "remoteBytes": 10231851,
+   "remoteLatencyMs": 4225,
+   "prefetchBytes": 8661748,
+   "prefetchRequests": 70,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 13,
+    "bytes": 3900545
+   },
+   "atReq1": {
+    "req": 26,
+    "bytes": 10231851
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 412,
+   "prefetchedFileBytes": 18635965,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.9826538094485582,
+   "recall": 1,
+   "wasteBytes": 323263,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.07951070336391437,
+   "remoteOpsPerMB": 2.664520427437812,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 183,
+    "p99": 183,
+    "first": 183
+   }
+  },
+  {
+   "arm": "B1",
+   "rep": 2,
+   "order": 6,
+   "ok": true,
+   "tProc": 69,
+   "tReady": 1600,
+   "tReq1": 2780,
+   "tWorkloadEnd": 3011,
+   "remoteRequests": 37,
+   "remoteBytes": 11231229,
+   "remoteLatencyMs": 2167,
+   "prefetchBytes": 0,
+   "prefetchRequests": 0,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 25,
+    "bytes": 4264271
+   },
+   "atReq1": {
+    "req": 37,
+    "bytes": 11231229
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 0,
+   "prefetchedFileBytes": 0,
+   "hitFiles": 0,
+   "hitBytes": 0,
+   "precision": 0,
+   "recall": 0,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 327,
+   "unexpectedMissBytes": 18312702,
+   "faultAmplification": 0.11314984709480122,
+   "remoteOpsPerMB": 3.4544137600613434,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 177,
+    "p99": 177,
+    "first": 177
+   }
+  },
+  {
+   "arm": "B1",
+   "rep": 5,
+   "order": 27,
+   "ok": true,
+   "tProc": 67,
+   "tReady": 1613,
+   "tReq1": 2796,
+   "tWorkloadEnd": 3036,
+   "remoteRequests": 37,
+   "remoteBytes": 11231229,
+   "remoteLatencyMs": 2174,
+   "prefetchBytes": 0,
+   "prefetchRequests": 0,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 26,
+    "bytes": 4275587
+   },
+   "atReq1": {
+    "req": 37,
+    "bytes": 11231229
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 0,
+   "prefetchedFileBytes": 0,
+   "hitFiles": 0,
+   "hitBytes": 0,
+   "precision": 0,
+   "recall": 0,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 327,
+   "unexpectedMissBytes": 18312702,
+   "faultAmplification": 0.11314984709480122,
+   "remoteOpsPerMB": 3.4544137600613434,
+   "curve": [
+    [
+     56,
+     0,
+     0
+    ],
+    [
+     161,
+     1,
+     20432
+    ],
+    [
+     264,
+     2,
+     681925
+    ],
+    [
+     372,
+     3,
+     694197
+    ],
+    [
+     475,
+     5,
+     1653688
+    ],
+    [
+     578,
+     7,
+     1938788
+    ],
+    [
+     683,
+     9,
+     1940596
+    ],
+    [
+     785,
+     11,
+     2564652
+    ],
+    [
+     890,
+     13,
+     2582942
+    ],
+    [
+     993,
+     15,
+     2819288
+    ],
+    [
+     1095,
+     18,
+     2824656
+    ],
+    [
+     1196,
+     20,
+     2857295
+    ],
+    [
+     1301,
+     22,
+     2868378
+    ],
+    [
+     1404,
+     23,
+     3851410
+    ],
+    [
+     1506,
+     25,
+     4264271
+    ],
+    [
+     1607,
+     26,
+     4275587
+    ],
+    [
+     1710,
+     27,
+     4561147
+    ],
+    [
+     1812,
+     29,
+     5726095
+    ],
+    [
+     1917,
+     30,
+     6297494
+    ],
+    [
+     2024,
+     31,
+     6883840
+    ],
+    [
+     2134,
+     32,
+     7507463
+    ],
+    [
+     2237,
+     33,
+     8541553
+    ],
+    [
+     2345,
+     34,
+     9033551
+    ],
+    [
+     2451,
+     35,
+     9699797
+    ],
+    [
+     2560,
+     36,
+     10724174
+    ],
+    [
+     2662,
+     37,
+     11231229
+    ],
+    [
+     2769,
+     37,
+     11231229
+    ],
+    [
+     2874,
+     37,
+     11231229
+    ],
+    [
+     2976,
+     37,
+     11231229
+    ],
+    [
+     3079,
+     37,
+     11231229
+    ],
+    [
+     3184,
+     37,
+     11231229
+    ],
+    [
+     3294,
+     37,
+     11231229
+    ]
+   ],
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 181,
+    "p99": 181,
+    "first": 181
+   }
+  },
+  {
+   "arm": "B3a",
+   "rep": 5,
+   "order": 24,
+   "ok": true,
+   "tProc": 76,
+   "tReady": 1104,
+   "tReq1": 2272,
+   "tWorkloadEnd": 2504,
+   "remoteRequests": 68,
+   "remoteBytes": 24099324,
+   "remoteLatencyMs": 9097,
+   "prefetchBytes": 40302600,
+   "prefetchRequests": 167,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 27,
+    "bytes": 10183047
+   },
+   "atReq1": {
+    "req": 66,
+    "bytes": 23367998
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 565,
+   "prefetchedFileBytes": 96192838,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.19037490088399306,
+   "recall": 1,
+   "wasteBytes": 77880136,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.20795107033639143,
+   "remoteOpsPerMB": 2.9587206678494384,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 166,
+    "p99": 166,
+    "first": 166
+   }
+  },
+  {
+   "arm": "B3a",
+   "rep": 2,
+   "order": 9,
+   "ok": true,
+   "tProc": 67,
+   "tReady": 1301,
+   "tReq1": 2482,
+   "tWorkloadEnd": 2720,
+   "remoteRequests": 65,
+   "remoteBytes": 24022044,
+   "remoteLatencyMs": 9293,
+   "prefetchBytes": 40302600,
+   "prefetchRequests": 167,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 30,
+    "bytes": 11193587
+   },
+   "atReq1": {
+    "req": 65,
+    "bytes": 24022044
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 565,
+   "prefetchedFileBytes": 96192838,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.19037490088399306,
+   "recall": 1,
+   "wasteBytes": 77880136,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.19877675840978593,
+   "remoteOpsPerMB": 2.8372872849620956,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 176,
+    "p99": 176,
+    "first": 176
+   }
+  },
+  {
+   "arm": "B2",
+   "rep": 2,
+   "order": 7,
+   "ok": true,
+   "tProc": 70,
+   "tReady": 491,
+   "tReq1": 2012,
+   "tWorkloadEnd": 2244,
+   "remoteRequests": 28,
+   "remoteBytes": 10272538,
+   "remoteLatencyMs": 4436,
+   "prefetchBytes": 8438211,
+   "prefetchRequests": 40,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 11,
+    "bytes": 1587878
+   },
+   "atReq1": {
+    "req": 28,
+    "bytes": 10272538
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 318,
+   "prefetchedFileBytes": 18223034,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 1,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.0856269113149847,
+   "remoteOpsPerMB": 2.8581182177179585,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 516,
+    "p99": 516,
+    "first": 516
+   }
+  },
+  {
+   "arm": "B2",
+   "rep": 5,
+   "order": 28,
+   "ok": true,
+   "tProc": 75,
+   "tReady": 498,
+   "tReq1": 1983,
+   "tWorkloadEnd": 2206,
+   "remoteRequests": 26,
+   "remoteBytes": 10479353,
+   "remoteLatencyMs": 4362,
+   "prefetchBytes": 8438211,
+   "prefetchRequests": 40,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 10,
+    "bytes": 1974716
+   },
+   "atReq1": {
+    "req": 26,
+    "bytes": 10479353
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 318,
+   "prefetchedFileBytes": 18223034,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 1,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.07951070336391437,
+   "remoteOpsPerMB": 2.601589621038627,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 476,
+    "p99": 476,
+    "first": 476
+   }
+  },
+  {
+   "arm": "B3a",
+   "rep": 3,
+   "order": 14,
+   "ok": true,
+   "tProc": 70,
+   "tReady": 1198,
+   "tReq1": 2380,
+   "tWorkloadEnd": 2636,
+   "remoteRequests": 64,
+   "remoteBytes": 23379084,
+   "remoteLatencyMs": 8845,
+   "prefetchBytes": 40302600,
+   "prefetchRequests": 167,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 29,
+    "bytes": 10550627
+   },
+   "atReq1": {
+    "req": 64,
+    "bytes": 23379084
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 565,
+   "prefetchedFileBytes": 96192838,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.19037490088399306,
+   "recall": 1,
+   "wasteBytes": 77880136,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.19571865443425077,
+   "remoteOpsPerMB": 2.8704659258677543,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 179,
+    "p99": 179,
+    "first": 179
+   }
+  },
+  {
+   "arm": "B3a",
+   "rep": 4,
+   "order": 19,
+   "ok": true,
+   "tProc": 65,
+   "tReady": 1310,
+   "tReq1": 2500,
+   "tWorkloadEnd": 2742,
+   "remoteRequests": 64,
+   "remoteBytes": 24022044,
+   "remoteLatencyMs": 9216,
+   "prefetchBytes": 40302600,
+   "prefetchRequests": 167,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 30,
+    "bytes": 11733884
+   },
+   "atReq1": {
+    "req": 64,
+    "bytes": 24022044
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 565,
+   "prefetchedFileBytes": 96192838,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.19037490088399306,
+   "recall": 1,
+   "wasteBytes": 77880136,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.19571865443425077,
+   "remoteOpsPerMB": 2.793636711347294,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 181,
+    "p99": 181,
+    "first": 181
+   }
+  },
+  {
+   "arm": "B2",
+   "rep": 4,
+   "order": 23,
+   "ok": true,
+   "tProc": 72,
+   "tReady": 491,
+   "tReq1": 1966,
+   "tWorkloadEnd": 2195,
+   "remoteRequests": 27,
+   "remoteBytes": 10602825,
+   "remoteLatencyMs": 4458,
+   "prefetchBytes": 8438211,
+   "prefetchRequests": 40,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 10,
+    "bytes": 1947703
+   },
+   "atReq1": {
+    "req": 27,
+    "bytes": 10602825
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 318,
+   "prefetchedFileBytes": 18223034,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 1,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.08256880733944955,
+   "remoteOpsPerMB": 2.670189501382886,
+   "curve": [
+    [
+     60,
+     0,
+     0
+    ],
+    [
+     163,
+     2,
+     24476
+    ],
+    [
+     265,
+     5,
+     743549
+    ],
+    [
+     367,
+     9,
+     1440648
+    ],
+    [
+     469,
+     10,
+     1947703
+    ],
+    [
+     571,
+     13,
+     3527184
+    ],
+    [
+     678,
+     14,
+     4056227
+    ],
+    [
+     782,
+     17,
+     5727729
+    ],
+    [
+     890,
+     18,
+     6363634
+    ],
+    [
+     994,
+     21,
+     7539630
+    ],
+    [
+     1097,
+     25,
+     9754970
+    ],
+    [
+     1205,
+     25,
+     9754970
+    ],
+    [
+     1313,
+     25,
+     9754970
+    ],
+    [
+     1418,
+     25,
+     9754970
+    ],
+    [
+     1521,
+     25,
+     9754970
+    ],
+    [
+     1628,
+     25,
+     9754970
+    ],
+    [
+     1737,
+     25,
+     9754970
+    ],
+    [
+     1840,
+     27,
+     10602825
+    ],
+    [
+     1946,
+     27,
+     10602825
+    ],
+    [
+     2047,
+     27,
+     10602825
+    ],
+    [
+     2149,
+     27,
+     10602825
+    ],
+    [
+     2250,
+     27,
+     10602825
+    ],
+    [
+     2353,
+     27,
+     10602825
+    ],
+    [
+     2457,
+     27,
+     10602825
+    ]
+   ],
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 467,
+    "p99": 467,
+    "first": 467
+   }
+  },
+  {
+   "arm": "B2",
+   "rep": 3,
+   "order": 12,
+   "ok": true,
+   "tProc": 68,
+   "tReady": 487,
+   "tReq1": 1934,
+   "tWorkloadEnd": 2178,
+   "remoteRequests": 26,
+   "remoteBytes": 10715755,
+   "remoteLatencyMs": 4304,
+   "prefetchBytes": 8438211,
+   "prefetchRequests": 40,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 10,
+    "bytes": 2158191
+   },
+   "atReq1": {
+    "req": 26,
+    "bytes": 10715755
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 318,
+   "prefetchedFileBytes": 18223034,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 1,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.07951070336391437,
+   "remoteOpsPerMB": 2.544195532652622,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 7,
+    "p95": 442,
+    "p99": 442,
+    "first": 442
+   }
+  },
+  {
+   "arm": "B0",
+   "rep": 1,
+   "order": 0,
+   "ok": true,
+   "tProc": 290,
+   "tReady": 1935,
+   "tReq1": 3122,
+   "tWorkloadEnd": 3360,
+   "remoteRequests": 73,
+   "remoteBytes": 22584740,
+   "remoteLatencyMs": 5866,
+   "prefetchBytes": 22675456,
+   "prefetchRequests": 173,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 4,
+    "bytes": 365646
+   },
+   "atReady": {
+    "req": 46,
+    "bytes": 13815589
+   },
+   "atReq1": {
+    "req": 61,
+    "bytes": 20640475
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 2104,
+   "prefetchedFileBytes": 107640703,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.17012804162009235,
+   "recall": 1,
+   "wasteBytes": 89328001,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.22324159021406728,
+   "remoteOpsPerMB": 3.389281789385222,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 6,
+    "p95": 184,
+    "p99": 184,
+    "first": 184
+   }
+  },
+  {
+   "arm": "B1",
+   "rep": 1,
+   "order": 1,
+   "ok": true,
+   "tProc": 71,
+   "tReady": 1612,
+   "tReq1": 2794,
+   "tWorkloadEnd": 3026,
+   "remoteRequests": 37,
+   "remoteBytes": 11231229,
+   "remoteLatencyMs": 2183,
+   "prefetchBytes": 0,
+   "prefetchRequests": 0,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 26,
+    "bytes": 4275587
+   },
+   "atReq1": {
+    "req": 37,
+    "bytes": 11231229
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 0,
+   "prefetchedFileBytes": 0,
+   "hitFiles": 0,
+   "hitBytes": 0,
+   "precision": 0,
+   "recall": 0,
+   "wasteBytes": 0,
+   "unexpectedMissFiles": 327,
+   "unexpectedMissBytes": 18312702,
+   "faultAmplification": 0.11314984709480122,
+   "remoteOpsPerMB": 3.4544137600613434,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 179,
+    "p99": 179,
+    "first": 179
+   }
+  },
+  {
+   "arm": "B2d",
+   "rep": 1,
+   "order": 3,
+   "ok": true,
+   "tProc": 69,
+   "tReady": 795,
+   "tReq1": 2271,
+   "tWorkloadEnd": 2504,
+   "remoteRequests": 30,
+   "remoteBytes": 11949902,
+   "remoteLatencyMs": 4738,
+   "prefetchBytes": 9648224,
+   "prefetchRequests": 104,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 17,
+    "bytes": 5003113
+   },
+   "atReq1": {
+    "req": 30,
+    "bytes": 11949902
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 709,
+   "prefetchedFileBytes": 21760220,
+   "hitFiles": 318,
+   "hitBytes": 18223034,
+   "precision": 0.8374471397807559,
+   "recall": 0.9951035079367315,
+   "wasteBytes": 3537186,
+   "unexpectedMissFiles": 9,
+   "unexpectedMissBytes": 89668,
+   "faultAmplification": 0.09174311926605505,
+   "remoteOpsPerMB": 2.632429956329349,
+   "curve": [
+    [
+     59,
+     0,
+     0
+    ],
+    [
+     163,
+     1,
+     19980
+    ],
+    [
+     266,
+     3,
+     100832
+    ],
+    [
+     368,
+     9,
+     1115666
+    ],
+    [
+     475,
+     12,
+     1765173
+    ],
+    [
+     575,
+     14,
+     2855044
+    ],
+    [
+     678,
+     15,
+     3370662
+    ],
+    [
+     785,
+     17,
+     5003113
+    ],
+    [
+     887,
+     20,
+     6797465
+    ],
+    [
+     990,
+     21,
+     7083025
+    ],
+    [
+     1092,
+     24,
+     8871596
+    ],
+    [
+     1194,
+     28,
+     10904758
+    ],
+    [
+     1299,
+     28,
+     10904758
+    ],
+    [
+     1406,
+     28,
+     10904758
+    ],
+    [
+     1512,
+     28,
+     10904758
+    ],
+    [
+     1622,
+     28,
+     10904758
+    ],
+    [
+     1732,
+     28,
+     10904758
+    ],
+    [
+     1834,
+     28,
+     10904758
+    ],
+    [
+     1941,
+     28,
+     10904758
+    ],
+    [
+     2047,
+     28,
+     10904758
+    ],
+    [
+     2153,
+     30,
+     11949902
+    ],
+    [
+     2260,
+     30,
+     11949902
+    ],
+    [
+     2365,
+     30,
+     11949902
+    ],
+    [
+     2466,
+     30,
+     11949902
+    ],
+    [
+     2569,
+     30,
+     11949902
+    ],
+    [
+     2672,
+     30,
+     11949902
+    ],
+    [
+     2780,
+     30,
+     11949902
+    ]
+   ],
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 467,
+    "p99": 467,
+    "first": 467
+   }
+  },
+  {
+   "arm": "B3b",
+   "rep": 1,
+   "order": 5,
+   "ok": true,
+   "tProc": 70,
+   "tReady": 1201,
+   "tReq1": 2401,
+   "tWorkloadEnd": 2634,
+   "remoteRequests": 27,
+   "remoteBytes": 10398482,
+   "remoteLatencyMs": 4545,
+   "prefetchBytes": 8661748,
+   "prefetchRequests": 70,
+   "fsBytesRead": 15019518,
+   "atProc": {
+    "req": 0,
+    "bytes": 0
+   },
+   "atReady": {
+    "req": 27,
+    "bytes": 10398482
+   },
+   "atReq1": {
+    "req": 27,
+    "bytes": 10398482
+   },
+   "neededFiles": 327,
+   "neededBytes": 18312702,
+   "prefetchedFiles": 412,
+   "prefetchedFileBytes": 18635965,
+   "hitFiles": 327,
+   "hitBytes": 18312702,
+   "precision": 0.9826538094485582,
+   "recall": 1,
+   "wasteBytes": 323263,
+   "unexpectedMissFiles": 0,
+   "unexpectedMissBytes": 0,
+   "faultAmplification": 0.08256880733944955,
+   "remoteOpsPerMB": 2.722662019321666,
+   "commandPhases": [],
+   "reqLatency": {
+    "n": 17,
+    "p50": 5,
+    "p95": 192,
+    "p99": 192,
+    "first": 192
+   }
+  }
+ ]
+}

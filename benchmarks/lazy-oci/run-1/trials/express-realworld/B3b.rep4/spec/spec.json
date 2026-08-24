@@ -1,0 +1,196 @@
+{
+ "app": "express-realworld",
+ "mode": "test",
+ "argv": [
+  "/mnt/app/dist/api/main.js"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production",
+  "PORT": "3409",
+  "DATABASE_URL": "postgresql://sara:reducer@reducer-pg:5432/reducer_ws_express?schema=public",
+  "JWT_SECRET": "hydration-probe-secret"
+ },
+ "setup": [
+  "createdb -h 127.0.0.1 -U sara reducer_ws_express 2>/dev/null || true",
+  "npx --no-install prisma migrate deploy || npx prisma migrate deploy || true"
+ ],
+ "ready": {
+  "kind": "stdout",
+  "value": "server up on port",
+  "timeoutMs": 180000
+ },
+ "settleMs": 1000,
+ "baseUrl": "http://127.0.0.1:3409",
+ "port": 3409,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "full",
+   "requests": [
+    {
+     "method": "POST",
+     "path": "/api/users",
+     "body": {
+      "user": {
+       "username": "wsuser1",
+       "email": "wsuser1@example.com",
+       "password": "pass1234"
+      }
+     },
+     "capture": {
+      "token1": "json:user.token"
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/api/users",
+     "body": {
+      "user": {
+       "username": "wsuser2",
+       "email": "wsuser2@example.com",
+       "password": "pass1234"
+      }
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/api/users/login",
+     "body": {
+      "user": {
+       "email": "wsuser1@example.com",
+       "password": "pass1234"
+      }
+     },
+     "capture": {
+      "token1": "json:user.token"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/user",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     }
+    },
+    {
+     "method": "PUT",
+     "path": "/api/user",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     },
+     "body": {
+      "user": {
+       "bio": "hydration probe"
+      }
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/api/articles",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     },
+     "body": {
+      "article": {
+       "title": "Working Set Probe",
+       "description": "probe description",
+       "body": "probe body",
+       "tagList": [
+        "reactjs",
+        "dragons"
+       ]
+      }
+     },
+     "capture": {
+      "slug": "json:article.slug"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/articles/{{slug}}"
+    },
+    {
+     "method": "PUT",
+     "path": "/api/articles/{{slug}}",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     },
+     "body": {
+      "article": {
+       "body": "updated body"
+      }
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/api/articles/{{slug}}/comments",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     },
+     "body": {
+      "comment": {
+       "body": "a probe comment"
+      }
+     },
+     "capture": {
+      "commentId": "json:comment.id"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/articles/{{slug}}/comments"
+    },
+    {
+     "method": "POST",
+     "path": "/api/articles/{{slug}}/favorite",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/articles?favorited=wsuser1",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/profiles/wsuser2",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     }
+    },
+    {
+     "method": "POST",
+     "path": "/api/profiles/wsuser2/follow",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/articles/feed?limit=10&offset=0",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     }
+    },
+    {
+     "method": "DELETE",
+     "path": "/api/articles/{{slug}}/comments/{{commentId}}",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     }
+    },
+    {
+     "method": "DELETE",
+     "path": "/api/articles/{{slug}}",
+     "headers": {
+      "authorization": "Token {{token1}}"
+     }
+    }
+   ]
+  }
+ ]
+}

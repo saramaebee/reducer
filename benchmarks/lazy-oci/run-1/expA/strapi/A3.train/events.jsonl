@@ -1,0 +1,12 @@
+{"ev":"driver-start","mode":"train","at":1787538437251}
+{"ev":"ready","ok":true,"at":1787538448317}
+{"ev":"settled","at":1787538451325}
+{"ev":"phase-start","phase":"common","at":1787538451326}
+{"ev":"request","phase":"common","method":"GET","path":"/_health","status":204,"ms":58,"bodyHash":"0:7","at":1787538451385}
+{"ev":"request","phase":"common","method":"GET","path":"/admin/init","status":200,"ms":9,"bodyHash":"79:1225790856","at":1787538451394}
+{"ev":"request","phase":"common","method":"GET","path":"/admin/project-type","status":200,"ms":4,"bodyHash":"114:552586792","at":1787538451398}
+{"ev":"request","phase":"common","method":"GET","path":"/robots.txt","status":200,"ms":7,"bodyHash":"121:3292743776","at":1787538451405}
+{"ev":"request","phase":"common","method":"GET","path":"/api/articles","status":403,"ms":5,"bodyHash":"95:664829383","at":1787538451410}
+{"ev":"request","phase":"common","method":"GET","path":"/api/categories","status":403,"ms":5,"bodyHash":"95:664829383","at":1787538451415}
+{"ev":"phase-end","phase":"common","at":1787538451415}
+{"ev":"workload-done","at":1787538451415}

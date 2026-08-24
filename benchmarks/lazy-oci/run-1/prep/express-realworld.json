@@ -1,0 +1,68 @@
+{
+ "app": "express-realworld",
+ "sha": "30b68e1e881462b2f4164ea09ab4c4f5699c7b0b",
+ "tree": "linux",
+ "criterion": "native/ORM-heavy (the Prisma case)",
+ "universe": {
+  "files": 2104,
+  "bytes": 107640703
+ },
+ "staged": {
+  "files": 2104,
+  "bytes": 107640703,
+  "prunedFiles": 11226
+ },
+ "nft": 381,
+ "planBHot": 565,
+ "train": {
+  "files": 318,
+  "bytes": 18223034
+ },
+ "neededTest": {
+  "files": 327,
+  "bytes": 18312702,
+  "testOnlyFiles": 9
+ },
+ "images": {
+  "base": {
+   "blob": "97b399337c0ecaa96eac2d8b061c7eaf8cfcad96480117cffe89832ce58b176e",
+   "blobBytes": 25735738,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 0
+  },
+  "B2": {
+   "blob": "aaf694e7658039705639a2682e18d228bc7dc40a0a23371e6aa03f0a78da9abf",
+   "blobBytes": 25735471,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 318
+  },
+  "B2d": {
+   "blob": "10e93a160fc364c43167f3da995984f1199175bd5b32780031674fce435f5cdc",
+   "blobBytes": 25735286,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 709
+  },
+  "B3a": {
+   "blob": "3625b93a9668a8e429a643d02ff4f99d5e7635c8886b2ca3d08cb1c16dec4c45",
+   "blobBytes": 25735747,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 565
+  },
+  "B3b": {
+   "blob": "39deb44be63faac0442a7c6139c21ec4700f429402ae0625886c59012d5f1880",
+   "blobBytes": 25735498,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 412
+  },
+  "A3": {
+   "blob": "f0d37e06a32b0e9b313b3ffc40e84fa7b87db226eae6fb15a04c3471d71e7552",
+   "blobBytes": 25735689,
+   "bootstrapBytes": 454656,
+   "prefetchFiles": 381
+  }
+ },
+ "contentDigest": "bc84a1f6316c247eb28fbf910fe7c6e36149e7c171a138ae8e0557aa7c8d582d",
+ "warnings": [
+  "5714 installed JS file(s) belong to packages absent from the frozen production population; treated as outside the universe unless positive evidence reaches them"
+ ]
+}

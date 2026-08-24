@@ -1,0 +1,103 @@
+{
+ "app": "verdaccio",
+ "mode": "test",
+ "argv": [
+  "/mnt/app/packages/verdaccio/bin/verdaccio",
+  "--config",
+  "/scratch/verdaccio/config.yaml",
+  "--listen",
+  "127.0.0.1:4873"
+ ],
+ "cwdRel": null,
+ "env": {
+  "NODE_ENV": "production"
+ },
+ "setup": [
+  "rm -rf /scratch/verdaccio && mkdir -p /scratch/verdaccio/storage",
+  "printf '%s\\n' 'storage: ./storage' 'auth:' '  htpasswd:' '    file: ./htpasswd' '    max_users: 1000' \\\n        'uplinks:' '  npmjs:' '    url: https://registry.npmjs.org/' \\\n        'packages:' \"  '@*/*':\" '    access: $all' '    publish: $authenticated' '    proxy: npmjs' \\\n        \"  '**':\" '    access: $all' '    publish: $authenticated' '    proxy: npmjs' \\\n        'logs: {type: stdout, format: pretty, level: http}' > /scratch/verdaccio/config.yaml"
+ ],
+ "ready": {
+  "kind": "http",
+  "value": "http://127.0.0.1:4873/-/ping",
+  "timeoutMs": 120000
+ },
+ "settleMs": 1000,
+ "baseUrl": "http://127.0.0.1:4873",
+ "port": 4873,
+ "appLog": "/work/app.log",
+ "phases": [
+  {
+   "name": "full",
+   "requests": [
+    {
+     "method": "PUT",
+     "path": "/-/user/org.couchdb.user:probe",
+     "body": {
+      "name": "probe",
+      "password": "probe1234",
+      "_id": "org.couchdb.user:probe",
+      "type": "user",
+      "roles": []
+     },
+     "capture": {
+      "token": "json:token"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/-/whoami",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/-/npm/v1/user",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/-/npm/v1/tokens",
+     "headers": {
+      "authorization": "Bearer {{token}}"
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/jsonwebtoken"
+    },
+    {
+     "method": "GET",
+     "path": "/jsonwebtoken/9.0.2"
+    },
+    {
+     "method": "GET",
+     "path": "/-/package/jsonwebtoken/dist-tags"
+    },
+    {
+     "method": "GET",
+     "path": "/jsonwebtoken/-/jsonwebtoken-9.0.2.tgz"
+    },
+    {
+     "method": "GET",
+     "path": "/-/v1/search?text=jsonwebtoken&size=5"
+    },
+    {
+     "method": "GET",
+     "path": "/-/verdaccio/data/sidebar/jsonwebtoken"
+    },
+    {
+     "method": "GET",
+     "path": "/-/verdaccio/data/package/readme/jsonwebtoken"
+    },
+    {
+     "method": "POST",
+     "path": "/-/npm/v1/security/audits/quick",
+     "body": {}
+    }
+   ]
+  }
+ ]
+}

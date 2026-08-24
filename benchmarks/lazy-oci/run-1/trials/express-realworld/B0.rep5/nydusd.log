@@ -1,0 +1,1 @@
+[[38;5;208m2026-08-24 00:53:05.729767 +00:00[0m] [38;5;208mWARN[0m [/src/backend/mod.rs:283] [38;5;208mbackend request: GET http://reducer-registry:5000/v2/lazyoci/express-realworld/blobs/sha256:97b399337c0ecaa96eac2d8b061c7eaf8cfcad96480117cffe89832ce58b176e, chunk: 959318 bytes, proxy: false, proxy sdk: false, takes 277.814708ms: slow request[0m

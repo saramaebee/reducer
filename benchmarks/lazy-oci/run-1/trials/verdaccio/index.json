@@ -1,0 +1,547 @@
+[
+ {
+  "app": "verdaccio",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 1,
+  "order": 0,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B0.rep1",
+  "milestones": {
+   "setup-done": 1787532529988,
+   "t0": 1787532529989,
+   "mount": 1787532530008,
+   "all-ready": 1787532530319,
+   "proc": 1787532530374,
+   "workload-done": 1787532535042,
+   "collect": 1787532535086,
+   "done": 1787532535404
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 1,
+  "order": 1,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B1.rep1",
+  "milestones": {
+   "setup-done": 1787532535808,
+   "t0": 1787532535808,
+   "mount": 1787532535829,
+   "proc": 1787532535887,
+   "workload-done": 1787532542209,
+   "collect": 1787532542243,
+   "done": 1787532542560
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 1,
+  "order": 2,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2.rep1",
+  "milestones": {
+   "setup-done": 1787532542901,
+   "t0": 1787532542901,
+   "mount": 1787532542923,
+   "proc": 1787532542980,
+   "workload-done": 1787532546844,
+   "collect": 1787532546887,
+   "done": 1787532547206
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 1,
+  "order": 3,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2d.rep1",
+  "milestones": {
+   "setup-done": 1787532547588,
+   "t0": 1787532547589,
+   "mount": 1787532547607,
+   "proc": 1787532547659,
+   "workload-done": 1787532551284,
+   "collect": 1787532551326,
+   "done": 1787532551649
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 1,
+  "order": 4,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3a.rep1",
+  "milestones": {
+   "setup-done": 1787532552024,
+   "t0": 1787532552024,
+   "mount": 1787532552044,
+   "proc": 1787532552095,
+   "workload-done": 1787532555684,
+   "collect": 1787532555727,
+   "done": 1787532556050
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 1,
+  "order": 5,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3b.rep1",
+  "milestones": {
+   "setup-done": 1787532556417,
+   "t0": 1787532556418,
+   "mount": 1787532556431,
+   "proc": 1787532556482,
+   "workload-done": 1787532559710,
+   "collect": 1787532559756,
+   "done": 1787532560081
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 2,
+  "order": 6,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B1.rep2",
+  "milestones": {
+   "setup-done": 1787532560436,
+   "t0": 1787532560436,
+   "mount": 1787532560455,
+   "proc": 1787532560506,
+   "workload-done": 1787532566660,
+   "collect": 1787532566702,
+   "done": 1787532567024
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 2,
+  "order": 7,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2.rep2",
+  "milestones": {
+   "setup-done": 1787532567414,
+   "t0": 1787532567415,
+   "mount": 1787532567436,
+   "proc": 1787532567489,
+   "workload-done": 1787532571356,
+   "collect": 1787532571396,
+   "done": 1787532571712
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 2,
+  "order": 8,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2d.rep2",
+  "milestones": {
+   "setup-done": 1787532572064,
+   "t0": 1787532572064,
+   "mount": 1787532572082,
+   "proc": 1787532572135,
+   "workload-done": 1787532575813,
+   "collect": 1787532575857,
+   "done": 1787532576170
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 2,
+  "order": 9,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3a.rep2",
+  "milestones": {
+   "setup-done": 1787532576552,
+   "t0": 1787532576552,
+   "mount": 1787532576571,
+   "proc": 1787532576625,
+   "workload-done": 1787532579957,
+   "collect": 1787532579996,
+   "done": 1787532580317
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 2,
+  "order": 10,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3b.rep2",
+  "milestones": {
+   "setup-done": 1787532580718,
+   "t0": 1787532580718,
+   "mount": 1787532580738,
+   "proc": 1787532580791,
+   "workload-done": 1787532583692,
+   "collect": 1787532583734,
+   "done": 1787532584053
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 2,
+  "order": 11,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B0.rep2",
+  "milestones": {
+   "setup-done": 1787532584443,
+   "t0": 1787532584444,
+   "mount": 1787532584462,
+   "all-ready": 1787532584731,
+   "proc": 1787532584788,
+   "workload-done": 1787532589137,
+   "collect": 1787532589176,
+   "done": 1787532589510
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 3,
+  "order": 12,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2.rep3",
+  "milestones": {
+   "setup-done": 1787532589907,
+   "t0": 1787532589908,
+   "mount": 1787532589926,
+   "proc": 1787532589982,
+   "workload-done": 1787532593666,
+   "collect": 1787532593710,
+   "done": 1787532594030
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 3,
+  "order": 13,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2d.rep3",
+  "milestones": {
+   "setup-done": 1787532594419,
+   "t0": 1787532594420,
+   "mount": 1787532594440,
+   "proc": 1787532594493,
+   "workload-done": 1787532598205,
+   "collect": 1787532598246,
+   "done": 1787532598570
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 3,
+  "order": 14,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3a.rep3",
+  "milestones": {
+   "setup-done": 1787532598933,
+   "t0": 1787532598934,
+   "mount": 1787532598953,
+   "proc": 1787532599002,
+   "workload-done": 1787532602324,
+   "collect": 1787532602364,
+   "done": 1787532602684
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 3,
+  "order": 15,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3b.rep3",
+  "milestones": {
+   "setup-done": 1787532603052,
+   "t0": 1787532603052,
+   "mount": 1787532603070,
+   "proc": 1787532603121,
+   "workload-done": 1787532606349,
+   "collect": 1787532606389,
+   "done": 1787532606712
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 3,
+  "order": 16,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B0.rep3",
+  "milestones": {
+   "setup-done": 1787532607079,
+   "t0": 1787532607080,
+   "mount": 1787532607098,
+   "all-ready": 1787532607356,
+   "proc": 1787532607404,
+   "workload-done": 1787532611722,
+   "collect": 1787532611763,
+   "done": 1787532612089
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 3,
+  "order": 17,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B1.rep3",
+  "milestones": {
+   "setup-done": 1787532612471,
+   "t0": 1787532612472,
+   "mount": 1787532612491,
+   "proc": 1787532612541,
+   "workload-done": 1787532618634,
+   "collect": 1787532618674,
+   "done": 1787532618996
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 4,
+  "order": 18,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2d.rep4",
+  "milestones": {
+   "setup-done": 1787532619382,
+   "t0": 1787532619383,
+   "mount": 1787532619402,
+   "proc": 1787532619453,
+   "workload-done": 1787532622994,
+   "collect": 1787532623034,
+   "done": 1787532623359
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 4,
+  "order": 19,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3a.rep4",
+  "milestones": {
+   "setup-done": 1787532623751,
+   "t0": 1787532623751,
+   "mount": 1787532623772,
+   "proc": 1787532623821,
+   "workload-done": 1787532627333,
+   "collect": 1787532627372,
+   "done": 1787532627698
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 4,
+  "order": 20,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3b.rep4",
+  "milestones": {
+   "setup-done": 1787532628081,
+   "t0": 1787532628081,
+   "mount": 1787532628101,
+   "proc": 1787532628153,
+   "workload-done": 1787532631358,
+   "collect": 1787532631397,
+   "done": 1787532631718
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 4,
+  "order": 21,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B0.rep4",
+  "milestones": {
+   "setup-done": 1787532632073,
+   "t0": 1787532632073,
+   "mount": 1787532632092,
+   "all-ready": 1787532632308,
+   "proc": 1787532632359,
+   "workload-done": 1787532636781,
+   "collect": 1787532636822,
+   "done": 1787532637147
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 4,
+  "order": 22,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B1.rep4",
+  "milestones": {
+   "setup-done": 1787532637559,
+   "t0": 1787532637560,
+   "mount": 1787532637573,
+   "proc": 1787532637623,
+   "workload-done": 1787532643418,
+   "collect": 1787532643458,
+   "done": 1787532643778
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 4,
+  "order": 23,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2.rep4",
+  "milestones": {
+   "setup-done": 1787532644158,
+   "t0": 1787532644158,
+   "mount": 1787532644171,
+   "proc": 1787532644220,
+   "workload-done": 1787532648007,
+   "collect": 1787532648046,
+   "done": 1787532648373
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3a",
+  "mode": "test",
+  "rep": 5,
+  "order": 24,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3a.rep5",
+  "milestones": {
+   "setup-done": 1787532648740,
+   "t0": 1787532648740,
+   "mount": 1787532648760,
+   "proc": 1787532648810,
+   "workload-done": 1787532652220,
+   "collect": 1787532652263,
+   "done": 1787532652577
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B3b",
+  "mode": "test",
+  "rep": 5,
+  "order": 25,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B3b.rep5",
+  "milestones": {
+   "setup-done": 1787532652960,
+   "t0": 1787532652961,
+   "mount": 1787532652981,
+   "proc": 1787532653029,
+   "workload-done": 1787532656270,
+   "collect": 1787532656312,
+   "done": 1787532656634
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B0",
+  "mode": "test",
+  "rep": 5,
+  "order": 26,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B0.rep5",
+  "milestones": {
+   "setup-done": 1787532656986,
+   "t0": 1787532656986,
+   "mount": 1787532657005,
+   "all-ready": 1787532657266,
+   "proc": 1787532657317,
+   "workload-done": 1787532661676,
+   "collect": 1787532661718,
+   "done": 1787532662035
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B1",
+  "mode": "test",
+  "rep": 5,
+  "order": 27,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B1.rep5",
+  "milestones": {
+   "setup-done": 1787532662423,
+   "t0": 1787532662424,
+   "mount": 1787532662443,
+   "proc": 1787532662492,
+   "workload-done": 1787532668673,
+   "collect": 1787532668715,
+   "done": 1787532669038
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2",
+  "mode": "test",
+  "rep": 5,
+  "order": 28,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2.rep5",
+  "milestones": {
+   "setup-done": 1787532669408,
+   "t0": 1787532669409,
+   "mount": 1787532669430,
+   "proc": 1787532669484,
+   "workload-done": 1787532672811,
+   "collect": 1787532672852,
+   "done": 1787532673168
+  },
+  "exit": 0
+ },
+ {
+  "app": "verdaccio",
+  "arm": "B2d",
+  "mode": "test",
+  "rep": 5,
+  "order": 29,
+  "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/lazy-oci/run-1/trials/verdaccio/B2d.rep5",
+  "milestones": {
+   "setup-done": 1787532673547,
+   "t0": 1787532673547,
+   "mount": 1787532673567,
+   "proc": 1787532673618,
+   "workload-done": 1787532677118,
+   "collect": 1787532677155,
+   "done": 1787532677482
+  },
+  "exit": 0
+ }
+]
