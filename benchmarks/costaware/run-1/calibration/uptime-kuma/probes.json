@@ -1,0 +1,800 @@
+[
+ {
+  "id": "span-200-a",
+  "kind": "span",
+  "files": 200,
+  "app": "uptime-kuma",
+  "order": 0,
+  "chunks": 200,
+  "predicted": {
+   "requests": 1,
+   "bytes": 549169,
+   "chunkBytes": 549169
+  },
+  "measured": {
+   "backendReadCount": 5,
+   "backendReadBytes": 807403,
+   "prefetchDataAmount": 549169,
+   "prefetchRequests": 4,
+   "prewarmMs": 330,
+   "plateauMs": 1159
+  }
+ },
+ {
+  "id": "span-200-b",
+  "kind": "span",
+  "files": 200,
+  "app": "uptime-kuma",
+  "order": 1,
+  "chunks": 200,
+  "predicted": {
+   "requests": 1,
+   "bytes": 654143,
+   "chunkBytes": 654143
+  },
+  "measured": {
+   "backendReadCount": 6,
+   "backendReadBytes": 919928,
+   "prefetchDataAmount": 654143,
+   "prefetchRequests": 5,
+   "prewarmMs": 337,
+   "plateauMs": 1182
+  }
+ },
+ {
+  "id": "span-200-c",
+  "kind": "span",
+  "files": 200,
+  "app": "uptime-kuma",
+  "order": 2,
+  "chunks": 200,
+  "predicted": {
+   "requests": 1,
+   "bytes": 1669901,
+   "chunkBytes": 1669901
+  },
+  "measured": {
+   "backendReadCount": 14,
+   "backendReadBytes": 2005729,
+   "prefetchDataAmount": 1669901,
+   "prefetchRequests": 13,
+   "prewarmMs": 465,
+   "plateauMs": 1320
+  }
+ },
+ {
+  "id": "span-1000-a",
+  "kind": "span",
+  "files": 1000,
+  "app": "uptime-kuma",
+  "order": 3,
+  "chunks": 1000,
+  "predicted": {
+   "requests": 2,
+   "bytes": 7213662,
+   "chunkBytes": 7213662
+  },
+  "measured": {
+   "backendReadCount": 46,
+   "backendReadBytes": 7535912,
+   "prefetchDataAmount": 7213662,
+   "prefetchRequests": 45,
+   "prewarmMs": 995,
+   "plateauMs": 1839
+  }
+ },
+ {
+  "id": "span-1000-b",
+  "kind": "span",
+  "files": 1000,
+  "app": "uptime-kuma",
+  "order": 4,
+  "chunks": 1000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 2040490,
+   "chunkBytes": 2040490
+  },
+  "measured": {
+   "backendReadCount": 16,
+   "backendReadBytes": 2290606,
+   "prefetchDataAmount": 2040490,
+   "prefetchRequests": 15,
+   "prewarmMs": 596,
+   "plateauMs": 1442
+  }
+ },
+ {
+  "id": "span-1000-c",
+  "kind": "span",
+  "files": 1000,
+  "app": "uptime-kuma",
+  "order": 5,
+  "chunks": 1000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 3256904,
+   "chunkBytes": 3256904
+  },
+  "measured": {
+   "backendReadCount": 25,
+   "backendReadBytes": 3592732,
+   "prefetchDataAmount": 3256904,
+   "prefetchRequests": 24,
+   "prewarmMs": 591,
+   "plateauMs": 1413
+  }
+ },
+ {
+  "id": "span-4000-a",
+  "kind": "span",
+  "files": 4000,
+  "app": "uptime-kuma",
+  "order": 6,
+  "chunks": 4000,
+  "predicted": {
+   "requests": 3,
+   "bytes": 11230648,
+   "chunkBytes": 11230648
+  },
+  "measured": {
+   "backendReadCount": 74,
+   "backendReadBytes": 11509142,
+   "prefetchDataAmount": 11230648,
+   "prefetchRequests": 73,
+   "prewarmMs": 1367,
+   "plateauMs": 2215
+  }
+ },
+ {
+  "id": "span-4000-b",
+  "kind": "span",
+  "files": 4000,
+  "app": "uptime-kuma",
+  "order": 7,
+  "chunks": 4000,
+  "predicted": {
+   "requests": 2,
+   "bytes": 8190888,
+   "chunkBytes": 8190888
+  },
+  "measured": {
+   "backendReadCount": 63,
+   "backendReadBytes": 8501381,
+   "prefetchDataAmount": 8190888,
+   "prefetchRequests": 62,
+   "prewarmMs": 968,
+   "plateauMs": 1826
+  }
+ },
+ {
+  "id": "span-4000-c",
+  "kind": "span",
+  "files": 4000,
+  "app": "uptime-kuma",
+  "order": 8,
+  "chunks": 4000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 11911138,
+   "chunkBytes": 11911138
+  },
+  "measured": {
+   "backendReadCount": 86,
+   "backendReadBytes": 12246966,
+   "prefetchDataAmount": 11911138,
+   "prefetchRequests": 85,
+   "prewarmMs": 1500,
+   "plateauMs": 2355
+  }
+ },
+ {
+  "id": "span-16000-a",
+  "kind": "span",
+  "files": 16000,
+  "app": "uptime-kuma",
+  "order": 9,
+  "chunks": 16000,
+  "predicted": {
+   "requests": 9,
+   "bytes": 29121553,
+   "chunkBytes": 29121553
+  },
+  "measured": {
+   "backendReadCount": 213,
+   "backendReadBytes": 29460016,
+   "prefetchDataAmount": 29121553,
+   "prefetchRequests": 212,
+   "prewarmMs": 2909,
+   "plateauMs": 3765
+  }
+ },
+ {
+  "id": "span-16000-b",
+  "kind": "span",
+  "files": 13376,
+  "app": "uptime-kuma",
+  "order": 10,
+  "chunks": 13376,
+  "predicted": {
+   "requests": 2,
+   "bytes": 32466789,
+   "chunkBytes": 32466789
+  },
+  "measured": {
+   "backendReadCount": 228,
+   "backendReadBytes": 32714994,
+   "prefetchDataAmount": 32466789,
+   "prefetchRequests": 227,
+   "prewarmMs": 3150,
+   "plateauMs": 3985
+  }
+ },
+ {
+  "id": "span-16000-c",
+  "kind": "span",
+  "files": 16000,
+  "app": "uptime-kuma",
+  "order": 11,
+  "chunks": 16000,
+  "predicted": {
+   "requests": 2,
+   "bytes": 34538968,
+   "chunkBytes": 34538968
+  },
+  "measured": {
+   "backendReadCount": 245,
+   "backendReadBytes": 34874796,
+   "prefetchDataAmount": 34538968,
+   "prefetchRequests": 244,
+   "prewarmMs": 3287,
+   "plateauMs": 4116
+  }
+ },
+ {
+  "id": "stride-2",
+  "kind": "stride",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 12,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 2000,
+   "bytes": 5681624,
+   "chunkBytes": 5681624
+  },
+  "measured": {
+   "backendReadCount": 407,
+   "backendReadBytes": 10415306,
+   "prefetchDataAmount": 6257979,
+   "prefetchRequests": 514,
+   "prewarmMs": 4669,
+   "plateauMs": 5499
+  }
+ },
+ {
+  "id": "stride-4",
+  "kind": "stride",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 13,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 2000,
+   "bytes": 4086532,
+   "chunkBytes": 4086532
+  },
+  "measured": {
+   "backendReadCount": 1125,
+   "backendReadBytes": 13820391,
+   "prefetchDataAmount": 4419161,
+   "prefetchRequests": 1526,
+   "prewarmMs": 11706,
+   "plateauMs": 12544
+  }
+ },
+ {
+  "id": "stride-8",
+  "kind": "stride",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 14,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 2000,
+   "bytes": 3734827,
+   "chunkBytes": 3734827
+  },
+  "measured": {
+   "backendReadCount": 1430,
+   "backendReadBytes": 22964470,
+   "prefetchDataAmount": 3787214,
+   "prefetchRequests": 1934,
+   "prewarmMs": 15066,
+   "plateauMs": 15899
+  }
+ },
+ {
+  "id": "stride-16",
+  "kind": "stride",
+  "files": 1393,
+  "app": "uptime-kuma",
+  "order": 15,
+  "chunks": 1393,
+  "predicted": {
+   "requests": 1393,
+   "bytes": 3496294,
+   "chunkBytes": 3496294
+  },
+  "measured": {
+   "backendReadCount": 1111,
+   "backendReadBytes": 34512768,
+   "prefetchDataAmount": 3496744,
+   "prefetchRequests": 1392,
+   "prewarmMs": 11725,
+   "plateauMs": 12547
+  }
+ },
+ {
+  "id": "stride-64",
+  "kind": "stride",
+  "files": 348,
+  "app": "uptime-kuma",
+  "order": 16,
+  "chunks": 348,
+  "predicted": {
+   "requests": 348,
+   "bytes": 935417,
+   "chunkBytes": 935417
+  },
+  "measured": {
+   "backendReadCount": 335,
+   "backendReadBytes": 25432713,
+   "prefetchDataAmount": 935417,
+   "prefetchRequests": 348,
+   "prewarmMs": 3841,
+   "plateauMs": 4685
+  }
+ },
+ {
+  "id": "stride-256",
+  "kind": "stride",
+  "files": 87,
+  "app": "uptime-kuma",
+  "order": 17,
+  "chunks": 87,
+  "predicted": {
+   "requests": 87,
+   "bytes": 403064,
+   "chunkBytes": 403064
+  },
+  "measured": {
+   "backendReadCount": 88,
+   "backendReadBytes": 10521588,
+   "prefetchDataAmount": 403064,
+   "prefetchRequests": 87,
+   "prewarmMs": 1234,
+   "plateauMs": 2077
+  }
+ },
+ {
+  "id": "runs-4x1",
+  "kind": "runs",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 18,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 500,
+   "bytes": 6435410,
+   "chunkBytes": 6435410
+  },
+  "measured": {
+   "backendReadCount": 127,
+   "backendReadBytes": 7570357,
+   "prefetchDataAmount": 6578464,
+   "prefetchRequests": 137,
+   "prewarmMs": 1655,
+   "plateauMs": 2494
+  }
+ },
+ {
+  "id": "runs-4x4",
+  "kind": "runs",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 19,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 501,
+   "bytes": 5296845,
+   "chunkBytes": 5296845
+  },
+  "measured": {
+   "backendReadCount": 389,
+   "backendReadBytes": 8265198,
+   "prefetchDataAmount": 5342913,
+   "prefetchRequests": 448,
+   "prewarmMs": 3982,
+   "plateauMs": 4827
+  }
+ },
+ {
+  "id": "runs-4x16",
+  "kind": "runs",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 20,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 501,
+   "bytes": 3119387,
+   "chunkBytes": 3119387
+  },
+  "measured": {
+   "backendReadCount": 438,
+   "backendReadBytes": 12748176,
+   "prefetchDataAmount": 3119387,
+   "prefetchRequests": 503,
+   "prewarmMs": 4623,
+   "plateauMs": 5474
+  }
+ },
+ {
+  "id": "runs-4x64",
+  "kind": "runs",
+  "files": 1312,
+  "app": "uptime-kuma",
+  "order": 21,
+  "chunks": 1312,
+  "predicted": {
+   "requests": 328,
+   "bytes": 2466806,
+   "chunkBytes": 2466806
+  },
+  "measured": {
+   "backendReadCount": 318,
+   "backendReadBytes": 24928165,
+   "prefetchDataAmount": 2466806,
+   "prefetchRequests": 330,
+   "prewarmMs": 3564,
+   "plateauMs": 4405
+  }
+ },
+ {
+  "id": "runs-16x4",
+  "kind": "runs",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 22,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 126,
+   "bytes": 7082199,
+   "chunkBytes": 7082199
+  },
+  "measured": {
+   "backendReadCount": 119,
+   "backendReadBytes": 7974077,
+   "prefetchDataAmount": 7097215,
+   "prefetchRequests": 130,
+   "prewarmMs": 1647,
+   "plateauMs": 2488
+  }
+ },
+ {
+  "id": "runs-16x32",
+  "kind": "runs",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 23,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 126,
+   "bytes": 5938207,
+   "chunkBytes": 5938207
+  },
+  "measured": {
+   "backendReadCount": 144,
+   "backendReadBytes": 10447293,
+   "prefetchDataAmount": 5938207,
+   "prefetchRequests": 144,
+   "prewarmMs": 1829,
+   "plateauMs": 2665
+  }
+ },
+ {
+  "id": "runs-32x128",
+  "kind": "runs",
+  "files": 2016,
+  "app": "uptime-kuma",
+  "order": 24,
+  "chunks": 2016,
+  "predicted": {
+   "requests": 66,
+   "bytes": 4393382,
+   "chunkBytes": 4393382
+  },
+  "measured": {
+   "backendReadCount": 81,
+   "backendReadBytes": 9062850,
+   "prefetchDataAmount": 4393382,
+   "prefetchRequests": 80,
+   "prewarmMs": 1230,
+   "plateauMs": 2053
+  }
+ },
+ {
+  "id": "allspan-500-a",
+  "kind": "allspan",
+  "files": 713,
+  "app": "uptime-kuma",
+  "order": 25,
+  "chunks": 500,
+  "predicted": {
+   "requests": 1,
+   "bytes": 7597425,
+   "chunkBytes": 7597425
+  },
+  "measured": {
+   "backendReadCount": 51,
+   "backendReadBytes": 7975911,
+   "prefetchDataAmount": 7673629,
+   "prefetchRequests": 257,
+   "prewarmMs": 1127,
+   "plateauMs": 1943
+  }
+ },
+ {
+  "id": "allspan-500-b",
+  "kind": "allspan",
+  "files": 918,
+  "app": "uptime-kuma",
+  "order": 26,
+  "chunks": 500,
+  "predicted": {
+   "requests": 1,
+   "bytes": 1032930,
+   "chunkBytes": 1032930
+  },
+  "measured": {
+   "backendReadCount": 111,
+   "backendReadBytes": 1376790,
+   "prefetchDataAmount": 1396497,
+   "prefetchRequests": 423,
+   "prewarmMs": 2323,
+   "plateauMs": 3170
+  }
+ },
+ {
+  "id": "allspan-2000-a",
+  "kind": "allspan",
+  "files": 3136,
+  "app": "uptime-kuma",
+  "order": 27,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 8737434,
+   "chunkBytes": 8737434
+  },
+  "measured": {
+   "backendReadCount": 215,
+   "backendReadBytes": 9111036,
+   "prefetchDataAmount": 9568473,
+   "prefetchRequests": 1183,
+   "prewarmMs": 4315,
+   "plateauMs": 5164
+  }
+ },
+ {
+  "id": "allspan-2000-b",
+  "kind": "allspan",
+  "files": 3702,
+  "app": "uptime-kuma",
+  "order": 28,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 5817617,
+   "chunkBytes": 5817617
+  },
+  "measured": {
+   "backendReadCount": 281,
+   "backendReadBytes": 6112397,
+   "prefetchDataAmount": 8794235,
+   "prefetchRequests": 1721,
+   "prewarmMs": 5958,
+   "plateauMs": 6817
+  }
+ },
+ {
+  "id": "allspan-8000-a",
+  "kind": "allspan",
+  "files": 10807,
+  "app": "uptime-kuma",
+  "order": 29,
+  "chunks": 8000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 22569383,
+   "chunkBytes": 22569383
+  },
+  "measured": {
+   "backendReadCount": 635,
+   "backendReadBytes": 22935526,
+   "prefetchDataAmount": 24832553,
+   "prefetchRequests": 2907,
+   "prewarmMs": 12463,
+   "plateauMs": 13318
+  }
+ },
+ {
+  "id": "allspan-8000-b",
+  "kind": "allspan",
+  "files": 11418,
+  "app": "uptime-kuma",
+  "order": 30,
+  "chunks": 8000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 15129589,
+   "chunkBytes": 15129589
+  },
+  "measured": {
+   "backendReadCount": 710,
+   "backendReadBytes": 15464757,
+   "prefetchDataAmount": 18969500,
+   "prefetchRequests": 3477,
+   "prewarmMs": 12492,
+   "plateauMs": 13348
+  }
+ },
+ {
+  "id": "regions-16x40",
+  "kind": "regions",
+  "files": 795,
+  "app": "uptime-kuma",
+  "order": 31,
+  "chunks": 640,
+  "predicted": {
+   "requests": 16,
+   "bytes": 2260111,
+   "chunkBytes": 2260111
+  },
+  "measured": {
+   "backendReadCount": 41,
+   "backendReadBytes": 4018420,
+   "prefetchDataAmount": 2412041,
+   "prefetchRequests": 178,
+   "prewarmMs": 983,
+   "plateauMs": 1833
+  }
+ },
+ {
+  "id": "regions-64x40",
+  "kind": "regions",
+  "files": 3191,
+  "app": "uptime-kuma",
+  "order": 32,
+  "chunks": 2560,
+  "predicted": {
+   "requests": 64,
+   "bytes": 9870903,
+   "chunkBytes": 9870903
+  },
+  "measured": {
+   "backendReadCount": 219,
+   "backendReadBytes": 16028060,
+   "prefetchDataAmount": 10552113,
+   "prefetchRequests": 721,
+   "prewarmMs": 3975,
+   "plateauMs": 4792
+  }
+ },
+ {
+  "id": "regions-256x40",
+  "kind": "regions",
+  "files": 12999,
+  "app": "uptime-kuma",
+  "order": 33,
+  "chunks": 10240,
+  "predicted": {
+   "requests": 256,
+   "bytes": 30115339,
+   "chunkBytes": 30115339
+  },
+  "measured": {
+   "backendReadCount": 884,
+   "backendReadBytes": 42488760,
+   "prefetchDataAmount": 33349471,
+   "prefetchRequests": 3106,
+   "prewarmMs": 15190,
+   "plateauMs": 16025
+  }
+ },
+ {
+  "id": "regions-64x160",
+  "kind": "regions",
+  "files": 13400,
+  "app": "uptime-kuma",
+  "order": 34,
+  "chunks": 10240,
+  "predicted": {
+   "requests": 64,
+   "bytes": 26479231,
+   "chunkBytes": 26479231
+  },
+  "measured": {
+   "backendReadCount": 755,
+   "backendReadBytes": 31655286,
+   "prefetchDataAmount": 29524374,
+   "prefetchRequests": 3326,
+   "prewarmMs": 13440,
+   "plateauMs": 14297
+  }
+ },
+ {
+  "id": "uniform-500",
+  "kind": "uniform",
+  "files": 500,
+  "app": "uptime-kuma",
+  "order": 35,
+  "chunks": 496,
+  "predicted": {
+   "requests": 489,
+   "bytes": 921055,
+   "chunkBytes": 921055
+  },
+  "measured": {
+   "backendReadCount": 393,
+   "backendReadBytes": 22820520,
+   "prefetchDataAmount": 944962,
+   "prefetchRequests": 472,
+   "prewarmMs": 4764,
+   "plateauMs": 5597
+  }
+ },
+ {
+  "id": "uniform-2000",
+  "kind": "uniform",
+  "files": 2000,
+  "app": "uptime-kuma",
+  "order": 36,
+  "chunks": 1916,
+  "predicted": {
+   "requests": 1729,
+   "bytes": 4715082,
+   "chunkBytes": 4715082
+  },
+  "measured": {
+   "backendReadCount": 1068,
+   "backendReadBytes": 34185195,
+   "prefetchDataAmount": 4890270,
+   "prefetchRequests": 1578,
+   "prewarmMs": 12537,
+   "plateauMs": 13335
+  }
+ },
+ {
+  "id": "uniform-8000",
+  "kind": "uniform",
+  "files": 8000,
+  "app": "uptime-kuma",
+  "order": 37,
+  "chunks": 7184,
+  "predicted": {
+   "requests": 4634,
+   "bytes": 17001067,
+   "chunkBytes": 17001067
+  },
+  "measured": {
+   "backendReadCount": 2122,
+   "backendReadBytes": 42697351,
+   "prefetchDataAmount": 18668230,
+   "prefetchRequests": 3894,
+   "prewarmMs": 24283,
+   "plateauMs": 25123
+  }
+ }
+]

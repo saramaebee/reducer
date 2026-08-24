@@ -1,0 +1,182 @@
+[
+ {
+  "arm": "G1",
+  "rungMs": 1000,
+  "param": 800,
+  "measuredMs": 980,
+  "files": 230,
+  "measuredRequests": 49,
+  "measuredBackendBytes": 3499453
+ },
+ {
+  "arm": "G1C",
+  "rungMs": 1000,
+  "param": 800,
+  "measuredMs": 841,
+  "files": 7088,
+  "measuredRequests": 55,
+  "measuredBackendBytes": 6636009
+ },
+ {
+  "arm": "R1",
+  "rungMs": 1000,
+  "param": 800,
+  "measuredMs": 987,
+  "files": 61,
+  "measuredRequests": 56,
+  "measuredBackendBytes": 4849525
+ },
+ {
+  "arm": "R1C",
+  "rungMs": 1000,
+  "param": 800,
+  "measuredMs": 972,
+  "files": 7112,
+  "measuredRequests": 57,
+  "measuredBackendBytes": 6820726
+ },
+ {
+  "arm": "G1",
+  "rungMs": 2000,
+  "param": 1600,
+  "measuredMs": 1898,
+  "files": 623,
+  "measuredRequests": 121,
+  "measuredBackendBytes": 6801512
+ },
+ {
+  "arm": "G1C",
+  "rungMs": 2000,
+  "param": 1600,
+  "measuredMs": 1596,
+  "files": 13925,
+  "measuredRequests": 126,
+  "measuredBackendBytes": 15082029
+ },
+ {
+  "arm": "R1",
+  "rungMs": 2000,
+  "param": 1600,
+  "measuredMs": 1621,
+  "files": 140,
+  "measuredRequests": 121,
+  "measuredBackendBytes": 9691600
+ },
+ {
+  "arm": "R1C",
+  "rungMs": 2000,
+  "param": 1600,
+  "measuredMs": 1720,
+  "files": 13696,
+  "measuredRequests": 121,
+  "measuredBackendBytes": 14969717
+ },
+ {
+  "arm": "G1",
+  "rungMs": 3000,
+  "param": 3200,
+  "measuredMs": 3345,
+  "files": 1635,
+  "measuredRequests": 247,
+  "measuredBackendBytes": 12024559
+ },
+ {
+  "arm": "G1C",
+  "rungMs": 3000,
+  "param": 3200,
+  "measuredMs": 3141,
+  "files": 21504,
+  "measuredRequests": 247,
+  "measuredBackendBytes": 30923434
+ },
+ {
+  "arm": "R1",
+  "rungMs": 3000,
+  "param": 3200,
+  "measuredMs": 2948,
+  "files": 303,
+  "measuredRequests": 230,
+  "measuredBackendBytes": 14297639
+ },
+ {
+  "arm": "R1C",
+  "rungMs": 3000,
+  "param": 3200,
+  "measuredMs": 3129,
+  "files": 21410,
+  "measuredRequests": 251,
+  "measuredBackendBytes": 31204426
+ },
+ {
+  "arm": "G1",
+  "rungMs": 4000,
+  "param": 3200,
+  "measuredMs": 3345,
+  "files": 1635,
+  "measuredRequests": 247,
+  "measuredBackendBytes": 12024559
+ },
+ {
+  "arm": "G1C",
+  "rungMs": 4000,
+  "param": 3200,
+  "measuredMs": 3141,
+  "files": 21504,
+  "measuredRequests": 247,
+  "measuredBackendBytes": 30923434
+ },
+ {
+  "arm": "R1",
+  "rungMs": 4000,
+  "param": 3200,
+  "measuredMs": 2948,
+  "files": 303,
+  "measuredRequests": 230,
+  "measuredBackendBytes": 14297639
+ },
+ {
+  "arm": "R1C",
+  "rungMs": 4000,
+  "param": 3200,
+  "measuredMs": 3129,
+  "files": 21410,
+  "measuredRequests": 251,
+  "measuredBackendBytes": 31204426
+ },
+ {
+  "arm": "G1",
+  "rungMs": 5600,
+  "param": 25600,
+  "measuredMs": 5202,
+  "files": 22303,
+  "measuredRequests": 361,
+  "measuredBackendBytes": 57066683
+ },
+ {
+  "arm": "G1C",
+  "rungMs": 5600,
+  "param": 51200,
+  "measuredMs": 5223,
+  "files": 22303,
+  "measuredRequests": 361,
+  "measuredBackendBytes": 57066683
+ },
+ {
+  "arm": "R1",
+  "rungMs": 5600,
+  "param": 6400,
+  "measuredMs": 5673,
+  "files": 720,
+  "measuredRequests": 448,
+  "measuredBackendBytes": 19400933
+ },
+ {
+  "arm": "R1C",
+  "rungMs": 5600,
+  "param": 12800,
+  "measuredMs": 5212,
+  "files": 22303,
+  "measuredRequests": 361,
+  "measuredBackendBytes": 57066683
+ }
+]

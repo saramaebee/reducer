@@ -1,0 +1,800 @@
+[
+ {
+  "id": "span-200-a",
+  "kind": "span",
+  "files": 200,
+  "app": "juice-shop",
+  "order": 0,
+  "chunks": 200,
+  "predicted": {
+   "requests": 1,
+   "bytes": 386626,
+   "chunkBytes": 386626
+  },
+  "measured": {
+   "backendReadCount": 4,
+   "backendReadBytes": 648417,
+   "prefetchDataAmount": 386626,
+   "prefetchRequests": 3,
+   "prewarmMs": 201,
+   "plateauMs": 1044
+  }
+ },
+ {
+  "id": "span-200-b",
+  "kind": "span",
+  "files": 200,
+  "app": "juice-shop",
+  "order": 1,
+  "chunks": 200,
+  "predicted": {
+   "requests": 1,
+   "bytes": 34356,
+   "chunkBytes": 34356
+  },
+  "measured": {
+   "backendReadCount": 2,
+   "backendReadBytes": 297829,
+   "prefetchDataAmount": 34356,
+   "prefetchRequests": 1,
+   "prewarmMs": 337,
+   "plateauMs": 1192
+  }
+ },
+ {
+  "id": "span-200-c",
+  "kind": "span",
+  "files": 200,
+  "app": "juice-shop",
+  "order": 2,
+  "chunks": 200,
+  "predicted": {
+   "requests": 2,
+   "bytes": 2077923,
+   "chunkBytes": 2077923
+  },
+  "measured": {
+   "backendReadCount": 11,
+   "backendReadBytes": 2279407,
+   "prefetchDataAmount": 2077923,
+   "prefetchRequests": 10,
+   "prewarmMs": 471,
+   "plateauMs": 1281
+  }
+ },
+ {
+  "id": "span-1000-a",
+  "kind": "span",
+  "files": 1000,
+  "app": "juice-shop",
+  "order": 3,
+  "chunks": 1000,
+  "predicted": {
+   "requests": 4,
+   "bytes": 10179889,
+   "chunkBytes": 10179889
+  },
+  "measured": {
+   "backendReadCount": 51,
+   "backendReadBytes": 10419864,
+   "prefetchDataAmount": 10117790,
+   "prefetchRequests": 50,
+   "prewarmMs": 1135,
+   "plateauMs": 1982
+  }
+ },
+ {
+  "id": "span-1000-b",
+  "kind": "span",
+  "files": 1000,
+  "app": "juice-shop",
+  "order": 4,
+  "chunks": 1000,
+  "predicted": {
+   "requests": 3,
+   "bytes": 1798465,
+   "chunkBytes": 1798465
+  },
+  "measured": {
+   "backendReadCount": 13,
+   "backendReadBytes": 2070696,
+   "prefetchDataAmount": 1798465,
+   "prefetchRequests": 12,
+   "prewarmMs": 464,
+   "plateauMs": 1282
+  }
+ },
+ {
+  "id": "span-1000-c",
+  "kind": "span",
+  "files": 1000,
+  "app": "juice-shop",
+  "order": 5,
+  "chunks": 1000,
+  "predicted": {
+   "requests": 2,
+   "bytes": 3400710,
+   "chunkBytes": 3400710
+  },
+  "measured": {
+   "backendReadCount": 20,
+   "backendReadBytes": 3602194,
+   "prefetchDataAmount": 3400710,
+   "prefetchRequests": 19,
+   "prewarmMs": 593,
+   "plateauMs": 1434
+  }
+ },
+ {
+  "id": "span-4000-a",
+  "kind": "span",
+  "files": 4000,
+  "app": "juice-shop",
+  "order": 6,
+  "chunks": 4000,
+  "predicted": {
+   "requests": 10,
+   "bytes": 20035042,
+   "chunkBytes": 20035042
+  },
+  "measured": {
+   "backendReadCount": 117,
+   "backendReadBytes": 20283900,
+   "prefetchDataAmount": 19972943,
+   "prefetchRequests": 116,
+   "prewarmMs": 2006,
+   "plateauMs": 2825
+  }
+ },
+ {
+  "id": "span-4000-b",
+  "kind": "span",
+  "files": 4000,
+  "app": "juice-shop",
+  "order": 7,
+  "chunks": 4000,
+  "predicted": {
+   "requests": 6,
+   "bytes": 10674736,
+   "chunkBytes": 10674736
+  },
+  "measured": {
+   "backendReadCount": 66,
+   "backendReadBytes": 10899836,
+   "prefetchDataAmount": 10674736,
+   "prefetchRequests": 65,
+   "prewarmMs": 1234,
+   "plateauMs": 2117
+  }
+ },
+ {
+  "id": "span-4000-c",
+  "kind": "span",
+  "files": 4000,
+  "app": "juice-shop",
+  "order": 8,
+  "chunks": 4000,
+  "predicted": {
+   "requests": 9,
+   "bytes": 11434247,
+   "chunkBytes": 11434247
+  },
+  "measured": {
+   "backendReadCount": 79,
+   "backendReadBytes": 11635731,
+   "prefetchDataAmount": 11434247,
+   "prefetchRequests": 79,
+   "prewarmMs": 1371,
+   "plateauMs": 2236
+  }
+ },
+ {
+  "id": "span-16000-a",
+  "kind": "span",
+  "files": 16000,
+  "app": "juice-shop",
+  "order": 9,
+  "chunks": 16000,
+  "predicted": {
+   "requests": 19,
+   "bytes": 49870242,
+   "chunkBytes": 49870242
+  },
+  "measured": {
+   "backendReadCount": 327,
+   "backendReadBytes": 50156783,
+   "prefetchDataAmount": 49808143,
+   "prefetchRequests": 326,
+   "prewarmMs": 4603,
+   "plateauMs": 5447
+  }
+ },
+ {
+  "id": "span-16000-b",
+  "kind": "span",
+  "files": 10624,
+  "app": "juice-shop",
+  "order": 10,
+  "chunks": 10624,
+  "predicted": {
+   "requests": 15,
+   "bytes": 26625429,
+   "chunkBytes": 26625429
+  },
+  "measured": {
+   "backendReadCount": 180,
+   "backendReadBytes": 26826425,
+   "prefetchDataAmount": 26625429,
+   "prefetchRequests": 179,
+   "prewarmMs": 2652,
+   "plateauMs": 3470
+  }
+ },
+ {
+  "id": "span-16000-c",
+  "kind": "span",
+  "files": 16000,
+  "app": "juice-shop",
+  "order": 11,
+  "chunks": 16000,
+  "predicted": {
+   "requests": 21,
+   "bytes": 41393137,
+   "chunkBytes": 41393137
+  },
+  "measured": {
+   "backendReadCount": 288,
+   "backendReadBytes": 41594621,
+   "prefetchDataAmount": 41393137,
+   "prefetchRequests": 287,
+   "prewarmMs": 3939,
+   "plateauMs": 4764
+  }
+ },
+ {
+  "id": "stride-2",
+  "kind": "stride",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 12,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 2000,
+   "bytes": 11420078,
+   "chunkBytes": 11420078
+  },
+  "measured": {
+   "backendReadCount": 493,
+   "backendReadBytes": 17627962,
+   "prefetchDataAmount": 11936091,
+   "prefetchRequests": 760,
+   "prewarmMs": 6103,
+   "plateauMs": 6944
+  }
+ },
+ {
+  "id": "stride-4",
+  "kind": "stride",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 13,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 2000,
+   "bytes": 8465936,
+   "chunkBytes": 8465936
+  },
+  "measured": {
+   "backendReadCount": 1078,
+   "backendReadBytes": 24404799,
+   "prefetchDataAmount": 8650792,
+   "prefetchRequests": 1700,
+   "prewarmMs": 12437,
+   "plateauMs": 13283
+  }
+ },
+ {
+  "id": "stride-8",
+  "kind": "stride",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 14,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 2000,
+   "bytes": 6598752,
+   "chunkBytes": 6598752
+  },
+  "measured": {
+   "backendReadCount": 1275,
+   "backendReadBytes": 35637527,
+   "prefetchDataAmount": 6662258,
+   "prefetchRequests": 1906,
+   "prewarmMs": 14133,
+   "plateauMs": 14970
+  }
+ },
+ {
+  "id": "stride-16",
+  "kind": "stride",
+  "files": 1106,
+  "app": "juice-shop",
+  "order": 15,
+  "chunks": 1106,
+  "predicted": {
+   "requests": 1106,
+   "bytes": 4059033,
+   "chunkBytes": 4059033
+  },
+  "measured": {
+   "backendReadCount": 818,
+   "backendReadBytes": 34174894,
+   "prefetchDataAmount": 4064659,
+   "prefetchRequests": 1100,
+   "prewarmMs": 9106,
+   "plateauMs": 9953
+  }
+ },
+ {
+  "id": "stride-64",
+  "kind": "stride",
+  "files": 276,
+  "app": "juice-shop",
+  "order": 16,
+  "chunks": 276,
+  "predicted": {
+   "requests": 276,
+   "bytes": 801958,
+   "chunkBytes": 801958
+  },
+  "measured": {
+   "backendReadCount": 261,
+   "backendReadBytes": 23209023,
+   "prefetchDataAmount": 801958,
+   "prefetchRequests": 276,
+   "prewarmMs": 3168,
+   "plateauMs": 4010
+  }
+ },
+ {
+  "id": "stride-256",
+  "kind": "stride",
+  "files": 69,
+  "app": "juice-shop",
+  "order": 17,
+  "chunks": 69,
+  "predicted": {
+   "requests": 69,
+   "bytes": 240545,
+   "chunkBytes": 240545
+  },
+  "measured": {
+   "backendReadCount": 69,
+   "backendReadBytes": 8298081,
+   "prefetchDataAmount": 240545,
+   "prefetchRequests": 69,
+   "prewarmMs": 1097,
+   "plateauMs": 1944
+  }
+ },
+ {
+  "id": "runs-4x1",
+  "kind": "runs",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 18,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 505,
+   "bytes": 12829039,
+   "chunkBytes": 12829039
+  },
+  "measured": {
+   "backendReadCount": 197,
+   "backendReadBytes": 14402892,
+   "prefetchDataAmount": 12913438,
+   "prefetchRequests": 229,
+   "prewarmMs": 2554,
+   "plateauMs": 3381
+  }
+ },
+ {
+  "id": "runs-4x4",
+  "kind": "runs",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 19,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 504,
+   "bytes": 10092931,
+   "chunkBytes": 10092931
+  },
+  "measured": {
+   "backendReadCount": 354,
+   "backendReadBytes": 15020125,
+   "prefetchDataAmount": 10049766,
+   "prefetchRequests": 493,
+   "prewarmMs": 4372,
+   "plateauMs": 5207
+  }
+ },
+ {
+  "id": "runs-4x16",
+  "kind": "runs",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 20,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 503,
+   "bytes": 6796120,
+   "chunkBytes": 6796120
+  },
+  "measured": {
+   "backendReadCount": 416,
+   "backendReadBytes": 20877594,
+   "prefetchDataAmount": 6796120,
+   "prefetchRequests": 510,
+   "prewarmMs": 4801,
+   "plateauMs": 5609
+  }
+ },
+ {
+  "id": "runs-4x64",
+  "kind": "runs",
+  "files": 1044,
+  "app": "juice-shop",
+  "order": 21,
+  "chunks": 1044,
+  "predicted": {
+   "requests": 262,
+   "bytes": 2552805,
+   "chunkBytes": 2552805
+  },
+  "measured": {
+   "backendReadCount": 249,
+   "backendReadBytes": 22963020,
+   "prefetchDataAmount": 2552805,
+   "prefetchRequests": 263,
+   "prewarmMs": 2904,
+   "plateauMs": 3741
+  }
+ },
+ {
+  "id": "runs-16x4",
+  "kind": "runs",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 22,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 132,
+   "bytes": 11760641,
+   "chunkBytes": 11760641
+  },
+  "measured": {
+   "backendReadCount": 149,
+   "backendReadBytes": 13444522,
+   "prefetchDataAmount": 11698542,
+   "prefetchRequests": 170,
+   "prewarmMs": 2160,
+   "plateauMs": 2994
+  }
+ },
+ {
+  "id": "runs-16x32",
+  "kind": "runs",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 23,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 128,
+   "bytes": 9026649,
+   "chunkBytes": 9026649
+  },
+  "measured": {
+   "backendReadCount": 149,
+   "backendReadBytes": 15071951,
+   "prefetchDataAmount": 9026649,
+   "prefetchRequests": 156,
+   "prewarmMs": 2033,
+   "plateauMs": 2872
+  }
+ },
+ {
+  "id": "runs-32x128",
+  "kind": "runs",
+  "files": 2016,
+  "app": "juice-shop",
+  "order": 24,
+  "chunks": 2016,
+  "predicted": {
+   "requests": 68,
+   "bytes": 5499181,
+   "chunkBytes": 5499181
+  },
+  "measured": {
+   "backendReadCount": 80,
+   "backendReadBytes": 10481727,
+   "prefetchDataAmount": 5499181,
+   "prefetchRequests": 80,
+   "prewarmMs": 1228,
+   "plateauMs": 2069
+  }
+ },
+ {
+  "id": "allspan-500-a",
+  "kind": "allspan",
+  "files": 501,
+  "app": "juice-shop",
+  "order": 25,
+  "chunks": 500,
+  "predicted": {
+   "requests": 1,
+   "bytes": 716942,
+   "chunkBytes": 716942
+  },
+  "measured": {
+   "backendReadCount": 8,
+   "backendReadBytes": 1011338,
+   "prefetchDataAmount": 716961,
+   "prefetchRequests": 7,
+   "prewarmMs": 461,
+   "plateauMs": 1326
+  }
+ },
+ {
+  "id": "allspan-500-b",
+  "kind": "allspan",
+  "files": 527,
+  "app": "juice-shop",
+  "order": 26,
+  "chunks": 500,
+  "predicted": {
+   "requests": 1,
+   "bytes": 1671965,
+   "chunkBytes": 1671965
+  },
+  "measured": {
+   "backendReadCount": 15,
+   "backendReadBytes": 1889263,
+   "prefetchDataAmount": 1731314,
+   "prefetchRequests": 36,
+   "prewarmMs": 599,
+   "plateauMs": 1454
+  }
+ },
+ {
+  "id": "allspan-2000-a",
+  "kind": "allspan",
+  "files": 3298,
+  "app": "juice-shop",
+  "order": 27,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 18937892,
+   "chunkBytes": 18937892
+  },
+  "measured": {
+   "backendReadCount": 269,
+   "backendReadBytes": 19193752,
+   "prefetchDataAmount": 35593730,
+   "prefetchRequests": 1360,
+   "prewarmMs": 5354,
+   "plateauMs": 6216
+  }
+ },
+ {
+  "id": "allspan-2000-b",
+  "kind": "allspan",
+  "files": 2307,
+  "app": "juice-shop",
+  "order": 28,
+  "chunks": 2000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 6675436,
+   "chunkBytes": 6675436
+  },
+  "measured": {
+   "backendReadCount": 104,
+   "backendReadBytes": 6970049,
+   "prefetchDataAmount": 8418701,
+   "prefetchRequests": 331,
+   "prewarmMs": 2314,
+   "plateauMs": 3167
+  }
+ },
+ {
+  "id": "allspan-8000-a",
+  "kind": "allspan",
+  "files": 12978,
+  "app": "juice-shop",
+  "order": 29,
+  "chunks": 8000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 36658541,
+   "chunkBytes": 36658541
+  },
+  "measured": {
+   "backendReadCount": 1039,
+   "backendReadBytes": 36918264,
+   "prefetchDataAmount": 59024794,
+   "prefetchRequests": 5123,
+   "prewarmMs": 18380,
+   "plateauMs": 19234
+  }
+ },
+ {
+  "id": "allspan-8000-b",
+  "kind": "allspan",
+  "files": 9128,
+  "app": "juice-shop",
+  "order": 30,
+  "chunks": 8000,
+  "predicted": {
+   "requests": 1,
+   "bytes": 22235443,
+   "chunkBytes": 22235443
+  },
+  "measured": {
+   "backendReadCount": 504,
+   "backendReadBytes": 22455624,
+   "prefetchDataAmount": 24921995,
+   "prefetchRequests": 1231,
+   "prewarmMs": 8131,
+   "plateauMs": 8989
+  }
+ },
+ {
+  "id": "regions-16x40",
+  "kind": "regions",
+  "files": 866,
+  "app": "juice-shop",
+  "order": 31,
+  "chunks": 640,
+  "predicted": {
+   "requests": 16,
+   "bytes": 2561955,
+   "chunkBytes": 2561955
+  },
+  "measured": {
+   "backendReadCount": 47,
+   "backendReadBytes": 3898945,
+   "prefetchDataAmount": 2862534,
+   "prefetchRequests": 251,
+   "prewarmMs": 981,
+   "plateauMs": 1825
+  }
+ },
+ {
+  "id": "regions-64x40",
+  "kind": "regions",
+  "files": 3551,
+  "app": "juice-shop",
+  "order": 32,
+  "chunks": 2560,
+  "predicted": {
+   "requests": 64,
+   "bytes": 15498827,
+   "chunkBytes": 15498827
+  },
+  "measured": {
+   "backendReadCount": 307,
+   "backendReadBytes": 21307202,
+   "prefetchDataAmount": 20138408,
+   "prefetchRequests": 1098,
+   "prewarmMs": 5744,
+   "plateauMs": 6598
+  }
+ },
+ {
+  "id": "regions-256x40",
+  "kind": "regions",
+  "files": 13816,
+  "app": "juice-shop",
+  "order": 33,
+  "chunks": 10240,
+  "predicted": {
+   "requests": 256,
+   "bytes": 48902859,
+   "chunkBytes": 48902859
+  },
+  "measured": {
+   "backendReadCount": 1071,
+   "backendReadBytes": 59308143,
+   "prefetchDataAmount": 65278350,
+   "prefetchRequests": 3984,
+   "prewarmMs": 18948,
+   "plateauMs": 19788
+  }
+ },
+ {
+  "id": "regions-64x160",
+  "kind": "regions",
+  "files": 13776,
+  "app": "juice-shop",
+  "order": 34,
+  "chunks": 10240,
+  "predicted": {
+   "requests": 64,
+   "bytes": 46606517,
+   "chunkBytes": 46606517
+  },
+  "measured": {
+   "backendReadCount": 998,
+   "backendReadBytes": 51315400,
+   "prefetchDataAmount": 62285109,
+   "prefetchRequests": 3759,
+   "prewarmMs": 17679,
+   "plateauMs": 18533
+  }
+ },
+ {
+  "id": "uniform-500",
+  "kind": "uniform",
+  "files": 500,
+  "app": "juice-shop",
+  "order": 35,
+  "chunks": 488,
+  "predicted": {
+   "requests": 465,
+   "bytes": 1948834,
+   "chunkBytes": 1948834
+  },
+  "measured": {
+   "backendReadCount": 369,
+   "backendReadBytes": 23311241,
+   "prefetchDataAmount": 2126123,
+   "prefetchRequests": 460,
+   "prewarmMs": 4622,
+   "plateauMs": 5456
+  }
+ },
+ {
+  "id": "uniform-2000",
+  "kind": "uniform",
+  "files": 2000,
+  "app": "juice-shop",
+  "order": 36,
+  "chunks": 1884,
+  "predicted": {
+   "requests": 1628,
+   "bytes": 5193673,
+   "chunkBytes": 5193673
+  },
+  "measured": {
+   "backendReadCount": 919,
+   "backendReadBytes": 34318418,
+   "prefetchDataAmount": 5565482,
+   "prefetchRequests": 1557,
+   "prewarmMs": 11186,
+   "plateauMs": 12036
+  }
+ },
+ {
+  "id": "uniform-8000",
+  "kind": "uniform",
+  "files": 8000,
+  "app": "juice-shop",
+  "order": 37,
+  "chunks": 6932,
+  "predicted": {
+   "requests": 4001,
+   "bytes": 26259251,
+   "chunkBytes": 26259251
+  },
+  "measured": {
+   "backendReadCount": 1745,
+   "backendReadBytes": 49868567,
+   "prefetchDataAmount": 30467174,
+   "prefetchRequests": 3793,
+   "prewarmMs": 20685,
+   "plateauMs": 21547
+  }
+ }
+]

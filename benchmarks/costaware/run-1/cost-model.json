@@ -1,0 +1,20 @@
+{
+ "gapBridge": 2048,
+ "maxRange": 131072,
+ "maxURange": 9007199254740991,
+ "fixedMs": 181.07136564504214,
+ "perRequestMs": 10.446164427837152,
+ "perByteMs": 0.000015565550824632014,
+ "r2": 0.9977415822080373,
+ "mergeFit": {
+  "requestMape": 0.1442005767667311,
+  "byteMape": 0.44180600233713957,
+  "n": 86
+ },
+ "probes": 86,
+ "apps": [
+  "strapi",
+  "juice-shop",
+  "uptime-kuma"
+ ]
+}
