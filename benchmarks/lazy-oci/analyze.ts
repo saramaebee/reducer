@@ -87,6 +87,8 @@ export interface TrialMetrics {
   remoteOpsPerMB: number;
   /** per-request latency over the held-out workload */
   reqLatency: { n: number; p50: number; p95: number; p99: number; first: number };
+  /** cumulative fetch curve: [ms from t0, remote requests, remote bytes] */
+  curve: [number, number, number][];
   requests: { path: string; method: string; phase: string; status: number | string; ms: number; bodyHash: string | null }[];
 }
 
@@ -180,6 +182,13 @@ function analyzeTrial(
     unexpectedMissBytes: bytesOf(missed),
     faultAmplification: needed.size > 0 ? remoteRequests / needed.size : Number.NaN,
     remoteOpsPerMB: remoteBytes > 0 ? remoteRequests / (remoteBytes / 2 ** 20) : Number.NaN,
+    // The temporal fetch curve, downsampled to one point per 100 ms sample and
+    // capped so a long trial does not bloat the record. Milestones are stored
+    // separately (tProc/tReady/tReq1) and are the marks on this curve.
+    curve: samples
+      .filter((s) => Number.isFinite(s.at))
+      .map((s) => [s.at - t0, s.rq ?? 0, s.rb ?? 0] as [number, number, number])
+      .filter((_, i, arr) => arr.length <= 400 || i % Math.ceil(arr.length / 400) === 0),
     reqLatency: {
       n: lat.length,
       p50: median(lat),
@@ -332,7 +341,14 @@ function analyzeApp(app: string): void {
     byArm,
     orderDrift,
     correctness,
-    trials: trials.map((t) => ({ ...t, requests: undefined })),
+    // one representative curve per arm (the median-ready trial); the rest are
+    // dropped so the metrics file stays readable, and every raw sample stream
+    // remains on disk under trials/<app>/<arm>.rep<n>/samples.jsonl
+    trials: trials.map((t) => {
+      const sameArm = trials.filter((x) => x.arm === t.arm && x.ok).sort((a, b) => a.tReady - b.tReady);
+      const rep = sameArm[Math.floor(sameArm.length / 2)];
+      return { ...t, requests: undefined, curve: rep === t ? t.curve : undefined };
+    }),
   };
   writeFileSync(path.join(RUN, `${app}.metrics.json`), JSON.stringify(out, null, 1));
 
