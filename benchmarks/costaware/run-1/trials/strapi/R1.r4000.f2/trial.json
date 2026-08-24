@@ -1,0 +1,25 @@
+{
+ "app": "strapi",
+ "arm": "R1",
+ "budgetMs": 4000,
+ "param": 3200,
+ "family": 2,
+ "order": 47,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/costaware/run-1/trials/strapi/R1.r4000.f2",
+ "prefetchFile": "/Users/sara/.cache/reducer-costaware-v1/prefetch/strapi/R1.3200.txt",
+ "prefetchAll": false,
+ "budget": 4000,
+ "milestones": {
+  "setup-done": 1787588372689,
+  "t0": 1787588372689,
+  "mount": 1787588372709,
+  "proc": 1787588372763,
+  "prefetch-last-progress": 1787588376779,
+  "prewarm": 1787588376786,
+  "workload-done": 1787588404556,
+  "collect": 1787588404573,
+  "done": 1787588404894
+ },
+ "cutoff": "deadline",
+ "exit": 0
+}

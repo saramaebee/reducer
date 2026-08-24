@@ -1,0 +1,25 @@
+{
+ "app": "strapi",
+ "arm": "G1C",
+ "budgetMs": 4000,
+ "param": 3200,
+ "family": 2,
+ "order": 11,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/costaware/run-1/fast/strapi/G1C.r4000.f2",
+ "prefetchFile": "/Users/sara/.cache/reducer-costaware-v1/prefetch/strapi/G1C.3200.txt",
+ "prefetchAll": false,
+ "budget": 4000,
+ "milestones": {
+  "setup-done": 1787590017266,
+  "t0": 1787590017267,
+  "mount": 1787590017294,
+  "proc": 1787590017347,
+  "prefetch-last-progress": 1787590018385,
+  "prewarm": 1787590019151,
+  "workload-done": 1787590035638,
+  "collect": 1787590035655,
+  "done": 1787590035975
+ },
+ "cutoff": "plateau",
+ "exit": 0
+}

@@ -1,0 +1,25 @@
+{
+ "app": "uptime-kuma",
+ "arm": "G1",
+ "budgetMs": 4000,
+ "param": 3200,
+ "family": 3,
+ "order": 77,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/costaware/run-1/trials/uptime-kuma/G1.r4000.f3",
+ "prefetchFile": "/Users/sara/.cache/reducer-costaware-v1/prefetch/uptime-kuma/G1.3200.txt",
+ "prefetchAll": false,
+ "budget": 4000,
+ "milestones": {
+  "setup-done": 1787584723229,
+  "t0": 1787584723230,
+  "mount": 1787584723253,
+  "proc": 1787584723314,
+  "prefetch-last-progress": 1787584725930,
+  "prewarm": 1787584726720,
+  "workload-done": 1787584739325,
+  "collect": 1787584739347,
+  "done": 1787584739670
+ },
+ "cutoff": "plateau",
+ "exit": 0
+}

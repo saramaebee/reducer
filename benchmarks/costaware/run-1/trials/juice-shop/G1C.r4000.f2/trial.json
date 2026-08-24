@@ -1,0 +1,25 @@
+{
+ "app": "juice-shop",
+ "arm": "G1C",
+ "budgetMs": 4000,
+ "param": 3200,
+ "family": 2,
+ "order": 54,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/costaware/run-1/trials/juice-shop/G1C.r4000.f2",
+ "prefetchFile": "/Users/sara/.cache/reducer-costaware-v1/prefetch/juice-shop/G1C.3200.txt",
+ "prefetchAll": false,
+ "budget": 4000,
+ "milestones": {
+  "setup-done": 1787586199690,
+  "t0": 1787586199690,
+  "mount": 1787586199711,
+  "proc": 1787586199766,
+  "prefetch-last-progress": 1787586202844,
+  "prewarm": 1787586203629,
+  "workload-done": 1787586220991,
+  "collect": 1787586221009,
+  "done": 1787586221336
+ },
+ "cutoff": "plateau",
+ "exit": 0
+}

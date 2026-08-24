@@ -1,0 +1,25 @@
+{
+ "app": "uptime-kuma",
+ "arm": "G1C",
+ "budgetMs": 5600,
+ "param": 51200,
+ "family": 3,
+ "order": 82,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/costaware/run-1/trials/uptime-kuma/G1C.r5600.f3",
+ "prefetchFile": "/Users/sara/.cache/reducer-costaware-v1/prefetch/uptime-kuma/G1C.51200.txt",
+ "prefetchAll": false,
+ "budget": 5600,
+ "milestones": {
+  "setup-done": 1787584800992,
+  "t0": 1787584800992,
+  "mount": 1787584801014,
+  "proc": 1787584801080,
+  "prefetch-last-progress": 1787584806689,
+  "prewarm": 1787584806697,
+  "workload-done": 1787584814715,
+  "collect": 1787584814734,
+  "done": 1787584815053
+ },
+ "cutoff": "deadline",
+ "exit": 0
+}

@@ -1,0 +1,4581 @@
+{
+ "app": "juice-shop",
+ "universe": {
+  "files": 24020,
+  "bytes": 270529975
+ },
+ "physical": {
+  "files": 24020,
+  "filesWithNoChunk": 79,
+  "chunks": 17770,
+  "sharedChunks": 3721,
+  "compressedBytes": 75622379,
+  "layoutGaps": 0,
+  "layoutOverlaps": 0,
+  "blobIndexes": [
+   0
+  ]
+ },
+ "costModel": {
+  "gapBridge": 2048,
+  "maxRange": 131072,
+  "maxURange": 9007199254740991,
+  "fixedMs": 181.07136564504214,
+  "perRequestMs": 10.446164427837152,
+  "perByteMs": 0.000015565550824632014,
+  "r2": 0.9977415822080373,
+  "mergeFit": {
+   "requestMape": 0.1442005767667311,
+   "byteMape": 0.44180600233713957,
+   "n": 86
+  },
+  "probes": 86,
+  "apps": [
+   "strapi",
+   "juice-shop",
+   "uptime-kuma"
+  ]
+ },
+ "band": {
+  "app": "juice-shop",
+  "n": 4,
+  "warmWindowP99s": [
+   33,
+   33,
+   31,
+   31,
+   31,
+   31,
+   35,
+   35,
+   35,
+   33,
+   35,
+   33,
+   34,
+   34,
+   34,
+   33,
+   33,
+   33,
+   33,
+   36,
+   36,
+   33,
+   33,
+   33,
+   31,
+   31,
+   31,
+   31,
+   31,
+   31,
+   33,
+   35,
+   32,
+   32,
+   32,
+   33,
+   33,
+   32,
+   32,
+   32,
+   32,
+   32,
+   32,
+   32,
+   32,
+   37,
+   37,
+   37,
+   33,
+   33,
+   33,
+   33,
+   33,
+   33,
+   33,
+   32,
+   32,
+   32,
+   32,
+   32,
+   34,
+   34,
+   34,
+   32
+  ],
+  "primary": 37,
+  "sensitivity": 36,
+  "warmMedian": 33
+ },
+ "rungs": [
+  1000,
+  2000,
+  4000,
+  6000,
+  7500
+ ],
+ "ladder": [
+  {
+   "arm": "G1",
+   "rungMs": 1000,
+   "param": 800,
+   "measuredMs": 983,
+   "files": 198,
+   "measuredRequests": 50,
+   "measuredBackendBytes": 4317362
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 1000,
+   "param": 800,
+   "measuredMs": 975,
+   "files": 5906,
+   "measuredRequests": 56,
+   "measuredBackendBytes": 6749607
+  },
+  {
+   "arm": "R1",
+   "rungMs": 1000,
+   "param": 800,
+   "measuredMs": 987,
+   "files": 60,
+   "measuredRequests": 55,
+   "measuredBackendBytes": 5026096
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 1000,
+   "param": 800,
+   "measuredMs": 983,
+   "files": 5632,
+   "measuredRequests": 54,
+   "measuredBackendBytes": 6563282
+  },
+  {
+   "arm": "G1",
+   "rungMs": 2000,
+   "param": 1600,
+   "measuredMs": 1623,
+   "files": 430,
+   "measuredRequests": 114,
+   "measuredBackendBytes": 7686119
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 2000,
+   "param": 1600,
+   "measuredMs": 1620,
+   "files": 11302,
+   "measuredRequests": 119,
+   "measuredBackendBytes": 14643177
+  },
+  {
+   "arm": "R1",
+   "rungMs": 2000,
+   "param": 1600,
+   "measuredMs": 1761,
+   "files": 143,
+   "measuredRequests": 119,
+   "measuredBackendBytes": 9539969
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 2000,
+   "param": 1600,
+   "measuredMs": 1610,
+   "files": 10728,
+   "measuredRequests": 124,
+   "measuredBackendBytes": 14637247
+  },
+  {
+   "arm": "G1",
+   "rungMs": 4000,
+   "param": 3200,
+   "measuredMs": 3201,
+   "files": 1082,
+   "measuredRequests": 233,
+   "measuredBackendBytes": 11720760
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 4000,
+   "param": 3200,
+   "measuredMs": 3007,
+   "files": 16832,
+   "measuredRequests": 243,
+   "measuredBackendBytes": 30183301
+  },
+  {
+   "arm": "R1",
+   "rungMs": 4000,
+   "param": 3200,
+   "measuredMs": 3051,
+   "files": 307,
+   "measuredRequests": 234,
+   "measuredBackendBytes": 14613870
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 4000,
+   "param": 3200,
+   "measuredMs": 3009,
+   "files": 16904,
+   "measuredRequests": 251,
+   "measuredBackendBytes": 30497458
+  },
+  {
+   "arm": "G1",
+   "rungMs": 6000,
+   "param": 6400,
+   "measuredMs": 6378,
+   "files": 3031,
+   "measuredRequests": 508,
+   "measuredBackendBytes": 20659766
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 6000,
+   "param": 6400,
+   "measuredMs": 6126,
+   "files": 17731,
+   "measuredRequests": 392,
+   "measuredBackendBytes": 68836251
+  },
+  {
+   "arm": "R1",
+   "rungMs": 6000,
+   "param": 6400,
+   "measuredMs": 5319,
+   "files": 692,
+   "measuredRequests": 402,
+   "measuredBackendBytes": 17192592
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 6000,
+   "param": 6400,
+   "measuredMs": 6130,
+   "files": 17731,
+   "measuredRequests": 392,
+   "measuredBackendBytes": 68836251
+  },
+  {
+   "arm": "G1",
+   "rungMs": 7500,
+   "param": 25600,
+   "measuredMs": 6673,
+   "files": 17733,
+   "measuredRequests": 397,
+   "measuredBackendBytes": 75761276
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 7500,
+   "param": 12800,
+   "measuredMs": 6652,
+   "files": 17733,
+   "measuredRequests": 397,
+   "measuredBackendBytes": 75761276
+  },
+  {
+   "arm": "R1",
+   "rungMs": 7500,
+   "param": 25600,
+   "measuredMs": 6801,
+   "files": 17733,
+   "measuredRequests": 397,
+   "measuredBackendBytes": 75761276
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 7500,
+   "param": 12800,
+   "measuredMs": 6824,
+   "files": 17733,
+   "measuredRequests": 397,
+   "measuredBackendBytes": 75761276
+  }
+ ],
+ "eagerWorstWindowP99": 180,
+ "byCell": {
+  "E0": {
+   "arm": "E0",
+   "rungMs": null,
+   "param": null,
+   "trials": 4,
+   "plannedMeasuredMs": null,
+   "plannedFiles": null,
+   "cutoffReasons": [
+    "plateau"
+   ],
+   "tSteady": {
+    "n": 2,
+    "median": 7826,
+    "min": 7826,
+    "max": 11223
+   },
+   "steadyReached": 2,
+   "tTraffic": {
+    "n": 4,
+    "median": 5522,
+    "min": 5472,
+    "max": 5572
+   },
+   "tReady": {
+    "n": 4,
+    "median": 3489,
+    "min": 3449,
+    "max": 3540
+   },
+   "postAdmissionWarm": {
+    "n": 2,
+    "median": 2254,
+    "min": 2254,
+    "max": 5676
+   },
+   "prewarmDuration": {
+    "n": 4,
+    "median": 1474,
+    "min": 1471,
+    "max": 1476
+   },
+   "maxWindowP99": {
+    "n": 4,
+    "median": 157,
+    "min": 156,
+    "max": 180
+   },
+   "maxWindowP95": {
+    "n": 4,
+    "median": 44,
+    "min": 39,
+    "max": 49
+   },
+   "p95": {
+    "n": 4,
+    "median": 33,
+    "min": 33,
+    "max": 35
+   },
+   "p99": {
+    "n": 4,
+    "median": 49,
+    "min": 44,
+    "max": 62
+   },
+   "postAdmissionFaults": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionBytes": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionPrefetchRequests": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionPrefetchBytes": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionDemandRequests": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "backendRequestsAtAdmit": {
+    "n": 4,
+    "median": 367,
+    "min": 366,
+    "max": 372
+   },
+   "backendBytesAtAdmit": {
+    "n": 4,
+    "median": 75823375,
+    "min": 75823375,
+    "max": 76164725
+   },
+   "residentChunks": {
+    "n": 4,
+    "median": 17768,
+    "min": 17768,
+    "max": 17768
+   },
+   "residentCompressedBytes": {
+    "n": 4,
+    "median": 75620198,
+    "min": 75620198,
+    "max": 75620198
+   },
+   "residentFiles": {
+    "n": 4,
+    "median": 23939,
+    "min": 23939,
+    "max": 23939
+   },
+   "residentFileBytes": {
+    "n": 4,
+    "median": 270398583,
+    "min": 270398583,
+    "max": 270398583
+   },
+   "neededCovered": {
+    "n": 4,
+    "median": 3340,
+    "min": 3340,
+    "max": 3340
+   },
+   "neededMiss": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "wasteFiles": {
+    "n": 4,
+    "median": 20599,
+    "min": 20599,
+    "max": 20599
+   },
+   "wasteBytes": {
+    "n": 4,
+    "median": 235195878,
+    "min": 235195878,
+    "max": 235195878
+   },
+   "postAdmitPrefetchChunks": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "firstHitByCategory": {
+    "optional-feature": {
+     "position1": {
+      "n": 3,
+      "median": 119,
+      "min": 47,
+      "max": 123
+     },
+     "all": {
+      "n": 12,
+      "median": 44,
+      "min": 6,
+      "max": 123
+     }
+    },
+    "error-path": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 7,
+      "min": 6,
+      "max": 8
+     }
+    },
+    "tenant-config": {
+     "position1": {
+      "n": 1,
+      "median": 69,
+      "min": 69,
+      "max": 69
+     },
+     "all": {
+      "n": 8,
+      "median": 69,
+      "min": 56,
+      "max": 209
+     }
+    },
+    "rare-route": {
+     "position1": null,
+     "all": {
+      "n": 8,
+      "median": 5,
+      "min": 3,
+      "max": 23
+     }
+    },
+    "admin-background": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 11,
+      "min": 10,
+      "max": 12
+     }
+    }
+   },
+   "tSteadyEager": {
+    "n": 4,
+    "median": 7473,
+    "min": 7467,
+    "max": 7555
+   },
+   "steadyEagerReached": 4,
+   "postAdmissionWarmEager": {
+    "n": 4,
+    "median": 1960,
+    "min": 1945,
+    "max": 2008
+   }
+  },
+  "G1C@2000": {
+   "arm": "G1C",
+   "rungMs": 2000,
+   "param": 1600,
+   "trials": 4,
+   "plannedMeasuredMs": 1620,
+   "plannedFiles": 11302,
+   "cutoffReasons": [
+    "plateau"
+   ],
+   "tSteady": {
+    "n": 4,
+    "median": 10940,
+    "min": 8549,
+    "max": 11610
+   },
+   "steadyReached": 4,
+   "tTraffic": {
+    "n": 4,
+    "median": 5738,
+    "min": 5696,
+    "max": 6106
+   },
+   "tReady": {
+    "n": 4,
+    "median": 3710,
+    "min": 3665,
+    "max": 4073
+   },
+   "postAdmissionWarm": {
+    "n": 4,
+    "median": 4988,
+    "min": 2853,
+    "max": 5504
+   },
+   "prewarmDuration": {
+    "n": 4,
+    "median": 454,
+    "min": 453,
+    "max": 460
+   },
+   "maxWindowP99": {
+    "n": 4,
+    "median": 207,
+    "min": 205,
+    "max": 220
+   },
+   "maxWindowP95": {
+    "n": 4,
+    "median": 60,
+    "min": 56,
+    "max": 67
+   },
+   "p95": {
+    "n": 4,
+    "median": 33,
+    "min": 33,
+    "max": 35
+   },
+   "p99": {
+    "n": 4,
+    "median": 72,
+    "min": 66,
+    "max": 77
+   },
+   "postAdmissionFaults": {
+    "n": 4,
+    "median": 20,
+    "min": 20,
+    "max": 20
+   },
+   "postAdmissionBytes": {
+    "n": 4,
+    "median": 6832794,
+    "min": 6832794,
+    "max": 6832794
+   },
+   "postAdmissionPrefetchRequests": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionPrefetchBytes": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionDemandRequests": {
+    "n": 4,
+    "median": 20,
+    "min": 20,
+    "max": 20
+   },
+   "backendRequestsAtAdmit": {
+    "n": 4,
+    "median": 182,
+    "min": 182,
+    "max": 182
+   },
+   "backendBytesAtAdmit": {
+    "n": 4,
+    "median": 35555250,
+    "min": 35553567,
+    "max": 35682175
+   },
+   "residentChunks": {
+    "n": 4,
+    "median": 14070,
+    "min": 14070,
+    "max": 14070
+   },
+   "residentCompressedBytes": {
+    "n": 4,
+    "median": 36770385,
+    "min": 36770385,
+    "max": 36770385
+   },
+   "residentFiles": {
+    "n": 4,
+    "median": 19490,
+    "min": 19490,
+    "max": 19490
+   },
+   "residentFileBytes": {
+    "n": 4,
+    "median": 149393696,
+    "min": 149393696,
+    "max": 149393696
+   },
+   "neededCovered": {
+    "n": 4,
+    "median": 3201,
+    "min": 3201,
+    "max": 3201
+   },
+   "neededMiss": {
+    "n": 4,
+    "median": 139,
+    "min": 139,
+    "max": 139
+   },
+   "wasteFiles": {
+    "n": 4,
+    "median": 16289,
+    "min": 16289,
+    "max": 16289
+   },
+   "wasteBytes": {
+    "n": 4,
+    "median": 118788032,
+    "min": 118788032,
+    "max": 118788032
+   },
+   "postAdmitPrefetchChunks": {
+    "n": 4,
+    "median": 1444,
+    "min": 1444,
+    "max": 1444
+   },
+   "firstHitByCategory": {
+    "optional-feature": {
+     "position1": {
+      "n": 3,
+      "median": 293,
+      "min": 60,
+      "max": 299
+     },
+     "all": {
+      "n": 12,
+      "median": 60,
+      "min": 8,
+      "max": 302
+     }
+    },
+    "error-path": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 7,
+      "min": 7,
+      "max": 8
+     }
+    },
+    "tenant-config": {
+     "position1": {
+      "n": 1,
+      "median": 80,
+      "min": 80,
+      "max": 80
+     },
+     "all": {
+      "n": 8,
+      "median": 80,
+      "min": 65,
+      "max": 211
+     }
+    },
+    "rare-route": {
+     "position1": null,
+     "all": {
+      "n": 8,
+      "median": 4,
+      "min": 3,
+      "max": 23
+     }
+    },
+    "admin-background": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 11,
+      "min": 9,
+      "max": 11
+     }
+    }
+   },
+   "tSteadyEager": {
+    "n": 4,
+    "median": 8574,
+    "min": 8309,
+    "max": 8918
+   },
+   "steadyEagerReached": 4,
+   "postAdmissionWarmEager": {
+    "n": 4,
+    "median": 2732,
+    "min": 2613,
+    "max": 2836
+   }
+  },
+  "R1C@2000": {
+   "arm": "R1C",
+   "rungMs": 2000,
+   "param": 1600,
+   "trials": 4,
+   "plannedMeasuredMs": 1610,
+   "plannedFiles": 10728,
+   "cutoffReasons": [
+    "plateau"
+   ],
+   "tSteady": {
+    "n": 3,
+    "median": 8504,
+    "min": 8434,
+    "max": 9146
+   },
+   "steadyReached": 3,
+   "tTraffic": {
+    "n": 4,
+    "median": 5667,
+    "min": 5649,
+    "max": 5732
+   },
+   "tReady": {
+    "n": 4,
+    "median": 3639,
+    "min": 3617,
+    "max": 3702
+   },
+   "postAdmissionWarm": {
+    "n": 3,
+    "median": 2772,
+    "min": 2767,
+    "max": 3427
+   },
+   "prewarmDuration": {
+    "n": 4,
+    "median": 451,
+    "min": 448,
+    "max": 457
+   },
+   "maxWindowP99": {
+    "n": 4,
+    "median": 219,
+    "min": 218,
+    "max": 230
+   },
+   "maxWindowP95": {
+    "n": 4,
+    "median": 60,
+    "min": 55,
+    "max": 63
+   },
+   "p95": {
+    "n": 4,
+    "median": 33,
+    "min": 33,
+    "max": 34
+   },
+   "p99": {
+    "n": 4,
+    "median": 67,
+    "min": 64,
+    "max": 72
+   },
+   "postAdmissionFaults": {
+    "n": 4,
+    "median": 18,
+    "min": 18,
+    "max": 18
+   },
+   "postAdmissionBytes": {
+    "n": 4,
+    "median": 6583574,
+    "min": 6583574,
+    "max": 6583574
+   },
+   "postAdmissionPrefetchRequests": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionPrefetchBytes": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionDemandRequests": {
+    "n": 4,
+    "median": 18,
+    "min": 18,
+    "max": 18
+   },
+   "backendRequestsAtAdmit": {
+    "n": 4,
+    "median": 183,
+    "min": 183,
+    "max": 184
+   },
+   "backendBytesAtAdmit": {
+    "n": 4,
+    "median": 35488308,
+    "min": 35477711,
+    "max": 35609892
+   },
+   "residentChunks": {
+    "n": 4,
+    "median": 14424,
+    "min": 14424,
+    "max": 14424
+   },
+   "residentCompressedBytes": {
+    "n": 4,
+    "median": 37509559,
+    "min": 37509559,
+    "max": 37509559
+   },
+   "residentFiles": {
+    "n": 4,
+    "median": 20024,
+    "min": 20024,
+    "max": 20024
+   },
+   "residentFileBytes": {
+    "n": 4,
+    "median": 159084963,
+    "min": 159084963,
+    "max": 159084963
+   },
+   "neededCovered": {
+    "n": 4,
+    "median": 3265,
+    "min": 3265,
+    "max": 3265
+   },
+   "neededMiss": {
+    "n": 4,
+    "median": 75,
+    "min": 75,
+    "max": 75
+   },
+   "wasteFiles": {
+    "n": 4,
+    "median": 16759,
+    "min": 16759,
+    "max": 16759
+   },
+   "wasteBytes": {
+    "n": 4,
+    "median": 127710337,
+    "min": 127710337,
+    "max": 127710337
+   },
+   "postAdmitPrefetchChunks": {
+    "n": 4,
+    "median": 1051,
+    "min": 1051,
+    "max": 1051
+   },
+   "firstHitByCategory": {
+    "optional-feature": {
+     "position1": {
+      "n": 3,
+      "median": 232,
+      "min": 72,
+      "max": 238
+     },
+     "all": {
+      "n": 12,
+      "median": 67,
+      "min": 7,
+      "max": 238
+     }
+    },
+    "error-path": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 7,
+      "min": 6,
+      "max": 9
+     }
+    },
+    "tenant-config": {
+     "position1": {
+      "n": 1,
+      "median": 82,
+      "min": 82,
+      "max": 82
+     },
+     "all": {
+      "n": 8,
+      "median": 82,
+      "min": 69,
+      "max": 200
+     }
+    },
+    "rare-route": {
+     "position1": null,
+     "all": {
+      "n": 8,
+      "median": 6,
+      "min": 3,
+      "max": 24
+     }
+    },
+    "admin-background": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 10,
+      "min": 8,
+      "max": 12
+     }
+    }
+   },
+   "tSteadyEager": {
+    "n": 4,
+    "median": 8323,
+    "min": 8264,
+    "max": 8434
+   },
+   "steadyEagerReached": 4,
+   "postAdmissionWarmEager": {
+    "n": 4,
+    "median": 2604,
+    "min": 2532,
+    "max": 2781
+   }
+  },
+  "G1C@4000": {
+   "arm": "G1C",
+   "rungMs": 4000,
+   "param": 3200,
+   "trials": 4,
+   "plannedMeasuredMs": 3007,
+   "plannedFiles": 16832,
+   "cutoffReasons": [
+    "plateau"
+   ],
+   "tSteady": {
+    "n": 3,
+    "median": 9065,
+    "min": 7636,
+    "max": 9514
+   },
+   "steadyReached": 3,
+   "tTraffic": {
+    "n": 4,
+    "median": 5117,
+    "min": 5084,
+    "max": 5257
+   },
+   "tReady": {
+    "n": 4,
+    "median": 3097,
+    "min": 3065,
+    "max": 3222
+   },
+   "postAdmissionWarm": {
+    "n": 3,
+    "median": 3981,
+    "min": 2379,
+    "max": 4298
+   },
+   "prewarmDuration": {
+    "n": 4,
+    "median": 713,
+    "min": 709,
+    "max": 847
+   },
+   "maxWindowP99": {
+    "n": 4,
+    "median": 166,
+    "min": 158,
+    "max": 183
+   },
+   "maxWindowP95": {
+    "n": 4,
+    "median": 43,
+    "min": 43,
+    "max": 50
+   },
+   "p95": {
+    "n": 4,
+    "median": 33,
+    "min": 32,
+    "max": 34
+   },
+   "p99": {
+    "n": 4,
+    "median": 71,
+    "min": 61,
+    "max": 96
+   },
+   "postAdmissionFaults": {
+    "n": 4,
+    "median": 8,
+    "min": 8,
+    "max": 8
+   },
+   "postAdmissionBytes": {
+    "n": 4,
+    "median": 4608332,
+    "min": 4608332,
+    "max": 4608332
+   },
+   "postAdmissionPrefetchRequests": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionPrefetchBytes": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionDemandRequests": {
+    "n": 4,
+    "median": 8,
+    "min": 8,
+    "max": 8
+   },
+   "backendRequestsAtAdmit": {
+    "n": 4,
+    "median": 226,
+    "min": 226,
+    "max": 226
+   },
+   "backendBytesAtAdmit": {
+    "n": 4,
+    "median": 36729083,
+    "min": 36729083,
+    "max": 36729083
+   },
+   "residentChunks": {
+    "n": 4,
+    "median": 17050,
+    "min": 17050,
+    "max": 17050
+   },
+   "residentCompressedBytes": {
+    "n": 4,
+    "median": 45956246,
+    "min": 45956246,
+    "max": 45956246
+   },
+   "residentFiles": {
+    "n": 4,
+    "median": 23103,
+    "min": 23103,
+    "max": 23103
+   },
+   "residentFileBytes": {
+    "n": 4,
+    "median": 191828829,
+    "min": 191828829,
+    "max": 191828829
+   },
+   "neededCovered": {
+    "n": 4,
+    "median": 3310,
+    "min": 3310,
+    "max": 3310
+   },
+   "neededMiss": {
+    "n": 4,
+    "median": 30,
+    "min": 30,
+    "max": 30
+   },
+   "wasteFiles": {
+    "n": 4,
+    "median": 19793,
+    "min": 19793,
+    "max": 19793
+   },
+   "wasteBytes": {
+    "n": 4,
+    "median": 159377330,
+    "min": 159377330,
+    "max": 159377330
+   },
+   "postAdmitPrefetchChunks": {
+    "n": 4,
+    "median": 76,
+    "min": 76,
+    "max": 76
+   },
+   "firstHitByCategory": {
+    "optional-feature": {
+     "position1": {
+      "n": 3,
+      "median": 122,
+      "min": 105,
+      "max": 130
+     },
+     "all": {
+      "n": 12,
+      "median": 71,
+      "min": 7,
+      "max": 130
+     }
+    },
+    "error-path": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 7,
+      "min": 5,
+      "max": 8
+     }
+    },
+    "tenant-config": {
+     "position1": {
+      "n": 1,
+      "median": 122,
+      "min": 122,
+      "max": 122
+     },
+     "all": {
+      "n": 8,
+      "median": 122,
+      "min": 77,
+      "max": 183
+     }
+    },
+    "rare-route": {
+     "position1": null,
+     "all": {
+      "n": 8,
+      "median": 4,
+      "min": 3,
+      "max": 25
+     }
+    },
+    "admin-background": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 9,
+      "min": 9,
+      "max": 10
+     }
+    }
+   },
+   "tSteadyEager": {
+    "n": 4,
+    "median": 7350,
+    "min": 7251,
+    "max": 7558
+   },
+   "steadyEagerReached": 4,
+   "postAdmissionWarmEager": {
+    "n": 4,
+    "median": 2157,
+    "min": 2093,
+    "max": 2441
+   }
+  },
+  "R1C@4000": {
+   "arm": "R1C",
+   "rungMs": 4000,
+   "param": 3200,
+   "trials": 4,
+   "plannedMeasuredMs": 3009,
+   "plannedFiles": 16904,
+   "cutoffReasons": [
+    "plateau"
+   ],
+   "tSteady": {
+    "n": 3,
+    "median": 7923,
+    "min": 7772,
+    "max": 8364
+   },
+   "steadyReached": 3,
+   "tTraffic": {
+    "n": 4,
+    "median": 5371,
+    "min": 5309,
+    "max": 5641
+   },
+   "tReady": {
+    "n": 4,
+    "median": 3339,
+    "min": 3293,
+    "max": 3613
+   },
+   "postAdmissionWarm": {
+    "n": 3,
+    "median": 2479,
+    "min": 2463,
+    "max": 2723
+   },
+   "prewarmDuration": {
+    "n": 4,
+    "median": 836,
+    "min": 711,
+    "max": 837
+   },
+   "maxWindowP99": {
+    "n": 4,
+    "median": 172,
+    "min": 169,
+    "max": 196
+   },
+   "maxWindowP95": {
+    "n": 4,
+    "median": 47,
+    "min": 39,
+    "max": 55
+   },
+   "p95": {
+    "n": 4,
+    "median": 34,
+    "min": 33,
+    "max": 35
+   },
+   "p99": {
+    "n": 4,
+    "median": 60,
+    "min": 58,
+    "max": 69
+   },
+   "postAdmissionFaults": {
+    "n": 4,
+    "median": 7,
+    "min": 7,
+    "max": 7
+   },
+   "postAdmissionBytes": {
+    "n": 4,
+    "median": 3871812,
+    "min": 3871812,
+    "max": 3871812
+   },
+   "postAdmissionPrefetchRequests": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionPrefetchBytes": {
+    "n": 4,
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "postAdmissionDemandRequests": {
+    "n": 4,
+    "median": 7,
+    "min": 7,
+    "max": 7
+   },
+   "backendRequestsAtAdmit": {
+    "n": 4,
+    "median": 253,
+    "min": 253,
+    "max": 254
+   },
+   "backendBytesAtAdmit": {
+    "n": 4,
+    "median": 37734025,
+    "min": 37734025,
+    "max": 38782334
+   },
+   "residentChunks": {
+    "n": 4,
+    "median": 17129,
+    "min": 17129,
+    "max": 17129
+   },
+   "residentCompressedBytes": {
+    "n": 4,
+    "median": 46915702,
+    "min": 46915702,
+    "max": 46915702
+   },
+   "residentFiles": {
+    "n": 4,
+    "median": 23156,
+    "min": 23156,
+    "max": 23156
+   },
+   "residentFileBytes": {
+    "n": 4,
+    "median": 195796722,
+    "min": 195796722,
+    "max": 195796722
+   },
+   "neededCovered": {
+    "n": 4,
+    "median": 3325,
+    "min": 3325,
+    "max": 3325
+   },
+   "neededMiss": {
+    "n": 4,
+    "median": 15,
+    "min": 15,
+    "max": 15
+   },
+   "wasteFiles": {
+    "n": 4,
+    "median": 19831,
+    "min": 19831,
+    "max": 19831
+   },
+   "wasteBytes": {
+    "n": 4,
+    "median": 163167464,
+    "min": 163167464,
+    "max": 163167464
+   },
+   "postAdmitPrefetchChunks": {
+    "n": 4,
+    "median": 48,
+    "min": 48,
+    "max": 48
+   },
+   "firstHitByCategory": {
+    "optional-feature": {
+     "position1": {
+      "n": 3,
+      "median": 128,
+      "min": 102,
+      "max": 132
+     },
+     "all": {
+      "n": 12,
+      "median": 73,
+      "min": 8,
+      "max": 132
+     }
+    },
+    "error-path": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 8,
+      "min": 7,
+      "max": 10
+     }
+    },
+    "tenant-config": {
+     "position1": {
+      "n": 1,
+      "median": 68,
+      "min": 68,
+      "max": 68
+     },
+     "all": {
+      "n": 8,
+      "median": 69,
+      "min": 58,
+      "max": 196
+     }
+    },
+    "rare-route": {
+     "position1": null,
+     "all": {
+      "n": 8,
+      "median": 4,
+      "min": 3,
+      "max": 26
+     }
+    },
+    "admin-background": {
+     "position1": null,
+     "all": {
+      "n": 4,
+      "median": 10,
+      "min": 10,
+      "max": 13
+     }
+    }
+   },
+   "tSteadyEager": {
+    "n": 4,
+    "median": 7579,
+    "min": 7483,
+    "max": 7843
+   },
+   "steadyEagerReached": 4,
+   "postAdmissionWarmEager": {
+    "n": 4,
+    "median": 2174,
+    "min": 2135,
+    "max": 2472
+   }
+  }
+ },
+ "equalOutcome": {
+  "G1": {
+   "rungMs": null,
+   "measuredMs": null
+  },
+  "G1C": {
+   "rungMs": 4000,
+   "measuredMs": 3007
+  },
+  "R1": {
+   "rungMs": null,
+   "measuredMs": null
+  },
+  "R1C": {
+   "rungMs": 4000,
+   "measuredMs": 3009
+  }
+ },
+ "costAccuracy": [
+  {
+   "arm": "G1",
+   "rungMs": 1000,
+   "param": 800,
+   "predictedMs": 792,
+   "probeMeasuredMs": 983,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 1000,
+   "param": 800,
+   "predictedMs": 800,
+   "probeMeasuredMs": 975,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "R1",
+   "rungMs": 1000,
+   "param": 800,
+   "predictedMs": 798,
+   "probeMeasuredMs": 987,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 1000,
+   "param": 800,
+   "predictedMs": 798,
+   "probeMeasuredMs": 983,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "G1",
+   "rungMs": 2000,
+   "param": 1600,
+   "predictedMs": 1592,
+   "probeMeasuredMs": 1623,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 2000,
+   "param": 1600,
+   "predictedMs": 1587,
+   "probeMeasuredMs": 1620,
+   "inTrialPrewarmMs": 454
+  },
+  {
+   "arm": "R1",
+   "rungMs": 2000,
+   "param": 1600,
+   "predictedMs": 1593,
+   "probeMeasuredMs": 1761,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 2000,
+   "param": 1600,
+   "predictedMs": 1597,
+   "probeMeasuredMs": 1610,
+   "inTrialPrewarmMs": 451
+  },
+  {
+   "arm": "G1",
+   "rungMs": 4000,
+   "param": 3200,
+   "predictedMs": 3194,
+   "probeMeasuredMs": 3201,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 4000,
+   "param": 3200,
+   "predictedMs": 3171,
+   "probeMeasuredMs": 3007,
+   "inTrialPrewarmMs": 713
+  },
+  {
+   "arm": "R1",
+   "rungMs": 4000,
+   "param": 3200,
+   "predictedMs": 3193,
+   "probeMeasuredMs": 3051,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 4000,
+   "param": 3200,
+   "predictedMs": 3180,
+   "probeMeasuredMs": 3009,
+   "inTrialPrewarmMs": 836
+  },
+  {
+   "arm": "G1",
+   "rungMs": 6000,
+   "param": 6400,
+   "predictedMs": 6398,
+   "probeMeasuredMs": 6378,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 6000,
+   "param": 6400,
+   "predictedMs": 6316,
+   "probeMeasuredMs": 6126,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "R1",
+   "rungMs": 6000,
+   "param": 6400,
+   "predictedMs": 6394,
+   "probeMeasuredMs": 5319,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 6000,
+   "param": 6400,
+   "predictedMs": 6316,
+   "probeMeasuredMs": 6130,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "G1",
+   "rungMs": 7500,
+   "param": 25600,
+   "predictedMs": 6497,
+   "probeMeasuredMs": 6673,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "G1C",
+   "rungMs": 7500,
+   "param": 12800,
+   "predictedMs": 6497,
+   "probeMeasuredMs": 6652,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "R1",
+   "rungMs": 7500,
+   "param": 25600,
+   "predictedMs": 6497,
+   "probeMeasuredMs": 6801,
+   "inTrialPrewarmMs": null
+  },
+  {
+   "arm": "R1C",
+   "rungMs": 7500,
+   "param": 12800,
+   "predictedMs": 6497,
+   "probeMeasuredMs": 6824,
+   "inTrialPrewarmMs": null
+  }
+ ],
+ "decomposition": [
+  {
+   "experiment": 4,
+   "arm": "G1",
+   "byteBudget": 0.05,
+   "files": 1932,
+   "fileBytes": 13526498,
+   "uniqueChunks": 1794,
+   "chunkCompressedBytes": 4052556,
+   "backendRequests": 481,
+   "backendBytes": 4436622,
+   "predictedMs": 5275,
+   "unitsTouched": 149,
+   "unitBytes": 18693330,
+   "overfetchRatio": 1.09
+  },
+  {
+   "experiment": 4,
+   "arm": "G1",
+   "byteBudget": 0.1,
+   "files": 2838,
+   "fileBytes": 27052997,
+   "uniqueChunks": 2630,
+   "chunkCompressedBytes": 5677784,
+   "backendRequests": 498,
+   "backendBytes": 6062639,
+   "predictedMs": 5478,
+   "unitsTouched": 163,
+   "unitBytes": 19936127,
+   "overfetchRatio": 1.07
+  },
+  {
+   "experiment": 4,
+   "arm": "G1",
+   "byteBudget": 0.2,
+   "files": 4035,
+   "fileBytes": 54105995,
+   "uniqueChunks": 3823,
+   "chunkCompressedBytes": 20463408,
+   "backendRequests": 574,
+   "backendBytes": 20784043,
+   "predictedMs": 6501,
+   "unitsTouched": 249,
+   "unitBytes": 34591463,
+   "overfetchRatio": 1.02
+  },
+  {
+   "experiment": 4,
+   "arm": "G1",
+   "byteBudget": 0.4,
+   "files": 7682,
+   "fileBytes": 108211990,
+   "uniqueChunks": 6233,
+   "chunkCompressedBytes": 29966007,
+   "backendRequests": 551,
+   "backendBytes": 30185433,
+   "predictedMs": 6407,
+   "unitsTouched": 291,
+   "unitBytes": 40769958,
+   "overfetchRatio": 1.01
+  },
+  {
+   "experiment": 4,
+   "arm": "G2",
+   "byteBudget": 0.05,
+   "files": 1932,
+   "fileBytes": 13526498,
+   "uniqueChunks": 1794,
+   "chunkCompressedBytes": 4052556,
+   "backendRequests": 481,
+   "backendBytes": 4436622,
+   "predictedMs": 5275,
+   "unitsTouched": 149,
+   "unitBytes": 18693330,
+   "overfetchRatio": 1.09
+  },
+  {
+   "experiment": 4,
+   "arm": "G2",
+   "byteBudget": 0.1,
+   "files": 4039,
+   "fileBytes": 27052997,
+   "uniqueChunks": 3489,
+   "chunkCompressedBytes": 5704388,
+   "backendRequests": 640,
+   "backendBytes": 6242829,
+   "predictedMs": 6964,
+   "unitsTouched": 185,
+   "unitBytes": 22556368,
+   "overfetchRatio": 1.09
+  },
+  {
+   "experiment": 4,
+   "arm": "G2",
+   "byteBudget": 0.2,
+   "files": 18015,
+   "fileBytes": 54105941,
+   "uniqueChunks": 13982,
+   "chunkCompressedBytes": 15602864,
+   "backendRequests": 1163,
+   "backendBytes": 16044945,
+   "predictedMs": 12580,
+   "unitsTouched": 310,
+   "unitBytes": 36830843,
+   "overfetchRatio": 1.03
+  },
+  {
+   "experiment": 4,
+   "arm": "G2",
+   "byteBudget": 0.4,
+   "files": 22474,
+   "fileBytes": 108211571,
+   "uniqueChunks": 16939,
+   "chunkCompressedBytes": 33270231,
+   "backendRequests": 643,
+   "backendBytes": 33291919,
+   "predictedMs": 7416,
+   "unitsTouched": 376,
+   "unitBytes": 44113434,
+   "overfetchRatio": 1
+  },
+  {
+   "experiment": 4,
+   "arm": "R1",
+   "byteBudget": 0.05,
+   "files": 12224,
+   "fileBytes": 13526495,
+   "uniqueChunks": 10403,
+   "chunkCompressedBytes": 5289640,
+   "backendRequests": 1552,
+   "backendBytes": 6190319,
+   "predictedMs": 16490,
+   "unitsTouched": 259,
+   "unitBytes": 30393992,
+   "overfetchRatio": 1.17
+  },
+  {
+   "experiment": 4,
+   "arm": "R1",
+   "byteBudget": 0.1,
+   "files": 14786,
+   "fileBytes": 27052990,
+   "uniqueChunks": 12724,
+   "chunkCompressedBytes": 10464442,
+   "backendRequests": 1354,
+   "backendBytes": 10806663,
+   "predictedMs": 14493,
+   "unitsTouched": 290,
+   "unitBytes": 33794758,
+   "overfetchRatio": 1.03
+  },
+  {
+   "experiment": 4,
+   "arm": "R1",
+   "byteBudget": 0.2,
+   "files": 16961,
+   "fileBytes": 54105985,
+   "uniqueChunks": 14713,
+   "chunkCompressedBytes": 20535913,
+   "backendRequests": 862,
+   "backendBytes": 20751760,
+   "predictedMs": 9509,
+   "unitsTouched": 326,
+   "unitBytes": 37849124,
+   "overfetchRatio": 1.01
+  },
+  {
+   "experiment": 4,
+   "arm": "R1",
+   "byteBudget": 0.4,
+   "files": 18392,
+   "fileBytes": 108211986,
+   "uniqueChunks": 15837,
+   "chunkCompressedBytes": 34387196,
+   "backendRequests": 605,
+   "backendBytes": 34498668,
+   "predictedMs": 7038,
+   "unitsTouched": 374,
+   "unitBytes": 43664002,
+   "overfetchRatio": 1
+  },
+  {
+   "experiment": 4,
+   "arm": "R2",
+   "byteBudget": 0.05,
+   "files": 1932,
+   "fileBytes": 13526498,
+   "uniqueChunks": 1794,
+   "chunkCompressedBytes": 4052556,
+   "backendRequests": 481,
+   "backendBytes": 4436622,
+   "predictedMs": 5275,
+   "unitsTouched": 149,
+   "unitBytes": 18693330,
+   "overfetchRatio": 1.09
+  },
+  {
+   "experiment": 4,
+   "arm": "R2",
+   "byteBudget": 0.1,
+   "files": 2907,
+   "fileBytes": 27052997,
+   "uniqueChunks": 2657,
+   "chunkCompressedBytes": 5673639,
+   "backendRequests": 581,
+   "backendBytes": 6084749,
+   "predictedMs": 6345,
+   "unitsTouched": 180,
+   "unitBytes": 22092871,
+   "overfetchRatio": 1.07
+  },
+  {
+   "experiment": 4,
+   "arm": "R2",
+   "byteBudget": 0.2,
+   "files": 15964,
+   "fileBytes": 54105992,
+   "uniqueChunks": 13718,
+   "chunkCompressedBytes": 17495894,
+   "backendRequests": 1242,
+   "backendBytes": 17845488,
+   "predictedMs": 13433,
+   "unitsTouched": 323,
+   "unitBytes": 38405007,
+   "overfetchRatio": 1.02
+  },
+  {
+   "experiment": 4,
+   "arm": "R2",
+   "byteBudget": 0.4,
+   "files": 18577,
+   "fileBytes": 108211927,
+   "uniqueChunks": 15898,
+   "chunkCompressedBytes": 34107602,
+   "backendRequests": 597,
+   "backendBytes": 34204486,
+   "predictedMs": 6950,
+   "unitsTouched": 370,
+   "unitBytes": 43678361,
+   "overfetchRatio": 1
+  }
+ ],
+ "selectionOverlap": {
+  "1000": {
+   "G1C-vs-R1C": {
+    "unitJaccard": 0.4592,
+    "residentJaccard": 0.5085,
+    "onlyA": 2749,
+    "onlyB": 2742
+   },
+   "G1-vs-R1": {
+    "unitJaccard": 0.0445,
+    "residentJaccard": 0.0369,
+    "onlyA": 258,
+    "onlyB": 107
+   }
+  },
+  "2000": {
+   "G1C-vs-R1C": {
+    "unitJaccard": 0.7676,
+    "residentJaccard": 0.7913,
+    "onlyA": 2166,
+    "onlyB": 1544
+   },
+   "G1-vs-R1": {
+    "unitJaccard": 0.073,
+    "residentJaccard": 0.0584,
+    "onlyA": 626,
+    "onlyB": 180
+   }
+  },
+  "4000": {
+   "G1C-vs-R1C": {
+    "unitJaccard": 0.988,
+    "residentJaccard": 0.9896,
+    "onlyA": 93,
+    "onlyB": 147
+   },
+   "G1-vs-R1": {
+    "unitJaccard": 0.1077,
+    "residentJaccard": 0.1059,
+    "onlyA": 1297,
+    "onlyB": 274
+   }
+  },
+  "6000": {
+   "G1C-vs-R1C": {
+    "unitJaccard": 1,
+    "residentJaccard": 1,
+    "onlyA": 0,
+    "onlyB": 0
+   },
+   "G1-vs-R1": {
+    "unitJaccard": 0.112,
+    "residentJaccard": 0.1193,
+    "onlyA": 3777,
+    "onlyB": 496
+   }
+  },
+  "7500": {
+   "G1C-vs-R1C": {
+    "unitJaccard": 1,
+    "residentJaccard": 1,
+    "onlyA": 0,
+    "onlyB": 0
+   },
+   "G1-vs-R1": {
+    "unitJaccard": 1,
+    "residentJaccard": 1,
+    "onlyA": 0,
+    "onlyB": 0
+   }
+  }
+ },
+ "orderDrift": {
+  "cells": 5,
+  "meanPearson": -0.107,
+  "maxAbs": 0.752
+ },
+ "physicalOracle": {
+  "neededFiles": 3340,
+  "chunks": 3210,
+  "requests": 681,
+  "backendBytes": 8388641,
+  "chunkBytes": 7810816,
+  "predictedMs": 7425,
+  "unitsTouched": 196,
+  "unitBytes": 23852269,
+  "unitPredictedMs": 2600
+ },
+ "heldOut": {
+  "needed": 3340,
+  "byCategory": [
+   [
+    "optional-feature",
+    424
+   ],
+   [
+    "tenant-config",
+    237
+   ],
+   [
+    "rare-route",
+    10
+   ]
+  ]
+ },
+ "correctness": {
+  "comparedTrials": 16,
+  "statusMismatches": [],
+  "lengthMismatches": [],
+  "bodyMismatches": [],
+  "headerMismatches": [],
+  "unexpectedStatus": []
+ },
+ "trials": [
+  {
+   "name": "E0.f0",
+   "arm": "E0",
+   "budget": null,
+   "family": 0,
+   "order": 0,
+   "exit": 0,
+   "tProcMs": 89,
+   "tMountMs": 29,
+   "tReadyMs": 3521,
+   "tPrewarmMs": 2270,
+   "tPrefetchDoneMs": 1505,
+   "tTrafficMs": 5547,
+   "prewarmDurationMs": 1476,
+   "tSteadyMs": 11223,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 180,
+   "p99Regression": 147,
+   "p50": 11,
+   "p95": 35,
+   "p99": 62,
+   "warmP50": 10,
+   "warmP99": 40,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 75622379,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 119,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 22
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 8,
+     "warmMs": 5
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 62,
+     "warmMs": 19
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 209,
+     "warmMs": 12
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 5,
+     "warmMs": 8
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 44,
+     "warmMs": 35
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 21,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 11,
+     "warmMs": 12
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": null,
+   "maxWindowP95": 44,
+   "param": null,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17768,
+    "compressedBytes": 75620198,
+    "files": 23939,
+    "fileBytes": 270398583,
+    "neededCovered": 3340,
+    "neededMiss": 0,
+    "neededMissBytes": 0,
+    "wasteFiles": 20599,
+    "wasteBytes": 235195878
+   },
+   "residentAfterPass1": {
+    "chunks": 17768,
+    "compressedBytes": 75620198,
+    "files": 23939,
+    "fileBytes": 270398583,
+    "neededCovered": 3340,
+    "neededMiss": 0,
+    "neededMissBytes": 0,
+    "wasteFiles": 20599,
+    "wasteBytes": 235195878
+   },
+   "postAdmitPrefetchChunks": 0,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 0,
+   "backendRequestsAtAdmit": 367,
+   "backendBytesAtAdmit": 76039050,
+   "prefetchRequestsAtAdmit": 577,
+   "tSteadyEagerMs": 7555,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "G1C.r2000.f0",
+   "arm": "G1C",
+   "budget": 2000,
+   "family": 0,
+   "order": 1,
+   "exit": 0,
+   "tProcMs": 90,
+   "tMountMs": 33,
+   "tReadyMs": 3924,
+   "tPrewarmMs": 1265,
+   "tPrefetchDoneMs": 493,
+   "tTrafficMs": 5952,
+   "prewarmDurationMs": 460,
+   "tSteadyMs": 10940,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 211,
+   "p99Regression": 178,
+   "p50": 11,
+   "p95": 35,
+   "p99": 72,
+   "warmP50": 10,
+   "warmP99": 38,
+   "postAdmissionRemoteRequests": 20,
+   "postAdmissionRemoteBytes": 6832794,
+   "prewarmChunkBytes": 13842061,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 299,
+     "warmMs": 8
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 22
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 7,
+     "warmMs": 5
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 72,
+     "warmMs": 17
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 211,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 67,
+     "warmMs": 32
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 22,
+     "warmMs": 6
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 11,
+     "warmMs": 8
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 2000,
+   "maxWindowP95": 67,
+   "param": 1600,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 14070,
+    "compressedBytes": 36770385,
+    "files": 19490,
+    "fileBytes": 149393696,
+    "neededCovered": 3201,
+    "neededMiss": 139,
+    "neededMissBytes": 4597041,
+    "wasteFiles": 16289,
+    "wasteBytes": 118788032
+   },
+   "residentAfterPass1": {
+    "chunks": 15514,
+    "compressedBytes": 41572218,
+    "files": 21243,
+    "fileBytes": 175698252,
+    "neededCovered": 3320,
+    "neededMiss": 20,
+    "neededMissBytes": 3156786,
+    "wasteFiles": 17923,
+    "wasteBytes": 143652333
+   },
+   "postAdmitPrefetchChunks": 1444,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 20,
+   "backendRequestsAtAdmit": 182,
+   "backendBytesAtAdmit": 35682175,
+   "prefetchRequestsAtAdmit": 122,
+   "tSteadyEagerMs": 8684,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "R1C.r2000.f0",
+   "arm": "R1C",
+   "budget": 2000,
+   "family": 0,
+   "order": 2,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 21,
+   "tReadyMs": 3702,
+   "tPrewarmMs": 1248,
+   "tPrefetchDoneMs": 478,
+   "tTrafficMs": 5732,
+   "prewarmDurationMs": 457,
+   "tSteadyMs": 8504,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 219,
+   "p99Regression": 186,
+   "p50": 10,
+   "p95": 33,
+   "p99": 67,
+   "warmP50": 10,
+   "warmP99": 36,
+   "postAdmissionRemoteRequests": 18,
+   "postAdmissionRemoteBytes": 6583574,
+   "prewarmChunkBytes": 13761377,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 238,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 19
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 9,
+     "warmMs": 4
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 74,
+     "warmMs": 17
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 191,
+     "warmMs": 12
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 67,
+     "warmMs": 31
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 21,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 8,
+     "warmMs": 9
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 2000,
+   "maxWindowP95": 60,
+   "param": 1600,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 14424,
+    "compressedBytes": 37509559,
+    "files": 20024,
+    "fileBytes": 159084963,
+    "neededCovered": 3265,
+    "neededMiss": 75,
+    "neededMissBytes": 3828079,
+    "wasteFiles": 16759,
+    "wasteBytes": 127710337
+   },
+   "residentAfterPass1": {
+    "chunks": 15475,
+    "compressedBytes": 42199874,
+    "files": 21175,
+    "fileBytes": 180836645,
+    "neededCovered": 3315,
+    "neededMiss": 25,
+    "neededMissBytes": 2690067,
+    "wasteFiles": 17860,
+    "wasteBytes": 148324007
+   },
+   "postAdmitPrefetchChunks": 1051,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 18,
+   "backendRequestsAtAdmit": 183,
+   "backendBytesAtAdmit": 35488308,
+   "prefetchRequestsAtAdmit": 123,
+   "tSteadyEagerMs": 8264,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "G1C.r4000.f0",
+   "arm": "G1C",
+   "budget": 4000,
+   "family": 0,
+   "order": 3,
+   "exit": 0,
+   "tProcMs": 92,
+   "tMountMs": 36,
+   "tReadyMs": 3222,
+   "tPrewarmMs": 1514,
+   "tPrefetchDoneMs": 745,
+   "tTrafficMs": 5257,
+   "prewarmDurationMs": 709,
+   "tSteadyMs": 7636,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 166,
+   "p99Regression": 133,
+   "p50": 10,
+   "p95": 32,
+   "p99": 71,
+   "warmP50": 9,
+   "warmP99": 34,
+   "postAdmissionRemoteRequests": 8,
+   "postAdmissionRemoteBytes": 4608332,
+   "prewarmChunkBytes": 28975423,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 122,
+     "warmMs": 11
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 21,
+     "warmMs": 14
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 5,
+     "warmMs": 4
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 77,
+     "warmMs": 17
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 166,
+     "warmMs": 12
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 71,
+     "warmMs": 31
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 21,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 9,
+     "warmMs": 8
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 4000,
+   "maxWindowP95": 50,
+   "param": 3200,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17050,
+    "compressedBytes": 45956246,
+    "files": 23103,
+    "fileBytes": 191828829,
+    "neededCovered": 3310,
+    "neededMiss": 30,
+    "neededMissBytes": 2751206,
+    "wasteFiles": 19793,
+    "wasteBytes": 159377330
+   },
+   "residentAfterPass1": {
+    "chunks": 17126,
+    "compressedBytes": 47444048,
+    "files": 23188,
+    "fileBytes": 197450771,
+    "neededCovered": 3331,
+    "neededMiss": 9,
+    "neededMissBytes": 2549300,
+    "wasteFiles": 19857,
+    "wasteBytes": 164797366
+   },
+   "postAdmitPrefetchChunks": 76,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 8,
+   "backendRequestsAtAdmit": 226,
+   "backendBytesAtAdmit": 36729083,
+   "prefetchRequestsAtAdmit": 243,
+   "tSteadyEagerMs": 7350,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "R1C.r4000.f0",
+   "arm": "R1C",
+   "budget": 4000,
+   "family": 0,
+   "order": 4,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 20,
+   "tReadyMs": 3428,
+   "tPrewarmMs": 1502,
+   "tPrefetchDoneMs": 731,
+   "tTrafficMs": 5444,
+   "prewarmDurationMs": 711,
+   "tSteadyMs": 7923,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 174,
+   "p99Regression": 141,
+   "p50": 10,
+   "p95": 34,
+   "p99": 60,
+   "warmP50": 9,
+   "warmP99": 35,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 3871812,
+   "prewarmChunkBytes": 28886814,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 128,
+     "warmMs": 11
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 19
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 7,
+     "warmMs": 4
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 60,
+     "warmMs": 18
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 174,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 73,
+     "warmMs": 33
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 21,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 10,
+     "warmMs": 8
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 4000,
+   "maxWindowP95": 39,
+   "param": 3200,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17129,
+    "compressedBytes": 46915702,
+    "files": 23156,
+    "fileBytes": 195796722,
+    "neededCovered": 3325,
+    "neededMiss": 15,
+    "neededMissBytes": 2573447,
+    "wasteFiles": 19831,
+    "wasteBytes": 163167464
+   },
+   "residentAfterPass1": {
+    "chunks": 17177,
+    "compressedBytes": 48195695,
+    "files": 23209,
+    "fileBytes": 200565258,
+    "neededCovered": 3329,
+    "neededMiss": 11,
+    "neededMissBytes": 2558646,
+    "wasteFiles": 19880,
+    "wasteBytes": 167921199
+   },
+   "postAdmitPrefetchChunks": 48,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 7,
+   "backendRequestsAtAdmit": 253,
+   "backendBytesAtAdmit": 37734025,
+   "prefetchRequestsAtAdmit": 251,
+   "tSteadyEagerMs": 7579,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "E0.f1",
+   "arm": "E0",
+   "budget": null,
+   "family": 1,
+   "order": 5,
+   "exit": 0,
+   "tProcMs": 88,
+   "tMountMs": 34,
+   "tReadyMs": 3449,
+   "tPrewarmMs": 2274,
+   "tPrefetchDoneMs": 1505,
+   "tTrafficMs": 5472,
+   "prewarmDurationMs": 1471,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 156,
+   "p99Regression": 123,
+   "p50": 10,
+   "p95": 33,
+   "p99": 44,
+   "warmP50": 9,
+   "warmP99": 34,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 75622379,
+   "firstHit": [
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 69,
+     "warmMs": 32
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 2,
+     "ms": 156,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 39,
+     "warmMs": 20
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 23,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 12,
+     "warmMs": 10
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 117,
+     "warmMs": 9
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 8,
+     "ms": 6,
+     "warmMs": 9
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 9,
+     "ms": 6,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": null,
+   "maxWindowP95": 39,
+   "param": null,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17768,
+    "compressedBytes": 75620198,
+    "files": 23939,
+    "fileBytes": 270398583,
+    "neededCovered": 3340,
+    "neededMiss": 0,
+    "neededMissBytes": 0,
+    "wasteFiles": 20599,
+    "wasteBytes": 235195878
+   },
+   "residentAfterPass1": {
+    "chunks": 17768,
+    "compressedBytes": 75620198,
+    "files": 23939,
+    "fileBytes": 270398583,
+    "neededCovered": 3340,
+    "neededMiss": 0,
+    "neededMissBytes": 0,
+    "wasteFiles": 20599,
+    "wasteBytes": 235195878
+   },
+   "postAdmitPrefetchChunks": 0,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 0,
+   "backendRequestsAtAdmit": 368,
+   "backendBytesAtAdmit": 75823375,
+   "prefetchRequestsAtAdmit": 577,
+   "tSteadyEagerMs": 7473,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "R1C.r2000.f1",
+   "arm": "R1C",
+   "budget": 2000,
+   "family": 1,
+   "order": 6,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 22,
+   "tReadyMs": 3617,
+   "tPrewarmMs": 1232,
+   "tPrefetchDoneMs": 470,
+   "tTrafficMs": 5649,
+   "prewarmDurationMs": 448,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 218,
+   "p99Regression": 185,
+   "p50": 11,
+   "p95": 33,
+   "p99": 64,
+   "warmP50": 9,
+   "warmP99": 35,
+   "postAdmissionRemoteRequests": 18,
+   "postAdmissionRemoteBytes": 6583574,
+   "prewarmChunkBytes": 13761377,
+   "firstHit": [
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 82,
+     "warmMs": 28
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 2,
+     "ms": 196,
+     "warmMs": 12
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 6,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 55,
+     "warmMs": 41
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 24,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 10,
+     "warmMs": 9
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 224,
+     "warmMs": 12
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 8,
+     "ms": 7,
+     "warmMs": 8
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 9,
+     "ms": 6,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 2000,
+   "maxWindowP95": 55,
+   "param": 1600,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 14424,
+    "compressedBytes": 37509559,
+    "files": 20024,
+    "fileBytes": 159084963,
+    "neededCovered": 3265,
+    "neededMiss": 75,
+    "neededMissBytes": 3828079,
+    "wasteFiles": 16759,
+    "wasteBytes": 127710337
+   },
+   "residentAfterPass1": {
+    "chunks": 15475,
+    "compressedBytes": 42199874,
+    "files": 21175,
+    "fileBytes": 180836645,
+    "neededCovered": 3315,
+    "neededMiss": 25,
+    "neededMissBytes": 2690067,
+    "wasteFiles": 17860,
+    "wasteBytes": 148324007
+   },
+   "postAdmitPrefetchChunks": 1051,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 18,
+   "backendRequestsAtAdmit": 184,
+   "backendBytesAtAdmit": 35574284,
+   "prefetchRequestsAtAdmit": 123,
+   "tSteadyEagerMs": 8430,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "G1C.r2000.f1",
+   "arm": "G1C",
+   "budget": 2000,
+   "family": 1,
+   "order": 7,
+   "exit": 0,
+   "tProcMs": 82,
+   "tMountMs": 20,
+   "tReadyMs": 3710,
+   "tPrewarmMs": 1240,
+   "tPrefetchDoneMs": 473,
+   "tTrafficMs": 5738,
+   "prewarmDurationMs": 453,
+   "tSteadyMs": 11214,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 207,
+   "p99Regression": 174,
+   "p50": 10,
+   "p95": 33,
+   "p99": 77,
+   "warmP50": 9,
+   "warmP99": 34,
+   "postAdmissionRemoteRequests": 20,
+   "postAdmissionRemoteBytes": 6832794,
+   "prewarmChunkBytes": 13842061,
+   "firstHit": [
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 80,
+     "warmMs": 29
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 2,
+     "ms": 200,
+     "warmMs": 14
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 53,
+     "warmMs": 19
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 23,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 9,
+     "warmMs": 9
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 288,
+     "warmMs": 9
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 8,
+     "ms": 8,
+     "warmMs": 7
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 9,
+     "ms": 8,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 2000,
+   "maxWindowP95": 56,
+   "param": 1600,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 14070,
+    "compressedBytes": 36770385,
+    "files": 19490,
+    "fileBytes": 149393696,
+    "neededCovered": 3201,
+    "neededMiss": 139,
+    "neededMissBytes": 4597041,
+    "wasteFiles": 16289,
+    "wasteBytes": 118788032
+   },
+   "residentAfterPass1": {
+    "chunks": 15514,
+    "compressedBytes": 41572218,
+    "files": 21243,
+    "fileBytes": 175698252,
+    "neededCovered": 3320,
+    "neededMiss": 20,
+    "neededMissBytes": 3156786,
+    "wasteFiles": 17923,
+    "wasteBytes": 143652333
+   },
+   "postAdmitPrefetchChunks": 1444,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 20,
+   "backendRequestsAtAdmit": 182,
+   "backendBytesAtAdmit": 35555250,
+   "prefetchRequestsAtAdmit": 122,
+   "tSteadyEagerMs": 8574,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "R1C.r4000.f1",
+   "arm": "R1C",
+   "budget": 4000,
+   "family": 1,
+   "order": 8,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 21,
+   "tReadyMs": 3339,
+   "tPrewarmMs": 1627,
+   "tPrefetchDoneMs": 857,
+   "tTrafficMs": 5371,
+   "prewarmDurationMs": 836,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 196,
+   "p99Regression": 163,
+   "p50": 11,
+   "p95": 35,
+   "p99": 67,
+   "warmP50": 10,
+   "warmP99": 35,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 3871812,
+   "prewarmChunkBytes": 28886814,
+   "firstHit": [
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 68,
+     "warmMs": 33
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 2,
+     "ms": 196,
+     "warmMs": 10
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 67,
+     "warmMs": 18
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 25,
+     "warmMs": 6
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 10,
+     "warmMs": 11
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 126,
+     "warmMs": 9
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 8,
+     "ms": 8,
+     "warmMs": 8
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 9,
+     "ms": 8,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 4000,
+   "maxWindowP95": 47,
+   "param": 3200,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17129,
+    "compressedBytes": 46915702,
+    "files": 23156,
+    "fileBytes": 195796722,
+    "neededCovered": 3325,
+    "neededMiss": 15,
+    "neededMissBytes": 2573447,
+    "wasteFiles": 19831,
+    "wasteBytes": 163167464
+   },
+   "residentAfterPass1": {
+    "chunks": 17177,
+    "compressedBytes": 48195695,
+    "files": 23209,
+    "fileBytes": 200565258,
+    "neededCovered": 3329,
+    "neededMiss": 11,
+    "neededMissBytes": 2558646,
+    "wasteFiles": 19880,
+    "wasteBytes": 167921199
+   },
+   "postAdmitPrefetchChunks": 48,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 7,
+   "backendRequestsAtAdmit": 254,
+   "backendBytesAtAdmit": 38782334,
+   "prefetchRequestsAtAdmit": 251,
+   "tSteadyEagerMs": 7843,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "G1C.r4000.f1",
+   "arm": "G1C",
+   "budget": 4000,
+   "family": 1,
+   "order": 9,
+   "exit": 0,
+   "tProcMs": 77,
+   "tMountMs": 22,
+   "tReadyMs": 3196,
+   "tPrewarmMs": 1508,
+   "tPrefetchDoneMs": 735,
+   "tTrafficMs": 5216,
+   "prewarmDurationMs": 713,
+   "tSteadyMs": 9514,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 172,
+   "p99Regression": 139,
+   "p50": 11,
+   "p95": 33,
+   "p99": 61,
+   "warmP50": 10,
+   "warmP99": 34,
+   "postAdmissionRemoteRequests": 8,
+   "postAdmissionRemoteBytes": 4608332,
+   "prewarmChunkBytes": 28975423,
+   "firstHit": [
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 1,
+     "ms": 122,
+     "warmMs": 29
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 2,
+     "ms": 172,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 3,
+     "ms": 4,
+     "warmMs": 4
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 61,
+     "warmMs": 20
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 5,
+     "ms": 25,
+     "warmMs": 6
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 6,
+     "ms": 10,
+     "warmMs": 10
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 121,
+     "warmMs": 11
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 8,
+     "ms": 7,
+     "warmMs": 7
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 9,
+     "ms": 7,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 4000,
+   "maxWindowP95": 43,
+   "param": 3200,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17050,
+    "compressedBytes": 45956246,
+    "files": 23103,
+    "fileBytes": 191828829,
+    "neededCovered": 3310,
+    "neededMiss": 30,
+    "neededMissBytes": 2751206,
+    "wasteFiles": 19793,
+    "wasteBytes": 159377330
+   },
+   "residentAfterPass1": {
+    "chunks": 17126,
+    "compressedBytes": 47444048,
+    "files": 23188,
+    "fileBytes": 197450771,
+    "neededCovered": 3331,
+    "neededMiss": 9,
+    "neededMissBytes": 2549300,
+    "wasteFiles": 19857,
+    "wasteBytes": 164797366
+   },
+   "postAdmitPrefetchChunks": 76,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 8,
+   "backendRequestsAtAdmit": 226,
+   "backendBytesAtAdmit": 36729083,
+   "prefetchRequestsAtAdmit": 243,
+   "tSteadyEagerMs": 7373,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "E0.f2",
+   "arm": "E0",
+   "budget": null,
+   "family": 2,
+   "order": 10,
+   "exit": 0,
+   "tProcMs": 70,
+   "tMountMs": 13,
+   "tReadyMs": 3489,
+   "tPrewarmMs": 2248,
+   "tPrefetchDoneMs": 1488,
+   "tTrafficMs": 5522,
+   "prewarmDurationMs": 1475,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 157,
+   "p99Regression": 124,
+   "p50": 10,
+   "p95": 34,
+   "p99": 52,
+   "warmP50": 9,
+   "warmP99": 36,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 75622379,
+   "firstHit": [
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 47,
+     "warmMs": 34
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 10,
+     "warmMs": 9
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 120,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 24,
+     "warmMs": 26
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 6,
+     "ms": 7,
+     "warmMs": 4
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 68,
+     "warmMs": 32
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 8,
+     "ms": 157,
+     "warmMs": 12
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 9,
+     "ms": 3,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": null,
+   "maxWindowP95": 47,
+   "param": null,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17768,
+    "compressedBytes": 75620198,
+    "files": 23939,
+    "fileBytes": 270398583,
+    "neededCovered": 3340,
+    "neededMiss": 0,
+    "neededMissBytes": 0,
+    "wasteFiles": 20599,
+    "wasteBytes": 235195878
+   },
+   "residentAfterPass1": {
+    "chunks": 17768,
+    "compressedBytes": 75620198,
+    "files": 23939,
+    "fileBytes": 270398583,
+    "neededCovered": 3340,
+    "neededMiss": 0,
+    "neededMissBytes": 0,
+    "wasteFiles": 20599,
+    "wasteBytes": 235195878
+   },
+   "postAdmitPrefetchChunks": 0,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 0,
+   "backendRequestsAtAdmit": 372,
+   "backendBytesAtAdmit": 76164725,
+   "prefetchRequestsAtAdmit": 577,
+   "tSteadyEagerMs": 7467,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "G1C.r2000.f2",
+   "arm": "G1C",
+   "budget": 2000,
+   "family": 2,
+   "order": 11,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 20,
+   "tReadyMs": 4073,
+   "tPrewarmMs": 1245,
+   "tPrefetchDoneMs": 474,
+   "tTrafficMs": 6106,
+   "prewarmDurationMs": 454,
+   "tSteadyMs": 11610,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 220,
+   "p99Regression": 187,
+   "p50": 10,
+   "p95": 33,
+   "p99": 76,
+   "warmP50": 9,
+   "warmP99": 36,
+   "postAdmissionRemoteRequests": 20,
+   "postAdmissionRemoteBytes": 6832794,
+   "prewarmChunkBytes": 13842061,
+   "firstHit": [
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 60,
+     "warmMs": 27
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 4
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 11,
+     "warmMs": 7
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 302,
+     "warmMs": 9
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 24,
+     "warmMs": 25
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 6,
+     "ms": 8,
+     "warmMs": 3
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 76,
+     "warmMs": 31
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 8,
+     "ms": 197,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 9,
+     "ms": 4,
+     "warmMs": 2
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 2000,
+   "maxWindowP95": 60,
+   "param": 1600,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 14070,
+    "compressedBytes": 36770385,
+    "files": 19490,
+    "fileBytes": 149393696,
+    "neededCovered": 3201,
+    "neededMiss": 139,
+    "neededMissBytes": 4597041,
+    "wasteFiles": 16289,
+    "wasteBytes": 118788032
+   },
+   "residentAfterPass1": {
+    "chunks": 15514,
+    "compressedBytes": 41572218,
+    "files": 21243,
+    "fileBytes": 175698252,
+    "neededCovered": 3320,
+    "neededMiss": 20,
+    "neededMissBytes": 3156786,
+    "wasteFiles": 17923,
+    "wasteBytes": 143652333
+   },
+   "postAdmitPrefetchChunks": 1444,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 20,
+   "backendRequestsAtAdmit": 182,
+   "backendBytesAtAdmit": 35555250,
+   "prefetchRequestsAtAdmit": 122,
+   "tSteadyEagerMs": 8918,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "R1C.r2000.f2",
+   "arm": "R1C",
+   "budget": 2000,
+   "family": 2,
+   "order": 12,
+   "exit": 0,
+   "tProcMs": 76,
+   "tMountMs": 19,
+   "tReadyMs": 3639,
+   "tPrewarmMs": 1240,
+   "tPrefetchDoneMs": 471,
+   "tTrafficMs": 5667,
+   "prewarmDurationMs": 452,
+   "tSteadyMs": 8434,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 230,
+   "p99Regression": 197,
+   "p50": 10,
+   "p95": 33,
+   "p99": 72,
+   "warmP50": 9,
+   "warmP99": 35,
+   "postAdmissionRemoteRequests": 18,
+   "postAdmissionRemoteBytes": 6583574,
+   "prewarmChunkBytes": 13761377,
+   "firstHit": [
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 72,
+     "warmMs": 29
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 2,
+     "ms": 24,
+     "warmMs": 6
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 10,
+     "warmMs": 9
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 230,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 33,
+     "warmMs": 25
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 6,
+     "ms": 8,
+     "warmMs": 4
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 76,
+     "warmMs": 32
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 8,
+     "ms": 185,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 9,
+     "ms": 3,
+     "warmMs": 2
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 2000,
+   "maxWindowP95": 61,
+   "param": 1600,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 14424,
+    "compressedBytes": 37509559,
+    "files": 20024,
+    "fileBytes": 159084963,
+    "neededCovered": 3265,
+    "neededMiss": 75,
+    "neededMissBytes": 3828079,
+    "wasteFiles": 16759,
+    "wasteBytes": 127710337
+   },
+   "residentAfterPass1": {
+    "chunks": 15475,
+    "compressedBytes": 42199874,
+    "files": 21175,
+    "fileBytes": 180836645,
+    "neededCovered": 3315,
+    "neededMiss": 25,
+    "neededMissBytes": 2690067,
+    "wasteFiles": 17860,
+    "wasteBytes": 148324007
+   },
+   "postAdmitPrefetchChunks": 1051,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 18,
+   "backendRequestsAtAdmit": 184,
+   "backendBytesAtAdmit": 35609892,
+   "prefetchRequestsAtAdmit": 123,
+   "tSteadyEagerMs": 8434,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "G1C.r4000.f2",
+   "arm": "G1C",
+   "budget": 4000,
+   "family": 2,
+   "order": 13,
+   "exit": 0,
+   "tProcMs": 81,
+   "tMountMs": 23,
+   "tReadyMs": 3065,
+   "tPrewarmMs": 1505,
+   "tPrefetchDoneMs": 737,
+   "tTrafficMs": 5084,
+   "prewarmDurationMs": 714,
+   "tSteadyMs": 9065,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 158,
+   "p99Regression": 125,
+   "p50": 10,
+   "p95": 34,
+   "p99": 96,
+   "warmP50": 9,
+   "warmP99": 37,
+   "postAdmissionRemoteRequests": 8,
+   "postAdmissionRemoteBytes": 4608332,
+   "prewarmChunkBytes": 28975423,
+   "firstHit": [
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 105,
+     "warmMs": 30
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 2,
+     "ms": 21,
+     "warmMs": 6
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 10,
+     "warmMs": 8
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 123,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 26,
+     "warmMs": 25
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 6,
+     "ms": 8,
+     "warmMs": 2
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 96,
+     "warmMs": 31
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 8,
+     "ms": 158,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 9,
+     "ms": 3,
+     "warmMs": 3
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 4000,
+   "maxWindowP95": 43,
+   "param": 3200,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17050,
+    "compressedBytes": 45956246,
+    "files": 23103,
+    "fileBytes": 191828829,
+    "neededCovered": 3310,
+    "neededMiss": 30,
+    "neededMissBytes": 2751206,
+    "wasteFiles": 19793,
+    "wasteBytes": 159377330
+   },
+   "residentAfterPass1": {
+    "chunks": 17126,
+    "compressedBytes": 47444048,
+    "files": 23188,
+    "fileBytes": 197450771,
+    "neededCovered": 3331,
+    "neededMiss": 9,
+    "neededMissBytes": 2549300,
+    "wasteFiles": 19857,
+    "wasteBytes": 164797366
+   },
+   "postAdmitPrefetchChunks": 76,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 8,
+   "backendRequestsAtAdmit": 226,
+   "backendBytesAtAdmit": 36729083,
+   "prefetchRequestsAtAdmit": 243,
+   "tSteadyEagerMs": 7251,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "R1C.r4000.f2",
+   "arm": "R1C",
+   "budget": 4000,
+   "family": 2,
+   "order": 14,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 20,
+   "tReadyMs": 3613,
+   "tPrewarmMs": 1632,
+   "tPrefetchDoneMs": 857,
+   "tTrafficMs": 5641,
+   "prewarmDurationMs": 837,
+   "tSteadyMs": 8364,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 172,
+   "p99Regression": 139,
+   "p50": 11,
+   "p95": 34,
+   "p99": 69,
+   "warmP50": 10,
+   "warmP99": 37,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 3871812,
+   "prewarmChunkBytes": 28886814,
+   "firstHit": [
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 102,
+     "warmMs": 29
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 3,
+     "ms": 13,
+     "warmMs": 9
+    },
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 4,
+     "ms": 126,
+     "warmMs": 9
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 5,
+     "ms": 24,
+     "warmMs": 23
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 6,
+     "ms": 10,
+     "warmMs": 4
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 7,
+     "ms": 69,
+     "warmMs": 35
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 8,
+     "ms": 172,
+     "warmMs": 15
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 9,
+     "ms": 3,
+     "warmMs": 4
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 4000,
+   "maxWindowP95": 55,
+   "param": 3200,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17129,
+    "compressedBytes": 46915702,
+    "files": 23156,
+    "fileBytes": 195796722,
+    "neededCovered": 3325,
+    "neededMiss": 15,
+    "neededMissBytes": 2573447,
+    "wasteFiles": 19831,
+    "wasteBytes": 163167464
+   },
+   "residentAfterPass1": {
+    "chunks": 17177,
+    "compressedBytes": 48195695,
+    "files": 23209,
+    "fileBytes": 200565258,
+    "neededCovered": 3329,
+    "neededMiss": 11,
+    "neededMissBytes": 2558646,
+    "wasteFiles": 19880,
+    "wasteBytes": 167921199
+   },
+   "postAdmitPrefetchChunks": 48,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 7,
+   "backendRequestsAtAdmit": 253,
+   "backendBytesAtAdmit": 37734025,
+   "prefetchRequestsAtAdmit": 251,
+   "tSteadyEagerMs": 7836,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "E0.f3",
+   "arm": "E0",
+   "budget": null,
+   "family": 3,
+   "order": 15,
+   "exit": 0,
+   "tProcMs": 81,
+   "tMountMs": 22,
+   "tReadyMs": 3540,
+   "tPrewarmMs": 2264,
+   "tPrefetchDoneMs": 1496,
+   "tTrafficMs": 5572,
+   "prewarmDurationMs": 1474,
+   "tSteadyMs": 7826,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 157,
+   "p99Regression": 124,
+   "p50": 10,
+   "p95": 33,
+   "p99": 49,
+   "warmP50": 9,
+   "warmP99": 36,
+   "postAdmissionRemoteRequests": 0,
+   "postAdmissionRemoteBytes": 0,
+   "prewarmChunkBytes": 75622379,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 123,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 18
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 8,
+     "warmMs": 1
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 56,
+     "warmMs": 17
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 157,
+     "warmMs": 12
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 49,
+     "warmMs": 32
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 20,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 11,
+     "warmMs": 13
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": null,
+   "maxWindowP95": 49,
+   "param": null,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17768,
+    "compressedBytes": 75620198,
+    "files": 23939,
+    "fileBytes": 270398583,
+    "neededCovered": 3340,
+    "neededMiss": 0,
+    "neededMissBytes": 0,
+    "wasteFiles": 20599,
+    "wasteBytes": 235195878
+   },
+   "residentAfterPass1": {
+    "chunks": 17768,
+    "compressedBytes": 75620198,
+    "files": 23939,
+    "fileBytes": 270398583,
+    "neededCovered": 3340,
+    "neededMiss": 0,
+    "neededMissBytes": 0,
+    "wasteFiles": 20599,
+    "wasteBytes": 235195878
+   },
+   "postAdmitPrefetchChunks": 0,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 0,
+   "backendRequestsAtAdmit": 366,
+   "backendBytesAtAdmit": 75823375,
+   "prefetchRequestsAtAdmit": 577,
+   "tSteadyEagerMs": 7532,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "R1C.r2000.f3",
+   "arm": "R1C",
+   "budget": 2000,
+   "family": 3,
+   "order": 16,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 19,
+   "tReadyMs": 3687,
+   "tPrewarmMs": 1240,
+   "tPrefetchDoneMs": 470,
+   "tTrafficMs": 5719,
+   "prewarmDurationMs": 451,
+   "tSteadyMs": 9146,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 219,
+   "p99Regression": 186,
+   "p50": 11,
+   "p95": 34,
+   "p99": 69,
+   "warmP50": 9,
+   "warmP99": 35,
+   "postAdmissionRemoteRequests": 18,
+   "postAdmissionRemoteBytes": 6583574,
+   "prewarmChunkBytes": 13761377,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 232,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 22,
+     "warmMs": 18
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 7,
+     "warmMs": 4
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 69,
+     "warmMs": 19
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 200,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 4,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 69,
+     "warmMs": 33
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 22,
+     "warmMs": 5
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 12,
+     "warmMs": 8
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 2000,
+   "maxWindowP95": 63,
+   "param": 1600,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 14424,
+    "compressedBytes": 37509559,
+    "files": 20024,
+    "fileBytes": 159084963,
+    "neededCovered": 3265,
+    "neededMiss": 75,
+    "neededMissBytes": 3828079,
+    "wasteFiles": 16759,
+    "wasteBytes": 127710337
+   },
+   "residentAfterPass1": {
+    "chunks": 15475,
+    "compressedBytes": 42199874,
+    "files": 21175,
+    "fileBytes": 180836645,
+    "neededCovered": 3315,
+    "neededMiss": 25,
+    "neededMissBytes": 2690067,
+    "wasteFiles": 17860,
+    "wasteBytes": 148324007
+   },
+   "postAdmitPrefetchChunks": 1051,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 18,
+   "backendRequestsAtAdmit": 183,
+   "backendBytesAtAdmit": 35477711,
+   "prefetchRequestsAtAdmit": 123,
+   "tSteadyEagerMs": 8323,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "G1C.r2000.f3",
+   "arm": "G1C",
+   "budget": 2000,
+   "family": 3,
+   "order": 17,
+   "exit": 0,
+   "tProcMs": 83,
+   "tMountMs": 26,
+   "tReadyMs": 3665,
+   "tPrewarmMs": 1251,
+   "tPrefetchDoneMs": 484,
+   "tTrafficMs": 5696,
+   "prewarmDurationMs": 458,
+   "tSteadyMs": 8549,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 205,
+   "p99Regression": 172,
+   "p50": 11,
+   "p95": 34,
+   "p99": 66,
+   "warmP50": 10,
+   "warmP99": 36,
+   "postAdmissionRemoteRequests": 20,
+   "postAdmissionRemoteBytes": 6832794,
+   "prewarmChunkBytes": 13842061,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 293,
+     "warmMs": 11
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 24,
+     "warmMs": 18
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 7,
+     "warmMs": 4
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 65,
+     "warmMs": 19
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 205,
+     "warmMs": 13
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 66,
+     "warmMs": 32
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 23,
+     "warmMs": 4
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 11,
+     "warmMs": 8
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 2000,
+   "maxWindowP95": 65,
+   "param": 1600,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 14070,
+    "compressedBytes": 36770385,
+    "files": 19490,
+    "fileBytes": 149393696,
+    "neededCovered": 3201,
+    "neededMiss": 139,
+    "neededMissBytes": 4597041,
+    "wasteFiles": 16289,
+    "wasteBytes": 118788032
+   },
+   "residentAfterPass1": {
+    "chunks": 15514,
+    "compressedBytes": 41572218,
+    "files": 21243,
+    "fileBytes": 175698252,
+    "neededCovered": 3320,
+    "neededMiss": 20,
+    "neededMissBytes": 3156786,
+    "wasteFiles": 17923,
+    "wasteBytes": 143652333
+   },
+   "postAdmitPrefetchChunks": 1444,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 20,
+   "backendRequestsAtAdmit": 182,
+   "backendBytesAtAdmit": 35553567,
+   "prefetchRequestsAtAdmit": 122,
+   "tSteadyEagerMs": 8309,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "R1C.r4000.f3",
+   "arm": "R1C",
+   "budget": 4000,
+   "family": 3,
+   "order": 18,
+   "exit": 0,
+   "tProcMs": 75,
+   "tMountMs": 20,
+   "tReadyMs": 3293,
+   "tPrewarmMs": 1629,
+   "tPrefetchDoneMs": 857,
+   "tTrafficMs": 5309,
+   "prewarmDurationMs": 837,
+   "tSteadyMs": 7772,
+   "steadyReached": true,
+   "trafficWarm": false,
+   "maxWindowP99": 169,
+   "p99Regression": 136,
+   "p50": 11,
+   "p95": 33,
+   "p99": 58,
+   "warmP50": 9,
+   "warmP99": 36,
+   "postAdmissionRemoteRequests": 7,
+   "postAdmissionRemoteBytes": 3871812,
+   "prewarmChunkBytes": 28886814,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 132,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 24,
+     "warmMs": 18
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 9,
+     "warmMs": 5
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 58,
+     "warmMs": 18
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 169,
+     "warmMs": 12
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 3,
+     "warmMs": 3
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 74,
+     "warmMs": 36
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 26,
+     "warmMs": 4
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 11,
+     "warmMs": 10
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 4000,
+   "maxWindowP95": 47,
+   "param": 3200,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17129,
+    "compressedBytes": 46915702,
+    "files": 23156,
+    "fileBytes": 195796722,
+    "neededCovered": 3325,
+    "neededMiss": 15,
+    "neededMissBytes": 2573447,
+    "wasteFiles": 19831,
+    "wasteBytes": 163167464
+   },
+   "residentAfterPass1": {
+    "chunks": 17177,
+    "compressedBytes": 48195695,
+    "files": 23209,
+    "fileBytes": 200565258,
+    "neededCovered": 3329,
+    "neededMiss": 11,
+    "neededMissBytes": 2558646,
+    "wasteFiles": 19880,
+    "wasteBytes": 167921199
+   },
+   "postAdmitPrefetchChunks": 48,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 7,
+   "backendRequestsAtAdmit": 253,
+   "backendBytesAtAdmit": 37734025,
+   "prefetchRequestsAtAdmit": 251,
+   "tSteadyEagerMs": 7483,
+   "steadyEagerReached": true
+  },
+  {
+   "name": "G1C.r4000.f3",
+   "arm": "G1C",
+   "budget": 4000,
+   "family": 3,
+   "order": 19,
+   "exit": 0,
+   "tProcMs": 80,
+   "tMountMs": 20,
+   "tReadyMs": 3097,
+   "tPrewarmMs": 1638,
+   "tPrefetchDoneMs": 867,
+   "tTrafficMs": 5117,
+   "prewarmDurationMs": 847,
+   "tSteadyMs": null,
+   "steadyReached": false,
+   "trafficWarm": false,
+   "maxWindowP99": 183,
+   "p99Regression": 150,
+   "p50": 10,
+   "p95": 33,
+   "p99": 72,
+   "warmP50": 10,
+   "warmP99": 36,
+   "postAdmissionRemoteRequests": 8,
+   "postAdmissionRemoteBytes": 4608332,
+   "prewarmChunkBytes": 28975423,
+   "firstHit": [
+    {
+     "group": "js.web3",
+     "category": "optional-feature",
+     "position": 1,
+     "ms": 130,
+     "warmMs": 10
+    },
+    {
+     "group": "js.checkout",
+     "category": "optional-feature",
+     "position": 2,
+     "ms": 21,
+     "warmMs": 18
+    },
+    {
+     "group": "js.xmlupload",
+     "category": "error-path",
+     "position": 3,
+     "ms": 8,
+     "warmMs": 2
+    },
+    {
+     "group": "js.dataerasure",
+     "category": "tenant-config",
+     "position": 4,
+     "ms": 77,
+     "warmMs": 17
+    },
+    {
+     "group": "js.promotion",
+     "category": "tenant-config",
+     "position": 5,
+     "ms": 183,
+     "warmMs": 12
+    },
+    {
+     "group": "js.apidocs",
+     "category": "rare-route",
+     "position": 6,
+     "ms": 4,
+     "warmMs": 6
+    },
+    {
+     "group": "js.captcha",
+     "category": "optional-feature",
+     "position": 7,
+     "ms": 72,
+     "warmMs": 30
+    },
+    {
+     "group": "js.filesurfaces",
+     "category": "rare-route",
+     "position": 8,
+     "ms": 21,
+     "warmMs": 6
+    },
+    {
+     "group": "js.accounting",
+     "category": "admin-background",
+     "position": 9,
+     "ms": 9,
+     "warmMs": 8
+    }
+   ],
+   "failedRequests": 0,
+   "rungMs": 4000,
+   "maxWindowP95": 43,
+   "param": 3200,
+   "cutoff": "plateau",
+   "residentAtAdmit": {
+    "chunks": 17050,
+    "compressedBytes": 45956246,
+    "files": 23103,
+    "fileBytes": 191828829,
+    "neededCovered": 3310,
+    "neededMiss": 30,
+    "neededMissBytes": 2751206,
+    "wasteFiles": 19793,
+    "wasteBytes": 159377330
+   },
+   "residentAfterPass1": {
+    "chunks": 17126,
+    "compressedBytes": 47444048,
+    "files": 23188,
+    "fileBytes": 197450771,
+    "neededCovered": 3331,
+    "neededMiss": 9,
+    "neededMissBytes": 2549300,
+    "wasteFiles": 19857,
+    "wasteBytes": 164797366
+   },
+   "postAdmitPrefetchChunks": 76,
+   "postAdmissionPrefetchRequests": 0,
+   "postAdmissionPrefetchBytes": 0,
+   "postAdmissionDemandRequests": 8,
+   "backendRequestsAtAdmit": 226,
+   "backendBytesAtAdmit": 36729083,
+   "prefetchRequestsAtAdmit": 243,
+   "tSteadyEagerMs": 7558,
+   "steadyEagerReached": true
+  }
+ ]
+}

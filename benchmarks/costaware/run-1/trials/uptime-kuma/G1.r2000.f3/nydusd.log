@@ -1,0 +1,1 @@
+[[38;5;208m2026-08-24 15:16:33.375331 +00:00[0m] [38;5;208mWARN[0m [/src/backend/mod.rs:283] [38;5;208mbackend request: GET http://reducer-registry:5000/v2/longtail/uptime-kuma/blobs/sha256:5939eafcfa19fd260c067e79f1b73ec296ed0ddbc3de1022b8667f45c1e3abb6, chunk: 1016622 bytes, proxy: false, proxy sdk: false, takes 368.500001ms: slow request[0m

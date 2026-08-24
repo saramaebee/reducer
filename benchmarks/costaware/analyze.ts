@@ -181,20 +181,55 @@ export function analyzeApp(app: string, tag = 'trials'): unknown {
     const admitSet = residentChunks(path.join(dir, 'chunkmap.at-admit.bin'), m.totals.chunks);
     const endSet = residentChunks(path.join(dir, 'chunkmap.after-pass-1.bin'), m.totals.chunks);
     const tj = JSON.parse(readFileSync(path.join(dir, 'trial.json'), 'utf8'));
-    const admitState = t.events.find((e) => e.ev === 'fetch-state' && e.label === 'at-admit') as
-      | { remoteRequests: number; remoteBytes: number; prefetchBytes: number; prefetchRequests: number }
-      | undefined;
+    const fs = (label: string) =>
+      t.events.find((e) => e.ev === 'fetch-state' && e.label === label) as
+        | { remoteRequests: number | null; remoteBytes: number | null; prefetchBytes: number | null; prefetchRequests: number | null }
+        | undefined;
+    const admitState = fs('at-admit');
+    const endState = fs('after-pass-1');
+    // the deliverables ask for max post-admission p95 as well as p99; the same
+    // rolling window (100 requests, step 20, nearest rank) with p = 95
+    const p1 = t.events.filter((e) => e.ev === 'request' && (e as unknown as { pass: number }).pass === 1) as unknown as { ms: number }[];
+    const winP = (p: number): number => {
+      const xs: number[] = [];
+      for (let i = 0; i + 100 <= p1.length; i += 20) xs.push(pct(p1.slice(i, i + 100).map((r) => r.ms), p));
+      if (!xs.length && p1.length) xs.push(pct(p1.map((r) => r.ms), p));
+      return xs.length ? Math.max(...xs) : NaN;
+    };
+    // ATTACK 7: proactive prefetch does not stop at the admission gate — nydus
+    // has no abort — so the raw backend delta over pass 1 mixes demand faults
+    // with residual prefetch. The blobcache counts prefetch requests separately,
+    // so both are reported and never conflated. The demand figure is a lower
+    // bound: one prefetch request can become several backend reads.
+    const dPrefetchReq =
+      admitState?.prefetchRequests != null && endState?.prefetchRequests != null
+        ? endState.prefetchRequests - admitState.prefetchRequests
+        : null;
+    const dPrefetchBytes =
+      admitState?.prefetchBytes != null && endState?.prefetchBytes != null
+        ? endState.prefetchBytes - admitState.prefetchBytes
+        : null;
+    const dRemoteReq =
+      admitState?.remoteRequests != null && endState?.remoteRequests != null
+        ? endState.remoteRequests - admitState.remoteRequests
+        : null;
     return {
       ...base,
       rungMs: base.budget,
+      maxWindowP95: winP(95),
       param: tj.param ?? null,
       cutoff: tj.cutoff ?? null,
       residentAtAdmit: admitSet ? residency(admitSet, m, size, needed, touchedEver) : null,
       residentAfterPass1: endSet ? residency(endSet, m, size, needed, touchedEver) : null,
       /** proactive prefetch that arrived AFTER the admission gate */
       postAdmitPrefetchChunks: admitSet && endSet ? [...endSet].filter((c) => !admitSet.has(c)).length : null,
+      postAdmissionPrefetchRequests: dPrefetchReq,
+      postAdmissionPrefetchBytes: dPrefetchBytes,
+      /** lower bound on genuine demand faults after admission */
+      postAdmissionDemandRequests: dRemoteReq != null && dPrefetchReq != null ? Math.max(0, dRemoteReq - dPrefetchReq) : dRemoteReq,
       backendRequestsAtAdmit: admitState?.remoteRequests ?? null,
       backendBytesAtAdmit: admitState?.remoteBytes ?? null,
+      prefetchRequestsAtAdmit: admitState?.prefetchRequests ?? null,
     };
   });
 
@@ -223,10 +258,14 @@ export function analyzeApp(app: string, tag = 'trials'): unknown {
       postAdmissionWarm: agg(xs.map((x) => (x.tSteadyMs != null && x.tTrafficMs != null ? x.tSteadyMs - x.tTrafficMs : null))),
       prewarmDuration: agg(xs.map((x) => x.prewarmDurationMs)),
       maxWindowP99: agg(xs.map((x) => x.maxWindowP99)),
+      maxWindowP95: agg(xs.map((x) => x.maxWindowP95)),
       p95: agg(xs.map((x) => x.p95)),
       p99: agg(xs.map((x) => x.p99)),
       postAdmissionFaults: agg(xs.map((x) => x.postAdmissionRemoteRequests)),
       postAdmissionBytes: agg(xs.map((x) => x.postAdmissionRemoteBytes)),
+      postAdmissionPrefetchRequests: agg(xs.map((x) => x.postAdmissionPrefetchRequests)),
+      postAdmissionPrefetchBytes: agg(xs.map((x) => x.postAdmissionPrefetchBytes)),
+      postAdmissionDemandRequests: agg(xs.map((x) => x.postAdmissionDemandRequests)),
       backendRequestsAtAdmit: agg(xs.map((x) => x.backendRequestsAtAdmit)),
       backendBytesAtAdmit: agg(xs.map((x) => x.backendBytesAtAdmit)),
       residentChunks: agg(xs.map((x) => x.residentAtAdmit?.chunks ?? null)),
@@ -257,6 +296,46 @@ export function analyzeApp(app: string, tag = 'trials'): unknown {
   // ── eager-matched (experiment 4 amendment A4, reused verbatim)
   const e0 = per.filter((x) => x.arm === 'E0');
   const eagerWorst = e0.length ? Math.max(...e0.map((x) => x.maxWindowP99)) : NaN;
+
+  // T_steady against a REACHABLE threshold. The preregistered band comes from
+  // the eager arm's WARM pass, and experiment 4's amendment A4 already recorded
+  // that no cold first pass can meet it — every cold pass carries an application
+  // warm-up tail the warm pass does not contain. Measured again here: strapi's
+  // band is 80 ms and the eager arm's own cold pass peaks at ~132 ms, so
+  // `T_steady` is UNDEFINED in most trials and its median would be taken over a
+  // self-selected subset. The same construction against the eager arm's own
+  // worst cold window is defined almost everywhere and is what the equal-time
+  // table reports; the preregistered figure is computed and printed beside it,
+  // never replaced.
+  for (const x of per) {
+    const t = trials.find((tt) => tt.name === x.name)!;
+    const p1 = t.events.filter((e) => e.ev === 'request' && (e as unknown as { pass: number }).pass === 1) as unknown as { ms: number; at: number }[];
+    const wins: { p99: number; endAt: number }[] = [];
+    for (let i = 0; i + 100 <= p1.length; i += 20) {
+      const w = p1.slice(i, i + 100);
+      wins.push({ p99: pct(w.map((r) => r.ms), 99), endAt: w.at(-1)!.at });
+    }
+    let idx = -1;
+    for (let i = 0; i < wins.length; i++) {
+      if (wins.slice(i).every((w) => w.p99 <= eagerWorst)) {
+        idx = i;
+        break;
+      }
+    }
+    const t0 = t.milestones.t0 ?? 0;
+    (x as { tSteadyEagerMs?: number | null }).tSteadyEagerMs = idx >= 0 && t0 ? wins[idx]!.endAt - t0 : null;
+    (x as { steadyEagerReached?: boolean }).steadyEagerReached = idx >= 0;
+  }
+  // fold the reachable-threshold figures into the cells built above
+  for (const [k, xs] of groups) {
+    const c = byCell[k] as Record<string, unknown>;
+    const ys = xs as unknown as { tSteadyEagerMs: number | null; steadyEagerReached: boolean; tTrafficMs: number | null }[];
+    c.tSteadyEager = agg(ys.map((x) => x.tSteadyEagerMs));
+    c.steadyEagerReached = ys.filter((x) => x.steadyEagerReached).length;
+    c.postAdmissionWarmEager = agg(
+      ys.map((x) => (x.tSteadyEagerMs != null && x.tTrafficMs != null ? x.tSteadyEagerMs - x.tTrafficMs : null)),
+    );
+  }
   const equalOutcome: Record<string, { rungMs: number | null; measuredMs: number | null }> = {};
   for (const a of ARMS) {
     let hit: { rungMs: number; measuredMs: number } | null = null;
@@ -288,6 +367,42 @@ export function analyzeApp(app: string, tag = 'trials'): unknown {
   // ── why experiment 4's R1 lost, in physical units
   const decomposition = decomposeExperiment4(app, m, model);
 
+  // ── how much the two prediction sources actually still disagree once each is
+  //    paying real retrieval costs. Computed from the frozen manifests alone —
+  //    no trial, no latency, no timing — so it is the cleanest statement of the
+  //    mechanism either way the headline falls.
+  const selectionOverlap = overlap(app, m, ladder);
+
+  // ── ATTACK 14: trial-order drift. If the machine got slower (or faster) as the
+  //    grid ran, later cells would be biased. Pearson correlation between a
+  //    trial's position in the executed order and its worst post-admission
+  //    window p99, computed WITHIN each cell so the cell's own difficulty
+  //    cannot masquerade as drift.
+  const orderDrift = (() => {
+    const rs: number[] = [];
+    for (const xs of groups.values()) {
+      if (xs.length < 3) continue;
+      const o = xs.map((x) => x.order);
+      const y = xs.map((x) => x.maxWindowP99);
+      const mo = o.reduce((a, b) => a + b, 0) / o.length;
+      const my = y.reduce((a, b) => a + b, 0) / y.length;
+      let num = 0;
+      let d1 = 0;
+      let d2 = 0;
+      for (let i = 0; i < o.length; i++) {
+        num += (o[i]! - mo) * (y[i]! - my);
+        d1 += (o[i]! - mo) ** 2;
+        d2 += (y[i]! - my) ** 2;
+      }
+      if (d1 > 0 && d2 > 0) rs.push(num / Math.sqrt(d1 * d2));
+    }
+    return {
+      cells: rs.length,
+      meanPearson: rs.length ? Number((rs.reduce((a, b) => a + b, 0) / rs.length).toFixed(3) ) : null,
+      maxAbs: rs.length ? Number(Math.max(...rs.map(Math.abs)).toFixed(3)) : null,
+    };
+  })();
+
   return {
     app,
     universe: { files: plan.files.length, bytes: plan.universeBytes },
@@ -301,11 +416,84 @@ export function analyzeApp(app: string, tag = 'trials'): unknown {
     equalOutcome,
     costAccuracy,
     decomposition,
+    selectionOverlap,
+    orderDrift,
     physicalOracle: prep.physicalOracle,
     heldOut: { needed: needed.size, byCategory: observe.byCategory.map(([c, f]) => [c, f.length]) },
     correctness: correctness(trials, declarations(app)),
     trials: per,
   };
+}
+
+/**
+ * How much do the generic and the semantic prediction sources still disagree
+ * about what to make resident, once each is paying real retrieval costs?
+ *
+ * Read off the frozen manifests: no trial, no latency, no timing is involved,
+ * so this is the mechanism statement the headline cannot argue with. Reported
+ * for the cost-aware pair (G1C vs R1C) and, as the control, for the cost-unaware
+ * pair (G1 vs R1) at the same rung.
+ */
+function overlap(
+  app: string,
+  m: PhysicalMap,
+  ladder: LadderEntry[],
+): Record<string, Record<string, { unitJaccard: number; residentJaccard: number; onlyA: number; onlyB: number }>> {
+  const byFile = new Map(m.fileChunks);
+  const listDir = path.join('/Users/sara/.cache/reducer-costaware-v1', 'prefetch', app);
+  const resident = (arm: string, rung: number): { chunks: Set<number>; files: Set<string> } | null => {
+    const e = ladder.find((l) => l.arm === arm && l.rungMs === rung);
+    if (!e) return null;
+    const f = path.join(listDir, `${arm}.${e.param}.txt`);
+    if (!existsSync(f)) return null;
+    const chunks = new Set<number>();
+    for (const line of readFileSync(f, 'utf8').split('\n')) {
+      if (!line) continue;
+      for (const c of byFile.get(line.slice(1)) ?? []) chunks.add(c);
+    }
+    const files = new Set<string>();
+    for (const [rel, cs] of m.fileChunks) {
+      if (cs.length === 0) continue;
+      let all = true;
+      for (const c of cs) {
+        if (!chunks.has(c)) {
+          all = false;
+          break;
+        }
+      }
+      if (all) files.add(rel);
+    }
+    return { chunks, files };
+  };
+  const jac = <T>(a: Set<T>, b: Set<T>): number => {
+    let i = 0;
+    for (const v of a) if (b.has(v)) i++;
+    const u = a.size + b.size - i;
+    return u ? Number((i / u).toFixed(4)) : 1;
+  };
+  const out: Record<string, Record<string, { unitJaccard: number; residentJaccard: number; onlyA: number; onlyB: number }>> = {};
+  for (const rung of RUNGS_MS[app] ?? []) {
+    out[rung] = {};
+    for (const [A, B] of [
+      ['G1C', 'R1C'],
+      ['G1', 'R1'],
+    ] as const) {
+      const a = resident(A, rung);
+      const b = resident(B, rung);
+      if (!a || !b) continue;
+      let onlyA = 0;
+      for (const f of a.files) if (!b.files.has(f)) onlyA++;
+      let onlyB = 0;
+      for (const f of b.files) if (!a.files.has(f)) onlyB++;
+      out[rung]![`${A}-vs-${B}`] = {
+        unitJaccard: jac(a.chunks, b.chunks),
+        residentJaccard: jac(a.files, b.files),
+        onlyA,
+        onlyB,
+      };
+    }
+  }
+  return out;
 }
 
 /**

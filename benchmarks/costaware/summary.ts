@@ -57,24 +57,28 @@ export function summarize(apps: string[]): string {
 
     // ── the headline
     out.push('\n### 2. Equal measured prewarm time → outcome\n');
-    out.push('`T_steady − T0` is the preregistered primary metric. `T_traffic − T0` is admission delay; the remainder is post-admission warming.\n');
-    out.push('| rung | arm | T_steady−T0 | T_traffic−T0 | T_steady−T_traffic | max window p99 | post-adm faults | post-adm MB | steady reached |');
-    out.push('| ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
+    out.push('`T_steady − T0` is the preregistered primary metric, computed against the frozen band.');
+    out.push('`T_steady(eager) − T0` is the same construction against a REACHABLE threshold — the eager');
+    out.push("arm's own worst cold post-admission window — because the frozen band comes from the eager");
+    out.push('arm\'s WARM pass and no cold pass can meet it (experiment 4 amendment A4). Both are shown;');
+    out.push('neither replaces the other. `T_traffic − T0` is admission delay.\n');
+    out.push('| rung | arm | T_steady(eager)−T0 | reached | T_steady(band)−T0 | reached | T_traffic−T0 | max window p95 | max window p99 | post-adm remote req | residual prefetch | demand faults | post-adm MB |');
+    out.push('| ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
     for (const r of rungs) {
       for (const a of ARMS) {
         const c = cell(a.name, r);
         if (!c) continue;
         out.push(
-          `| ${(r / 1000).toFixed(1)} s | ${a.name} | ${f0(c.tSteady)} | ${f0(c.tTraffic)} | ${f0(c.postAdmissionWarm)} | ` +
-            `${f0(c.maxWindowP99)} | ${f0(c.postAdmissionFaults)} | ${f1(c.postAdmissionBytes, 1e6)} | ${c.steadyReached}/${c.trials} |`,
+          `| ${(r / 1000).toFixed(1)} s | ${a.name} | ${f0(c.tSteadyEager)} | ${c.steadyEagerReached}/${c.trials} | ${f0(c.tSteady)} | ${c.steadyReached}/${c.trials} | ${f0(c.tTraffic)} | ` +
+            `${f0(c.maxWindowP95)} | ${f0(c.maxWindowP99)} | ${f0(c.postAdmissionFaults)} | ${f0(c.postAdmissionPrefetchRequests)} | ${f0(c.postAdmissionDemandRequests)} | ${f1(c.postAdmissionBytes, 1e6)} |`,
         );
       }
     }
     const e0 = m.byCell.E0;
     if (e0) {
       out.push(
-        `| eager | E0 | ${f0(e0.tSteady)} | ${f0(e0.tTraffic)} | ${f0(e0.postAdmissionWarm)} | ${f0(e0.maxWindowP99)} | ` +
-          `${f0(e0.postAdmissionFaults)} | ${f1(e0.postAdmissionBytes, 1e6)} | ${e0.steadyReached}/${e0.trials} |`,
+        `| eager | E0 | ${f0(e0.tSteadyEager)} | ${e0.steadyEagerReached}/${e0.trials} | ${f0(e0.tSteady)} | ${e0.steadyReached}/${e0.trials} | ${f0(e0.tTraffic)} | ` +
+          `${f0(e0.maxWindowP95)} | ${f0(e0.maxWindowP99)} | ${f0(e0.postAdmissionFaults)} | ${f0(e0.postAdmissionPrefetchRequests)} | ${f0(e0.postAdmissionDemandRequests)} | ${f1(e0.postAdmissionBytes, 1e6)} |`,
       );
     }
 
@@ -127,6 +131,30 @@ export function summarize(apps: string[]): string {
     out.push(`backend bytes           ${(o.backendBytes / 1e6).toFixed(1)} MB`);
     out.push(`predicted prewarm       ${o.predictedMs} ms`);
     out.push('```');
+    out.push('\nAgainst what a cost-aware arm actually pays for far more content:\n');
+    out.push('| arm | rung | resident files | measured prewarm | backend requests |');
+    out.push('| --- | ---: | ---: | ---: | ---: |');
+    for (const l of (m.ladder as { arm: string; rungMs: number; measuredMs: number; measuredRequests: number | null }[])) {
+      if (l.arm !== 'G1C' && l.arm !== 'R1C') continue;
+      const c = cell(l.arm, l.rungMs);
+      out.push(`| ${l.arm} | ${(l.rungMs / 1000).toFixed(1)} s | ${f0(c?.residentFiles ?? null)} | ${l.measuredMs} ms | ${s(l.measuredRequests)} |`);
+    }
+
+    // ── do the two prediction sources still disagree?
+    out.push('\n### 6b. Do the two prediction sources still disagree once both pay real retrieval cost?\n');
+    out.push('Jaccard overlap of what each arm makes RESIDENT, from the frozen manifests alone — no trial, no latency.\n');
+    out.push('| rung | G1C vs R1C: chunks | resident files | R1C-only | G1C-only | G1 vs R1: chunks | resident files |');
+    out.push('| ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
+    for (const r of rungs) {
+      const o = (m.selectionOverlap ?? {})[r];
+      if (!o) continue;
+      const c1 = o['G1C-vs-R1C'];
+      const c2 = o['G1-vs-R1'];
+      out.push(
+        `| ${(r / 1000).toFixed(1)} s | ${c1 ? c1.unitJaccard.toFixed(3) : '—'} | ${c1 ? c1.residentJaccard.toFixed(3) : '—'} | ` +
+          `${c1 ? c1.onlyB : '—'} | ${c1 ? c1.onlyA : '—'} | ${c2 ? c2.unitJaccard.toFixed(3) : '—'} | ${c2 ? c2.residentJaccard.toFixed(3) : '—'} |`,
+      );
+    }
 
     // ── decomposition of experiment 4
     out.push('\n### 7. Why experiment 4 lost — its own manifests, re-priced physically\n');

@@ -1,0 +1,25 @@
+{
+ "app": "uptime-kuma",
+ "arm": "R1C",
+ "budgetMs": 2000,
+ "param": 1600,
+ "family": 0,
+ "order": 8,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/costaware/run-1/trials/uptime-kuma/R1C.r2000.f0",
+ "prefetchFile": "/Users/sara/.cache/reducer-costaware-v1/prefetch/uptime-kuma/R1C.1600.txt",
+ "prefetchAll": false,
+ "budget": 2000,
+ "milestones": {
+  "setup-done": 1787583600385,
+  "t0": 1787583600385,
+  "mount": 1787583600406,
+  "proc": 1787583600470,
+  "prefetch-last-progress": 1787583602486,
+  "prewarm": 1787583602495,
+  "workload-done": 1787583616183,
+  "collect": 1787583616202,
+  "done": 1787583616539
+ },
+ "cutoff": "deadline",
+ "exit": 0
+}
