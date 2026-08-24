@@ -93,6 +93,9 @@ function specJson(app: string, w: Workload, t: TrialSpec, plan: LongtailPlan): u
     prewarmMarker: '/work/prewarm-done',
     prewarmTimeoutMs: 900_000,
     universeBytes: plan.universeBytes,
+    // an observation run needs only the cold pass; a measured trial also runs
+    // the identical stream warm, as its own steady-state reference
+    passes: t.observe ? 1 : 2,
     traffic,
   };
 }
@@ -168,6 +171,7 @@ export function runTrial(t: TrialSpec, w: Workload, plan: LongtailPlan, image: {
 function observe(app: string, w: Workload, plan: LongtailPlan, mode: 'train' | 'test', family: number): {
   access: TrainAccess[];
   perRequest: { id: string; group: string | null; category: string | null; files: string[] }[];
+  offSpec: string[];
 } {
   const outDir = path.join(WORK_ROOT, 'observe', app, `${mode}-f${family}`);
   const r = runTrial(
@@ -239,6 +243,12 @@ function observe(app: string, w: Workload, plan: LongtailPlan, mode: 'train' | '
   return {
     access: sorted.map(([rel, firstMs]) => ({ rel, firstMs })),
     perRequest,
+    /** every request whose status was outside its declared `expect` set —
+     *  a workload defect, surfaced at prep time rather than discovered in the
+     *  middle of a four-hour sweep */
+    offSpec: (events.filter((e) => e.ev === 'request' && e.ok === false) as unknown as { id: string; status: number | string; expect: number[] }[]).map(
+      (q) => `${q.id} -> ${q.status} (expected ${JSON.stringify(q.expect)})`,
+    ),
   };
 }
 
@@ -269,6 +279,18 @@ async function prep(app: string): Promise<void> {
   const train = observe(app, w, plan, 'train', 0);
   const testByFamily: Record<number, ReturnType<typeof observe>> = {};
   for (let f = 0; f < FAMILIES; f++) testByFamily[f] = observe(app, w, plan, 'test', f);
+
+  // WORKLOAD VALIDATION. A held-out path that does not actually execute is not
+  // evidence about anything, so every off-spec status is printed here, loudly,
+  // before a single measured trial is spent on it.
+  const offSpec = new Map<string, number>();
+  for (const s of [train, ...Object.values(testByFamily)]) for (const line of s.offSpec) offSpec.set(line, (offSpec.get(line) ?? 0) + 1);
+  if (offSpec.size) {
+    console.log(`[${app}] !! ${offSpec.size} OFF-SPEC request shape(s) in the observation runs:`);
+    for (const [line, n] of [...offSpec].sort()) console.log(`[${app}]    x${n}  ${line}`);
+  } else {
+    console.log(`[${app}] workload validation: every request returned a declared status`);
+  }
 
   const size = new Map(plan.files);
   const bytesOf = (rels: Iterable<string>) => [...rels].reduce((a, r) => a + (size.get(r) ?? 0), 0);
@@ -380,6 +402,7 @@ async function prep(app: string): Promise<void> {
         stream: { length: STREAM_LENGTH, families: FAMILIES, passes: 2 },
         warnings: plan.warnings.slice(0, 20),
         workloadNotes: w.notes,
+        offSpec: [...offSpec].map(([line, n]) => ({ line, n })),
         longTail: w.longTail.map((g) => ({ id: g.id, category: g.category, why: g.why, mechanism: g.mechanism, requests: g.requests.map((q) => `${q.method} ${q.path}`) })),
       },
       null,
@@ -408,10 +431,11 @@ interface Cell {
  * rotated per family, so no arm systematically follows another and no arm
  * occupies a contiguous block of wall-clock time.
  */
-export function cells(strategies: ArmName[], budgets: number[]): Cell[] {
+export function cells(strategies: ArmName[], budgets: number[], e0only = false): Cell[] {
   const out: Cell[] = [];
   for (let f = 0; f < FAMILIES; f++) {
     out.push({ arm: 'E0', budget: null, family: f, prefetchAll: true });
+    if (e0only) continue;
     for (const b of budgets) {
       const rot = strategies.map((_, i) => strategies[(i + f) % strategies.length]!);
       for (const arm of rot) out.push({ arm, budget: b, family: f, prefetchAll: false });
@@ -420,7 +444,7 @@ export function cells(strategies: ArmName[], budgets: number[]): Cell[] {
   return out;
 }
 
-function trials(app: string, only: ArmName[] | null, budgets: number[]): void {
+function trials(app: string, only: ArmName[] | null, budgets: number[], e0only = false): void {
   shapeNetwork();
   const plan = loadPlan(app);
   const w = workloadFor(app, plan);
@@ -429,7 +453,7 @@ function trials(app: string, only: ArmName[] | null, budgets: number[]): void {
   const outRoot = path.join(RUN, 'trials', app);
   mkdirSync(outRoot, { recursive: true });
 
-  const grid = cells(only ?? STRATEGIES, budgets);
+  const grid = cells(only ?? STRATEGIES, budgets, e0only);
   const index: unknown[] = [];
   let order = 0;
   const t0 = Date.now();
@@ -460,7 +484,7 @@ function trials(app: string, only: ArmName[] | null, budgets: number[]): void {
 if (import.meta.main) {
   const { values, positionals } = parseArgs({
     allowPositionals: true,
-    options: { app: { type: 'string' }, all: { type: 'boolean' }, only: { type: 'string' }, budgets: { type: 'string' } },
+    options: { app: { type: 'string' }, all: { type: 'boolean' }, only: { type: 'string' }, budgets: { type: 'string' }, e0only: { type: 'boolean' } },
   });
   const cmd = positionals[0];
   const apps = values.all ? APPS.map((a) => a.name) : [values.app!];
@@ -471,7 +495,7 @@ if (import.meta.main) {
     if (cmd === 'prep') {
       shapeNetwork();
       await prep(app);
-    } else if (cmd === 'trials') trials(app, only, budgets);
+    } else if (cmd === 'trials') trials(app, only, budgets, values.e0only === true);
     else throw new Error(`unknown command '${cmd}' (prep | trials)`);
   }
 }

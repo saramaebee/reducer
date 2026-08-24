@@ -81,13 +81,22 @@ function tier(out: string[], seen: Set<string>, tiers: Ranking['tiers'], name: s
  * enforces the preregistration rather than evading it.
  */
 const CAP = 16;
+
+/** DESIGN.md amendment A2: the analysis must also report a DISTANCE-ONLY
+ *  ranking, so the conclusion is shown not to be an artefact of the size term. */
+export interface RankOpts {
+  sizeTerm?: boolean;
+}
+
 function widen(
   rels: string[],
   size: Map<string, number>,
   distance: (rel: string) => number,
+  opts: RankOpts = {},
 ): string[] {
+  const withSize = opts.sizeTerm !== false;
   const key = new Map<string, number>();
-  for (const r of rels) key.set(r, Math.min(distance(r), CAP) + Math.log2((size.get(r) ?? 0) + 1));
+  for (const r of rels) key.set(r, Math.min(distance(r), CAP) + (withSize ? Math.log2((size.get(r) ?? 0) + 1) : 0));
   return rels.sort((a, b) => key.get(a)! - key.get(b)! || (a < b ? -1 : a > b ? 1 : 0));
 }
 
@@ -133,7 +142,7 @@ export function g1(plan: LongtailPlan, train: TrainAccess[]): Ranking {
  * strictly stronger than experiment 3's B2d, which stopped at distance 0, and
  * it is the same function R1/R2 use — only the definition of distance differs.
  */
-export function g2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
+export function g2(plan: LongtailPlan, train: TrainAccess[], opts: RankOpts = {}): Ranking {
   const size = new Map(plan.files);
   const touched = new Map(train.map((t) => [t.rel, t.firstMs]));
 
@@ -194,7 +203,7 @@ export function g2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
 
   const rest = plan.files.map(([rel]) => rel).filter((rel) => !touched.has(rel));
   void anchor;
-  tier(out, seen, tiers, 'path-distance-widening', widen(rest, size, (r) => dist.get(dirOf(r)) ?? CAP));
+  tier(out, seen, tiers, 'path-distance-widening', widen(rest, size, (r) => dist.get(dirOf(r)) ?? CAP, opts));
   return {
     arm: 'G2',
     inputs: [
@@ -217,7 +226,7 @@ export function g2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
  * licenses: the rest of a package the graph has already proven live, and then
  * packages reachable over the DECLARED dependency graph, nearest first.
  */
-export function r1(plan: LongtailPlan): Ranking {
+export function r1(plan: LongtailPlan, opts: RankOpts = {}): Ranking {
   const size = new Map(plan.files);
   const pkgOf = new Map(plan.pkgOf);
   const depth = new Map(plan.pkgDepth);
@@ -261,7 +270,7 @@ export function r1(plan: LongtailPlan): Ranking {
   };
   void nftRank;
   void livePkgFirstRank;
-  tier(out, seen, tiers, 'semantic-distance-widening', widen(pool, size, distOf));
+  tier(out, seen, tiers, 'semantic-distance-widening', widen(pool, size, distOf, opts));
   return {
     arm: 'R1',
     inputs: [
@@ -294,7 +303,7 @@ export function r1(plan: LongtailPlan): Ranking {
  * optional feature's library gets covered without the workload ever having
  * exercised that feature.
  */
-export function r2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
+export function r2(plan: LongtailPlan, train: TrainAccess[], opts: RankOpts = {}): Ranking {
   const size = new Map(plan.files);
   const pkgOf = new Map(plan.pkgOf);
   const deps = new Map(plan.pkgDeps);
@@ -347,7 +356,7 @@ export function r2(plan: LongtailPlan, train: TrainAccess[]): Ranking {
     const base = pkgFirstTouch.has(p) ? 0 : (hop.get(p) ?? CAP);
     return base + (nft.has(rel) ? 0 : 1);
   };
-  tier(out, seen, tiers, 'semantic-distance-widening', widen(pool, size, distOf));
+  tier(out, seen, tiers, 'semantic-distance-widening', widen(pool, size, distOf, opts));
   return {
     arm: 'R2',
     inputs: [

@@ -1,0 +1,22 @@
+{
+ "app": "verdaccio",
+ "arm": "E0",
+ "budget": null,
+ "family": 1,
+ "order": 1,
+ "outDir": "/Users/sara/personal/saratonin.dev/reducer/benchmarks/longtail/run-1/trials/verdaccio/E0.f1",
+ "prefetchFile": null,
+ "prefetchAll": true,
+ "milestones": {
+  "setup-done": 1787548502741,
+  "t0": 1787548502741,
+  "mount": 1787548502754,
+  "proc": 1787548502807,
+  "prefetch-last-progress": 1787548504892,
+  "prewarm": 1787548505683,
+  "workload-done": 1787548537674,
+  "collect": 1787548537689,
+  "done": 1787548538021
+ },
+ "exit": 0
+}

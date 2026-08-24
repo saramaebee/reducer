@@ -73,13 +73,33 @@ say mount
 if [ "$LAZY" = "1" ]; then
   node /opt/base/sampler.mjs /work/api.sock /work/samples.jsonl &
   SAMPLER=$!
-  # Prewarm completion. The blobcache's prefetch END TIMESTAMP is the signal;
-  # `data_all_ready` is not — it stays false even after a complete prefetch_all.
-  ( for _ in $(seq 1 180000); do
-      E=$(curl -s --unix-socket /work/api.sock http://localhost/api/v1/metrics/blobcache | jq -r .prefetch_end_time_secs 2>/dev/null)
-      [ -n "$E" ] && [ "$E" != "0" ] && [ "$E" != "null" ] && break
-      sleep 0.01
+  # PREWARM COMPLETION — the signal this whole experiment hangs on.
+  #
+  # `data_all_ready` is useless: it stays false even after a complete
+  # prefetch_all. `prefetch_end_time_secs` is worse than useless — it is set
+  # almost immediately, long before the bytes have arrived. Measured in the
+  # pilot: the Next.js eager arm reported prefetch "ended" at t0+297 ms with
+  # 64.6 MB of its 92.4 MB blob still unfetched, and then took 155 further
+  # remote requests DURING the post-admission stream. Admitting traffic on that
+  # signal would have silently destroyed the experiment's central distinction
+  # between Ready and traffic-warm.
+  #
+  # What is true: `blobcache.prefetch_data_amount` counts prefetched bytes and
+  # ONLY prefetched bytes (an on-demand fault does not move it). So prewarm is
+  # complete when that counter stops advancing. Poll at 100 ms and require
+  # PLATEAU consecutive quiet samples. The detection lag is charged identically
+  # to every arm, and the last-progress instant is recorded separately so the
+  # true prefetch end is preserved alongside the admission instant.
+  PLATEAU=6
+  ( LAST=-1; QUIET=0; PROG=$(ms)
+    for _ in $(seq 1 180000); do
+      A=$(curl -s --unix-socket /work/api.sock http://localhost/api/v1/metrics/blobcache | jq -r '.prefetch_data_amount' 2>/dev/null)
+      [ -z "$A" ] && A=-1
+      if [ "$A" != "$LAST" ]; then LAST=$A; QUIET=0; PROG=$(ms); else QUIET=$((QUIET+1)); fi
+      [ "$QUIET" -ge "$PLATEAU" ] && [ "$A" != "-1" ] && break
+      sleep 0.1
     done
+    echo "#M prefetch-last-progress $PROG"
     echo "#M prewarm $(ms)"
     touch /work/prewarm-done ) &
 else

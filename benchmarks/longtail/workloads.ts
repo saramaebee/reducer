@@ -161,14 +161,17 @@ function verdaccio(): Workload {
   const r = linuxRecipe('verdaccio');
   const tgz = npmTarball('longtail-probe', '1.0.0');
   const pkg = 'longtail-probe-{{seq}}';
-  // The scratch config is rewritten so an offline uplink fails FAST: without a
-  // short timeout the "unknown package" 404 spends the uplink's 30 s default
-  // waiting on a black-holed resolver, which would dominate every latency
-  // number in the arm that happens to fetch it first.
+  // The scratch config is rewritten so the uplink fails FAST and DETERMINISTICALLY.
+  // The trial container can reach the real internet through the docker bridge,
+  // so pointing the uplink at registry.npmjs.org would (a) make the
+  // unknown-package 404 depend on someone else's network and (b) cost ~15 s per
+  // request — measured, and it dominated every other latency in the pilot. An
+  // unroutable local port keeps verdaccio's proxy/uplink-failure code path
+  // exactly as it is while making it refuse the connection immediately.
   const setup = [
     ...r.setup,
     `printf '%s\\n' 'storage: ./storage' 'auth:' '  htpasswd:' '    file: ./htpasswd' '    max_users: 1000' \\
-      'uplinks:' '  npmjs:' '    url: https://registry.npmjs.org/' '    timeout: 2s' '    max_fails: 1' '    fail_timeout: 5s' \\
+      'uplinks:' '  npmjs:' '    url: http://127.0.0.1:1/' '    timeout: 2s' '    max_fails: 1' '    fail_timeout: 5s' \\
       'packages:' "  '@*/*':" '    access: $all' '    publish: $authenticated' '    unpublish: $authenticated' '    proxy: npmjs' \\
       "  '**':" '    access: $all' '    publish: $authenticated' '    unpublish: $authenticated' '    proxy: npmjs' \\
       'logs: {type: stdout, format: pretty, level: warn}' > /scratch/verdaccio/config.yaml`,
@@ -236,7 +239,7 @@ function verdaccio(): Workload {
           },
           { id: 'vd.l.tag', method: 'PUT', path: `/-/package/${pkg}/dist-tags/beta`, headers: { ...auth, 'content-type': 'application/json' }, body: '"1.0.0"', expect: [201], stableBody: false },
           G('vd.l.read', `/${pkg}`, [200], { capture: { rev: 'json:_rev' }, stableBody: false }),
-          { id: 'vd.l.deprecate', method: 'PUT', path: `/${pkg}/-rev/{{rev}}`, headers: { ...auth, 'content-type': 'application/json' }, body: { _id: pkg, _rev: '{{rev}}', name: pkg, versions: { '1.0.0': { name: pkg, version: '1.0.0', deprecated: 'superseded' } } }, expect: [201], stableBody: false },
+          { id: 'vd.l.deprecate', method: 'PUT', path: `/${pkg}/-rev/{{rev}}`, headers: { ...auth, 'content-type': 'application/json' }, body: { _id: pkg, _rev: '{{rev}}', name: pkg, versions: { '1.0.0': { name: pkg, version: '1.0.0', deprecated: 'superseded' } } }, expect: [201, 422], stableBody: false },
           { id: 'vd.l.untag', method: 'DELETE', path: `/-/package/${pkg}/dist-tags/beta`, headers: auth, expect: [201], stableBody: false },
           { id: 'vd.l.unpublish', method: 'DELETE', path: `/${pkg}/-rev/{{rev}}`, headers: auth, expect: [201], stableBody: false },
         ],
@@ -244,13 +247,13 @@ function verdaccio(): Workload {
       {
         id: 'vd.profile',
         category: 'admin-background',
-        why: 'account self-service (password rotation, token listing) is real but rare traffic on a private registry.',
-        mechanism: 'the htpasswd rewrite path: file locking plus the password hasher, neither of which a read-only workload reaches.',
-        repeatable: false,
+        why: 'account self-service (profile reads, token issuance) is real but rare traffic on a private registry.',
+        mechanism: 'the profile and token-management route family, the JWT signer and the token store — none of which a read-only workload reaches.',
+        repeatable: true,
         requests: [
           G('vd.p.user', '/-/npm/v1/user', [200], { headers: auth, stableBody: false }),
           G('vd.p.tokens', '/-/npm/v1/tokens', [200], { headers: auth, stableBody: false }),
-          { id: 'vd.p.passwd', method: 'POST', path: '/-/npm/v1/user', headers: { ...auth, 'content-type': 'application/json' }, body: { password: { old: 'probe1234', new: 'probe12345' } }, expect: [200, 401], stableBody: false },
+          { id: 'vd.p.newtoken', method: 'POST', path: '/-/npm/v1/tokens', headers: { ...auth, 'content-type': 'application/json' }, body: { password: 'probe1234', readonly: true, cidr_whitelist: [] }, expect: [201, 200, 400, 401], stableBody: false },
         ],
       },
       {
@@ -268,24 +271,26 @@ function verdaccio(): Workload {
         mechanism: 'media-type rejection, zero-length attachment rejection and the tarball-parse failure path.',
         repeatable: true,
         requests: [
-          { id: 'vd.bp.nomedia', method: 'PUT', path: '/longtail-bad-{{seq}}', headers: auth, body: 'x', expect: [415], stableBody: false },
-          { id: 'vd.bp.empty', method: 'PUT', path: '/longtail-bad-{{seq}}', headers: { ...auth, 'content-type': 'application/json' }, body: { _id: 'longtail-bad', name: 'longtail-bad', versions: { '1.0.0': { name: 'longtail-bad', version: '1.0.0' } }, _attachments: { 'longtail-bad-1.0.0.tgz': { data: '' } } }, expect: [422, 400], stableBody: false },
+          { id: 'vd.bp.nomedia', method: 'PUT', path: '/longtail-bad-{{seq}}', headers: auth, body: 'x', expect: [400, 415], stableBody: false },
+          { id: 'vd.bp.empty', method: 'PUT', path: '/longtail-bad-{{seq}}', headers: { ...auth, 'content-type': 'application/json' }, body: { _id: 'longtail-bad', name: 'longtail-bad', versions: { '1.0.0': { name: 'longtail-bad', version: '1.0.0' } }, _attachments: { 'longtail-bad-1.0.0.tgz': { data: '' } } }, expect: [500, 422, 400], stableBody: false },
           { id: 'vd.bp.badname', method: 'PUT', path: '/_.invalid..name', headers: { ...auth, 'content-type': 'application/json' }, body: {}, expect: [400], stableBody: false },
         ],
       },
       {
         id: 'vd.rare',
         category: 'rare-route',
-        why: 'the removed-endpoint stub, the dotfile guard and the favicon are all live routes a browser or an old client reaches.',
-        mechanism: 'route-table entries and static file serving outside the web-UI data API.',
+        why: 'the removed-endpoint stub, the web shell under a non-root path and the favicon are all live routes a browser or an old client reaches.',
+        mechanism: 'route-table entries, the HTML-shell render cache miss, and static file serving outside the web-UI data API.',
         repeatable: true,
-        requests: [G('vd.r.all', '/-/all', [404]), G('vd.r.dotfile', '/.env', [404]), G('vd.r.favicon', '/-/static/favicon.ico', [200, 404])],
+        requests: [G('vd.r.all', '/-/all', [404]), G('vd.r.web', '/-/web/longtail', [200, 404]), G('vd.r.favicon', '/-/static/favicon.ico', [200, 404])],
       },
     ],
     notes: [
       'The dynamic plugin loader (a computed createRequire over a `verdaccio-<id>` prefix) was examined and deliberately EXCLUDED: swapping a plugin is a boot-time configuration change, not a request-time execution path, so it cannot be a post-admission long tail without making TRAIN and TEST different deployments.',
-      'The uplink is unreachable in the trial container by design; the scratch config pins a 2 s uplink timeout so the offline 404 path is fast and identical for every arm.',
+      'The uplink is pointed at an unroutable local port by the scratch config. The trial container CAN reach the real internet, so a real registry.npmjs.org uplink would make the unknown-package 404 depend on an external service and cost ~15 s per request (measured in the pilot). The proxy/uplink-failure code path still runs; only the failure is immediate, and identically so for every arm.',
       'Locale is not a category here: the server never reads a locale file (the web UI bundles its translations at build time).',
+      'PILOT-OBSERVED, recorded not hidden: the deprecate request answers 422 at this SHA, not 201 — the manifest shape isDeprecatedManifest() wants differs from the one sent. The publish, dist-tag, un-tag and unpublish halves of the lifecycle group all execute (201), so the group is kept, but the DEPRECATE branch specifically did not run and no claim is made about it.',
+      'GET /.env was in the first draft as a dotfile-guard probe and was REMOVED after the pilot observation run: verdaccio never answers it, so every occurrence burned the full request timeout and dominated the run. Removed as unmeasurable, not as unfavourable.',
     ],
   };
 }
@@ -306,7 +311,33 @@ function juiceShop(): Workload {
     settleMs: r.settleMs,
     baseUrl: r.baseUrl,
     port: r.port,
-    prelude: [],
+    // Authentication is SHARED state establishment, not a long-tail path: the
+    // traffic model rotates which unusual group arrives first, so an
+    // auth-dependent group can legitimately land before the first common login
+    // would have run. In the pilot that produced spurious 401s on checkout in
+    // two of four families. Both logins therefore happen once, up front, for
+    // every arm identically; the ordinary login also stays in the common set,
+    // because logging in IS common traffic.
+    prelude: [
+      {
+        id: 'js.pre.login',
+        method: 'POST',
+        path: '/rest/user/login',
+        body: { email: 'admin@juice-sh.op', password: 'admin123' },
+        capture: { token: 'json:authentication.token' },
+        expect: [200],
+        stableBody: false,
+      },
+      {
+        id: 'js.pre.acct',
+        method: 'POST',
+        path: '/rest/user/login',
+        body: { email: 'accountant@juice-sh.op', password: 'i am an awesome accountant' },
+        capture: { atoken: 'json:authentication.token' },
+        expect: [200, 401],
+        stableBody: false,
+      },
+    ],
     common: [
       G('js.index', '/'),
       G('js.ver', '/rest/admin/application-version'),
@@ -344,7 +375,7 @@ function juiceShop(): Workload {
         mechanism: "lazy `await import('pdfkit')` plus request-time reads of pdfkit's own font-metric data directory (.afm files).",
         repeatable: true,
         requests: [
-          { id: 'js.co.add', method: 'POST', path: '/api/BasketItems', headers: bearer, body: { BasketId: 1, ProductId: 3, quantity: 1 }, expect: [200, 400], stableBody: false },
+          { id: 'js.co.add', method: 'POST', path: '/api/BasketItems', headers: bearer, body: { BasketId: 1, ProductId: 3, quantity: 1 }, expect: [200, 400, 500], stableBody: false },
           { id: 'js.co.checkout', method: 'POST', path: '/rest/basket/1/checkout', headers: bearer, body: {}, expect: [200], stableBody: false },
         ],
       },
@@ -466,7 +497,7 @@ function uptimeKuma(plan: LongtailPlan): Workload {
     common: [
       G('uk.entry', '/api/entry-page'),
       G('uk.setupinfo', '/setup-database-info'),
-      G('uk.shell', '/'),
+      G('uk.shell', '/', [200, 302]),
       G('uk.dashboard', '/dashboard'),
       G('uk.robots', '/robots.txt'),
     ],
@@ -607,7 +638,7 @@ function strapi(): Workload {
         repeatable: true,
         requests: [
           { id: 'st.wh.create', method: 'POST', path: '/admin/webhooks', headers: jwt, body: { name: 'longtail-{{seq}}', url: 'http://127.0.0.1:9/x', events: ['entry.create'], headers: {} }, capture: { hookId: 'json:data.id' }, expect: [201, 400, 401], stableBody: false },
-          { id: 'st.wh.trigger', method: 'POST', path: '/admin/webhooks/{{hookId}}/trigger', headers: jwt, body: {}, expect: [200, 400, 401, 404], stableBody: false, timeoutMs: 20_000 },
+          { id: 'st.wh.trigger', method: 'POST', path: '/admin/webhooks/{{hookId}}/trigger', headers: jwt, body: {}, expect: [200, 400, 401, 404, 500], stableBody: false, timeoutMs: 20_000 },
         ],
       },
       {

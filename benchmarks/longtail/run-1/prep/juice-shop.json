@@ -1,0 +1,487 @@
+{
+ "app": "juice-shop",
+ "sha": "1618a611b173b4bf114028e6e02549950606e29d",
+ "criterion": "richest genuine request-time module long tail in the corpus",
+ "mechanisms": [
+  "lazy import() of large optional subtrees (ethers, pdfkit, svg-captcha, pug)",
+  "computed require() inside express's view-engine resolution (hbs -> handlebars)",
+  "an import() hidden behind new Function('specifier','return import(specifier)') (libxml2-wasm)",
+  "request-time reads of package asset directories (swagger-ui-dist, pdfkit .afm) and of config-computed paths",
+  "lazily-fetched frontend route chunks"
+ ],
+ "kind": "real",
+ "universe": {
+  "files": 24020,
+  "bytes": 270529975
+ },
+ "staged": {
+  "files": 24020,
+  "bytes": 270529975,
+  "prunedFiles": 55736
+ },
+ "nft": 4228,
+ "planBHot": 5924,
+ "packages": 1128,
+ "depReachablePackages": 689,
+ "image": {
+  "repo": "longtail/juice-shop",
+  "blob": "affd79776d2c128e01f96ecc4d4ca3e3cb5cd00a347c3e998567e9af1ebf88d1",
+  "blobBytes": 75823375,
+  "bootstrapBytes": 4804608
+ },
+ "contentDigest": "c4ea4402ad4861274d4865e762fc859f6e2b50755e9955d5210160c3ada41494",
+ "train": {
+  "files": 2671,
+  "bytes": 26899826
+ },
+ "neededTest": {
+  "files": 3340,
+  "bytes": 35202705
+ },
+ "heldOut": {
+  "files": 669,
+  "bytes": 8302879
+ },
+ "heldOutByCategory": {
+  "optional-feature": {
+   "files": 424,
+   "bytes": 4302560
+  },
+  "tenant-config": {
+   "files": 237,
+   "bytes": 2253377
+  },
+  "rare-route": {
+   "files": 10,
+   "bytes": 1751969
+  }
+ },
+ "heldOutByGroup": {
+  "js.web3": {
+   "files": 175,
+   "bytes": 1461014
+  },
+  "js.checkout": {
+   "files": 240,
+   "bytes": 2364437
+  },
+  "js.dataerasure": {
+   "files": 53,
+   "bytes": 758172
+  },
+  "js.promotion": {
+   "files": 184,
+   "bytes": 1495205
+  },
+  "js.apidocs": {
+   "files": 2,
+   "bytes": 1739593
+  },
+  "js.captcha": {
+   "files": 9,
+   "bytes": 477109
+  },
+  "js.filesurfaces": {
+   "files": 8,
+   "bytes": 12376
+  }
+ },
+ "rankingInputs": {
+  "G1": [
+   "TRAIN access log: path + first-content-read timestamp",
+   "universe path strings"
+  ],
+  "G2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1)",
+   "directory structure of the universe (filesystem only)",
+   "file size"
+  ],
+  "R1": [
+   "entrypoint identity",
+   "@vercel/nft positive trace and its module-graph order",
+   "package identity and boundaries",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "opaque-boundary (native/WASM/install-script) package classification",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "R2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1/G2)",
+   "package identity and boundaries (owning package directory per file)",
+   "@vercel/nft positive trace and its module-graph order",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "O": [
+   "THE TEST WORKLOAD ITSELF — analysis only, never deployable"
+  ]
+ },
+ "budgeted": {
+  "G1@0.05": {
+   "arm": "G1",
+   "budget": 0.05,
+   "budgetBytes": 13526498,
+   "files": 1932,
+   "bytes": 13526498,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1851,
+   "coveredNeededBytes": 13526494,
+   "missNeededFiles": 1489,
+   "missNeededBytes": 21676211,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/G1.0.05.txt"
+  },
+  "G1@0.1": {
+   "arm": "G1",
+   "budget": 0.1,
+   "budgetBytes": 27052997,
+   "files": 2838,
+   "bytes": 27052997,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 2671,
+   "coveredNeededBytes": 26899826,
+   "missNeededFiles": 669,
+   "missNeededBytes": 8302879,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/G1.0.1.txt"
+  },
+  "G1@0.2": {
+   "arm": "G1",
+   "budget": 0.2,
+   "budgetBytes": 54105995,
+   "files": 4035,
+   "bytes": 54105995,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 2672,
+   "coveredNeededBytes": 26902104,
+   "missNeededFiles": 668,
+   "missNeededBytes": 8300601,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/G1.0.2.txt"
+  },
+  "G1@0.4": {
+   "arm": "G1",
+   "budget": 0.4,
+   "budgetBytes": 108211990,
+   "files": 7682,
+   "bytes": 108211990,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 2672,
+   "coveredNeededBytes": 26902104,
+   "missNeededFiles": 668,
+   "missNeededBytes": 8300601,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/G1.0.4.txt"
+  },
+  "G2@0.05": {
+   "arm": "G2",
+   "budget": 0.05,
+   "budgetBytes": 13526498,
+   "files": 1932,
+   "bytes": 13526498,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 1851,
+   "coveredNeededBytes": 13526494,
+   "missNeededFiles": 1489,
+   "missNeededBytes": 21676211,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/G2.0.05.txt"
+  },
+  "G2@0.1": {
+   "arm": "G2",
+   "budget": 0.1,
+   "budgetBytes": 27052997,
+   "files": 4039,
+   "bytes": 27052997,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 2675,
+   "coveredNeededBytes": 26900077,
+   "missNeededFiles": 665,
+   "missNeededBytes": 8302628,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/G2.0.1.txt"
+  },
+  "G2@0.2": {
+   "arm": "G2",
+   "budget": 0.2,
+   "budgetBytes": 54105995,
+   "files": 18015,
+   "bytes": 54105941,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 3138,
+   "coveredNeededBytes": 27629121,
+   "missNeededFiles": 202,
+   "missNeededBytes": 7573584,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/G2.0.2.txt"
+  },
+  "G2@0.4": {
+   "arm": "G2",
+   "budget": 0.4,
+   "budgetBytes": 108211990,
+   "files": 22474,
+   "bytes": 108211571,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 3297,
+   "coveredNeededBytes": 29581673,
+   "missNeededFiles": 43,
+   "missNeededBytes": 5621032,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/G2.0.4.txt"
+  },
+  "R1@0.05": {
+   "arm": "R1",
+   "budget": 0.05,
+   "budgetBytes": 13526498,
+   "files": 12224,
+   "bytes": 13526495,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 2606,
+   "coveredNeededBytes": 4286341,
+   "missNeededFiles": 734,
+   "missNeededBytes": 30916364,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R1.0.05.txt"
+  },
+  "R1@0.1": {
+   "arm": "R1",
+   "budget": 0.1,
+   "budgetBytes": 27052997,
+   "files": 14786,
+   "bytes": 27052990,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 3000,
+   "coveredNeededBytes": 7330574,
+   "missNeededFiles": 340,
+   "missNeededBytes": 27872131,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R1.0.1.txt"
+  },
+  "R1@0.2": {
+   "arm": "R1",
+   "budget": 0.2,
+   "budgetBytes": 54105995,
+   "files": 16961,
+   "bytes": 54105985,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 3195,
+   "coveredNeededBytes": 11525299,
+   "missNeededFiles": 145,
+   "missNeededBytes": 23677406,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R1.0.2.txt"
+  },
+  "R1@0.4": {
+   "arm": "R1",
+   "budget": 0.4,
+   "budgetBytes": 108211990,
+   "files": 18392,
+   "bytes": 108211986,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 3328,
+   "coveredNeededBytes": 27086330,
+   "missNeededFiles": 12,
+   "missNeededBytes": 8116375,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R1.0.4.txt"
+  },
+  "R2@0.05": {
+   "arm": "R2",
+   "budget": 0.05,
+   "budgetBytes": 13526498,
+   "files": 1932,
+   "bytes": 13526498,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1851,
+   "coveredNeededBytes": 13526494,
+   "missNeededFiles": 1489,
+   "missNeededBytes": 21676211,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R2.0.05.txt"
+  },
+  "R2@0.1": {
+   "arm": "R2",
+   "budget": 0.1,
+   "budgetBytes": 27052997,
+   "files": 2907,
+   "bytes": 27052997,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 2707,
+   "coveredNeededBytes": 26945930,
+   "missNeededFiles": 633,
+   "missNeededBytes": 8256775,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R2.0.1.txt"
+  },
+  "R2@0.2": {
+   "arm": "R2",
+   "budget": 0.2,
+   "budgetBytes": 54105995,
+   "files": 15964,
+   "bytes": 54105992,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 3239,
+   "coveredNeededBytes": 28260393,
+   "missNeededFiles": 101,
+   "missNeededBytes": 6942312,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R2.0.2.txt"
+  },
+  "R2@0.4": {
+   "arm": "R2",
+   "budget": 0.4,
+   "budgetBytes": 108211990,
+   "files": 18577,
+   "bytes": 108211927,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 3327,
+   "coveredNeededBytes": 30392302,
+   "missNeededFiles": 13,
+   "missNeededBytes": 4810403,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/R2.0.4.txt"
+  },
+  "O@0.05": {
+   "arm": "O",
+   "budget": 0.05,
+   "budgetBytes": 13526498,
+   "files": 1932,
+   "bytes": 13526498,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1851,
+   "coveredNeededBytes": 13526494,
+   "missNeededFiles": 1489,
+   "missNeededBytes": 21676211,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/O.0.05.txt"
+  },
+  "O@0.1": {
+   "arm": "O",
+   "budget": 0.1,
+   "budgetBytes": 27052997,
+   "files": 2776,
+   "bytes": 27052997,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 2694,
+   "coveredNeededBytes": 27052970,
+   "missNeededFiles": 646,
+   "missNeededBytes": 8149735,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/O.0.1.txt"
+  },
+  "O@0.2": {
+   "arm": "O",
+   "budget": 0.2,
+   "budgetBytes": 54105995,
+   "files": 4193,
+   "bytes": 54105995,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 3340,
+   "coveredNeededBytes": 35202705,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/O.0.2.txt"
+  },
+  "O@0.4": {
+   "arm": "O",
+   "budget": 0.4,
+   "budgetBytes": 108211990,
+   "files": 7921,
+   "bytes": 108211990,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 3340,
+   "coveredNeededBytes": 35202705,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/juice-shop/O.0.4.txt"
+  }
+ },
+ "stream": {
+  "length": 400,
+  "families": 4,
+  "passes": 2
+ },
+ "warnings": [
+  "25546 installed JS file(s) belong to packages absent from the frozen production population; treated as outside the universe unless positive evidence reaches them",
+  "NFT reported 23 warning(s)"
+ ],
+ "workloadNotes": [
+  "juice-shop runs a background loop every 5 s that recursively reads routes/, lib/, data/, models/, infrastructure/ and frontend/src/app for the code-snippet challenge index. Those trees are therefore hydrated on every arm within seconds of process start, independent of traffic; no candidate above depends on them, and the effect is identical across arms. It is recorded as a background-work confound in ADVERSARIAL.md.",
+  "Locale is not a category here: all 43 backend catalogues are read at boot by i18n.configure, so no locale file is ever cold."
+ ],
+ "offSpec": [],
+ "longTail": [
+  {
+   "id": "js.web3",
+   "category": "optional-feature",
+   "why": "the wallet/key surface is a real, shipped feature of the application that ordinary shopping traffic never reaches.",
+   "mechanism": "lazy `await import('ethers')` inside the handler — a 19 MB dependency subtree that only this route family loads.",
+   "requests": [
+    "POST /rest/web3/submitKey"
+   ]
+  },
+  {
+   "id": "js.checkout",
+   "category": "optional-feature",
+   "why": "checkout is the revenue path; it is rare relative to browsing and it is the only route that renders a document.",
+   "mechanism": "lazy `await import('pdfkit')` plus request-time reads of pdfkit's own font-metric data directory (.afm files).",
+   "requests": [
+    "POST /api/BasketItems",
+    "POST /rest/basket/1/checkout"
+   ]
+  },
+  {
+   "id": "js.xmlupload",
+   "category": "error-path",
+   "why": "the complaint form accepts a customer-supplied XML document; a rejected upload is ordinary production behaviour.",
+   "mechanism": "an import() deliberately hidden behind `new Function('specifier','return import(specifier)')` so it survives TypeScript's CJS downlevel — loads libxml2-wasm and its .wasm binary, then returns through the error handler.",
+   "requests": [
+    "POST /file-upload"
+   ]
+  },
+  {
+   "id": "js.dataerasure",
+   "category": "tenant-config",
+   "why": "a GDPR erasure request is a legally required, genuinely rare surface, and it is the first route in the process that renders a template.",
+   "mechanism": "express's view layer resolving the configured engine through `require(<computed>)` — pulls hbs and handlebars (2.9 MB), which nothing in the application imports statically. The rendered theme is chosen by config.",
+   "requests": [
+    "GET /dataerasure"
+   ]
+  },
+  {
+   "id": "js.promotion",
+   "category": "tenant-config",
+   "why": "the promotion page is served to real visitors and its assets are named by deployment configuration.",
+   "mechanism": "lazy `await import('pug')` plus a config-computed subtitle path read from the assets directory at request time.",
+   "requests": [
+    "GET /promotion"
+   ]
+  },
+  {
+   "id": "js.apidocs",
+   "category": "rare-route",
+   "why": "the OpenAPI browser is shipped and linked; developers and integrators load it.",
+   "mechanism": "request-time static serving out of swagger-ui-dist's 11 MB asset directory, whose path is resolved at boot but whose bytes are read only on request.",
+   "requests": [
+    "GET /api-docs/",
+    "GET /api-docs/swagger-ui-bundle.js",
+    "GET /api-docs/swagger-ui.css"
+   ]
+  },
+  {
+   "id": "js.captcha",
+   "category": "optional-feature",
+   "why": "the image captcha is served on a specific authenticated flow, not on browsing traffic.",
+   "mechanism": "lazy `await import('svg-captcha')` plus a read of that package's bundled TTF font.",
+   "requests": [
+    "GET /rest/image-captcha"
+   ]
+  },
+  {
+   "id": "js.filesurfaces",
+   "category": "rare-route",
+   "why": "the FTP, key and log surfaces are real routes the application exposes and links to.",
+   "mechanism": "request-time DIRECTORY listings (serve-index) and file reads of paths no module graph contains.",
+   "requests": [
+    "GET /ftp",
+    "GET /ftp/legal.md",
+    "GET /encryptionkeys",
+    "GET /support/logs"
+   ]
+  },
+  {
+   "id": "js.accounting",
+   "category": "admin-background",
+   "why": "back-office order administration is performed by a different role than the shopper the training traffic represents.",
+   "mechanism": "a second authentication, a role-gated route family, and an IP-filter denial path that only that role can reach.",
+   "requests": [
+    "POST /rest/user/login",
+    "GET /rest/order-history/orders",
+    "PUT /api/Quantitys/1"
+   ]
+  }
+ ]
+}

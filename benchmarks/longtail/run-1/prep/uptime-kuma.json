@@ -1,0 +1,426 @@
+{
+ "app": "uptime-kuma",
+ "sha": "6398a9581d1c3c427a7536559f47ccf45dac08b4",
+ "criterion": "ADVERSE CASE: its long tail is asset-shaped, not module-shaped — the server eagerly requires all 25 monitor types and all ~106 notification providers at boot",
+ "mechanisms": [
+  "per-locale frontend chunks served from dist/assets (66 of them, browser-lazy)",
+  "per-route frontend chunks served from dist/assets",
+  "status-page / badge / RSS surfaces",
+  "authentication error paths"
+ ],
+ "kind": "real",
+ "universe": {
+  "files": 28851,
+  "bytes": 200668755
+ },
+ "staged": {
+  "files": 28851,
+  "bytes": 200668755,
+  "prunedFiles": 33981
+ },
+ "nft": 5175,
+ "planBHot": 5874,
+ "packages": 736,
+ "depReachablePackages": 645,
+ "image": {
+  "repo": "longtail/uptime-kuma",
+  "blob": "5939eafcfa19fd260c067e79f1b73ec296ed0ddbc3de1022b8667f45c1e3abb6",
+  "blobBytes": 57066683,
+  "bootstrapBytes": 5877760
+ },
+ "contentDigest": "2f1c395dd03fd7d3d10d9ff917c3fd144d894e14273b342ada109a1d9f5770a8",
+ "train": {
+  "files": 4277,
+  "bytes": 27446071
+ },
+ "neededTest": {
+  "files": 4287,
+  "bytes": 27773853
+ },
+ "heldOut": {
+  "files": 10,
+  "bytes": 327782
+ },
+ "heldOutByCategory": {
+  "locale": {
+   "files": 6,
+   "bytes": 246381
+  },
+  "rare-route": {
+   "files": 4,
+   "bytes": 81401
+  }
+ },
+ "heldOutByGroup": {
+  "uk.locale": {
+   "files": 6,
+   "bytes": 246381
+  },
+  "uk.routechunks": {
+   "files": 4,
+   "bytes": 81401
+  }
+ },
+ "rankingInputs": {
+  "G1": [
+   "TRAIN access log: path + first-content-read timestamp",
+   "universe path strings"
+  ],
+  "G2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1)",
+   "directory structure of the universe (filesystem only)",
+   "file size"
+  ],
+  "R1": [
+   "entrypoint identity",
+   "@vercel/nft positive trace and its module-graph order",
+   "package identity and boundaries",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "opaque-boundary (native/WASM/install-script) package classification",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "R2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1/G2)",
+   "package identity and boundaries (owning package directory per file)",
+   "@vercel/nft positive trace and its module-graph order",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "O": [
+   "THE TEST WORKLOAD ITSELF — analysis only, never deployable"
+  ]
+ },
+ "budgeted": {
+  "G1@0.05": {
+   "arm": "G1",
+   "budget": 0.05,
+   "budgetBytes": 10033437,
+   "files": 2007,
+   "bytes": 10033437,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1979,
+   "coveredNeededBytes": 10033423,
+   "missNeededFiles": 2308,
+   "missNeededBytes": 17740430,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G1.0.05.txt"
+  },
+  "G1@0.1": {
+   "arm": "G1",
+   "budget": 0.1,
+   "budgetBytes": 20066875,
+   "files": 3652,
+   "bytes": 20066874,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 3623,
+   "coveredNeededBytes": 20066864,
+   "missNeededFiles": 664,
+   "missNeededBytes": 7706989,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G1.0.1.txt"
+  },
+  "G1@0.2": {
+   "arm": "G1",
+   "budget": 0.2,
+   "budgetBytes": 40133751,
+   "files": 4665,
+   "bytes": 40133751,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 4287,
+   "coveredNeededBytes": 27773853,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G1.0.2.txt"
+  },
+  "G1@0.4": {
+   "arm": "G1",
+   "budget": 0.4,
+   "budgetBytes": 80267502,
+   "files": 11844,
+   "bytes": 80267501,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 4287,
+   "coveredNeededBytes": 27773853,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G1.0.4.txt"
+  },
+  "G2@0.05": {
+   "arm": "G2",
+   "budget": 0.05,
+   "budgetBytes": 10033437,
+   "files": 2009,
+   "bytes": 10033437,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 1979,
+   "coveredNeededBytes": 10033423,
+   "missNeededFiles": 2308,
+   "missNeededBytes": 17740430,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G2.0.05.txt"
+  },
+  "G2@0.1": {
+   "arm": "G2",
+   "budget": 0.1,
+   "budgetBytes": 20066875,
+   "files": 3652,
+   "bytes": 20066875,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 3623,
+   "coveredNeededBytes": 20066864,
+   "missNeededFiles": 664,
+   "missNeededBytes": 7706989,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G2.0.1.txt"
+  },
+  "G2@0.2": {
+   "arm": "G2",
+   "budget": 0.2,
+   "budgetBytes": 40133751,
+   "files": 16984,
+   "bytes": 40133719,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 4279,
+   "coveredNeededBytes": 27449664,
+   "missNeededFiles": 8,
+   "missNeededBytes": 324189,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G2.0.2.txt"
+  },
+  "G2@0.4": {
+   "arm": "G2",
+   "budget": 0.4,
+   "budgetBytes": 80267502,
+   "files": 24678,
+   "bytes": 80267437,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 4286,
+   "coveredNeededBytes": 27708908,
+   "missNeededFiles": 1,
+   "missNeededBytes": 64945,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/G2.0.4.txt"
+  },
+  "R1@0.05": {
+   "arm": "R1",
+   "budget": 0.05,
+   "budgetBytes": 10033437,
+   "files": 14342,
+   "bytes": 10033431,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 2871,
+   "coveredNeededBytes": 3276357,
+   "missNeededFiles": 1416,
+   "missNeededBytes": 24497496,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/R1.0.05.txt"
+  },
+  "R1@0.1": {
+   "arm": "R1",
+   "budget": 0.1,
+   "budgetBytes": 20066875,
+   "files": 18227,
+   "bytes": 20066868,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 3533,
+   "coveredNeededBytes": 6294177,
+   "missNeededFiles": 754,
+   "missNeededBytes": 21479676,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/R1.0.1.txt"
+  },
+  "R1@0.2": {
+   "arm": "R1",
+   "budget": 0.2,
+   "budgetBytes": 40133751,
+   "files": 21914,
+   "bytes": 40133743,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4001,
+   "coveredNeededBytes": 11577230,
+   "missNeededFiles": 286,
+   "missNeededBytes": 16196623,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/R1.0.2.txt"
+  },
+  "R1@0.4": {
+   "arm": "R1",
+   "budget": 0.4,
+   "budgetBytes": 80267502,
+   "files": 25151,
+   "bytes": 80267489,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4231,
+   "coveredNeededBytes": 18569928,
+   "missNeededFiles": 56,
+   "missNeededBytes": 9203925,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/R1.0.4.txt"
+  },
+  "R2@0.05": {
+   "arm": "R2",
+   "budget": 0.05,
+   "budgetBytes": 10033437,
+   "files": 2011,
+   "bytes": 10033437,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1979,
+   "coveredNeededBytes": 10033423,
+   "missNeededFiles": 2308,
+   "missNeededBytes": 17740430,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/R2.0.05.txt"
+  },
+  "R2@0.1": {
+   "arm": "R2",
+   "budget": 0.1,
+   "budgetBytes": 20066875,
+   "files": 3654,
+   "bytes": 20066875,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 3623,
+   "coveredNeededBytes": 20066864,
+   "missNeededFiles": 664,
+   "missNeededBytes": 7706989,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/R2.0.1.txt"
+  },
+  "R2@0.2": {
+   "arm": "R2",
+   "budget": 0.2,
+   "budgetBytes": 40133751,
+   "files": 19396,
+   "bytes": 40133741,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4279,
+   "coveredNeededBytes": 27449664,
+   "missNeededFiles": 8,
+   "missNeededBytes": 324189,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/R2.0.2.txt"
+  },
+  "R2@0.4": {
+   "arm": "R2",
+   "budget": 0.4,
+   "budgetBytes": 80267502,
+   "files": 25346,
+   "bytes": 80267496,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4281,
+   "coveredNeededBytes": 27488266,
+   "missNeededFiles": 6,
+   "missNeededBytes": 285587,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/R2.0.4.txt"
+  },
+  "O@0.05": {
+   "arm": "O",
+   "budget": 0.05,
+   "budgetBytes": 10033437,
+   "files": 2007,
+   "bytes": 10033437,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1979,
+   "coveredNeededBytes": 10033423,
+   "missNeededFiles": 2308,
+   "missNeededBytes": 17740430,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/O.0.05.txt"
+  },
+  "O@0.1": {
+   "arm": "O",
+   "budget": 0.1,
+   "budgetBytes": 20066875,
+   "files": 3652,
+   "bytes": 20066874,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 3623,
+   "coveredNeededBytes": 20066864,
+   "missNeededFiles": 664,
+   "missNeededBytes": 7706989,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/O.0.1.txt"
+  },
+  "O@0.2": {
+   "arm": "O",
+   "budget": 0.2,
+   "budgetBytes": 40133751,
+   "files": 4665,
+   "bytes": 40133751,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 4287,
+   "coveredNeededBytes": 27773853,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/O.0.2.txt"
+  },
+  "O@0.4": {
+   "arm": "O",
+   "budget": 0.4,
+   "budgetBytes": 80267502,
+   "files": 11844,
+   "bytes": 80267501,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 4287,
+   "coveredNeededBytes": 27773853,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/uptime-kuma/O.0.4.txt"
+  }
+ },
+ "stream": {
+  "length": 400,
+  "families": 4,
+  "passes": 2
+ },
+ "warnings": [
+  "18772 installed JS file(s) belong to packages absent from the frozen production population; treated as outside the universe unless positive evidence reaches them",
+  "NFT reported 53 warning(s)"
+ ],
+ "workloadNotes": [
+  "SELECTED AS THE ADVERSE CASE. The server eagerly requires all 25 monitor-type modules and all ~106 notification providers at boot, so uptime-kuma has almost no module-shaped long tail; what it has is per-locale and per-route ASSET chunks. Generic directory widening should cover those better than any module-graph reasoning can, and this app is in the set so that the result cannot be read as having been chosen for a favourable shape.",
+  "Its tenant (status page) and admin surfaces need socket.io-driven seeding, which was deliberately not built: it would have doubled this app's per-trial cost for categories the fixture already covers. The workload therefore covers locale, rare-route and error-path only, and no claim is made about the other three categories for this app."
+ ],
+ "offSpec": [
+  {
+   "line": "uk.shell -> 302 (expected [200])",
+   "n": 163
+  }
+ ],
+ "longTail": [
+  {
+   "id": "uk.locale",
+   "category": "locale",
+   "why": "every non-English visitor fetches their language chunk; a training run in one language never requests any of the other 65.",
+   "mechanism": "request-time static serving of a per-locale build chunk from dist/assets. NOT a module edge — this is exactly the shape a module-graph strategy cannot reach.",
+   "requests": [
+    "GET /assets/de-DE-DUlnPLjh.js",
+    "GET /assets/es-ES-BZCIn5FC.js",
+    "GET /assets/fr-FR-DZUCiYO0.js",
+    "GET /assets/it-IT-lUDcWr2s.js",
+    "GET /assets/ja-BEmNtB4w.js",
+    "GET /assets/ko-KR-DoAovcA8.js"
+   ]
+  },
+  {
+   "id": "uk.routechunks",
+   "category": "rare-route",
+   "why": "the settings, security and notification screens are real pages of the product that a dashboard-only workload never loads.",
+   "mechanism": "request-time static serving of per-route build chunks. Again asset-shaped, not module-shaped.",
+   "requests": [
+    "GET /assets/Notifications-D15RBszk.js",
+    "GET /assets/PingChart-DK_PbHb7.js",
+    "GET /assets/Security-BLw7q_H-.js",
+    "GET /assets/Settings-BGRuqsQg.js"
+   ]
+  },
+  {
+   "id": "uk.autherror",
+   "category": "error-path",
+   "why": "a scraper or a misconfigured Prometheus job hitting /metrics with bad credentials is routine.",
+   "mechanism": "the API-key verification and rate-limiter path, reached only when authentication is attempted and fails.",
+   "requests": [
+    "GET /metrics",
+    "GET /api/badge/999/status"
+   ]
+  },
+  {
+   "id": "uk.notfound",
+   "category": "rare-route",
+   "why": "push endpoints with unknown tokens, unknown status-page slugs and deep SPA links are all ordinary inbound traffic.",
+   "mechanism": "the push router, the status-page router 404 branch and the SPA catch-all.",
+   "requests": [
+    "GET /api/push/deadbeef?status=up&msg=OK&ping=12",
+    "GET /api/status-page/does-not-exist",
+    "GET /some/unknown/spa/route",
+    "GET /.well-known/change-password"
+   ]
+  }
+ ]
+}

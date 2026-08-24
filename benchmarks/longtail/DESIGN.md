@@ -831,3 +831,61 @@ measured, and it is not going to be tuned away.
 Because the shared `log2(size)` term is doing real work, the analysis must also
 report coverage under a **distance-only** ranking (no size term) for every arm,
 so that the conclusion is shown not to be an artefact of the size normaliser.
+
+---
+
+## Amendment A3 — the prewarm-complete signal, and the frozen band (2026-08-24)
+
+**Recorded after the E0 (eager) trials and before any strategy trial ran**, which
+is the order §8.3 requires.
+
+### A3a — the prewarm signal was wrong, and it was fixed
+
+The first implementation admitted traffic when nydus's
+`blobcache.prefetch_end_time_secs` became non-zero. That counter is set almost
+immediately, long before the prefetched bytes have arrived. Measured on the
+eager arm of the Next.js fixture: prefetch reported "ended" at **t0 + 297 ms
+with 64.6 MB of its 92.4 MB blob still unfetched**, and 155 further remote
+requests then landed *during* the post-admission stream — i.e. the eager
+reference was not eager, and the experiment's whole distinction between Ready
+and traffic-warm would have been silently destroyed.
+
+`blobcache.prefetch_data_amount` counts prefetched bytes and only prefetched
+bytes (an on-demand fault does not move it), so prewarm is now detected as that
+counter going quiet: polled at 100 ms, six consecutive unchanged samples. The
+detection lag is charged identically to every arm, and the last-progress instant
+is recorded separately as the true prefetch end, so prewarm *duration* is not
+inflated by the detector.
+
+Verified on the re-run: every app's eager arm now fetches its **entire** blob
+before admission and records **zero** post-admission remote requests.
+
+```text
+app               blob MB   fetched at admission   post-admission requests
+json-server           1.2                    2.2                         0
+verdaccio            17.7                   17.7                         0
+nextjs-longtail      92.4                   92.4                         0
+juice-shop           75.8                   75.9                         0
+uptime-kuma          57.1                   58.1                         0
+strapi              229.1                  229.4                         0
+```
+
+### A3b — the frozen band
+
+Computed from the eager arm's warm pass alone, per app, over 4 families × 16
+rolling windows = 64 warm windows each. **These values are now frozen.**
+
+| app | warm median window p99 | **BAND (primary)** | BAND′ (median + 3·MAD) |
+| --- | ---: | ---: | ---: |
+| uptime-kuma | 7 ms | **7 ms** | 7.0 ms |
+| nextjs-longtail | 9 ms | **12 ms** | 9.0 ms |
+| json-server | 10 ms | **15 ms** | 16.0 ms |
+| juice-shop | 33 ms | **37 ms** | 36.0 ms |
+| strapi | 78 ms | **80 ms** | 80.0 ms |
+| verdaccio | 141 ms | **156 ms** | 144.0 ms |
+
+The two definitions agree closely everywhere, which is the point of reporting
+both: no headline claim can turn on which was chosen. Note how tight several of
+these are — uptime-kuma's band is 7 ms — so on those apps any real prewarm
+shortfall will show up immediately, and any *absence* of a difference is a
+genuine null rather than a slack criterion hiding one.

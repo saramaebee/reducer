@@ -1,0 +1,755 @@
+admin/users/me (7 ms) 200
+[2026-08-24 05:22:03.512] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:03.519] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:03.531] [32mhttp[39m: POST /api/upload (16 ms) 201
+[2026-08-24 05:22:03.544] [32mhttp[39m: GET /admin/information (10 ms) 200
+[2026-08-24 05:22:03.548] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:03.551] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:03.553] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:03.568] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:03.573] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:03.575] [32mhttp[39m: GET /api/articles (1 ms) 200
+[2026-08-24 05:22:03.579] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:03.582] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:03.591] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:03.602] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:03.613] [32mhttp[39m: POST /admin/webhooks (7 ms) 400
+[2026-08-24 05:22:03.624] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:03.624] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:03.628] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:03.631] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:03.633] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:03.637] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:03.641] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:03.645] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:03.656] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:03.668] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:03.672] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:03.686] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:03.692] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:03.701] [32mhttp[39m: POST /content-type-builder/content-types (7 ms) 403
+[2026-08-24 05:22:03.705] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:03.709] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:03.712] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:03.716] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:03.795] [32mhttp[39m: POST /api/auth/local/register (76 ms) 200
+[2026-08-24 05:22:03.868] [32mhttp[39m: POST /api/auth/local (70 ms) 200
+[2026-08-24 05:22:03.879] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:03.890] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:03.894] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:03.897] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:03.903] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:03.906] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:03.910] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:03.914] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:03.925] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:03.941] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:03.948] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:03.960] [32mhttp[39m: POST /api/upload (15 ms) 201
+[2026-08-24 05:22:03.971] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:03.975] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:03.978] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:03.982] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:03.997] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:04.004] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:04.008] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:04.011] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:04.014] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.024] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:04.034] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:04.046] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:04.058] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:04.059] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (10 ms) 500
+[2026-08-24 05:22:04.063] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:04.066] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.068] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:04.072] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:04.075] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:04.079] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.089] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:04.099] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:04.102] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:04.117] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:04.123] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:04.134] [32mhttp[39m: POST /content-type-builder/content-types (7 ms) 403
+[2026-08-24 05:22:04.138] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.141] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:04.144] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:04.148] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.227] [32mhttp[39m: POST /api/auth/local/register (76 ms) 200
+[2026-08-24 05:22:04.300] [32mhttp[39m: POST /api/auth/local (69 ms) 200
+[2026-08-24 05:22:04.311] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:04.322] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:04.326] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:04.329] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.335] [32mhttp[39m: GET login.html (3 ms) 200
+[2026-08-24 05:22:04.336] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:04.339] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:04.342] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.351] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:04.366] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:04.373] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:04.385] [32mhttp[39m: POST /api/upload (15 ms) 201
+[2026-08-24 05:22:04.394] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:04.395] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:04.398] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.401] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:04.414] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:04.420] [32mhttp[39m: GET /api/kitchensinks (3 ms) 200
+[2026-08-24 05:22:04.425] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:04.429] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:04.433] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.444] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:04.456] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:04.464] [32mhttp[39m: POST /admin/webhooks (7 ms) 400
+[2026-08-24 05:22:04.475] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:04.475] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:04.479] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:04.482] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.484] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:04.488] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:04.492] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:04.496] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.507] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:04.518] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:04.522] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:04.536] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:04.542] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:04.554] [32mhttp[39m: POST /content-type-builder/content-types (8 ms) 403
+[2026-08-24 05:22:04.558] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.562] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:04.565] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:04.569] [32mhttp[39m: GET /api/articles (0 ms) 403
+[2026-08-24 05:22:04.648] [32mhttp[39m: POST /api/auth/local/register (76 ms) 200
+[2026-08-24 05:22:04.721] [32mhttp[39m: POST /api/auth/local (69 ms) 200
+[2026-08-24 05:22:04.729] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:04.740] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:04.744] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:04.747] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.752] [32mhttp[39m: GET login.html (3 ms) 200
+[2026-08-24 05:22:04.756] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:04.760] [32mhttp[39m: GET /robots.txt (0 ms) 200
+[2026-08-24 05:22:04.764] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.775] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:04.792] [32mhttp[39m: POST /admin/api-tokens (14 ms) 201
+[2026-08-24 05:22:04.797] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:04.809] [32mhttp[39m: POST /api/upload (16 ms) 201
+[2026-08-24 05:22:04.823] [32mhttp[39m: GET /admin/information (11 ms) 200
+[2026-08-24 05:22:04.827] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:04.831] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.833] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:04.848] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:04.854] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:04.856] [32mhttp[39m: GET /api/articles (1 ms) 200
+[2026-08-24 05:22:04.860] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:04.864] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.875] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:04.886] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:04.897] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:04.908] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:04.908] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:04.912] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:04.915] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.918] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:04.920] [32mhttp[39m: GET /robots.txt (0 ms) 200
+[2026-08-24 05:22:04.924] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:04.930] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:04.941] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:04.953] [32mhttp[39m: GET /admin/information (9 ms) 200
+[2026-08-24 05:22:04.956] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:04.969] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:04.975] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:04.986] [32mhttp[39m: POST /content-type-builder/content-types (8 ms) 403
+[2026-08-24 05:22:04.990] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:04.994] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:04.997] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:05.000] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:05.078] [32mhttp[39m: POST /api/auth/local/register (76 ms) 200
+[2026-08-24 05:22:05.151] [32mhttp[39m: POST /api/auth/local (70 ms) 200
+[2026-08-24 05:22:05.162] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:05.173] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:05.177] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:05.180] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:05.186] [32mhttp[39m: GET login.html (3 ms) 200
+[2026-08-24 05:22:05.190] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:05.193] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:05.197] [32mhttp[39m: GET /api/articles (0 ms) 403
+[2026-08-24 05:22:05.209] [32mhttp[39m: GET /admin/users/me (9 ms) 200
+[2026-08-24 05:22:05.236] [32mhttp[39m: POST /admin/api-tokens (23 ms) 201
+[2026-08-24 05:22:05.247] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:05.266] [32mhttp[39m: POST /api/upload (28 ms) 201
+[2026-08-24 05:22:05.278] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:05.281] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:05.285] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:05.289] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:05.302] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:05.309] [32mhttp[39m: GET /api/kitchensinks (3 ms) 200
+[2026-08-24 05:22:05.315] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:05.320] [32mhttp[39m: POST /admin/register-admin (2 ms) 400
+[2026-08-24 05:22:05.396] [32mhttp[39m: POST /admin/login (72 ms) 200
+[2026-08-24 05:22:05.400] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:05.403] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:05.406] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:05.410] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:05.413] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:05.428] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:05.434] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:05.445] [32mhttp[39m: POST /content-type-builder/content-types (8 ms) 403
+[2026-08-24 05:22:05.449] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:05.460] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:05.539] [32mhttp[39m: POST /api/auth/local/register (75 ms) 200
+[2026-08-24 05:22:05.544] [32mhttp[39m: POST /api/auth/local (1 ms) 429
+[2026-08-24 05:22:05.554] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:05.558] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:05.562] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:05.566] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:05.570] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:05.583] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:05.590] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:05.601] [32mhttp[39m: POST /api/upload (15 ms) 201
+[2026-08-24 05:22:05.605] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:05.609] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:05.623] [32mhttp[39m: POST /admin/api-tokens (10 ms) 201
+[2026-08-24 05:22:05.630] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:05.634] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:05.643] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:05.654] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:05.664] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:05.676] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:05.676] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:05.680] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:05.683] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:05.686] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:05.689] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:05.693] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:05.697] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:05.707] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:05.717] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:05.721] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:05.735] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:05.741] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:05.752] [32mhttp[39m: POST /content-type-builder/content-types (8 ms) 403
+[2026-08-24 05:22:05.756] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:05.760] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:05.762] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:05.766] [32mhttp[39m: GET /api/articles (0 ms) 403
+[2026-08-24 05:22:05.845] [32mhttp[39m: POST /api/auth/local/register (76 ms) 200
+[2026-08-24 05:22:05.850] [32mhttp[39m: POST /api/auth/local (1 ms) 429
+[2026-08-24 05:22:05.860] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:05.871] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:05.874] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:05.877] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:05.881] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:05.885] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:05.888] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:05.889] [32mhttp[39m: GET /api/articles (0 ms) 403
+[2026-08-24 05:22:05.900] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:05.915] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:05.922] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:05.934] [32mhttp[39m: POST /api/upload (16 ms) 201
+[2026-08-24 05:22:05.945] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:05.949] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:05.952] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:05.955] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:05.968] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:05.974] [32mhttp[39m: GET /api/kitchensinks (3 ms) 200
+[2026-08-24 05:22:05.980] [32mhttp[39m: GET /api/articles (3 ms) 200
+[2026-08-24 05:22:05.983] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:05.987] [32mhttp[39m: GET /api/articles (0 ms) 403
+[2026-08-24 05:22:05.998] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.010] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:06.022] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:06.032] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:06.032] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:06.036] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:06.039] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.042] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:06.045] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.050] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:06.055] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.065] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.076] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:06.080] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:06.094] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:06.100] [32mhttp[39m: GET /api/categories?extraParam=coffee (4 ms) 400
+[2026-08-24 05:22:06.111] [32mhttp[39m: POST /content-type-builder/content-types (7 ms) 403
+[2026-08-24 05:22:06.115] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.119] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:06.122] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.125] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.201] [32mhttp[39m: POST /api/auth/local/register (75 ms) 200
+[2026-08-24 05:22:06.205] [32mhttp[39m: POST /api/auth/local (1 ms) 429
+[2026-08-24 05:22:06.216] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.228] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:06.232] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:06.235] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.239] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:06.243] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:06.246] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.249] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.259] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.272] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:06.278] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:06.290] [32mhttp[39m: POST /api/upload (15 ms) 201
+[2026-08-24 05:22:06.303] [32mhttp[39m: GET /admin/information (11 ms) 200
+[2026-08-24 05:22:06.306] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:06.310] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.314] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:06.331] [32mhttp[39m: POST /admin/api-tokens (13 ms) 201
+[2026-08-24 05:22:06.336] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:06.340] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:06.345] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.350] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.360] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.369] [32mhttp[39m: GET /admin/information (7 ms) 200
+[2026-08-24 05:22:06.380] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:06.391] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:06.391] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:06.395] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:06.399] [32mhttp[39m: GET /admin/init (0 ms) 200
+[2026-08-24 05:22:06.402] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:06.406] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.410] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:06.414] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.425] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.437] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:06.440] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:06.454] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:06.459] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:06.470] [32mhttp[39m: POST /content-type-builder/content-types (7 ms) 403
+[2026-08-24 05:22:06.474] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.478] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:06.481] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.484] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.561] [32mhttp[39m: POST /api/auth/local/register (75 ms) 200
+[2026-08-24 05:22:06.562] [32mhttp[39m: POST /api/auth/local (0 ms) 429
+[2026-08-24 05:22:06.573] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.585] [32mhttp[39m: GET /admin/information (9 ms) 200
+[2026-08-24 05:22:06.587] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:06.591] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.595] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:06.599] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:06.602] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.605] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.615] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.631] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:06.635] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:06.647] [32mhttp[39m: POST /api/upload (15 ms) 201
+[2026-08-24 05:22:06.655] [32mhttp[39m: GET /admin/information (7 ms) 200
+[2026-08-24 05:22:06.659] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:06.662] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.665] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:06.679] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:06.685] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:06.690] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:06.694] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.697] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.706] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:06.717] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:06.727] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:06.739] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:06.739] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (9 ms) 500
+[2026-08-24 05:22:06.741] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:06.745] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.746] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:06.749] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.752] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:06.753] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.764] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.775] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:06.779] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:06.793] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:06.799] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:06.810] [32mhttp[39m: POST /content-type-builder/content-types (8 ms) 403
+[2026-08-24 05:22:06.814] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.818] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:06.821] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.825] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.904] [32mhttp[39m: POST /api/auth/local/register (75 ms) 200
+[2026-08-24 05:22:06.907] [32mhttp[39m: POST /api/auth/local (1 ms) 429
+[2026-08-24 05:22:06.918] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.929] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:06.931] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:06.935] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:06.940] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:06.944] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:06.946] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:06.950] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:06.961] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:06.975] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:06.981] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:06.992] [32mhttp[39m: POST /api/upload (14 ms) 201
+[2026-08-24 05:22:07.003] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:07.006] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:07.010] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.014] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:07.027] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:07.032] [32mhttp[39m: GET /api/kitchensinks (3 ms) 200
+[2026-08-24 05:22:07.037] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:07.041] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.045] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.056] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:07.068] [32mhttp[39m: GET /admin/information (9 ms) 200
+[2026-08-24 05:22:07.079] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:07.089] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:07.090] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:07.092] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:07.096] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.098] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:07.102] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.106] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:07.110] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.121] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.132] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:07.136] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:07.149] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:07.155] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:07.166] [32mhttp[39m: POST /content-type-builder/content-types (8 ms) 403
+[2026-08-24 05:22:07.169] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.171] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:07.175] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.179] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.257] [32mhttp[39m: POST /api/auth/local/register (75 ms) 200
+[2026-08-24 05:22:07.262] [32mhttp[39m: POST /api/auth/local (2 ms) 429
+[2026-08-24 05:22:07.272] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.281] [32mhttp[39m: GET /admin/information (7 ms) 200
+[2026-08-24 05:22:07.285] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:07.288] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.292] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:07.296] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:07.299] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.302] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.311] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:07.325] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:07.332] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:07.343] [32mhttp[39m: POST /api/upload (15 ms) 201
+[2026-08-24 05:22:07.356] [32mhttp[39m: GET /admin/information (10 ms) 200
+[2026-08-24 05:22:07.360] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:07.363] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.365] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:07.378] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:07.385] [32mhttp[39m: GET /api/kitchensinks (3 ms) 200
+[2026-08-24 05:22:07.390] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:07.394] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.398] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.409] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.420] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:07.431] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:07.442] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:07.443] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (9 ms) 500
+[2026-08-24 05:22:07.446] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:07.449] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.451] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:07.455] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.459] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:07.463] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.473] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.484] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:07.486] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:07.501] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:07.507] [32mhttp[39m: GET /api/categories?extraParam=coffee (4 ms) 400
+[2026-08-24 05:22:07.518] [32mhttp[39m: POST /content-type-builder/content-types (8 ms) 403
+[2026-08-24 05:22:07.522] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.526] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:07.528] [32mhttp[39m: GET /robots.txt (0 ms) 200
+[2026-08-24 05:22:07.532] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.609] [32mhttp[39m: POST /api/auth/local/register (75 ms) 200
+[2026-08-24 05:22:07.613] [32mhttp[39m: POST /api/auth/local (1 ms) 429
+[2026-08-24 05:22:07.624] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.636] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:07.640] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:07.643] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.647] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:07.651] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:07.654] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.657] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.667] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.682] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:07.689] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:07.700] [32mhttp[39m: POST /api/upload (14 ms) 201
+[2026-08-24 05:22:07.711] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:07.715] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:07.718] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.720] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:07.734] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:07.740] [32mhttp[39m: GET /api/kitchensinks (3 ms) 200
+[2026-08-24 05:22:07.745] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:07.749] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.753] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.764] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.773] [32mhttp[39m: GET /admin/information (7 ms) 200
+[2026-08-24 05:22:07.784] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:07.795] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:07.795] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:07.798] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:07.802] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.806] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:07.809] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.813] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:07.817] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.825] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.836] [32mhttp[39m: GET /admin/information (7 ms) 200
+[2026-08-24 05:22:07.840] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:07.854] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:07.858] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:07.867] [32mhttp[39m: POST /content-type-builder/content-types (7 ms) 403
+[2026-08-24 05:22:07.871] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.873] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:07.877] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:07.881] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:07.964] [32mhttp[39m: POST /api/auth/local/register (79 ms) 200
+[2026-08-24 05:22:07.969] [32mhttp[39m: POST /api/auth/local (2 ms) 429
+[2026-08-24 05:22:07.979] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:07.991] [32mhttp[39m: GET /admin/information (9 ms) 200
+[2026-08-24 05:22:07.992] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:07.995] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:07.998] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:08.000] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:08.004] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:08.008] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:08.019] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:08.033] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:08.040] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:08.052] [32mhttp[39m: POST /api/upload (16 ms) 201
+[2026-08-24 05:22:08.064] [32mhttp[39m: GET /admin/information (9 ms) 200
+[2026-08-24 05:22:08.068] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:08.071] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.075] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:08.089] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:08.095] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:08.099] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:08.102] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:08.105] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:08.114] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:08.125] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:08.136] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:08.147] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:08.147] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (7 ms) 500
+[2026-08-24 05:22:08.151] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:08.154] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.156] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:08.160] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:08.164] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:08.168] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:08.178] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:08.188] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:08.192] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:08.206] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:08.213] [32mhttp[39m: GET /api/categories?extraParam=coffee (4 ms) 400
+[2026-08-24 05:22:08.221] [32mhttp[39m: POST /content-type-builder/content-types (7 ms) 403
+[2026-08-24 05:22:08.225] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.226] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:08.229] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:08.233] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:08.311] [32mhttp[39m: POST /api/auth/local/register (75 ms) 200
+[2026-08-24 05:22:08.316] [32mhttp[39m: POST /api/auth/local (2 ms) 429
+[2026-08-24 05:22:08.327] [32mhttp[39m: GET /admin/users/me (9 ms) 200
+[2026-08-24 05:22:08.339] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:08.341] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:08.345] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.351] [32mhttp[39m: GET login.html (3 ms) 200
+[2026-08-24 05:22:08.355] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:08.359] [32mhttp[39m: GET /robots.txt (0 ms) 200
+[2026-08-24 05:22:08.363] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:08.374] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:08.390] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:08.397] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:08.408] [32mhttp[39m: POST /api/upload (15 ms) 201
+[2026-08-24 05:22:08.421] [32mhttp[39m: GET /admin/information (10 ms) 200
+[2026-08-24 05:22:08.425] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:08.428] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.432] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:08.445] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:08.451] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:08.455] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:08.459] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:08.462] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:08.471] [32mhttp[39m: GET /admin/users/me (7 ms) 200
+[2026-08-24 05:22:08.482] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:08.492] [32mhttp[39m: POST /admin/webhooks (8 ms) 400
+[2026-08-24 05:22:08.503] [31merror[39m: Cannot destructure property 'url' of 'webhook' as it is null.
+TypeError: Cannot destructure property 'url' of 'webhook' as it is null.
+    at WebhookRunner.run (/mnt/app/packages/core/core/dist/services/webhook-runner.js:51:17)
+    at Object.triggerWebhook (/mnt/app/packages/core/admin/dist/server/server/src/controllers/webhooks.js:118:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async returnBodyMiddleware (/mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:50:20)
+    at async policiesMiddleware (/mnt/app/packages/core/core/dist/services/server/policy.js:21:9)
+    at async /mnt/app/packages/core/core/dist/services/server/compose-endpoint.js:31:20
+    at async /mnt/app/packages/core/core/dist/services/mcp/middleware/oauthDiscoveryFallback.js:29:9
+    at async /mnt/app/examples/getstarted/src/middlewares/test-middleware.js:13:5
+    at async /mnt/app/packages/core/core/dist/middlewares/responses.js:7:9
+    at async /mnt/app/packages/core/core/dist/middlewares/body.js:50:17
+[2026-08-24 05:22:08.503] [32mhttp[39m: POST /admin/webhooks/%7B%7BhookId%7D%7D/trigger (8 ms) 500
+[2026-08-24 05:22:08.507] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:08.510] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.512] [32mhttp[39m: GET /admin/project-type (0 ms) 200
+[2026-08-24 05:22:08.516] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:08.520] [32mhttp[39m: GET /content-manager/preview/script (1 ms) 200
+[2026-08-24 05:22:08.524] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:08.534] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:08.544] [32mhttp[39m: GET /admin/information (7 ms) 200
+[2026-08-24 05:22:08.547] [32mhttp[39m: GET /_health (0 ms) 204
+[2026-08-24 05:22:08.562] [32mhttp[39m: POST /admin/api-tokens (12 ms) 201
+[2026-08-24 05:22:08.568] [32mhttp[39m: GET /api/categories?extraParam=coffee (3 ms) 400
+[2026-08-24 05:22:08.579] [32mhttp[39m: POST /content-type-builder/content-types (8 ms) 403
+[2026-08-24 05:22:08.583] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.587] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:08.590] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:08.594] [32mhttp[39m: GET /api/articles (0 ms) 403
+[2026-08-24 05:22:08.673] [32mhttp[39m: POST /api/auth/local/register (76 ms) 200
+[2026-08-24 05:22:08.678] [32mhttp[39m: POST /api/auth/local (1 ms) 429
+[2026-08-24 05:22:08.688] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:08.699] [32mhttp[39m: GET /admin/information (8 ms) 200
+[2026-08-24 05:22:08.703] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:08.706] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.710] [32mhttp[39m: GET login.html (2 ms) 200
+[2026-08-24 05:22:08.714] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:08.717] [32mhttp[39m: GET /robots.txt (1 ms) 200
+[2026-08-24 05:22:08.720] [32mhttp[39m: GET /api/articles (1 ms) 403
+[2026-08-24 05:22:08.730] [32mhttp[39m: GET /admin/users/me (8 ms) 200
+[2026-08-24 05:22:08.744] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:08.750] [33mwarn[39m: No upload security configuration found. Consider configuring plugin.upload.security for enhanced file validation.
+[2026-08-24 05:22:08.761] [32mhttp[39m: POST /api/upload (15 ms) 201
+[2026-08-24 05:22:08.770] [32mhttp[39m: GET /admin/information (7 ms) 200
+[2026-08-24 05:22:08.774] [32mhttp[39m: GET /_health (1 ms) 204
+[2026-08-24 05:22:08.777] [32mhttp[39m: GET /admin/init (1 ms) 200
+[2026-08-24 05:22:08.781] [32mhttp[39m: GET /admin/project-type (1 ms) 200
+[2026-08-24 05:22:08.794] [32mhttp[39m: POST /admin/api-tokens (11 ms) 201
+[2026-08-24 05:22:08.801] [32mhttp[39m: GET /api/kitchensinks (4 ms) 200
+[2026-08-24 05:22:08.805] [32mhttp[39m: GET /api/articles (2 ms) 200
+[2026-08-24 05:22:08.826] [32minfo[39m: Shutting down Strapi
+[2026-08-24 05:22:08.827] [32minfo[39m: [MCP] Stopping MCP server...
+[2026-08-24 05:22:08.827] [32minfo[39m: [MCP] Service stopped
+[2026-08-24 05:22:08.828] [32minfo[39m: Strapi has been shut down

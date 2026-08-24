@@ -410,6 +410,7 @@
   "Built with `experimental.preloadEntriesOnStart: false`. Next's production server otherwise preloads EVERY app route module at startup, pulling each route's whole external dependency subtree into memory before the first request — measured here at 968 files resident before any traffic, versus 377 with the option set. That is a real finding about self-hosted Next.js and is reported as one; the option is Next's own documented opt-out and is what a deployment that cares about cold-start residency would set.",
   "Heavy leaf libraries are declared in `serverExternalPackages` so they remain real node_modules requires rather than being inlined into a server chunk — the ordinary configuration for large server dependencies."
  ],
+ "offSpec": [],
  "longTail": [
   {
    "id": "nx.locale.de",

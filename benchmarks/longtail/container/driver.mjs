@@ -179,7 +179,11 @@ async function issue(step, state, pass, index) {
       headers,
       body,
       redirect: 'manual',
-      signal: AbortSignal.timeout(step.timeoutMs ?? 30_000),
+      // 10 s, not 30: a route that never answers must cost the experiment a
+      // recognisable failure, not five minutes of wall clock (verdaccio's /.env
+      // did exactly that in the pilot). Anything legitimately slower declares
+      // its own timeoutMs.
+      signal: AbortSignal.timeout(step.timeoutMs ?? 10_000),
     });
     status = res.status;
     if (step.compareHeader) headerValue = res.headers.get(step.compareHeader);
@@ -252,7 +256,7 @@ rec({ ev: 'admit' });
 
 const state = new Map();
 let seq = 0;
-for (const pass of [1, 2]) {
+for (const pass of spec.passes === 1 ? [1] : [1, 2]) {
   rec({ ev: 'pass-start', pass });
   for (const [index, step] of spec.traffic.entries()) {
     // {{seq}} keeps repeatable write-path groups from colliding with themselves

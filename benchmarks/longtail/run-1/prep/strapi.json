@@ -1,0 +1,453 @@
+{
+ "app": "strapi",
+ "sha": "1fd9d80ad5f0a2c97d09ce7529f5cd9fdb91ca2d",
+ "criterion": "largest measured universe (915 MB) — the ICP size class; plugin- and config-driven",
+ "mechanisms": [
+  "lazy require of a plugin-only dependency subtree (documentation -> cheerio/parse5)",
+  "lazy ESM import() in the upload pipeline (file-type)",
+  "admin/background surfaces (api tokens, webhooks, preview) absent from common traffic",
+  "production-only error paths (is-development-mode 403, strict-params 400)"
+ ],
+ "kind": "real",
+ "universe": {
+  "files": 123474,
+  "bytes": 915036345
+ },
+ "staged": {
+  "files": 123474,
+  "bytes": 915036345,
+  "prunedFiles": 38542
+ },
+ "nft": 19411,
+ "planBHot": 47153,
+ "packages": 2248,
+ "depReachablePackages": 1424,
+ "image": {
+  "repo": "longtail/strapi",
+  "blob": "fd4656ceb30d3c511db376138f407edd5ae3928e52d4fe0d669954aacf9e565b",
+  "blobBytes": 229080002,
+  "bootstrapBytes": 23502848
+ },
+ "contentDigest": "347eea75a116a08d4cae00201c21ae4d69c2e2af531d9a7e65880d9f2557bcb6",
+ "train": {
+  "files": 4845,
+  "bytes": 32175732
+ },
+ "neededTest": {
+  "files": 5118,
+  "bytes": 34501249
+ },
+ "heldOut": {
+  "files": 273,
+  "bytes": 2325517
+ },
+ "heldOutByCategory": {
+  "optional-feature": {
+   "files": 272,
+   "bytes": 2271509
+  },
+  "rare-route": {
+   "files": 1,
+   "bytes": 54008
+  }
+ },
+ "heldOutByGroup": {
+  "st.docs": {
+   "files": 233,
+   "bytes": 2084745
+  },
+  "st.upload": {
+   "files": 39,
+   "bytes": 186764
+  },
+  "st.preview": {
+   "files": 1,
+   "bytes": 54008
+  }
+ },
+ "rankingInputs": {
+  "G1": [
+   "TRAIN access log: path + first-content-read timestamp",
+   "universe path strings"
+  ],
+  "G2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1)",
+   "directory structure of the universe (filesystem only)",
+   "file size"
+  ],
+  "R1": [
+   "entrypoint identity",
+   "@vercel/nft positive trace and its module-graph order",
+   "package identity and boundaries",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "opaque-boundary (native/WASM/install-script) package classification",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "R2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1/G2)",
+   "package identity and boundaries (owning package directory per file)",
+   "@vercel/nft positive trace and its module-graph order",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "O": [
+   "THE TEST WORKLOAD ITSELF — analysis only, never deployable"
+  ]
+ },
+ "budgeted": {
+  "G1@0.05": {
+   "arm": "G1",
+   "budget": 0.05,
+   "budgetBytes": 45751817,
+   "files": 6579,
+   "bytes": 45751817,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 4845,
+   "coveredNeededBytes": 32175732,
+   "missNeededFiles": 273,
+   "missNeededBytes": 2325517,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G1.0.05.txt"
+  },
+  "G1@0.1": {
+   "arm": "G1",
+   "budget": 0.1,
+   "budgetBytes": 91503634,
+   "files": 15383,
+   "bytes": 91503634,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 4845,
+   "coveredNeededBytes": 32175732,
+   "missNeededFiles": 273,
+   "missNeededBytes": 2325517,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G1.0.1.txt"
+  },
+  "G1@0.2": {
+   "arm": "G1",
+   "budget": 0.2,
+   "budgetBytes": 183007269,
+   "files": 31878,
+   "bytes": 183007269,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 4845,
+   "coveredNeededBytes": 32175732,
+   "missNeededFiles": 273,
+   "missNeededBytes": 2325517,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G1.0.2.txt"
+  },
+  "G1@0.4": {
+   "arm": "G1",
+   "budget": 0.4,
+   "budgetBytes": 366014538,
+   "files": 49922,
+   "bytes": 366014538,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 4847,
+   "coveredNeededBytes": 32189312,
+   "missNeededFiles": 271,
+   "missNeededBytes": 2311937,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G1.0.4.txt"
+  },
+  "G2@0.05": {
+   "arm": "G2",
+   "budget": 0.05,
+   "budgetBytes": 45751817,
+   "files": 35131,
+   "bytes": 45751813,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 4847,
+   "coveredNeededBytes": 32176407,
+   "missNeededFiles": 271,
+   "missNeededBytes": 2324842,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G2.0.05.txt"
+  },
+  "G2@0.1": {
+   "arm": "G2",
+   "budget": 0.1,
+   "budgetBytes": 91503634,
+   "files": 62381,
+   "bytes": 91503630,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 4899,
+   "coveredNeededBytes": 32264082,
+   "missNeededFiles": 219,
+   "missNeededBytes": 2237167,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G2.0.1.txt"
+  },
+  "G2@0.2": {
+   "arm": "G2",
+   "budget": 0.2,
+   "budgetBytes": 183007269,
+   "files": 86311,
+   "bytes": 183007268,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 4997,
+   "coveredNeededBytes": 32629119,
+   "missNeededFiles": 121,
+   "missNeededBytes": 1872130,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G2.0.2.txt"
+  },
+  "G2@0.4": {
+   "arm": "G2",
+   "budget": 0.4,
+   "budgetBytes": 366014538,
+   "files": 102039,
+   "bytes": 366014535,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 5091,
+   "coveredNeededBytes": 33577261,
+   "missNeededFiles": 27,
+   "missNeededBytes": 923988,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/G2.0.4.txt"
+  },
+  "R1@0.05": {
+   "arm": "R1",
+   "budget": 0.05,
+   "budgetBytes": 45751817,
+   "files": 66628,
+   "bytes": 45751817,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 3655,
+   "coveredNeededBytes": 4429154,
+   "missNeededFiles": 1463,
+   "missNeededBytes": 30072095,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/R1.0.05.txt"
+  },
+  "R1@0.1": {
+   "arm": "R1",
+   "budget": 0.1,
+   "budgetBytes": 91503634,
+   "files": 82730,
+   "bytes": 91503632,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4358,
+   "coveredNeededBytes": 7666328,
+   "missNeededFiles": 760,
+   "missNeededBytes": 26834921,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/R1.0.1.txt"
+  },
+  "R1@0.2": {
+   "arm": "R1",
+   "budget": 0.2,
+   "budgetBytes": 183007269,
+   "files": 96794,
+   "bytes": 183007266,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4774,
+   "coveredNeededBytes": 11902711,
+   "missNeededFiles": 344,
+   "missNeededBytes": 22598538,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/R1.0.2.txt"
+  },
+  "R1@0.4": {
+   "arm": "R1",
+   "budget": 0.4,
+   "budgetBytes": 366014538,
+   "files": 106512,
+   "bytes": 366014538,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4974,
+   "coveredNeededBytes": 17602282,
+   "missNeededFiles": 144,
+   "missNeededBytes": 16898967,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/R1.0.4.txt"
+  },
+  "R2@0.05": {
+   "arm": "R2",
+   "budget": 0.05,
+   "budgetBytes": 45751817,
+   "files": 40358,
+   "bytes": 45751817,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4883,
+   "coveredNeededBytes": 32246898,
+   "missNeededFiles": 235,
+   "missNeededBytes": 2254351,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/R2.0.05.txt"
+  },
+  "R2@0.1": {
+   "arm": "R2",
+   "budget": 0.1,
+   "budgetBytes": 91503634,
+   "files": 65696,
+   "bytes": 91503625,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 4942,
+   "coveredNeededBytes": 32336823,
+   "missNeededFiles": 176,
+   "missNeededBytes": 2164426,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/R2.0.1.txt"
+  },
+  "R2@0.2": {
+   "arm": "R2",
+   "budget": 0.2,
+   "budgetBytes": 183007269,
+   "files": 79542,
+   "bytes": 183007261,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 5056,
+   "coveredNeededBytes": 32996577,
+   "missNeededFiles": 62,
+   "missNeededBytes": 1504672,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/R2.0.2.txt"
+  },
+  "R2@0.4": {
+   "arm": "R2",
+   "budget": 0.4,
+   "budgetBytes": 366014538,
+   "files": 85138,
+   "bytes": 366014522,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 5118,
+   "coveredNeededBytes": 34501249,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/R2.0.4.txt"
+  },
+  "O@0.05": {
+   "arm": "O",
+   "budget": 0.05,
+   "budgetBytes": 45751817,
+   "files": 6621,
+   "bytes": 45751817,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 5118,
+   "coveredNeededBytes": 34501249,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/O.0.05.txt"
+  },
+  "O@0.1": {
+   "arm": "O",
+   "budget": 0.1,
+   "budgetBytes": 91503634,
+   "files": 15286,
+   "bytes": 91503634,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 5118,
+   "coveredNeededBytes": 34501249,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/O.0.1.txt"
+  },
+  "O@0.2": {
+   "arm": "O",
+   "budget": 0.2,
+   "budgetBytes": 183007269,
+   "files": 32122,
+   "bytes": 183007269,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 5118,
+   "coveredNeededBytes": 34501249,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/O.0.2.txt"
+  },
+  "O@0.4": {
+   "arm": "O",
+   "budget": 0.4,
+   "budgetBytes": 366014538,
+   "files": 50172,
+   "bytes": 366014538,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 5118,
+   "coveredNeededBytes": 34501249,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/strapi/O.0.4.txt"
+  }
+ },
+ "stream": {
+  "length": 400,
+  "families": 4,
+  "passes": 2
+ },
+ "warnings": [
+  "19349 installed JS file(s) belong to packages absent from the frozen production population; treated as outside the universe unless positive evidence reaches them",
+  "NFT reported 184 warning(s)"
+ ],
+ "workloadNotes": [
+  "Strapi 5.7.0 is aggressively eager: plugins, routes, the error machinery and every zod/yup locale are loaded at boot. Only two candidates above move genuinely new bytes (documentation → cheerio/parse5; upload → file-type). The rest are execution-path long tail over resident modules. That is itself a finding and is reported as one rather than being papered over.",
+  "Locale is not a category here: `?locale=xx` loads zero extra server files; the per-locale translation trees belong to the admin browser bundle, which this deployment does not build.",
+  "The public role has no permissions on a fresh database, so `GET /api/articles` answers 401 in the common set. That is the honest common surface of this deployment, and it is identical for every arm."
+ ],
+ "offSpec": [
+  {
+   "line": "st.wh.trigger -> 500 (expected [200,400,401,404])",
+   "n": 39
+  }
+ ],
+ "longTail": [
+  {
+   "id": "st.docs",
+   "category": "optional-feature",
+   "why": "the API documentation plugin is installed and its login page is publicly routed; integrators reach it.",
+   "mechanism": "an explicitly lazy `require('cheerio')` inside the handler, pulling cheerio + parse5 (~5.5 MB) that nothing else in the process loads.",
+   "requests": [
+    "GET /documentation/login"
+   ]
+  },
+  {
+   "id": "st.upload",
+   "category": "optional-feature",
+   "why": "media upload is core CMS functionality that a read-only content workload never performs.",
+   "mechanism": "a lazy `await import('file-type')` (ESM-only) inside MIME validation, then the sharp image pipeline.",
+   "requests": [
+    "POST /admin/api-tokens",
+    "POST /api/upload"
+   ]
+  },
+  {
+   "id": "st.contentapi",
+   "category": "admin-background",
+   "why": "a machine integration authenticating with an API token and reading a content type other than the two the site renders is ordinary production traffic.",
+   "mechanism": "the content-api token strategy plus the full core-api controller → document-service → sanitize/transform chain, none of which the 401-ing public request reaches.",
+   "requests": [
+    "POST /admin/api-tokens",
+    "GET /api/kitchensinks",
+    "GET /api/articles"
+   ]
+  },
+  {
+   "id": "st.webhook",
+   "category": "admin-background",
+   "why": "webhooks are configured once and fire on content events; the delivery path is exercised in production and never by a read workload.",
+   "mechanism": "the webhook runner, its worker queue and an outbound fetch.",
+   "requests": [
+    "POST /admin/webhooks",
+    "POST /admin/webhooks/{{hookId}}/trigger"
+   ]
+  },
+  {
+   "id": "st.preview",
+   "category": "rare-route",
+   "why": "the content-manager preview bridge is served to editors using live preview.",
+   "mechanism": "a request-time read of a 400-line script file that is never `require`d by anything — invisible to any module graph.",
+   "requests": [
+    "GET /content-manager/preview/script"
+   ]
+  },
+  {
+   "id": "st.errors",
+   "category": "error-path",
+   "why": "a client sending an unregistered query parameter, and an attempt to change the schema on a production instance, are both real and both must fail cleanly.",
+   "mechanism": "strict-params validation → ValidationError formatting, and the is-development-mode policy rejection that only exists in production.",
+   "requests": [
+    "POST /admin/api-tokens",
+    "GET /api/categories?extraParam=coffee",
+    "POST /content-type-builder/content-types"
+   ]
+  },
+  {
+   "id": "st.users",
+   "category": "tenant-config",
+   "why": "users-permissions self-registration is the front-door of any Strapi deployment that has end users, and it is entirely separate from the admin surface a content workload exercises.",
+   "mechanism": "the users-permissions auth controller, its password hasher, JWT issuance and its own rate limiter.",
+   "requests": [
+    "POST /api/auth/local/register",
+    "POST /api/auth/local"
+   ]
+  }
+ ]
+}

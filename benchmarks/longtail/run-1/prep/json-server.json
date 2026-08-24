@@ -1,0 +1,384 @@
+{
+ "app": "json-server",
+ "sha": "89a34a44b7a6a5311dc84f3b8a1b8b45c0905aea",
+ "criterion": "smaller/control application — 3.2 MB universe, no plausible long tail",
+ "mechanisms": [
+  "none expected; included as the negative control"
+ ],
+ "kind": "real",
+ "universe": {
+  "files": 1288,
+  "bytes": 3169270
+ },
+ "staged": {
+  "files": 1288,
+  "bytes": 3169270,
+  "prunedFiles": 3110
+ },
+ "nft": 140,
+ "planBHot": 150,
+ "packages": 49,
+ "depReachablePackages": 46,
+ "image": {
+  "repo": "longtail/json-server",
+  "blob": "1719c2918705656b8b1c430dd37ae669e15eede5859d7e0d837578abf4364b2f",
+  "blobBytes": 1174090,
+  "bootstrapBytes": 323584
+ },
+ "contentDigest": "bd95631955b8923016faa3fe93b0a1958595d8c413a21b5738fff970ae2e3798",
+ "train": {
+  "files": 134,
+  "bytes": 473144
+ },
+ "neededTest": {
+  "files": 134,
+  "bytes": 473144
+ },
+ "heldOut": {
+  "files": 0,
+  "bytes": 0
+ },
+ "heldOutByCategory": {},
+ "heldOutByGroup": {},
+ "rankingInputs": {
+  "G1": [
+   "TRAIN access log: path + first-content-read timestamp",
+   "universe path strings"
+  ],
+  "G2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1)",
+   "directory structure of the universe (filesystem only)",
+   "file size"
+  ],
+  "R1": [
+   "entrypoint identity",
+   "@vercel/nft positive trace and its module-graph order",
+   "package identity and boundaries",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "opaque-boundary (native/WASM/install-script) package classification",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "R2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1/G2)",
+   "package identity and boundaries (owning package directory per file)",
+   "@vercel/nft positive trace and its module-graph order",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "O": [
+   "THE TEST WORKLOAD ITSELF — analysis only, never deployable"
+  ]
+ },
+ "budgeted": {
+  "G1@0.05": {
+   "arm": "G1",
+   "budget": 0.05,
+   "budgetBytes": 158463,
+   "files": 48,
+   "bytes": 158460,
+   "stoppedInTier": "train-order",
+   "coveredNeededFiles": 48,
+   "coveredNeededBytes": 158460,
+   "missNeededFiles": 86,
+   "missNeededBytes": 314684,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/G1.0.05.txt"
+  },
+  "G1@0.1": {
+   "arm": "G1",
+   "budget": 0.1,
+   "budgetBytes": 316927,
+   "files": 112,
+   "bytes": 316918,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 106,
+   "coveredNeededBytes": 316687,
+   "missNeededFiles": 28,
+   "missNeededBytes": 156457,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/G1.0.1.txt"
+  },
+  "G1@0.2": {
+   "arm": "G1",
+   "budget": 0.2,
+   "budgetBytes": 633854,
+   "files": 245,
+   "bytes": 633848,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 134,
+   "coveredNeededBytes": 473144,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/G1.0.2.txt"
+  },
+  "G1@0.4": {
+   "arm": "G1",
+   "budget": 0.4,
+   "budgetBytes": 1267708,
+   "files": 578,
+   "bytes": 1267707,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 134,
+   "coveredNeededBytes": 473144,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/G1.0.4.txt"
+  },
+  "G2@0.05": {
+   "arm": "G2",
+   "budget": 0.05,
+   "budgetBytes": 158463,
+   "files": 48,
+   "bytes": 158460,
+   "stoppedInTier": "train-order",
+   "coveredNeededFiles": 48,
+   "coveredNeededBytes": 158460,
+   "missNeededFiles": 86,
+   "missNeededBytes": 314684,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/G2.0.05.txt"
+  },
+  "G2@0.1": {
+   "arm": "G2",
+   "budget": 0.1,
+   "budgetBytes": 316927,
+   "files": 113,
+   "bytes": 316915,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 106,
+   "coveredNeededBytes": 316687,
+   "missNeededFiles": 28,
+   "missNeededBytes": 156457,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/G2.0.1.txt"
+  },
+  "G2@0.2": {
+   "arm": "G2",
+   "budget": 0.2,
+   "budgetBytes": 633854,
+   "files": 367,
+   "bytes": 633842,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 134,
+   "coveredNeededBytes": 473144,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/G2.0.2.txt"
+  },
+  "G2@0.4": {
+   "arm": "G2",
+   "budget": 0.4,
+   "budgetBytes": 1267708,
+   "files": 588,
+   "bytes": 1267641,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 134,
+   "coveredNeededBytes": 473144,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/G2.0.4.txt"
+  },
+  "R1@0.05": {
+   "arm": "R1",
+   "budget": 0.05,
+   "budgetBytes": 158463,
+   "files": 297,
+   "bytes": 158386,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 87,
+   "coveredNeededBytes": 80978,
+   "missNeededFiles": 47,
+   "missNeededBytes": 392166,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R1.0.05.txt"
+  },
+  "R1@0.1": {
+   "arm": "R1",
+   "budget": 0.1,
+   "budgetBytes": 316927,
+   "files": 443,
+   "bytes": 316808,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 106,
+   "coveredNeededBytes": 132959,
+   "missNeededFiles": 28,
+   "missNeededBytes": 340185,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R1.0.1.txt"
+  },
+  "R1@0.2": {
+   "arm": "R1",
+   "budget": 0.2,
+   "budgetBytes": 633854,
+   "files": 627,
+   "bytes": 633760,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 121,
+   "coveredNeededBytes": 209642,
+   "missNeededFiles": 13,
+   "missNeededBytes": 263502,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R1.0.2.txt"
+  },
+  "R1@0.4": {
+   "arm": "R1",
+   "budget": 0.4,
+   "budgetBytes": 1267708,
+   "files": 963,
+   "bytes": 1267628,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 126,
+   "coveredNeededBytes": 269256,
+   "missNeededFiles": 8,
+   "missNeededBytes": 203888,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R1.0.4.txt"
+  },
+  "R2@0.05": {
+   "arm": "R2",
+   "budget": 0.05,
+   "budgetBytes": 158463,
+   "files": 48,
+   "bytes": 158460,
+   "stoppedInTier": "train-order",
+   "coveredNeededFiles": 48,
+   "coveredNeededBytes": 158460,
+   "missNeededFiles": 86,
+   "missNeededBytes": 314684,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R2.0.05.txt"
+  },
+  "R2@0.1": {
+   "arm": "R2",
+   "budget": 0.1,
+   "budgetBytes": 316927,
+   "files": 113,
+   "bytes": 316898,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 106,
+   "coveredNeededBytes": 316687,
+   "missNeededFiles": 28,
+   "missNeededBytes": 156457,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R2.0.1.txt"
+  },
+  "R2@0.2": {
+   "arm": "R2",
+   "budget": 0.2,
+   "budgetBytes": 633854,
+   "files": 449,
+   "bytes": 633808,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 134,
+   "coveredNeededBytes": 473144,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R2.0.2.txt"
+  },
+  "R2@0.4": {
+   "arm": "R2",
+   "budget": 0.4,
+   "budgetBytes": 1267708,
+   "files": 889,
+   "bytes": 1267646,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 134,
+   "coveredNeededBytes": 473144,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/R2.0.4.txt"
+  },
+  "O@0.05": {
+   "arm": "O",
+   "budget": 0.05,
+   "budgetBytes": 158463,
+   "files": 48,
+   "bytes": 158460,
+   "stoppedInTier": "needed-in-first-touch-order",
+   "coveredNeededFiles": 48,
+   "coveredNeededBytes": 158460,
+   "missNeededFiles": 86,
+   "missNeededBytes": 314684,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/O.0.05.txt"
+  },
+  "O@0.1": {
+   "arm": "O",
+   "budget": 0.1,
+   "budgetBytes": 316927,
+   "files": 112,
+   "bytes": 316918,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 106,
+   "coveredNeededBytes": 316687,
+   "missNeededFiles": 28,
+   "missNeededBytes": 156457,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/O.0.1.txt"
+  },
+  "O@0.2": {
+   "arm": "O",
+   "budget": 0.2,
+   "budgetBytes": 633854,
+   "files": 245,
+   "bytes": 633848,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 134,
+   "coveredNeededBytes": 473144,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/O.0.2.txt"
+  },
+  "O@0.4": {
+   "arm": "O",
+   "budget": 0.4,
+   "budgetBytes": 1267708,
+   "files": 578,
+   "bytes": 1267707,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 134,
+   "coveredNeededBytes": 473144,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/json-server/O.0.4.txt"
+  }
+ },
+ "stream": {
+  "length": 400,
+  "families": 4,
+  "passes": 2
+ },
+ "warnings": [
+  "943 installed JS file(s) belong to packages absent from the frozen production population; treated as outside the universe unless positive evidence reaches them"
+ ],
+ "workloadNotes": [
+  "Selected as the negative control: a 3.2 MB universe with no plugin surface, no i18n, no tenancy and no optional dependency subtree. A null result here is the expected result."
+ ],
+ "offSpec": [],
+ "longTail": [
+  {
+   "id": "js.query",
+   "category": "rare-route",
+   "why": "json-server's query surface (sort, paginate, embed, expand) is documented API that a client using only collection reads never touches.",
+   "mechanism": "additional query-handling code paths inside the already-resident lib; no new package is expected.",
+   "requests": [
+    "GET /posts?_sort=title&_order=desc",
+    "GET /posts?_page=1&_per_page=1",
+    "GET /posts?_embed=comments",
+    "GET /comments?_expand=post"
+   ]
+  },
+  {
+   "id": "js.write",
+   "category": "optional-feature",
+   "why": "the write half of a REST API: a read-only training workload never exercises create/replace/patch/delete.",
+   "mechanism": "the mutation path and its serialiser; lowdb write-back.",
+   "requests": [
+    "POST /posts",
+    "PUT /posts/{{newId}}",
+    "PATCH /posts/{{newId}}",
+    "DELETE /posts/{{newId}}"
+   ]
+  },
+  {
+   "id": "js.error",
+   "category": "error-path",
+   "why": "404s are ordinary production traffic (stale links, probes, crawlers).",
+   "mechanism": "express's 404 branch and json-server's own not-found rendering.",
+   "requests": [
+    "GET /does-not-exist",
+    "GET /posts/999999"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+[
+ {
+  "arm": "E0",
+  "budget": null,
+  "family": 0,
+  "prefetchAll": true,
+  "name": "E0.f0",
+  "order": 0,
+  "milestones": {
+   "setup-done": 1787548444059,
+   "t0": 1787548444059,
+   "mount": 1787548444073,
+   "proc": 1787548444127,
+   "prefetch-last-progress": 1787548444394,
+   "prewarm": 1787548445231,
+   "workload-done": 1787548448994,
+   "collect": 1787548449023,
+   "done": 1787548449345
+  },
+  "exit": 0
+ },
+ {
+  "arm": "E0",
+  "budget": null,
+  "family": 1,
+  "prefetchAll": true,
+  "name": "E0.f1",
+  "order": 1,
+  "milestones": {
+   "setup-done": 1787548449704,
+   "t0": 1787548449704,
+   "mount": 1787548449717,
+   "proc": 1787548449771,
+   "prefetch-last-progress": 1787548450045,
+   "prewarm": 1787548450888,
+   "workload-done": 1787548454566,
+   "collect": 1787548454594,
+   "done": 1787548454924
+  },
+  "exit": 0
+ },
+ {
+  "arm": "E0",
+  "budget": null,
+  "family": 2,
+  "prefetchAll": true,
+  "name": "E0.f2",
+  "order": 2,
+  "milestones": {
+   "setup-done": 1787548455253,
+   "t0": 1787548455253,
+   "mount": 1787548455273,
+   "proc": 1787548455327,
+   "prefetch-last-progress": 1787548455595,
+   "prewarm": 1787548456436,
+   "workload-done": 1787548459946,
+   "collect": 1787548459974,
+   "done": 1787548460293
+  },
+  "exit": 0
+ },
+ {
+  "arm": "E0",
+  "budget": null,
+  "family": 3,
+  "prefetchAll": true,
+  "name": "E0.f3",
+  "order": 3,
+  "milestones": {
+   "setup-done": 1787548460611,
+   "t0": 1787548460612,
+   "mount": 1787548460633,
+   "proc": 1787548460687,
+   "prefetch-last-progress": 1787548460967,
+   "prewarm": 1787548461830,
+   "workload-done": 1787548465441,
+   "collect": 1787548465470,
+   "done": 1787548465797
+  },
+  "exit": 0
+ }
+]

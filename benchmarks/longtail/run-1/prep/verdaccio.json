@@ -1,0 +1,435 @@
+{
+ "app": "verdaccio",
+ "sha": "79237e3f9f02023491159eef709cb4a8dcc54ca9",
+ "criterion": "write-path and rare-route long tail on a mid-size tree; dynamic plugin loader present",
+ "mechanisms": [
+  "publish / deprecate / unpublish write path (tarball validation, storage writes)",
+  "dist-tag and profile surfaces no read-only workload reaches",
+  "error paths through a dead uplink and through tarball validation"
+ ],
+ "kind": "real",
+ "universe": {
+  "files": 9530,
+  "bytes": 59870421
+ },
+ "staged": {
+  "files": 9530,
+  "bytes": 59870421,
+  "prunedFiles": 81583
+ },
+ "nft": 1853,
+ "planBHot": 2009,
+ "packages": 351,
+ "depReachablePackages": 248,
+ "image": {
+  "repo": "longtail/verdaccio",
+  "blob": "75f592872af8fc107f17293307d37a10e081fb5b15b6552be5745307257d9cf9",
+  "blobBytes": 17730755,
+  "bootstrapBytes": 2285568
+ },
+ "contentDigest": "bace18355d34520900b2962ab3cd5235964a853929de72dd256b6ccb5566f48f",
+ "train": {
+  "files": 1800,
+  "bytes": 5396100
+ },
+ "neededTest": {
+  "files": 1801,
+  "bytes": 5411186
+ },
+ "heldOut": {
+  "files": 1,
+  "bytes": 15086
+ },
+ "heldOutByCategory": {
+  "rare-route": {
+   "files": 1,
+   "bytes": 15086
+  }
+ },
+ "heldOutByGroup": {
+  "vd.rare": {
+   "files": 1,
+   "bytes": 15086
+  }
+ },
+ "rankingInputs": {
+  "G1": [
+   "TRAIN access log: path + first-content-read timestamp",
+   "universe path strings"
+  ],
+  "G2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1)",
+   "directory structure of the universe (filesystem only)",
+   "file size"
+  ],
+  "R1": [
+   "entrypoint identity",
+   "@vercel/nft positive trace and its module-graph order",
+   "package identity and boundaries",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "opaque-boundary (native/WASM/install-script) package classification",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "R2": [
+   "TRAIN access log: path + first-content-read timestamp (identical to G1/G2)",
+   "package identity and boundaries (owning package directory per file)",
+   "@vercel/nft positive trace and its module-graph order",
+   "resolver metadata semantics (package.json precedes resolution)",
+   "declared package dependency graph, Node-resolved",
+   "file size"
+  ],
+  "O": [
+   "THE TEST WORKLOAD ITSELF — analysis only, never deployable"
+  ]
+ },
+ "budgeted": {
+  "G1@0.05": {
+   "arm": "G1",
+   "budget": 0.05,
+   "budgetBytes": 2993521,
+   "files": 1246,
+   "bytes": 2993521,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1227,
+   "coveredNeededBytes": 2993490,
+   "missNeededFiles": 574,
+   "missNeededBytes": 2417696,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/G1.0.05.txt"
+  },
+  "G1@0.1": {
+   "arm": "G1",
+   "budget": 0.1,
+   "budgetBytes": 5987042,
+   "files": 2183,
+   "bytes": 5987041,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1800,
+   "coveredNeededBytes": 5396100,
+   "missNeededFiles": 1,
+   "missNeededBytes": 15086,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/G1.0.1.txt"
+  },
+  "G1@0.2": {
+   "arm": "G1",
+   "budget": 0.2,
+   "budgetBytes": 11974084,
+   "files": 3798,
+   "bytes": 11974084,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1800,
+   "coveredNeededBytes": 5396100,
+   "missNeededFiles": 1,
+   "missNeededBytes": 15086,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/G1.0.2.txt"
+  },
+  "G1@0.4": {
+   "arm": "G1",
+   "budget": 0.4,
+   "budgetBytes": 23948168,
+   "files": 3903,
+   "bytes": 23948167,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1800,
+   "coveredNeededBytes": 5396100,
+   "missNeededFiles": 1,
+   "missNeededBytes": 15086,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/G1.0.4.txt"
+  },
+  "G2@0.05": {
+   "arm": "G2",
+   "budget": 0.05,
+   "budgetBytes": 2993521,
+   "files": 1250,
+   "bytes": 2993521,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 1227,
+   "coveredNeededBytes": 2993490,
+   "missNeededFiles": 574,
+   "missNeededBytes": 2417696,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/G2.0.05.txt"
+  },
+  "G2@0.1": {
+   "arm": "G2",
+   "budget": 0.1,
+   "budgetBytes": 5987042,
+   "files": 3444,
+   "bytes": 5987036,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 1800,
+   "coveredNeededBytes": 5396100,
+   "missNeededFiles": 1,
+   "missNeededBytes": 15086,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/G2.0.1.txt"
+  },
+  "G2@0.2": {
+   "arm": "G2",
+   "budget": 0.2,
+   "budgetBytes": 11974084,
+   "files": 6760,
+   "bytes": 11974082,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 1801,
+   "coveredNeededBytes": 5411186,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/G2.0.2.txt"
+  },
+  "G2@0.4": {
+   "arm": "G2",
+   "budget": 0.4,
+   "budgetBytes": 23948168,
+   "files": 8966,
+   "bytes": 23948055,
+   "stoppedInTier": "path-distance-widening",
+   "coveredNeededFiles": 1801,
+   "coveredNeededBytes": 5411186,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/G2.0.4.txt"
+  },
+  "R1@0.05": {
+   "arm": "R1",
+   "budget": 0.05,
+   "budgetBytes": 2993521,
+   "files": 4150,
+   "bytes": 2993514,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1422,
+   "coveredNeededBytes": 1344148,
+   "missNeededFiles": 379,
+   "missNeededBytes": 4067038,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R1.0.05.txt"
+  },
+  "R1@0.1": {
+   "arm": "R1",
+   "budget": 0.1,
+   "budgetBytes": 5987042,
+   "files": 5576,
+   "bytes": 5987024,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1665,
+   "coveredNeededBytes": 2295402,
+   "missNeededFiles": 136,
+   "missNeededBytes": 3115784,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R1.0.1.txt"
+  },
+  "R1@0.2": {
+   "arm": "R1",
+   "budget": 0.2,
+   "budgetBytes": 11974084,
+   "files": 6515,
+   "bytes": 11974057,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1776,
+   "coveredNeededBytes": 3691136,
+   "missNeededFiles": 25,
+   "missNeededBytes": 1720050,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R1.0.2.txt"
+  },
+  "R1@0.4": {
+   "arm": "R1",
+   "budget": 0.4,
+   "budgetBytes": 23948168,
+   "files": 7030,
+   "bytes": 23948133,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1801,
+   "coveredNeededBytes": 5411186,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R1.0.4.txt"
+  },
+  "R2@0.05": {
+   "arm": "R2",
+   "budget": 0.05,
+   "budgetBytes": 2993521,
+   "files": 1247,
+   "bytes": 2993520,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1227,
+   "coveredNeededBytes": 2993490,
+   "missNeededFiles": 574,
+   "missNeededBytes": 2417696,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R2.0.05.txt"
+  },
+  "R2@0.1": {
+   "arm": "R2",
+   "budget": 0.1,
+   "budgetBytes": 5987042,
+   "files": 3136,
+   "bytes": 5987034,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1800,
+   "coveredNeededBytes": 5396100,
+   "missNeededFiles": 1,
+   "missNeededBytes": 15086,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R2.0.1.txt"
+  },
+  "R2@0.2": {
+   "arm": "R2",
+   "budget": 0.2,
+   "budgetBytes": 11974084,
+   "files": 6234,
+   "bytes": 11974049,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1801,
+   "coveredNeededBytes": 5411186,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R2.0.2.txt"
+  },
+  "R2@0.4": {
+   "arm": "R2",
+   "budget": 0.4,
+   "budgetBytes": 23948168,
+   "files": 7102,
+   "bytes": 23948144,
+   "stoppedInTier": "semantic-distance-widening",
+   "coveredNeededFiles": 1801,
+   "coveredNeededBytes": 5411186,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/R2.0.4.txt"
+  },
+  "O@0.05": {
+   "arm": "O",
+   "budget": 0.05,
+   "budgetBytes": 2993521,
+   "files": 1246,
+   "bytes": 2993521,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1227,
+   "coveredNeededBytes": 2993490,
+   "missNeededFiles": 574,
+   "missNeededBytes": 2417696,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/O.0.05.txt"
+  },
+  "O@0.1": {
+   "arm": "O",
+   "budget": 0.1,
+   "budgetBytes": 5987042,
+   "files": 2183,
+   "bytes": 5987041,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1801,
+   "coveredNeededBytes": 5411186,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/O.0.1.txt"
+  },
+  "O@0.2": {
+   "arm": "O",
+   "budget": 0.2,
+   "budgetBytes": 11974084,
+   "files": 3796,
+   "bytes": 11974083,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1801,
+   "coveredNeededBytes": 5411186,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/O.0.2.txt"
+  },
+  "O@0.4": {
+   "arm": "O",
+   "budget": 0.4,
+   "budgetBytes": 23948168,
+   "files": 3906,
+   "bytes": 23948168,
+   "stoppedInTier": "remainder-by-path",
+   "coveredNeededFiles": 1801,
+   "coveredNeededBytes": 5411186,
+   "missNeededFiles": 0,
+   "missNeededBytes": 0,
+   "listPath": "/Users/sara/.cache/reducer-longtail-v1/prefetch/verdaccio/O.0.4.txt"
+  }
+ },
+ "stream": {
+  "length": 400,
+  "families": 4,
+  "passes": 2
+ },
+ "warnings": [
+  "38614 installed JS file(s) belong to packages absent from the frozen production population; treated as outside the universe unless positive evidence reaches them"
+ ],
+ "workloadNotes": [
+  "The dynamic plugin loader (a computed createRequire over a `verdaccio-<id>` prefix) was examined and deliberately EXCLUDED: swapping a plugin is a boot-time configuration change, not a request-time execution path, so it cannot be a post-admission long tail without making TRAIN and TEST different deployments.",
+  "The uplink is pointed at an unroutable local port by the scratch config. The trial container CAN reach the real internet, so a real registry.npmjs.org uplink would make the unknown-package 404 depend on an external service and cost ~15 s per request (measured in the pilot). The proxy/uplink-failure code path still runs; only the failure is immediate, and identically so for every arm.",
+  "Locale is not a category here: the server never reads a locale file (the web UI bundles its translations at build time).",
+  "GET /.env was in the first draft as a dotfile-guard probe and was REMOVED after the pilot observation run: verdaccio never answers it, so every occurrence burned the full request timeout and dominated the run. Removed as unmeasurable, not as unfavourable."
+ ],
+ "offSpec": [
+  {
+   "line": "vd.l.deprecate -> 422 (expected [201])",
+   "n": 45
+  },
+  {
+   "line": "vd.bp.nomedia -> 400 (expected [415])",
+   "n": 44
+  },
+  {
+   "line": "vd.bp.empty -> 500 (expected [422,400])",
+   "n": 44
+  }
+ ],
+ "longTail": [
+  {
+   "id": "vd.lifecycle",
+   "category": "optional-feature",
+   "why": "publish → tag → deprecate → unpublish is the whole point of a private registry, and a read-only training workload never performs any of it.",
+   "mechanism": "tarball validation (gunzip/tar-stream), the local-storage write path, manifest merge, dist-tag mutation and tarball removal.",
+   "requests": [
+    "PUT /longtail-probe-{{seq}}",
+    "PUT /-/package/longtail-probe-{{seq}}/dist-tags/beta",
+    "GET /longtail-probe-{{seq}}",
+    "PUT /longtail-probe-{{seq}}/-rev/{{rev}}",
+    "DELETE /-/package/longtail-probe-{{seq}}/dist-tags/beta",
+    "DELETE /longtail-probe-{{seq}}/-rev/{{rev}}"
+   ]
+  },
+  {
+   "id": "vd.profile",
+   "category": "admin-background",
+   "why": "account self-service (profile reads, token issuance) is real but rare traffic on a private registry.",
+   "mechanism": "the profile and token-management route family, the JWT signer and the token store — none of which a read-only workload reaches.",
+   "requests": [
+    "GET /-/npm/v1/user",
+    "GET /-/npm/v1/tokens",
+    "POST /-/npm/v1/tokens"
+   ]
+  },
+  {
+   "id": "vd.notfound",
+   "category": "error-path",
+   "why": "a request for a package this registry has never cached is the single most common error a registry serves; offline it also exercises the uplink-failure branch.",
+   "mechanism": "uplink attempt → failure collection → getNotFound; the error middleware and its formatter.",
+   "requests": [
+    "GET /this-package-does-not-exist-xyz",
+    "GET /jsonwebtoken/99.0.0"
+   ]
+  },
+  {
+   "id": "vd.badpublish",
+   "category": "error-path",
+   "why": "a broken or truncated publish from a CI job is ordinary registry traffic.",
+   "mechanism": "media-type rejection, zero-length attachment rejection and the tarball-parse failure path.",
+   "requests": [
+    "PUT /longtail-bad-{{seq}}",
+    "PUT /longtail-bad-{{seq}}",
+    "PUT /_.invalid..name"
+   ]
+  },
+  {
+   "id": "vd.rare",
+   "category": "rare-route",
+   "why": "the removed-endpoint stub, the web shell under a non-root path and the favicon are all live routes a browser or an old client reaches.",
+   "mechanism": "route-table entries, the HTML-shell render cache miss, and static file serving outside the web-UI data API.",
+   "requests": [
+    "GET /-/all",
+    "GET /-/web/longtail",
+    "GET /-/static/favicon.ico"
+   ]
+  }
+ ]
+}
