@@ -50,18 +50,19 @@ L.push('column includes the phase duration: comparable across arms, not across a
 for (const a of apps) {
   const m = M.get(a)!;
   L.push(`\n### ${a}\n`);
-  L.push('| arm | n | ready (ms) | first ok request (ms) | remote requests | remote MB | MB fetched by ready | prefetch files | prefetch MB | precision | recall | held-out misses (files / MB) | req p50 | req p95 |');
-  L.push('| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
+  L.push('| arm | n | proc (ms) | ready (ms) | first ok req (ms) | remote reqs | remote MB | MB @proc | MB @ready | MB @req1 | prefetch reqs | prefetch files | prefetch MB | precision | recall | held-out misses (files / MB) | p50 | p95 |');
+  L.push('| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
   for (const arm of ARMS) {
     const x = m.byArm[arm];
     if (!x || !x.n) {
-      L.push(`| ${arm} | 0 | — | — | — | — | — | — | — | — | — | — | — | — |`);
+      L.push(`| ${arm} | 0 |${' — |'.repeat(16)}`);
       continue;
     }
     L.push(
-      `| ${arm} | ${x.n} | ${ms(x.tReadyMs.median)} | ${ms(x.tReq1Ms.median)} | ${ms(x.remoteRequests.median)} | ` +
-        `${mb(x.remoteBytes.median)} | ${mb(x.bytesAtReady.median)} | ${x.prefetchedFiles?.toLocaleString() ?? '—'} | ` +
-        `${mb(x.prefetchedFileBytes ?? Number.NaN)} | ` +
+      `| ${arm} | ${x.n} | ${ms(x.tProcMs.median)} | ${ms(x.tReadyMs.median)} | ${ms(x.tReq1Ms.median)} | ` +
+        `${ms(x.remoteRequests.median)} | ${mb(x.remoteBytes.median)} | ` +
+        `${mb(x.bytesAtProc.median)} | ${mb(x.bytesAtReady.median)} | ${mb(x.bytesAtReq1.median)} | ` +
+        `${ms(x.prefetchRequests.median)} | ${x.prefetchedFiles?.toLocaleString() ?? '—'} | ${mb(x.prefetchedFileBytes ?? Number.NaN)} | ` +
         `${pc(x.precision.median)} | ${pc(x.recall.median)} | ${ms(x.unexpectedMissFiles.median)} / ${mb(x.unexpectedMissBytes.median)} | ` +
         `${ms(x.latencyP50.median)} | ${ms(x.latencyP95.median)} |`,
     );
