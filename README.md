@@ -154,6 +154,12 @@ bun test tests
 bun run typecheck
 ```
 
+Clone size: `benchmarks/hazard-domain/first-run/corpus/` holds ~213 MB of frozen
+analyzer output (one 68 MB JSON) so every number in the decision documents is
+reproducible from the preserved evidence. The small `node_modules/` directories
+under `fixtures/` and `benchmarks/garden/fab/` are deliberate hand-written
+synthetic packages (module-resolution test fixtures), not vendored dependencies.
+
 Reduced/verified artifacts target stock Node 24.19.0 (`.tool-versions`).
 
 ## License

@@ -1,6 +1,6 @@
 # Corpus-v1 universe materialization record (hazard-domain experiment)
 
-Date: 2026-08-22. Clone root: `/Users/sara/.cache/reducer-corpus-v1` — the
+Date: 2026-08-22. Clone root: `~/.cache/reducer-corpus-v1` — the
 frozen clones from `benchmarks/cve-population/materialization.json`, HEADs
 verified against `corpus.json` `resolvedSha` (re-verified by `run-corpus.ts`
 before each analysis; no refs advanced, no SHAs substituted).

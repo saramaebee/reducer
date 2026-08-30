@@ -112,8 +112,8 @@ function resetServices(app: string): void {
   const url = linuxRecipe(app).env.DATABASE_URL ?? '';
   const db = /\/([^/?]+)(\?|$)/.exec(url)?.[1];
   if (!db) throw new Error(`[${app}] declares a pg service but no database name is derivable from DATABASE_URL`);
-  sh(['docker', 'exec', 'reducer-pg', 'psql', '-U', 'sara', '-d', 'postgres', '-c', `DROP DATABASE IF EXISTS "${db}"`], 120_000);
-  sh(['docker', 'exec', 'reducer-pg', 'psql', '-U', 'sara', '-d', 'postgres', '-c', `CREATE DATABASE "${db}"`], 120_000);
+  sh(['docker', 'exec', 'reducer-pg', 'psql', '-U', 'reducer', '-d', 'postgres', '-c', `DROP DATABASE IF EXISTS "${db}"`], 120_000);
+  sh(['docker', 'exec', 'reducer-pg', 'psql', '-U', 'reducer', '-d', 'postgres', '-c', `CREATE DATABASE "${db}"`], 120_000);
 }
 
 // ------------------------------------------------------------------ trial

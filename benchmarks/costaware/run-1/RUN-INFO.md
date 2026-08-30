@@ -30,8 +30,8 @@ This experiment builds no image, materialises no tree and re-derives no ranking.
 Every physical artefact is experiment 4's, reused by path:
 
 ```text
-tree              /Users/sara/.cache/reducer-longtail-v1/stage/<app>
-RAFS bootstrap    /Users/sara/.cache/reducer-longtail-v1/images/<app>/base/boot.img
+tree              ~/.cache/reducer-longtail-v1/stage/<app>
+RAFS bootstrap    ~/.cache/reducer-longtail-v1/images/<app>/base/boot.img
 RAFS blob         already in the registry, repo longtail/<app>
 rankings          ../longtail/run-1/prefetch/<app>/{G2,R1,O}.ranking.json.gz
 traffic families  ../longtail/traffic.ts + workloads.ts (unchanged)

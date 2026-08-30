@@ -515,7 +515,7 @@ export const RECIPES: Record<string, Recipe> = {
       PORT: '3406',
       FORCE_HTTPS: 'false',
       PGSSLMODE: 'disable',
-      DATABASE_URL: 'postgres://sara@127.0.0.1:5432/outline_reducer',
+      DATABASE_URL: 'postgres://reducer@127.0.0.1:5432/outline_reducer',
       REDIS_URL: 'redis://127.0.0.1:6379',
       FILE_STORAGE: 'local',
       FILE_STORAGE_LOCAL_ROOT_DIR: `${SCRATCH}/outline-data`,
@@ -527,7 +527,7 @@ export const RECIPES: Record<string, Recipe> = {
       // installation.create refuses to run once any Team exists, so a reused
       // database silently turns the entire authenticated sweep into 401s. The
       // database is recreated per run; outline migrates itself at boot.
-      'dropdb -h 127.0.0.1 -U sara --if-exists outline_reducer && createdb -h 127.0.0.1 -U sara outline_reducer',
+      'dropdb -h 127.0.0.1 -U reducer --if-exists outline_reducer && createdb -h 127.0.0.1 -U reducer outline_reducer',
     ],
     ready: { kind: 'http', value: 'http://127.0.0.1:3406/_health', timeoutMs: 420_000 },
     settleMs: 4000,
@@ -691,7 +691,7 @@ export const RECIPES: Record<string, Recipe> = {
       '--masterKey',
       'reducerMasterKey',
       '--databaseURI',
-      'postgres://sara@127.0.0.1:5432/parse_reducer',
+      'postgres://reducer@127.0.0.1:5432/parse_reducer',
       '--port',
       '1338',
       '--serverURL',
@@ -1026,11 +1026,11 @@ export const RECIPES: Record<string, Recipe> = {
     env: {
       NODE_ENV: 'production',
       PORT: '3409',
-      DATABASE_URL: 'postgresql://sara@127.0.0.1:5432/reducer_ws_express?schema=public',
+      DATABASE_URL: 'postgresql://reducer@127.0.0.1:5432/reducer_ws_express?schema=public',
       JWT_SECRET: 'hydration-probe-secret',
     },
     setup: [
-      'createdb -h 127.0.0.1 -U sara reducer_ws_express 2>/dev/null || true',
+      'createdb -h 127.0.0.1 -U reducer reducer_ws_express 2>/dev/null || true',
       'npx --no-install prisma migrate deploy || npx prisma migrate deploy || true',
     ],
     ready: { kind: 'stdout', value: 'server up on port', timeoutMs: 180_000 },

@@ -7,7 +7,7 @@ retired conservative-linker evidence) are untouched.
 
 Repository commit at measurement time: `1d78a1ef603415bd86c84c851165e3395a40d0de`
 (the preserved static working-set result; this experiment's code was added on top).
-Runtime: **Node 24.19.0** (`/Users/sara/.asdf/installs/nodejs/24.19.0/bin/node`) —
+Runtime: **Node 24.19.0** (`~/.asdf/installs/nodejs/24.19.0/bin/node`) —
 the same version `.tool-versions` pins and the same one the corpus was materialized
 and built with. The analysis tooling runs under Bun; only the applications run under
 Node, and only stock Node.
@@ -325,8 +325,8 @@ bun test tests/hydration-tracer.test.ts tests/hydration-analysis.test.ts
   compact representation the curves are recomputable from.
 - `summary.json` / `SUMMARY.md` — corpus aggregates.
 
-Raw per-process traces live in `/Users/sara/.cache/reducer-hydration-v1/traces/` and
-the placement snapshots in `/Users/sara/.cache/reducer-hydration-v1/plans/` (a
+Raw per-process traces live in `~/.cache/reducer-hydration-v1/traces/` and
+the placement snapshots in `~/.cache/reducer-hydration-v1/plans/` (a
 per-file index of a 252k-file universe is not a committable artifact); each snapshot
 records its own `planSha256`.
 

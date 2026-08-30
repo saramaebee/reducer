@@ -49,8 +49,8 @@ const rewrite = (s: string, appDir: string): string =>
     .replaceAll('127.0.0.1:27017', 'reducer-mongo:27017')
     .replaceAll('127.0.0.1:6379', 'reducer-redis:6379')
     .replaceAll('127.0.0.1:3306', 'reducer-mysql:3306')
-    .replaceAll('postgres://sara@', 'postgres://sara:reducer@')
-    .replaceAll('postgresql://sara@', 'postgresql://sara:reducer@');
+    .replaceAll('postgres://reducer@', 'postgres://reducer:reducer@')
+    .replaceAll('postgresql://reducer@', 'postgresql://reducer:reducer@');
 
 /** The app must listen on all interfaces: the workload driver runs on the host. */
 const unbindLoopback = (s: string): string => s.replaceAll('--host=127.0.0.1', '--host=0.0.0.0');

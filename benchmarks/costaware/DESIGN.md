@@ -81,8 +81,8 @@ negative result closes the wedge and no further planner variant is proposed.
 Every physical artefact is experiment 4's, reused by path:
 
 ```text
-application trees      /Users/sara/.cache/reducer-longtail-v1/stage/<app>
-RAFS bootstrap         /Users/sara/.cache/reducer-longtail-v1/images/<app>/base/boot.img
+application trees      ~/.cache/reducer-longtail-v1/stage/<app>
+RAFS bootstrap         ~/.cache/reducer-longtail-v1/images/<app>/base/boot.img
 RAFS data blob         already in the local registry, repo longtail/<app>
                        (strapi's blob digest fd4656ceb30d…, 228.3 MB — the exact
                         object experiment 4 measured)
