@@ -1,0 +1,17 @@
+reducer — Copyright (c) 2026 Sara
+Licensed under the PolyForm Noncommercial License 1.0.0 (see LICENSE).
+
+Third-party content redistributed in this repository:
+
+  benchmarks/cve-population/osv-advisories.json
+  benchmarks/cve-population/osv-snapshot.json
+    Advisory records retrieved from OSV.dev (https://osv.dev) on 2026-08-22.
+    GHSA-* records originate from the GitHub Advisory Database
+    (https://github.com/github/advisory-database), (c) GitHub, Inc. and
+    contributors, licensed CC-BY 4.0
+    (https://creativecommons.org/licenses/by/4.0/). Redistributed under
+    CC-BY 4.0 independently of the PolyForm license. See
+    benchmarks/cve-population/README.md.
+
+The 19 corpus applications in benchmarks/corpus.json are referenced by
+repository URL and commit SHA only; no application source is redistributed.
