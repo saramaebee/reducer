@@ -486,7 +486,10 @@ remote faults and bytes are reported next to it, never folded into it.
 
 ## 9. Metrics — formulas fixed before computation
 
-Ranked by importance, as the goal specifies.
+Ranked by importance, following the external brief's priority order (time to
+traffic-warm first, then tail-latency regression, then post-admission
+faults/bytes; recorded retrospectively in `docs/PROBLEM-CONTEXT.md` §5 —
+originally "as the goal specifies").
 
 ```text
 1  time to traffic-warm        T_steady − T0            (primary)

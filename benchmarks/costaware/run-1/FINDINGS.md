@@ -353,8 +353,10 @@ Stated so a later reader can attack it:
    improvement to lazy delivery. It needs a chunk map and an arithmetic model —
    no Node analysis, no dependency graph, no training run.
 
-Per DESIGN §16 and the goal's own decision rule, performance experimentation
-stops here. No further planner variant is proposed.
+Per DESIGN §16's decision rule — a negative result is not rescued with another
+planner revision (the same rule the external research brief imposed; see
+`docs/PROBLEM-CONTEXT.md` §5) — performance experimentation stops here. No
+further planner variant is proposed.
 
 ---
 

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Semantics vs. the Trace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --ground:    #f5f6f8;
+  --surface:   #ffffff;
+  --ink:       #0e1116;
+  --ink-2:     #4a5361;
+  --muted:     #7b8493;
+  --rule:      #e4e7ec;
+  --track:     #eef0f3;
+  --ring:      rgba(14,17,22,0.10);
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground:  #0f1114;
+    --surface: #17191c;
+    --ink:     #f2f4f7;
+    --ink-2:   #b4bcc7;
+    --muted:   #7b8493;
+    --rule:    #282c32;
+    --track:   #21242a;
+    --ring:    rgba(255,255,255,0.10);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground:  #0f1114;
+  --surface: #17191c;
+  --ink:     #f2f4f7;
+  --ink-2:   #b4bcc7;
+  --muted:   #7b8493;
+  --rule:    #282c32;
+  --track:   #21242a;
+  --ring:    rgba(255,255,255,0.10);
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0;
+  padding: 40px 20px 72px;
+}
+.page { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 34px; }
+
+h1, h2, h3 { font-family: "IBM Plex Sans Condensed", system-ui, sans-serif; text-wrap: balance; margin: 0; }
+h1 { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.45rem; font-weight: 600; letter-spacing: -0.005em; }
+p  { margin: 0; max-width: 68ch; }
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--muted);
+}
+.meta {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem;
+  color: var(--muted); line-height: 1.75; max-width: 100%;
+}
+.stats { display: flex; flex-wrap: wrap; gap: 14px 40px; border-top: 1px solid var(--rule); padding-top: 15px; }
+.stat { display: flex; flex-direction: column; gap: 1px; }
+.stat b {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 1.12rem; font-weight: 600;
+  color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
+}
+.stat span { font-size: 0.78rem; color: var(--muted); }
+
+header { display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 26px; }
+
+figure {
+  margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px;
+  padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 18px;
+}
+figcaption { display: flex; flex-direction: column; gap: 7px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--ink-2); }
+.legend i { width: 12px; height: 12px; border-radius: 3px; background: var(--c); display: inline-block; }
+
+.facets { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px 30px; }
+.facet { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.facet-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 5px; }
+.facet-head strong { font-family: "IBM Plex Sans Condensed", system-ui, sans-serif; font-size: 1rem; font-weight: 600; }
+.facet-head em {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-style: normal;
+  font-size: 0.72rem; color: var(--muted); white-space: nowrap;
+}
+.rows { display: flex; flex-direction: column; gap: 2px; }
+.row { display: grid; grid-template-columns: 74px 1fr auto; align-items: center; gap: 10px; }
+.row > .k {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem;
+  color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.row > .t { background: var(--track); border-radius: 2px; height: 18px; min-width: 0; }
+.row > .t > b { display: block; height: 100%; background: var(--c); border-radius: 0 4px 4px 0; }
+.row > .v {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem;
+  font-variant-numeric: tabular-nums; color: var(--ink); text-align: right; min-width: 62px;
+}
+.row.win > .v { font-weight: 600; }
+.panel .row { grid-template-columns: 96px 1fr auto; }
+.grouplabel {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.72rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 6px;
+}
+
+.panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.panel { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.panel h3 { font-size: 1.02rem; font-weight: 600; }
+.panel .sub { font-size: 0.88rem; color: var(--ink-2); }
+
+details { border-top: 1px solid var(--rule); padding-top: 12px; }
+summary { cursor: pointer; font-size: 0.85rem; color: var(--ink-2); font-family: "IBM Plex Mono", ui-monospace, monospace; }
+summary:focus-visible { outline: 2px solid var(--s1); outline-offset: 3px; border-radius: 3px; }
+.tablewrap { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; font-size: 0.82rem; width: 100%; }
+th, td { padding: 5px 12px 5px 0; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+th:first-child, td:first-child { text-align: left; }
+thead th { color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--rule); }
+tbody td { border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+tbody td:first-child { color: var(--ink); }
+
+footer { color: var(--muted); font-size: 0.82rem; font-family: "IBM Plex Mono", ui-monospace, monospace; border-top: 1px solid var(--rule); padding-top: 18px; }
+footer a { color: var(--ink-2); }
+</style>
+
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="eyebrow">Reducer · ADR-0007 · experiments 3 &amp; 4</div>
+    <h1>Semantics vs. the trace</h1>
+    <p class="meta">prefetch strategy vs. time-to-serve, on a lazily mounted Node application universe<br>generic arms are trained on a filesystem access trace &nbsp;·&nbsp; Reducer arms are derived from Node module semantics</p>
+  </header>
+
+  <figure>
+    <figcaption>
+      <div class="eyebrow">Experiment 3 · lazy OCI · <code>benchmarks/lazy-oci/run-1</code></div>
+      <h2>Time to Ready, by prefetch arm</h2>
+      <p class="meta">median ms, image request &rarr; application Ready &nbsp;·&nbsp; Nydus RAFS v6 over OCI registry &nbsp;·&nbsp; 25 ms / 100 Mbit &nbsp;·&nbsp; n = 5 / 3<br>generic = better of B2 / B2d per app &nbsp;·&nbsp; per-app scale &nbsp;·&nbsp; 0 correctness mismatches vs. B0</p>
+    </figcaption>
+    <div class="legend" id="lg1"></div>
+    <div class="facets" id="f1"></div>
+    <div class="stats">
+      <div class="stat"><b>2&ndash;4&times;</b><span>lazy vs. eager, 5 of 6 apps</span></div>
+      <div class="stat"><b>&minus;46 ms</b><span>median B3b vs. best generic (&minus;11.6%)</span></div>
+      <div class="stat"><b>&minus;1,564 ms</b><span>B3b vs. generic, strapi (915 MB)</span></div>
+      <div class="stat"><b>+810 ms</b><span>B3b vs. generic, juice-shop (270 MB)</span></div>
+    </div>
+    <details><summary>Table view: ready time (ms)</summary><div class="tablewrap" id="t1"></div></details>
+  </figure>
+
+  <figure>
+    <figcaption>
+      <div class="eyebrow">Experiment 4 · long-tail traffic-warm · <code>benchmarks/longtail/run-1</code></div>
+      <h2>Held-out surface, and first-hit latency into it</h2>
+      <p class="meta">408 trials &nbsp;·&nbsp; 6 apps &nbsp;·&nbsp; 4 strategies &nbsp;·&nbsp; 4 prewarm budgets &nbsp;·&nbsp; 0 / 384 correctness mismatches vs. eager<br>E0 = eager &nbsp;·&nbsp; G1 / G2 = trace-trained &nbsp;·&nbsp; R1 = static Node semantics, no training &nbsp;·&nbsp; R2 = semantics + trace</p>
+    </figcaption>
+    <div class="panels">
+      <div class="panel">
+        <h3>Held-out files</h3>
+        <p class="sub">TEST reached, TRAIN never did</p>
+        <div id="p2a"></div>
+      </div>
+      <div class="panel">
+        <h3>First-hit latency</h3>
+        <p class="sub">ms, arrival position 1, 10% prewarm budget</p>
+        <div class="legend" id="lg2"></div>
+        <div id="p2b"></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>120 vs 1,041&ndash;1,131 ms</b><span>R1 vs. G1/G2 first hit, juice-shop lazy import('ethers'), 19 MB</span></div>
+      <div class="stat"><b>1 vs 21&ndash;24</b><span>post-admission remote faults at 10% budget, juice-shop</span></div>
+      <div class="stat"><b>&le;10 files</b><span>held out on 3 of 5 real apps</span></div>
+      <div class="stat"><b>5% vs 10%</b><span>budget for eager-equivalent p99, R1 vs. G2, strapi</span></div>
+      <div class="stat"><b>~250 ms</b><span>paid by every arm on uptime-kuma's non-module tail</span></div>
+    </div>
+    <details><summary>Table view: held-out surface and first-hit latency (ms)</summary><div class="tablewrap" id="t2"></div></details>
+  </figure>
+
+  <footer>benchmarks/lazy-oci/run-1/SUMMARY.md &nbsp;·&nbsp; benchmarks/longtail/run-1/FINDINGS.md &nbsp;·&nbsp; both preregistered in DESIGN.md</footer>
+</div>
+
+<script>
+const C = ['var(--s1)','var(--s2)','var(--s3)','var(--s4)','var(--s5)'];
+const el = (t, cls, txt) => { const n = document.createElement(t); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+const num = n => n.toLocaleString('en-US');
+
+function legend(host, items) {
+  items.forEach(([label, ci]) => {
+    const s = el('span'); const i = el('i'); i.style.setProperty('--c', C[ci]);
+    s.append(i, document.createTextNode(label)); host.append(s);
+  });
+}
+// rows: [{k, v, ci, fmt, win}]. Bar length is relative to max within the group
+function bars(host, rows, fmt) {
+  const max = Math.max(...rows.map(r => r.v)) || 1;
+  const box = el('div', 'rows');
+  rows.forEach(r => {
+    const row = el('div', 'row' + (r.win ? ' win' : ''));
+    row.append(el('div', 'k', r.k));
+    const t = el('div', 't'); const b = el('b');
+    b.style.setProperty('--c', C[r.ci]);
+    b.style.width = Math.max(r.v / max * 100, r.v > 0 ? 1.5 : 0) + '%';
+    t.title = r.k + ': ' + fmt(r.v);
+    t.append(b); row.append(t);
+    row.append(el('div', 'v', fmt(r.v)));
+    box.append(row);
+  });
+  host.append(box);
+}
+function table(host, head, rows) {
+  const tb = el('table'), h = el('thead'), hr = el('tr');
+  head.forEach(c => { const th = el('th', null, c); hr.append(th); });
+  h.append(hr); tb.append(h);
+  const body = el('tbody');
+  rows.forEach(r => { const tr = el('tr'); r.forEach(c => tr.append(el('td', null, c))); body.append(tr); });
+  tb.append(body); host.append(tb);
+}
+
+/* ── Experiment 3 ───────────────────────────────────────────── */
+const ms = v => num(v) + ' ms';
+const arms3 = [['Eager pull (B0)', 0], ['Best generic trace', 1], ['Reducer semantics (B3b)', 2]];
+const exp3 = [
+  { app: 'json-server',        size: '3.2 MB · 1,288 f',      v: [447, 434, 538] },
+  { app: 'verdaccio',          size: '59.9 MB · 9,530 f',     v: [2850, 1452, 1440] },
+  { app: 'express-realworld',  size: '107.6 MB · 2,104 f',    v: [1928, 491, 893] },
+  { app: 'uptime-kuma',        size: '200.7 MB · 28,851 f',   v: [7454, 3783, 3374] },
+  { app: 'juice-shop',         size: '270.5 MB · 24,020 f',   v: [8648, 3328, 4138] },
+  { app: 'strapi',             size: '915.0 MB · 123,474 f',  v: [20213, 6838, 5274] },
+];
+legend(document.getElementById('lg1'), arms3);
+const f1 = document.getElementById('f1');
+exp3.forEach(d => {
+  const fc = el('div', 'facet'), head = el('div', 'facet-head');
+  head.append(el('strong', null, d.app), el('em', null, d.size));
+  fc.append(head);
+  const best = Math.min(d.v[1], d.v[2]);
+  bars(fc, d.v.map((v, i) => ({ k: ['eager', 'generic', 'Reducer'][i], v, ci: i, win: i > 0 && v === best })), ms);
+  f1.append(fc);
+});
+table(document.getElementById('t1'),
+  ['app', 'universe', 'eager B0', 'best generic', 'Reducer B3b', 'Δ vs generic'],
+  exp3.map(d => [d.app, d.size, num(d.v[0]), num(d.v[1]), num(d.v[2]),
+    (d.v[2] - d.v[1] > 0 ? '+' : '−') + num(Math.abs(d.v[2] - d.v[1])) + ' ms']));
+
+/* ── Experiment 4 ───────────────────────────────────────────── */
+const held = [
+  { k: 'nextjs *', v: 710 }, { k: 'juice-shop', v: 669 }, { k: 'strapi', v: 273 },
+  { k: 'uptime-kuma', v: 10 }, { k: 'verdaccio', v: 1 }, { k: 'json-server', v: 0 },
+];
+bars(document.getElementById('p2a'), held.map(r => ({ ...r, ci: 0 })), v => num(v) + (v === 1 ? ' file' : ' files'));
+document.getElementById('p2a').insertAdjacentHTML('afterend',
+  '<p class="sub" style="margin:0">* controlled fixture. The five real apps are unmodified.</p>');
+
+const arms4 = [['Eager (E0)', 0], ['Trace (G1)', 1], ['Trace + distance (G2)', 2], ['Semantics, untrained (R1)', 3], ['Semantics + trace (R2)', 4]];
+legend(document.getElementById('lg2'), arms4);
+const exp4 = [
+  { g: 'juice-shop · lazy import(ethers), 19 MB', v: [118, 1131, 1041, 120, 729] },
+  { g: 'strapi · lazy require(cheerio)',          v: [148, 785, 417, 158, 155] },
+  { g: 'uptime-kuma · per-locale build chunk',    v: [11, 245, 249, 256, 257] },
+];
+const p2b = document.getElementById('p2b');
+exp4.forEach(d => {
+  p2b.append(el('div', 'grouplabel', d.g));
+  bars(p2b, d.v.map((v, i) => ({ k: ['E0', 'G1', 'G2', 'R1', 'R2'][i], v, ci: i })), ms);
+});
+table(document.getElementById('t2'),
+  ['app', 'held-out files', 'E0 eager', 'G1 trace', 'G2 trace+dist', 'R1 semantics', 'R2 sem+trace'],
+  exp4.map((d, i) => {
+    const app = d.g.split(' · ')[0];
+    const h = held.find(x => x.k === app);
+    return [d.g, h ? num(h.v) : 'n/a', ...d.v.map(num)];
+  }).concat(held.filter(h => !exp4.some(d => d.g.startsWith(h.k)))
+    .map(h => [h.k.replace(' *', ' (fixture)'), num(h.v), 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'])));
+</script>
+</body>
+</html>

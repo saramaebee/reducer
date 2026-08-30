@@ -142,7 +142,9 @@ applications must execute inside Linux. This forces §3.2.
 
 ### 3.1 Application selection criteria (fixed before any outcome)
 
-Selection maximises experimental information under the goal's list, subject to
+Selection maximises experimental information under the research priorities of
+the external brief (recorded retrospectively in `docs/PROBLEM-CONTEXT.md` §5;
+originally "the goal's list"), subject to
 the hard constraint that the application must be able to execute under Linux
 arm64 at its frozen SHA:
 
